@@ -1,0 +1,79 @@
+﻿<UserControl x:Class="Main.SecondFloor.SFRecordOne"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Main.SecondFloor"
+             xmlns:cl="http://talonzeng.com/ControlLibrary"
+             mc:Ignorable="d" 
+             Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="sfRecordOne">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="300"/>
+            <RowDefinition Height="300"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <ListView Name="ArmMotorRetData" FontSize="14">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="序号" Width="50" DisplayMemberBinding="{Binding Index}"></GridViewColumn>
+                            <GridViewColumn Header="手臂回零" Width="90" DisplayMemberBinding="{Binding Value}"></GridViewColumn>
+                            <GridViewColumn Header="时间" Width="140" DisplayMemberBinding="{Binding TimeStamp}"></GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <ListView Name="CarMotorRetData" FontSize="14">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="序号" Width="50"  DisplayMemberBinding="{Binding Index}"></GridViewColumn>
+                            <GridViewColumn Header="小车回零" Width="90"  DisplayMemberBinding="{Binding Value}"></GridViewColumn>
+                            <GridViewColumn Header="时间" Width="140" DisplayMemberBinding="{Binding TimeStamp}"></GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <ListView Name="RotateMotorRetData" FontSize="14">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="序号" Width="50"  DisplayMemberBinding="{Binding Index}"></GridViewColumn>
+                            <GridViewColumn Header="回转回零" Width="90"  DisplayMemberBinding="{Binding Value}"></GridViewColumn>
+                            <GridViewColumn Header="时间" Width="140" DisplayMemberBinding="{Binding TimeStamp}"></GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <ListView Name="ArmMotorWorkData" FontSize="14">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="序号" Width="50" DisplayMemberBinding="{Binding Index}"></GridViewColumn>
+                            <GridViewColumn Header="手臂状态" Width="90" DisplayMemberBinding="{Binding Value}"></GridViewColumn>
+                            <GridViewColumn Header="时间" Width="140" DisplayMemberBinding="{Binding TimeStamp}"></GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <ListView Name="CarMotorWorkData" FontSize="14">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="序号" Width="50"  DisplayMemberBinding="{Binding Index}"></GridViewColumn>
+                            <GridViewColumn Header="小车状态" Width="90"  DisplayMemberBinding="{Binding Value}"></GridViewColumn>
+                            <GridViewColumn Header="时间" Width="140" DisplayMemberBinding="{Binding TimeStamp}"></GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <ListView Name="RotateMotorWorkData" FontSize="14">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="序号" Width="50"  DisplayMemberBinding="{Binding Index}"></GridViewColumn>
+                            <GridViewColumn Header="回转状态" Width="90"  DisplayMemberBinding="{Binding Value}"></GridViewColumn>
+                            <GridViewColumn Header="时间" Width="140" DisplayMemberBinding="{Binding TimeStamp}"></GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

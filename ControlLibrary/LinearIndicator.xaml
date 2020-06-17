@@ -1,0 +1,242 @@
+﻿<UserControl x:Class="ControlLibrary.LinearIndicator"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxga="http://schemas.devexpress.com/winfx/2008/xaml/gauges"
+             xmlns:local="clr-namespace:ControlLibrary"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <dxga:LinearGaugeControl x:Name="linearGaugeControl" >
+            <dxga:LinearGaugeControl.ScalePanelTemplate>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition MinHeight="55" />
+                            <RowDefinition MinHeight="55" />
+                            <RowDefinition MinHeight="55" />
+                            <RowDefinition MinHeight="55" />
+                        </Grid.RowDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </dxga:LinearGaugeControl.ScalePanelTemplate>
+            <dxga:LinearGaugeControl.Model>
+                <dxga:LinearCleanWhiteModel />
+            </dxga:LinearGaugeControl.Model>
+            <dxga:LinearGaugeControl.Layers>
+                <dxga:LinearGaugeLayer />
+            </dxga:LinearGaugeControl.Layers>
+            <dxga:LinearGaugeControl.Scales>
+                <dxga:LinearScale Grid.Row="0" LayoutMode="LeftToRight" MajorIntervalCount="5" MinorIntervalCount="5" EndValue="9152" Margin="10,0,10,0">
+                    <dxga:LinearScale.Ranges>
+                        <dxga:LinearScaleRange EndValue="6500">
+                            <dxga:LinearScaleRange.Options>
+                                <dxga:RangeOptions Offset="4" Thickness="14" />
+                            </dxga:LinearScaleRange.Options>
+                        </dxga:LinearScaleRange>
+                        <dxga:LinearScaleRange StartValue="6500" EndValue="8050">
+                            <dxga:LinearScaleRange.Options>
+                                <dxga:RangeOptions Offset="4" Thickness="14" />
+                            </dxga:LinearScaleRange.Options>
+                        </dxga:LinearScaleRange>
+                        <dxga:LinearScaleRange StartValue="8050" EndValue="9152">
+                            <dxga:LinearScaleRange.Options>
+                                <dxga:RangeOptions Offset="4" Thickness="14" />
+                            </dxga:LinearScaleRange.Options>
+                        </dxga:LinearScaleRange>
+                    </dxga:LinearScale.Ranges>
+                    <dxga:LinearScale.MajorTickmarkOptions>
+                        <dxga:MajorTickmarkOptions Offset="10" />
+                    </dxga:LinearScale.MajorTickmarkOptions>
+                    <dxga:LinearScale.MinorTickmarkOptions>
+                        <dxga:MinorTickmarkOptions Offset="10" />
+                    </dxga:LinearScale.MinorTickmarkOptions>
+                    <dxga:LinearScale.LabelOptions>
+                        <dxga:LinearScaleLabelOptions Offset="-12" />
+                    </dxga:LinearScale.LabelOptions>
+                    <dxga:LinearScale.Markers>
+                        <dxga:LinearScaleMarker Value="9152" Visible="False">
+                            <dxga:LinearScaleMarker.Options>
+                                <dxga:LinearScaleMarkerOptions Offset="17" />
+                            </dxga:LinearScaleMarker.Options>
+                        </dxga:LinearScaleMarker>
+                    </dxga:LinearScale.Markers>
+                    <dxga:LinearScale.RangeBars>
+                        <dxga:LinearScaleRangeBar Value="8000" Visible="True">
+                            <dxga:LinearScaleRangeBar.Options>
+                                <dxga:LinearScaleRangeBarOptions Offset="20" />
+                            </dxga:LinearScaleRangeBar.Options>
+                        </dxga:LinearScaleRangeBar>
+                    </dxga:LinearScale.RangeBars>
+                    <dxga:LinearScale.LevelBars>
+                        <dxga:LinearScaleLevelBar Value="9152" Visible="False">
+                            <dxga:LinearScaleLevelBar.Options>
+                                <dxga:LinearScaleLevelBarOptions Offset="20" />
+                            </dxga:LinearScaleLevelBar.Options>
+                        </dxga:LinearScaleLevelBar>
+                    </dxga:LinearScale.LevelBars>
+                    <dxga:LinearScale.CustomLabels>
+                        <dxga:ScaleCustomLabel Content="Visited a Web Site" Offset="-36" Value="-100" FontSize="15" Foreground="#FF484E5A" />
+                    </dxga:LinearScale.CustomLabels>
+                </dxga:LinearScale>
+                <dxga:LinearScale Grid.Row="1" LayoutMode="LeftToRight" MajorIntervalCount="5" MinorIntervalCount="5" EndValue="9152" Margin="10,5,10,0">
+                    <dxga:LinearScale.Ranges>
+                        <dxga:LinearScaleRange EndValue="6500">
+                            <dxga:LinearScaleRange.Options>
+                                <dxga:RangeOptions Offset="4" Thickness="14" />
+                            </dxga:LinearScaleRange.Options>
+                        </dxga:LinearScaleRange>
+                        <dxga:LinearScaleRange StartValue="6500" EndValue="8050">
+                            <dxga:LinearScaleRange.Options>
+                                <dxga:RangeOptions Offset="4" Thickness="14" />
+                            </dxga:LinearScaleRange.Options>
+                        </dxga:LinearScaleRange>
+                        <dxga:LinearScaleRange StartValue="8050" EndValue="9152">
+                            <dxga:LinearScaleRange.Options>
+                                <dxga:RangeOptions Offset="4" Thickness="14" />
+                            </dxga:LinearScaleRange.Options>
+                        </dxga:LinearScaleRange>
+                    </dxga:LinearScale.Ranges>
+                    <dxga:LinearScale.MajorTickmarkOptions>
+                        <dxga:MajorTickmarkOptions Offset="10" />
+                    </dxga:LinearScale.MajorTickmarkOptions>
+                    <dxga:LinearScale.MinorTickmarkOptions>
+                        <dxga:MinorTickmarkOptions Offset="10" />
+                    </dxga:LinearScale.MinorTickmarkOptions>
+                    <dxga:LinearScale.LabelOptions>
+                        <dxga:LinearScaleLabelOptions Offset="-12" />
+                    </dxga:LinearScale.LabelOptions>
+                    <dxga:LinearScale.Markers>
+                        <dxga:LinearScaleMarker Value="6870" Visible="False">
+                            <dxga:LinearScaleMarker.Options>
+                                <dxga:LinearScaleMarkerOptions Offset="17" />
+                            </dxga:LinearScaleMarker.Options>
+                        </dxga:LinearScaleMarker>
+                    </dxga:LinearScale.Markers>
+                    <dxga:LinearScale.RangeBars>
+                        <dxga:LinearScaleRangeBar Value="6870" Visible="True">
+                            <dxga:LinearScaleRangeBar.Options>
+                                <dxga:LinearScaleRangeBarOptions Offset="20" />
+                            </dxga:LinearScaleRangeBar.Options>
+                        </dxga:LinearScaleRangeBar>
+                    </dxga:LinearScale.RangeBars>
+                    <dxga:LinearScale.LevelBars>
+                        <dxga:LinearScaleLevelBar Value="6870" Visible="False">
+                            <dxga:LinearScaleLevelBar.Options>
+                                <dxga:LinearScaleLevelBarOptions Offset="20" />
+                            </dxga:LinearScaleLevelBar.Options>
+                        </dxga:LinearScaleLevelBar>
+                    </dxga:LinearScale.LevelBars>
+                    <dxga:LinearScale.CustomLabels>
+                        <dxga:ScaleCustomLabel Content="Downloaded a Trial" Offset="-36" Value="-100" FontSize="15" Foreground="#FF484E5A" />
+                    </dxga:LinearScale.CustomLabels>
+                </dxga:LinearScale>
+                <dxga:LinearScale Grid.Row="2" LayoutMode="LeftToRight" MajorIntervalCount="5" MinorIntervalCount="5" EndValue="9152" Margin="10,10,10,0">
+                    <dxga:LinearScale.Ranges>
+                        <dxga:LinearScaleRange EndValue="6500">
+                            <dxga:LinearScaleRange.Options>
+                                <dxga:RangeOptions Offset="4" Thickness="14" />
+                            </dxga:LinearScaleRange.Options>
+                        </dxga:LinearScaleRange>
+                        <dxga:LinearScaleRange StartValue="6500" EndValue="8050">
+                            <dxga:LinearScaleRange.Options>
+                                <dxga:RangeOptions Offset="4" Thickness="14" />
+                            </dxga:LinearScaleRange.Options>
+                        </dxga:LinearScaleRange>
+                        <dxga:LinearScaleRange StartValue="8050" EndValue="9152">
+                            <dxga:LinearScaleRange.Options>
+                                <dxga:RangeOptions Offset="4" Thickness="14" />
+                            </dxga:LinearScaleRange.Options>
+                        </dxga:LinearScaleRange>
+                    </dxga:LinearScale.Ranges>
+                    <dxga:LinearScale.MajorTickmarkOptions>
+                        <dxga:MajorTickmarkOptions Offset="10" />
+                    </dxga:LinearScale.MajorTickmarkOptions>
+                    <dxga:LinearScale.MinorTickmarkOptions>
+                        <dxga:MinorTickmarkOptions Offset="10" />
+                    </dxga:LinearScale.MinorTickmarkOptions>
+                    <dxga:LinearScale.LabelOptions>
+                        <dxga:LinearScaleLabelOptions Offset="-12" />
+                    </dxga:LinearScale.LabelOptions>
+                    <dxga:LinearScale.Markers>
+                        <dxga:LinearScaleMarker Value="5121" Visible="False">
+                            <dxga:LinearScaleMarker.Options>
+                                <dxga:LinearScaleMarkerOptions Offset="17" />
+                            </dxga:LinearScaleMarker.Options>
+                        </dxga:LinearScaleMarker>
+                    </dxga:LinearScale.Markers>
+                    <dxga:LinearScale.RangeBars>
+                        <dxga:LinearScaleRangeBar Value="5121" Visible="True">
+                            <dxga:LinearScaleRangeBar.Options>
+                                <dxga:LinearScaleRangeBarOptions Offset="20" />
+                            </dxga:LinearScaleRangeBar.Options>
+                        </dxga:LinearScaleRangeBar>
+                    </dxga:LinearScale.RangeBars>
+                    <dxga:LinearScale.LevelBars>
+                        <dxga:LinearScaleLevelBar Value="5121" Visible="False">
+                            <dxga:LinearScaleLevelBar.Options>
+                                <dxga:LinearScaleLevelBarOptions Offset="20" />
+                            </dxga:LinearScaleLevelBar.Options>
+                        </dxga:LinearScaleLevelBar>
+                    </dxga:LinearScale.LevelBars>
+                    <dxga:LinearScale.CustomLabels>
+                        <dxga:ScaleCustomLabel Content="Contacted to Support" Offset="-36" Value="-100" FontSize="15" Foreground="#FF484E5A" />
+                    </dxga:LinearScale.CustomLabels>
+                </dxga:LinearScale>
+                <dxga:LinearScale Grid.Row="3" LayoutMode="LeftToRight" MajorIntervalCount="5" MinorIntervalCount="5" EndValue="9152" Margin="10,15,10,0">
+                    <dxga:LinearScale.Ranges>
+                        <dxga:LinearScaleRange EndValue="6500">
+                            <dxga:LinearScaleRange.Options>
+                                <dxga:RangeOptions Offset="4" Thickness="14" />
+                            </dxga:LinearScaleRange.Options>
+                        </dxga:LinearScaleRange>
+                        <dxga:LinearScaleRange StartValue="6500" EndValue="8050">
+                            <dxga:LinearScaleRange.Options>
+                                <dxga:RangeOptions Offset="4" Thickness="14" />
+                            </dxga:LinearScaleRange.Options>
+                        </dxga:LinearScaleRange>
+                        <dxga:LinearScaleRange StartValue="8050" EndValue="9152">
+                            <dxga:LinearScaleRange.Options>
+                                <dxga:RangeOptions Offset="4" Thickness="14" />
+                            </dxga:LinearScaleRange.Options>
+                        </dxga:LinearScaleRange>
+                    </dxga:LinearScale.Ranges>
+                    <dxga:LinearScale.MajorTickmarkOptions>
+                        <dxga:MajorTickmarkOptions Offset="10" />
+                    </dxga:LinearScale.MajorTickmarkOptions>
+                    <dxga:LinearScale.MinorTickmarkOptions>
+                        <dxga:MinorTickmarkOptions Offset="10" />
+                    </dxga:LinearScale.MinorTickmarkOptions>
+                    <dxga:LinearScale.LabelOptions>
+                        <dxga:LinearScaleLabelOptions Offset="-12" />
+                    </dxga:LinearScale.LabelOptions>
+                    <dxga:LinearScale.Markers>
+                        <dxga:LinearScaleMarker Value="2224" Visible="False">
+                            <dxga:LinearScaleMarker.Options>
+                                <dxga:LinearScaleMarkerOptions Offset="17" />
+                            </dxga:LinearScaleMarker.Options>
+                        </dxga:LinearScaleMarker>
+                    </dxga:LinearScale.Markers>
+                    <dxga:LinearScale.RangeBars>
+                        <dxga:LinearScaleRangeBar Value="2224" Visible="True">
+                            <dxga:LinearScaleRangeBar.Options>
+                                <dxga:LinearScaleRangeBarOptions Offset="20" />
+                            </dxga:LinearScaleRangeBar.Options>
+                        </dxga:LinearScaleRangeBar>
+                    </dxga:LinearScale.RangeBars>
+                    <dxga:LinearScale.LevelBars>
+                        <dxga:LinearScaleLevelBar Value="2224" Visible="False">
+                            <dxga:LinearScaleLevelBar.Options>
+                                <dxga:LinearScaleLevelBarOptions Offset="20" />
+                            </dxga:LinearScaleLevelBar.Options>
+                        </dxga:LinearScaleLevelBar>
+                    </dxga:LinearScale.LevelBars>
+                    <dxga:LinearScale.CustomLabels>
+                        <dxga:ScaleCustomLabel Content="Subscribed" Offset="-36" Value="-100" FontSize="15" Foreground="#FF484E5A" />
+                    </dxga:LinearScale.CustomLabels>
+                </dxga:LinearScale>
+            </dxga:LinearGaugeControl.Scales>
+        </dxga:LinearGaugeControl>     
+    </Grid>
+</UserControl>

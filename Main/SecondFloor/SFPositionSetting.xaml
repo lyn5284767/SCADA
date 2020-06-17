@@ -1,0 +1,316 @@
+﻿<UserControl x:Class="Main.SecondFloor.SFPositionSetting"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Main.SecondFloor"
+             mc:Ignorable="d" 
+             d:DesignHeight="608" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="sfPositionSetting">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="320"/>
+                <ColumnDefinition Width="320"/>
+                <ColumnDefinition Width="320"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <StackPanel Orientation="Horizontal" Height="40">
+                    <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Width="310">
+                        <StackPanel Height="25" Orientation="Horizontal">
+                            <TextBlock Text="操作模式：" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="       0 " Name="txtOpModel_LocationCalibration" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Column="1">
+                <StackPanel Orientation="Horizontal" Height="40">
+                    <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Width="310">
+                        <StackPanel Height="25" Orientation="Horizontal">
+                            <TextBlock Text="工作模式：" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="       0 " Name="txtWorkModel_LocationCalibration" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Column="2">
+                <StackPanel Orientation="Horizontal" Height="40">
+                    <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Width="310">
+                        <StackPanel Height="25" Orientation="Horizontal">
+                            <TextBlock Text="回转：" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="       0 " Name="txtRotateAngle_LocationCalibration" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                        </StackPanel>
+                    </Border>
+
+                </StackPanel>
+            </Grid>
+
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1" VerticalAlignment="Top">
+                <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Height="120">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <StackPanel >
+                            <TextBox Text="当前选择参数名称" VerticalAlignment="Center" HorizontalAlignment="Center" IsReadOnly="True" TextAlignment="Center" Width="160" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBox Text="反馈参数名称" VerticalAlignment="Center" HorizontalAlignment="Center"  IsReadOnly="True"  TextAlignment="Center" Width="160" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBox Text="当前值" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center"  IsReadOnly="True"  Width="160" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBox Text="未选择参数" TabIndex="0" Name="selectParaName"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Width="160" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+
+                            <TextBox Text="反馈参数名称" Name="returnSelectParaName" IsReadOnly="True"  VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Width="160" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBox Text="0" VerticalAlignment="Center" Name="returnSelectParaValue"  IsReadOnly="True" HorizontalAlignment="Center" TextAlignment="Center" Width="160" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                        </StackPanel>
+
+                        <StackPanel>
+                            <TextBox Text="参数读/写"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Width="160" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <Button  Content="参数读取" HorizontalAlignment="Center" Width="160" Margin="4" FontSize="16" FontFamily="宋体" FontWeight="Bold" Click="btn_ParaRead_LocationCalibration">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=selectParaName, Path=TabIndex}" Value="0">
+                                                <Setter Property="IsEnabled" Value="False"></Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                            <Button  Content="参数标定" HorizontalAlignment="Center" Width="160" Margin="4" FontSize="16" FontFamily="宋体" FontWeight="Bold" Click="btn_ParaWrite_LocationCalibration">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=selectParaName, Path=TabIndex}" Value="0">
+                                                <Setter Property="IsEnabled" Value="False"></Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                            <!--<StackPanel Orientation="Horizontal" Margin="5">
+                                        <ComboBox Text="参数读/写" VerticalAlignment="Center" Margin="0 0 10 0" Width="160" >
+                                            <ComboBoxItem Content="参数读/写" IsSelected="True"/>
+                                            <ComboBoxItem Content="参数读取"/>
+                                            <ComboBoxItem Content="参数标定"/>
+                                        </ComboBox>
+
+                                    </StackPanel>-->
+                        </StackPanel>
+
+                    </StackPanel>
+                </Border>
+
+            </Grid>
+
+
+        </Grid>
+
+        <Grid Grid.Row="3" HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="140"/>
+                <ColumnDefinition Width="140"/>
+                <ColumnDefinition Width="140"/>
+                <ColumnDefinition Width="140"/>
+                <ColumnDefinition Width="140"/>
+                <ColumnDefinition Width="140"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Menu Height="30" Width="135"  FontSize="16" FontFamily="宋体" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
+                    <MenuItem>
+                        <MenuItem.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <ContentPresenter Content="伺服电机标定" />
+                                <Image Width="25" Source="..\Images\triangle.png" />
+                            </StackPanel>
+
+                        </MenuItem.Header>
+                        <MenuItem Header="小车位置标定">
+                            <MenuItem Header="最靠近井口位置" Click="btn_SelectPara_LocationCalibration" TabIndex="1"/>
+                            <MenuItem Header="最远离井口位置" Click="btn_SelectPara_LocationCalibration" TabIndex="2"/>
+                            <MenuItem Header="右1#指梁位置" Click="btn_SelectPara_LocationCalibration" TabIndex="4"/>
+                            <MenuItem Header="左1#指梁位置" Click="btn_SelectPara_LocationCalibration" TabIndex="3"/>
+                            <MenuItem Header="排杆待机位置" Click="btn_SelectPara_LocationCalibration" TabIndex="6"/>
+                            <MenuItem Header="回收位置" Click="btn_SelectPara_LocationCalibration" TabIndex="7"/>
+                            <MenuItem Header="小车运输位置" Click="btn_SelectPara_LocationCalibration" TabIndex="10"/>
+                            <MenuItem Header="右16#指梁位置补偿" Click="btn_SelectPara_LocationCalibration" TabIndex="21"/>
+                            <MenuItem Header="左16#指梁位置补偿" Click="btn_SelectPara_LocationCalibration" TabIndex="22"/>
+                            <MenuItem Header="右1#特殊指梁位置" Click="btn_SelectPara_LocationCalibration" TabIndex="23"/>
+                            <MenuItem Header="左1#特殊指梁位置" Click="btn_SelectPara_LocationCalibration" TabIndex="24"/>
+                        </MenuItem>
+                        <MenuItem Header="手臂位置标定">
+                            <MenuItem Header="最小收缩位置" Click="btn_SelectPara_LocationCalibration" TabIndex="33"/>
+                            <MenuItem Header="钻杆指梁最大伸展位置" Click="btn_SelectPara_LocationCalibration" TabIndex="34"/>
+                            <MenuItem Header="手臂回收位置" Click="btn_SelectPara_LocationCalibration" TabIndex="39"/>
+                            <MenuItem Header="井口最大伸展位置" Click="btn_SelectPara_LocationCalibration" TabIndex="40"/>
+                            <MenuItem Header="钻铤指梁最大伸展位置" Click="btn_SelectPara_LocationCalibration" TabIndex="43"/>
+                            <MenuItem Header="手臂运输位置" Click="btn_SelectPara_LocationCalibration" TabIndex="42"/>
+                        </MenuItem>
+                        <MenuItem Header="回转位置标定">
+                            <MenuItem Header="-90deg位置" Click="btn_SelectPara_LocationCalibration" TabIndex="65"/>
+                            <MenuItem Header="90deg位置" Click="btn_SelectPara_LocationCalibration" TabIndex="66"/>
+                            <MenuItem Header="回收位置" Click="btn_SelectPara_LocationCalibration" TabIndex="71"/>
+                            <MenuItem Header="井口位置" Click="btn_SelectPara_LocationCalibration" TabIndex="72"/>
+                            <MenuItem Header="回转运输位置" Click="btn_SelectPara_LocationCalibration" TabIndex="74"/>
+
+                        </MenuItem>
+                    </MenuItem>
+                </Menu>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <Menu Height="30" Width="135"  FontSize="16" FontFamily="宋体" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
+                    <MenuItem>
+                        <MenuItem.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <ContentPresenter Content="抓手手指标定" />
+                                <Image Width="25" Source="..\Images\triangle.png" />
+                            </StackPanel>
+
+                        </MenuItem.Header>
+                        <MenuItem Header="抓手标定">
+                            <!--小车电机位置读取-98-107-->
+                            <MenuItem Header="3.5寸" Click="btn_SelectPara_LocationCalibration" TabIndex="97"/> <!--6.15新增-->
+                            <MenuItem Header="4寸补偿" Click="btn_SelectPara_LocationCalibration" TabIndex="110"/> <!--6.15新增-->
+                            <MenuItem Header="4.5寸补偿" Click="btn_SelectPara_LocationCalibration" TabIndex="112"/><!--6.15新增-->
+                            <MenuItem Header="5寸" Click="btn_SelectPara_LocationCalibration" TabIndex="98"/>
+                            <MenuItem Header="5.5寸补偿" Click="btn_SelectPara_LocationCalibration" TabIndex="114"/><!--6.15新增-->
+                            <MenuItem Header="5寸7/8" Click="btn_SelectPara_LocationCalibration" TabIndex="108"/>
+                            <MenuItem Header="6寸" Click="btn_SelectPara_LocationCalibration" TabIndex="99"/>
+                            <MenuItem Header="6.5寸" Click="btn_SelectPara_LocationCalibration" TabIndex="100"/>
+                            <MenuItem Header="6寸5/8" Click="btn_SelectPara_LocationCalibration" TabIndex="109"/>
+                            <MenuItem Header="7寸" Click="btn_SelectPara_LocationCalibration" TabIndex="101"/>
+                            <MenuItem Header="7.5寸" Click="btn_SelectPara_LocationCalibration" TabIndex="102"/>
+                            <MenuItem Header="8寸" Click="btn_SelectPara_LocationCalibration" TabIndex="103"/>
+                            <MenuItem Header="9寸" Click="btn_SelectPara_LocationCalibration" TabIndex="104"/>
+                            <MenuItem Header="10寸" Click="btn_SelectPara_LocationCalibration" TabIndex="105"/>
+                            <MenuItem Header="11寸" Click="btn_SelectPara_LocationCalibration" TabIndex="106"/>
+                            <MenuItem Header="最大寸" Click="btn_SelectPara_LocationCalibration" TabIndex="107"/>
+                        </MenuItem>
+                        <MenuItem Header="手指标定">
+                            <MenuItem Header="左手指最小值" Click="btn_SelectPara_LocationCalibration" TabIndex="129"/>
+                            <MenuItem Header="左手指最大值" Click="btn_SelectPara_LocationCalibration" TabIndex="130"/>
+                            <MenuItem Header="右手指最小值" Click="btn_SelectPara_LocationCalibration" TabIndex="131"/>
+                            <MenuItem Header="右手指最大值" Click="btn_SelectPara_LocationCalibration" TabIndex="132"/>
+                        </MenuItem>
+                    </MenuItem>
+                </Menu>
+            </Grid>
+
+            <Grid Grid.Column="2">
+                <Menu Height="30" Width="135"  FontSize="16" FontFamily="宋体" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
+                    <MenuItem>
+                        <MenuItem.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <ContentPresenter Content="挡绳猴道标定" />
+                                <Image Width="25" Source="..\Images\triangle.png" />
+                            </StackPanel>
+
+                        </MenuItem.Header>
+                        <MenuItem Header="挡绳标定">
+                            <MenuItem Header="左挡绳最小值" Click="btn_SelectPara_LocationCalibration" TabIndex="133"/>
+                            <MenuItem Header="左挡绳最大值" Click="btn_SelectPara_LocationCalibration" TabIndex="134" />
+                            <MenuItem Header="右挡绳最小值" Click="btn_SelectPara_LocationCalibration"   TabIndex="135"/>
+                            <MenuItem Header="右挡绳最大值" Click="btn_SelectPara_LocationCalibration"  TabIndex="136"/>
+                        </MenuItem>
+                        <MenuItem Header="猴道标定">
+                            <MenuItem Header="猴道伸出" Click="btn_SelectPara_LocationCalibration"  TabIndex="137"/>
+                            <MenuItem Header="猴道缩回" Click="btn_SelectPara_LocationCalibration"  TabIndex="138"/>
+                        </MenuItem>
+                    </MenuItem>
+                </Menu>
+            </Grid>
+
+            <Grid Grid.Column="3">
+                <Menu Height="30" Width="135"  FontSize="16" FontFamily="宋体" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
+                    <MenuItem>
+                        <MenuItem.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <ContentPresenter Content="左右钻铤标定" />
+                                <Image Width="25" Source="..\Images\triangle.png" />
+                            </StackPanel>
+
+                        </MenuItem.Header>
+                        <MenuItem Header="左钻铤标定">
+                            <MenuItem Header="1#最小值" Click="btn_SelectPara_LocationCalibration" TabIndex="141"/>
+                            <MenuItem Header="1#最大值" Click="btn_SelectPara_LocationCalibration" TabIndex="153"/>
+                            <MenuItem Header="2#最小值" Click="btn_SelectPara_LocationCalibration" TabIndex="142"/>
+                            <MenuItem Header="2#最大值" Click="btn_SelectPara_LocationCalibration" TabIndex="154"/>
+                            <MenuItem Header="3#最小值" Click="btn_SelectPara_LocationCalibration" TabIndex="143"/>
+                            <MenuItem Header="3#最大值" Click="btn_SelectPara_LocationCalibration" TabIndex="155"/>
+                            <MenuItem Header="4#最小值" Click="btn_SelectPara_LocationCalibration" TabIndex="144"/>
+                            <MenuItem Header="4#最大值" Click="btn_SelectPara_LocationCalibration" TabIndex="156"/>
+                            <MenuItem Header="5#最小值" Click="btn_SelectPara_LocationCalibration" TabIndex="145"/>
+                            <MenuItem Header="5#最大值" Click="btn_SelectPara_LocationCalibration" TabIndex="157"/>
+                            <MenuItem Header="6#最小值" Click="btn_SelectPara_LocationCalibration" TabIndex="146"/>
+                            <MenuItem Header="6#最大值" Click="btn_SelectPara_LocationCalibration" TabIndex="158"/>
+                            <MenuItem Header="7#最小值" Click="btn_SelectPara_LocationCalibration" TabIndex="147"/>
+                            <MenuItem Header="7#最大值" Click="btn_SelectPara_LocationCalibration" TabIndex="159"/>
+                            <MenuItem Header="8#最小值" Click="btn_SelectPara_LocationCalibration" TabIndex="148"/>
+                            <MenuItem Header="8#最大值" Click="btn_SelectPara_LocationCalibration" TabIndex="160"/>
+                        </MenuItem>
+                        <MenuItem Header="右钻铤标定">
+                            <MenuItem Header="1#最小值" Click="btn_SelectPara_LocationCalibration" TabIndex="149"/>
+                            <MenuItem Header="1#最大值" Click="btn_SelectPara_LocationCalibration" TabIndex="161"/>
+                            <MenuItem Header="2#最小值" Click="btn_SelectPara_LocationCalibration" TabIndex="150"/>
+                            <MenuItem Header="2#最大值" Click="btn_SelectPara_LocationCalibration" TabIndex="162"/>
+                            <MenuItem Header="3#最小值" Click="btn_SelectPara_LocationCalibration" TabIndex="151"/>
+                            <MenuItem Header="3#最大值" Click="btn_SelectPara_LocationCalibration" TabIndex="163"/>
+                            <MenuItem Header="4#最小值" Click="btn_SelectPara_LocationCalibration" TabIndex="152"/>
+                            <MenuItem Header="4#最大值" Click="btn_SelectPara_LocationCalibration" TabIndex="164"/>
+                            <MenuItem Header="5#最小值" Click="btn_SelectPara_LocationCalibration" TabIndex="165"/>
+                            <MenuItem Header="5#最大值" Click="btn_SelectPara_LocationCalibration" TabIndex="173"/>
+                            <MenuItem Header="6#最小值" Click="btn_SelectPara_LocationCalibration" TabIndex="166"/>
+                            <MenuItem Header="6#最大值" Click="btn_SelectPara_LocationCalibration" TabIndex="174"/>
+                            <MenuItem Header="7#最小值" Click="btn_SelectPara_LocationCalibration" TabIndex="167"/>
+                            <MenuItem Header="7#最大值" Click="btn_SelectPara_LocationCalibration" TabIndex="175"/>
+                            <MenuItem Header="8#最小值" Click="btn_SelectPara_LocationCalibration" TabIndex="168"/>
+                            <MenuItem Header="8#最大值" Click="btn_SelectPara_LocationCalibration" TabIndex="176"/>
+                        </MenuItem>
+                    </MenuItem>
+                </Menu>
+            </Grid>
+
+            <Grid Grid.Column="4">
+                <Menu Height="30" Width="135"  FontSize="16" FontFamily="宋体" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
+                    <MenuItem>
+                        <MenuItem.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <ContentPresenter Content="手臂伸缩标定" />
+                                <Image Width="25" Source="..\Images\triangle.png" />
+                            </StackPanel>
+                        </MenuItem.Header>
+                        <MenuItem Header="左1#钻铤" Click="btn_SelectPara_LocationCalibration" TabIndex="49"/>
+                        <MenuItem Header="左2#钻铤" Click="btn_SelectPara_LocationCalibration" TabIndex="50"/>
+                        <MenuItem Header="左3#钻铤" Click="btn_SelectPara_LocationCalibration" TabIndex="51"/>
+                        <MenuItem Header="左4#钻铤" Click="btn_SelectPara_LocationCalibration" TabIndex="52"/>
+                        <MenuItem Header="左5#钻铤" Click="btn_SelectPara_LocationCalibration" TabIndex="53"/>
+                        <MenuItem Header="左6#钻铤" Click="btn_SelectPara_LocationCalibration" TabIndex="54"/>
+                        <MenuItem Header="左7#钻铤" Click="btn_SelectPara_LocationCalibration" TabIndex="55"/>
+                        <MenuItem Header="左8#钻铤" Click="btn_SelectPara_LocationCalibration" TabIndex="56"/>
+                        <MenuItem Header="右1#钻铤" Click="btn_SelectPara_LocationCalibration" TabIndex="57"/>
+                        <MenuItem Header="右2#钻铤" Click="btn_SelectPara_LocationCalibration" TabIndex="58"/>
+                        <MenuItem Header="右3#钻铤" Click="btn_SelectPara_LocationCalibration" TabIndex="59"/>
+                        <MenuItem Header="右4#钻铤" Click="btn_SelectPara_LocationCalibration" TabIndex="60"/>
+                        <MenuItem Header="右5#钻铤" Click="btn_SelectPara_LocationCalibration" TabIndex="61"/>
+                        <MenuItem Header="右6#钻铤" Click="btn_SelectPara_LocationCalibration" TabIndex="62"/>
+                        <MenuItem Header="右7#钻铤" Click="btn_SelectPara_LocationCalibration" TabIndex="63"/>
+                        <MenuItem Header="右8#钻铤" Click="btn_SelectPara_LocationCalibration" TabIndex="64"/>
+                    </MenuItem>
+                </Menu>
+            </Grid>
+        </Grid>
+
+    </Grid>
+</UserControl>

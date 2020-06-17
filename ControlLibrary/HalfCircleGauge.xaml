@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="ControlLibrary.HalfCircleGauge"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxga="http://schemas.devexpress.com/winfx/2008/xaml/gauges"
+             xmlns:local="clr-namespace:ControlLibrary"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <dxga:CircularGaugeControl    x:Name="gaugeHalfTop"
+                                       MaxHeight="300"
+                                       MaxWidth="300"
+                                       EnableAnimation="True"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Bottom">
+            <dxga:CircularGaugeControl.Scales>
+                <dxga:ArcScale HorizontalAlignment="Center" StartAngle="180" EndAngle="360" MajorIntervalCount="5">
+                    <dxga:ArcScale.Layers>
+                        <dxga:ArcScaleLayer />
+                        <dxga:ArcScaleLayer />
+                    </dxga:ArcScale.Layers>
+                    <dxga:ArcScale.Needles>
+                        <dxga:ArcScaleNeedle Value="50" />
+                    </dxga:ArcScale.Needles>
+                    <dxga:ArcScale.Markers>
+                        <dxga:ArcScaleMarker Value="50" />
+                    </dxga:ArcScale.Markers>
+                    <dxga:ArcScale.RangeBars>
+                        <dxga:ArcScaleRangeBar Value="50" />
+                    </dxga:ArcScale.RangeBars>
+                    <dxga:ArcScale.Ranges>
+                        <dxga:ArcScaleRange StartValue="0%" EndValue="33%" />
+                        <dxga:ArcScaleRange StartValue="33%" EndValue="67%" />
+                        <dxga:ArcScaleRange StartValue="67%" EndValue="100%" />
+                    </dxga:ArcScale.Ranges>
+                </dxga:ArcScale>
+            </dxga:CircularGaugeControl.Scales>
+        </dxga:CircularGaugeControl>
+    </Grid>
+</UserControl>

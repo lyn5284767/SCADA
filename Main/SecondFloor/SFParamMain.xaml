@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="Main.SecondFloor.SFParamMain"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Main.SecondFloor"
+             mc:Ignorable="d" 
+             d:DesignHeight="650" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="SFParamSet">
+    <DockPanel>
+        <Grid DockPanel.Dock="Left" Width="100">
+            <Image Source="../Images/left.png" Name="left" MouseDown="Left_MouseDown"></Image>
+        </Grid>
+        <Grid DockPanel.Dock="Right" Width="100">
+            <Image Source="../Images/right.png" Name="right" MouseDown="Right_MouseDown"></Image>
+        </Grid>
+        <Grid Name="ParamPage"></Grid>
+    </DockPanel>
+</UserControl>

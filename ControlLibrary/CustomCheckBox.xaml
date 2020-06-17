@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="ControlLibrary.CustomCheckBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ControlLibrary"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Button Click="btn_ClickButton">
+        <Button.Style>
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="20"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock x:Name="rightText" Grid.Column="1" HorizontalAlignment="Left"  TextAlignment="Left" Text="{Binding Path=ContentString, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type UserControl}}}"  FontSize="16" FontWeight="Bold" Margin="5,2,2,0" FontFamily="微软雅黑"/>
+                                <Image Grid.Column="0" Width="20" HorizontalAlignment="Left">
+                                    <Image.Style>
+                                        <Style TargetType="{x:Type Image}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Path=IsChecked,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type UserControl}}}" Value="True">
+                                                    <Setter Property="Source" Value="{DynamicResource checkBox}"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Path=IsChecked,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type UserControl}}}" Value="False">
+                                                    <Setter Property="Source" Value="{DynamicResource uncheckBox}"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Image.Style>
+                                </Image>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Button.Style>
+    </Button>
+</UserControl>

@@ -1,0 +1,1716 @@
+﻿<UserControl x:Class="Main.Amination"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Main"
+             xmlns:local1="http://talonzeng.com/ControlLibrary"
+             xmlns:gl="clr-namespace:COM.Common;assembly=COM.Common"
+             mc:Ignorable="d" 
+             d:DesignHeight="380" d:DesignWidth="620" Name="uc">
+    <UserControl.Resources>
+        <gl:AnimationFingerBeamNumberSelectCoverter x:Key="AnimationFingerBeamNumberSelectCvt"/>
+        <gl:AnimationCarTranslateTransformYCoverter x:Key="AnimationCarTranslateTransformYCvt"/>
+        <gl:AnimationArmImageConverter x:Key="AnimationArmImageCvt"/>
+        <gl:AnimationArmAngleRotateConverter x:Key="AnimationArmAngleRotateCvt"/>
+        <gl:AnimationArmTranslateTransformXCoverter x:Key="AnimationArmTransformXCvt"/>
+        <gl:AnimationArmTranslateTransformYCoverter x:Key="AnimationArmTransformYCvt"/>
+        <gl:AnimationArmRotateConverter x:Key="AnimationArmRotateCvt"/>
+        <gl:AnimationCurrentFingerBeamThicknessCoverter x:Key="AnimationCurrentFingerBeamThicknessCvt"/>
+        <gl:SecondFloorVisConverter x:Key="SecondFloorVisCVT"/>
+        <gl:DRVisConverter x:Key="DRVisCvt"/>
+        <gl:DRAnimationCarTranslateTransformYCoverter x:Key="DRAnimationCarTranslateTransformYCvt"/>
+        <gl:DRAnimationArmTranslateTransformXCoverter x:Key="DRAnimationArmTransformXCvt"/>
+        <gl:DRAnimationArmTranslateTransformYCoverter x:Key="DRAnimationArmTransformYCvt"/>
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style x:Key="MyFocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Control}">
+                        <Grid Margin="8">
+                            <Ellipse
+                    Name="r1"
+                    Stroke="Black"
+                    StrokeDashArray="2 2"
+                    StrokeThickness="1"/>
+                            <Border
+                    Name="border"
+                    Width="{TemplateBinding ActualWidth}"
+                    Height="{TemplateBinding ActualHeight}"
+                    BorderThickness="1"
+                    CornerRadius="2"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="CircleButton" TargetType="local1:AnimationButton">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="FocusVisualStyle" Value="{StaticResource MyFocusVisual}"/>
+            <Setter Property="Background" Value="#FF6DB4EF"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="local1:AnimationButton">
+                        <Grid>
+                            <Ellipse Fill="{TemplateBinding Background}"/>
+                            <Ellipse>
+                                <Ellipse.Fill>
+                                    <RadialGradientBrush>
+                                        <GradientStop Offset="0" Color="#00000000"/>
+                                        <GradientStop Offset="0.88" Color="#00000000"/>
+                                        <GradientStop Offset="1" Color="#80000000"/>
+                                    </RadialGradientBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <Ellipse Margin="5" x:Name="highlightCircle" >
+                                <Ellipse.Fill >
+                                    <LinearGradientBrush >
+                                        <GradientStop Offset="0" Color="#50FFFFFF"/>
+                                        <GradientStop Offset="0.5" Color="#00FFFFFF"/>
+                                        <GradientStop Offset="1" Color="#50FFFFFF"/>
+                                    </LinearGradientBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <ContentPresenter x:Name="content" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="highlightCircle" Property="Fill">
+                                    <Setter.Value>
+                                        <LinearGradientBrush StartPoint="0.3,0" EndPoint="0.7,1">
+                                            <GradientStop Offset="0" Color="#50FFFFFF"/>
+                                            <GradientStop Offset="0.5" Color="#00FFFFFF"/>
+                                            <GradientStop Offset="1" Color="#50FFFFFF"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter TargetName="content" Property="RenderTransform">
+                                    <Setter.Value>
+                                        <TranslateTransform Y="0.5" X="0.5"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+            <StackPanel Grid.Row="0" Height="20" Orientation="Horizontal">
+                <!--<Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>-->
+                <Label Name="fplbLeft">FP</Label>
+                <Label Name="rplbLeft">RP</Label>
+                <Grid Width="520"/>
+                <Label Name="rplbRight">RP</Label>
+                <Label Name="fplbRight">FP</Label>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Height="290" Orientation="Horizontal" Name="spMain" HorizontalAlignment="Center">
+                <Border Name="leftBord" Width="{Binding Path=Border, ElementName=uc}"/>
+                <!--边距-->
+                <Border BorderBrush="Gray" BorderThickness="0,0,1,0" Width="20" Grid.Column="0" Name="fpbdLeft">
+                    <StackPanel Margin="0,10,0,0">
+                        <TextBlock Name="tbrow10LeftFP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow9LeftFP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow8LeftFP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow7LeftFP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow6LeftFP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow5LeftFP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow4LeftFP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow3LeftFP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow2LeftFP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow1LeftFP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow0LeftFP"  Text="0" Height="{Binding Path=TBFirstRowHeight, ElementName=uc}" Margin="5"/>
+                    </StackPanel>
+                </Border>
+                <Border BorderBrush="Gray" BorderThickness="0,0,1,0" Width="20" Grid.Column="1" Name="rpbdLeft">
+                    <StackPanel Margin="0,10,0,0">
+                        <TextBlock Name="tbrow10LeftRP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow9LeftRP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow8LeftRP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow7LeftRP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow6LeftRP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow5LeftRP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow4LeftRP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow3LeftRP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow2LeftRP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow1LeftRP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow0LeftRP"  Text="0" Height="{Binding Path=TBFirstRowHeight, ElementName=uc}" Margin="5"/>
+                    </StackPanel>
+                </Border>
+                <Border BorderBrush="#6D6F72" BorderThickness="0,0,10,0" Width="30" Grid.Column="2">
+                    <StackPanel Margin="0,10,0,0">
+                        <TextBlock Name="tbrow10Left"  Text="10" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow9Left"  Text="9" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow8Left"  Text="8" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow7Left"  Text="7" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow6Left"  Text="6" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow5Left"  Text="5" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow4Left"  Text="4" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow3Left"  Text="3" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow2Left"  Text="2" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow1Left"  Text="1" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow0Left"  Text="T" Height="{Binding Path=TBFirstRowHeight, ElementName=uc}" Margin="5"/>
+                    </StackPanel>
+                </Border>
+                <!--二层台中心-->
+                <Grid Grid.Column="3">
+                    <!--二层台架子-->
+                    <StackPanel Width="460" Name="spSFMid" Visibility="{Binding Path=SFType,ElementName=uc,Converter={StaticResource SecondFloorVisCVT}}">
+                        <!--第10行-->
+                        <Border Height="8" BorderBrush="#6D6F72" BorderThickness="0,10,0,0"></Border>
+                        <DockPanel Height="{Binding Path=RowHeight, ElementName=uc}" Name="dprow10">
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                                <StackPanel Width="170" Name="sfDrillL10" Orientation="Horizontal" Tag="10"></StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Height="20" DockPanel.Dock="Right">
+                                <StackPanel Width="170" Name="sfDrillR10" Orientation="Horizontal" Tag="26" FlowDirection ="RightToLeft"></StackPanel>
+                                </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Border x:Name="borderFingerBeamArrow10" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="CurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="OperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="fingerBeamArrow10" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border x:Name="borderFingerBeamArrow26" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="CurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="OperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="fingerBeamArrow26" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <DockPanel Name="dpunderrow10">
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Left" Width="175"></Border>
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Right" Width="175"></Border>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="40" BorderBrush="#6D6F72" BorderThickness="2,0,0,0" Tag="space1">
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border  Width="40" BorderBrush="#6D6F72" BorderThickness="0,0,3,0" Tag="space1">
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <!--第9行-->
+                        <DockPanel Name="dprow9" Height="{Binding Path=RowHeight, ElementName=uc}">
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                                <StackPanel Width="170" Name="sfDrillL9" Orientation="Horizontal" Tag="9"></StackPanel>
+                                </StackPanel>
+                            <StackPanel Orientation="Horizontal" Height="20" DockPanel.Dock="Right">
+                                <StackPanel Width="170" Name="sfDrillR9" Orientation="Horizontal" Tag="25" FlowDirection ="RightToLeft"></StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Border x:Name="borderFingerBeamArrow9" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="CurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="OperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="fingerBeamArrow9" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border x:Name="borderFingerBeamArrow25" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="CurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="OperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="fingerBeamArrow25" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <DockPanel Name="dpunderrow9">
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Left" Width="175"></Border>
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Right" Width="175"></Border>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="40" BorderBrush="#6D6F72" BorderThickness="2,0,0,0" Tag="space1">
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border  Width="40" BorderBrush="#6D6F72" BorderThickness="0,0,3,0" Tag="space1">
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <!--第8行-->
+                        <DockPanel Name="dprow8" Height="{Binding Path=RowHeight, ElementName=uc}">
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                                <StackPanel Width="170" Name="sfDrillL8" Orientation="Horizontal" Tag="8"></StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Height="20" DockPanel.Dock="Right">
+                                <StackPanel Width="170" Name="sfDrillR8" Orientation="Horizontal" Tag="24" FlowDirection ="RightToLeft"></StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Border x:Name="borderFingerBeamArrow8" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="CurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="OperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="fingerBeamArrow8" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border x:Name="borderFingerBeamArrow24" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="CurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="OperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="fingerBeamArrow24" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <DockPanel Name="dpunderrow8">
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Left" Width="175"></Border>
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Right" Width="175"></Border>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="40" BorderBrush="#6D6F72" BorderThickness="2,0,0,0" Tag="space1">
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border  Width="40" BorderBrush="#6D6F72" BorderThickness="0,0,3,0" Tag="space1">
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <!--第7行-->
+                        <DockPanel Name="dprow7" Height="{Binding Path=RowHeight, ElementName=uc}">
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                                <StackPanel Width="170" Name="sfDrillL7" Orientation="Horizontal" Tag="7"></StackPanel>
+                                </StackPanel>
+                            <StackPanel Orientation="Horizontal" Height="20" DockPanel.Dock="Right">
+                                <StackPanel Width="170" Name="sfDrillR7" Orientation="Horizontal" Tag="23" FlowDirection ="RightToLeft"></StackPanel>
+                                </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Border x:Name="borderFingerBeamArrow7" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="CurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="OperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="fingerBeamArrow7" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border x:Name="borderFingerBeamArrow23" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="CurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="OperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="fingerBeamArrow23" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <DockPanel Name="dpunderrow7">
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Left" Width="175"></Border>
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Right" Width="175"></Border>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="40" BorderBrush="#6D6F72" BorderThickness="2,0,0,0" Tag="space1">
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border  Width="40" BorderBrush="#6D6F72" BorderThickness="0,0,3,0" Tag="space1">
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <!--第6行-->
+                        <DockPanel Name="dprow6" Height="{Binding Path=RowHeight, ElementName=uc}">
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                                <StackPanel Width="170" Name="sfDrillL6" Orientation="Horizontal" Tag="6"></StackPanel>
+                                </StackPanel>
+                            <StackPanel Orientation="Horizontal" Height="20" DockPanel.Dock="Right">
+                                <StackPanel Width="170" Name="sfDrillR6" Orientation="Horizontal" Tag="22" FlowDirection ="RightToLeft"></StackPanel>
+                                </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Border x:Name="borderFingerBeamArrow6" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="CurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="OperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="fingerBeamArrow6" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border x:Name="borderFingerBeamArrow22" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="CurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="OperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="fingerBeamArrow22" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <DockPanel Name="dpunderrow6">
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Left" Width="175"></Border>
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Right" Width="175"></Border>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="40" BorderBrush="#6D6F72" BorderThickness="2,0,0,0" Tag="space1">
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border  Width="40" BorderBrush="#6D6F72" BorderThickness="0,0,3,0" Tag="space1">
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <!--第5行-->
+                        <DockPanel Name="dprow5" Height="{Binding Path=RowHeight, ElementName=uc}">
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                                <StackPanel Width="170" Name="sfDrillL5" Orientation="Horizontal" Tag="5"></StackPanel>
+                                </StackPanel>
+                            <StackPanel Orientation="Horizontal" Height="20" DockPanel.Dock="Right">
+                                <StackPanel Width="170" Name="sfDrillR5" Orientation="Horizontal" Tag="21" FlowDirection ="RightToLeft"></StackPanel>
+                                </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Border x:Name="borderFingerBeamArrow5" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="CurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="OperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="fingerBeamArrow5" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border x:Name="borderFingerBeamArrow21" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="CurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="OperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="fingerBeamArrow21" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <DockPanel Name="dpunderrow5">
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Left" Width="175"></Border>
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Right" Width="175"></Border>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="40" BorderBrush="#6D6F72" BorderThickness="2,0,0,0" Tag="space1">
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border  Width="40" BorderBrush="#6D6F72" BorderThickness="0,0,3,0" Tag="space1">
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <!--第4行-->
+                        <DockPanel Name="dprow4" Height="{Binding Path=RowHeight, ElementName=uc}">
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                                <StackPanel Width="170" Name="sfDrillL4" Orientation="Horizontal" Tag="4"></StackPanel>
+                                </StackPanel>
+                            <StackPanel Orientation="Horizontal" Height="20" DockPanel.Dock="Right">
+                                <StackPanel Width="170" Name="sfDrillR4" Orientation="Horizontal" Tag="20" FlowDirection ="RightToLeft"></StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Border x:Name="borderFingerBeamArrow4" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="CurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="OperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="fingerBeamArrow4" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border x:Name="borderFingerBeamArrow20" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="CurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="OperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="fingerBeamArrow20" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <DockPanel Name="dpunderrow4">
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Left" Width="175"></Border>
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Right" Width="175"></Border>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="40" BorderBrush="#6D6F72" BorderThickness="2,0,0,0" Tag="space1">
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border  Width="40" BorderBrush="#6D6F72" BorderThickness="0,0,3,0" Tag="space1">
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <!--第3行-->
+                        <DockPanel Name="dprow3" Height="{Binding Path=RowHeight, ElementName=uc}">
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                                <StackPanel Width="170" Name="sfDrillL3" Orientation="Horizontal" Tag="3"></StackPanel>
+                                </StackPanel>
+                            <StackPanel Orientation="Horizontal" Height="20" DockPanel.Dock="Right">
+                                <StackPanel Width="170" Name="sfDrillR3" Orientation="Horizontal" Tag="19" FlowDirection ="RightToLeft"></StackPanel>
+                                </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Border x:Name="borderFingerBeamArrow3" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="CurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="OperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="fingerBeamArrow3" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border x:Name="borderFingerBeamArrow19" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="CurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="OperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="fingerBeamArrow19" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <DockPanel Name="dpunderrow3">
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Left" Width="175"></Border>
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Right" Width="175"></Border>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="40" BorderBrush="#6D6F72" BorderThickness="2,0,0,0" Tag="space1">
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border  Width="40" BorderBrush="#6D6F72" BorderThickness="0,0,3,0" Tag="space1">
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <!--第2行-->
+                        <DockPanel Name="dprow2" Height="{Binding Path=RowHeight, ElementName=uc}">
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                                <StackPanel Width="170" Name="sfDrillL2" Orientation="Horizontal" Tag="2"></StackPanel>
+                                </StackPanel>
+                            <StackPanel Orientation="Horizontal" Height="20" DockPanel.Dock="Right">
+                                <StackPanel Width="170" Name="sfDrillR2" Orientation="Horizontal" Tag="18" FlowDirection ="RightToLeft"></StackPanel>
+                                </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Border x:Name="borderFingerBeamArrow2" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="CurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="OperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="fingerBeamArrow2" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border x:Name="borderFingerBeamArrow18" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="CurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="OperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="fingerBeamArrow18" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <DockPanel Name="dpunderrow2">
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Left" Width="175"></Border>
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Right" Width="175"></Border>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="40" BorderBrush="#6D6F72" BorderThickness="2,0,0,0" Tag="space1">
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border  Width="40" BorderBrush="#6D6F72" BorderThickness="0,0,3,0" Tag="space1">
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <!--第1行-->
+                        <DockPanel Name="dprow1" Height="{Binding Path=RowHeight, ElementName=uc}">
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                                <StackPanel Width="170" Name="sfDrillL1" Orientation="Horizontal" Tag="1"></StackPanel>
+                                </StackPanel>
+                            <StackPanel Orientation="Horizontal" Height="20" DockPanel.Dock="Right">
+                                <StackPanel Width="170" Name="sfDrillR1" Orientation="Horizontal" Tag="17" FlowDirection ="RightToLeft"></StackPanel>
+                                </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Border x:Name="borderFingerBeamArrow1" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="CurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="OperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="fingerBeamArrow1" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border x:Name="borderFingerBeamArrow17" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="CurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="OperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="fingerBeamArrow17" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <DockPanel Name="dpunderrow1">
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Left" Width="175"></Border>
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Right" Width="175"></Border>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="40" BorderBrush="#6D6F72" BorderThickness="2,0,0,0" Tag="space1">
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border  Width="40" BorderBrush="#6D6F72" BorderThickness="0,0,3,0" Tag="space1">
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <!--钻铤行-->
+                        <DockPanel Height="{Binding Path=FirstRowHeight, ElementName=uc}">
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                                <Grid Width="70" Background="#6D6F72"></Grid>
+                                <StackPanel Width="100" Name="sfDrillL0" Orientation="Horizontal" Tag="16"></StackPanel>
+                                </StackPanel>
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+                                <StackPanel Width="100" Name="sfDrillR0" Orientation="Horizontal" Tag="32" FlowDirection ="RightToLeft"></StackPanel>
+                                <Grid Width="70" Background="#6D6F72"></Grid>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Border x:Name="borderFingerBeamArrow16" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="CurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="OperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="fingerBeamArrow16" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border x:Name="borderFingerBeamArrow32" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="CurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="OperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="fingerBeamArrow32" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <DockPanel>
+                            <Border Height="8" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Left" Width="175"></Border>
+                            <Border Height="8" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Right" Width="175"></Border>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="40" BorderBrush="#6D6F72" BorderThickness="2,0,0,0" Tag="space1">
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border  Width="40" BorderBrush="#6D6F72" BorderThickness="0,0,3,0" Tag="space1">
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                    </StackPanel>
+                    <local1:AnimationButton Width="20" Height="20" Style="{StaticResource CircleButton}" x:Name="RobotCar" Visibility="{Binding Path=SFType,ElementName=uc,Converter={StaticResource SecondFloorVisCVT}}">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Images\RobotCar.bmp"/>
+                        </Button.Background>
+                        <local1:AnimationButton.RenderTransform>
+                            <!--   -->
+                            <TransformGroup>
+                                <TranslateTransform x:Name="carTranslate" X="0">
+                                    <!--  X = 0表示 X 轴不变化，只有Y轴移动 -->
+                                    <TranslateTransform.Y>
+                                        <MultiBinding Converter="{StaticResource AnimationCarTranslateTransformYCvt}">
+                                            <Binding Path="RealHeight" ElementName="uc"/>
+                                            <Binding Path="MiddleHeight" ElementName="uc"/>
+                                            <Binding Path="RobotCarPosition" ElementName="uc"/>
+                                        </MultiBinding>
+                                    </TranslateTransform.Y>
+                                </TranslateTransform>
+                            </TransformGroup>
+                        </local1:AnimationButton.RenderTransform>
+                    </local1:AnimationButton>
+
+                    <Image  Width="20" Name="RobotArm" Visibility="{Binding Path=SFType,ElementName=uc,Converter={StaticResource SecondFloorVisCVT}}">
+                        <Image.Source>
+                            <Binding Path="RobotGripStatus" ElementName="uc" Converter="{StaticResource AnimationArmImageCvt}"/>
+                        </Image.Source>
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <RotateTransform>
+                                    <RotateTransform.Angle>
+                                        <Binding Path="RobotArmRotateAngle" ElementName="uc" Converter="{StaticResource AnimationArmAngleRotateCvt}"/>
+                                    </RotateTransform.Angle>
+                                    <RotateTransform.CenterX>
+                                        <Binding Path="ActualWidth" ElementName="RobotArm" Converter="{StaticResource AnimationArmRotateCvt}"/>
+                                    </RotateTransform.CenterX>
+                                    <RotateTransform.CenterY>
+                                        <Binding Path="ActualHeight" ElementName="RobotArm" Converter="{StaticResource AnimationArmRotateCvt}"/>
+                                    </RotateTransform.CenterY>
+                                </RotateTransform>
+                                <TranslateTransform>
+                                    <TranslateTransform.X>
+                                        <MultiBinding Converter="{StaticResource AnimationArmTransformXCvt}">
+                                            <Binding Path="WorkAnimationWidth" ElementName="uc"/>
+                                            <Binding Path="RobotArmRotateAngle" ElementName="uc"/>
+                                            <Binding Path="RobotArmPosition" ElementName="uc"/>
+                                        </MultiBinding>
+                                    </TranslateTransform.X>
+                                    <TranslateTransform.Y>
+                                        <MultiBinding Converter="{StaticResource AnimationArmTransformYCvt}">
+                                            <Binding Path="RealHeight" ElementName="uc"/>
+                                            <Binding Path="MiddleHeight" ElementName="uc"/>
+                                            <Binding Path="RobotCarPosition" ElementName="uc"/>
+                                            <Binding Path="WorkAnimationWidth" ElementName="uc"/>
+                                            <Binding Path="RobotArmRotateAngle" ElementName="uc"/>
+                                            <Binding Path="RobotArmPosition" ElementName="uc"/>
+                                        </MultiBinding>
+                                    </TranslateTransform.Y>
+                                </TranslateTransform>
+
+                            </TransformGroup>
+
+
+                        </Image.RenderTransform>
+                    </Image>
+                    
+                    <!--钻台台架子-->
+                    <StackPanel Width="460" Name="spDRMid" Visibility="{Binding Path=DRType,ElementName=uc,Converter={StaticResource DRVisCvt}}">
+                        <!--第10行-->
+                        <Border Height="8" BorderBrush="#6D6F72" BorderThickness="0,10,0,0"></Border>
+                        <DockPanel Height="{Binding Path=DRRowHeight, ElementName=uc}" Name="drrow10">
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                                <StackPanel Width="170" Name="drDrillL10" Orientation="Horizontal" Tag="10"></StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Height="20" DockPanel.Dock="Right">
+                                <StackPanel Width="170" Name="drDrillR10" Orientation="Horizontal" Tag="26" FlowDirection ="RightToLeft"></StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Border x:Name="drFingerBeamArrow10" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="DRCurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="DROperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="drBeamArrow10" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="DRPCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="DROperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border x:Name="drFingerBeamArrow26" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="DRCurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="DROperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="drBeamArrow26" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="DRPCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="DROperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <DockPanel Name="drunderrow10">
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Left" Width="175"></Border>
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Right" Width="175"></Border>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="40" BorderBrush="#6D6F72" BorderThickness="2,0,0,0" Tag="space1">
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border  Width="40" BorderBrush="#6D6F72" BorderThickness="0,0,3,0" Tag="space1">
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <!--第9行-->
+                        <DockPanel Name="drrow9" Height="{Binding Path=DRRowHeight, ElementName=uc}">
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                                <StackPanel Width="170" Name="drDrillL9" Orientation="Horizontal" Tag="9"></StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Height="20" DockPanel.Dock="Right">
+                                <StackPanel Width="170" Name="drDrillR9" Orientation="Horizontal" Tag="25" FlowDirection ="RightToLeft"></StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Border x:Name="drFingerBeamArrow9" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="DRCurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="DROperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="drBeamArrow9" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="DRPCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="DROperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border x:Name="drFingerBeamArrow25" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="DRCurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="DROperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="drBeamArrow25" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="DRPCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="DROperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <DockPanel Name="drunderrow9">
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Left" Width="175"></Border>
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Right" Width="175"></Border>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="40" BorderBrush="#6D6F72" BorderThickness="2,0,0,0" Tag="space1">
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border  Width="40" BorderBrush="#6D6F72" BorderThickness="0,0,3,0" Tag="space1">
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <!--第8行-->
+                        <DockPanel Name="drrow8" Height="{Binding Path=DRRowHeight, ElementName=uc}">
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                                <StackPanel Width="170" Name="drDrillL8" Orientation="Horizontal" Tag="8"></StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Height="20" DockPanel.Dock="Right">
+                                <StackPanel Width="170" Name="drDrillR8" Orientation="Horizontal" Tag="24" FlowDirection ="RightToLeft"></StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Border x:Name="drFingerBeamArrow8" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="DRCurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="DROperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="drBeamArrow8" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="DRPCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="DROperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border x:Name="drFingerBeamArrow24" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="DRCurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="DROperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="drBeamArrow24" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="DRPCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="DROperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <DockPanel Name="drunderrow8">
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Left" Width="175"></Border>
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Right" Width="175"></Border>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="40" BorderBrush="#6D6F72" BorderThickness="2,0,0,0" Tag="space1">
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border  Width="40" BorderBrush="#6D6F72" BorderThickness="0,0,3,0" Tag="space1">
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <!--第7行-->
+                        <DockPanel Name="drrow7" Height="{Binding Path=DRRowHeight, ElementName=uc}">
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                                <StackPanel Width="170" Name="drDrillL7" Orientation="Horizontal" Tag="7"></StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Height="20" DockPanel.Dock="Right">
+                                <StackPanel Width="170" Name="drDrillR7" Orientation="Horizontal" Tag="23" FlowDirection ="RightToLeft"></StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Border x:Name="drFingerBeamArrow7" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="DRCurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="DROperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="drBeamArrow7" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="DRPCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="DROperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border x:Name="drFingerBeamArrow23" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="DRCurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="DROperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="drBeamArrow23" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="DRPCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="DROperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <DockPanel Name="drunderrow7">
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Left" Width="175"></Border>
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Right" Width="175"></Border>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="40" BorderBrush="#6D6F72" BorderThickness="2,0,0,0" Tag="space1">
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border  Width="40" BorderBrush="#6D6F72" BorderThickness="0,0,3,0" Tag="space1">
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <!--第6行-->
+                        <DockPanel Name="drrow6" Height="{Binding Path=DRRowHeight, ElementName=uc}">
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                                <StackPanel Width="170" Name="drDrillL6" Orientation="Horizontal" Tag="6"></StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Height="20" DockPanel.Dock="Right">
+                                <StackPanel Width="170" Name="drDrillR6" Orientation="Horizontal" Tag="22" FlowDirection ="RightToLeft"></StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Border x:Name="drFingerBeamArrow6" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="DRCurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="DROperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="drBeamArrow6" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="DRPCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="DROperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border x:Name="drFingerBeamArrow22" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="DRCurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="DROperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="drBeamArrow22" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="DRPCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="DROperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <DockPanel Name="drunderrow6">
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Left" Width="175"></Border>
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Right" Width="175"></Border>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="40" BorderBrush="#6D6F72" BorderThickness="2,0,0,0" Tag="space1">
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border  Width="40" BorderBrush="#6D6F72" BorderThickness="0,0,3,0" Tag="space1">
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <!--第5行-->
+                        <DockPanel Name="drrow5" Height="{Binding Path=DRRowHeight, ElementName=uc}">
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                                <StackPanel Width="170" Name="drDrillL5" Orientation="Horizontal" Tag="5"></StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Height="20" DockPanel.Dock="Right">
+                                <StackPanel Width="170" Name="drDrillR5" Orientation="Horizontal" Tag="21" FlowDirection ="RightToLeft"></StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Border x:Name="drFingerBeamArrow5" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="DRCurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="DROperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="drBeamArrow5" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="DRPCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="DROperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border x:Name="drFingerBeamArrow21" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="DRCurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="DROperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="drBeamArrow21" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="DRPCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="DROperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <DockPanel Name="drunderrow5">
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Left" Width="175"></Border>
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Right" Width="175"></Border>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="40" BorderBrush="#6D6F72" BorderThickness="2,0,0,0" Tag="space1">
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border  Width="40" BorderBrush="#6D6F72" BorderThickness="0,0,3,0" Tag="space1">
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <!--第4行-->
+                        <DockPanel Name="drrow4" Height="{Binding Path=DRRowHeight, ElementName=uc}">
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                                <StackPanel Width="170" Name="drDrillL4" Orientation="Horizontal" Tag="4"></StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Height="20" DockPanel.Dock="Right">
+                                <StackPanel Width="170" Name="drDrillR4" Orientation="Horizontal" Tag="20" FlowDirection ="RightToLeft"></StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Border x:Name="drFingerBeamArrow4" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="DRCurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="DROperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="drBeamArrow4" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="DRPCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="DROperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border x:Name="drFingerBeamArrow20" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="DRCurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="DROperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="drBeamArrow20" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="DRPCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="DROperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <DockPanel Name="drunderrow4">
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Left" Width="175"></Border>
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Right" Width="175"></Border>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="40" BorderBrush="#6D6F72" BorderThickness="2,0,0,0" Tag="space1">
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border  Width="40" BorderBrush="#6D6F72" BorderThickness="0,0,3,0" Tag="space1">
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <!--第3行-->
+                        <DockPanel Name="drrow3" Height="{Binding Path=DRRowHeight, ElementName=uc}">
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                                <StackPanel Width="170" Name="drDrillL3" Orientation="Horizontal" Tag="3"></StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Height="20" DockPanel.Dock="Right">
+                                <StackPanel Width="170" Name="drDrillR3" Orientation="Horizontal" Tag="19" FlowDirection ="RightToLeft"></StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Border x:Name="drFingerBeamArrow3" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="DRCurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="DROperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="drBeamArrow3" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="DRPCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="DROperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border x:Name="drFingerBeamArrow19" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="DRCurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="DROperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="drBeamArrow19" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="DRPCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="DROperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <DockPanel Name="drunderrow3">
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Left" Width="175"></Border>
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Right" Width="175"></Border>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="40" BorderBrush="#6D6F72" BorderThickness="2,0,0,0" Tag="space1">
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border  Width="40" BorderBrush="#6D6F72" BorderThickness="0,0,3,0" Tag="space1">
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <!--第2行-->
+                        <DockPanel Name="drrow2" Height="{Binding Path=DRRowHeight, ElementName=uc}">
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                                <StackPanel Width="170" Name="drDrillL2" Orientation="Horizontal" Tag="2"></StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Height="20" DockPanel.Dock="Right">
+                                <StackPanel Width="170" Name="drDrillR2" Orientation="Horizontal" Tag="18" FlowDirection ="RightToLeft"></StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Border x:Name="drFingerBeamArrow2" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="DRCurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="DROperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="drBeamArrow2" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="DRPCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="DROperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border x:Name="drFingerBeamArrow18" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="DRCurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="DROperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="drBeamArrow18" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="DRPCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="DROperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <DockPanel Name="drunderrow2">
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Left" Width="175"></Border>
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Right" Width="175"></Border>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="40" BorderBrush="#6D6F72" BorderThickness="2,0,0,0" Tag="space1">
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border  Width="40" BorderBrush="#6D6F72" BorderThickness="0,0,3,0" Tag="space1">
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <!--第1行-->
+                        <DockPanel Name="drrow1" Height="{Binding Path=DRRowHeight, ElementName=uc}">
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                                <StackPanel Width="170" Name="drDrillL1" Orientation="Horizontal" Tag="1"></StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Height="20" DockPanel.Dock="Right">
+                                <StackPanel Width="170" Name="drDrillR1" Orientation="Horizontal" Tag="17" FlowDirection ="RightToLeft"></StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Border x:Name="drFingerBeamArrow1" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="DRCurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="DROperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="drBeamArrow1" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="DRPCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="DROperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border x:Name="drFingerBeamArrow17" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="DRCurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="DROperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="drBeamArrow17" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="DRPCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="DROperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <DockPanel Name="drunderrow1">
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Left" Width="175"></Border>
+                            <Border Height="5" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Right" Width="175"></Border>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="40" BorderBrush="#6D6F72" BorderThickness="2,0,0,0" Tag="space1">
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border  Width="40" BorderBrush="#6D6F72" BorderThickness="0,0,3,0" Tag="space1">
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <!--钻铤行-->
+                        <DockPanel Height="{Binding Path=DRFirstRowHeight, ElementName=uc}">
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                                <Grid Width="70" Background="#6D6F72"></Grid>
+                                <StackPanel Width="100" Name="drDrillL0" Orientation="Horizontal" Tag="16"></StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+                                <StackPanel Width="100" Name="drDrillR0" Orientation="Horizontal" Tag="32" FlowDirection ="RightToLeft"></StackPanel>
+                                <Grid Width="70" Background="#6D6F72"></Grid>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Border x:Name="drFingerBeamArrow16" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="DRCurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="DROperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="drBeamArrow16" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="DRPCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="DROperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border x:Name="drFingerBeamArrow32" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                    <Border.BorderThickness>
+                                        <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
+                                            <Binding Path="DRCurrentPointFingerBeamNumber" ElementName="uc"/>
+                                            <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                            <Binding Path="DROperationModel"  ElementName="uc"/>
+                                        </MultiBinding>
+                                    </Border.BorderThickness>
+                                    <Image x:Name="drBeamArrow32" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="DRPCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="DROperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                        <DockPanel>
+                            <Border Height="8" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Left" Width="175"></Border>
+                            <Border Height="8" BorderBrush="#6D6F72" BorderThickness="0,10,0,0" DockPanel.Dock="Right" Width="175"></Border>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="40" BorderBrush="#6D6F72" BorderThickness="2,0,0,0" Tag="space1">
+                                </Border>
+                                <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                <Border  Width="40" BorderBrush="#6D6F72" BorderThickness="0,0,3,0" Tag="space1">
+                                </Border>
+                            </StackPanel>
+                        </DockPanel>
+                    </StackPanel>
+                    <local1:AnimationButton Width="20" Height="20" Style="{StaticResource CircleButton}" x:Name="drRobotCar" Visibility="{Binding Path=SFType,ElementName=uc,Converter={StaticResource DRVisCvt}}">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Images\RobotCar.bmp"/>
+                        </Button.Background>
+                        <local1:AnimationButton.RenderTransform>
+                            <!--   -->
+                            <TransformGroup>
+                                <TranslateTransform x:Name="drcarTranslate" X="0">
+                                    <!--  X = 0表示 X 轴不变化，只有Y轴移动 -->
+                                    <TranslateTransform.Y>
+                                        <MultiBinding Converter="{StaticResource DRAnimationCarTranslateTransformYCvt}">
+                                            <Binding Path="DRRealHeight" ElementName="uc"/>
+                                            <Binding Path="DRMiddleHeight" ElementName="uc"/>
+                                            <Binding Path="DRRobotCarPosition" ElementName="uc"/>
+                                        </MultiBinding>
+                                    </TranslateTransform.Y>
+                                </TranslateTransform>
+                            </TransformGroup>
+                        </local1:AnimationButton.RenderTransform>
+                    </local1:AnimationButton>
+
+                    <Image  Width="20" Name="DRRobotArm" Visibility="{Binding Path=SFType,ElementName=uc,Converter={StaticResource DRVisCvt}}">
+                        <Image.Source>
+                            <Binding Path="DRRobotGripStatus" ElementName="uc" Converter="{StaticResource AnimationArmImageCvt}"/> <!--疑问-->
+                        </Image.Source>
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <RotateTransform>
+                                    <RotateTransform.Angle>
+                                        <Binding Path="DRRobotArmRotateAngle" ElementName="uc" Converter="{StaticResource AnimationArmAngleRotateCvt}"/>
+                                    </RotateTransform.Angle>
+                                    <RotateTransform.CenterX>
+                                        <Binding Path="ActualWidth" ElementName="DRRobotArm" Converter="{StaticResource AnimationArmRotateCvt}"/>
+                                    </RotateTransform.CenterX>
+                                    <RotateTransform.CenterY>
+                                        <Binding Path="ActualHeight" ElementName="DRRobotArm" Converter="{StaticResource AnimationArmRotateCvt}"/>
+                                    </RotateTransform.CenterY>
+                                </RotateTransform>
+                                <TranslateTransform>
+                                    <TranslateTransform.X>
+                                        <MultiBinding Converter="{StaticResource DRAnimationArmTransformXCvt}">
+                                            <Binding Path="DRWorkAnimationWidth" ElementName="uc"/>
+                                            <Binding Path="DRRobotArmRotateAngle" ElementName="uc"/>
+                                            <Binding Path="DRRobotArmPosition" ElementName="uc"/>
+                                        </MultiBinding>
+                                    </TranslateTransform.X>
+                                    <TranslateTransform.Y>
+                                        <MultiBinding Converter="{StaticResource DRAnimationArmTransformYCvt}">
+                                            <Binding Path="DRRealHeight" ElementName="uc"/>
+                                            <Binding Path="DRMiddleHeight" ElementName="uc"/>
+                                            <Binding Path="DRRobotCarPosition" ElementName="uc"/>
+                                            <Binding Path="DRWorkAnimationWidth" ElementName="uc"/>
+                                            <Binding Path="DRRobotArmRotateAngle" ElementName="uc"/>
+                                            <Binding Path="DRRobotArmPosition" ElementName="uc"/>
+                                        </MultiBinding>
+                                    </TranslateTransform.Y>
+                                </TranslateTransform>
+
+                            </TransformGroup>
+
+
+                        </Image.RenderTransform>
+                    </Image>
+
+                </Grid>
+                <Border BorderBrush="#6D6F72" BorderThickness="10,0,0,0" Width="30" Grid.Column="4">
+                    <StackPanel Margin="0,10,0,0">
+                        <TextBlock Name="tbrow10Right"  Text="10" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow9Right"  Text="9" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow8Right"  Text="8" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow7Right"  Text="7" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow6Right"  Text="6" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow5Right"  Text="5" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow4Right"  Text="4" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow3Right"  Text="3" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow2Right"  Text="2" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow1Right"  Text="1" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow0Right"  Text="T" Height="{Binding Path=TBFirstRowHeight, ElementName=uc}" Margin="5"/>
+                    </StackPanel>
+                </Border>
+                <Border BorderBrush="Gray" BorderThickness="1,0,0,0" Width="20" Grid.Column="5" Name="rpbdRight">
+                    <StackPanel Margin="0,10,0,0">
+                        <TextBlock Name="tbrow10RightRP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow9RightRP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow8RightRP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow7RightRP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow6RightRP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow5RightRP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow4RightRP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow3RightRP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow2RightRP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow1RightRP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow0RightRP"  Text="0" Height="{Binding Path=TBFirstRowHeight, ElementName=uc}" Margin="5"/>
+                    </StackPanel>
+                </Border>
+                <Border BorderBrush="Gray" BorderThickness="1,0,0,0" Width="20" Grid.Column="6" Name="fpbdRight">
+                    <StackPanel Margin="0,10,0,0">
+                        <TextBlock Name="tbrow10RightFP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow9RightFP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow8RightFP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow7RightFP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow6RightFP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow5RightFP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow4RightFP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow3RightFP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow2RightFP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow1RightFP"  Text="0" Height="{Binding Path=TBRowHeight, ElementName=uc}"/>
+                        <TextBlock Name="tbrow0RightFP"  Text="0" Height="{Binding Path=TBFirstRowHeight, ElementName=uc}" Margin="5"/>
+                    </StackPanel>
+                </Border>
+                <Border Name="rightBord" Width="{Binding Path=Border, ElementName=uc}"/>
+                <!--边距-->
+            </StackPanel>
+            <Grid Grid.Row="2" Height="60">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="460"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0" Width="60" Name="gdDownLeft"/>
+                <Grid Grid.Column="4" Width="60" Name="gdDownRight"/>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0"/>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="153*"/>
+                            <ColumnDefinition Width="118*"/>
+                            <ColumnDefinition Width="36*"/>
+                            <ColumnDefinition Width="153*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="RP  L:0+0" Name="tbRPLeft"/>
+                        <TextBlock Grid.Column="3" Text="R:0+0" Name="tbRPRight"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="103*"/>
+                            <ColumnDefinition Width="50*"/>
+                            <ColumnDefinition Width="154*"/>
+                            <ColumnDefinition Width="153*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="FP   L:0+0" Grid.ColumnSpan="2" Name="tbFPLeft"/>
+                        <Image Name="imageElevatorStatus" Grid.Column="2" Source="/Images/DK_1.png"/>
+                        <TextBlock Grid.Column="3" Text="R:0+0" Name="tbFPRight"/>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Column="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0"/>
+                </Grid>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>
