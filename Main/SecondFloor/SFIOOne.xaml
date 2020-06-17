@@ -1,0 +1,501 @@
+﻿<UserControl x:Class="Main.SecondFloor.SFIOOne"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Main.SecondFloor"
+             xmlns:cl="http://talonzeng.com/ControlLibrary"
+             mc:Ignorable="d" 
+             Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="sfIOOne">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="600"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="180"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="180"/>
+                <!--<ColumnDefinition Width="60"/>-->
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <StackPanel Orientation="Vertical">
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="序号" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="4" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="5" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="6" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="7" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="8" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="9" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="10" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="11" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="12" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="13" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="14" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="15" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <StackPanel Orientation="Vertical">
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="显示" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <cl:SymbolMapping StrContent="" Name="FingerBeamLockChangeDirct" LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <cl:SymbolMapping StrContent="" Name="left1FingerLockAction" LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <cl:SymbolMapping StrContent="" Name="left2FingerLockAction" LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <cl:SymbolMapping StrContent="" Name="left3FingerLockAction" LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <cl:SymbolMapping StrContent="" Name="left4FingerLockAction" LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <cl:SymbolMapping StrContent="" Name="left5FingerLockAction" LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <cl:SymbolMapping StrContent="" Name="left6FingerLockAction" LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <cl:SymbolMapping StrContent="" Name="left7FingerLockAction" LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <cl:SymbolMapping StrContent="" Name="left8FingerLockAction" LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <cl:SymbolMapping StrContent="" Name="left9FingerLockAction" LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <cl:SymbolMapping StrContent="" Name="left10FingerLockAction" LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <cl:SymbolMapping StrContent="" Name="left11FingerLockAction" LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <cl:SymbolMapping StrContent="" Name="left12FingerLockAction" LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <cl:SymbolMapping StrContent="" Name="left13FingerLockAction" LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <cl:SymbolMapping StrContent="" Name="left14FingerLockAction" LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <cl:SymbolMapping StrContent="" Name="left15FingerLockAction" LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Column="2">
+                <StackPanel Orientation="Vertical">
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="地址" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="141.5" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="137.0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="137.1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="137.2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="137.3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="137.4" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="137.5" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="137.6" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="137.7" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="138.0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="138.1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="预留" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="预留" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="预留" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="预留" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="预留" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+
+
+
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Column="3">
+                <StackPanel Orientation="Vertical">
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="功能说明" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="指梁锁换向" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="左1#指梁锁动作" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="左2#指梁锁动作" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="左3#指梁锁动作" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="左4#指梁锁动作" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="左5#指梁锁动作" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="左6#指梁锁动作" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="左7#指梁锁动作" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="左8#指梁锁动作" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="左9#指梁锁动作" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="左10#指梁锁动作" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="左11#指梁锁动作" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="左12#指梁锁动作" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="左13#指梁锁动作" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="左14#指梁锁动作" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="左15#指梁锁动作" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Column="4">
+
+            </Grid>
+            <Grid Grid.Column="5">
+                <StackPanel Orientation="Vertical">
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="序号" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="4" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="5" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="6" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="7" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="8" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="9" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="10" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="11" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="12" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="13" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="14" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="15" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Column="6">
+                <StackPanel Orientation="Vertical">
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="显示" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <cl:SymbolMapping StrContent="" LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <cl:SymbolMapping StrContent="" Name="right1FingerLockAction" LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <cl:SymbolMapping StrContent="" Name="right2FingerLockAction" LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <cl:SymbolMapping StrContent=""  Name="right3FingerLockAction"  LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <cl:SymbolMapping StrContent=""  Name="right4FingerLockAction"  LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <cl:SymbolMapping StrContent=""  Name="right5FingerLockAction"  LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <cl:SymbolMapping StrContent=""  Name="right6FingerLockAction"  LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <cl:SymbolMapping StrContent=""  Name="right7FingerLockAction"  LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <cl:SymbolMapping StrContent=""  Name="right8FingerLockAction"  LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <cl:SymbolMapping StrContent=""   Name="right9FingerLockAction" LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <cl:SymbolMapping StrContent=""  Name="right10FingerLockAction"   LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <cl:SymbolMapping StrContent=""  Name="right11FingerLockAction"  LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <cl:SymbolMapping StrContent=""  Name="right12FingerLockAction" LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <cl:SymbolMapping StrContent=""  Name="right13FingerLockAction"  LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <cl:SymbolMapping StrContent=""  Name="right14FingerLockAction"  LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <cl:SymbolMapping StrContent=""  Name="right15FingerLockAction"  LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Column="7">
+                <StackPanel Orientation="Vertical">
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="地址" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="139.0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="139.1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="139.2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="139.3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="139.4" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="139.5" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="139.6" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="139.7" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="140.0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="140.1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="预留" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="预留" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="预留" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="预留" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="预留" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Column="8">
+                <StackPanel Orientation="Vertical">
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="功能说明" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="右1#指梁锁动作" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="右2#指梁锁动作" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="右3#指梁锁动作" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="右4#指梁锁动作" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="右5#指梁锁动作" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="右6#指梁锁动作" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="右7#指梁锁动作" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="右8#指梁锁动作" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="右9#指梁锁动作" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="右10#指梁锁动作" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="右11#指梁锁动作" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="右12#指梁锁动作" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="右13#指梁锁动作" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="右14#指梁锁动作" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="右15#指梁锁动作" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                </StackPanel>
+            </Grid>
+
+            <!--<Grid Grid.Column="9">
+                            <Image Source="Images\right.png" Name="Next"  Width="50" Height="50" MouseDown="Next_MouseDown"/>
+                        </Grid>-->
+        </Grid>
+
+
+        <Grid Grid.Row="1">
+
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="110"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="110"/>
+            </Grid.ColumnDefinitions>
+        </Grid>
+    </Grid>
+</UserControl>

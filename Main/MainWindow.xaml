@@ -1,0 +1,230 @@
+﻿<Window x:Class="Main.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:secondfloor="clr-namespace:Main.SecondFloor"
+        xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="768" Width="1024" WindowStyle="None" WindowState="Maximized" Background="#F5F6FA">
+    <Window.Resources>
+        <ControlTemplate x:Key="MenuItemControlTemplate1" TargetType="{x:Type MenuItem}">
+            <Grid SnapsToDevicePixels="True">
+                <Border x:Name="OuterBorder" BorderThickness="0,0,0,2" BorderBrush="Red"/>
+                <DockPanel x:Name="DPContent" Background="#E0E1E3">
+                    <TextBlock x:Name="TextContent" HorizontalAlignment="Center" FontWeight="Bold" FontSize="20">
+<ContentPresenter ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" ContentStringFormat="{TemplateBinding HeaderStringFormat}" ContentSource="Header" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                    </TextBlock>
+                </DockPanel>
+                <Popup x:Name="PART_Popup" AllowsTransparency="True" Margin="0" Focusable="False" HorizontalOffset="1" IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}" PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}" Placement="Bottom" VerticalOffset="-1">
+                    <Themes:SystemDropShadowChrome x:Name="Shdw" Color="#535865">
+                        <Border x:Name="SubMenuBorder" BorderBrush="#FF959595" BorderThickness="0">
+                            <ScrollViewer x:Name="SubMenuScrollViewer" Margin="0" Padding="0" BorderThickness="0" Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
+                                <Grid RenderOptions.ClearTypeHint="Enabled" ShowGridLines="True" Background="#535865">
+                                    <StackPanel IsItemsHost="True"
+KeyboardNavigation.DirectionalNavigation="Cycle" Width="100"/>
+                                </Grid>
+                            </ScrollViewer>
+                        </Border>
+                    </Themes:SystemDropShadowChrome>
+                </Popup>
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsSuspendingPopupAnimation" Value="True">
+                    <Setter Property="PopupAnimation" TargetName="PART_Popup" Value="None"/>
+                </Trigger>
+                <Trigger Property="IsHighlighted" Value="True">
+                    <Setter Property="Foreground" TargetName="TextContent" Value="#1F7AFF"/>
+                    <Setter Property="Background" TargetName="DPContent" Value="White"/>
+                    <Setter Property="BorderBrush" TargetName="OuterBorder" Value="Red"/>
+                    <Setter Property="BorderThickness" TargetName="OuterBorder" Value="1"/>
+                </Trigger>
+                <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="True">
+                    <Setter Property="Margin" TargetName="Shdw" Value="0,0,5,5"/>
+                    <Setter Property="Color" TargetName="Shdw" Value="#71000000"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <Style TargetType="Label">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="微软雅黑"/>
+        </Style>
+    </Window.Resources>
+
+    <DockPanel>
+        <Grid Height="60" Background="#E0001B" DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Image Source="Images/SANYTop.png" HorizontalAlignment="Left" Grid.Column="0" Margin="23,15,50,15"></Image>
+            <Label FontWeight="Bold" Foreground="White" FontSize="28" Grid.Column="1">三一井口自动化控制系统</Label>
+            <TextBlock Name="timeLable" Grid.Column="2" HorizontalAlignment="Right" Foreground="White" FontSize="20" >2020-5-12 09:11:32</TextBlock>
+        </Grid>
+        <Grid Height="55" Background="#F5F6FA" DockPanel.Dock="Bottom" Name="gdBottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Border Name="bdSf" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="0" MouseLeftButtonDown="MouseDownSF">
+                <TextBlock Name="tbSf" FontSize="12" FontWeight="Bold">二层台<LineBreak/>
+                        机械手</TextBlock>
+            </Border>
+            <Border Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="1" Name="bdDR" MouseLeftButtonDown="MouseDR">
+                <TextBlock FontSize="12" Foreground="#1F7AFF" FontWeight="Bold" Name="tbDR">钻台面<LineBreak/>
+                        机械手</TextBlock>
+            </Border>
+            <Border Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="2">
+                <TextBlock FontSize="12" Foreground="#1F7AFF" FontWeight="Bold">铁钻工</TextBlock>
+            </Border>
+            <Border Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="3">
+                <TextBlock FontSize="12" Foreground="#1F7AFF" FontWeight="Bold">猫道</TextBlock>
+            </Border>
+            <Border Name="bdIng" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="4" MouseLeftButtonDown="MouseIng">
+                <TextBlock Name="tbIng" FontSize="12" Foreground="#1F7AFF" FontWeight="Bold">集成<LineBreak/>
+                        系统</TextBlock>
+            </Border>
+            <Border Name="bdHome" Background="White" BorderThickness="1" CornerRadius="5"  Grid.Column="5" MouseLeftButtonDown="MouseDownHome">
+                <Image Source="Images/home.png" Margin="2" Width="45" Height="45"></Image>
+            </Border>
+            <Border Name="bdDrillSetting" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="6" MouseLeftButtonDown="MouseDownDrillSetting">
+                <Image Source="Images/setting.png" Margin="2" Width="45" Height="45"></Image>
+            </Border>
+            <Border Name="bdSecureSetting" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="7" MouseLeftButtonDown="MouseDownSecureSetting">
+                <Image Source="Images/Secure.png" Margin="2" Width="45" Height="45"></Image>
+            </Border>
+            <Border Name="bdIO" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="8" MouseLeftButtonDown="MouseDownIO">
+                <Image Source="Images/IO.png"  Margin="2" Width="45" Height="45"></Image>
+            </Border>
+            <Border Name="bdDeviceStatus" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="9" MouseLeftButtonDown="MouseDownDeviceStatus">
+                <Image Source="Images/deviceStatus.png" Margin="0" Width="45" Height="45"></Image>
+            </Border>
+            <Border Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="10" MouseLeftButtonDown="MouseDownExit">
+                <Image Source="Images/exit.png" Margin="2" Width="45" Height="45"></Image>
+            </Border>
+
+            <Border Name="bdOther" Background="White"  BorderThickness="1" CornerRadius="5" Grid.Column="11">
+                <Menu Grid.Column="11" Margin="2" Width="45" Height="45" Name="bottomMenu">
+                    <MenuItem Name="sfMenuItem">
+                        <MenuItem.Header>
+                            <Border Name="bdMenu" BorderThickness="1" CornerRadius="5">
+                                <Image Source="Images/changepage.png" Margin="-6,0,0,0"></Image>
+                            </Border>
+                        </MenuItem.Header>
+                        <MenuItem Header="参数配置" Click="ParamSetting_Click" Template="{StaticResource MenuItemControlTemplate1}"></MenuItem>
+                        <MenuItem Header="" Height="3" Background="Transparent"></MenuItem>
+                        <MenuItem Header="位置标定" Click="PositionSetting_Click" Template="{StaticResource MenuItemControlTemplate1}"/>
+                        <MenuItem Header="" Height="3" Background="Transparent"></MenuItem>
+                        <MenuItem Header="位置补偿" Click="PositionCompensate_Click" Template="{StaticResource MenuItemControlTemplate1}"/>
+                        <MenuItem Header="" Height="3" Background="Transparent"></MenuItem>
+                        <MenuItem Header="记录查询" Click="Record_Click" Template="{StaticResource MenuItemControlTemplate1}"/>
+                        <MenuItem Header="" Height="3" Background="Transparent"></MenuItem>
+                        <MenuItem Header="图表" Click="Chart_Clict" Template="{StaticResource MenuItemControlTemplate1}"/>
+                        <MenuItem Header="" Height="3" Background="Transparent"></MenuItem>
+                        <MenuItem Header="报表" Click="Report_Click" Template="{StaticResource MenuItemControlTemplate1}"/>
+                        <MenuItem Header="" Height="3" Background="Transparent"></MenuItem>
+                        <MenuItem Header="下位机信息" Click="LowInfo_Click" Template="{StaticResource MenuItemControlTemplate1}"/>
+                    </MenuItem>
+                </Menu>
+            </Border>
+            
+            <!--<Border Name="bdSf" Background="#C4DEE8" BorderThickness="1" CornerRadius="5" Width="45" Height="45" Margin="20,5,10,5" Grid.Column="0">
+                <TextBlock Name="tbSf" FontSize="12" MouseDown="MouseDownSF" FontWeight="Bold">二层台<LineBreak/>
+                        机械手</TextBlock>
+            </Border>
+            <Border Background="#C4DEE8" BorderThickness="1" CornerRadius="5" Width="45" Height="45" Margin="20,5,10,5" Grid.Column="1" Name="bdDR">
+                <TextBlock FontSize="12" Foreground="#1F7AFF" MouseDown="MouseDR" FontWeight="Bold" Name="tbDR">钻台面<LineBreak/>
+                        机械手</TextBlock>
+            </Border>
+            <Border Background="#C4DEE8" BorderThickness="1" CornerRadius="5" Width="45" Height="45" Margin="20,5,10,5" Grid.Column="2">
+                <TextBlock FontSize="12" Foreground="#1F7AFF" FontWeight="Bold">铁钻工</TextBlock>
+            </Border>
+            <Border Background="#C4DEE8" BorderThickness="1" CornerRadius="5" Width="45" Height="45" Margin="20,5,10,5" Grid.Column="3">
+                <TextBlock FontSize="12" Foreground="#1F7AFF" FontWeight="Bold">猫道</TextBlock>
+            </Border>
+            <Border Name="bdIng" Background="#C4DEE8" BorderThickness="1" CornerRadius="5" Width="45" Height="45" Margin="20,5,10,5" Grid.Column="4">
+                <TextBlock Name="tbIng" FontSize="12" Foreground="#1F7AFF" FontWeight="Bold" MouseDown="MouseIng">集成<LineBreak/>
+                        系统</TextBlock>
+            </Border>
+            <Border Background="#C4DEE8" BorderThickness="1" CornerRadius="5" Width="45" Height="45" Margin="20,5,10,5" Grid.Column="5">
+                <Image Source="Images/home.png" MouseDown="MouseDownHome" Margin="2"></Image>
+            </Border>
+            <Border Background="#C4DEE8" BorderThickness="1" CornerRadius="5" Width="45" Height="45" Margin="20,5,10,5" Grid.Column="6">
+                <Image Source="Images/setting.png" MouseDown="MouseDownDrillSetting" Margin="2"></Image>
+            </Border>
+            <Border Background="#C4DEE8" BorderThickness="1" CornerRadius="5" Width="45" Height="45" Margin="20,5,10,5" Grid.Column="7">
+                <Image Source="Images/Secure.png" MouseDown="MouseDownSecureSetting" Margin="2"></Image>
+            </Border>
+            <Border Background="#C4DEE8" BorderThickness="1" CornerRadius="5" Width="45" Height="45" Margin="20,5,10,5" Grid.Column="8">
+                <Image Source="Images/IO.png" MouseDown="MouseDownIO" Margin="2"></Image>
+            </Border>
+            <Border Background="#C4DEE8" BorderThickness="1" CornerRadius="5" Width="45" Height="45" Margin="20,5,10,5" Grid.Column="9">
+                <Image Source="Images/deviceStatus.png" MouseDown="MouseDownDeviceStatus" Margin="0"></Image>
+            </Border>
+            <Border Background="#C4DEE8" BorderThickness="1" CornerRadius="5" Width="45" Height="45" Margin="20,5,10,5" Grid.Column="10">
+                <Image Source="Images/exit.png" MouseDown="MouseDownExit" Margin="2"></Image>
+            </Border>
+
+            <Border Background="#C4DEE8" BorderThickness="1" CornerRadius="5" Width="45" Height="45" Margin="20,5,10,5" Grid.Column="11">
+                <Menu Grid.Column="11" Background="#C4DEE8" Margin="2" >
+                    <MenuItem Name="sfMenuItem">
+                        <MenuItem.Header>
+                            <Border Background="#C4DEE8" BorderThickness="1" CornerRadius="5">
+                                <Image Source="Images/changepage.png" Margin="-6,0,0,0"></Image>
+                            </Border>
+                        </MenuItem.Header>
+                        <MenuItem Header="参数配置" Click="ParamSetting_Click" Template="{StaticResource MenuItemControlTemplate1}"></MenuItem>
+                        <MenuItem Header="" Height="3" Background="Transparent"></MenuItem>
+                        <MenuItem Header="位置标定" Click="PositionSetting_Click" Template="{StaticResource MenuItemControlTemplate1}"/>
+                        <MenuItem Header="" Height="3" Background="Transparent"></MenuItem>
+                        <MenuItem Header="位置补偿" Click="PositionCompensate_Click" Template="{StaticResource MenuItemControlTemplate1}"/>
+                        <MenuItem Header="" Height="3" Background="Transparent"></MenuItem>
+                        <MenuItem Header="记录查询" Click="Record_Click" Template="{StaticResource MenuItemControlTemplate1}"/>
+                        <MenuItem Header="" Height="3" Background="Transparent"></MenuItem>
+                        <MenuItem Header="图表" Click="Chart_Clict" Template="{StaticResource MenuItemControlTemplate1}"/>
+                        <MenuItem Header="" Height="3" Background="Transparent"></MenuItem>
+                        <MenuItem Header="报表" Click="Report_Click" Template="{StaticResource MenuItemControlTemplate1}"/>
+                        <MenuItem Header="" Height="3" Background="Transparent"></MenuItem>
+                        <MenuItem Header="下位机信息" Click="LowInfo_Click" Template="{StaticResource MenuItemControlTemplate1}"/>
+                    </MenuItem>
+                </Menu>
+            </Border>-->
+
+            <!--<<Menu Grid.Column="11" Background="#C4DEE8" Width="45" Height="45"  Margin="10" >
+                <MenuItem Name="sfMenuItem">
+                    <MenuItem.Header>
+                        <Border Background="#C4DEE8" BorderThickness="1" CornerRadius="5">
+                            <Image Source="Images/changepage.png" Margin="-6,0,0,0"></Image>
+                        </Border>
+                    </MenuItem.Header>
+                    <MenuItem Header="参数配置" Click="ParamSetting_Click"/>
+                    <MenuItem Header="位置标定" Click="PositionSetting_Click"/>
+                    <MenuItem Header="位置补偿" Click="PositionCompensate_Click"/>
+                    <MenuItem Header="记录查询" Click="Record_Click"/>
+                    <MenuItem Header="图表" Click="Chart_Clict"/>
+                    <MenuItem Header="报表" Click="Report_Click"/>
+                    <MenuItem Header="下位机信息" Click="LowInfo_Click"/>
+                </MenuItem>
+                </Menu>-->
+        </Grid>
+        <StackPanel Name="spMain">
+            <!--<secondfloor:SFMain></secondfloor:SFMain>-->
+        </StackPanel>
+    </DockPanel>
+</Window>

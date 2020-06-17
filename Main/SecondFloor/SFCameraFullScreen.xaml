@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="Main.SecondFloor.SFCameraFullScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Main.SecondFloor"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="920" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="sfIO">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="900"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
+            <Viewbox x:Name="viewboxCameral1" Stretch="Uniform" Height="600">
+                <Grid x:Name="gridCamera1">
+                    <Image Source="../Images/camera.jpg"/>
+                </Grid>
+            </Viewbox>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Column="1">
+            <Button x:Name="Button_6" Content="退出全屏"  Click="Button_CameraCancelFullScreen" Width="30" Margin="5 2 5 0">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Grid>
+                            <Image Margin="2" Source="..\Images\CancelFullScreen.png"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

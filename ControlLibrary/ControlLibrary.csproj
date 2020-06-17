@@ -1,0 +1,395 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4CEF6F8C-594E-4DCE-825E-A5809C55FB38}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <RootNamespace>ControlLibrary</RootNamespace>
+    <AssemblyName>ControlLibrary</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\Main\bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>..\Main\bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Charts.v18.1.Core, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Images.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Mvvm.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Office.v18.1.Core, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Pdf.v18.1.Core, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v18.1.Core, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v18.1.Core, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Sparkline.v18.1.Core, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpf.Charts.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Core.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Docking.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.DocumentViewer.v18.1.Core, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Gauges.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Grid.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Grid.v18.1.Core, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Layout.v18.1.Core, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.LayoutControl.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Printing.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Ribbon.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v18.1.UI, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v18.1.Wizard, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraEditors.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AnimationButton.cs" />
+    <Compile Include="BasedSwitchButton.xaml.cs">
+      <DependentUpon>BasedSwitchButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CircleGauge.xaml.cs">
+      <DependentUpon>CircleGauge.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CLConnectTest.xaml.cs">
+      <DependentUpon>CLConnectTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Clock.xaml.cs">
+      <DependentUpon>Clock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Connect.cs" />
+    <Compile Include="CustomCheckBox.xaml.cs">
+      <DependentUpon>CustomCheckBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataForm.cs" />
+    <Compile Include="DrillControl.xaml.cs">
+      <DependentUpon>DrillControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ElectricDashboard.xaml.cs">
+      <DependentUpon>ElectricDashboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HalfCircleGauge.xaml.cs">
+      <DependentUpon>HalfCircleGauge.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="KeyWindow.xaml.cs">
+      <DependentUpon>KeyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LinearIndicator.xaml.cs">
+      <DependentUpon>LinearIndicator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LinearModels.xaml.cs">
+      <DependentUpon>LinearModels.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageShow.cs" />
+    <Compile Include="MotorElecCurrentChart.xaml.cs">
+      <DependentUpon>MotorElecCurrentChart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MotorSpeedChart.xaml.cs">
+      <DependentUpon>MotorSpeedChart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MultiLineButton.cs" />
+    <Compile Include="RealtimeViewModel.cs" />
+    <Compile Include="Report.cs" />
+    <Compile Include="ShadowButton.xaml.cs">
+      <DependentUpon>ShadowButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StepControl.xaml.cs">
+      <DependentUpon>StepControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SwitchButton.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="ScrollingTextControl.cs" />
+    <Compile Include="SliderRotation.xaml.cs">
+      <DependentUpon>SliderRotation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SymbolMappingV.xaml.cs">
+      <DependentUpon>SymbolMappingV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SymbolMapping.xaml.cs">
+      <DependentUpon>SymbolMapping.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TextBlockWithBtn.xaml.cs">
+      <DependentUpon>TextBlockWithBtn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TextBlockWithTextBox.xaml.cs">
+      <DependentUpon>TextBlockWithTextBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TrackBar.xaml.cs">
+      <DependentUpon>TrackBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TrafficLights.xaml.cs">
+      <DependentUpon>TrafficLights.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VerticalLinear.xaml.cs">
+      <DependentUpon>VerticalLinear.xaml</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="BasedSwitchButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CircleGauge.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CLConnectTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Clock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomCheckBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DrillControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ElectricDashboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HalfCircleGauge.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="KeyWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LinearIndicator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LinearModels.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MotorElecCurrentChart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MotorSpeedChart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\DictionaryConnectTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\DictionaryControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ShadowButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SliderRotation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StepControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SymbolMappingV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SymbolMapping.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TextBlockWithBtn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TextBlockWithTextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TrackBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TrafficLights.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VerticalLinear.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\COM.Common\COM.Common.csproj">
+      <Project>{141042bf-8a01-45b8-bb00-1aac4641de69}</Project>
+      <Name>COM.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Com.Model\Com.Model.csproj">
+      <Project>{08DE74C3-FE63-40B2-98DA-685D8017113A}</Project>
+      <Name>Com.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAssistant\DataAssistant.csproj">
+      <Project>{fc8893b4-661e-487d-8820-f691291782e6}</Project>
+      <Name>DataAssistant</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataService\DataService.csproj">
+      <Project>{8965E389-6466-4B30-BD43-83C909044637}</Project>
+      <Name>DataService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Driver\Driver.csproj">
+      <Project>{F488B0B3-B851-4995-8C17-92F2A049DA44}</Project>
+      <Name>Driver</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Log\Log.csproj">
+      <Project>{89b97011-9eb1-49b1-b482-38c8fe768075}</Project>
+      <Name>Log</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CloseConnect.png" />
+    <Resource Include="Images\downArrow.png" />
+    <Resource Include="Images\OpenConnect.png" />
+    <Resource Include="Images\upArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\leftSwitch.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\rightSwitch.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Zhs_2.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Zhs_1.bmp" />
+    <Resource Include="Images\Zhs_10.bmp" />
+    <Resource Include="Images\Zhs_11.bmp" />
+    <Resource Include="Images\Zhs_12.bmp" />
+    <Resource Include="Images\Zhs_13.bmp" />
+    <Resource Include="Images\Zhs_14.bmp" />
+    <Resource Include="Images\Zhs_15.bmp" />
+    <Resource Include="Images\Zhs_16.bmp" />
+    <Resource Include="Images\Zhs_17.bmp" />
+    <Resource Include="Images\Zhs_18.bmp" />
+    <Resource Include="Images\Zhs_3.bmp" />
+    <Resource Include="Images\Zhs_4.bmp" />
+    <Resource Include="Images\Zhs_5.bmp" />
+    <Resource Include="Images\Zhs_6.bmp" />
+    <Resource Include="Images\Zhs_7.bmp" />
+    <Resource Include="Images\Zhs_8.bmp" />
+    <Resource Include="Images\Zhs_9.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\RobotCar.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\RobotCar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\A_5.png" />
+    <Resource Include="Images\A_Y_1.png" />
+    <Resource Include="Images\A_Y_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\checked.png" />
+    <Resource Include="Images\unchecked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Exchange.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\FullScreen.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

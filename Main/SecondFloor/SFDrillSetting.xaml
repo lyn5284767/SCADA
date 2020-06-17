@@ -1,0 +1,96 @@
+﻿<UserControl x:Class="Main.SecondFloor.SFDrillSetting"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Main.SecondFloor"
+             xmlns:cl="http://talonzeng.com/ControlLibrary"
+             mc:Ignorable="d" 
+             d:DesignHeight="608" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="sfDrillSetting">
+    <UserControl.Resources>
+        <Style TargetType="Button" x:Key="btnGreen">
+            <Setter Property="Background" Value="#fff"/>
+            <Setter Property="Foreground" Value="#000"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="5" BorderThickness="1" Padding="5" BorderBrush="#000">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                            </ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Green"/>
+                    <Setter Property="Foreground" Value="#fff"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Row="0" Grid.Column="1" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3">
+            <Grid x:Name="QuantitConfig">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <TextBlock Text="指梁序号【0-10】" VerticalAlignment="Center" Width="200"/>
+                        <ComboBox x:Name="cmbDrillPipeCountCorrectFingerDirect" Margin="0 0 10 0">
+                            <ComboBoxItem Content="左" IsSelected="True"/>
+                            <ComboBoxItem Content="右"/>
+                        </ComboBox>
+                        <TextBox x:Name="tbDrillPipeCountCorrectFingerDirectNumber" GotFocus="tb_GotFocus" Width="35" Text="0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <TextBlock Text="钻杆数量【视钻杆容量定】" VerticalAlignment="Center" Width="200"/>
+                        <TextBox x:Name="tbDrillPipeCountCorrectPipeCount" GotFocus="tb_GotFocus" Width="90" Text="0"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1">
+                        <StackPanel Orientation="Horizontal">
+                            <Button Style="{StaticResource btnGreen}" Click="btn_SecondFloorReLoad" Content="重新加载"/>
+                            <Button Style="{StaticResource btnGreen}" Click="btn_SecondMaxPosistion" Margin="2,5,2,5" Content="小车"/>
+                            <TextBox x:Name="carPosistion" Width="50" Text="0" Margin="2,5,2,5" IsEnabled="False" Visibility="Visible"/>
+                            <TextBox x:Name="drcarPosistion" Width="50" Text="0" Margin="2,5,2,5" IsEnabled="False" Visibility="Collapsed"/>
+                            <Button Style="{StaticResource btnGreen}" Click="btn_SecondArmMaxPosistion" Margin="2,5,2,5" Content="手臂"/>
+                            <TextBox x:Name="armPosistion" Width="50" Text="0" Margin="2,5,2,5" IsEnabled="False" Visibility="Visible"/>
+                            <TextBox x:Name="drarmPosistion" Width="50" Text="0" Margin="2,5,2,5" IsEnabled="False" Visibility="Collapsed"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <Button Style="{StaticResource btnGreen}" Click="btn_DrillPipeCountCorrect_CancelAllPipe" Content="清空所有钻杆"/>
+                    <Button Style="{StaticResource btnGreen}"  Click="btn_DrillPipeCountCorrect_FlashPipeCount" Content="刷新钻杆数量"/>
+                    <Button Style="{StaticResource btnGreen}" Click="btn_DrillPipeCountCorrect_SetPipeCount" Content="设置钻杆"/>
+                </StackPanel>
+                <StackPanel Grid.Column="2">
+                    <TextBlock Text="无操作" VerticalAlignment="Center" Width="150" Name="NumFixTips" Margin="5,12,5,15"/>
+                    <ComboBox Name="cbSysTypeSelect" SelectedIndex="0" SelectionChanged="ComboBox_SelectionChanged" FontSize="22" FontFamily="微软雅黑">
+                        <ComboBoxItem>二层台</ComboBoxItem>
+                        <ComboBoxItem>钻台面</ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Grid Grid.Column="1" Grid.Row="1" Name="gdMain"></Grid>
+        <!--<cl:Animation x:Name="secondFloorDrillPipeCorrectAnimation" Grid.Column="1" Grid.Row="1"/>-->
+    </Grid>
+</UserControl>

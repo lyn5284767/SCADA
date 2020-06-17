@@ -1,0 +1,11 @@
+1.查看内部变量的实时值的变化页面
+2.记录事件的类型，时间，发出者
+3.简单逻辑解释器
+4.设置变量报警条件，保存报警相关信息
+5.图元定制
+
+
+$ cd F:/VS2019Project/DemoSCADA/
+$git add .
+$git commit -m "test"
+$git push -u origin master

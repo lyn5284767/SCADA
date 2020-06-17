@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="ControlLibrary.TrafficLights"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxga="http://schemas.devexpress.com/winfx/2008/xaml/gauges"
+             xmlns:local="clr-namespace:ControlLibrary"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Name="uc">
+    <Border>
+        <dxga:StateIndicatorControl x:Name="trafficLightsStateIndicatorControl"
+                                    StateIndex="{Binding ElementName=uc,Path=Index}">
+            <dxga:StateIndicatorControl.Model>
+                <dxga:TrafficLightsStateIndicatorModel />
+            </dxga:StateIndicatorControl.Model>
+        </dxga:StateIndicatorControl>
+    </Border>
+</UserControl>

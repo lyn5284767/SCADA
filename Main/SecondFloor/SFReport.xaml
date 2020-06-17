@@ -1,0 +1,291 @@
+﻿<UserControl x:Class="Main.SecondFloor.SFReport"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Main.SecondFloor"
+             mc:Ignorable="d" 
+             d:DesignHeight="608" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="sfReport">
+    <UserControl.Resources>
+        <Style TargetType="Button" x:Key="btnGreen">
+            <Setter Property="Background" Value="#fff"/>
+            <Setter Property="Foreground" Value="#000"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="5" BorderThickness="1" Padding="5" BorderBrush="#000">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                            </ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Green"/>
+                    <Setter Property="Foreground" Value="#fff"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition  Height="Auto"/>
+            <RowDefinition  Height="Auto"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="二层台机械手生产报表" FontSize="18" FontFamily="宋体" FontWeight="Bold" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 0 5"/>
+        <Border Grid.Row="1" BorderBrush="DarkBlue" BorderThickness="1"  Padding="3">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Text="设备编号：" FontSize="16" FontFamily="宋体"/>
+                    <TextBlock x:Name="textBlockReportDeviceNumber" Text=""  FontSize="16" FontFamily="宋体"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Name="tbReportTime" Text="报表生成时间：2019年12月4日"  FontSize="16" FontFamily="宋体"/>
+                    <TextBlock x:Name="textBlockReportReportGenerateTime" Text=""  FontSize="16" FontFamily="宋体"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Border  Grid.Row="2" BorderBrush="DarkBlue" BorderThickness="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="作业记录"  FontSize="16" FontFamily="宋体" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Border BorderBrush="DarkBlue" BorderThickness="1"  Grid.Row="0">
+                        <TextBlock x:Name="textBlockReportPowerOnTime" Text="开机时间：456" FontSize="16" FontFamily="宋体"/>
+                    </Border>
+                    <Border BorderBrush="DarkBlue" BorderThickness="1" Grid.Row="1">
+                        <TextBlock x:Name="textBlockReportWorkTime" Text="工作时间：2" FontSize="16" FontFamily="宋体" />
+                    </Border>
+                    <Border BorderBrush="DarkBlue" BorderThickness="1" Grid.Row="2">
+                        <TextBlock x:Name="textBlockReportDrillDownCount" Text="自动下钻次数：3" FontSize="16" FontFamily="宋体" />
+                    </Border>
+                    <Border BorderBrush="DarkBlue" BorderThickness="1"  Grid.Row="3">
+                        <TextBlock x:Name="textBlockReportDrillUpCount" Text="自动起钻次数：3" FontSize="16" FontFamily="宋体"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Border BorderBrush="DarkBlue" BorderThickness="1"  Grid.Row="0">
+                        <TextBlock Text="小时" FontSize="16" FontFamily="宋体"/>
+                    </Border>
+                    <Border BorderBrush="DarkBlue" BorderThickness="1" Grid.Row="1">
+                        <TextBlock Text="小时" FontSize="16" FontFamily="宋体" />
+                    </Border>
+                    <Border BorderBrush="DarkBlue" BorderThickness="1" Grid.Row="2">
+                        <TextBlock Text="次" FontSize="16" FontFamily="宋体" />
+                    </Border>
+                    <Border BorderBrush="DarkBlue" BorderThickness="1"  Grid.Row="3">
+                        <TextBlock Text="次" FontSize="16" FontFamily="宋体"/>
+                    </Border>
+                </Grid>
+            </Grid>
+        </Border>
+        <Border  Grid.Row="3" BorderBrush="DarkBlue" BorderThickness="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="安全记录"  FontSize="16" FontFamily="宋体" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Border BorderBrush="DarkBlue" BorderThickness="1"  Grid.Row="0">
+                        <TextBlock x:Name="textBlockReportRobotBigHookInterLock" Text="机械手与大钩互锁解除：5" FontSize="16" FontFamily="宋体"/>
+                    </Border>
+                    <Border BorderBrush="DarkBlue" BorderThickness="1" Grid.Row="1">
+                        <TextBlock x:Name="textBlockReportRobotTopDriveInterlock" Text="机械手与顶驱互锁解除：4" FontSize="16" FontFamily="宋体" />
+                    </Border>
+                    <Border BorderBrush="DarkBlue" BorderThickness="1" Grid.Row="2">
+                        <TextBlock x:Name="textBlockReportRobotElevatorInterlock" Text="机械手与吊卡互锁解除：5" FontSize="16" FontFamily="宋体" />
+                    </Border>
+                    <Border BorderBrush="DarkBlue" BorderThickness="1"  Grid.Row="3">
+                        <TextBlock x:Name="textBlockReportElevatorBigHookInterlock" Text="吊卡与大钩互锁解除：6" FontSize="16" FontFamily="宋体"/>
+                    </Border>
+                    <Border BorderBrush="DarkBlue" BorderThickness="1"  Grid.Row="4">
+                        <TextBlock x:Name="textBlockReportRobotRetainingRopeInterlock" Text="机械手与挡绳互锁解除：5" FontSize="16" FontFamily="宋体"/>
+                    </Border>
+                    <Border BorderBrush="DarkBlue" BorderThickness="1"  Grid.Row="5">
+                        <TextBlock x:Name="textBlockReportRobotFingerBeamLockInterlock" Text="机械手与指梁锁互锁解除：4" FontSize="16" FontFamily="宋体"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Border BorderBrush="DarkBlue" BorderThickness="1"  Grid.Row="0">
+                        <TextBlock Text="次" FontSize="16" FontFamily="宋体"/>
+                    </Border>
+                    <Border BorderBrush="DarkBlue" BorderThickness="1" Grid.Row="1">
+                        <TextBlock Text="次" FontSize="16" FontFamily="宋体" />
+                    </Border>
+                    <Border BorderBrush="DarkBlue" BorderThickness="1" Grid.Row="2">
+                        <TextBlock Text="次" FontSize="16" FontFamily="宋体" />
+                    </Border>
+                    <Border BorderBrush="DarkBlue" BorderThickness="1"  Grid.Row="3">
+                        <TextBlock Text="次" FontSize="16" FontFamily="宋体"/>
+                    </Border>
+                    <Border BorderBrush="DarkBlue" BorderThickness="1"  Grid.Row="4">
+                        <TextBlock Text="次" FontSize="16" FontFamily="宋体"/>
+                    </Border>
+                    <Border BorderBrush="DarkBlue" BorderThickness="1"  Grid.Row="5">
+                        <TextBlock Text="次" FontSize="16" FontFamily="宋体"/>
+                    </Border>
+                </Grid>
+            </Grid>
+        </Border>
+        <Border  Grid.Row="4" BorderBrush="DarkBlue" BorderThickness="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="异常记录"  FontSize="16" FontFamily="宋体" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Border BorderBrush="DarkBlue" BorderThickness="1"  Grid.Row="0">
+                        <TextBlock x:Name="textBlockReportSecondFloorCommunication" Text="二层台通讯中断：0" FontSize="16" FontFamily="宋体"/>
+                    </Border>
+                    <Border BorderBrush="DarkBlue" BorderThickness="1" Grid.Row="1">
+                        <TextBlock x:Name="textBlockReportOperationFloorCommunication" Text="操作台通讯中断：0" FontSize="16" FontFamily="宋体" />
+                    </Border>
+                    <Border BorderBrush="DarkBlue" BorderThickness="1" Grid.Row="2">
+                        <TextBlock x:Name="textBlockReportCarMotorAlarm" Text="小车电机报警：0" FontSize="16" FontFamily="宋体" />
+                    </Border>
+                    <Border BorderBrush="DarkBlue" BorderThickness="1"  Grid.Row="3">
+                        <TextBlock x:Name="textBlockReportArmMotorAlarm" Text="手臂电机报警：0" FontSize="16" FontFamily="宋体"/>
+                    </Border>
+                    <Border BorderBrush="DarkBlue" BorderThickness="1"  Grid.Row="4">
+                        <TextBlock x:Name="textBlockReportRotateMotorAlarm" Text="回转电机报警：0" FontSize="16" FontFamily="宋体"/>
+                    </Border>
+                    <Border BorderBrush="DarkBlue" BorderThickness="1"  Grid.Row="5">
+                        <TextBlock x:Name="textBlockReportGripMotorAlarm" Text="抓手电机报警：0" FontSize="16" FontFamily="宋体"/>
+                    </Border>
+                    <Border BorderBrush="DarkBlue" BorderThickness="1"  Grid.Row="6">
+                        <TextBlock x:Name="textBlockReportFingerMotorAlarm" Text="手指电机报警：0" FontSize="16" FontFamily="宋体"/>
+                    </Border>
+                    <Border BorderBrush="DarkBlue" BorderThickness="1"  Grid.Row="7">
+                        <TextBlock x:Name="textBlockReportDrillCollarMotorAlarm" Text="钻铤锁电机报警：0" FontSize="16" FontFamily="宋体"/>
+                    </Border>
+                    <Border BorderBrush="DarkBlue" BorderThickness="1"  Grid.Row="8">
+                        <TextBlock x:Name="textBlockReportRetainingRopeMotorAlarm" Text="挡绳电机报警：0" FontSize="16" FontFamily="宋体"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Border BorderBrush="DarkBlue" BorderThickness="1"  Grid.Row="0">
+                        <TextBlock Text="次" FontSize="16" FontFamily="宋体"/>
+                    </Border>
+                    <Border BorderBrush="DarkBlue" BorderThickness="1" Grid.Row="1">
+                        <TextBlock Text="次" FontSize="16" FontFamily="宋体" />
+                    </Border>
+                    <Border BorderBrush="DarkBlue" BorderThickness="1" Grid.Row="2">
+                        <TextBlock Text="次" FontSize="16" FontFamily="宋体" />
+                    </Border>
+                    <Border BorderBrush="DarkBlue" BorderThickness="1"  Grid.Row="3">
+                        <TextBlock Text="次" FontSize="16" FontFamily="宋体"/>
+                    </Border>
+                    <Border BorderBrush="DarkBlue" BorderThickness="1"  Grid.Row="4">
+                        <TextBlock Text="次" FontSize="16" FontFamily="宋体"/>
+                    </Border>
+                    <Border BorderBrush="DarkBlue" BorderThickness="1"  Grid.Row="5">
+                        <TextBlock Text="次" FontSize="16" FontFamily="宋体"/>
+                    </Border>
+                    <Border BorderBrush="DarkBlue" BorderThickness="1"  Grid.Row="6">
+                        <TextBlock Text="次" FontSize="16" FontFamily="宋体"/>
+                    </Border>
+                    <Border BorderBrush="DarkBlue" BorderThickness="1"  Grid.Row="7">
+                        <TextBlock Text="次" FontSize="16" FontFamily="宋体"/>
+                    </Border>
+                    <Border BorderBrush="DarkBlue" BorderThickness="1"  Grid.Row="8">
+                        <TextBlock Text="次" FontSize="16" FontFamily="宋体"/>
+                    </Border>
+                </Grid>
+            </Grid>
+        </Border>
+        <Border Grid.Row="5" BorderBrush="DarkBlue" BorderThickness="1"  Padding="3">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Text="签字：" FontSize="16" FontFamily="宋体"/>
+                    <TextBlock Text=""  FontSize="16" FontFamily="宋体"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="日期："  FontSize="16" FontFamily="宋体"/>
+                    <TextBlock Text=""  FontSize="16" FontFamily="宋体"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Grid Grid.Row="6">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="预览报告"  Style="{StaticResource btnGreen}" Click="btn_PreviewReport" Width="80"/>
+                <Button  Content="生成报告"  Style="{StaticResource btnGreen}" Click="btn_GenerateReport" Width="80"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

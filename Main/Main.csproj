@@ -1,0 +1,615 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{45204BCF-BE0D-434E-9AF3-0A1FA5B0F8AE}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Main</RootNamespace>
+    <AssemblyName>Main</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>bitbug_favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Charts.v18.1.Core, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Mvvm.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v18.1.Core, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Charts.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Core.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Printing.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Amination.xaml.cs">
+      <DependentUpon>Amination.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DrillFloor\DRCameraFullScreen.xaml.cs">
+      <DependentUpon>DRCameraFullScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DrillFloor\DRDeviceStatus.xaml.cs">
+      <DependentUpon>DRDeviceStatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DrillFloor\DRMain.xaml.cs">
+      <DependentUpon>DRMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DrillFloor\DRParamTwo.xaml.cs">
+      <DependentUpon>DRParamTwo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DrillFloor\DRParamOne.xaml.cs">
+      <DependentUpon>DRParamOne.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DrillFloor\DRParamSettingMain.xaml.cs">
+      <DependentUpon>DRParamSettingMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DrillFloor\DRParamThree.xaml.cs">
+      <DependentUpon>DRParamThree.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DrillFloor\DRParamFour.xaml.cs">
+      <DependentUpon>DRParamFour.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DrillFloor\DRSecureSetting.xaml.cs">
+      <DependentUpon>DRSecureSetting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Integration\IngMain.xaml.cs">
+      <DependentUpon>IngMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SecondFloor\SFCameraFullScreen.xaml.cs">
+      <DependentUpon>SFCameraFullScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SecondFloor\SFChart.xaml.cs">
+      <DependentUpon>SFChart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SecondFloor\SFLowInfo.xaml.cs">
+      <DependentUpon>SFLowInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SecondFloor\SFParamMain.xaml.cs">
+      <DependentUpon>SFParamMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SecondFloor\SFParamThree.xaml.cs">
+      <DependentUpon>SFParamThree.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SecondFloor\SFParamTwo.xaml.cs">
+      <DependentUpon>SFParamTwo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SecondFloor\SFRecordThree.xaml.cs">
+      <DependentUpon>SFRecordThree.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SecondFloor\SFRecordTwo.xaml.cs">
+      <DependentUpon>SFRecordTwo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SecondFloor\SFRecordOne.xaml.cs">
+      <DependentUpon>SFRecordOne.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SecondFloor\SFPositionCompensate.xaml.cs">
+      <DependentUpon>SFPositionCompensate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SecondFloor\SFPositionSetting.xaml.cs">
+      <DependentUpon>SFPositionSetting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SecondFloor\SFRecordMain.xaml.cs">
+      <DependentUpon>SFRecordMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SecondFloor\SFReport.xaml.cs">
+      <DependentUpon>SFReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SecondFloor\SFRightFingerboardLock.xaml.cs">
+      <DependentUpon>SFRightFingerboardLock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SecondFloor\SFLeftFingerboardLock.xaml.cs">
+      <DependentUpon>SFLeftFingerboardLock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SecondFloor\SFFingerboardLock.xaml.cs">
+      <DependentUpon>SFFingerboardLock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SecondFloor\SFDrillCollarLock.xaml.cs">
+      <DependentUpon>SFDrillCollarLock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SecondFloor\SFDrillSetting.xaml.cs">
+      <DependentUpon>SFDrillSetting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SecondFloor\SFDeviceStatus.xaml.cs">
+      <DependentUpon>SFDeviceStatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SecondFloor\SFDrillCollarLockStatus.xaml.cs">
+      <DependentUpon>SFDrillCollarLockStatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SecondFloor\SFIOMain.xaml.cs">
+      <DependentUpon>SFIOMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SecondFloor\SFIOFour.xaml.cs">
+      <DependentUpon>SFIOFour.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SecondFloor\SFIOThree.xaml.cs">
+      <DependentUpon>SFIOThree.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SecondFloor\SFIOTwo.xaml.cs">
+      <DependentUpon>SFIOTwo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SecondFloor\SFIOOne.xaml.cs">
+      <DependentUpon>SFIOOne.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SecondFloor\SFParamOne.xaml.cs">
+      <DependentUpon>SFParamOne.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SecondFloor\SFMain.xaml.cs">
+      <DependentUpon>SFMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SecondFloor\SFSecureSetting.xaml.cs">
+      <DependentUpon>SFSecureSetting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SecondFloor\SFDrillCollarSample.xaml.cs">
+      <DependentUpon>SFDrillCollarSample.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UIClass\RelayCommand.cs" />
+    <Compile Include="UIClass\ScrollableTabPanel.cs" />
+    <Page Include="Amination.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DrillFloor\DRCameraFullScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DrillFloor\DRDeviceStatus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DrillFloor\DRMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DrillFloor\DRParamTwo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DrillFloor\DRParamOne.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DrillFloor\DRParamSettingMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DrillFloor\DRParamThree.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DrillFloor\DRParamFour.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DrillFloor\DRSecureSetting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Integration\IngMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="SecondFloor\SFCameraFullScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SecondFloor\SFChart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SecondFloor\SFLowInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SecondFloor\SFParamMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SecondFloor\SFParamThree.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SecondFloor\SFParamTwo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SecondFloor\SFRecordThree.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SecondFloor\SFRecordTwo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SecondFloor\SFRecordOne.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SecondFloor\SFPositionCompensate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SecondFloor\SFPositionSetting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SecondFloor\SFRecordMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SecondFloor\SFReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SecondFloor\SFRightFingerboardLock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SecondFloor\SFLeftFingerboardLock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SecondFloor\SFFingerboardLock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SecondFloor\SFDrillCollarLock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SecondFloor\SFDrillSetting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SecondFloor\SFDeviceStatus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SecondFloor\SFDrillCollarLockStatus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SecondFloor\SFIOMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SecondFloor\SFIOFour.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SecondFloor\SFIOThree.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SecondFloor\SFIOTwo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SecondFloor\SFIOOne.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SecondFloor\SFParamOne.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SecondFloor\SFMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SecondFloor\SFSecureSetting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SecondFloor\SFDrillCollarSample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\downArrow.png" />
+    <Resource Include="Images\upArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CloseConnect.png" />
+    <Resource Include="Images\OpenConnect.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\COM.Common\COM.Common.csproj">
+      <Project>{141042bf-8a01-45b8-bb00-1aac4641de69}</Project>
+      <Name>COM.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ControlLibrary\ControlLibrary.csproj">
+      <Project>{4cef6f8c-594e-4dce-825e-a5809c55fb38}</Project>
+      <Name>ControlLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAssistant\DataAssistant.csproj">
+      <Project>{fc8893b4-661e-487d-8820-f691291782e6}</Project>
+      <Name>DataAssistant</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataService\DataService.csproj">
+      <Project>{8965e389-6466-4b30-bd43-83c909044637}</Project>
+      <Name>DataService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Driver\Driver.csproj">
+      <Project>{f488b0b3-b851-4995-8c17-92f2a049da44}</Project>
+      <Name>Driver</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HBGKTest\HBGKTest.csproj">
+      <Project>{1D86878C-1489-4F63-A973-E0DBD7CF5CC7}</Project>
+      <Name>HBGKTest</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Log\Log.csproj">
+      <Project>{89b97011-9eb1-49b1-b482-38c8fe768075}</Project>
+      <Name>Log</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\login.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\loginLogo.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <SplashScreen Include="Images\sanylogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="bitbug_favicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bitbug_favicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\sany.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\triangle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CancelFullScreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\rightArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ReflashUp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ReflashLeft.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Exchange.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\A_B_1.png" />
+    <Resource Include="Images\A_B_2.png" />
+    <Resource Include="Images\A_B_3.png" />
+    <Resource Include="Images\A_B_4.png" />
+    <Resource Include="Images\A_Y_1.png" />
+    <Resource Include="Images\A_Y_2.png" />
+    <Resource Include="Images\A_Y_3.png" />
+    <Resource Include="Images\A_Y_4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\FullScreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\vedio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\leftTrangle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\SANYTop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\setting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Secure.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\IO.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\deviceStatus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\changepage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\hook.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\calibration.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\finger.png" />
+    <Resource Include="Images\leftFinger.png" />
+    <Resource Include="Images\rightFinger.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\enable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\roate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\downTrangle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\DK_1.png" />
+    <Resource Include="Images\DK_2.png" />
+    <Resource Include="Images\DK_3.png" />
+    <Resource Include="Images\DK_4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\A_5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\RobotCar.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Zhs_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Zhs_10.png" />
+    <Resource Include="Images\Zhs_11.png" />
+    <Resource Include="Images\Zhs_12.png" />
+    <Resource Include="Images\Zhs_13.png" />
+    <Resource Include="Images\Zhs_14.png" />
+    <Resource Include="Images\Zhs_15.png" />
+    <Resource Include="Images\Zhs_16.png" />
+    <Resource Include="Images\Zhs_17.png" />
+    <Resource Include="Images\Zhs_18.png" />
+    <Resource Include="Images\Zhs_2.png" />
+    <Resource Include="Images\Zhs_3.png" />
+    <Resource Include="Images\Zhs_4.png" />
+    <Resource Include="Images\Zhs_5.png" />
+    <Resource Include="Images\Zhs_6.png" />
+    <Resource Include="Images\Zhs_7.png" />
+    <Resource Include="Images\Zhs_8.png" />
+    <Resource Include="Images\Zhs_9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\camera.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

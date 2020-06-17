@@ -1,0 +1,227 @@
+﻿<UserControl x:Class="Main.SecondFloor.SFPositionCompensate"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Main.SecondFloor"
+             xmlns:cl="http://talonzeng.com/ControlLibrary"
+             mc:Ignorable="d" 
+             d:DesignHeight="608" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="sfPositionCompensate">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="180"/>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="180"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1">
+                <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3">
+                    <StackPanel Height="30" Orientation="Horizontal">
+                        <TextBlock Text="当前模式：" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                        <TextBlock Text="        " VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold" Name="opMode_PositionCompensation"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+            <Grid Grid.Column="3">
+                <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3">
+                    <StackPanel Height="30" Orientation="Horizontal">
+                        <TextBlock Text="回转：" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                        <TextBlock Text="    0 deg" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold" Name="rotateAngle_PositionCompensation"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="80"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Visibility="Hidden" Name="txtCarCompensaLeft">
+                <StackPanel Height="30" Orientation="Horizontal">
+                    <TextBlock Text="小车补偿量"  VerticalAlignment="Center" Margin="2" FontSize="13" FontFamily="宋体" FontWeight="Bold"/>
+                </StackPanel>
+            </Border>
+            <Border Grid.Column="1" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Visibility="Hidden"  Name="txtRotatePosiCompensaLeft">
+                <StackPanel Height="30" Orientation="Horizontal">
+                    <TextBlock Text="回转补偿量" VerticalAlignment="Center" Margin="3" FontSize="13" FontFamily="宋体" FontWeight="Bold"/>
+                </StackPanel>
+            </Border>
+            <Border Grid.Column="3" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Visibility="Hidden" Name="txtRotatePosiCompensaRight">
+                <StackPanel Height="30" Orientation="Horizontal">
+                    <TextBlock Text="回转补偿量"  VerticalAlignment="Center" Margin="2" FontSize="13" FontFamily="宋体" FontWeight="Bold"/>
+                </StackPanel>
+            </Border>
+            <Border Grid.Column="4" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Visibility="Hidden"  Name="txtCarCompensaRight">
+                <StackPanel Height="30" Orientation="Horizontal">
+                    <TextBlock Text="小车补偿量" VerticalAlignment="Center" Margin="2" FontSize="13" FontFamily="宋体" FontWeight="Bold"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="80"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <StackPanel Orientation="Vertical">
+                    <TextBox Text="0" Name="CarPosiCompensation1" IsReadOnly="True" Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,12,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="CarPosiCompensation2" IsReadOnly="True" Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,1,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="CarPosiCompensation3" IsReadOnly="True" Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="CarPosiCompensation4" IsReadOnly="True" Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="CarPosiCompensation5" IsReadOnly="True" Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="CarPosiCompensation6" IsReadOnly="True" Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="CarPosiCompensation7" IsReadOnly="True" Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="CarPosiCompensation8" IsReadOnly="True" Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="CarPosiCompensation9" IsReadOnly="True" Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="CarPosiCompensation10" IsReadOnly="True" Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="CarPosiCompensation11" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="CarPosiCompensation12" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="CarPosiCompensation13" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="CarPosiCompensation14" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="CarPosiCompensation15" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="CarPosiCompensation16" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Column="1">
+                <StackPanel Orientation="Vertical" >
+                    <TextBox Text="0" Name="RotatePosiCompensation1" IsReadOnly="True" Visibility="Hidden"  VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,12,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="RotatePosiCompensation2" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,1,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="RotatePosiCompensation3" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="RotatePosiCompensation4" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="RotatePosiCompensation5" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="RotatePosiCompensation6" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="RotatePosiCompensation7" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="RotatePosiCompensation8" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="RotatePosiCompensation9" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="RotatePosiCompensation10" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="RotatePosiCompensation11" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="RotatePosiCompensation12" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="RotatePosiCompensation13" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="RotatePosiCompensation14" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="RotatePosiCompensation15" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="RotatePosiCompensation16" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Column="2">
+                <StackPanel Orientation="Vertical" Name="spAm">
+                    <!--<cl:AnimationEmpty Name="aPositionCalibration"/>-->
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Column="3">
+                <StackPanel Orientation="Vertical" >
+                    <TextBox Text="0" Name="RotatePosiCompensation17" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,12,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="RotatePosiCompensation18" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,1,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="RotatePosiCompensation19" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="RotatePosiCompensation20" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="RotatePosiCompensation21" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="RotatePosiCompensation22" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="RotatePosiCompensation23" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="RotatePosiCompensation24" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="RotatePosiCompensation25" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="RotatePosiCompensation26" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="RotatePosiCompensation27" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="RotatePosiCompensation28" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="RotatePosiCompensation29" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="RotatePosiCompensation30" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="RotatePosiCompensation31" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="RotatePosiCompensation32" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Column="4">
+                <StackPanel Orientation="Vertical">
+                    <TextBox Text="0" Name="CarPosiCompensation17" IsReadOnly="True" Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,12,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="CarPosiCompensation18" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,1,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0" Name="CarPosiCompensation19" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0"  Name="CarPosiCompensation20" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0"  Name="CarPosiCompensation21" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0"  Name="CarPosiCompensation22" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0"  Name="CarPosiCompensation23" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0"  Name="CarPosiCompensation24" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0"  Name="CarPosiCompensation25" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0"  Name="CarPosiCompensation26" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0"  Name="CarPosiCompensation27" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0"  Name="CarPosiCompensation28" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0"  Name="CarPosiCompensation29" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0"  Name="CarPosiCompensation30" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0"  Name="CarPosiCompensation31" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                    <TextBox Text="0"  Name="CarPosiCompensation32" IsReadOnly="True"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,2,1" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="70" Height="24"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="3">
+            <TextBlock Text="未选择补偿类型" FontSize="18" FontFamily="宋体" FontWeight="Bold" HorizontalAlignment="Center" Foreground="Red" Name="txtCompensationType"/>
+        </Grid>
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1">
+                <Menu Height="30" Width="130"  FontSize="16" FontFamily="宋体" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
+                    <MenuItem>
+                        <MenuItem.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <ContentPresenter Content="补偿设置选择" />
+                                <Image Width="25" Source="..\Images\triangle.png" />
+                            </StackPanel>
+                        </MenuItem.Header>
+                        <MenuItem Header="小车补偿" Click="btn_CarPositionCompensation"/>
+                        <MenuItem Header="回转补偿" Click="btn_RotatePositionCompensation"/>
+                    </MenuItem>
+                </Menu>
+            </Grid>
+            <Grid Grid.Column="2">
+                <Menu Height="30" Width="130"  FontSize="16" FontFamily="宋体" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
+                    <MenuItem Name="menuCarCompensationSetting" IsEnabled="False">
+                        <MenuItem.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <ContentPresenter Content="小车补偿设置" />
+                                <Image Width="25" Source="..\Images\triangle.png" />
+                            </StackPanel>
+                        </MenuItem.Header>
+                        <MenuItem Header="刷新补偿" Click="btn_CompensationRefresh"/>
+                        <MenuItem Header="设置补偿" Click="btn_CompensationSetting"/>
+                        <MenuItem Header="清除当前补偿" Click="btn_CompensationClearCur"/>
+                        <MenuItem Header="清除所有补偿" Click="btn_CompensationClearAll"/>
+                    </MenuItem>
+                </Menu>
+
+            </Grid>
+            <Grid Grid.Column="3">
+                <Menu Height="30" Width="130"  FontSize="16" FontFamily="宋体" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black" >
+                    <MenuItem  Name="menuRotateCompensationSetting" IsEnabled="False">
+                        <MenuItem.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <ContentPresenter Content="回转补偿设置" />
+                                <Image Width="25" Source="..\Images\triangle.png" />
+                            </StackPanel>
+                        </MenuItem.Header>
+                        <MenuItem Header="刷新补偿" Click="btn_CompensationRefresh"/>
+                        <MenuItem Header="设置补偿" Click="btn_CompensationSetting"/>
+                        <MenuItem Header="清除当前补偿" Click="btn_CompensationClearCur"/>
+                        <MenuItem Header="清除所有补偿" Click="btn_CompensationClearAll"/>
+                    </MenuItem>
+                </Menu>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>
