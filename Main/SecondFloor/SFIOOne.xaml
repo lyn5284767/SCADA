@@ -8,6 +8,26 @@
              mc:Ignorable="d" 
              Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="sfIOOne">
     <Grid>
+        <Grid.OpacityMask>
+            <LinearGradientBrush StartPoint="1,0.5" EndPoint="0,0.5">
+                <GradientStop Color="#FF000000" Offset="0"/>
+                <GradientStop Color="#FF000000" Offset="1"/>
+                <GradientStop Color="#00000000" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.OpacityMask>
+        <Grid.Triggers>
+            <EventTrigger RoutedEvent="Loaded">
+                <EventTrigger.Actions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <!--<DoubleAnimation From="1" To="0" Duration="0:0:1.5" Storyboard.TargetProperty="OpacityMask.(GradientBrush.GradientStops)[1].Offset"/>-->
+                            <DoubleAnimation From="1" To="0" Duration="0:0:1" BeginTime="0:0:1" Storyboard.TargetProperty="OpacityMask.(GradientBrush.GradientStops)[2].Offset"/>
+                            <!--<ColorAnimation To="#FF000000" Duration="0" Storyboard.TargetProperty="OpacityMask.(GradientBrush.GradientStops)[2].Color"/>-->
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger.Actions>
+            </EventTrigger>
+        </Grid.Triggers>
         <Grid.RowDefinitions>
             <RowDefinition Height="600"/>
             <RowDefinition Height="*"/>
