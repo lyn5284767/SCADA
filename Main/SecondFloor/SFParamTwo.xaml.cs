@@ -52,7 +52,6 @@ namespace Main.SecondFloor
         {
             try
             {
-
                 this.twtL28.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SPDrillOneWidth"], Mode = BindingMode.OneWay });
                 this.twtL29.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SPDrillOneSpace"], Mode = BindingMode.OneWay });
                 this.twtL30.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SPDrillTwoWidth"], Mode = BindingMode.OneWay });
