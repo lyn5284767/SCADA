@@ -515,13 +515,14 @@ namespace Main
         /// </summary>
         private void LowInfo_Click(object sender, RoutedEventArgs e)
         {
-            this.spMain.Children.Clear();
             if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
             {
+                this.spMain.Children.Clear();
                 this.spMain.Children.Add(SFLowInfo.Instance);
                 this.BottomColorSetting(this.bdSf, this.tbSf, this.bdOther);
             }
             else if (GlobalData.Instance.systemType == SystemType.DrillFloor) {
+                this.spMain.Children.Clear();
                 this.spMain.Children.Add(SFLowInfo.Instance);
                 this.BottomColorSetting(this.bdDR, this.tbDR, this.bdOther);
             }
