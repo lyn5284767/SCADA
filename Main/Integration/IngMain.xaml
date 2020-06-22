@@ -148,16 +148,16 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="5,5,5,2" Style="{StaticResource ShadowBorder}">
-                                <StackPanel Orientation="Vertical" MouseDown="btn_AllMotorRetZero">
+                            <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="5,5,5,2" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btn_AllMotorRetZero">
+                                <StackPanel Orientation="Vertical">
                                     <!--<Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Margin="10,5,10,0" Height="45" Width="45">-->
                                 <TextBlock FontSize="32" Foreground="#008AFF" FontWeight="Bold" Text="  0  "></TextBlock>
                                 <!--</Border>-->
                                 <TextBlock>一键回零</TextBlock>
                             </StackPanel>
                             </Border>
-                            <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="5,5,5,2" Grid.Column="1" Style="{StaticResource ShadowBorder}">
-                                <StackPanel Grid.Column="1" Orientation="Vertical" MouseDown="btn_MotorEnable">
+                            <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="5,5,5,2" Grid.Column="1" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btn_MotorEnable">
+                                <StackPanel Grid.Column="1" Orientation="Vertical">
                                     <!--<Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Margin="10,5,10,0" Height="45" Width="45">-->
                                         <Image Source="../Images/enable.png" Margin="1" Width="40" Height="40"></Image>
                                     <!--</Border>-->
@@ -201,16 +201,16 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="5,5,5,2" Style="{StaticResource ShadowBorder}">
-                                <StackPanel Orientation="Vertical" MouseDown="btn_drAllMotorRetZero">
+                            <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="5,5,5,2" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btn_drAllMotorRetZero">
+                                <StackPanel Orientation="Vertical">
                                     <!--<Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Margin="10,5,10,0" Height="45" Width="45">-->
                                     <TextBlock FontSize="32" Foreground="#008AFF" FontWeight="Bold" Text="  0  "></TextBlock>
                                     <!--</Border>-->
                                     <TextBlock>一键回零</TextBlock>
                                 </StackPanel>
                             </Border>
-                            <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="5,5,5,2" Grid.Column="1" Style="{StaticResource ShadowBorder}">
-                                <StackPanel Orientation="Vertical" MouseDown="btn_drMotorEnable">
+                            <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="5,5,5,2" Grid.Column="1" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btn_drMotorEnable">
+                                <StackPanel Orientation="Vertical">
                                     <!--<Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Margin="10,5,10,0" Height="45" Width="45">-->
                                     <Image Source="../Images/enable.png" Margin="1" Width="40" Height="40"></Image>
                                     <!--</Border>-->

@@ -52,11 +52,11 @@ namespace Main.SecondFloor
         {
             try
             {
-                this.twtL28.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ShrotTag") { Source = GlobalData.Instance.da["SPDrillOneWidth"], Mode = BindingMode.OneWay });
-                this.twtL29.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ShrotTag") { Source = GlobalData.Instance.da["SPDrillOneSpace"], Mode = BindingMode.OneWay });
-                this.twtL30.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ShrotTag") { Source = GlobalData.Instance.da["SPDrillTwoWidth"], Mode = BindingMode.OneWay });
-                this.twtL31.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ShrotTag") { Source = GlobalData.Instance.da["SPDrillTwoSpace"], Mode = BindingMode.OneWay });
-                this.twtL32.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ShrotTag") { Source = GlobalData.Instance.da["SPDrillMaxSize"], Mode = BindingMode.OneWay });
+                this.twtL28.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SPDrillOneWidth"], Mode = BindingMode.OneWay });
+                this.twtL29.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SPDrillOneSpace"], Mode = BindingMode.OneWay });
+                this.twtL30.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SPDrillTwoWidth"], Mode = BindingMode.OneWay });
+                this.twtL31.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SPDrillTwoSpace"], Mode = BindingMode.OneWay });
+                this.twtL32.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SPDrillMaxSize"], Mode = BindingMode.OneWay });
                 this.twtL50.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SPDrillNum"], Mode = BindingMode.OneWay });
             }
             catch (Exception ex)
