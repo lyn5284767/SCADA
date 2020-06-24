@@ -244,7 +244,7 @@
                         </Border>
                             <TextBlock Name="tbLink" FontSize="20" Text="联动关闭"></TextBlock>
                         </Grid>-->
-                        <cl:ShadowButton TBText ="联动关闭" x:Name="tbLink" TBFontSize="20" BDWidth="150" BDHeight="45" MouseLeftButtonDown="LinkOpenOrCloseMouseDown"/>
+                        <cl:ShadowButton  x:Name="tbLink" TBFontSize="20" BDWidth="150" BDHeight="45" MouseLeftButtonDown="LinkOpenOrCloseMouseDown"/>
                     </StackPanel>
                     <TextBlock Name="warningOne" FontSize="16" Grid.Row="1" Text="" Foreground="#E0496D"/>
                     <TextBlock Name="warningTwo" FontSize="16" Grid.Row="2" Text="" Foreground="#E0496D"/>

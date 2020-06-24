@@ -72,14 +72,15 @@ namespace Main.DrillFloor
         int count = 0; // 进入页面发送协议次数
         private void DRMain_Loaded(object sender, RoutedEventArgs e)
         {
-            // 钻台面回主界面
-            byte[] data = new byte[10] { 80, 33, 0, 0, 0, 0, 0, 0, 0, 30 };
+            // 钻台面主界面
+            //byte[] data = new byte[10] { 80, 33, 0, 0, 0, 0, 0, 0, 0, 30 };
+            byte[] data = new byte[10] { 80, 33, 0, 0, 0, 0, 0, 0, 30, 30 };
             GlobalData.Instance.da.SendBytes(data);
 
             count = 0;
             GlobalData.Instance.DRNowPage = "Main";
             pageChange = new System.Timers.Timer(500);
-            pageChange.Elapsed += PageChange_Elapsed; ;
+            pageChange.Elapsed += PageChange_Elapsed;
             pageChange.Enabled = true;
         }
         /// <summary>
@@ -96,7 +97,8 @@ namespace Main.DrillFloor
             }
             else
             {
-                byte[] data = new byte[10] { 80, 33, 0, 0, 0, 0, 0, 0, 0, 30 };
+                //byte[] data = new byte[10] { 80, 33, 0, 0, 0, 0, 0, 0, 0, 30 };
+                byte[] data = new byte[10] { 80, 33, 0, 0, 0, 0, 0, 0, 30, 30 };
                 GlobalData.Instance.da.SendBytes(data);
             }
         }

@@ -1395,11 +1395,11 @@ namespace Main.SecondFloor
             byte[] byteToSend;
             if (this.operateMode.IsChecked)
             {
-                byteToSend = SendByte(new List<byte> { 1, 4 });
+                byteToSend = SendByte(new List<byte> { 1, 5 });
             }
             else
             {
-                byteToSend = SendByte(new List<byte> { 1, 5 });
+                byteToSend = SendByte(new List<byte> { 1, 4 });
             }
 
             GlobalData.Instance.da.SendBytes(byteToSend);

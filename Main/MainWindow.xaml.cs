@@ -109,7 +109,7 @@ namespace Main
 
             RefreshPipeCount();
             // 不是手动模式（4）或自动模式（5）切换回主界面变为手动模式
-            if (GlobalData.Instance.da["operationModel"].Value.Byte != 5 || GlobalData.Instance.da["operationModel"].Value.Byte != 4)
+            if (!(GlobalData.Instance.da["operationModel"].Value.Byte == 5 || GlobalData.Instance.da["operationModel"].Value.Byte == 4))
             {
                 byte[] byteToSend;
                 byteToSend = SendByte(new List<byte> { 1, 4 });
@@ -201,22 +201,30 @@ namespace Main
         /// </summary>
         private void MouseDownSecureSetting(object sender, MouseButtonEventArgs e)
         {
-            if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
+            try
             {
-                this.spMain.Children.Clear();
-                this.spMain.Children.Add(SFSecureSetting.Instance);
-                this.BottomColorSetting(this.bdSf, this.tbSf, this.bdSecureSetting);
+                if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
+                {
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(SFSecureSetting.Instance);
+                    this.BottomColorSetting(this.bdSf, this.tbSf, this.bdSecureSetting);
+                }
+                else if (GlobalData.Instance.systemType == SystemType.DrillFloor)
+                {
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(DRSecureSetting.Instance);
+                    this.BottomColorSetting(this.bdDR, this.tbDR, this.bdSecureSetting);
+                }
+                else if (GlobalData.Instance.systemType == SystemType.SIR)
+                {
+                    MessageBox.Show("功能未开放");
+                    return;
+                }
             }
-            else if (GlobalData.Instance.systemType == SystemType.DrillFloor)
+            catch (Exception ex)
             {
-                this.spMain.Children.Clear();
-                this.spMain.Children.Add(DRSecureSetting.Instance);
-                this.BottomColorSetting(this.bdDR, this.tbDR, this.bdSecureSetting);
-            }
-            else if (GlobalData.Instance.systemType == SystemType.SIR)
-            {
-                MessageBox.Show("功能未开放");
-                return;
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+                MessageBox.Show(ex.StackTrace);
             }
         }
         /// <summary>
@@ -226,8 +234,13 @@ namespace Main
         /// <param name="e"></param>
         private void MouseDownExit(object sender, MouseButtonEventArgs e)
         {
-            this.Close();
-            System.Windows.Application.Current.Shutdown();
+            MessageBoxResult result = MessageBox.Show("确认退出？", "提示", MessageBoxButton.OKCancel);
+            if (result == MessageBoxResult.OK)
+            {
+                this.Close();
+                
+                System.Windows.Application.Current.Shutdown();
+            }
         }
         /// <summary>
         /// IO查询
@@ -236,23 +249,32 @@ namespace Main
         /// <param name="e"></param>
         private void MouseDownIO(object sender, MouseButtonEventArgs e)
         {
-            if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
+            try
             {
-                this.spMain.Children.Clear();
-                this.spMain.Children.Add(SFIOMain.Instance);
-                byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 22, 0 });
-                GlobalData.Instance.da.SendBytes(byteToSend);
+                if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
+                {
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(SFIOMain.Instance);
+                    byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 22, 0 });
+                    GlobalData.Instance.da.SendBytes(byteToSend);
 
-                this.BottomColorSetting(this.bdSf, this.tbSf, this.bdIO);
+                    this.BottomColorSetting(this.bdSf, this.tbSf, this.bdIO);
+                }
+                else if (GlobalData.Instance.systemType == SystemType.DrillFloor)
+                {
+                    MessageBox.Show("功能未开放!");
+                    return;
+                }
+                else if (GlobalData.Instance.systemType == SystemType.SIR)
+                {
+                    MessageBox.Show("功能未开放");
+                    return;
+                }
             }
-            else if (GlobalData.Instance.systemType == SystemType.DrillFloor) {
-                MessageBox.Show("功能未开放!");
-                return;
-            }
-            else if (GlobalData.Instance.systemType == SystemType.SIR)
+            catch (Exception ex)
             {
-                MessageBox.Show("功能未开放");
-                return;
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+                MessageBox.Show(ex.StackTrace);
             }
         }
         /// <summary>
@@ -260,28 +282,36 @@ namespace Main
         /// </summary>
         private void MouseDownDrillSetting(object sender, MouseButtonEventArgs e)
         {
-            if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
+            try
             {
-                this.spMain.Children.Clear();
-                this.spMain.Children.Add(SFDrillSetting.Instance);
-                SFDrillSetting.Instance.SysTypeSelect(0);
-                RefreshPipeCount();
-                this.BottomColorSetting(this.bdSf, this.tbSf, this.bdDrillSetting);
-            }
-            else if (GlobalData.Instance.systemType == SystemType.DrillFloor)
-            {
-                this.spMain.Children.Clear();
-                this.spMain.Children.Add(SFDrillSetting.Instance);
-                SFDrillSetting.Instance.SysTypeSelect(1);
-                byte[] byteToSend = GlobalData.Instance.SendToDR(new List<byte> { 7, 1 });
-                GlobalData.Instance.da.SendBytes(byteToSend);
+                if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
+                {
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(SFDrillSetting.Instance);
+                    SFDrillSetting.Instance.SysTypeSelect(0);
+                    RefreshPipeCount();
+                    this.BottomColorSetting(this.bdSf, this.tbSf, this.bdDrillSetting);
+                }
+                else if (GlobalData.Instance.systemType == SystemType.DrillFloor)
+                {
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(SFDrillSetting.Instance);
+                    SFDrillSetting.Instance.SysTypeSelect(1);
+                    byte[] byteToSend = GlobalData.Instance.SendToDR(new List<byte> { 7, 1 });
+                    GlobalData.Instance.da.SendBytes(byteToSend);
 
-                this.BottomColorSetting(this.bdDR, this.tbDR, this.bdDrillSetting); ;
+                    this.BottomColorSetting(this.bdDR, this.tbDR, this.bdDrillSetting); ;
+                }
+                else if (GlobalData.Instance.systemType == SystemType.SIR)
+                {
+                    MessageBox.Show("功能未开放");
+                    return;
+                }
             }
-            else if (GlobalData.Instance.systemType == SystemType.SIR)
+            catch (Exception ex)
             {
-                MessageBox.Show("功能未开放");
-                return;
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+                MessageBox.Show(ex.StackTrace);
             }
         }
         /// <summary>
@@ -289,25 +319,33 @@ namespace Main
         /// </summary>
         private void MouseDownDeviceStatus(object sender, MouseButtonEventArgs e)
         {
-            if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
+            try
             {
-                this.spMain.Children.Clear();
-                this.spMain.Children.Add(SFDeviceStatus.Instance);
-                SFDeviceStatus.Instance.SwitchDeviceStatusPageEvent += Instance_SwitchDeviceStatusPageEvent;
-                gotoEquipStatusPage();
-                this.checkMaintain();
-                this.BottomColorSetting(this.bdSf, this.tbSf, this.bdDeviceStatus);
+                if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
+                {
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(SFDeviceStatus.Instance);
+                    SFDeviceStatus.Instance.SwitchDeviceStatusPageEvent += Instance_SwitchDeviceStatusPageEvent;
+                    gotoEquipStatusPage();
+                    this.checkMaintain();
+                    this.BottomColorSetting(this.bdSf, this.tbSf, this.bdDeviceStatus);
+                }
+                else if (GlobalData.Instance.systemType == SystemType.DrillFloor)
+                {
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(DRDeviceStatus.Instance);
+                    this.BottomColorSetting(this.bdDR, this.tbDR, this.bdDeviceStatus);
+                }
+                else if (GlobalData.Instance.systemType == SystemType.SIR)
+                {
+                    MessageBox.Show("功能未开放");
+                    return;
+                }
             }
-            else if (GlobalData.Instance.systemType == SystemType.DrillFloor)
+            catch (Exception ex)
             {
-                this.spMain.Children.Clear();
-                this.spMain.Children.Add(DRDeviceStatus.Instance);
-                this.BottomColorSetting(this.bdDR, this.tbDR, this.bdDeviceStatus);
-            }
-            else if (GlobalData.Instance.systemType == SystemType.SIR)
-            {
-                MessageBox.Show("功能未开放");
-                return;
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+                MessageBox.Show(ex.StackTrace);
             }
         }
         /// <summary>
@@ -333,42 +371,50 @@ namespace Main
         /// <param name="e"></param>
         private void ParamSetting_Click(object sender, RoutedEventArgs e)
         {
-            if (GlobalData.Instance.systemRole != SystemRole.DebugMan)
+            try
             {
-                MessageBox.Show("您不具备权限！");
-                return;
-            }
-            if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
-            {
-                if (GlobalData.Instance.da["operationModel"].Value.Byte == 5)//这是判断如果是自动模式，需要切换到手动模式
+                if (GlobalData.Instance.systemRole != SystemRole.DebugMan)
                 {
-                    MessageBox.Show("当下模式为自动模式，如需参数配置，请切换至手动模式！");
+                    MessageBox.Show("您不具备权限！");
                     return;
                 }
-                else
+                if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
                 {
-                    byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 23, 0 });
-                    GlobalData.Instance.da.SendBytes(byteToSend);
+                    if (GlobalData.Instance.da["operationModel"].Value.Byte == 5)//这是判断如果是自动模式，需要切换到手动模式
+                    {
+                        MessageBox.Show("当下模式为自动模式，如需参数配置，请切换至手动模式！");
+                        return;
+                    }
+                    else
+                    {
+                        byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 23, 0 });
+                        GlobalData.Instance.da.SendBytes(byteToSend);
+                    }
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(SFParamMain.Instance);
+                    this.BottomColorSetting(this.bdSf, this.tbSf, this.bdOther);
                 }
-                this.spMain.Children.Clear();
-                this.spMain.Children.Add(SFParamMain.Instance);
-                this.BottomColorSetting(this.bdSf, this.tbSf, this.bdOther);
-            }
-            else if (GlobalData.Instance.systemType == SystemType.DrillFloor)
-            {
-                if (GlobalData.Instance.da["droperationModel"].Value.Byte == 5)//这是判断如果是自动模式，需要切换到手动模式
+                else if (GlobalData.Instance.systemType == SystemType.DrillFloor)
                 {
-                    MessageBox.Show("当下模式为自动模式，如需参数配置，请切换至手动模式！");
+                    if (GlobalData.Instance.da["droperationModel"].Value.Byte == 5)//这是判断如果是自动模式，需要切换到手动模式
+                    {
+                        MessageBox.Show("当下模式为自动模式，如需参数配置，请切换至手动模式！");
+                        return;
+                    }
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(DRParamSettingMain.Instance);
+                    this.BottomColorSetting(this.bdDR, this.tbDR, this.bdOther);
+                }
+                else if (GlobalData.Instance.systemType == SystemType.SIR)
+                {
+                    MessageBox.Show("功能未开放");
                     return;
                 }
-                this.spMain.Children.Clear();
-                this.spMain.Children.Add(DRParamSettingMain.Instance);
-                this.BottomColorSetting(this.bdDR, this.tbDR, this.bdOther);
             }
-            else if (GlobalData.Instance.systemType == SystemType.SIR)
+            catch (Exception ex)
             {
-                MessageBox.Show("功能未开放");
-                return;
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+                MessageBox.Show(ex.StackTrace);
             }
         }
         /// <summary>
@@ -378,35 +424,44 @@ namespace Main
         /// <param name="e"></param>
         private void PositionSetting_Click(object sender, RoutedEventArgs e)
         {
-            if (GlobalData.Instance.systemRole > SystemRole.TechMan)
+            try
             {
-                MessageBox.Show("您不具备权限！");
-                return;
-            }
-            if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
-            {
-                if (GlobalData.Instance.da["operationModel"].Value.Byte == 5)
+                if (GlobalData.Instance.systemRole > SystemRole.TechMan)
                 {
-                    MessageBox.Show("当下模式为自动模式，如需位置标定，请切换至手动模式！");
+                    MessageBox.Show("您不具备权限！");
                     return;
                 }
-                else
+                if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
                 {
-                    byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 12, 0 });
-                    GlobalData.Instance.da.SendBytes(byteToSend);
+                    if (GlobalData.Instance.da["operationModel"].Value.Byte == 5)
+                    {
+                        MessageBox.Show("当下模式为自动模式，如需位置标定，请切换至手动模式！");
+                        return;
+                    }
+                    else
+                    {
+                        byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 12, 0 });
+                        GlobalData.Instance.da.SendBytes(byteToSend);
+                    }
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(SFPositionSetting.Instance);
+                    this.BottomColorSetting(this.bdSf, this.tbSf, this.bdOther);
                 }
-                this.spMain.Children.Clear();
-                this.spMain.Children.Add(SFPositionSetting.Instance);
-                this.BottomColorSetting(this.bdSf, this.tbSf, this.bdOther);
+                else if (GlobalData.Instance.systemType == SystemType.DrillFloor)
+                {
+                    MessageBox.Show("功能未开放!");
+                    return;
+                }
+                else if (GlobalData.Instance.systemType == SystemType.SIR)
+                {
+                    MessageBox.Show("功能未开放");
+                    return;
+                }
             }
-            else if (GlobalData.Instance.systemType == SystemType.DrillFloor) {
-                MessageBox.Show("功能未开放!");
-                return;
-            }
-            else if (GlobalData.Instance.systemType == SystemType.SIR)
+            catch (Exception ex)
             {
-                MessageBox.Show("功能未开放");
-                return;
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+                MessageBox.Show(ex.StackTrace);
             }
         }
         /// <summary>
@@ -416,98 +471,134 @@ namespace Main
         /// <param name="e"></param>
         private void PositionCompensate_Click(object sender, RoutedEventArgs e)
         {
-            if (GlobalData.Instance.systemRole > SystemRole.AdminMan)
+            try
             {
-                MessageBox.Show("您不具备权限！");
-                return;
-            }
-            if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
-            {
-                if (GlobalData.Instance.da["operationModel"].Value.Byte != 4)//这是判断如果是自动模式，需要切换到手动模式
+                if (GlobalData.Instance.systemRole > SystemRole.AdminMan)
                 {
-                    MessageBox.Show("当下模式非手动模式，如需位置补偿，请切换至手动模式！");
+                    MessageBox.Show("您不具备权限！");
                     return;
                 }
-                else
+                if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
                 {
-                    byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 1, 9 });
-                    GlobalData.Instance.da.SendBytes(byteToSend);
-                    SFPositionCompensate.Instance.txtCompensationType.Visibility = Visibility.Visible;
-                    SFPositionCompensate.Instance.menuCarCompensationSetting.IsEnabled = false;
-                    SFPositionCompensate.Instance.menuRotateCompensationSetting.IsEnabled = false;
-                    SFPositionCompensate.Instance.ShowRotatePosiCompensaTxts(false);
-                    SFPositionCompensate.Instance.ShowCarCompensationTxts(false);
+                    if (GlobalData.Instance.da["operationModel"].Value.Byte != 4)//这是判断如果是自动模式，需要切换到手动模式
+                    {
+                        MessageBox.Show("当下模式非手动模式，如需位置补偿，请切换至手动模式！");
+                        return;
+                    }
+                    else
+                    {
+                        byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 1, 9 });
+                        GlobalData.Instance.da.SendBytes(byteToSend);
+                        SFPositionCompensate.Instance.txtCompensationType.Visibility = Visibility.Visible;
+                        SFPositionCompensate.Instance.menuCarCompensationSetting.IsEnabled = false;
+                        SFPositionCompensate.Instance.menuRotateCompensationSetting.IsEnabled = false;
+                        SFPositionCompensate.Instance.ShowRotatePosiCompensaTxts(false);
+                        SFPositionCompensate.Instance.ShowCarCompensationTxts(false);
+                    }
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(SFPositionCompensate.Instance);
+                    this.BottomColorSetting(this.bdSf, this.tbSf, this.bdOther);
                 }
-                this.spMain.Children.Clear();
-                this.spMain.Children.Add(SFPositionCompensate.Instance);
-                this.BottomColorSetting(this.bdSf, this.tbSf, this.bdOther);
+                else if (GlobalData.Instance.systemType == SystemType.DrillFloor)
+                {
+                    MessageBox.Show("功能未开放!");
+                    return;
+                }
+                else if (GlobalData.Instance.systemType == SystemType.SIR)
+                {
+                    MessageBox.Show("功能未开放");
+                    return;
+                }
             }
-            else if (GlobalData.Instance.systemType == SystemType.DrillFloor) {
-                MessageBox.Show("功能未开放!");
-                return;
-            }
-            else if (GlobalData.Instance.systemType == SystemType.SIR)
+            catch (Exception ex)
             {
-                MessageBox.Show("功能未开放");
-                return;
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+                MessageBox.Show(ex.StackTrace);
             }
         }
 
         private void Record_Click(object sender, RoutedEventArgs e)
         {
-            if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
+            try
             {
-                this.spMain.Children.Clear();
-                this.spMain.Children.Add(SFRecordMain.Instance);
-                this.BottomColorSetting(this.bdSf, this.tbSf, this.bdOther);
+                if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
+                {
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(SFRecordMain.Instance);
+                    this.BottomColorSetting(this.bdSf, this.tbSf, this.bdOther);
+                }
+                else if (GlobalData.Instance.systemType == SystemType.DrillFloor)
+                {
+                    MessageBox.Show("功能未开放!");
+                    return;
+                }
+                else if (GlobalData.Instance.systemType == SystemType.SIR)
+                {
+                    MessageBox.Show("功能未开放");
+                    return;
+                }
             }
-            else if (GlobalData.Instance.systemType == SystemType.DrillFloor) {
-                MessageBox.Show("功能未开放!");
-                return;
-            }
-            else if (GlobalData.Instance.systemType == SystemType.SIR)
+            catch (Exception ex)
             {
-                MessageBox.Show("功能未开放");
-                return;
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+                MessageBox.Show(ex.StackTrace);
             }
         }
 
         private void Chart_Clict(object sender, RoutedEventArgs e)
         {
-            if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
+            try
             {
-                this.spMain.Children.Clear();
-                this.spMain.Children.Add(SFChart.Instance);
-                this.BottomColorSetting(this.bdSf, this.tbSf, this.bdOther);
+                if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
+                {
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(SFChart.Instance);
+                    this.BottomColorSetting(this.bdSf, this.tbSf, this.bdOther);
+                }
+                else if (GlobalData.Instance.systemType == SystemType.DrillFloor)
+                {
+                    MessageBox.Show("功能未开放!");
+                    return;
+                }
+                else if (GlobalData.Instance.systemType == SystemType.SIR)
+                {
+                    MessageBox.Show("功能未开放");
+                    return;
+                }
             }
-            else if (GlobalData.Instance.systemType == SystemType.DrillFloor) {
-                MessageBox.Show("功能未开放!");
-                return;
-            }
-            else if (GlobalData.Instance.systemType == SystemType.SIR)
+            catch (Exception ex)
             {
-                MessageBox.Show("功能未开放");
-                return;
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+                MessageBox.Show(ex.StackTrace);
             }
         }
 
         private void Report_Click(object sender, RoutedEventArgs e)
         {
-            if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
+            try
             {
-                this.spMain.Children.Clear();
-                SFReport.Instance.ReportTextBlockShow();
-                this.spMain.Children.Add(SFReport.Instance);
-                this.BottomColorSetting(this.bdSf, this.tbSf, this.bdOther);
+                if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
+                {
+                    this.spMain.Children.Clear();
+                    SFReport.Instance.ReportTextBlockShow();
+                    this.spMain.Children.Add(SFReport.Instance);
+                    this.BottomColorSetting(this.bdSf, this.tbSf, this.bdOther);
+                }
+                else if (GlobalData.Instance.systemType == SystemType.DrillFloor)
+                {
+                    MessageBox.Show("功能未开放!");
+                    return;
+                }
+                else if (GlobalData.Instance.systemType == SystemType.SIR)
+                {
+                    MessageBox.Show("功能未开放");
+                    return;
+                }
             }
-            else if (GlobalData.Instance.systemType == SystemType.DrillFloor) {
-                MessageBox.Show("功能未开放!");
-                return;
-            }
-            else if (GlobalData.Instance.systemType == SystemType.SIR)
+            catch (Exception ex)
             {
-                MessageBox.Show("功能未开放");
-                return;
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+                MessageBox.Show(ex.StackTrace);
             }
         }
         /// <summary>
@@ -515,21 +606,30 @@ namespace Main
         /// </summary>
         private void LowInfo_Click(object sender, RoutedEventArgs e)
         {
-            if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
+            try
             {
-                this.spMain.Children.Clear();
-                this.spMain.Children.Add(SFLowInfo.Instance);
-                this.BottomColorSetting(this.bdSf, this.tbSf, this.bdOther);
+                if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
+                {
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(SFLowInfo.Instance);
+                    this.BottomColorSetting(this.bdSf, this.tbSf, this.bdOther);
+                }
+                else if (GlobalData.Instance.systemType == SystemType.DrillFloor)
+                {
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(SFLowInfo.Instance);
+                    this.BottomColorSetting(this.bdDR, this.tbDR, this.bdOther);
+                }
+                else if (GlobalData.Instance.systemType == SystemType.SIR)
+                {
+                    MessageBox.Show("功能未开放");
+                    return;
+                }
             }
-            else if (GlobalData.Instance.systemType == SystemType.DrillFloor) {
-                this.spMain.Children.Clear();
-                this.spMain.Children.Add(SFLowInfo.Instance);
-                this.BottomColorSetting(this.bdDR, this.tbDR, this.bdOther);
-            }
-            else if (GlobalData.Instance.systemType == SystemType.SIR)
+            catch (Exception ex)
             {
-                MessageBox.Show("功能未开放");
-                return;
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+                MessageBox.Show(ex.StackTrace);
             }
         }
 
@@ -594,25 +694,33 @@ namespace Main
         /// </summary>
         private void MouseIng(object sender, MouseButtonEventArgs e)
         {
-            this.spMain.Children.Clear();
-            this.spMain.Children.Add(IngMain.Instance);
-            GlobalData.Instance.systemType = SystemType.SecondFloor;
-
-            var bc = new BrushConverter();
-            foreach (Border bd in FindVisualChildren<Border>(this.gdBottom))
+            try
             {
-                //bd.Background = (Brush)bc.ConvertFrom("#C4DEE8");
-                bd.Background = (Brush)bc.ConvertFrom("#FCFDFF");
-            }
+                this.spMain.Children.Clear();
+                this.spMain.Children.Add(IngMain.Instance);
+                GlobalData.Instance.systemType = SystemType.SecondFloor;
 
-            foreach (TextBlock tb in FindVisualChildren<TextBlock>(this.gdBottom))
+                var bc = new BrushConverter();
+                foreach (Border bd in FindVisualChildren<Border>(this.gdBottom))
+                {
+                    //bd.Background = (Brush)bc.ConvertFrom("#C4DEE8");
+                    bd.Background = (Brush)bc.ConvertFrom("#FCFDFF");
+                }
+
+                foreach (TextBlock tb in FindVisualChildren<TextBlock>(this.gdBottom))
+                {
+                    tb.Foreground = (Brush)bc.ConvertFrom("#1F7AFF");
+                }
+                this.bdIng.Background = (Brush)bc.ConvertFrom("#80FFF8");
+                this.tbIng.Foreground = (Brush)bc.ConvertFrom("#000000");
+
+                this.bdHome.Background = (Brush)bc.ConvertFrom("#F4C8B3");
+            }
+            catch (Exception ex)
             {
-                tb.Foreground = (Brush)bc.ConvertFrom("#1F7AFF");
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+                MessageBox.Show(ex.StackTrace);
             }
-            this.bdIng.Background = (Brush)bc.ConvertFrom("#80FFF8");
-            this.tbIng.Foreground = (Brush)bc.ConvertFrom("#000000");
-
-            this.bdHome.Background = (Brush)bc.ConvertFrom("#F4C8B3");
         }
 
         /// <summary>
@@ -643,10 +751,14 @@ namespace Main
 
         private void PingIp(string strIP)
         {
-
-            Ping ping = new Ping();
-            ping.SendAsync(strIP, 500, null);
-            ping.PingCompleted += new PingCompletedEventHandler(ping_Complete);           
+            try
+            {
+                Ping ping = new Ping();
+                ping.SendAsync(strIP, 500, null);
+                ping.PingCompleted += new PingCompletedEventHandler(ping_Complete);
+            }
+            catch (Exception ex)
+            { }
         }
         private void ping_Complete(object sender, PingCompletedEventArgs k)
         {
@@ -706,19 +818,28 @@ namespace Main
         /// </summary>
         private void SIR_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            int sirType = GlobalData.Instance.da["IDFactoryType"].Value.Byte;
-            this.spMain.Children.Clear();
-            sirType = 2;
-            if (sirType == (int)SIRType.SANY)
+            try
             {
+                int sirType = GlobalData.Instance.da["IDFactoryType"].Value.Byte;
+                this.spMain.Children.Clear();
+                sirType = 2;
+                if (sirType == (int)SIRType.SANY)
+                {
+                }
+                else if (sirType == (int)SIRType.JJC)
+                {
+                    this.spMain.Children.Add(SIRJJCMain.Instance);
+                }
+
+                GlobalData.Instance.systemType = SystemType.SIR;
+                this.BottomColorSetting(this.bdSIR, this.tbSIR, this.bdHome);
             }
-            else if (sirType == (int)SIRType.JJC)
+            catch (Exception ex)
             {
-                this.spMain.Children.Add(SIRJJCMain.Instance);
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+                MessageBox.Show(ex.StackTrace);
             }
 
-            GlobalData.Instance.systemType = SystemType.SIR;
-            this.BottomColorSetting(this.bdSIR, this.tbSIR, this.bdHome);
         }
     }
 }

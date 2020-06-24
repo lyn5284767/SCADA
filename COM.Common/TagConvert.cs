@@ -932,10 +932,10 @@ namespace COM.Common
 
             if (bType == 2)
             {
-                return false;
+                return true;
             }
 
-            return true;
+            return false;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -1012,6 +1012,60 @@ namespace COM.Common
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class IngDrillPipeTypeConverter : IMultiValueConverter
+    {
+      
+
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (values[0] == null || values[0]== DependencyProperty.UnsetValue
+                || values[1] == null || values[1] == DependencyProperty.UnsetValue)
+            {
+                return string.Empty;
+            }
+
+            byte bType = (byte)values[0];
+            byte bType2 = (byte)values[1];
+            if(bType != bType2) return "管柱类型不一致";
+            switch (bType)
+            {
+                case 35:
+                    return "3.5寸钻杆";
+                case 40:
+                    return "4寸钻杆";
+                case 45:
+                    return "4.5寸钻杆";
+                case 50:
+                    return "5寸钻杆";
+                case 55:
+                    return "5.5寸钻杆";
+                case 60:
+                    return "6寸钻铤";
+                case 65:
+                    return "6.5寸钻铤";
+                case 70:
+                    return "7寸钻铤";
+                case 75:
+                    return "7.5寸钻铤";
+                case 80:
+                    return "8寸钻铤";
+                case 90:
+                    return "9寸钻铤";
+                case 100:
+                    return "10寸钻铤";
+                case 110:
+                    return "11寸钻铤";
+            }
+
+            return "未选中管柱类型";
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
@@ -2932,7 +2986,7 @@ namespace COM.Common
                 else if (b1) return "联动已开启，二层台使能";
                 else if (b2) return "联动已开启，钻台面使能";
             }
-            return "联动未开启";
+                                            return "";
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

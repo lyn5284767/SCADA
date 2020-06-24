@@ -132,6 +132,7 @@ namespace Main.SecondFloor
                     {
                         GlobalData.Instance.CarMinPosistion = int.Parse(this.carPosistion.Text);
                         WinAPI.WritePrivateProfileString("SECONDFLOOR", "CARMINPOSISTION", GlobalData.Instance.CarMinPosistion.ToString(), configPath);
+                        
                         this.NumFixTips.Text = "小车标定成功";
                     }
                     else
@@ -147,13 +148,13 @@ namespace Main.SecondFloor
                     if (tmpNum < 300)
                     {
                         GlobalData.Instance.DRCarMinPosistion = int.Parse(this.drcarPosistion.Text);
-                        WinAPI.WritePrivateProfileString("DRILLFLOOR", "CARMINPOSISTION", GlobalData.Instance.CarMinPosistion.ToString(), configPath);
+                        WinAPI.WritePrivateProfileString("DRILLFLOOR", "CARMINPOSISTION", GlobalData.Instance.DRCarMinPosistion.ToString(), configPath);
                         this.NumFixTips.Text = "小车标定成功";
                     }
                     else
                     {
                         GlobalData.Instance.DRCarMaxPosistion = int.Parse(this.drcarPosistion.Text);
-                        WinAPI.WritePrivateProfileString("DRILLFLOOR", "CARMAXPOSISTION", GlobalData.Instance.CarMaxPosistion.ToString(), configPath);
+                        WinAPI.WritePrivateProfileString("DRILLFLOOR", "CARMAXPOSISTION", GlobalData.Instance.DRCarMaxPosistion.ToString(), configPath);
                         this.NumFixTips.Text = "小车标定成功";
                     }
                 }
@@ -182,7 +183,7 @@ namespace Main.SecondFloor
                 else if (systemType == SystemType.DrillFloor)
                 {
                     GlobalData.Instance.DRArmMaxPosistion = int.Parse(this.drarmPosistion.Text);
-                    WinAPI.WritePrivateProfileString("DRILLFLOOR", "ARMMAXPOSISTION", GlobalData.Instance.ArmMaxPosistion.ToString(), configPath);
+                    WinAPI.WritePrivateProfileString("DRILLFLOOR", "ARMMAXPOSISTION", GlobalData.Instance.DRArmMaxPosistion.ToString(), configPath);
                     this.NumFixTips.Text = "手臂标定成功";
                 }
             }
