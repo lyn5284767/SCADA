@@ -536,11 +536,11 @@ namespace Main.DrillFloor
         private void btn_drOpState(object sender, EventArgs e)
         {
             byte[] byteToSend;
-            if (this.droperateMode.IsChecked)
+            if (this.droperateMode.IsChecked) //自动
             {
                 byteToSend = new byte[10] { 1, 32, 3, 31, 0, 0, 0, 0, 0, 0 };
             }
-            else
+            else// 手动
             {
                 byteToSend = new byte[10] { 1, 32, 3, 30, 0, 0, 0, 0, 0, 0 };
             }
@@ -553,11 +553,11 @@ namespace Main.DrillFloor
         private void btn_drWorkModel(object sender, EventArgs e)
         {
             byte[] byteToSend;
-            if (this.drworkMode.IsChecked)
+            if (this.drworkMode.IsChecked)// 送杆
             {
                 byteToSend = new byte[10] { 1, 32, 4, 41, 0, 0, 0, 0, 0, 0 };
             }
-            else
+            else// 排杆
             {
                 byteToSend = new byte[10] { 1, 32, 4, 40, 0, 0, 0, 0, 0, 0 };
             }
@@ -585,7 +585,9 @@ namespace Main.DrillFloor
 
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
-
+        /// <summary>
+        /// 平台选择 -停用
+        /// </summary>
         private void btn_SelectType(object sender, EventArgs e)
         {
             byte[] byteToSend;
@@ -600,15 +602,17 @@ namespace Main.DrillFloor
 
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
-
+        /// <summary>
+        /// 控制模式
+        /// </summary>
         private void btn_drTelecontrolModel(object sender, EventArgs e)
         {
             byte[] byteToSend;
-            if (this.drTelecontrolModel.IsChecked)
+            if (this.drTelecontrolModel.IsChecked) // 遥控
             {
                 byteToSend = new byte[10] { 1, 32, 2, 21, 0, 0, 0, 0, 0, 0 };
             }
-            else
+            else // 近控
             {
                 byteToSend = new byte[10] { 1, 32, 2, 20, 0, 0, 0, 0, 0, 0 };
             }
