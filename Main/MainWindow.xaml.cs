@@ -683,6 +683,15 @@ namespace Main
 
                 GlobalData.Instance.systemType = SystemType.DrillFloor;
                 this.BottomColorSetting(this.bdDR, this.tbDR, this.bdHome);
+
+                // 不是手动模式（4）或自动模式（5）切换回主界面变为手动模式
+                if (!(GlobalData.Instance.da["droperationModel"].Value.Byte == 5 || GlobalData.Instance.da["droperationModel"].Value.Byte == 4))
+                {
+                    byte[] byteToSend;
+                    byteToSend = new byte[10] { 1, 32, 3, 31, 0, 0, 0, 0, 0, 0 };
+
+                    GlobalData.Instance.da.SendBytes(byteToSend);
+                }
             }
             catch (Exception ex)
             {
