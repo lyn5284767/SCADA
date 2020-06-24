@@ -183,6 +183,7 @@ namespace Main.Integration
                 IngStepMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
                 IngStepMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["workModel"], Mode = BindingMode.OneWay });
                 IngStepMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E5AutoModelCurrentStep"], Mode = BindingMode.OneWay });
+                IngStepMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["460b1"], Mode = BindingMode.OneWay });
                 IngStepMultiBind.NotifyOnSourceUpdated = true;
                 this.IngStep.SetBinding(StepControl.SelectStepProperty, IngStepMultiBind);
 
@@ -518,40 +519,40 @@ namespace Main.Integration
         {
             try
             {
-                if (GlobalData.Instance.da["460b0"].Value.Boolean) // 联动开启
-                {
-                    if (GlobalData.Instance.da["325b0"].Value.Boolean)
-                    {
-                        DRSelectMouseDown(null, null);
-                    }
-                    else
-                    {
-                        sfSelectMouseDown(null, null);
-                    }
-                    //if (GlobalData.Instance.da["operationModel"].Value.Byte == 5 && GlobalData.Instance.da["droperationModel"].Value.Byte == 5) // 自动模式
+                //if (GlobalData.Instance.da["460b0"].Value.Boolean) // 联动开启
+                //{
+                    //if (GlobalData.Instance.da["325b0"].Value.Boolean)
                     //{
-                    //    if (GlobalData.Instance.da["workModel"].Value.Byte == 2 && GlobalData.Instance.da["drworkModel"].Value.Byte == 2) // 排管
-                    //    {
-                    //        if (this.IngStep.SelectStep <= 6 && systemType == SystemType.SecondFloor) // 自动操作钻台面但界面处于二层台界面，切换钻台面界面
-                    //        {
-                    //            DRSelectMouseDown(null, null);
-                    //        }
-                    //        else if (this.IngStep.SelectStep > 6 && systemType == SystemType.DrillFloor)
-                    //        {
-                    //            sfSelectMouseDown(null, null);
-                    //        }
-                    //    }
-                    //    else if (GlobalData.Instance.da["workModel"].Value.Byte == 2 && GlobalData.Instance.da["drworkModel"].Value.Byte == 1)// 送杆
-                    //    {
-                    //        if (this.IngStep.SelectStep <= 7 && systemType == SystemType.DrillFloor)
-                    //        {
-                    //            sfSelectMouseDown(null, null);
-                    //        }
-                    //        else if (this.IngStep.SelectStep > 7 && systemType == SystemType.SecondFloor)
-                    //        {
-                    //            DRSelectMouseDown(null, null);
-                    //        }
-                    //    }
+                    //    DRSelectMouseDown(null, null);
+                    //}
+                    //else
+                    //{
+                    //    sfSelectMouseDown(null, null);
+                    //}
+                    if (GlobalData.Instance.da["operationModel"].Value.Byte == 5 && GlobalData.Instance.da["droperationModel"].Value.Byte == 5) // 自动模式
+                    {
+                        if (GlobalData.Instance.da["workModel"].Value.Byte == 2 && GlobalData.Instance.da["drworkModel"].Value.Byte == 2) // 排管
+                        {
+                            if (this.IngStep.SelectStep <= 6 && systemType == SystemType.SecondFloor) // 自动操作钻台面但界面处于二层台界面，切换钻台面界面
+                            {
+                                DRSelectMouseDown(null, null);
+                            }
+                            else if (this.IngStep.SelectStep > 6 && systemType == SystemType.DrillFloor)
+                            {
+                                sfSelectMouseDown(null, null);
+                            }
+                        }
+                        else if (GlobalData.Instance.da["workModel"].Value.Byte == 1 && GlobalData.Instance.da["drworkModel"].Value.Byte == 1)// 送杆
+                        {
+                            if (this.IngStep.SelectStep <= 7 && systemType == SystemType.DrillFloor)
+                            {
+                                sfSelectMouseDown(null, null);
+                            }
+                            else if (this.IngStep.SelectStep > 7 && systemType == SystemType.SecondFloor)
+                            {
+                                DRSelectMouseDown(null, null);
+                            }
+                        }
                     //}
                 }
             }

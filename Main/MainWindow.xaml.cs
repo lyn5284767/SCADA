@@ -288,7 +288,7 @@ namespace Main
                 {
                     this.spMain.Children.Clear();
                     this.spMain.Children.Add(SFDrillSetting.Instance);
-                    SFDrillSetting.Instance.SysTypeSelect(0);
+                    SFDrillSetting.Instance.SysTypeSelect(1);
                     RefreshPipeCount();
                     this.BottomColorSetting(this.bdSf, this.tbSf, this.bdDrillSetting);
                 }
@@ -296,7 +296,7 @@ namespace Main
                 {
                     this.spMain.Children.Clear();
                     this.spMain.Children.Add(SFDrillSetting.Instance);
-                    SFDrillSetting.Instance.SysTypeSelect(1);
+                    SFDrillSetting.Instance.SysTypeSelect(2);
                     byte[] byteToSend = GlobalData.Instance.SendToDR(new List<byte> { 7, 1 });
                     GlobalData.Instance.da.SendBytes(byteToSend);
 
