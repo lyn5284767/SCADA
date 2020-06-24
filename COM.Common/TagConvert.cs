@@ -3027,7 +3027,11 @@ namespace COM.Common
         {
             if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null)
                 || (values[1] == DependencyProperty.UnsetValue) || (values[1] == null)
-                || (values[2] == DependencyProperty.UnsetValue) || (values[2] == null))
+                || (values[2] == DependencyProperty.UnsetValue) || (values[2] == null)
+                || (values[3] == DependencyProperty.UnsetValue) || (values[3] == null)
+                || (values[4] == DependencyProperty.UnsetValue) || (values[4] == null)
+                || (values[5] == DependencyProperty.UnsetValue) || (values[5] == null)
+                || (values[6] == DependencyProperty.UnsetValue) || (values[6] == null))
             {
                 return 0;
             }
@@ -3041,39 +3045,52 @@ namespace COM.Common
             byte drstep = (byte)values[2];
             byte sfWorkModel = (byte)values[4];
             byte sfstep = (byte)values[5];
+            bool b460b1 = (bool)values[6];
             if (drworkModer == 2 && sfWorkModel ==2) // 排杆
             {
-                if (drstep == 0) return 0;
-                else if (drstep >= 1 && drstep <= 6) return 1;
-                else if (drstep >= 7 && drstep <= 9) return 2;
-                else if (drstep >= 10 && drstep <= 17) return 3;
-                else if (drstep == 18) return 4;
-                else if (drstep >= 19 && drstep <= 20) return 5;
-                else if (drstep == 21) return 6;
-                else if (sfstep >=1 && sfstep<=9) return 7;
-                else if (sfstep >= 10 && sfstep <= 11) return 8;
-                else if (sfstep ==12) return 9;
-                else if (sfstep >= 17 && sfstep <= 18) return 10;
-                else if (sfstep ==19) return 11;
-                else if (sfstep >= 20 && sfstep <= 24) return 12;
-                else if (sfstep >= 25) return 13;
+                if (!b460b1)
+                {
+                    if (drstep == 0) return 0;
+                    else if (drstep >= 1 && drstep <= 6) return 1;
+                    else if (drstep >= 7 && drstep <= 9) return 2;
+                    else if (drstep >= 10 && drstep <= 17) return 3;
+                    else if (drstep == 18) return 4;
+                    else if (drstep >= 19 && drstep <= 20) return 5;
+                    else if (drstep == 21) return 6;
+                }
+                else
+                {
+                    if (sfstep >= 1 && sfstep <= 9) return 7;
+                    else if (sfstep >= 10 && sfstep <= 11) return 8;
+                    else if (sfstep == 12) return 9;
+                    else if (sfstep >= 17 && sfstep <= 18) return 10;
+                    else if (sfstep == 19) return 11;
+                    else if (sfstep >= 20 && sfstep <= 24) return 12;
+                    else if (sfstep >= 25) return 13;
+                }
             }
             else if (drworkModer == 1 && sfWorkModel == 1) // 送杆
             {
-                if(sfstep ==0) return 0;
-                else if (sfstep >= 1 && sfstep <= 10) return 1;
-                else if (sfstep >= 11 && sfstep <= 16) return 2;
-                else if (sfstep >= 17 && sfstep <= 18) return 3;
-                else if (sfstep >= 19 && sfstep <= 23) return 4;
-                else if (sfstep ==26) return 5;
-                else if (sfstep >= 27 && sfstep <= 28) return 6;
-                else if (sfstep ==35) return 7;
-                if (drstep >= 1 && drstep <= 5) return 8;
-                if (drstep >= 6 && drstep <= 9) return 9;
-                if (drstep >= 10 && drstep <= 15) return 10;
-                if (drstep >= 16 && drstep <= 17) return 11;
-                if (drstep >= 18 && drstep <= 19) return 12;
-                if (drstep == 20) return 13;
+                if (b460b1)
+                {
+                    if (sfstep == 0) return 0;
+                    else if (sfstep >= 1 && sfstep <= 10) return 1;
+                    else if (sfstep >= 11 && sfstep <= 16) return 2;
+                    else if (sfstep >= 17 && sfstep <= 18) return 3;
+                    else if (sfstep >= 19 && sfstep <= 23) return 4;
+                    else if (sfstep == 26) return 5;
+                    else if (sfstep >= 27 && sfstep <= 28) return 6;
+                    else if (sfstep == 35) return 7;
+                }
+                else
+                {
+                    if (drstep >= 1 && drstep <= 5) return 8;
+                    else if(drstep >= 6 && drstep <= 9) return 9;
+                    else if(drstep >= 10 && drstep <= 15) return 10;
+                    else if(drstep >= 16 && drstep <= 17) return 11;
+                    else if(drstep >= 18 && drstep <= 19) return 12;
+                    else if(drstep == 20) return 13;
+                }
             }
 
             return 0;
