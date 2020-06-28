@@ -582,9 +582,9 @@ namespace COM.Common
                     return "最靠近井口位置";
                 case 2:
                     return "最远离井口位置";
-                case 3:
-                    return "左1#指梁位置";
                 case 4:
+                    return "左1#指梁位置";
+                case 3:
                     return "右1#指梁位置";
                 //case 3:
                 //    return "右1#指梁位置";
@@ -618,17 +618,17 @@ namespace COM.Common
                     return "左5#钻铤手臂伸展位置";
                 case 54:
                     return "左6#钻铤手臂伸展位置";
-                case 55:
-                    return "右1#钻铤手臂伸展位置";
-                case 56:
-                    return "右2#钻铤手臂伸展位置";
                 case 57:
-                    return "右3#钻铤手臂伸展位置";
+                    return "右1#钻铤手臂伸展位置";
                 case 58:
-                    return "右4#钻铤手臂伸展位置";
+                    return "右2#钻铤手臂伸展位置";
                 case 59:
-                    return "右5#钻铤手臂伸展位置";
+                    return "右3#钻铤手臂伸展位置";
                 case 60:
+                    return "右4#钻铤手臂伸展位置";
+                case 61:
+                    return "右5#钻铤手臂伸展位置";
+                case 62:
                     return "右6#钻铤手臂伸展位置";
                 case 65:
                     return "回转-90°位置";
@@ -932,10 +932,10 @@ namespace COM.Common
 
             if (bType == 2)
             {
-                return false;
+                return true;
             }
 
-            return true;
+            return false;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -1012,6 +1012,60 @@ namespace COM.Common
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class IngDrillPipeTypeConverter : IMultiValueConverter
+    {
+      
+
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (values[0] == null || values[0]== DependencyProperty.UnsetValue
+                || values[1] == null || values[1] == DependencyProperty.UnsetValue)
+            {
+                return string.Empty;
+            }
+
+            byte bType = (byte)values[0];
+            byte bType2 = (byte)values[1];
+            if(bType != bType2) return "管柱类型不一致";
+            switch (bType)
+            {
+                case 35:
+                    return "3.5寸钻杆";
+                case 40:
+                    return "4寸钻杆";
+                case 45:
+                    return "4.5寸钻杆";
+                case 50:
+                    return "5寸钻杆";
+                case 55:
+                    return "5.5寸钻杆";
+                case 60:
+                    return "6寸钻铤";
+                case 65:
+                    return "6.5寸钻铤";
+                case 70:
+                    return "7寸钻铤";
+                case 75:
+                    return "7.5寸钻铤";
+                case 80:
+                    return "8寸钻铤";
+                case 90:
+                    return "9寸钻铤";
+                case 100:
+                    return "10寸钻铤";
+                case 110:
+                    return "11寸钻铤";
+            }
+
+            return "未选中管柱类型";
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
@@ -2932,7 +2986,7 @@ namespace COM.Common
                 else if (b1) return "联动已开启，二层台使能";
                 else if (b2) return "联动已开启，钻台面使能";
             }
-            return "联动未开启";
+                                            return "";
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
@@ -2973,7 +3027,11 @@ namespace COM.Common
         {
             if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null)
                 || (values[1] == DependencyProperty.UnsetValue) || (values[1] == null)
-                || (values[2] == DependencyProperty.UnsetValue) || (values[2] == null))
+                || (values[2] == DependencyProperty.UnsetValue) || (values[2] == null)
+                || (values[3] == DependencyProperty.UnsetValue) || (values[3] == null)
+                || (values[4] == DependencyProperty.UnsetValue) || (values[4] == null)
+                || (values[5] == DependencyProperty.UnsetValue) || (values[5] == null)
+                || (values[6] == DependencyProperty.UnsetValue) || (values[6] == null))
             {
                 return 0;
             }
@@ -2987,39 +3045,52 @@ namespace COM.Common
             byte drstep = (byte)values[2];
             byte sfWorkModel = (byte)values[4];
             byte sfstep = (byte)values[5];
+            bool b460b1 = (bool)values[6];
             if (drworkModer == 2 && sfWorkModel ==2) // 排杆
             {
-                if (drstep == 0) return 0;
-                else if (drstep >= 1 && drstep <= 6) return 1;
-                else if (drstep >= 7 && drstep <= 9) return 2;
-                else if (drstep >= 10 && drstep <= 17) return 3;
-                else if (drstep == 18) return 4;
-                else if (drstep >= 19 && drstep <= 20) return 5;
-                else if (drstep == 21) return 6;
-                else if (sfstep >=1 && sfstep<=9) return 7;
-                else if (sfstep >= 10 && sfstep <= 11) return 8;
-                else if (sfstep ==12) return 9;
-                else if (sfstep >= 17 && sfstep <= 18) return 10;
-                else if (sfstep ==19) return 11;
-                else if (sfstep >= 20 && sfstep <= 24) return 12;
-                else if (sfstep >= 25) return 13;
+                if (!b460b1)
+                {
+                    if (drstep == 0) return 0;
+                    else if (drstep >= 1 && drstep <= 6) return 1;
+                    else if (drstep >= 7 && drstep <= 9) return 2;
+                    else if (drstep >= 10 && drstep <= 17) return 3;
+                    else if (drstep == 18) return 4;
+                    else if (drstep >= 19 && drstep <= 20) return 5;
+                    else if (drstep == 21) return 6;
+                }
+                else
+                {
+                    if (sfstep >= 1 && sfstep <= 9) return 7;
+                    else if (sfstep >= 10 && sfstep <= 11) return 8;
+                    else if (sfstep == 12) return 9;
+                    else if (sfstep >= 17 && sfstep <= 18) return 10;
+                    else if (sfstep == 19) return 11;
+                    else if (sfstep >= 20 && sfstep <= 24) return 12;
+                    else if (sfstep >= 25) return 13;
+                }
             }
             else if (drworkModer == 1 && sfWorkModel == 1) // 送杆
             {
-                if(sfstep ==0) return 0;
-                else if (sfstep >= 1 && sfstep <= 10) return 1;
-                else if (sfstep >= 11 && sfstep <= 16) return 2;
-                else if (sfstep >= 17 && sfstep <= 18) return 3;
-                else if (sfstep >= 19 && sfstep <= 23) return 4;
-                else if (sfstep ==26) return 5;
-                else if (sfstep >= 27 && sfstep <= 28) return 6;
-                else if (sfstep ==35) return 7;
-                if (drstep >= 1 && drstep <= 5) return 8;
-                if (drstep >= 6 && drstep <= 9) return 9;
-                if (drstep >= 10 && drstep <= 15) return 10;
-                if (drstep >= 16 && drstep <= 17) return 11;
-                if (drstep >= 18 && drstep <= 19) return 12;
-                if (drstep == 20) return 13;
+                if (b460b1)
+                {
+                    if (sfstep == 0) return 0;
+                    else if (sfstep >= 1 && sfstep <= 10) return 1;
+                    else if (sfstep >= 11 && sfstep <= 16) return 2;
+                    else if (sfstep >= 17 && sfstep <= 18) return 3;
+                    else if (sfstep >= 19 && sfstep <= 23) return 4;
+                    else if (sfstep == 26) return 5;
+                    else if (sfstep >= 27 && sfstep <= 28) return 6;
+                    else if (sfstep == 35) return 7;
+                }
+                else
+                {
+                    if (drstep >= 1 && drstep <= 5) return 8;
+                    else if(drstep >= 6 && drstep <= 9) return 9;
+                    else if(drstep >= 10 && drstep <= 15) return 10;
+                    else if(drstep >= 16 && drstep <= 17) return 11;
+                    else if(drstep >= 18 && drstep <= 19) return 12;
+                    else if(drstep == 20) return 13;
+                }
             }
 
             return 0;
@@ -3050,43 +3121,56 @@ namespace COM.Common
             {
                 return "非自动模式";
             }
+            bool b460b1 = (bool)values[6];
             byte drworkModer = (byte)values[1];
             byte drstep = (byte)values[2];
             byte sfWorkModel = (byte)values[4];
             byte sfstep = (byte)values[5];
             if (drworkModer == 2 && sfWorkModel == 2) // 排杆
             {
-                if (drstep == 0) return "排杆启动";
-                else if (drstep >= 1 && drstep <= 6) return "井口定位";
-                else if (drstep >= 7 && drstep <= 9) return "井口抓杆";
-                else if (drstep >= 10 && drstep <= 17) return "台面定位";
-                else if (drstep == 18) return "抓手松开";
-                else if (drstep >= 19 && drstep <= 20) return "手臂回位";
-                else if (drstep == 21) return "台面完成";
-                else if (sfstep >= 1 && sfstep <= 9) return "井口定位";
-                else if (sfstep >= 10 && sfstep <= 11) return "井口抓杆";
-                else if (sfstep == 12) return "吊卡确认";
-                else if (sfstep >= 17 && sfstep <= 18) return "指梁定位";
-                else if (sfstep == 19) return "指梁锁确认";
-                else if (sfstep >= 20 && sfstep <= 24) return "指梁排管";
-                else if (sfstep >= 25) return "排管结束";
+                if (!b460b1)
+                {
+                    if (drstep == 0) return "排杆启动";
+                    else if (drstep >= 1 && drstep <= 6) return "井口定位";
+                    else if (drstep >= 7 && drstep <= 9) return "井口抓杆";
+                    else if (drstep >= 10 && drstep <= 17) return "台面定位";
+                    else if (drstep == 18) return "抓手松开";
+                    else if (drstep >= 19 && drstep <= 20) return "手臂回位";
+                    else if (drstep == 21) return "台面完成";
+                }
+                else
+                {
+                 if (sfstep >= 1 && sfstep <= 9) return "井口定位";
+                    else if (sfstep >= 10 && sfstep <= 11) return "井口抓杆";
+                    else if (sfstep == 12) return "吊卡确认";
+                    else if (sfstep >= 17 && sfstep <= 18) return "指梁定位";
+                    else if (sfstep == 19) return "指梁锁确认";
+                    else if (sfstep >= 20 && sfstep <= 24) return "指梁排管";
+                    else if (sfstep >= 25) return "排管结束";
+                }
             }
             else if (drworkModer == 1 && sfWorkModel == 1) // 送杆
             {
-                if (sfstep == 0) return "送杆启动";
-                else if (sfstep >= 1 && sfstep <= 10) return "指梁定位";
-                else if (sfstep >= 11 && sfstep <= 16) return "指梁抓杆";
-                else if (sfstep >= 17 && sfstep <= 18) return "指梁锁确认";
-                else if (sfstep >= 19 && sfstep <= 23) return "井口等待";
-                else if (sfstep == 26) return "井口送杆";
-                else if (sfstep >= 27 && sfstep <= 28) return "吊卡确认";
-                else if (sfstep == 35) return "二层台完成";
-                if (drstep >= 1 && drstep <= 5) return "台面定位";
-                if (drstep >= 6 && drstep <= 9) return "抓手夹紧";
-                if (drstep >= 10 && drstep <= 15) return "井口定位";
-                if (drstep >= 16 && drstep <= 17) return "井口送杆";
-                if (drstep >= 18 && drstep <= 19) return "手臂回位";
-                if (drstep == 20) return "送杆结束";
+                if (b460b1)
+                {
+                    if (sfstep == 0) return "送杆启动";
+                    else if (sfstep >= 1 && sfstep <= 10) return "指梁定位";
+                    else if (sfstep >= 11 && sfstep <= 16) return "指梁抓杆";
+                    else if (sfstep >= 17 && sfstep <= 18) return "指梁锁确认";
+                    else if (sfstep >= 19 && sfstep <= 23) return "井口等待";
+                    else if (sfstep == 26) return "井口送杆";
+                    else if (sfstep >= 27 && sfstep <= 28) return "吊卡确认";
+                    else if (sfstep == 35) return "二层台完成";
+                }
+                else
+                {
+                    if (drstep >= 1 && drstep <= 5) return "台面定位";
+                    else if (drstep >= 6 && drstep <= 9) return "抓手夹紧";
+                    else if (drstep >= 10 && drstep <= 15) return "井口定位";
+                    else if (drstep >= 16 && drstep <= 17) return "井口送杆";
+                    else if (drstep >= 18 && drstep <= 19) return "手臂回位";
+                    else if (drstep == 20) return "送杆结束";
+                }
             }
 
             return "非自动模式";

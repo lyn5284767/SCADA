@@ -44,12 +44,46 @@ namespace Main.Integration
         }
         SystemType systemType = SystemType.SecondFloor;
         System.Threading.Timer timerWarning;
+        System.Timers.Timer pageChange;
+        int count = 0; // 进入页面发送协议次数
         public IngMain()
         {
             InitializeComponent();
             this.amination.CIMSChange(SystemType.SecondFloor);
             amination.SendFingerBeamNumberEvent += Amination_SendFingerBeamNumberEvent;
             VariableBinding();
+            this.Loaded += IngMain_Loaded;
+        }
+
+        private void IngMain_Loaded(object sender, RoutedEventArgs e)
+        {
+            byte[] data = new byte[10] { 80, 33, 0, 0, 0, 0, 0, 0, 30, 30 };
+            GlobalData.Instance.da.SendBytes(data);
+
+            count = 0;
+            GlobalData.Instance.DRNowPage = "Main";
+            pageChange = new System.Timers.Timer(500);
+            pageChange.Elapsed += PageChange_Elapsed;
+            pageChange.Enabled = true;
+        }
+
+        /// <summary>
+        /// 切换页面发送指令
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PageChange_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            count++;
+            if (GlobalData.Instance.da["drPageNum"].Value.Byte == 30 || count > 5 || GlobalData.Instance.DRNowPage != "Main")
+            {
+                pageChange.Stop();
+            }
+            else
+            {
+                byte[] data = new byte[10] { 80, 33, 0, 0, 0, 0, 0, 0, 30, 30 };
+                GlobalData.Instance.da.SendBytes(data);
+            }
         }
 
         private void VariableBinding()
@@ -94,7 +128,13 @@ namespace Main.Integration
                 RopeModelIsCheckMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["105N2N23B3b3"], Mode = BindingMode.OneWay });
                 RopeModelIsCheckMultiBind.NotifyOnSourceUpdated = true;
                 this.RopeModel.SetBinding(BasedSwitchButton.IsCheckedProperty, RopeModelIsCheckMultiBind);
-                this.tubeType.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drillPipeType"], Mode = BindingMode.OneWay, Converter = new DrillPipeTypeConverter() });
+                IngDrillPipeTypeConverter ingDrillPipeTypeConverter = new IngDrillPipeTypeConverter();
+                MultiBinding ingDrillPipeTypeMultiBind = new MultiBinding();
+                ingDrillPipeTypeMultiBind.Converter = ingDrillPipeTypeConverter;
+                ingDrillPipeTypeMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drillPipeType"], Mode = BindingMode.OneWay });
+                ingDrillPipeTypeMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drdrillPipeType"], Mode = BindingMode.OneWay });
+                ingDrillPipeTypeMultiBind.NotifyOnSourceUpdated = true;
+                this.tubeType.SetBinding(TextBlock.TextProperty, ingDrillPipeTypeMultiBind);
 
                 #region 钻台面变量
                 this.drcarMotorWorkStatus.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["324b1"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
@@ -143,6 +183,7 @@ namespace Main.Integration
                 IngStepMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
                 IngStepMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["workModel"], Mode = BindingMode.OneWay });
                 IngStepMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E5AutoModelCurrentStep"], Mode = BindingMode.OneWay });
+                IngStepMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["460b1"], Mode = BindingMode.OneWay });
                 IngStepMultiBind.NotifyOnSourceUpdated = true;
                 this.IngStep.SetBinding(StepControl.SelectStepProperty, IngStepMultiBind);
 
@@ -154,6 +195,7 @@ namespace Main.Integration
                 AutoStepCurrentTxtMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
                 AutoStepCurrentTxtMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["workModel"], Mode = BindingMode.OneWay });
                 AutoStepCurrentTxtMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E5AutoModelCurrentStep"], Mode = BindingMode.OneWay });
+                AutoStepCurrentTxtMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["460b1"], Mode = BindingMode.OneWay });
                 AutoStepCurrentTxtMultiBind.NotifyOnSourceUpdated = true;
                 this.AutoStepCurrentTxt.SetBinding(TextBlock.TextProperty, AutoStepCurrentTxtMultiBind);
 
@@ -478,8 +520,16 @@ namespace Main.Integration
         {
             try
             {
-                if (GlobalData.Instance.da["460b0"].Value.Boolean) // 联动开启
-                {
+                //if (GlobalData.Instance.da["460b0"].Value.Boolean) // 联动开启
+                //{
+                    //if (GlobalData.Instance.da["325b0"].Value.Boolean)
+                    //{
+                    //    DRSelectMouseDown(null, null);
+                    //}
+                    //else
+                    //{
+                    //    sfSelectMouseDown(null, null);
+                    //}
                     if (GlobalData.Instance.da["operationModel"].Value.Byte == 5 && GlobalData.Instance.da["droperationModel"].Value.Byte == 5) // 自动模式
                     {
                         if (GlobalData.Instance.da["workModel"].Value.Byte == 2 && GlobalData.Instance.da["drworkModel"].Value.Byte == 2) // 排管
@@ -493,7 +543,7 @@ namespace Main.Integration
                                 sfSelectMouseDown(null, null);
                             }
                         }
-                        else if (GlobalData.Instance.da["workModel"].Value.Byte == 2 && GlobalData.Instance.da["drworkModel"].Value.Byte == 1)// 送杆
+                        else if (GlobalData.Instance.da["workModel"].Value.Byte == 1 && GlobalData.Instance.da["drworkModel"].Value.Byte == 1)// 送杆
                         {
                             if (this.IngStep.SelectStep <= 7 && systemType == SystemType.DrillFloor)
                             {
@@ -504,7 +554,7 @@ namespace Main.Integration
                                 DRSelectMouseDown(null, null);
                             }
                         }
-                    }
+                    //}
                 }
             }
             catch (Exception ex)
@@ -540,11 +590,11 @@ namespace Main.Integration
             byte[] byteToSend;
             if (this.operateMode.IsChecked)
             {
-                byteToSend = GlobalData.Instance.SendByte(new List<byte> { 1, 4 });
+                byteToSend = GlobalData.Instance.SendByte(new List<byte> { 1, 5 });
             }
             else
             {
-                byteToSend = GlobalData.Instance.SendByte(new List<byte> { 1, 5 });
+                byteToSend = GlobalData.Instance.SendByte(new List<byte> { 1, 4 });
             }
 
             GlobalData.Instance.da.SendBytes(byteToSend);
@@ -571,7 +621,7 @@ namespace Main.Integration
         private void btn_RopeModel(object sender, EventArgs e)
         {
             byte[] byteToSend;
-            if (workMode.IsChecked)
+            if (RopeModel.IsChecked)
             {
                 byteToSend = GlobalData.Instance.SendByte(new List<byte> { 8, 3 });
                 GlobalData.Instance.da.SendBytes(byteToSend);

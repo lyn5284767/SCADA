@@ -8,6 +8,17 @@
              mc:Ignorable="d" 
              Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="sfIOOne">
     <Grid>
+        <Grid.Triggers>
+            <EventTrigger RoutedEvent="Loaded">
+                <EventTrigger.Actions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation From="0" To="1" Duration="0:0:1" Storyboard.TargetProperty="Opacity"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger.Actions>
+            </EventTrigger>
+        </Grid.Triggers>
         <Grid.RowDefinitions>
             <RowDefinition Height="600"/>
             <RowDefinition Height="*"/>

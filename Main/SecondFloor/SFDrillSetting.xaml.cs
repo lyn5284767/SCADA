@@ -132,6 +132,7 @@ namespace Main.SecondFloor
                     {
                         GlobalData.Instance.CarMinPosistion = int.Parse(this.carPosistion.Text);
                         WinAPI.WritePrivateProfileString("SECONDFLOOR", "CARMINPOSISTION", GlobalData.Instance.CarMinPosistion.ToString(), configPath);
+                        
                         this.NumFixTips.Text = "小车标定成功";
                     }
                     else
@@ -147,13 +148,13 @@ namespace Main.SecondFloor
                     if (tmpNum < 300)
                     {
                         GlobalData.Instance.DRCarMinPosistion = int.Parse(this.drcarPosistion.Text);
-                        WinAPI.WritePrivateProfileString("DRILLFLOOR", "CARMINPOSISTION", GlobalData.Instance.CarMinPosistion.ToString(), configPath);
+                        WinAPI.WritePrivateProfileString("DRILLFLOOR", "CARMINPOSISTION", GlobalData.Instance.DRCarMinPosistion.ToString(), configPath);
                         this.NumFixTips.Text = "小车标定成功";
                     }
                     else
                     {
                         GlobalData.Instance.DRCarMaxPosistion = int.Parse(this.drcarPosistion.Text);
-                        WinAPI.WritePrivateProfileString("DRILLFLOOR", "CARMAXPOSISTION", GlobalData.Instance.CarMaxPosistion.ToString(), configPath);
+                        WinAPI.WritePrivateProfileString("DRILLFLOOR", "CARMAXPOSISTION", GlobalData.Instance.DRCarMaxPosistion.ToString(), configPath);
                         this.NumFixTips.Text = "小车标定成功";
                     }
                 }
@@ -182,7 +183,7 @@ namespace Main.SecondFloor
                 else if (systemType == SystemType.DrillFloor)
                 {
                     GlobalData.Instance.DRArmMaxPosistion = int.Parse(this.drarmPosistion.Text);
-                    WinAPI.WritePrivateProfileString("DRILLFLOOR", "ARMMAXPOSISTION", GlobalData.Instance.ArmMaxPosistion.ToString(), configPath);
+                    WinAPI.WritePrivateProfileString("DRILLFLOOR", "ARMMAXPOSISTION", GlobalData.Instance.DRArmMaxPosistion.ToString(), configPath);
                     this.NumFixTips.Text = "手臂标定成功";
                 }
             }
@@ -217,15 +218,26 @@ namespace Main.SecondFloor
         /// </summary>
         private void btn_DrillPipeCountCorrect_CancelAllPipe(object sender, RoutedEventArgs e)
         {
-            if (systemType == SystemType.SecondFloor)
+            if (this.cbSysTypeSelect.SelectedIndex == 0)
             {
-                byte[] byteToSend = SendByte(new List<byte> { 7, 10 });
+                byte[] byteToSend = new byte[10] { 80, 1, 7, 10, 0, 0, 0, 0, 0, 0 };
+                GlobalData.Instance.da.SendBytes(byteToSend);
+                Thread.Sleep(50);
+                byteToSend = new byte[10] { 80, 33, 7, 10, 0, 0, 0, 0, 0, 0 };
                 GlobalData.Instance.da.SendBytes(byteToSend);
             }
-            else if(systemType == SystemType.DrillFloor)
+            else
             {
-                byte[] byteToSend = GlobalData.Instance.SendToDR(new List<byte> { 7, 10 });
-                GlobalData.Instance.da.SendBytes(byteToSend);
+                if (systemType == SystemType.SecondFloor)
+                {
+                    byte[] byteToSend = SendByte(new List<byte> { 7, 10 });
+                    GlobalData.Instance.da.SendBytes(byteToSend);
+                }
+                else if (systemType == SystemType.DrillFloor)
+                {
+                    byte[] byteToSend = GlobalData.Instance.SendToDR(new List<byte> { 7, 10 });
+                    GlobalData.Instance.da.SendBytes(byteToSend);
+                }
             }
         }
 
@@ -234,14 +246,24 @@ namespace Main.SecondFloor
         /// </summary>
         private void btn_DrillPipeCountCorrect_FlashPipeCount(object sender, RoutedEventArgs e)
         {
-            if (systemType == SystemType.SecondFloor)
+            if (this.cbSysTypeSelect.SelectedIndex == 0)
             {
                 RefreshPipeCount();
-            }
-            else if (systemType == SystemType.DrillFloor)
-            {
+                Thread.Sleep(50);
                 byte[] byteToSend = GlobalData.Instance.SendToDR(new List<byte> { 7, 1 });
                 GlobalData.Instance.da.SendBytes(byteToSend);
+            }
+            else
+            {
+                if (systemType == SystemType.SecondFloor)
+                {
+                    RefreshPipeCount();
+                }
+                else if (systemType == SystemType.DrillFloor)
+                {
+                    byte[] byteToSend = GlobalData.Instance.SendToDR(new List<byte> { 7, 1 });
+                    GlobalData.Instance.da.SendBytes(byteToSend);
+                }
             }
         }
 
@@ -353,29 +375,40 @@ namespace Main.SecondFloor
                 return;
             }
 
-            byte[] byteToSend = new byte[10];
-            if (systemType == SystemType.SecondFloor)
+            if (this.cbSysTypeSelect.SelectedIndex == 0)
             {
-                byteToSend[0] = bHeadFirst;
-                byteToSend[1] = bHeadTwo;
+                byte[] byteToSend = new byte[10] { 80, 1, 7, 2, byteText, byteCountText, 0, 0, 0, 0 };
+                GlobalData.Instance.da.SendBytes(byteToSend);
+                Thread.Sleep(50);
+                byteToSend = new byte[10] { 80, 33, 7, 2, byteText, byteCountText, 0, 0, 0, 0 };
+                GlobalData.Instance.da.SendBytes(byteToSend);
             }
-            else if (systemType == SystemType.DrillFloor)
+            else
             {
-                byteToSend[0] = 0x50;
-                byteToSend[1] = 0x21;
-            }
-            byteToSend[2] = 7;
-            byteToSend[3] = 2;
-            byteToSend[4] = byteText;
-            byteToSend[5] = byteCountText;
+                byte[] byteToSend = new byte[10];
+                if (systemType == SystemType.SecondFloor)
+                {
+                    byteToSend[0] = bHeadFirst;
+                    byteToSend[1] = bHeadTwo;
+                }
+                else if (systemType == SystemType.DrillFloor)
+                {
+                    byteToSend[0] = 0x50;
+                    byteToSend[1] = 0x21;
+                }
+                byteToSend[2] = 7;
+                byteToSend[3] = 2;
+                byteToSend[4] = byteText;
+                byteToSend[5] = byteCountText;
 
-            GlobalData.Instance.da.SendBytes(byteToSend);
+                GlobalData.Instance.da.SendBytes(byteToSend);
+            }
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBox comboBox = (sender as ComboBox);
-            if (comboBox.SelectedIndex == 0)
+            if (comboBox.SelectedIndex == 1)
             {
                 systemType = SystemType.SecondFloor;
                 amination.SystemChange(systemType);
@@ -384,7 +417,7 @@ namespace Main.SecondFloor
                 this.drarmPosistion.Visibility = Visibility.Collapsed;
                 this.drcarPosistion.Visibility = Visibility.Collapsed;
             }
-            else if (comboBox.SelectedIndex == 1)
+            else if (comboBox.SelectedIndex == 2)
             {
                 systemType = SystemType.DrillFloor;
                 amination.SystemChange(systemType);

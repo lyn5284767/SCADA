@@ -64,11 +64,12 @@
                     </Grid>
                     <Grid Grid.Column="1">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="13*"/>
-                            <RowDefinition Height="147*"/>
                             <RowDefinition Height="160*"/>
+                            <RowDefinition Height="47*"/>
+                            <RowDefinition Height="159*"/>
+                            <RowDefinition Height="224*"/>
                         </Grid.RowDefinitions>
-                        <StackPanel Orientation="Vertical" Grid.RowSpan="3">
+                        <StackPanel Orientation="Vertical" Grid.RowSpan="4">
                             <cl:TextBlockWithTextBox Name="twtL1" ControlTag="3"  TbkText="伺服电机极性"/>
                             <cl:TextBlockWithTextBox Name="twtL2" ControlTag="1"  TbkText="设备型号"/>
                             <cl:TextBlockWithTextBox Name="twtL3" ControlTag="2"  TbkText="驱动器型号"/>
@@ -77,12 +78,14 @@
                             <cl:TextBlockWithTextBox Name="twtLDeviceYear" ControlTag="46"  TbkText="设备年份"/>
                             <cl:TextBlockWithTextBox Name="twtLDeviceEncode" ControlTag="48"  TbkText="设备编码"/>
                             <cl:TextBlockWithTextBox Name="twtL6" ControlTag="19"  TbkText="钻杆指梁间距"/>
-                            <cl:TextBlockWithTextBox Name="twtL7" ControlTag="20"  TbkText="钻铤指梁宽度"/>
+                            <cl:TextBlockWithTextBox Name="twtL7" ControlTag="20"  TbkText="钻杆指梁宽度"/>
                             <cl:TextBlockWithTextBox Name="twtL8" ControlTag="21"  TbkText="钻铤指梁宽度"/>
                             <cl:TextBlockWithTextBox Name="twtL9" ControlTag="22"  TbkText="钻铤指梁间距"/>
                             <cl:TextBlockWithTextBox Name="twtL10" ControlTag="4"  TbkText="左右钻铤有无"/>
                             <cl:TextBlockWithTextBox Name="twtL11" ControlTag="5"  TbkText="单边钻铤数目"/>
+                            <cl:TextBlockWithTextBox Name="twtL49" ControlTag="49"  TbkText="单边指梁数目"/>
                             <cl:TextBlockWithTextBox Name="twtL12" ControlTag="26"  TbkText="钻杆限定电流值"/>
+                            
                             <!--<cl:TextBlockWithTextBox Name="twtL13" ControlTag="33"  TbkText="2 3/8钻杆容量"/>
                                 <cl:TextBlockWithTextBox Name="twtL14" ControlTag="34"  TbkText="2.5寸钻杆容量"/>
                                 <cl:TextBlockWithTextBox Name="twtL15" ControlTag="35"  TbkText="2 7/8钻杆容量"/>
@@ -138,7 +141,8 @@
                             <cl:TextBlockWithTextBox Name="twtR18" ControlTag="52"  TbkText="右手柄"/>
                             <cl:TextBlockWithTextBox Name="twtR19" ControlTag="53"  TbkText="按键面板"/>
                             <cl:TextBlockWithTextBox Name="twtR20" ControlTag="54"  TbkText="操作面板"/>
-                            <cl:TextBlockWithTextBox Name="twtR21" ControlTag="71"  TbkText="钻台面遥控器"/>--> <!--6.15新增-->
+                            <cl:TextBlockWithTextBox Name="twtR21" ControlTag="71"  TbkText="钻台面遥控器"/>-->
+                            <!--6.15新增-->
                         </StackPanel>
                     </Grid>
 

@@ -1340,6 +1340,9 @@ namespace Main.SecondFloor
             };
 
             #region 6.15新增
+            this.tbLeftFinger.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["103N23LeftFingerMotorSampleValue"], Mode = BindingMode.OneWay });//左手值采样值
+            this.tbRightFinger.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["103N23RightFingerMotorSampleValue"], Mode = BindingMode.OneWay });//右手值采样值
+            this.tbFingerOpen.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["103N23GripMotorSampleValue"], Mode = BindingMode.OneWay });//抓手采样值
             this.tbX.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["carRealPosition"], Mode = BindingMode.OneWay, Converter = new CarPosCoverter() });//小车实际位置
             this.tbY.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["armRealPosition"], Mode = BindingMode.OneWay, Converter = new ArmPosCoverter() });//手臂实际位置
             this.spcialDrill.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["103b6"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
@@ -1395,11 +1398,11 @@ namespace Main.SecondFloor
             byte[] byteToSend;
             if (this.operateMode.IsChecked)
             {
-                byteToSend = SendByte(new List<byte> { 1, 4 });
+                byteToSend = SendByte(new List<byte> { 1, 5 });
             }
             else
             {
-                byteToSend = SendByte(new List<byte> { 1, 5 });
+                byteToSend = SendByte(new List<byte> { 1, 4 });
             }
 
             GlobalData.Instance.da.SendBytes(byteToSend);
@@ -2143,8 +2146,12 @@ namespace Main.SecondFloor
         /// </summary>
         private void btn_SPSelect(object sender, RoutedEventArgs e)
         {
-            byte[] byteToSend = SendByte(new List<byte> { 20, 1, 0, 0, 2 });
-            GlobalData.Instance.da.SendBytes(byteToSend);
+            MessageBoxResult result = MessageBox.Show("确认选择特殊指梁", "提示", MessageBoxButton.OKCancel);
+            if (result == MessageBoxResult.OK)
+            {
+                byte[] byteToSend = SendByte(new List<byte> { 20, 1, 0, 0, 2 });
+                GlobalData.Instance.da.SendBytes(byteToSend);
+            }
         }
         /// <summary>
         /// 特殊指梁取消
@@ -2176,6 +2183,36 @@ namespace Main.SecondFloor
         private void btn_DrillSelectManual(object sender, RoutedEventArgs e)
         {
             byte[] byteToSend = SendByte(new List<byte> { 24, 1 });
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 小车回零
+        /// </summary>
+        private void btn_CarToZero(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = SendByte(new List<byte> { 13, 1 });
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 手臂回零
+        /// </summary>
+        private void btn_ArmToZero(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = SendByte(new List<byte> { 13, 2 });
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 回转回零
+        /// </summary>
+        private void btn_RotateToZero(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = SendByte(new List<byte> { 13, 3 });
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+
+        private void btn_AllToZero(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = SendByte(new List<byte> { 13, 4 });
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
     }

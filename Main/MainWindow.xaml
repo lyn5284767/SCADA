@@ -83,21 +83,19 @@ KeyboardNavigation.DirectionalNavigation="Cycle" Width="100"/>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Border Name="bdSf" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="0" MouseLeftButtonDown="MouseDownSF">
-                <TextBlock Name="tbSf" FontSize="12" FontWeight="Bold">二层台<LineBreak/>
-                        机械手</TextBlock>
+                <TextBlock Name="tbSf" FontSize="16" FontWeight="Bold">二层台</TextBlock>
             </Border>
             <Border Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="1" Name="bdDR" MouseLeftButtonDown="MouseDR">
-                <TextBlock FontSize="12" Foreground="#1F7AFF" FontWeight="Bold" Name="tbDR">钻台面<LineBreak/>
-                        机械手</TextBlock>
+                <TextBlock FontSize="16" Foreground="#1F7AFF" FontWeight="Bold" Name="tbDR">钻台面</TextBlock>
             </Border>
             <Border Name="bdSIR" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="2" MouseLeftButtonDown="SIR_MouseLeftButtonDown">
-                <TextBlock FontSize="12" Foreground="#1F7AFF" FontWeight="Bold" Name="tbSIR">铁钻工</TextBlock>
+                <TextBlock FontSize="16" Foreground="#1F7AFF" FontWeight="Bold" Name="tbSIR">铁钻工</TextBlock>
             </Border>
             <Border Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="3">
-                <TextBlock FontSize="12" Foreground="#1F7AFF" FontWeight="Bold">猫道</TextBlock>
+                <TextBlock FontSize="16" Foreground="#1F7AFF" FontWeight="Bold">猫道</TextBlock>
             </Border>
             <Border Name="bdIng" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="4" MouseLeftButtonDown="MouseIng">
-                <TextBlock Name="tbIng" FontSize="12" Foreground="#1F7AFF" FontWeight="Bold">集成<LineBreak/>
+                <TextBlock Name="tbIng" FontSize="16" Foreground="#1F7AFF" FontWeight="Bold">集成<LineBreak/>
                         系统</TextBlock>
             </Border>
             <Border Name="bdHome" Background="White" BorderThickness="1" CornerRadius="5"  Grid.Column="5" MouseLeftButtonDown="MouseDownHome">

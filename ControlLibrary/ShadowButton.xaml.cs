@@ -37,7 +37,7 @@ namespace ControlLibrary
         /// <summary>
         /// 控件显示
         /// </summary>
-        public string ShowText
+        public string ShadowButtonShowTxt
         {
             get { return (string)GetValue(ShadowButtonShowTxtProperty); }
             set { SetValue(ShadowButtonShowTxtProperty, value); }
@@ -54,7 +54,7 @@ namespace ControlLibrary
 
         private void ShadowButton_Loaded(object sender, RoutedEventArgs e)
         {
-            if (this.TBText != string.Empty) this.tbTxt.Text = this.TBText;
+            if (this.TBText != string.Empty && this.TBText!=null) this.tbTxt.Text = this.TBText;
             if (this.TBFontSize > 0) this.tbTxt.FontSize = this.TBFontSize;
             if (this.BDWidth > 0) this.bd.Width = this.BDWidth;
             if (this.BDHeight > 0) this.bd.Height = this.BDHeight;

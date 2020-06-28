@@ -209,52 +209,52 @@
                     <TextBlock FontSize="28" Text="伸 缩 标 定 请 求" MouseDown="InOutSetMouseDown"></TextBlock>
                     <Grid Height="20"></Grid>
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
-                        <TextBlock Width="80" TextAlignment="Center">标定状态：</TextBlock>
-                        <TextBlock Name="tbInOutStatus" Text="未知" Width="50" TextAlignment="Center"/>
+                        <TextBlock Width="80" TextAlignment="Center" Foreground="#919191">标定状态：</TextBlock>
+                        <TextBlock Name="tbInOutStatus" Foreground="#919191" Text="未知" Width="50" TextAlignment="Center"/>
                     </StackPanel>
                     <Grid Height="10"></Grid>
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
-                        <TextBlock Width="80" TextAlignment="Center">伸缩行程：</TextBlock>
-                        <TextBlock Name="tbInOutCylinderTrip" Text="未知" Width="50" TextAlignment="Center"/>
+                        <TextBlock Width="80" TextAlignment="Center" Foreground="#919191">伸缩行程：</TextBlock>
+                        <TextBlock Name="tbInOutCylinderTrip" Foreground="#919191" Text="未知" Width="50" TextAlignment="Center"/>
                     </StackPanel>
                     <Grid Height="10"></Grid>
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
-                        <TextBlock Width="80" TextAlignment="Center" Text="流  量  阀："></TextBlock>
-                        <TextBlock Name="tbFlowRateValve" Text="未知" Width="50" TextAlignment="Center"/>
+                        <TextBlock Width="80" TextAlignment="Center" Text="流  量  阀：" Foreground="#919191"></TextBlock>
+                        <TextBlock Name="tbFlowRateValve" Foreground="#919191" Text="未知" Width="50" TextAlignment="Center"/>
                     </StackPanel>
                     <Grid Height="10"></Grid>
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
-                        <TextBlock Width="80" TextAlignment="Center" Text="压  力  阀："></TextBlock>
-                        <TextBlock Name="tbPressureRateValve" Text="未知" Width="50" TextAlignment="Center"/>
+                        <TextBlock Width="80" TextAlignment="Center" Text="压  力  阀：" Foreground="#919191"></TextBlock>
+                        <TextBlock Name="tbPressureRateValve" Foreground="#919191" Text="未知" Width="50" TextAlignment="Center"/>
                     </StackPanel>
                     <Grid Height="10"></Grid>
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
-                        <TextBlock Width="80">最大速度：</TextBlock>
-                        <TextBox Name="tbInOutMaxSpeedOut" Width="50" Text="未知" TextAlignment="Center" IsReadOnly="True"/>
+                        <TextBlock Width="80" Foreground="#919191">最大速度：</TextBlock>
+                        <TextBox Name="tbInOutMaxSpeedOut" Foreground="#919191" Width="50" Text="未知" TextAlignment="Center" IsReadOnly="True"/>
                         <TextBox Tag="11" GotFocus="tbFocus" LostFocus="tbLostFocus" Width="50" TextAlignment="Center" Margin="2,0,0,0"/>
                     </StackPanel>
                     <Grid Height="10"></Grid>
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
-                        <TextBlock Width="80">爬行速度：</TextBlock>
-                        <TextBox Name="tbInOutCrawlSpeedOut" Width="50" Text="未知" TextAlignment="Center" IsReadOnly="True"/>
+                        <TextBlock Width="80" Foreground="#919191">爬行速度：</TextBlock>
+                        <TextBox Name="tbInOutCrawlSpeedOut" Foreground="#919191" Width="50" Text="未知" TextAlignment="Center" IsReadOnly="True"/>
                         <TextBox Tag="12" GotFocus="tbFocus" LostFocus="tbLostFocus" Width="50" TextAlignment="Center" Margin="2,0,0,0"/>
                     </StackPanel>
                     <Grid Height="10"></Grid>
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
-                        <TextBlock Width="80">井口伸出：</TextBlock>
-                        <TextBox Name="tbWellRetractLengthOut" Width="50" Text="未知" TextAlignment="Center" IsReadOnly="True"/>
+                        <TextBlock Width="80" Foreground="#919191">井口伸出：</TextBlock>
+                        <TextBox Name="tbWellRetractLengthOut" Foreground="#919191" Width="50" Text="未知" TextAlignment="Center" IsReadOnly="True"/>
                         <TextBox Tag="13" GotFocus="tbFocus" LostFocus="tbLostFocus" Width="50" TextAlignment="Center" Margin="2,0,0,0"/>
                     </StackPanel>
                     <Grid Height="10"></Grid>
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
-                        <TextBlock Width="80">鼠洞伸出：</TextBlock>
-                        <TextBox Name="tbMouseRetractLengthOut" Width="50" Text="未知" TextAlignment="Center" IsReadOnly="True"/>
+                        <TextBlock Width="80" Foreground="#919191">鼠洞伸出：</TextBlock>
+                        <TextBox Name="tbMouseRetractLengthOut" Foreground="#919191" Width="50" Text="未知" TextAlignment="Center" IsReadOnly="True"/>
                         <TextBox Tag="14" GotFocus="tbFocus" LostFocus="tbLostFocus" Width="50" TextAlignment="Center" Margin="2,0,0,0"/>
                     </StackPanel>
                     <Grid Height="10"></Grid>
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
-                        <TextBlock Width="80">伸缩零位：</TextBlock>
-                        <TextBox Name="tbInOutCylinderZeroOut" Width="50" Text="未知" TextAlignment="Center" IsReadOnly="True"/>
+                        <TextBlock Width="80" Foreground="#919191">伸缩零位：</TextBlock>
+                        <TextBox Name="tbInOutCylinderZeroOut" Foreground="#919191" Width="50" Text="未知" TextAlignment="Center" IsReadOnly="True"/>
                         <TextBox Tag="15" GotFocus="tbFocus" LostFocus="tbLostFocus" Width="50" TextAlignment="Center" Margin="2,0,0,0"/>
                     </StackPanel>
                     <Grid Height="10"></Grid>
