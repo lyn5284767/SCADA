@@ -259,7 +259,7 @@
                         </StackPanel>
                     </Grid>-->
                 </Border>
-                <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="20,10,5,10" Width="200">
+                <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,5,10" Width="200">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -269,7 +269,7 @@
                         <cl:BasedSwitchButton Name="workMode" ContentLeft="排杆" ContentDown="工作模式" ContentRight="送杆" UserControlClicked="btn_WorkModel" Margin="5 0 0 0" Grid.Column="1"/>
                     </Grid>
                 </Border>
-                <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="10" Width="160">
+                <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,5,10" Width="180">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="60"></RowDefinition>
@@ -281,8 +281,8 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <Border BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="2,10,2,10" Grid.Column="0">
-                                <Menu Background="Transparent" Height="30" Width="75"  FontSize="12" FontFamily="宋体" FontWeight="Bold" Foreground="#008AFF">
+                            <Border BorderBrush="White" BorderThickness="1" CornerRadius="2" Padding="0" Margin="0,10,0,10" Grid.Column="0">
+                                <Menu Background="Transparent" Height="40" Width="85"  FontSize="18" FontFamily="微软雅黑" FontWeight="Bold" Foreground="#008AFF">
                                     <MenuItem>
                                         <MenuItem.Header>
                                             <StackPanel Orientation="Vertical">
@@ -290,44 +290,50 @@
                                                 <Image Margin="0,2,0,0" Width="15" Source="..\Images\downTrangle.png" />
                                             </StackPanel>
                                         </MenuItem.Header>
-                                        <MenuItem Header="档绳缩回" >
+                                        <MenuItem Header="回零" FontSize="24">
+                                            <MenuItem Header="一键回零" Click="btn_AllToZero"/>
+                                            <MenuItem Header="小车回零" Click="btn_CarToZero"/>
+                                            <MenuItem Header="手臂回零" Click="btn_ArmToZero"/>
+                                            <MenuItem Header="旋转回零" Click="btn_RotateToZero"/>
+                                        </MenuItem>
+                                        <MenuItem Header="档绳缩回" FontSize="24">
                                             <MenuItem Header="左缩回" Click="btn_LeftRopeRetract"/>
                                             <MenuItem Header="右缩回" Click="btn_RightRopeRetract"/>
                                             <MenuItem Header="左右缩回" Click="btn_BothRopeRetract"/>
                                         </MenuItem>
-                                        <MenuItem Header="档绳伸出" >
+                                        <MenuItem Header="档绳伸出" FontSize="24">
                                             <MenuItem Header="左伸出" Click="btn_LeftRopeStretch"/>
                                             <MenuItem Header="右伸出" Click="btn_RightRopeStretch"/>
                                             <MenuItem Header="左右伸出" Click="btn_BothRopeStrech"/>
                                         </MenuItem>
-                                        <MenuItem Header="启动加热" >
+                                        <MenuItem Header="启动加热" FontSize="24">
                                             <MenuItem Header="抓手加热启动" Click="btn_GripHeatStart"/>
                                             <MenuItem Header="电控柜加热启动" Click="btn_ElecContrlCabinetHeatStart"/>
                                             <MenuItem Header="全部加热启动" Click="btn_AllHeatStart"/>
                                         </MenuItem>
-                                        <MenuItem Header="停止加热" >
+                                        <MenuItem Header="停止加热" FontSize="24">
                                             <MenuItem Header="抓手加热停止" Click="btn_GripStopHeat"/>
                                             <MenuItem Header="电控柜加热停止" Click="btn_ElecContrCabinetStopHeat"/>
                                             <MenuItem Header="停止所有加热" Click="btn_StopAllHeat"/>
                                         </MenuItem>
                                         <!--6.15新增-->
-                                        <MenuItem Header="指梁选择" >
+                                        <MenuItem Header="指梁选择" FontSize="24">
                                             <MenuItem Header="自动:左" Click="btn_DrillSelectAutoLeft"/>
                                             <MenuItem Header="自动:右" Click="btn_DrillSelectAutoRight"/>
                                             <MenuItem Header="手动" Click="btn_DrillSelectManual"/>
                                         </MenuItem>
                                         <!--6.15新增-->
-                                        <MenuItem Header="特殊指梁" Name="miSpDrill">
+                                        <MenuItem Header="特殊指梁" Name="miSpDrill" FontSize="24">
                                             <MenuItem Header="选择" Click="btn_SPSelect"/>
                                             <MenuItem Header="取消" Click="btn_SPCancel"/>
                                         </MenuItem>
-                                        <MenuItem Header="取消钻杆" Click="btn_CancelDrillPipe"/>
-                                        <MenuItem Header="设备回收" Click="btn_EquipRecycling"/>
+                                        <MenuItem Header="取消钻杆" FontSize="24" Click="btn_CancelDrillPipe"/>
+                                        <MenuItem Header="设备回收" FontSize="24" Click="btn_EquipRecycling"/>
                                     </MenuItem>
                                 </Menu>
                             </Border>
-                            <Border  BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="2,10,2,10" Grid.Column="1">
-                                <Menu Background="Transparent" Height="30" Width="75"  FontSize="12" FontFamily="宋体" FontWeight="Bold" Foreground="#008AFF">
+                            <Border  BorderBrush="White" BorderThickness="1" CornerRadius="2" Padding="0" Margin="0,10,0,10" Grid.Column="1">
+                                <Menu Background="Transparent" Height="40" Width="85"  FontSize="18" FontFamily="微软雅黑" FontWeight="Bold" Foreground="#008AFF">
                                     <MenuItem>
                                         <MenuItem.Header>
                                             <StackPanel Orientation="Vertical">
@@ -335,7 +341,7 @@
                                                 <Image Margin="0,2,0,0"  Width="15" Source="..\Images\downTrangle.png" />
                                             </StackPanel>
                                         </MenuItem.Header>
-                                        <MenuItem Header="钻铤">
+                                        <MenuItem Header="钻铤" FontSize="24">
                                             <MenuItem Header="4.5''钻铤" Click="btn_SelectDrillPipe45"/>  <!--6.15新增 第四位1-->
                                             <MenuItem Header="6''钻铤" Click="btn_SelectDrillPipe6"/>
                                             <MenuItem Header="6.5''钻铤" Click="btn_SelectDrillPipe65"/>
@@ -346,7 +352,7 @@
                                             <MenuItem Header="10''钻铤" Click="btn_SelectDrillPipe10"/>
                                             <MenuItem Header="11''钻铤" Click="btn_SelectDrillPipe11"/>
                                         </MenuItem>
-                                        <MenuItem Header="钻杆">
+                                        <MenuItem Header="钻杆" FontSize="24">
                                             <MenuItem Header="3 1/2''钻杆" Click="btn_SelectDrillPipe312"/>
                                             <MenuItem Header="4''钻杆" Click="btn_SelectDrillPipe4"/>
                                             <MenuItem Header="4 1/2''钻杆" Click="btn_SelectDrillPipe412"/>
@@ -400,18 +406,33 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Label Margin="0,0,5,0">左手指:</Label>
+                                <TextBlock Name="tbLeftFinger" Text="0000" VerticalAlignment="Center"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Label Margin="0,0,5,0">右手指:</Label>
+                                <TextBlock Name="tbRightFinger" Text="0000" VerticalAlignment="Center"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Label Margin="0,0,5,0">抓手:</Label>
+                                <TextBlock Name="tbFingerOpen" Text="0000" VerticalAlignment="Center"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Grid.Column="3" Orientation="Horizontal" HorizontalAlignment="Center">
                                 <Label Margin="0,0,5,0">X:</Label>
                                 <TextBlock Name="tbX" Text="0000" VerticalAlignment="Center"></TextBlock>
                                 <Label Margin="5,0,0,0">mm</Label>
                             </StackPanel>
-                            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                            <StackPanel Grid.Column="4" Orientation="Horizontal" HorizontalAlignment="Center">
                                 <Label Margin="0,0,5,0">Y:</Label>
                                 <TextBlock Name="tbY" Text="0000" VerticalAlignment="Center"></TextBlock>
                                 <Label Margin="5,0,0,0">mm</Label>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal" Grid.Column="2" HorizontalAlignment="Center">
+                            <StackPanel Orientation="Horizontal" Grid.Column="5" HorizontalAlignment="Center">
                                 <Label Foreground="#008AFF" Margin="5,0,5,0">特殊指梁</Label>
                                 <cl:SymbolMapping Name="spcialDrill" StrContent="" LampType="3" Height="25" HorizontalAlignment="Center"/>
                             </StackPanel>

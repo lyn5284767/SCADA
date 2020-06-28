@@ -44,7 +44,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="55"/>
-            <RowDefinition Height="35"/>
+            <RowDefinition Height="5"/>
         </Grid.RowDefinitions>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -52,7 +52,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
-                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="305">
+                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="315">
                     <StackPanel Orientation="Horizontal">
                         <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
                             <TextBlock Text="小&#x0a;车&#x0a;参&#x0a;数&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
@@ -73,7 +73,7 @@
                         </StackPanel>
                     </StackPanel>
                 </Border>
-                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="250">
+                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="265">
                     <StackPanel Orientation="Horizontal">
                         <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
                             <TextBlock Text="手&#x0a;臂&#x0a;参&#x0a;数&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
@@ -94,7 +94,7 @@
                 </Border>
             </StackPanel>
             <StackPanel Grid.Column="1">
-                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="255">
+                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="260">
                     <StackPanel Orientation="Horizontal">
                         <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
                             <TextBlock Text="回&#x0a;转&#x0a;电&#x0a;机&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
@@ -113,7 +113,7 @@
                         </StackPanel>
                     </StackPanel>
                 </Border>
-                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="300">
+                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="315">
                     <StackPanel Orientation="Horizontal">
                         <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
                             <TextBlock Text="钻&#x0a;铤&#x0a;位&#x0a;置&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
@@ -145,10 +145,10 @@
                     </Border>
                     <StackPanel>
                         <StackPanel Orientation="Horizontal" >
-                            <TextBlock Name="tbk" Text="当前值" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="12" FontFamily="微软雅黑" FontWeight="Bold"  Width="150" TextAlignment="Center">
+                            <TextBlock Name="tbk" Text="当前值" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="18" FontFamily="微软雅黑" FontWeight="Bold"  Width="150" TextAlignment="Center">
                             </TextBlock>
                             <TextBox x:Name="tbGripCurrent" IsReadOnly="True" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="12" FontFamily="微软雅黑" FontWeight="Bold" Width="95" TextAlignment="Center"/>
-                            <TextBlock x:Name="textBoxSet"  Text="" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="12" FontFamily="微软雅黑" FontWeight="Bold" Background="#F49466" Width="95"  TextAlignment="Center"/>
+                            <TextBlock x:Name="textBoxSet"  Text="" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="18" FontFamily="微软雅黑" FontWeight="Bold" Background="#F49466" Width="95"  TextAlignment="Center"/>
                         </StackPanel>
                         <cl:TextBlockWithBtn Name="twt97" ControlTag="97"  TbkText="关闭设定值" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
                     </StackPanel>

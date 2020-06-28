@@ -582,9 +582,9 @@ namespace COM.Common
                     return "最靠近井口位置";
                 case 2:
                     return "最远离井口位置";
-                case 3:
-                    return "左1#指梁位置";
                 case 4:
+                    return "左1#指梁位置";
+                case 3:
                     return "右1#指梁位置";
                 //case 3:
                 //    return "右1#指梁位置";
@@ -618,17 +618,17 @@ namespace COM.Common
                     return "左5#钻铤手臂伸展位置";
                 case 54:
                     return "左6#钻铤手臂伸展位置";
-                case 55:
-                    return "右1#钻铤手臂伸展位置";
-                case 56:
-                    return "右2#钻铤手臂伸展位置";
                 case 57:
-                    return "右3#钻铤手臂伸展位置";
+                    return "右1#钻铤手臂伸展位置";
                 case 58:
-                    return "右4#钻铤手臂伸展位置";
+                    return "右2#钻铤手臂伸展位置";
                 case 59:
-                    return "右5#钻铤手臂伸展位置";
+                    return "右3#钻铤手臂伸展位置";
                 case 60:
+                    return "右4#钻铤手臂伸展位置";
+                case 61:
+                    return "右5#钻铤手臂伸展位置";
+                case 62:
                     return "右6#钻铤手臂伸展位置";
                 case 65:
                     return "回转-90°位置";
@@ -3121,43 +3121,56 @@ namespace COM.Common
             {
                 return "非自动模式";
             }
+            bool b460b1 = (bool)values[6];
             byte drworkModer = (byte)values[1];
             byte drstep = (byte)values[2];
             byte sfWorkModel = (byte)values[4];
             byte sfstep = (byte)values[5];
             if (drworkModer == 2 && sfWorkModel == 2) // 排杆
             {
-                if (drstep == 0) return "排杆启动";
-                else if (drstep >= 1 && drstep <= 6) return "井口定位";
-                else if (drstep >= 7 && drstep <= 9) return "井口抓杆";
-                else if (drstep >= 10 && drstep <= 17) return "台面定位";
-                else if (drstep == 18) return "抓手松开";
-                else if (drstep >= 19 && drstep <= 20) return "手臂回位";
-                else if (drstep == 21) return "台面完成";
-                else if (sfstep >= 1 && sfstep <= 9) return "井口定位";
-                else if (sfstep >= 10 && sfstep <= 11) return "井口抓杆";
-                else if (sfstep == 12) return "吊卡确认";
-                else if (sfstep >= 17 && sfstep <= 18) return "指梁定位";
-                else if (sfstep == 19) return "指梁锁确认";
-                else if (sfstep >= 20 && sfstep <= 24) return "指梁排管";
-                else if (sfstep >= 25) return "排管结束";
+                if (!b460b1)
+                {
+                    if (drstep == 0) return "排杆启动";
+                    else if (drstep >= 1 && drstep <= 6) return "井口定位";
+                    else if (drstep >= 7 && drstep <= 9) return "井口抓杆";
+                    else if (drstep >= 10 && drstep <= 17) return "台面定位";
+                    else if (drstep == 18) return "抓手松开";
+                    else if (drstep >= 19 && drstep <= 20) return "手臂回位";
+                    else if (drstep == 21) return "台面完成";
+                }
+                else
+                {
+                 if (sfstep >= 1 && sfstep <= 9) return "井口定位";
+                    else if (sfstep >= 10 && sfstep <= 11) return "井口抓杆";
+                    else if (sfstep == 12) return "吊卡确认";
+                    else if (sfstep >= 17 && sfstep <= 18) return "指梁定位";
+                    else if (sfstep == 19) return "指梁锁确认";
+                    else if (sfstep >= 20 && sfstep <= 24) return "指梁排管";
+                    else if (sfstep >= 25) return "排管结束";
+                }
             }
             else if (drworkModer == 1 && sfWorkModel == 1) // 送杆
             {
-                if (sfstep == 0) return "送杆启动";
-                else if (sfstep >= 1 && sfstep <= 10) return "指梁定位";
-                else if (sfstep >= 11 && sfstep <= 16) return "指梁抓杆";
-                else if (sfstep >= 17 && sfstep <= 18) return "指梁锁确认";
-                else if (sfstep >= 19 && sfstep <= 23) return "井口等待";
-                else if (sfstep == 26) return "井口送杆";
-                else if (sfstep >= 27 && sfstep <= 28) return "吊卡确认";
-                else if (sfstep == 35) return "二层台完成";
-                if (drstep >= 1 && drstep <= 5) return "台面定位";
-                if (drstep >= 6 && drstep <= 9) return "抓手夹紧";
-                if (drstep >= 10 && drstep <= 15) return "井口定位";
-                if (drstep >= 16 && drstep <= 17) return "井口送杆";
-                if (drstep >= 18 && drstep <= 19) return "手臂回位";
-                if (drstep == 20) return "送杆结束";
+                if (b460b1)
+                {
+                    if (sfstep == 0) return "送杆启动";
+                    else if (sfstep >= 1 && sfstep <= 10) return "指梁定位";
+                    else if (sfstep >= 11 && sfstep <= 16) return "指梁抓杆";
+                    else if (sfstep >= 17 && sfstep <= 18) return "指梁锁确认";
+                    else if (sfstep >= 19 && sfstep <= 23) return "井口等待";
+                    else if (sfstep == 26) return "井口送杆";
+                    else if (sfstep >= 27 && sfstep <= 28) return "吊卡确认";
+                    else if (sfstep == 35) return "二层台完成";
+                }
+                else
+                {
+                    if (drstep >= 1 && drstep <= 5) return "台面定位";
+                    else if (drstep >= 6 && drstep <= 9) return "抓手夹紧";
+                    else if (drstep >= 10 && drstep <= 15) return "井口定位";
+                    else if (drstep >= 16 && drstep <= 17) return "井口送杆";
+                    else if (drstep >= 18 && drstep <= 19) return "手臂回位";
+                    else if (drstep == 20) return "送杆结束";
+                }
             }
 
             return "非自动模式";

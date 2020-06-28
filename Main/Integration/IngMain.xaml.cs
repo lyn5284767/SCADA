@@ -195,6 +195,7 @@ namespace Main.Integration
                 AutoStepCurrentTxtMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
                 AutoStepCurrentTxtMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["workModel"], Mode = BindingMode.OneWay });
                 AutoStepCurrentTxtMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E5AutoModelCurrentStep"], Mode = BindingMode.OneWay });
+                AutoStepCurrentTxtMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["460b1"], Mode = BindingMode.OneWay });
                 AutoStepCurrentTxtMultiBind.NotifyOnSourceUpdated = true;
                 this.AutoStepCurrentTxt.SetBinding(TextBlock.TextProperty, AutoStepCurrentTxtMultiBind);
 
