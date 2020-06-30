@@ -370,7 +370,7 @@ namespace Main.DrillFloor
             }
             else if (warnOne == 56)
             {
-                this.warnOne.Text = "自动送杆抓干失败，请确认抓手有钻杆";
+                this.warnOne.Text = "自动送杆抓杆失败，请确认抓手有钻杆";
             }
             else if (warnOne == 57)
             {

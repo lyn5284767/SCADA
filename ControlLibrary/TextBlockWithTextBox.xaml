@@ -16,7 +16,7 @@
             <TextBlock Name="tbk" Text="参数配置" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="14" FontFamily="微软雅黑" FontWeight="Bold"  Width="150" TextAlignment="Center">
             </TextBlock>
             <TextBox x:Name="textBoxShow" IsReadOnly="True" Text="{Binding Path=ShowText, ElementName=uc}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="12" FontFamily="微软雅黑" FontWeight="Bold" Width="95" TextAlignment="Center"/>
-            <TextBox x:Name="textBoxSet" GotFocus="tb_ParameterConfig_Focus" LostFocus="textBox_ParameterConfig_LostFocus" TabIndex="3" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="12" FontFamily="微软雅黑" FontWeight="Bold" Background="#F49466" Width="95"  TextAlignment="Center"/>
+            <TextBox x:Name="textBoxSet" PreviewMouseDown="tb_ParameterConfig_Focus" LostFocus="textBox_ParameterConfig_LostFocus" TabIndex="3" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="12" FontFamily="微软雅黑" FontWeight="Bold" Background="#F49466" Width="95"  TextAlignment="Center"/>
         </StackPanel>
     </Grid>
 </UserControl>

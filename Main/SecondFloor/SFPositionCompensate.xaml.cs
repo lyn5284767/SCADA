@@ -323,5 +323,10 @@ namespace Main.SecondFloor
         }
 
         #endregion
+
+        private void tbPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            GlobalData.Instance.GetKeyBoard();
+        }
     }
 }

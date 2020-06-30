@@ -436,5 +436,10 @@ namespace Main.SecondFloor
         {
             this.cbSysTypeSelect.SelectedIndex = index;
         }
+
+        private void tbPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            GlobalData.Instance.GetKeyBoard();
+        }
     }
 }

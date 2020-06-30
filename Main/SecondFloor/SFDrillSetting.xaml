@@ -58,11 +58,11 @@
                             <ComboBoxItem Content="左" IsSelected="True"/>
                             <ComboBoxItem Content="右"/>
                         </ComboBox>
-                        <TextBox x:Name="tbDrillPipeCountCorrectFingerDirectNumber" GotFocus="tb_GotFocus" Width="35" Text="0"/>
+                        <TextBox x:Name="tbDrillPipeCountCorrectFingerDirectNumber"  PreviewMouseDown="tbPreviewMouseDown" Width="35" Text=""/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="5">
                         <TextBlock Text="钻杆数量【视钻杆容量定】" VerticalAlignment="Center" Width="200"/>
-                        <TextBox x:Name="tbDrillPipeCountCorrectPipeCount" GotFocus="tb_GotFocus" Width="90" Text="0"/>
+                        <TextBox x:Name="tbDrillPipeCountCorrectPipeCount"  PreviewMouseDown="tbPreviewMouseDown" Width="90" Text=""/>
                     </StackPanel>
                     <StackPanel Grid.Column="1">
                         <StackPanel Orientation="Horizontal">

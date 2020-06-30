@@ -115,13 +115,13 @@
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Grid.Row="0" Text="机械手大钩互锁角度" Margin="15" VerticalAlignment="Center"/>
                     <TextBox Grid.Column="1" Grid.Row="0" Width="80" Text="0" Margin="15" IsReadOnly="True" TextAlignment="Center" Name="BigHookInterLockingAngleOfRobotShowValue"/>
-                    <TextBox GotFocus="tb_GotFocus" Grid.Column="2" Grid.Row="0" Width="80" Text="0" Margin="15" TextAlignment="Center" Name="BigHookInterLockingAngleOfRobotSettingValue"/>
+                    <TextBox PreviewMouseDown="tb_GotFocus" Grid.Column="2" Grid.Row="0" Width="80" Text="0" Margin="15" TextAlignment="Center" Name="BigHookInterLockingAngleOfRobotSettingValue"/>
                     <Button Content="设置" Style="{StaticResource btnGreen}" Grid.Column="3" Grid.Row="0" Margin="15" Width="80" Click="btn_SetBigHookInterLockAngle_Click"/>
 
                     <TextBlock Grid.Column="0" Grid.Row="1" Text="机械手顶驱互锁角度" Margin="15" VerticalAlignment="Center"/>
                     <TextBox Grid.Column="1" Grid.Row="1" Width="80" Text="0" Margin="15" IsReadOnly="True" TextAlignment="Center" Name="ManipulatorTopDriveInterlockAngleShowValue"/>
                     <!--<TextBox Grid.Column="2" Grid.Row="0" Width="80" Text="0" Margin="15" TextAlignment="Center" Name="BigHookInterLockingAngleOfRobotSettingValue"/>-->
-                    <TextBox GotFocus="tb_GotFocus" Grid.Column="2" Grid.Row="1" Width="80" Text="0" Margin="15" TextAlignment="Center" Name="ManipulatorTopDriveInterlockAngleSetValue"/>
+                    <TextBox PreviewMouseDown="tb_GotFocus"  Grid.Column="2" Grid.Row="1" Width="80" Text="0" Margin="15" TextAlignment="Center" Name="ManipulatorTopDriveInterlockAngleSetValue"/>
                     <Button Content="设置" Style="{StaticResource btnGreen}" Grid.Column="3" Grid.Row="1" Margin="15" Width="80" Click="btn_SetTopDriverInterlockAngle_Click"/>
 
                     <TextBlock Grid.Column="0" Grid.Row="2" Text="大钩高度显示值" Margin="15" VerticalAlignment="Center"/>
@@ -129,7 +129,7 @@
                     <Button Content="设置" Style="{StaticResource btnGreen}" Grid.Column="3" Grid.Row="2" Margin="15" Width="80" Visibility="Hidden"/>
 
                     <TextBlock Grid.Column="0" Grid.Row="3" Text="大钩高度标定值" Margin="15" VerticalAlignment="Center"/>
-                    <TextBox GotFocus="tb_GotFocus" Grid.Column="1" Grid.Row="3" Width="80" Text="0" Margin="15" TextAlignment="Center" Name="BigHookHeightSetValue"/>
+                    <TextBox PreviewMouseDown="tb_GotFocus"  Grid.Column="1" Grid.Row="3" Width="80" Text="0" Margin="15" TextAlignment="Center" Name="BigHookHeightSetValue"/>
                     <Button Content="标定" Style="{StaticResource btnGreen}" Grid.Column="2" Grid.Row="4" Margin="15" Width="80" Click="btn_BigHookHeight_Click"/>
                     <Button Content="取消" Style="{StaticResource btnGreen}" Grid.Column="3" Grid.Row="4" Margin="15" Width="80" Click="btn_BigHookHeightCannel_Click"/>
                 </Grid>

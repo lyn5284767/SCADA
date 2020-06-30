@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -594,6 +595,16 @@ namespace COM.Common
                     return "小车排杆待机位置";
                 case 7:
                     return "小车回收位置";
+                case 10:
+                    return "小车运输位置";
+                case 21:
+                    return "右16#指梁位置补偿";
+                case 22:
+                    return "左16#指梁位置补偿";
+                case 23:
+                    return "右1#特殊指梁位置";
+                case 24:
+                    return "左1#特殊指梁位置";
                 case 33:
                     return "手臂最小缩回位置";
                 case 34:
@@ -641,13 +652,23 @@ namespace COM.Common
                 case 74:
                     return "回转运输位置";
                 case 97:
-                    return "4寸档及以下抓手开度";
+                    return "3.5寸档";
+                case 110:
+                    return "4寸补偿";
+                case 112:
+                    return "4.5寸补偿";
                 case 98:
                     return "5寸档";
+                case 114:
+                    return "5.5寸补偿";
+                case 108:
+                    return "5寸7/8";
                 case 99:
                     return "6寸";
                 case 100:
                     return "6.5寸";
+                case 109:
+                    return "6寸5/8";
                 case 101:
                     return "7寸";
                 case 102:
@@ -670,6 +691,18 @@ namespace COM.Common
                     return "右手指最小值";
                 case 132:
                     return "右手指最大值";
+                case 133:
+                    return "左挡绳最小值";
+                case 134:
+                    return "左挡绳最大值";
+                case 135:
+                    return "右挡绳最小值";
+                case 136:
+                    return "右挡绳最大值";
+                case 137:
+                    return "猴道伸出";
+                case 138:
+                    return "猴道缩回";
                 case 141:
                     return "左1#钻铤锁最小值";
                 case 142:
@@ -682,17 +715,17 @@ namespace COM.Common
                     return "左5#钻铤锁最小值";
                 case 146:
                     return "左6#钻铤锁最小值";
-                case 147:
-                    return "右1#钻铤锁最小值";
-                case 148:
-                    return "右2#钻铤锁最小值";
                 case 149:
-                    return "右3#钻铤锁最小值";
+                    return "右1#钻铤锁最小值";
                 case 150:
-                    return "右4#钻铤锁最小值";
+                    return "右2#钻铤锁最小值";
                 case 151:
-                    return "右5#钻铤锁最小值";
+                    return "右3#钻铤锁最小值";
                 case 152:
+                    return "右4#钻铤锁最小值";
+                case 165:
+                    return "右5#钻铤锁最小值";
+                case 166:
                     return "右6#钻铤锁最小值";
                 case 153:
                     return "左1#钻铤锁最大值";
@@ -706,17 +739,17 @@ namespace COM.Common
                     return "左5#钻铤锁最大值";
                 case 158:
                     return "左6#钻铤锁最大值";
-                case 159:
-                    return "右1#钻铤锁最大值";
-                case 160:
-                    return "右2#钻铤锁最大值";
                 case 161:
-                    return "右3#钻铤锁最大值";
+                    return "右1#钻铤锁最大值";
                 case 162:
-                    return "右4#钻铤锁最大值";
+                    return "右2#钻铤锁最大值";
                 case 163:
-                    return "右5#钻铤锁最大值";
+                    return "右3#钻铤锁最大值";
                 case 164:
+                    return "右4#钻铤锁最大值";
+                case 173:
+                    return "右5#钻铤锁最大值";
+                case 174:
                     return "右6#钻铤锁最大值";
                 default:
                     return "反馈参数名称";
@@ -3063,7 +3096,7 @@ namespace COM.Common
                     if (sfstep >= 1 && sfstep <= 9) return 7;
                     else if (sfstep >= 10 && sfstep <= 11) return 8;
                     else if (sfstep == 12) return 9;
-                    else if (sfstep >= 17 && sfstep <= 18) return 10;
+                    else if (sfstep >= 13 && sfstep <= 18) return 10;
                     else if (sfstep == 19) return 11;
                     else if (sfstep >= 20 && sfstep <= 24) return 12;
                     else if (sfstep >= 25) return 13;
@@ -3077,9 +3110,9 @@ namespace COM.Common
                     else if (sfstep >= 1 && sfstep <= 10) return 1;
                     else if (sfstep >= 11 && sfstep <= 16) return 2;
                     else if (sfstep >= 17 && sfstep <= 18) return 3;
-                    else if (sfstep >= 19 && sfstep <= 23) return 4;
+                    else if (sfstep >= 19 && sfstep <= 25) return 4;
                     else if (sfstep == 26) return 5;
-                    else if (sfstep >= 27 && sfstep <= 28) return 6;
+                    else if (sfstep >= 27 && sfstep <= 34) return 6;
                     else if (sfstep == 35) return 7;
                 }
                 else
@@ -3117,6 +3150,8 @@ namespace COM.Common
             }
             byte droprModel = (byte)values[0];
             byte sfOprModel = (byte)values[3];
+
+            
             if (droprModel != 5 || sfOprModel != 5) // 非自动模式
             {
                 return "非自动模式";
@@ -3126,7 +3161,7 @@ namespace COM.Common
             byte drstep = (byte)values[2];
             byte sfWorkModel = (byte)values[4];
             byte sfstep = (byte)values[5];
-            if (drworkModer == 2 && sfWorkModel == 2) // 排杆
+            if (drworkModer == 2) // 排杆
             {
                 if (!b460b1)
                 {
@@ -3143,7 +3178,7 @@ namespace COM.Common
                  if (sfstep >= 1 && sfstep <= 9) return "井口定位";
                     else if (sfstep >= 10 && sfstep <= 11) return "井口抓杆";
                     else if (sfstep == 12) return "吊卡确认";
-                    else if (sfstep >= 17 && sfstep <= 18) return "指梁定位";
+                    else if (sfstep > 12 && sfstep <= 18) return "指梁定位";
                     else if (sfstep == 19) return "指梁锁确认";
                     else if (sfstep >= 20 && sfstep <= 24) return "指梁排管";
                     else if (sfstep >= 25) return "排管结束";
@@ -3157,9 +3192,9 @@ namespace COM.Common
                     else if (sfstep >= 1 && sfstep <= 10) return "指梁定位";
                     else if (sfstep >= 11 && sfstep <= 16) return "指梁抓杆";
                     else if (sfstep >= 17 && sfstep <= 18) return "指梁锁确认";
-                    else if (sfstep >= 19 && sfstep <= 23) return "井口等待";
+                    else if (sfstep >= 19 && sfstep <= 25) return "井口等待";
                     else if (sfstep == 26) return "井口送杆";
-                    else if (sfstep >= 27 && sfstep <= 28) return "吊卡确认";
+                    else if (sfstep >= 27 && sfstep <= 34) return "吊卡确认";
                     else if (sfstep == 35) return "二层台完成";
                 }
                 else
@@ -3175,6 +3210,7 @@ namespace COM.Common
 
             return "非自动模式";
         }
+
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {

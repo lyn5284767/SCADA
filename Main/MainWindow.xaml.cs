@@ -482,8 +482,16 @@ namespace Main
                 {
                     if (GlobalData.Instance.da["operationModel"].Value.Byte != 4)//这是判断如果是自动模式，需要切换到手动模式
                     {
-                        MessageBox.Show("当下模式非手动模式，如需位置补偿，请切换至手动模式！");
-                        return;
+                        MessageBoxResult result = MessageBox.Show("位置补偿需切换至手动模式！确认切换？","提示", MessageBoxButton.OKCancel);
+                        if (result == MessageBoxResult.Yes)
+                        {
+                            byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 1, 4 });
+                            GlobalData.Instance.da.SendBytes(byteToSend);
+                        }
+                        else
+                        {
+                            return;
+                        }
                     }
                     else
                     {

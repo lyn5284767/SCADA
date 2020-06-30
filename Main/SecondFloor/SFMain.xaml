@@ -296,12 +296,12 @@
                                             <MenuItem Header="手臂回零" Click="btn_ArmToZero"/>
                                             <MenuItem Header="旋转回零" Click="btn_RotateToZero"/>
                                         </MenuItem>
-                                        <MenuItem Header="档绳缩回" FontSize="24">
+                                        <MenuItem Header="挡绳缩回" FontSize="24">
                                             <MenuItem Header="左缩回" Click="btn_LeftRopeRetract"/>
                                             <MenuItem Header="右缩回" Click="btn_RightRopeRetract"/>
                                             <MenuItem Header="左右缩回" Click="btn_BothRopeRetract"/>
                                         </MenuItem>
-                                        <MenuItem Header="档绳伸出" FontSize="24">
+                                        <MenuItem Header="挡绳伸出" FontSize="24">
                                             <MenuItem Header="左伸出" Click="btn_LeftRopeStretch"/>
                                             <MenuItem Header="右伸出" Click="btn_RightRopeStretch"/>
                                             <MenuItem Header="左右伸出" Click="btn_BothRopeStrech"/>

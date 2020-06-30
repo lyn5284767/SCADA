@@ -186,6 +186,7 @@ namespace Main.Integration
                 IngStepMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["460b1"], Mode = BindingMode.OneWay });
                 IngStepMultiBind.NotifyOnSourceUpdated = true;
                 this.IngStep.SetBinding(StepControl.SelectStepProperty, IngStepMultiBind);
+        
 
                 MultiBinding AutoStepCurrentTxtMultiBind = new MultiBinding();
                 AutoStepCurrentTxtMultiBind.Converter = new IngAutoModeNowStepCoverter();
@@ -403,7 +404,7 @@ namespace Main.Integration
             }
             else if (warnOne == 56)
             {
-                this.warningTwo.Text = "自动送杆抓干失败，请确认抓手有钻杆";
+                this.warningTwo.Text = "自动送杆抓杆失败，请确认抓手有钻杆";
             }
             else if (warnOne == 57)
             {
@@ -875,14 +876,14 @@ namespace Main.Integration
         private void LinkOpenOrCloseMouseDown(object sender, MouseButtonEventArgs e)
         {
             TextBlock tb = sender as TextBlock;
-            if (tbLink.TBText == "联动开启")
+            if (tbLink.ShadowButtonShowTxt == "联动开启")
             {
-                byte[] byteToSend = new byte[10] { 1, 32, 10, 0, 0, 0, 0, 0, 0, 0 };
+                byte[] byteToSend = new byte[10] { 1, 32, 10, 1, 0, 0, 0, 0, 0, 0 };
                 GlobalData.Instance.da.SendBytes(byteToSend);
             }
             else
             {
-                byte[] byteToSend = new byte[10] { 1, 32, 10, 1, 0, 0, 0, 0, 0, 0 };
+                byte[] byteToSend = new byte[10] { 1, 32, 10, 0, 0, 0, 0, 0, 0, 0 };
                 GlobalData.Instance.da.SendBytes(byteToSend);
             }
         }
