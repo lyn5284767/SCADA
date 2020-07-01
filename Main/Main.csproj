@@ -105,20 +105,20 @@
     <Compile Include="DrillFloor\DRMain.xaml.cs">
       <DependentUpon>DRMain.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DrillFloor\DRParamTwo.xaml.cs">
-      <DependentUpon>DRParamTwo.xaml</DependentUpon>
-    </Compile>
     <Compile Include="DrillFloor\DRParamOne.xaml.cs">
       <DependentUpon>DRParamOne.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DrillFloor\DRPosSetting.xaml.cs">
+      <DependentUpon>DRPosSetting.xaml</DependentUpon>
     </Compile>
     <Compile Include="DrillFloor\DRParamSettingMain.xaml.cs">
       <DependentUpon>DRParamSettingMain.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DrillFloor\DRParamTwo.xaml.cs">
+      <DependentUpon>DRParamTwo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DrillFloor\DRParamThree.xaml.cs">
       <DependentUpon>DRParamThree.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="DrillFloor\DRParamFour.xaml.cs">
-      <DependentUpon>DRParamFour.xaml</DependentUpon>
     </Compile>
     <Compile Include="DrillFloor\DRSecureSetting.xaml.cs">
       <DependentUpon>DRSecureSetting.xaml</DependentUpon>
@@ -246,11 +246,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DrillFloor\DRParamTwo.xaml">
+    <Page Include="DrillFloor\DRParamOne.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DrillFloor\DRParamOne.xaml">
+    <Page Include="DrillFloor\DRPosSetting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -258,11 +258,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DrillFloor\DRParamThree.xaml">
+    <Page Include="DrillFloor\DRParamTwo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DrillFloor\DRParamFour.xaml">
+    <Page Include="DrillFloor\DRParamThree.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

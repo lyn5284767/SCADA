@@ -2247,7 +2247,7 @@ namespace COM.Common
             {
                 armPosition = (double)(PositionSbyteToInt((short)(values[5])));
             }
-            double armPos = ((armPosition / GlobalData.Instance.ArmMaxPosistion * tubeActualWidth) * Math.Cos(rotateAngle * Math.PI / 180) + (-((carPosition - GlobalData.Instance.CarMinPosistion) / (GlobalData.Instance.CarMaxPosistion - GlobalData.Instance.CarMinPosistion) * tubeActualHeight) + heightToMiddle));
+            double armPos = ((armPosition / GlobalData.Instance.ArmMaxPosistion * tubeActualWidth/2) * Math.Cos(rotateAngle * Math.PI / 180) + (-((carPosition - GlobalData.Instance.CarMinPosistion) / (GlobalData.Instance.CarMaxPosistion - GlobalData.Instance.CarMinPosistion) * tubeActualHeight) + heightToMiddle));
 
             return armPos;
         }
@@ -3041,8 +3041,8 @@ namespace COM.Common
             }
 
             bool type = (bool)value;
-            if (type) return "联动关闭";
-            else return "联动开启";
+            if (type) return "联动开启";
+            else return "联动关闭";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

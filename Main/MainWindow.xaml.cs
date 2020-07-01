@@ -1,4 +1,5 @@
 ﻿using COM.Common;
+using DevExpress.Charts.Native;
 using Main.DrillFloor;
 using Main.Integration;
 using Main.SecondFloor;
@@ -56,12 +57,30 @@ namespace Main
             }
         }
         int heat = 0;
+        bool b459b0 = false;
+        bool b459b1 = false;
         void timer_Tick(object sender, EventArgs e)
         {
             this.timeLable.Text = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss") +"  ";
             if (DateTime.Now.Second % 5 == 0)
             {
                 PingIp("172.16.16.147");
+            }
+
+            if (GlobalData.Instance.DRNowPage != "IngMain")
+            {
+                if (!GlobalData.Instance.da["459b0"].Value.Boolean) b459b0 = false;
+                if (!GlobalData.Instance.da["459b1"].Value.Boolean) b459b1 = false;
+                if (GlobalData.Instance.da["459b0"].Value.Boolean && GlobalData.Instance.DRNowPage != "SFMain" && !b459b0)
+                {
+                    MouseDownSF(null, null);
+                    b459b0 = true;
+                }
+                else if (GlobalData.Instance.da["459b1"].Value.Boolean && GlobalData.Instance.DRNowPage != "DRMain" && !b459b1)
+                {
+                    MouseDR(null, null);
+                    b459b1 = true;
+                }
             }
         }
 
@@ -380,19 +399,33 @@ namespace Main
                 }
                 if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
                 {
-                    if (GlobalData.Instance.da["operationModel"].Value.Byte == 5)//这是判断如果是自动模式，需要切换到手动模式
+                    if (GlobalData.Instance.da["droperationModel"].Value.Byte != 4)//这是判断如果是自动模式，需要切换到手动模式
                     {
-                        MessageBox.Show("当下模式为自动模式，如需参数配置，请切换至手动模式！");
-                        return;
+                        MessageBoxResult result = MessageBox.Show("参数设置需切换至手动模式！确认切换？", "提示", MessageBoxButton.OKCancel);
+                        if (result == MessageBoxResult.OK)
+                        {
+                            byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 1, 4 });
+                            GlobalData.Instance.da.SendBytes(byteToSend);
+                            Thread.Sleep(100);
+                        }
+                        else
+                        {
+                            return;
+                        }
                     }
-                    else
+                    if (GlobalData.Instance.da["droperationModel"].Value.Byte == 4)
                     {
                         byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 23, 0 });
                         GlobalData.Instance.da.SendBytes(byteToSend);
+
+                        this.spMain.Children.Clear();
+                        this.spMain.Children.Add(SFParamMain.Instance);
+                        this.BottomColorSetting(this.bdSf, this.tbSf, this.bdOther);
                     }
-                    this.spMain.Children.Clear();
-                    this.spMain.Children.Add(SFParamMain.Instance);
-                    this.BottomColorSetting(this.bdSf, this.tbSf, this.bdOther);
+                    else
+                    {
+                        MessageBox.Show("手动模式切换失败，请回主界面再次尝试！");
+                    }
                 }
                 else if (GlobalData.Instance.systemType == SystemType.DrillFloor)
                 {
@@ -433,24 +466,60 @@ namespace Main
                 }
                 if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
                 {
-                    if (GlobalData.Instance.da["operationModel"].Value.Byte == 5)
+                    if (GlobalData.Instance.da["operationModel"].Value.Byte != 4)//这是判断如果是自动模式，需要切换到手动模式
                     {
-                        MessageBox.Show("当下模式为自动模式，如需位置标定，请切换至手动模式！");
-                        return;
+                        MessageBoxResult result = MessageBox.Show("位置补偿需切换至手动模式！确认切换？", "提示", MessageBoxButton.OKCancel);
+                        if (result == MessageBoxResult.OK)
+                        {
+                            byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 1, 4 });
+                            GlobalData.Instance.da.SendBytes(byteToSend);
+                            Thread.Sleep(100);
+                        }
+                        else
+                        {
+                            return;
+                        }
                     }
-                    else
+                    if (GlobalData.Instance.da["operationModel"].Value.Byte == 4)
                     {
                         byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 12, 0 });
                         GlobalData.Instance.da.SendBytes(byteToSend);
+
+                        this.spMain.Children.Clear();
+                        this.spMain.Children.Add(SFPositionSetting.Instance);
+                        this.BottomColorSetting(this.bdSf, this.tbSf, this.bdOther);
                     }
-                    this.spMain.Children.Clear();
-                    this.spMain.Children.Add(SFPositionSetting.Instance);
-                    this.BottomColorSetting(this.bdSf, this.tbSf, this.bdOther);
+                    else
+                    {
+                        MessageBox.Show("手动模式切换失败，请回主界面再次尝试！！");
+                    }
                 }
                 else if (GlobalData.Instance.systemType == SystemType.DrillFloor)
                 {
-                    MessageBox.Show("功能未开放!");
-                    return;
+                    if (GlobalData.Instance.da["droperationModel"].Value.Byte != 4)//这是判断如果是自动模式，需要切换到手动模式
+                    {
+                        MessageBoxResult result = MessageBox.Show("位置补偿需切换至手动模式！确认切换？", "提示", MessageBoxButton.OKCancel);
+                        if (result == MessageBoxResult.OK)
+                        {
+                            byte[] byteToSend = new byte[10] { 1, 32, 3, 30, 0, 0, 0, 0, 0, 0 };
+                            GlobalData.Instance.da.SendBytes(byteToSend);
+                            Thread.Sleep(100);
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+                    if (GlobalData.Instance.da["droperationModel"].Value.Byte == 4)
+                    {
+                        this.spMain.Children.Clear();
+                        this.spMain.Children.Add(DRPosSetting.Instance);
+                        this.BottomColorSetting(this.bdSf, this.tbSf, this.bdOther);
+                    }
+                    else
+                    {
+                        MessageBox.Show("手动模式切换失败，请回主界面再次尝试！");
+                    }
                 }
                 else if (GlobalData.Instance.systemType == SystemType.SIR)
                 {
@@ -480,20 +549,21 @@ namespace Main
                 }
                 if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
                 {
-                    if (GlobalData.Instance.da["operationModel"].Value.Byte != 4)//这是判断如果是自动模式，需要切换到手动模式
+                    if (GlobalData.Instance.da["operationModel"].Value.Byte !=4)//这是判断如果是自动模式，需要切换到手动模式
                     {
                         MessageBoxResult result = MessageBox.Show("位置补偿需切换至手动模式！确认切换？","提示", MessageBoxButton.OKCancel);
-                        if (result == MessageBoxResult.Yes)
+                        if (result == MessageBoxResult.OK)
                         {
                             byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 1, 4 });
                             GlobalData.Instance.da.SendBytes(byteToSend);
+                            Thread.Sleep(100);
                         }
                         else
                         {
                             return;
                         }
                     }
-                    else
+                    if (GlobalData.Instance.da["operationModel"].Value.Byte == 4)
                     {
                         byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 1, 9 });
                         GlobalData.Instance.da.SendBytes(byteToSend);
@@ -502,10 +572,15 @@ namespace Main
                         SFPositionCompensate.Instance.menuRotateCompensationSetting.IsEnabled = false;
                         SFPositionCompensate.Instance.ShowRotatePosiCompensaTxts(false);
                         SFPositionCompensate.Instance.ShowCarCompensationTxts(false);
+
+                        this.spMain.Children.Clear();
+                        this.spMain.Children.Add(SFPositionCompensate.Instance);
+                        this.BottomColorSetting(this.bdSf, this.tbSf, this.bdOther);
                     }
-                    this.spMain.Children.Clear();
-                    this.spMain.Children.Add(SFPositionCompensate.Instance);
-                    this.BottomColorSetting(this.bdSf, this.tbSf, this.bdOther);
+                    else
+                    {
+                        MessageBox.Show("手动模式切换失败，请回主界面再次尝试！");
+                    }
                 }
                 else if (GlobalData.Instance.systemType == SystemType.DrillFloor)
                 {
@@ -795,7 +870,6 @@ namespace Main
                 {
                     GlobalData.Instance.ComunciationNormal = false;
                 }
-
             }
         }
 

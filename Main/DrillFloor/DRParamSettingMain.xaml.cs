@@ -71,15 +71,15 @@ namespace Main.DrillFloor
                 else if (page == 3)
                 {
                     this.left.Visibility = Visibility.Visible;
-                    this.right.Visibility = Visibility.Visible;
+                    this.right.Visibility = Visibility.Hidden;
                     this.ParamPage.Children.Add(DRParamThree.Instance);
                 }
-                else if (page == 4)
-                {
-                    this.left.Visibility = Visibility.Visible;
-                    this.right.Visibility = Visibility.Hidden;
-                    this.ParamPage.Children.Add(DRParamFour.Instance);
-                }
+                //else if (page == 4)
+                //{
+                //    this.left.Visibility = Visibility.Visible;
+                //    this.right.Visibility = Visibility.Hidden;
+                //    this.ParamPage.Children.Add(DRParamFour.Instance);
+                //}
             }
             catch (Exception ex)
             {

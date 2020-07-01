@@ -107,7 +107,7 @@
                                 <Image Source="../Images/finger.png" Margin="2"></Image>
                             </Border>
                             <StackPanel Margin="0,15,10,0">
-                                <TextBlock>抓手</TextBlock>
+                                <TextBlock>开度</TextBlock>
                                 <TextBlock Name="gripMotor" Text="   0 " ></TextBlock>
                             </StackPanel>
                         </StackPanel>

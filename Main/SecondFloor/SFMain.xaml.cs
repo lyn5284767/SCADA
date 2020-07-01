@@ -89,6 +89,8 @@ namespace Main.SecondFloor
             {
                 miSpDrill.Visibility = Visibility.Collapsed;
             }
+
+            GlobalData.Instance.DRNowPage = "SFMain";
         }
 
         private void Init()

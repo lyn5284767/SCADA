@@ -244,7 +244,12 @@
                         </Border>
                             <TextBlock Name="tbLink" FontSize="20" Text="联动关闭"></TextBlock>
                         </Grid>-->
-                        <cl:ShadowButton  x:Name="tbLink" TBFontSize="20" BDWidth="150" BDHeight="45" MouseLeftButtonDown="LinkOpenOrCloseMouseDown"/>
+                        <!--<cl:ShadowButton  x:Name="tbLink" TBFontSize="20" BDWidth="150" BDHeight="45" MouseLeftButtonDown="LinkOpenOrCloseMouseDown"/>-->
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock x:Name="tbLink"/>
+                            <cl:OnOffButton Name="oobLink" CBCheckedEvent="OnOffButton_CBCheckedEvent"/>
+                        </StackPanel>
+                        
                     </StackPanel>
                     <TextBlock Name="warningOne" FontSize="16" Grid.Row="1" Text="" Foreground="#E0496D"/>
                     <TextBlock Name="warningTwo" FontSize="16" Grid.Row="2" Text="" Foreground="#E0496D"/>
@@ -252,12 +257,12 @@
             </Border>
         </StackPanel>
         <DockPanel Grid.Row="1">
-            <Border  DockPanel.Dock="Left" Width="160" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,5,10">
+            <Border MouseLeftButtonDown="SFSelectMouseDown" DockPanel.Dock="Left" Width="160" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,5,10">
                 <Border.Effect>
                     <DropShadowEffect x:Name="effSFSelect" BlurRadius="20" Color="Gray" Direction="20" Opacity="0.5" RenderingBias="Quality" ShadowDepth="5"/>
                 </Border.Effect>
                 <StackPanel Name="spSFSelect">
-                    <TextBlock FontSize="20" Text="         二层台         " MouseDown="sfSelectMouseDown"></TextBlock>
+                    <TextBlock FontSize="20" Text="         二层台         "></TextBlock>
                     <Grid Height="30"></Grid>
                     <cl:BasedSwitchButton Name="operateMode" ContentLeft="手动" ContentDown="操作模式" ContentRight="自动" UserControlClicked="btn_OpState"/>
                     <Grid Height="20"></Grid>

@@ -78,7 +78,7 @@ namespace Main.DrillFloor
             GlobalData.Instance.da.SendBytes(data);
 
             count = 0;
-            GlobalData.Instance.DRNowPage = "Main";
+            GlobalData.Instance.DRNowPage = "DRMain";
             pageChange = new System.Timers.Timer(500);
             pageChange.Elapsed += PageChange_Elapsed;
             pageChange.Enabled = true;
@@ -91,7 +91,7 @@ namespace Main.DrillFloor
         private void PageChange_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             count++;
-            if (GlobalData.Instance.da["drPageNum"].Value.Byte == 30 || count>5 || GlobalData.Instance.DRNowPage != "Main")
+            if (GlobalData.Instance.da["drPageNum"].Value.Byte == 30 || count>5 || GlobalData.Instance.DRNowPage != "DRMain")
             {
                 pageChange.Stop();             
             }
@@ -1171,5 +1171,17 @@ namespace Main.DrillFloor
             }
         }
         #endregion
+
+        private void btn_CarToZero(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = GlobalData.Instance.SendToDR(new List<byte> { 13, 1 });
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+
+        private void btn_RotateToZero(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = GlobalData.Instance.SendToDR(new List<byte> { 13, 3 });
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
     }
 }

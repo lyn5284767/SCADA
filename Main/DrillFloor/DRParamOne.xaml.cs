@@ -1,4 +1,5 @@
 ﻿using COM.Common;
+using ControlLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ using System.Windows.Shapes;
 namespace Main.DrillFloor
 {
     /// <summary>
-    /// DRParamOne.xaml 的交互逻辑
+    /// DRParamFour.xaml 的交互逻辑
     /// </summary>
     public partial class DRParamOne : UserControl
     {
@@ -46,84 +47,18 @@ namespace Main.DrillFloor
         {
             InitializeComponent();
             timer = new System.Threading.Timer(new TimerCallback(Timer_Elapsed), this, 2000, 100);
-            this.tbGripCurrent.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["gridSample"], Mode = BindingMode.OneWay });
-            this.Loaded += DRParamOne_Loaded;
-        }
-
-        private void Timer_Elapsed(object obj)
-        {
-            try
-            {
-                Dispatcher.BeginInvoke(new Action(() =>
-                {
-                    int feedback = GlobalData.Instance.da["drCalibrationNumFeedback"].Value.Byte;
-                    if (feedback == 1) this.twtL1.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if(feedback == 2) this.twtL2.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 3) this.twtL3.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 4) this.twtL4.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 5) this.twtL5.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 6) this.twtL6.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 7) this.twtL7.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 8) this.twtL8.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    //else if (feedback == 9) this.twtL9.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 10) this.twtL10.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 11) this.twtL11.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 12) this.twtL12.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 13) this.twtL13.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-
-                    else if (feedback == 33) this.twtL33.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 34) this.twtL34.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 39) this.twtL39.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 40) this.twtL40.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 42) this.twtL42.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 43) this.twtL43.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 44) this.twtL44.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 45) this.twtL45.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 46) this.twtL46.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 47) this.twtL47.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-
-                    else if (feedback == 65) this.twtR65.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 66) this.twtR66.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 70) this.twtR70.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 71) this.twtR71.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 72) this.twtR72.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 74) this.twtR74.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 76) this.twtR76.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 77) this.twtR77.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 78) this.twtR78.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 79) this.twtR79.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-
-                    else if (feedback == 49) this.twtR49.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 50) this.twtR50.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 51) this.twtR51.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 52) this.twtR52.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 53) this.twtR53.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 54) this.twtR54.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 55) this.twtR55.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 56) this.twtR56.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 57) this.twtR57.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 58) this.twtR58.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 59) this.twtR59.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 60) this.twtR60.ShowTxt = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                }));
-            }
-            catch (Exception ex)
-            {
-                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
-            }
+            this.Loaded += DRParamTwo_Loaded;
+            VariableBinding();
         }
 
         System.Timers.Timer pageChange;
         int sendCount = 0;
-        /// <summary>
-        /// 打开页面发送给下位机
-        /// </summary>
-        private void DRParamOne_Loaded(object sender, RoutedEventArgs e)
+        private void DRParamTwo_Loaded(object sender, RoutedEventArgs e)
         {
-            byte[] byteToSend = new byte[10] { 80, 33, 12, 0, 0, 0, 1, 0, 0, 36 };
+            byte[] byteToSend = new byte[10] { 80, 33, 12, 0, 0, 0, 1, 0, 0, 38 };
             GlobalData.Instance.da.SendBytes(byteToSend);
             sendCount = 0;
-            GlobalData.Instance.DRNowPage = "paramOne";
+            GlobalData.Instance.DRNowPage = "paramTwo";
             pageChange = new System.Timers.Timer(500);
             pageChange.Elapsed += PageChange_Elapsed; ;
             pageChange.Enabled = true;
@@ -135,31 +70,97 @@ namespace Main.DrillFloor
         private void PageChange_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             sendCount++;
-            if (GlobalData.Instance.da["drPageNum"].Value.Byte == 36|| sendCount>5 || GlobalData.Instance.DRNowPage != "paramOne")
+            if (GlobalData.Instance.da["drPageNum"].Value.Byte == 38 || sendCount>5 || GlobalData.Instance.DRNowPage != "paramTwo")
             {
                 pageChange.Stop();
             }
             else
             {
-                byte[] data = new byte[10] { 80, 33, 0, 0, 0, 0, 0, 0, 0, 36 };
+                byte[] data = new byte[10] { 80, 33, 0, 0, 0, 0, 0, 0, 0, 38 };
                 GlobalData.Instance.da.SendBytes(data);
             }
         }
 
-        private void TwtL1_textBoxSetMouseDownEvent(int crtTag, string txt)
+        private void Timer_Elapsed(object obj)
         {
-            if (crtTag > 0)
+            try
             {
-                if (txt == "读取")
+                Dispatcher.BeginInvoke(new Action(() =>
                 {
-                    byte[] byteToSend = GlobalData.Instance.SendListToByte(new List<byte>() { 80, 33, 12, (byte)crtTag, 0, 0, 2 });
-                    GlobalData.Instance.da.SendBytes(byteToSend);
-                }
-                else
-                {
-                    byte[] byteToSend = GlobalData.Instance.SendListToByte(new List<byte>() { 80, 33, 12, (byte)crtTag, 0, 0, 1 });
-                    GlobalData.Instance.da.SendBytes(byteToSend);
-                }
+                    int groupNO = GlobalData.Instance.da["drGroup"].Value.Byte;
+                    if (groupNO == 1)
+                    {
+                        this.twtL1.ShowText = GlobalData.Instance.da["drDeviceModelTwo"].ToString();// 设备机型
+                        this.twtL2.ShowText = GlobalData.Instance.da["drDriverType"].ToString(); // 驱动器型号
+                        this.twtL4.ShowText = GlobalData.Instance.da["drDrillSetting"].ToString(); // 左右钻铤有误
+                        this.twtL5.ShowText = GlobalData.Instance.da["drDrillNum"].ToString(); // 单边钻铤数量
+                        this.twtR6.ShowText = GlobalData.Instance.da["drCarMoveDis"].ToString(); // 小车单圈行走值
+                        this.twtR7.ShowText = GlobalData.Instance.da["drCarMoveReduce"].ToString(); // 小车减速比
+                        this.twtR8.ShowText = GlobalData.Instance.da["drCarMaxSpeed"].ToString(); // 小车空载最大速度
+                        this.twtR9.ShowText = GlobalData.Instance.da["drCarWithDrillOneMaxSpeed"].ToString(); // 小车钻杆最大速度
+                        this.twtR10.ShowText = GlobalData.Instance.da["drCarWithDrillTwoMaxSpeed"].ToString(); // 小车钻铤最大速度
+                        this.twtR11.ShowText = GlobalData.Instance.da["drHandMoveReduce"].ToString(); // 手臂减速比
+                        this.twtR12.ShowText = GlobalData.Instance.da["drHandMaxSpeed"].ToString(); // 手臂空载最大速度
+                        this.twtR13.ShowText = GlobalData.Instance.da["drHandWithDrillOneMaxSpeed"].ToString(); // 手臂钻杆最大速度
+                        this.twtR14.ShowText = GlobalData.Instance.da["drHandWithDrillTwoMaxSpeed"].ToString(); // 手臂钻铤最大速度
+                        this.twtR15.ShowText = GlobalData.Instance.da["drRotateMoveReduce"].ToString(); // 回转减速比
+                        this.twtR16.ShowText = GlobalData.Instance.da["drRotateMaxSpeed"].ToString(); // 回转空载最大速度
+                        this.twtR17.ShowText = GlobalData.Instance.da["drRotateWithDrillOneMaxSpeed"].ToString(); // 回转钻杠最大速度
+                        this.twtR18.ShowText = GlobalData.Instance.da["drRotateWithDrillTwoMaxSpeed"].ToString(); // 回转钻铤最大速度
+                    }
+                    else if (groupNO == 2)
+                    {
+                        this.twtL19.ShowText = GlobalData.Instance.da["drDrillOneWidth"].ToString();// 钻杠指梁宽度
+                        this.twtL20.ShowText = GlobalData.Instance.da["drDrillOneSpace"].ToString(); // 钻杠指梁壁厚
+                        this.twtL21.ShowText = GlobalData.Instance.da["drDrillTwoWidth"].ToString(); // 钻铤指梁宽度
+                        this.twtL22.ShowText = GlobalData.Instance.da["drDrillTwoSpace"].ToString(); // 钻铤指梁厚度
+                        this.twtL23.ShowText = GlobalData.Instance.da["drDrillSettingNum"].ToString(); // 钻铤设置值
+                        this.twtR24.ShowText = GlobalData.Instance.da["drArmMaxPos"].ToString(); // 手臂最大距离
+                        this.twtL25.ShowText = GlobalData.Instance.da["drRowsNum"].ToString(); // 单边钻杆排数
+                        this.twtL36.ShowText = GlobalData.Instance.da["dr3Num"].ToString(); // 3寸钻杠容量
+                        this.twtL37.ShowText = GlobalData.Instance.da["dr3AndHalfNum"].ToString(); // 3.5寸钻杆容量
+                        this.twtL39.ShowText = GlobalData.Instance.da["dr4Num"].ToString(); // 4寸钻杆容量
+                        this.twtL40.ShowText = GlobalData.Instance.da["dr4AndHalfNum"].ToString(); // 4.5寸钻杆容量
+                        this.twtL41.ShowText = GlobalData.Instance.da["dr5Num"].ToString(); // 5寸钻杠容量
+                        this.twtL42.ShowText = GlobalData.Instance.da["dr5AndHalfNum"].ToString(); // 5.5寸钻杠容量
+                        this.twtL28.ShowText = GlobalData.Instance.da["drDeviceYear"].ToString(); // 设备年份
+                        this.twtL29.ShowText = GlobalData.Instance.da["drDeviceCarNO"].ToString(); // 设备机号
+                    }
+                   
+                }));
+            }
+            catch (Exception ex)
+            {
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+            }
+        }
+
+        /// <summary>
+        /// 绑定变量
+        /// </summary>
+        private void VariableBinding()
+        {
+            //this.twtL28.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drDeviceYear"], Mode = BindingMode.OneWay});
+            //this.twtL29.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["drDeviceCarNO"], Mode = BindingMode.OneWay });
+            //this.twtL1.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["drDeviceModelTwo"], Mode = BindingMode.OneWay, UpdateSourceTrigger = UpdateSourceTrigger.Explicit});
+            //this.twtL2.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drDriverType"], Mode = BindingMode.OneWay });
+        }
+
+        private void Twt_CtrGetFocusEvent(int crtTag)
+        {
+        }
+
+        private byte[] bConfigParameter = new byte[3];
+        /// <summary>
+        /// 参数设置
+        /// </summary>
+        private void ParamTwoSet(object sender, RoutedEventArgs e)
+        {
+            bConfigParameter = GlobalData.Instance.ConfigParameter;
+            if (bConfigParameter[0] != 0)
+            {
+                byte[] byteToSend = GlobalData.Instance.SendListToByte(new List<byte>() { 80, 33, 23, bConfigParameter[0], bConfigParameter[1], bConfigParameter[2], 0 });
+                GlobalData.Instance.da.SendBytes(byteToSend);
             }
         }
     }

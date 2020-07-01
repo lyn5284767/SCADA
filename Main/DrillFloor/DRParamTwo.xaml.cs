@@ -1,5 +1,4 @@
 ﻿using COM.Common;
-using ControlLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +17,7 @@ using System.Windows.Shapes;
 namespace Main.DrillFloor
 {
     /// <summary>
-    /// DRParamFour.xaml 的交互逻辑
+    /// DRParamThree.xaml 的交互逻辑
     /// </summary>
     public partial class DRParamTwo : UserControl
     {
@@ -42,23 +41,21 @@ namespace Main.DrillFloor
                 return _instance;
             }
         }
-        System.Threading.Timer timer;
         public DRParamTwo()
         {
             InitializeComponent();
             timer = new System.Threading.Timer(new TimerCallback(Timer_Elapsed), this, 2000, 100);
-            this.Loaded += DRParamTwo_Loaded;
-            VariableBinding();
+            this.Loaded += DRParamFour_Loaded;
         }
-
+        System.Threading.Timer timer;
         System.Timers.Timer pageChange;
         int sendCount = 0;
-        private void DRParamTwo_Loaded(object sender, RoutedEventArgs e)
+        private void DRParamFour_Loaded(object sender, RoutedEventArgs e)
         {
-            byte[] byteToSend = new byte[10] { 80, 33, 12, 0, 0, 0, 1, 0, 0, 38 };
+            byte[] byteToSend = new byte[10] { 80, 33, 12, 0, 0, 0, 1, 0, 0, 39 };
             GlobalData.Instance.da.SendBytes(byteToSend);
             sendCount = 0;
-            GlobalData.Instance.DRNowPage = "paramTwo";
+            GlobalData.Instance.DRNowPage = "paramThree";
             pageChange = new System.Timers.Timer(500);
             pageChange.Elapsed += PageChange_Elapsed; ;
             pageChange.Enabled = true;
@@ -70,16 +67,17 @@ namespace Main.DrillFloor
         private void PageChange_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             sendCount++;
-            if (GlobalData.Instance.da["drPageNum"].Value.Byte == 38 || sendCount>5 || GlobalData.Instance.DRNowPage != "paramTwo")
+            if (GlobalData.Instance.da["drPageNum"].Value.Byte == 39 || sendCount>5 || GlobalData.Instance.DRNowPage != "paramThree")
             {
                 pageChange.Stop();
             }
             else
             {
-                byte[] data = new byte[10] { 80, 33, 0, 0, 0, 0, 0, 0, 0, 38 };
+                byte[] data = new byte[10] { 80, 33, 0, 0, 0, 0, 0, 0, 0, 39 };
                 GlobalData.Instance.da.SendBytes(data);
             }
         }
+
 
         private void Timer_Elapsed(object obj)
         {
@@ -90,43 +88,42 @@ namespace Main.DrillFloor
                     int groupNO = GlobalData.Instance.da["drGroup"].Value.Byte;
                     if (groupNO == 1)
                     {
-                        this.twtL1.ShowText = GlobalData.Instance.da["drDeviceModelTwo"].ToString();// 设备机型
-                        this.twtL2.ShowText = GlobalData.Instance.da["drDriverType"].ToString(); // 驱动器型号
-                        this.twtL4.ShowText = GlobalData.Instance.da["drDrillSetting"].ToString(); // 左右钻铤有误
-                        this.twtL5.ShowText = GlobalData.Instance.da["drDrillNum"].ToString(); // 单边钻铤数量
-                        this.twtR6.ShowText = GlobalData.Instance.da["drCarMoveDis"].ToString(); // 小车单圈行走值
-                        this.twtR7.ShowText = GlobalData.Instance.da["drCarMoveReduce"].ToString(); // 小车减速比
-                        this.twtR8.ShowText = GlobalData.Instance.da["drCarMaxSpeed"].ToString(); // 小车空载最大速度
-                        this.twtR9.ShowText = GlobalData.Instance.da["drCarWithDrillOneMaxSpeed"].ToString(); // 小车钻杆最大速度
-                        this.twtR10.ShowText = GlobalData.Instance.da["drCarWithDrillTwoMaxSpeed"].ToString(); // 小车钻铤最大速度
-                        this.twtR11.ShowText = GlobalData.Instance.da["drHandMoveReduce"].ToString(); // 手臂减速比
-                        this.twtR12.ShowText = GlobalData.Instance.da["drHandMaxSpeed"].ToString(); // 手臂空载最大速度
-                        this.twtR13.ShowText = GlobalData.Instance.da["drHandWithDrillOneMaxSpeed"].ToString(); // 手臂钻杆最大速度
-                        this.twtR14.ShowText = GlobalData.Instance.da["drHandWithDrillTwoMaxSpeed"].ToString(); // 手臂钻铤最大速度
-                        this.twtR15.ShowText = GlobalData.Instance.da["drRotateMoveReduce"].ToString(); // 回转减速比
-                        this.twtR16.ShowText = GlobalData.Instance.da["drRotateMaxSpeed"].ToString(); // 回转空载最大速度
-                        this.twtR17.ShowText = GlobalData.Instance.da["drRotateWithDrillOneMaxSpeed"].ToString(); // 回转钻杠最大速度
-                        this.twtR18.ShowText = GlobalData.Instance.da["drRotateWithDrillTwoMaxSpeed"].ToString(); // 回转钻铤最大速度
+                        this.twtL51.ShowText = GlobalData.Instance.da["drReachMaxElectric"].ToString();// 伸出最大电流
+                        this.twtL52.ShowText = GlobalData.Instance.da["drReachMinElectric"].ToString(); // 伸出最小电流
+                        this.twtL53.ShowText = GlobalData.Instance.da["drReachSpeedRaise"].ToString(); // 伸出加速度
+                        this.twtL54.ShowText = GlobalData.Instance.da["drReachSpeedDown"].ToString(); // 伸出减速度
+                        this.twtL55.ShowText = GlobalData.Instance.da["drReachSpeedCircle"].ToString(); // 伸出加减速周期
+                        this.twtL56.ShowText = GlobalData.Instance.da["drReachSpeedReducePoint"].ToString(); // 伸出缓冲距离
+
+                        this.twtL57.ShowText = GlobalData.Instance.da["drRetractMaxElectric"].ToString(); // 缩回最大电流
+                        this.twtL58.ShowText = GlobalData.Instance.da["drRetractMinElectric"].ToString(); // 缩回最小电流
+                        this.twtL59.ShowText = GlobalData.Instance.da["drRetractSpeedRaise"].ToString(); // 缩回加速度
+                        this.twtL60.ShowText = GlobalData.Instance.da["drRetractSpeedDown"].ToString(); // 缩回减速度
+                        this.twtL61.ShowText = GlobalData.Instance.da["drRetractSpeedCircle"].ToString(); // 缩回加减速周期
+                        this.twtL62.ShowText = GlobalData.Instance.da["drRetractReducePoint"].ToString(); // 缩回缓冲距离
+                        this.twtL63.ShowText = GlobalData.Instance.da["drSideMoveTime"].ToString(); // 侧移工作时间
+                        this.twtL65.ShowText = GlobalData.Instance.da["drReachLoadElectric"].ToString(); // 伸出缓冲电流
+                        this.twtL66.ShowText = GlobalData.Instance.da["drRetractLoadElectric"].ToString(); // 缩回缓冲电流
                     }
                     else if (groupNO == 2)
                     {
-                        this.twtL19.ShowText = GlobalData.Instance.da["drDrillOneWidth"].ToString();// 钻杠指梁宽度
-                        this.twtL20.ShowText = GlobalData.Instance.da["drDrillOneSpace"].ToString(); // 钻杠指梁壁厚
-                        this.twtL21.ShowText = GlobalData.Instance.da["drDrillTwoWidth"].ToString(); // 钻铤指梁宽度
-                        this.twtL22.ShowText = GlobalData.Instance.da["drDrillTwoSpace"].ToString(); // 钻铤指梁厚度
-                        this.twtL23.ShowText = GlobalData.Instance.da["drDrillSettingNum"].ToString(); // 钻铤设置值
-                        this.twtR24.ShowText = GlobalData.Instance.da["drArmMaxPos"].ToString(); // 手臂最大距离
-                        this.twtL25.ShowText = GlobalData.Instance.da["drRowsNum"].ToString(); // 单边钻杆排数
-                        this.twtL36.ShowText = GlobalData.Instance.da["dr3Num"].ToString(); // 3寸钻杠容量
-                        this.twtL37.ShowText = GlobalData.Instance.da["dr3AndHalfNum"].ToString(); // 3.5寸钻杆容量
-                        this.twtL39.ShowText = GlobalData.Instance.da["dr4Num"].ToString(); // 4寸钻杆容量
-                        this.twtL40.ShowText = GlobalData.Instance.da["dr4AndHalfNum"].ToString(); // 4.5寸钻杆容量
-                        this.twtL41.ShowText = GlobalData.Instance.da["dr5Num"].ToString(); // 5寸钻杠容量
-                        this.twtL42.ShowText = GlobalData.Instance.da["dr5AndHalfNum"].ToString(); // 5.5寸钻杠容量
-                        this.twtL28.ShowText = GlobalData.Instance.da["drDeviceYear"].ToString(); // 设备年份
-                        this.twtL29.ShowText = GlobalData.Instance.da["drDeviceCarNO"].ToString(); // 设备机号
+                        this.twtR71.ShowText = GlobalData.Instance.da["drDrillLength"].ToString();// 钻杆长度
+                        this.twtR72.ShowText = GlobalData.Instance.da["drFirstToWellLength"].ToString(); // 第一根距井口距离
+                        this.twtR73.ShowText = GlobalData.Instance.da["drLeftOneDev"].ToString(); // 小车左第一根偏移
+                        this.twtR74.ShowText = GlobalData.Instance.da["drLeftSlopeAdjust"].ToString(); // 小车左调整斜率
+                        this.twtR75.ShowText = GlobalData.Instance.da["drRightOneDev"].ToString(); // 小车右第一根偏移
+                        this.twtR76.ShowText = GlobalData.Instance.da["drRightSlopeAdjust"].ToString(); // 小车右调整斜率
+                        this.twtR77.ShowText = GlobalData.Instance.da["drDrillUpSlope"].ToString(); // 排杆小车偏移
+                        this.twtR78.ShowText = GlobalData.Instance.da["drDrillDownSlope"].ToString(); // 送杆小车偏移
+                        this.twtR79.ShowText = GlobalData.Instance.da["dr3FirstFix"].ToString(); // 3寸第一根手臂修正
+                        this.twtR80.ShowText = GlobalData.Instance.da["dr4FirstFix"].ToString(); // 4寸第一根手臂修正
+                        this.twtR81.ShowText = GlobalData.Instance.da["dr5FirstFix"].ToString(); // 5寸第一根手臂修正
+                        //this.twtR82.ShowText = GlobalData.Instance.da["dr5Num"].ToString(); // 预留
+                        this.twtR83.ShowText = GlobalData.Instance.da["drArmOneDev"].ToString(); // 手臂第一根偏移
+                        this.twtR84.ShowText = GlobalData.Instance.da["drArmSlopeFix"].ToString(); // 手臂调整斜率
+                        this.twtR85.ShowText = GlobalData.Instance.da["drDrillDownSlope2"].ToString(); // 送杆小车偏移2
+                        this.twtR86.ShowText = GlobalData.Instance.da["drDrillDownSlope3"].ToString(); // 送杆小车偏移3
                     }
-                   
                 }));
             }
             catch (Exception ex)
@@ -135,31 +132,20 @@ namespace Main.DrillFloor
             }
         }
 
-        /// <summary>
-        /// 绑定变量
-        /// </summary>
-        private void VariableBinding()
-        {
-            //this.twtL28.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drDeviceYear"], Mode = BindingMode.OneWay});
-            //this.twtL29.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["drDeviceCarNO"], Mode = BindingMode.OneWay });
-            //this.twtL1.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["drDeviceModelTwo"], Mode = BindingMode.OneWay, UpdateSourceTrigger = UpdateSourceTrigger.Explicit});
-            //this.twtL2.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drDriverType"], Mode = BindingMode.OneWay });
-        }
-
         private void Twt_CtrGetFocusEvent(int crtTag)
         {
-        }
 
+        }
         private byte[] bConfigParameter = new byte[3];
         /// <summary>
         /// 参数设置
         /// </summary>
-        private void ParamTwoSet(object sender, RoutedEventArgs e)
+        private void ParamThreeSet(object sender, RoutedEventArgs e)
         {
             bConfigParameter = GlobalData.Instance.ConfigParameter;
             if (bConfigParameter[0] != 0)
             {
-                byte[] byteToSend = GlobalData.Instance.SendListToByte(new List<byte>() { 80, 33, 23, bConfigParameter[0], bConfigParameter[1], bConfigParameter[2], 0 });
+                byte[] byteToSend = GlobalData.Instance.SendListToByte(new List<byte>() { 80, 33, 23, bConfigParameter[0], bConfigParameter[1], bConfigParameter[2], 2 });
                 GlobalData.Instance.da.SendBytes(byteToSend);
             }
         }

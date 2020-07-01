@@ -1,0 +1,171 @@
+﻿<UserControl x:Class="Main.DrillFloor.DRPosSetting"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Main.DrillFloor"
+             xmlns:cl="http://talonzeng.com/ControlLibrary"
+             mc:Ignorable="d" 
+             Foreground="#525252" FontSize="14" Background="#F5F6FA" d:DesignHeight="650" d:DesignWidth="1024" Margin="1" Name="drDRPosSetting">
+    <UserControl.Resources>
+        <Style TargetType="Label">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="微软雅黑"/>
+            <Setter Property="Foreground" Value="#3C3C44"/>
+        </Style>
+        <Style TargetType="Button" x:Key="btnGreen">
+            <Setter Property="Background" Value="#fff"/>
+            <Setter Property="Foreground" Value="#000"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="5" BorderThickness="1" Padding="5" BorderBrush="#000">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                            </ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Green"/>
+                    <Setter Property="Foreground" Value="#fff"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="5"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="315">
+                    <StackPanel Orientation="Horizontal">
+                        <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
+                            <TextBlock Text="小&#x0a;车&#x0a;参&#x0a;数&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                        </Border>
+                        <StackPanel>
+                            <cl:TextBlockWithBtn Name="twtL1" ControlTag="1"  TbkText="最靠近井口位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent" />
+                            <cl:TextBlockWithBtn Name="twtL2" ControlTag="2"  TbkText="最远离井口位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtL3" ControlTag="3"  TbkText="左侧第一根" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtL4" ControlTag="4"  TbkText="右侧第一根" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtL5" ControlTag="5"  TbkText="右侧补偿" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtL6" ControlTag="6"  TbkText="排杆待机位" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtL7" ControlTag="7"  TbkText="回收位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtL8" ControlTag="8"  TbkText="井口位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtL10" ControlTag="10"  TbkText="运输位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtL11" ControlTag="11"  TbkText="钻铤指梁位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtL12" ControlTag="12"  TbkText="猫道位" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtL13" ControlTag="13"  TbkText="鼠洞位" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="265">
+                    <StackPanel Orientation="Horizontal">
+                        <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
+                            <TextBlock Text="手&#x0a;臂&#x0a;参&#x0a;数&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                        </Border>
+                        <StackPanel>
+                            <cl:TextBlockWithBtn Name="twtL33" ControlTag="33"  TbkText="最小收缩位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtL34" ControlTag="34"  TbkText="最大伸展位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtL39" ControlTag="39"  TbkText="回收位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtL40" ControlTag="40"  TbkText="井口位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtL42" ControlTag="42"  TbkText="运输位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtL43" ControlTag="43"  TbkText="钻铤最大位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtL44" ControlTag="44"  TbkText="猫道位" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtL45" ControlTag="45"  TbkText="鼠道位" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtL46" ControlTag="46"  TbkText="猫道限制位" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtL47" ControlTag="47"  TbkText="猫道井口位" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="260">
+                    <StackPanel Orientation="Horizontal">
+                        <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
+                            <TextBlock Text="回&#x0a;转&#x0a;电&#x0a;机&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                        </Border>
+                        <StackPanel>
+                            <cl:TextBlockWithBtn Name="twtR65" ControlTag="65"  TbkText="左90°位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtR66" ControlTag="66"  TbkText="右90°位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtR70" ControlTag="70"  TbkText="排杆待机位" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtR71" ControlTag="71"  TbkText="回收位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtR72" ControlTag="72"  TbkText="井口位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtR74" ControlTag="74"  TbkText="运输位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtR76" ControlTag="76"  TbkText="猫道位" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtR77" ControlTag="77"  TbkText="鼠道位" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtR78" ControlTag="78"  TbkText="猫道限制位" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtR79" ControlTag="79"  TbkText="猫道井口位" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="315">
+                    <StackPanel Orientation="Horizontal">
+                        <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
+                            <TextBlock Text="钻&#x0a;铤&#x0a;位&#x0a;置&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                        </Border>
+                        <StackPanel>
+                            <cl:TextBlockWithBtn Name="twtR49" ControlTag="49"  TbkText="左1#钻铤位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtR50" ControlTag="50"  TbkText="左2#钻铤位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtR51" ControlTag="51"  TbkText="左3#钻铤位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtR52" ControlTag="52"  TbkText="左4#钻铤位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtR53" ControlTag="53"  TbkText="左5#钻铤位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtR54" ControlTag="54"  TbkText="左6#钻铤位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtR55" ControlTag="55"  TbkText="右1#钻铤位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtR56" ControlTag="56"  TbkText="右2#钻铤位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtR57" ControlTag="57"  TbkText="右3#钻铤位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtR58" ControlTag="58"  TbkText="右4#钻铤位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtR59" ControlTag="59"  TbkText="右5#钻铤位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtR60" ControlTag="60"  TbkText="右6#钻铤位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="55">
+                <StackPanel Orientation="Horizontal">
+                    <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
+                        <TextBlock Text="抓&#x0a;手"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                    </Border>
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" >
+                            <TextBlock Name="tbk" Text="当前值" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="18" FontFamily="微软雅黑" FontWeight="Bold"  Width="150" TextAlignment="Center">
+                            </TextBlock>
+                            <TextBox x:Name="tbGripCurrent" IsReadOnly="True" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="12" FontFamily="微软雅黑" FontWeight="Bold" Width="95" TextAlignment="Center"/>
+                            <TextBlock x:Name="textBoxSet"  Text="" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="18" FontFamily="微软雅黑" FontWeight="Bold" Background="#F49466" Width="95"  TextAlignment="Center"/>
+                        </StackPanel>
+                        <cl:TextBlockWithBtn Name="twt97" ControlTag="97"  TbkText="关闭设定值" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                    </StackPanel>
+                    <Grid Width="168"></Grid>
+                    <StackPanel>
+                        <cl:TextBlockWithBtn Name="twt98" ControlTag="98"  TbkText="中间设定值" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                        <cl:TextBlockWithBtn Name="twt99" ControlTag="99"  TbkText="打开设定值" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
+        <!--<Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="110"/>
+            </Grid.ColumnDefinitions>
+            --><!--<Button Grid.Column="1" Content="确 定 配 置"  Click="Button_tabItemParameterConfiguration_Confirm"  Style="{StaticResource btnGreen}" FontWeight="Bold" FontFamily="宋体" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="25" IsDefault="False"/>--><!--
+        </Grid>-->
+    </Grid>
+</UserControl>

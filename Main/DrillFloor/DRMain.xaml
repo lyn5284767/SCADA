@@ -154,24 +154,30 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0">
-                            <Menu Background="Transparent" Height="30" Width="95"  FontSize="16" FontWeight="Bold" Foreground="#008AFF">
+                            <Menu Background="Transparent" Height="30" Width="80"  FontSize="18" FontWeight="Bold" Foreground="#008AFF">
                                 <MenuItem>
                                     <MenuItem.Header>
                                         <StackPanel Orientation="Vertical">
-                                            <ContentPresenter Content="目的地选择" />
+                                            <ContentPresenter Content="附属功能" />
                                             <Image Margin="0,2,0,0"  Width="15" Source="..\Images\downTrangle.png" />
                                         </StackPanel>
                                     </MenuItem.Header>
-                                    <MenuItem Header="立根盒" Click="btn_SelectDes" TabIndex="1"/>
-                                    <MenuItem Header="猫道-井口" Click="btn_SelectDes" TabIndex="2"/>
-                                    <MenuItem Header="猫道-鼠洞" Click="btn_SelectDes" TabIndex="3"/>
+                                    <MenuItem Header="目的地选择"  FontSize="24">
+                                        <MenuItem Header="立根盒" Click="btn_SelectDes" TabIndex="1"/>
+                                        <MenuItem Header="猫道-井口" Click="btn_SelectDes" TabIndex="2"/>
+                                        <MenuItem Header="猫道-鼠洞" Click="btn_SelectDes" TabIndex="3"/>
+                                    </MenuItem>
+                                    <MenuItem Header="回零"  FontSize="24">
+                                        <MenuItem Header="小车回零" Click="btn_CarToZero"/>
+                                        <MenuItem Header="旋转回零" Click="btn_RotateToZero"/>
+                                    </MenuItem>
                                 </MenuItem>
                             </Menu>
                             <Grid Height="5"></Grid>
                             <TextBlock Text="未选择目的地" Name="drDestination" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </StackPanel>
                         <StackPanel Grid.Row="1">
-                            <Menu Background="Transparent" Height="30" Width="80"  FontSize="16" FontWeight="Bold" Foreground="#008AFF">
+                            <Menu Background="Transparent" Height="30" Width="80"  FontSize="18" FontWeight="Bold" Foreground="#008AFF">
                                 <MenuItem >
                                     <MenuItem.Header>
                                         <StackPanel Orientation="Vertical">
@@ -179,7 +185,7 @@
                                             <Image Margin="0,2,0,0"  Width="15" Source="..\Images\downTrangle.png" />
                                         </StackPanel>
                                     </MenuItem.Header>
-                                    <MenuItem Header="钻铤">
+                                    <MenuItem Header="钻铤"  FontSize="24">
                                         <MenuItem Header="6''钻铤" Click="btn_SelectDrillPipe"  TabIndex="60"/>
                                         <MenuItem Header="6.5''钻铤" Click="btn_SelectDrillPipe"  TabIndex="65"/>
                                         <MenuItem Header="7''钻铤" Click="btn_SelectDrillPipe"  TabIndex="70"/>
@@ -188,7 +194,7 @@
                                         <MenuItem Header="10''钻铤" Click="btn_SelectDrillPipe"  TabIndex="100"/>
                                         <MenuItem Header="11''钻铤" Click="btn_SelectDrillPipe"  TabIndex="110"/>
                                     </MenuItem>
-                                    <MenuItem Header="钻杆">
+                                    <MenuItem Header="钻杆"  FontSize="24">
                                         <MenuItem Header="3''钻杆" Click="btn_SelectDrillPipe" TabIndex="30"/>
                                         <MenuItem Header="3.5''钻杆" Click="btn_SelectDrillPipe" TabIndex="35"/>
                                         <MenuItem Header="4''钻杆" Click="btn_SelectDrillPipe" TabIndex="40"/>

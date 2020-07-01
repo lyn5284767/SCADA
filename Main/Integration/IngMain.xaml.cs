@@ -61,7 +61,7 @@ namespace Main.Integration
             GlobalData.Instance.da.SendBytes(data);
 
             count = 0;
-            GlobalData.Instance.DRNowPage = "Main";
+            GlobalData.Instance.DRNowPage = "IngMain";
             pageChange = new System.Timers.Timer(500);
             pageChange.Elapsed += PageChange_Elapsed;
             pageChange.Enabled = true;
@@ -75,7 +75,7 @@ namespace Main.Integration
         private void PageChange_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             count++;
-            if (GlobalData.Instance.da["drPageNum"].Value.Byte == 30 || count > 5 || GlobalData.Instance.DRNowPage != "Main")
+            if (GlobalData.Instance.da["drPageNum"].Value.Byte == 30 || count > 5 || GlobalData.Instance.DRNowPage != "IngMain")
             {
                 pageChange.Stop();
             }
@@ -162,8 +162,10 @@ namespace Main.Integration
                 //carMoveModelIsCheckMultiBind.NotifyOnSourceUpdated = true;
                 //this.drCarMoveModel.SetBinding(BasedSwitchButton.IsCheckedProperty, carMoveModelIsCheckMultiBind);
                 #endregion
+                // 6.30新增
+                this.oobLink.SetBinding(OnOffButton.OnOffButtonCheckProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["460b0"], Mode = BindingMode.OneWay });
+                this.tbLink.SetBinding(TextBlock.TextProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["460b0"], Mode = BindingMode.OneWay, Converter = new LinkOpenOrCloseConverter() });
 
-                this.tbLink.SetBinding(ShadowButton.ShadowButtonShowTxtProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["460b0"], Mode = BindingMode.OneWay, Converter = new LinkOpenOrCloseConverter() });
                 this.drDestination.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drDes"], Mode = BindingMode.OneWay, Converter = new DesTypeConverter() });
 
                 MultiBinding LinkErrorMultiBind = new MultiBinding();
@@ -232,6 +234,7 @@ namespace Main.Integration
                 }
             //}
         }
+        bool b459b0 = false; bool b459b1 = false;
         private void Timer_Elapsed(object obj)
         {
             try
@@ -241,6 +244,19 @@ namespace Main.Integration
                     amination.LoadFingerBeamDrillPipe(systemType);
                     this.Warnning();
                     this.AutoChange();
+
+                    if (!GlobalData.Instance.da["459b0"].Value.Boolean) b459b0 = false;
+                    if (!GlobalData.Instance.da["459b1"].Value.Boolean) b459b1 = false;
+                    if (GlobalData.Instance.da["459b0"].Value.Boolean && GlobalData.Instance.DRNowPage != "SFMain" && !b459b0)
+                    {
+                        SFSelectMouseDown(null, null);
+                        b459b0 = true;
+                    }
+                    else if (GlobalData.Instance.da["459b1"].Value.Boolean && GlobalData.Instance.DRNowPage != "DRMain" && !b459b1)
+                    {
+                        DRSelectMouseDown(null, null);
+                        b459b1 = true;
+                    }
                 }));
             }
             catch (Exception ex)
@@ -541,14 +557,14 @@ namespace Main.Integration
                             }
                             else if (this.IngStep.SelectStep > 6 && systemType == SystemType.DrillFloor)
                             {
-                                sfSelectMouseDown(null, null);
+                            SFSelectMouseDown(null, null);
                             }
                         }
                         else if (GlobalData.Instance.da["workModel"].Value.Byte == 1 && GlobalData.Instance.da["drworkModel"].Value.Byte == 1)// 送杆
                         {
                             if (this.IngStep.SelectStep <= 7 && systemType == SystemType.DrillFloor)
                             {
-                                sfSelectMouseDown(null, null);
+                            SFSelectMouseDown(null, null);
                             }
                             else if (this.IngStep.SelectStep > 7 && systemType == SystemType.SecondFloor)
                             {
@@ -847,7 +863,7 @@ namespace Main.Integration
         /// <summary>
         /// 选择二层台
         /// </summary>
-        private void sfSelectMouseDown(object sender, MouseButtonEventArgs e)
+        private void SFSelectMouseDown(object sender, MouseButtonEventArgs e)
         {
             byte[] byteToSend = new byte[10] { 1, 32, 1, 11, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
@@ -875,17 +891,17 @@ namespace Main.Integration
         /// </summary>
         private void LinkOpenOrCloseMouseDown(object sender, MouseButtonEventArgs e)
         {
-            TextBlock tb = sender as TextBlock;
-            if (tbLink.ShadowButtonShowTxt == "联动开启")
-            {
-                byte[] byteToSend = new byte[10] { 1, 32, 10, 1, 0, 0, 0, 0, 0, 0 };
-                GlobalData.Instance.da.SendBytes(byteToSend);
-            }
-            else
-            {
-                byte[] byteToSend = new byte[10] { 1, 32, 10, 0, 0, 0, 0, 0, 0, 0 };
-                GlobalData.Instance.da.SendBytes(byteToSend);
-            }
+            //TextBlock tb = sender as TextBlock;
+            //if (tbLink.ShadowButtonShowTxt == "联动开启")
+            //{
+            //    byte[] byteToSend = new byte[10] { 1, 32, 10, 1, 0, 0, 0, 0, 0, 0 };
+            //    GlobalData.Instance.da.SendBytes(byteToSend);
+            //}
+            //else
+            //{
+            //    byte[] byteToSend = new byte[10] { 1, 32, 10, 0, 0, 0, 0, 0, 0, 0 };
+            //    GlobalData.Instance.da.SendBytes(byteToSend);
+            //}
         }
 
         /// <summary>
@@ -896,6 +912,23 @@ namespace Main.Integration
             int tag = (sender as MenuItem).TabIndex;
             byte[] byteToSend = new byte[10] { 80, 33, 11, (byte)tag, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 联动打开/关闭
+        /// </summary>
+        /// <param name="isChecked"></param>
+        private void OnOffButton_CBCheckedEvent(bool isChecked)
+        {
+            if (isChecked)
+            {
+                byte[] byteToSend = new byte[10] { 1, 32, 10, 1, 0, 0, 0, 0, 0, 0 };
+                GlobalData.Instance.da.SendBytes(byteToSend);
+            }
+            else
+            {
+                byte[] byteToSend = new byte[10] { 1, 32, 10, 0, 0, 0, 0, 0, 0, 0 };
+                GlobalData.Instance.da.SendBytes(byteToSend);
+            }
         }
     }
 }

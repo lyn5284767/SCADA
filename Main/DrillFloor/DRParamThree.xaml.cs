@@ -1,4 +1,5 @@
 ﻿using COM.Common;
+using ControlLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ using System.Windows.Shapes;
 namespace Main.DrillFloor
 {
     /// <summary>
-    /// DRParamThree.xaml 的交互逻辑
+    /// DRParamTwo.xaml 的交互逻辑
     /// </summary>
     public partial class DRParamThree : UserControl
     {
@@ -41,21 +42,64 @@ namespace Main.DrillFloor
                 return _instance;
             }
         }
+
+        //System.Threading.Timer timer;
         public DRParamThree()
         {
             InitializeComponent();
-            timer = new System.Threading.Timer(new TimerCallback(Timer_Elapsed), this, 2000, 100);
-            this.Loaded += DRParamFour_Loaded;
+            VariableBinding();
+            //timer = new System.Threading.Timer(new TimerCallback(Timer_Elapsed), this, 2000, 100);
+            this.Loaded += DRParamThree_Loaded;
         }
-        System.Threading.Timer timer;
+
+        private void Timer_Elapsed(object obj)
+        {
+            try
+            {
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                }));
+            }
+            catch (Exception ex)
+            {
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+            }
+        }
+
+        /// <summary>
+        /// 绑定变量
+        /// </summary>
+        private void VariableBinding()
+        {
+            try
+            {
+                this.twtL91.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["dr3WidthFix"], Mode = BindingMode.OneWay }); // 3寸宽度修正
+                this.twtL92.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["dr3AndHalfWidthFix"], Mode = BindingMode.OneWay }); // 3.5寸宽度修正
+                this.twtL93.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["dr4WidthFix"], Mode = BindingMode.OneWay }); // 4寸宽度修正
+                this.twtL94.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["dr4AndHalfWidthFix"], Mode = BindingMode.OneWay }); // 4.5寸宽度修正
+                this.twtL95.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["dr5WidthFix"], Mode = BindingMode.OneWay }); // 5寸宽度修正
+                this.twtL96.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["dr5AndHalfWidthFix"], Mode = BindingMode.OneWay }); // 5.5寸宽度修正
+
+                this.twtL1.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drRaiseEffectModel"], Mode = BindingMode.OneWay }); // 提效模式
+                this.twtL2.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drGripOpenCloseModel"], Mode = BindingMode.OneWay }); // 抓手开合模式
+                this.twtL3.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drOperActionAlarm"], Mode = BindingMode.OneWay }); // 运行动作报警
+                this.twtL4.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drSysDelay"], Mode = BindingMode.OneWay }); // 系统延时
+                this.twtL5.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drTimeFix"], Mode = BindingMode.OneWay }); // 时间修正
+            }
+            catch (Exception ex)
+            {
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+            }
+        }
+
         System.Timers.Timer pageChange;
         int sendCount = 0;
-        private void DRParamFour_Loaded(object sender, RoutedEventArgs e)
+        private void DRParamThree_Loaded(object sender, RoutedEventArgs e)
         {
-            byte[] byteToSend = new byte[10] { 80, 33, 12, 0, 0, 0, 1, 0, 0, 39 };
+            byte[] byteToSend = new byte[10] { 80, 33, 12, 0, 0, 0, 1, 0, 0, 40 };
             GlobalData.Instance.da.SendBytes(byteToSend);
             sendCount = 0;
-            GlobalData.Instance.DRNowPage = "paramThree";
+            GlobalData.Instance.DRNowPage = "paramFour";
             pageChange = new System.Timers.Timer(500);
             pageChange.Elapsed += PageChange_Elapsed; ;
             pageChange.Enabled = true;
@@ -67,76 +111,22 @@ namespace Main.DrillFloor
         private void PageChange_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             sendCount++;
-            if (GlobalData.Instance.da["drPageNum"].Value.Byte == 39 || sendCount>5 || GlobalData.Instance.DRNowPage != "paramThree")
+            if (GlobalData.Instance.da["drPageNum"].Value.Byte == 40 || sendCount >5 || GlobalData.Instance.DRNowPage != "paramFour")
             {
                 pageChange.Stop();
             }
             else
             {
-                byte[] data = new byte[10] { 80, 33, 0, 0, 0, 0, 0, 0, 0, 39 };
+                byte[] data = new byte[10] { 80, 33, 0, 0, 0, 0, 0, 0, 0, 40 };
                 GlobalData.Instance.da.SendBytes(data);
             }
         }
 
-
-        private void Timer_Elapsed(object obj)
-        {
-            try
-            {
-                Dispatcher.BeginInvoke(new Action(() =>
-                {
-                    int groupNO = GlobalData.Instance.da["drGroup"].Value.Byte;
-                    if (groupNO == 1)
-                    {
-                        this.twtL51.ShowText = GlobalData.Instance.da["drReachMaxElectric"].ToString();// 伸出最大电流
-                        this.twtL52.ShowText = GlobalData.Instance.da["drReachMinElectric"].ToString(); // 伸出最小电流
-                        this.twtL53.ShowText = GlobalData.Instance.da["drReachSpeedRaise"].ToString(); // 伸出加速度
-                        this.twtL54.ShowText = GlobalData.Instance.da["drReachSpeedDown"].ToString(); // 伸出减速度
-                        this.twtL55.ShowText = GlobalData.Instance.da["drReachSpeedCircle"].ToString(); // 伸出加减速周期
-                        this.twtL56.ShowText = GlobalData.Instance.da["drReachSpeedReducePoint"].ToString(); // 伸出缓冲距离
-
-                        this.twtL57.ShowText = GlobalData.Instance.da["drRetractMaxElectric"].ToString(); // 缩回最大电流
-                        this.twtL58.ShowText = GlobalData.Instance.da["drRetractMinElectric"].ToString(); // 缩回最小电流
-                        this.twtL59.ShowText = GlobalData.Instance.da["drRetractSpeedRaise"].ToString(); // 缩回加速度
-                        this.twtL60.ShowText = GlobalData.Instance.da["drRetractSpeedDown"].ToString(); // 缩回减速度
-                        this.twtL61.ShowText = GlobalData.Instance.da["drRetractSpeedCircle"].ToString(); // 缩回加减速周期
-                        this.twtL62.ShowText = GlobalData.Instance.da["drRetractReducePoint"].ToString(); // 缩回缓冲距离
-                        this.twtL63.ShowText = GlobalData.Instance.da["drSideMoveTime"].ToString(); // 侧移工作时间
-                        this.twtL65.ShowText = GlobalData.Instance.da["drReachLoadElectric"].ToString(); // 伸出缓冲电流
-                        this.twtL66.ShowText = GlobalData.Instance.da["drRetractLoadElectric"].ToString(); // 缩回缓冲电流
-                    }
-                    else if (groupNO == 2)
-                    {
-                        this.twtR71.ShowText = GlobalData.Instance.da["drDrillLength"].ToString();// 钻杆长度
-                        this.twtR72.ShowText = GlobalData.Instance.da["drFirstToWellLength"].ToString(); // 第一根距井口距离
-                        this.twtR73.ShowText = GlobalData.Instance.da["drLeftOneDev"].ToString(); // 小车左第一根偏移
-                        this.twtR74.ShowText = GlobalData.Instance.da["drLeftSlopeAdjust"].ToString(); // 小车左调整斜率
-                        this.twtR75.ShowText = GlobalData.Instance.da["drRightOneDev"].ToString(); // 小车右第一根偏移
-                        this.twtR76.ShowText = GlobalData.Instance.da["drRightSlopeAdjust"].ToString(); // 小车右调整斜率
-                        this.twtR77.ShowText = GlobalData.Instance.da["drDrillUpSlope"].ToString(); // 排杆小车偏移
-                        this.twtR78.ShowText = GlobalData.Instance.da["drDrillDownSlope"].ToString(); // 送杆小车偏移
-                        this.twtR79.ShowText = GlobalData.Instance.da["dr3FirstFix"].ToString(); // 3寸第一根手臂修正
-                        this.twtR80.ShowText = GlobalData.Instance.da["dr4FirstFix"].ToString(); // 4寸第一根手臂修正
-                        this.twtR81.ShowText = GlobalData.Instance.da["dr5FirstFix"].ToString(); // 5寸第一根手臂修正
-                        //this.twtR82.ShowText = GlobalData.Instance.da["dr5Num"].ToString(); // 预留
-                        this.twtR83.ShowText = GlobalData.Instance.da["drArmOneDev"].ToString(); // 手臂第一根偏移
-                        this.twtR84.ShowText = GlobalData.Instance.da["drArmSlopeFix"].ToString(); // 手臂调整斜率
-                        this.twtR85.ShowText = GlobalData.Instance.da["drDrillDownSlope2"].ToString(); // 送杆小车偏移2
-                        this.twtR86.ShowText = GlobalData.Instance.da["drDrillDownSlope3"].ToString(); // 送杆小车偏移3
-                    }
-                }));
-            }
-            catch (Exception ex)
-            {
-                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
-            }
-        }
-
+        private byte[] bConfigParameter = new byte[3];
         private void Twt_CtrGetFocusEvent(int crtTag)
         {
-
         }
-        private byte[] bConfigParameter = new byte[3];
+
         /// <summary>
         /// 参数设置
         /// </summary>
@@ -146,6 +136,18 @@ namespace Main.DrillFloor
             if (bConfigParameter[0] != 0)
             {
                 byte[] byteToSend = GlobalData.Instance.SendListToByte(new List<byte>() { 80, 33, 23, bConfigParameter[0], bConfigParameter[1], bConfigParameter[2], 2 });
+                GlobalData.Instance.da.SendBytes(byteToSend);
+            }
+        }
+        /// <summary>
+        /// 参数设置右侧
+        /// </summary>
+        private void ParamThreeSet2(object sender, RoutedEventArgs e)
+        {
+            bConfigParameter = GlobalData.Instance.ConfigParameter;
+            if (bConfigParameter[0] != 0)
+            {
+                byte[] byteToSend = GlobalData.Instance.SendListToByte(new List<byte>() { 80, 33, 14, bConfigParameter[0], bConfigParameter[1], bConfigParameter[2], 2 });
                 GlobalData.Instance.da.SendBytes(byteToSend);
             }
         }

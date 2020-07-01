@@ -225,7 +225,9 @@ namespace COM.Common
         public bool ComunciationNormal = true;
 
         public int DrillLeftTotal = 0;
-
+        /// <summary>
+        /// 当前页面
+        /// </summary>
         public string DRNowPage = string.Empty;
 
         public SystemRole systemRole;
