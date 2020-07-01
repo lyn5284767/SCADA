@@ -399,21 +399,8 @@ namespace Main
                 }
                 if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
                 {
-                    if (GlobalData.Instance.da["droperationModel"].Value.Byte != 4)//这是判断如果是自动模式，需要切换到手动模式
-                    {
-                        MessageBoxResult result = MessageBox.Show("参数设置需切换至手动模式！确认切换？", "提示", MessageBoxButton.OKCancel);
-                        if (result == MessageBoxResult.OK)
-                        {
-                            byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 1, 4 });
-                            GlobalData.Instance.da.SendBytes(byteToSend);
-                            Thread.Sleep(100);
-                        }
-                        else
-                        {
-                            return;
-                        }
-                    }
-                    if (GlobalData.Instance.da["droperationModel"].Value.Byte == 4)
+                    if (!SFToHandleModel()) return;
+                    if (GlobalData.Instance.da["operationModel"].Value.Byte == 4)
                     {
                         byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 23, 0 });
                         GlobalData.Instance.da.SendBytes(byteToSend);
@@ -429,11 +416,7 @@ namespace Main
                 }
                 else if (GlobalData.Instance.systemType == SystemType.DrillFloor)
                 {
-                    if (GlobalData.Instance.da["droperationModel"].Value.Byte == 5)//这是判断如果是自动模式，需要切换到手动模式
-                    {
-                        MessageBox.Show("当下模式为自动模式，如需参数配置，请切换至手动模式！");
-                        return;
-                    }
+                    if (!DRToHandleModel()) return;
                     this.spMain.Children.Clear();
                     this.spMain.Children.Add(DRParamSettingMain.Instance);
                     this.BottomColorSetting(this.bdDR, this.tbDR, this.bdOther);
@@ -466,20 +449,7 @@ namespace Main
                 }
                 if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
                 {
-                    if (GlobalData.Instance.da["operationModel"].Value.Byte != 4)//这是判断如果是自动模式，需要切换到手动模式
-                    {
-                        MessageBoxResult result = MessageBox.Show("位置补偿需切换至手动模式！确认切换？", "提示", MessageBoxButton.OKCancel);
-                        if (result == MessageBoxResult.OK)
-                        {
-                            byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 1, 4 });
-                            GlobalData.Instance.da.SendBytes(byteToSend);
-                            Thread.Sleep(100);
-                        }
-                        else
-                        {
-                            return;
-                        }
-                    }
+                    if (!SFToHandleModel()) return;
                     if (GlobalData.Instance.da["operationModel"].Value.Byte == 4)
                     {
                         byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 12, 0 });
@@ -496,20 +466,7 @@ namespace Main
                 }
                 else if (GlobalData.Instance.systemType == SystemType.DrillFloor)
                 {
-                    if (GlobalData.Instance.da["droperationModel"].Value.Byte != 4)//这是判断如果是自动模式，需要切换到手动模式
-                    {
-                        MessageBoxResult result = MessageBox.Show("位置补偿需切换至手动模式！确认切换？", "提示", MessageBoxButton.OKCancel);
-                        if (result == MessageBoxResult.OK)
-                        {
-                            byte[] byteToSend = new byte[10] { 1, 32, 3, 30, 0, 0, 0, 0, 0, 0 };
-                            GlobalData.Instance.da.SendBytes(byteToSend);
-                            Thread.Sleep(100);
-                        }
-                        else
-                        {
-                            return;
-                        }
-                    }
+                    if (!DRToHandleModel()) return;
                     if (GlobalData.Instance.da["droperationModel"].Value.Byte == 4)
                     {
                         this.spMain.Children.Clear();
@@ -549,20 +506,7 @@ namespace Main
                 }
                 if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
                 {
-                    if (GlobalData.Instance.da["operationModel"].Value.Byte !=4)//这是判断如果是自动模式，需要切换到手动模式
-                    {
-                        MessageBoxResult result = MessageBox.Show("位置补偿需切换至手动模式！确认切换？","提示", MessageBoxButton.OKCancel);
-                        if (result == MessageBoxResult.OK)
-                        {
-                            byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 1, 4 });
-                            GlobalData.Instance.da.SendBytes(byteToSend);
-                            Thread.Sleep(100);
-                        }
-                        else
-                        {
-                            return;
-                        }
-                    }
+                    if (!SFToHandleModel()) return;
                     if (GlobalData.Instance.da["operationModel"].Value.Byte == 4)
                     {
                         byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 1, 9 });
@@ -931,6 +875,61 @@ namespace Main
                 MessageBox.Show(ex.StackTrace);
             }
 
+        }
+        /// <summary>
+        /// 二层台-切换到手动模式
+        /// </summary>
+        private bool SFToHandleModel()
+        {
+            if (GlobalData.Instance.da["operationModel"].Value.Byte != 4)//这是判断如果是自动模式，需要切换到手动模式
+            {
+                MessageBoxResult result = MessageBox.Show("需切换至手动模式！确认切换？", "提示", MessageBoxButton.OKCancel);
+                if (result == MessageBoxResult.OK)
+                {
+                    byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 1, 4 });
+                    GlobalData.Instance.da.SendBytes(byteToSend);
+                    int count = 0;
+                    while (GlobalData.Instance.da["operationModel"].Value.Byte != 4 || count > 5)
+                    {
+                        count++;
+                        Thread.Sleep(50);
+                    }
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// 钻台面-切换到手动模式
+        /// </summary>
+        private bool DRToHandleModel()
+        {
+            if (GlobalData.Instance.da["droperationModel"].Value.Byte != 4)//这是判断如果是自动模式，需要切换到手动模式
+            {
+                MessageBoxResult result = MessageBox.Show("需切换至手动模式！确认切换？", "提示", MessageBoxButton.OKCancel);
+                if (result == MessageBoxResult.OK)
+                {
+                    byte[] byteToSend = new byte[10] { 1, 32, 3, 30, 0, 0, 0, 0, 0, 0 };
+                    GlobalData.Instance.da.SendBytes(byteToSend);
+                    int count = 0;
+                    while (GlobalData.Instance.da["droperationModel"].Value.Byte != 4 || count > 5)
+                    {
+                        count++;
+                        Thread.Sleep(50);
+                    }
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

@@ -2247,7 +2247,7 @@ namespace COM.Common
             {
                 armPosition = (double)(PositionSbyteToInt((short)(values[5])));
             }
-            double armPos = ((armPosition / GlobalData.Instance.ArmMaxPosistion * tubeActualWidth/2) * Math.Cos(rotateAngle * Math.PI / 180) + (-((carPosition - GlobalData.Instance.CarMinPosistion) / (GlobalData.Instance.CarMaxPosistion - GlobalData.Instance.CarMinPosistion) * tubeActualHeight) + heightToMiddle));
+            double armPos = ((armPosition / GlobalData.Instance.ArmMaxPosistion * tubeActualWidth / 2.5) * Math.Cos(rotateAngle * Math.PI / 180) + (-((carPosition - GlobalData.Instance.CarMinPosistion) / (GlobalData.Instance.CarMaxPosistion - GlobalData.Instance.CarMinPosistion) * tubeActualHeight) + heightToMiddle));
 
             return armPos;
         }
@@ -2345,7 +2345,7 @@ namespace COM.Common
             {
                 armPosition = (double)(((short)(values[5])));
             }
-            double armPos = ((armPosition / GlobalData.Instance.DRArmMaxPosistion * tubeActualWidth) * Math.Cos(rotateAngle * Math.PI / 180) + (-((carPosition - GlobalData.Instance.DRCarMinPosistion) / (GlobalData.Instance.DRCarMaxPosistion - GlobalData.Instance.DRCarMinPosistion) * tubeActualHeight) + heightToMiddle));
+            double armPos = ((armPosition / GlobalData.Instance.DRArmMaxPosistion * tubeActualWidth/2.5) * Math.Cos(rotateAngle * Math.PI / 180) + (-((carPosition - GlobalData.Instance.DRCarMinPosistion) / (GlobalData.Instance.DRCarMaxPosistion - GlobalData.Instance.DRCarMinPosistion) * tubeActualHeight) + heightToMiddle));
 
             return armPos;
         }
