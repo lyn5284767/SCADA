@@ -32,7 +32,7 @@ namespace Main
             this.Loaded += MainWindow_Loaded;
 
             timer = new DispatcherTimer();
-            timer.Interval = new TimeSpan(10000000);   //时间间隔为一秒
+            timer.Interval = new TimeSpan(2000000);   //时间间隔为一秒
             timer.Tick += new EventHandler(timer_Tick);
 
             serviceTimer = new System.Timers.Timer(60 * 60 * 1000);
@@ -466,7 +466,7 @@ namespace Main
                 }
                 else if (GlobalData.Instance.systemType == SystemType.DrillFloor)
                 {
-                    if (!DRToHandleModel()) return;
+                   if (!DRToHandleModel()) return;
                     if (GlobalData.Instance.da["droperationModel"].Value.Byte == 4)
                     {
                         this.spMain.Children.Clear();
