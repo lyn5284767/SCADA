@@ -456,34 +456,34 @@ namespace Main
                 }
                 if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
                 {
-                    //if (!SFToHandleModel()) return;
-                    //if (GlobalData.Instance.da["operationModel"].Value.Byte == 4)
-                    //{
+                    if (!SFToHandleModel()) return;
+                    if (GlobalData.Instance.da["operationModel"].Value.Byte == 4)
+                    {
                         byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 12, 0 });
                         GlobalData.Instance.da.SendBytes(byteToSend);
 
                         this.spMain.Children.Clear();
                         this.spMain.Children.Add(SFPositionSetting.Instance);
                         this.BottomColorSetting(this.bdSf, this.tbSf, this.bdOther);
-                    //}
-                    //else
-                    //{
-                    //    MessageBox.Show("手动模式切换失败，请回主界面再次尝试！！");
-                    //}
+                    }
+                    else
+                    {
+                        MessageBox.Show("手动模式切换失败，请回主界面再次尝试！！");
+                    }
                 }
                 else if (GlobalData.Instance.systemType == SystemType.DrillFloor)
                 {
-                    //if (!DRToHandleModel()) return;
-                    //if (GlobalData.Instance.da["droperationModel"].Value.Byte == 4)
-                    //{
+                    if (!DRToHandleModel()) return;
+                    if (GlobalData.Instance.da["droperationModel"].Value.Byte == 4)
+                    {
                         this.spMain.Children.Clear();
                         this.spMain.Children.Add(DRPosSetting.Instance);
                         this.BottomColorSetting(this.bdSf, this.tbSf, this.bdOther);
-                    //}
-                    //else
-                    //{
-                    //    MessageBox.Show("手动模式切换失败，请回主界面再次尝试！");
-                    //}
+                    }
+                    else
+                    {
+                        MessageBox.Show("手动模式切换失败，请回主界面再次尝试！");
+                    }
                 }
                 else if (GlobalData.Instance.systemType == SystemType.SIR)
                 {
