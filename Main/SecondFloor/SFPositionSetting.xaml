@@ -186,6 +186,7 @@
                 <ColumnDefinition Width="140"/>
                 <ColumnDefinition Width="100"/>
                 <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0" Name="caliMenu">
                 <Menu Height="30" Width="135"  FontSize="16" FontFamily="宋体" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
@@ -371,8 +372,9 @@
                     </MenuItem>
                 </Menu>
             </Grid>
-            <Button Style="{StaticResource btnGreen}" Grid.Column="5" Height="35" Click="Save_Click">一键保存</Button>
-            <Button Style="{StaticResource btnGreen}" Grid.Column="6" Height="35" Click="Import_Click">一键导入</Button>
+            <TextBox Grid.Column="5" Height="30" Text="200" PreviewMouseDown="tb_ParameterConfig_Focus"></TextBox>
+            <Button Style="{StaticResource btnGreen}" Grid.Column="6" Height="35" Click="Save_Click">一键保存</Button>
+            <Button Style="{StaticResource btnGreen}" Grid.Column="7" Height="35" Click="Import_Click">一键导入</Button>
         </Grid>
         <Grid Grid.Row="3">
             <DataGrid Name="lvCali" FontSize="20" FontFamily="微软雅黑" AutoGenerateColumns="False" ScrollViewer.VerticalScrollBarVisibility="Visible">

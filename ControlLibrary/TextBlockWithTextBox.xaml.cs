@@ -108,5 +108,15 @@ namespace ControlLibrary
                 this.textBoxSet.Text = "0";
             }
         }
+
+        private void tb_ParameterConfig_Focus(object sender, MouseButtonEventArgs e)
+        {
+            this.sh.Opacity = 0.5;
+            if (CtrGetFocusEvent != null)
+            {
+                CtrGetFocusEvent(this.ControlTag);
+            }
+            GlobalData.Instance.GetKeyBoard();
+        }
     }
 }

@@ -327,6 +327,11 @@ namespace Main.SecondFloor
         {
             var list = this.calList;
         }
+
+        private void tb_ParameterConfig_Focus(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 
     public class Calibration
