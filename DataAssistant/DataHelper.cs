@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
@@ -165,7 +166,7 @@ namespace DatabaseLib
                         m_ConnStr = sb.ToString();
                     }
                 }
-
+                //_ins = new SQLiteFac();
                 switch (m_type.ToUpper())
                 {
                     case "MSSQL":
@@ -173,6 +174,9 @@ namespace DatabaseLib
                         break;
                     case "ACCESS":
                         _ins = new AccessFactory();
+                        break;
+                    case "SQLITE":
+                        _ins = new SQLiteFac();
                         break;
                     default:
                         _ins = new AccessFactory();
@@ -309,6 +313,13 @@ namespace DatabaseLib
         [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
         private static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
 
+        [System.Runtime.InteropServices.DllImportAttribute("user32.dll", EntryPoint = "MoveWindow")]
+        public static extern bool MoveWindow(System.IntPtr hWnd, int X, int Y, int nWidth, int nHeight, bool bRepaint);
+
+
+        [DllImport("user32.dll")]
+        static extern bool SetForegroundWindow(IntPtr hWnd);
+
 
         public static void TextBox_Name_LostFocus(object sender, EventArgs e)
         {
@@ -321,16 +332,53 @@ namespace DatabaseLib
 
         public static void TextBox_Name_GotFocus(object sender, EventArgs e)
         {
+            //try
+            //{
+            //    dynamic file = "C:\\Program Files\\Common Files\\microsoft shared\\ink\\TabTip.exe";
+            //    if (!System.IO.File.Exists(file))
+            //        return;
+            //    Process.Start(file);
+            //}
+            //catch (Exception a)
+            //{
+            //    MessageBox.Show(a.Message);
+            //}
+
+            //打开软键盘
             try
             {
-                dynamic file = "C:\\Program Files\\Common Files\\microsoft shared\\ink\\TabTip.exe";
-                if (!System.IO.File.Exists(file))
-                    return;
-                Process.Start(file);
+
+                System.Diagnostics.Process softKey = System.Diagnostics.Process.Start("C:\\Program Files\\Common Files\\microsoft shared\\ink\\TabTip.exe");
+                // 上面的语句在打开软键盘后，系统还没用立刻把软键盘的窗口创建出来了。所以下面的代码用循环来查询窗口是否创建，只有创建了窗口
+                // FindWindow才能找到窗口句柄，才可以移动窗口的位置和设置窗口的大小。这里是关键。
+                IntPtr intptr = IntPtr.Zero;
+                //while (IntPtr.Zero == intptr)
+                //{
+                //    System.Threading.Thread.Sleep(100);
+                    intptr = FindWindow("IPTip_Main_Window", null);
+                //}
+
+
+                // 获取屏幕尺寸
+                int iActulaWidth = Screen.PrimaryScreen.Bounds.Width;
+                int iActulaHeight = Screen.PrimaryScreen.Bounds.Height;
+
+
+                // 设置软键盘的显示位置，底部居中
+                int posX = (iActulaWidth - 1000) / 2;
+                int posY = (iActulaHeight - 300);
+
+
+                //设定键盘显示位置
+                MoveWindow(intptr, posX, posY, 1000, 300, true);
+
+
+                //设置软键盘到前端显示
+                SetForegroundWindow(intptr);
             }
-            catch (Exception a)
+            catch (System.Exception ex)
             {
-                MessageBox.Show(a.Message);
+                MessageBox.Show(ex.Message);
             }
         }
     }

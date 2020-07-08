@@ -61,7 +61,7 @@ namespace Main
         bool b459b1 = false;
         void timer_Tick(object sender, EventArgs e)
         {
-            this.timeLable.Text = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss") +"  ";
+            this.timeLable.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") +"  ";
             if (DateTime.Now.Second % 5 == 0)
             {
                 PingIp("172.16.16.147");
@@ -417,9 +417,16 @@ namespace Main
                 else if (GlobalData.Instance.systemType == SystemType.DrillFloor)
                 {
                     if (!DRToHandleModel()) return;
-                    this.spMain.Children.Clear();
-                    this.spMain.Children.Add(DRParamSettingMain.Instance);
-                    this.BottomColorSetting(this.bdDR, this.tbDR, this.bdOther);
+                    if (GlobalData.Instance.da["droperationModel"].Value.Byte == 4)
+                    {
+                        this.spMain.Children.Clear();
+                        this.spMain.Children.Add(DRParamSettingMain.Instance);
+                        this.BottomColorSetting(this.bdDR, this.tbDR, this.bdOther);
+                    }
+                    else
+                    {
+                        MessageBox.Show("手动模式切换失败，请回主界面再次尝试！");
+                    }
                 }
                 else if (GlobalData.Instance.systemType == SystemType.SIR)
                 {
@@ -449,34 +456,34 @@ namespace Main
                 }
                 if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
                 {
-                    if (!SFToHandleModel()) return;
-                    if (GlobalData.Instance.da["operationModel"].Value.Byte == 4)
-                    {
+                    //if (!SFToHandleModel()) return;
+                    //if (GlobalData.Instance.da["operationModel"].Value.Byte == 4)
+                    //{
                         byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 12, 0 });
                         GlobalData.Instance.da.SendBytes(byteToSend);
 
                         this.spMain.Children.Clear();
                         this.spMain.Children.Add(SFPositionSetting.Instance);
                         this.BottomColorSetting(this.bdSf, this.tbSf, this.bdOther);
-                    }
-                    else
-                    {
-                        MessageBox.Show("手动模式切换失败，请回主界面再次尝试！！");
-                    }
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("手动模式切换失败，请回主界面再次尝试！！");
+                    //}
                 }
                 else if (GlobalData.Instance.systemType == SystemType.DrillFloor)
                 {
-                    if (!DRToHandleModel()) return;
-                    if (GlobalData.Instance.da["droperationModel"].Value.Byte == 4)
-                    {
+                    //if (!DRToHandleModel()) return;
+                    //if (GlobalData.Instance.da["droperationModel"].Value.Byte == 4)
+                    //{
                         this.spMain.Children.Clear();
                         this.spMain.Children.Add(DRPosSetting.Instance);
                         this.BottomColorSetting(this.bdSf, this.tbSf, this.bdOther);
-                    }
-                    else
-                    {
-                        MessageBox.Show("手动模式切换失败，请回主界面再次尝试！");
-                    }
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("手动模式切换失败，请回主界面再次尝试！");
+                    //}
                 }
                 else if (GlobalData.Instance.systemType == SystemType.SIR)
                 {
@@ -889,7 +896,7 @@ namespace Main
                     byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 1, 4 });
                     GlobalData.Instance.da.SendBytes(byteToSend);
                     int count = 0;
-                    while (GlobalData.Instance.da["operationModel"].Value.Byte != 4 || count > 5)
+                    while (GlobalData.Instance.da["operationModel"].Value.Byte != 4 && count < 5)
                     {
                         count++;
                         Thread.Sleep(50);
@@ -917,7 +924,7 @@ namespace Main
                     byte[] byteToSend = new byte[10] { 1, 32, 3, 30, 0, 0, 0, 0, 0, 0 };
                     GlobalData.Instance.da.SendBytes(byteToSend);
                     int count = 0;
-                    while (GlobalData.Instance.da["droperationModel"].Value.Byte != 4 || count > 5)
+                    while (GlobalData.Instance.da["droperationModel"].Value.Byte != 4 && count < 5)
                     {
                         count++;
                         Thread.Sleep(50);

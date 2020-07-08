@@ -11,7 +11,7 @@ using System.Timers;
 using System.Xml;
 using Log;
 using System.Data;
-
+using System.Windows;
 
 namespace DemoDriver
 {
@@ -46,7 +46,7 @@ namespace DemoDriver
         int HDADELAY = 3600 * 1000;
         int ALARMDELAY = 3600 * 1000;
         //int ARCHIVEINTERVAL = 100;//归档周期最快为 100ms
-        int ARCHIVEINTERVAL = 50;//归档周期最快为 50ms
+        int ARCHIVEINTERVAL = 500;//归档周期最快为 50ms
 
         private System.Timers.Timer timer1 = new System.Timers.Timer();
         private System.Timers.Timer timer3 = new System.Timers.Timer();
@@ -184,28 +184,33 @@ namespace DemoDriver
             _driver = new SecondFloorPLCDriver(this, 0, "SecondFloor");//中间参数ID,应为驱动ID 号
             _hda = new List<HistoryData>();
             InitServerByDatabase();
+            //InitServerBySqlite();
             InitConnection();//创建驱动实例，并尝试建立连接
             DeleteHdaFromLog();//删除3天之前的历史数据
 
             timer1.Elapsed += timer1_Elapsed;
             timer3.Elapsed += timer3_Elapsed;
+            timer3.Interval = ARCHIVEINTERVAL;//100ms
+            timer3.Enabled = true;
+            timer3.Start();
+
             timer1.Interval = CYCLE;
             timer1.Enabled = true;
             timer1.Start();
-            if (_hasHda)//用来负责 归档数据的
-            {
-                foreach (var item in _archiveTimes.Values)
-                {
-                    //说白了，只有归档周期不为零，才能开启存储数据的 时钟周期函数
-                    if (item != null)
-                    {
-                        timer3.Interval = ARCHIVEINTERVAL;//100ms
-                        timer3.Enabled = true;
-                        timer3.Start();
-                        return;//对的，这个return  代表归档列表里面有个 Cycle不为0的值，便返回，那么归档的周期也是共用一个归档周期，不是每个变量都有一个周期哈
-                    }
-                }
-            }
+            //if (_hasHda)//用来负责 归档数据的
+            //{
+            //    foreach (var item in _archiveTimes.Values)
+            //    {
+            //        //说白了，只有归档周期不为零，才能开启存储数据的 时钟周期函数
+            //        if (item != null)
+            //        {
+            //            timer3.Interval = ARCHIVEINTERVAL;//100ms
+            //            timer3.Enabled = true;
+            //            timer3.Start();
+            //            return;//对的，这个return  代表归档列表里面有个 Cycle不为0的值，便返回，那么归档的周期也是共用一个归档周期，不是每个变量都有一个周期哈
+            //        }
+            //    }
+            //}
 
         }
 
@@ -281,6 +286,7 @@ namespace DemoDriver
         /// <param name="e"></param>
         private void timer3_Elapsed(object sender, ElapsedEventArgs e)
         {
+            SaveTick++;
             var now = e.SignalTime;
             List<HistoryData> tempData = new List<HistoryData>();
             foreach (var archive in _archiveTimes)
@@ -379,6 +385,76 @@ namespace DemoDriver
                     }
                 }
             }
+            //待归档的列表里面  有 超过一个的 变量,就开启归档
+            if (_archiveTimes.Count > 0)
+            {
+                _hasHda = true;
+                _hda.Capacity = MAXHDACAP;//单次归档的最大数据 1 万条；
+            }
+
+        }
+
+        void InitServerBySqlite()
+        {
+            string sql = "select * from Protocol";
+            List<Protocol> protocolList = DataHelper.Instance.ExecuteList<Protocol>(sql);
+            if (protocolList.Count == 0)
+            {
+                MessageBox.Show("数据库读取失败!");
+                return;
+            }
+            int count = protocolList.Count();
+            _list = new List<TagMetaData>(count);//把所有激活的 数据库记录 都导入 _list<TagMetaData> 里面
+            _mapping = new Dictionary<string, ITag>(count);
+            foreach (Protocol protocol in protocolList)
+            {
+                var meta = new TagMetaData((short)protocol.TagID, (short)protocol.GroupID, protocol.TagName, protocol.Address, protocol.Description, (DataType)protocol.DataType,
+                     (ushort)protocol.DataSize, protocol.Archive == 1?true:false, (float)protocol.Maximum, (float)protocol.Minimum, protocol.Cycle);
+
+                _list.Add(meta);
+                if (meta.Archive)
+                {
+                    //Id 和Cycle 其实就是归档的时间，归档周期没有设定（0），则置为 null
+                    _archiveTimes.Add(meta.ID, meta.Cycle == 0 ? null : new ArchiveTime(meta.Cycle, DateTime.MinValue));//归档的ID,归档的时间
+                }
+                _list.Sort();//只是id 排序就好了
+            }
+
+
+            //using (var dataReader = DataHelper.Instance.ExecuteProcedureReader("InitServer"))
+            //{
+            //    if (dataReader == null) return;// Stopwatch sw = Stopwatch.StartNew();
+
+            //    dataReader.Read();
+            //    int count = dataReader.GetInt32(0);
+            //    _list = new List<TagMetaData>(count);//把所有激活的 数据库记录 都导入 _list<TagMetaData> 里面
+            //    _mapping = new Dictionary<string, ITag>(count);
+            //    dataReader.NextResult();
+            //    while (dataReader.Read())
+            //    {
+            //        var meta = new TagMetaData(dataReader.GetInt16(0), dataReader.GetInt16(1), dataReader.GetString(2), dataReader.GetString(3), dataReader.GetString(10), (DataType)dataReader.GetByte(4),
+            //         (ushort)dataReader.GetInt16(5), dataReader.GetBoolean(6), dataReader.GetFloat(7), dataReader.GetFloat(8), dataReader.GetInt32(9));
+
+            //        _list.Add(meta);
+            //        if (meta.Archive)
+            //        {
+            //            //Id 和Cycle 其实就是归档的时间，归档周期没有设定（0），则置为 null
+            //            _archiveTimes.Add(meta.ID, meta.Cycle == 0 ? null : new ArchiveTime(meta.Cycle, DateTime.MinValue));//归档的ID,归档的时间
+            //        }
+            //    }
+            //    _list.Sort();//只是id 排序就好了
+            //    dataReader.NextResult();
+            //    while (dataReader.Read())
+            //    {
+            //        if (_driver != null)
+            //        {
+            //            IGroup grp = _driver.AddGroup(dataReader.GetString(1), dataReader.GetInt16(2), dataReader.GetInt32(3),
+            //                   dataReader.GetFloat(4), dataReader.GetBoolean(5));
+            //            if (grp != null)
+            //                grp.AddItems(_list);//这里完成 从 _list<TagMetaData> 到 _list<ITag>的转换  ，这个地方是需要根据 GroupID 的不同，生成不同的组别，对应于不同的页面??
+            //        }
+            //    }
+            //}
             //待归档的列表里面  有 超过一个的 变量,就开启归档
             if (_archiveTimes.Count > 0)
             {
@@ -630,6 +706,8 @@ namespace DemoDriver
             return DataHelper.Instance.BulkCopy(new HDASqlReader(GetData(tempdata, startTime, endTime), this), "Log",
                      string.Format("DELETE FROM Log WHERE [TIMESTAMP] BETWEEN '{0}' AND '{1}'", startTime.ToString("yyyy/MM/dd HH:mm:ss"), endTime.ToString("yyyy/MM/dd HH:mm:ss")));
         }
+
+        int SaveTick = 0;
         /// <summary> 
         /// 把数据加入到 Log_HData 进行归档存储
         /// 历史数据归档失败后，会开一个子线程：用于在将来再次尝试进行归档，但是不能无限尝试啊，所以尝试5次后还不成功就丢弃了。
@@ -641,7 +719,7 @@ namespace DemoDriver
             {
                 var tempData = (List<HistoryData>)stateInfo;
                 _hda.AddRange(tempData);//把新产生的数据加入到 _hda末尾；
-                if (_hda.Count >= MAXHDACAP)//这个是每次有 10000条数据才写入数据库里面
+                if (_hda.Count >= 1 && SaveTick >5)//这个是每次有 10000条数据才写入数据库里面
                 {
                     //Reverse(data);
                     DateTime start = _hda[0].TimeStamp;
@@ -651,6 +729,7 @@ namespace DemoDriver
                         _hdastart = DateTime.Now;
                     else ThreadPool.UnsafeQueueUserWorkItem(new WaitCallback(this.SaveCachedData), _hda.ToArray());
                     _hda.Clear();//最后面把列表清空。
+                    SaveTick = 0;
                 }
             }
         }
@@ -794,26 +873,26 @@ namespace DemoDriver
         /// <param name="e"></param>
         void grp_DataChange(object sender, DataChangeEventArgs e)
         {
-            var data = e.Values;//IList<HistoryData> Values
-            var now = DateTime.Now;
-            if (_hasHda)
-            {
-                ArchiveTime archiveTime;
-                List<HistoryData> tempData = new List<HistoryData>(20);//初始大小设定为为20，
-                for (int i = 0; i < data.Count; i++)
-                {
-                    //归档时间为 0 ，但是数据里面的时间戳 已经有更新，也要归档
-                    if (_archiveTimes.TryGetValue(data[i].ID, out archiveTime) && archiveTime == null && data[i].TimeStamp != DateTime.MinValue)
-                    {
-                        tempData.Add(data[i]);
-                    }
-                }
-                if (tempData.Count > 0)
-                {
-                    //这是把有变化的数据归档
-                    ThreadPool.UnsafeQueueUserWorkItem(new WaitCallback(this.OnUpdate), tempData);
-                }
-            }
+            //var data = e.Values;//IList<HistoryData> Values
+            //var now = DateTime.Now;
+            //if (_hasHda)
+            //{
+            //    ArchiveTime archiveTime;
+            //    List<HistoryData> tempData = new List<HistoryData>(20);//初始大小设定为为20，
+            //    for (int i = 0; i < data.Count; i++)
+            //    {
+            //        //归档时间为 0 ，但是数据里面的时间戳 已经有更新，也要归档
+            //        if (_archiveTimes.TryGetValue(data[i].ID, out archiveTime) && archiveTime == null && data[i].TimeStamp != DateTime.MinValue)
+            //        {
+            //            tempData.Add(data[i]);
+            //        }
+            //    }
+            //    if (tempData.Count > 0)
+            //    {
+            //        //这是把有变化的数据归档
+            //        ThreadPool.UnsafeQueueUserWorkItem(new WaitCallback(this.OnUpdate), tempData);
+            //    }
+            //}
         }
 
         /// <summary>
@@ -1042,5 +1121,65 @@ namespace DemoDriver
             Cycle = cycle;
             LastTime = last;
         }
+    }
+
+    public class Protocol
+    {
+        /// <summary>
+        /// 变量ID
+        /// </summary>
+        public int TagID { get; set; }
+        /// <summary>
+        /// 变量名
+        /// </summary>
+        public string TagName { get; set; }
+        /// <summary>
+        /// 数据类型
+        /// </summary>
+        public int DataType { get; set; }
+        /// <summary>
+        /// 数据大小
+        /// </summary>
+        public int DataSize { get; set; }
+        /// <summary>
+        /// 数据地址
+        /// </summary>
+        public string Address { get; set; }
+        /// <summary>
+        /// 分组ID
+        /// </summary>
+        public int GroupID { get; set; }
+        /// <summary>
+        /// 是否激活
+        /// </summary>
+        public int IsActive { get; set; }
+        /// <summary>
+        /// 是否归档
+        /// </summary>
+        public int Archive { get; set; }
+        /// <summary>
+        /// 默认值
+        /// </summary>
+        public int DefaultValue { get; set; }
+        /// <summary>
+        /// 描述
+        /// </summary>
+        public string Description { get; set; }
+        /// <summary>
+        /// 最大值
+        /// </summary>
+        public double Maximum { get; set; }
+        /// <summary>
+        /// 最小值
+        /// </summary>
+        public double Minimum { get; set; }
+        /// <summary>
+        /// 更新周期（ms）
+        /// </summary>
+        public int Cycle { get; set; }
+        /// <summary>
+        /// 入库日期
+        /// </summary>
+        public DateTime RowVersion { get; set; }
     }
 }

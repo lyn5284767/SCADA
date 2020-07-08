@@ -6,11 +6,54 @@
              xmlns:local="clr-namespace:Main.SecondFloor"
              mc:Ignorable="d" 
              d:DesignHeight="608" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="sfPositionSetting">
+    <UserControl.Resources>
+        <Style TargetType="Label">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="微软雅黑"/>
+            <Setter Property="Foreground" Value="#3C3C44"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="微软雅黑"/>
+            <Setter Property="Foreground" Value="#3C3C44"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+        <Style TargetType="Button" x:Key="btnGreen">
+            <Setter Property="Background" Value="#fff"/>
+            <Setter Property="Foreground" Value="#000"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="5" BorderThickness="1" Padding="5" BorderBrush="#000">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                            </ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Green"/>
+                    <Setter Property="Foreground" Value="#fff"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="60"/>
+            <RowDefinition Height="360"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" HorizontalAlignment="Center">
             <Grid.ColumnDefinitions>
@@ -112,21 +155,39 @@
                 </Border>
 
             </Grid>
-
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <Label>读取数目：</Label>
+                    <TextBlock Name="tbprocess" Text="0/0"></TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    <Label>检测数目</Label>
+                    <Label Margin="10,0,0,0">正确：</Label>
+                    <TextBlock Name="tbCorrect" Text="0"></TextBlock>
+                    <Label Margin="10,0,0,0">错误：</Label>
+                    <TextBlock Name="tbError" Text="0"></TextBlock>
+                </StackPanel>
+                <TextBlock Name="tbTips" Text="未开始" Grid.Row="2"></TextBlock>
+            </Grid>
 
         </Grid>
 
-        <Grid Grid.Row="3" HorizontalAlignment="Center">
+        <Grid Grid.Row="2" HorizontalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="140"/>
                 <ColumnDefinition Width="140"/>
                 <ColumnDefinition Width="140"/>
                 <ColumnDefinition Width="140"/>
                 <ColumnDefinition Width="140"/>
-                <ColumnDefinition Width="140"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
+            <Grid Grid.Column="0" Name="caliMenu">
                 <Menu Height="30" Width="135"  FontSize="16" FontFamily="宋体" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
                     <MenuItem>
                         <MenuItem.Header>
@@ -310,7 +371,19 @@
                     </MenuItem>
                 </Menu>
             </Grid>
+            <Button Style="{StaticResource btnGreen}" Grid.Column="5" Height="35" Click="Save_Click">一键保存</Button>
+            <Button Style="{StaticResource btnGreen}" Grid.Column="6" Height="35" Click="Import_Click">一键导入</Button>
         </Grid>
-
+        <Grid Grid.Row="3">
+            <DataGrid Name="lvCali" FontSize="20" FontFamily="微软雅黑" AutoGenerateColumns="False" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="序号" Width="50" Binding="{Binding ID}"/>
+                    <DataGridTextColumn Header="父参数" Width="200" Binding="{Binding Parent}"/>
+                    <DataGridTextColumn Header="参数名" Width="200" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="值" Width="100" Binding="{Binding Value}"/>
+                    <DataGridTextColumn Header="检测" Width="100" Binding="{Binding Test}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
     </Grid>
 </UserControl>

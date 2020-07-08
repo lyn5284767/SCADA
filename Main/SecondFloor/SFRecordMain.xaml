@@ -3,16 +3,80 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Main.SecondFloor"
+             xmlns:TimeTool="clr-namespace:Loya.Dameer;assembly=Loya.Dameer"
+             xmlns:local="clr-namespace:Main.SecondFloor" xmlns:controllibrary="http://talonzeng.com/ControlLibrary"
              mc:Ignorable="d" 
             d:DesignHeight="608" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="sfRecordMain">
-    <DockPanel>
-        <Grid DockPanel.Dock="Left" Width="50">
+    <UserControl.Resources>
+        <Style TargetType="Label">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="微软雅黑"/>
+            <Setter Property="Foreground" Value="#3C3C44"/>
+        </Style>
+        <Style TargetType="Button" x:Key="btnGreen">
+            <Setter Property="Background" Value="#fff"/>
+            <Setter Property="Foreground" Value="#000"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="5" BorderThickness="1" Padding="5" BorderBrush="#000">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                            </ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Green"/>
+                    <Setter Property="Foreground" Value="#fff"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="600"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <ComboBox Name="cbTypeSelect" SelectedIndex="0" FontSize="22" FontFamily="微软雅黑" Width="200" Grid.Column="0">
+            </ComboBox>
+            <TimeTool:Dameer Name="beginTime" Format="Custom" CustomFormat="yyyy-MM-dd HH:mm:ss" ShowCheckBox="False" Grid.Column="1"/>
+            <TimeTool:Dameer Name="endTime" Format="Custom" CustomFormat="yyyy-MM-dd HH:mm:ss" ShowCheckBox="False" Grid.Column="2"/>
+            <Button Style="{StaticResource btnGreen}" Click="Button_MouseDown" Grid.Column="3">查询</Button>
+        </Grid>
+        <Grid Grid.Row="1">
+            <DataGrid Name="lvRecord" FontSize="20" FontFamily="微软雅黑" AutoGenerateColumns="False" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="序号" Width="50" Binding="{Binding OID}"/>
+                    <DataGridTextColumn Header="内容" Width="200" Binding="{Binding Content}"/>
+                    <DataGridTextColumn Header="记录值" Width="200" Binding="{Binding Value}"/>
+                    <DataGridTextColumn Header="类别" Width="100" Binding="{Binding Type}"/>
+                    <DataGridTextColumn Header="时间" Width="300" Binding="{Binding TimeStamp}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <controllibrary:LoadControl x:Name="projectLoad" Grid.Column="2" HorizontalAlignment="Center" Visibility="Collapsed"/>
+        </Grid>
+        <!--<Grid DockPanel.Dock="Left" Width="50">
             <Image Source="../Images/left.png" Name="left" MouseDown="Left_MouseDown"></Image>
         </Grid>
         <Grid DockPanel.Dock="Right" Width="50">
             <Image Source="../Images/right.png" Name="right" MouseDown="Right_MouseDown"></Image>
         </Grid>
-        <Grid Name="RecordPage"></Grid>
-    </DockPanel>
+        <Grid Name="RecordPage"></Grid>-->
+    </Grid>
 </UserControl>

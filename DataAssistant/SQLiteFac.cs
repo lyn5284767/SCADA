@@ -9,9 +9,9 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace DataAssistant
+namespace DatabaseLib
 {
-    public class SQLiteFactory : IDataFactory
+    public class SQLiteFac : IDataFactory
     {
         public bool BulkCopy(IDataReader reader, string tableName, string command = null, SqlBulkCopyOptions options = SqlBulkCopyOptions.Default)
         {
@@ -97,8 +97,6 @@ namespace DataAssistant
                     DataTable dt = new DataTable();
                     da.Fill(dt);
                     da.Dispose();
-                    cmd.Connection.Close();
-                    cmd.Dispose();
                     return ConvertToModel<T>(dt);
                 }
                 catch (Exception ex)
@@ -109,6 +107,7 @@ namespace DataAssistant
                 finally
                 {
                     cmd.Connection.Close();
+                    cmd.Dispose();
                 }
             }
         }

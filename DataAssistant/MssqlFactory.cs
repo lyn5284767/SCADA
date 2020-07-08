@@ -714,7 +714,7 @@ namespace DatabaseLib
         /// 查询数据库表并转为List<T>
         /// </summary>
         public List<T> ExecuteList<T>(string SQL)
-            where T:class,new()
+        where T : class, new()
         {
             using (SqlConnection connection = new SqlConnection(DataHelper.ConnectString))
             {
@@ -725,6 +725,7 @@ namespace DatabaseLib
                         connection.Open();
                     SqlDataAdapter da = new SqlDataAdapter();
                     SqlCommand cmd = new SqlCommand(SQL, connection);
+                    da.SelectCommand = cmd;
                     DataTable dt = new DataTable();
                     da.Fill(dt);
                     return ConvertToModel<T>(dt);

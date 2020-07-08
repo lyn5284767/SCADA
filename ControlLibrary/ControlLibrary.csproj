@@ -142,6 +142,9 @@
     <Compile Include="LinearModels.xaml.cs">
       <DependentUpon>LinearModels.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LoadControl.xaml.cs">
+      <DependentUpon>LoadControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MessageShow.cs" />
     <Compile Include="MotorElecCurrentChart.xaml.cs">
       <DependentUpon>MotorElecCurrentChart.xaml</DependentUpon>
@@ -253,6 +256,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LinearModels.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoadControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

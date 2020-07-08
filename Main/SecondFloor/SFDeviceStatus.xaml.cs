@@ -148,6 +148,38 @@ namespace Main.SecondFloor
                 rightArrowMultiBind.NotifyOnSourceUpdated = true;
                 this.rightArrow_EquiptStatus.SetBinding(Image.SourceProperty, rightArrowMultiBind);
                 #endregion
+
+                #region 版本信息
+                // 设备编码
+                DeviceEncodeMultiConverter deviceEncodeMultiConverter = new DeviceEncodeMultiConverter();
+                MultiBinding deviceEncodeMultiBind = new MultiBinding();
+                deviceEncodeMultiBind.Converter = deviceEncodeMultiConverter;
+                deviceEncodeMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["DeviceYear"], Mode = BindingMode.OneWay });
+                deviceEncodeMultiBind.Bindings.Add(new Binding("ShortTag") { Source = GlobalData.Instance.da["DeviceModel"], Mode = BindingMode.OneWay });
+                deviceEncodeMultiBind.Bindings.Add(new Binding("ShortTag") { Source = GlobalData.Instance.da["DeviceCarNum"], Mode = BindingMode.OneWay }); ;
+                deviceEncodeMultiBind.NotifyOnSourceUpdated = true;
+                deviceEncodeMultiBind.ConverterParameter = "RP";
+                this.tbDeviceEncode.SetBinding(TextBlock.TextProperty, deviceEncodeMultiBind);
+                // 二层台版本
+                SecondVersionMultiConverter secondVersionMultiConverter = new SecondVersionMultiConverter();
+                MultiBinding secondVersionMultiBind = new MultiBinding();
+                secondVersionMultiBind.Converter = secondVersionMultiConverter;
+                secondVersionMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SecondMainVersion"], Mode = BindingMode.OneWay });
+                secondVersionMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SecondOldVersion"], Mode = BindingMode.OneWay });
+                secondVersionMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SecondModifyVersion"], Mode = BindingMode.OneWay }); ;
+                secondVersionMultiBind.NotifyOnSourceUpdated = true;
+                secondVersionMultiBind.ConverterParameter = "SRP-V";
+                this.tbSecondVersion.SetBinding(TextBlock.TextProperty, secondVersionMultiBind);
+                // 二层台版本日期
+                SecondVersionDateMultiConverter secondVersionDateMultiConverter = new SecondVersionDateMultiConverter();
+                MultiBinding secondVersionDateMultiBind = new MultiBinding();
+                secondVersionDateMultiBind.Converter = secondVersionDateMultiConverter;
+                secondVersionDateMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SecondVersionYear"], Mode = BindingMode.OneWay });
+                secondVersionDateMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SecondVersionMonth"], Mode = BindingMode.OneWay });
+                secondVersionDateMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SecondVersionDay"], Mode = BindingMode.OneWay }); ;
+                secondVersionDateMultiBind.NotifyOnSourceUpdated = true;
+                this.tbSecondVersionDate.SetBinding(TextBlock.TextProperty, secondVersionDateMultiBind);
+                #endregion
             }
             catch (Exception ex)
             {

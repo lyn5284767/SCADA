@@ -25,8 +25,10 @@ namespace Main
         {
             InitializeComponent();
             textBox_Name.GotFocus += WinAPI.TextBox_Name_GotFocus;
+            //textBox_Name.MouseDown += WinAPI.TextBox_Name_GotFocus;
             textBox_Name.LostFocus += WinAPI.TextBox_Name_LostFocus;
             textBox_PassWord.GotFocus += WinAPI.TextBox_Name_GotFocus;
+            //textBox_PassWord.MouseDown += WinAPI.TextBox_Name_GotFocus;
             textBox_PassWord.LostFocus += WinAPI.TextBox_Name_LostFocus;
             _curUsr.bSuccess = false;
         }
