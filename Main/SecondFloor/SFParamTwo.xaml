@@ -58,12 +58,12 @@
                             <TextBlock Text="特&#x0a;殊&#x0a;指&#x0a;梁&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
                         </Border>
                         <StackPanel>
-                            <cl:TextBlockWithTextBox Name="twtL28" ControlTag="28"  TbkText="钻杆指梁宽度" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
-                            <cl:TextBlockWithTextBox Name="twtL29" ControlTag="29"  TbkText="钻杆指梁间距" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
-                            <cl:TextBlockWithTextBox Name="twtL30" ControlTag="30"  TbkText="钻铤指梁宽度" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
-                            <cl:TextBlockWithTextBox Name="twtL31" ControlTag="31"  TbkText="钻铤指梁间距" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
-                            <cl:TextBlockWithTextBox Name="twtL32" ControlTag="21"  TbkText="最大钻杆尺寸" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
-                            <cl:TextBlockWithTextBox Name="twtL50" ControlTag="50"  TbkText="单边指梁数目" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+                            <cl:TextBlockWithTextBox Name="twtL28" ControlTag="28"  TbkText="钻杆指梁宽度" />
+                            <cl:TextBlockWithTextBox Name="twtL29" ControlTag="29"  TbkText="钻杆指梁间距" />
+                            <cl:TextBlockWithTextBox Name="twtL30" ControlTag="30"  TbkText="钻铤指梁宽度" />
+                            <cl:TextBlockWithTextBox Name="twtL31" ControlTag="31"  TbkText="钻铤指梁间距" />
+                            <cl:TextBlockWithTextBox Name="twtL32" ControlTag="21"  TbkText="最大钻杆尺寸" />
+                            <cl:TextBlockWithTextBox Name="twtL50" ControlTag="50"  TbkText="单边指梁数目"/>
                         </StackPanel>
                     </StackPanel>
                 </Border>
