@@ -143,12 +143,14 @@ namespace Main.SecondFloor
         //执行任务
         void bgMeet_DoWork(object sender, DoWorkEventArgs e)
         {
+            int time = 0;
             ////开始播放等待动画
             this.Dispatcher.Invoke(new Action(() =>
             {
                 this.tbprocess.Text = "0/" + calList.Count;
+                time = int.Parse(this.tbTime.Text);
             }));
-            for (int i = -1; i < calList.Count; i++)
+            for (int i = 0; i < calList.Count; i++)
             {
                 if (bgMeet.CancellationPending)
                 {
@@ -157,19 +159,16 @@ namespace Main.SecondFloor
                 }
                 else
                 {
-                    int nowID = 0;
-                    if (i == -1) nowID = 0;
-                    else nowID = i;
                     byte[] byteToSend = new byte[10];
                     byteToSend[0] = bHeadFirst;
                     byteToSend[1] = bHeadTwo;
                     byteToSend[2] = 12;
-                    byteToSend[3] = (byte)calList[nowID].TagID;
+                    byteToSend[3] = (byte)calList[i].TagID;
                     byteToSend[6] = 1;
 
                     GlobalData.Instance.da.SendBytes(byteToSend);
-                    bgMeet.ReportProgress(i+1, calList[nowID]);
-                    System.Threading.Thread.Sleep(200);
+                    System.Threading.Thread.Sleep(time);
+                    bgMeet.ReportProgress(i+1, calList[i]);
                 }
             }
         }
@@ -221,9 +220,11 @@ namespace Main.SecondFloor
         //执行任务
         void bgMeet_DoTestWork(object sender, DoWorkEventArgs e)
         {
+            int time = 0;
             this.Dispatcher.Invoke(new Action(() =>
             {
                 this.lvCali.Items.Clear();
+                time = int.Parse(this.tbTime.Text);
             }));
             for (int i = -1; i < calList.Count; i++)
             {
@@ -245,8 +246,8 @@ namespace Main.SecondFloor
                     byteToSend[6] = 1;
 
                     GlobalData.Instance.da.SendBytes(byteToSend);
+                    System.Threading.Thread.Sleep(time);
                     bgMeet.ReportProgress(i + 1, calList[nowID]);
-                    System.Threading.Thread.Sleep(200);
                 }
             }
         }
@@ -330,7 +331,7 @@ namespace Main.SecondFloor
 
         private void tb_ParameterConfig_Focus(object sender, MouseButtonEventArgs e)
         {
-
+            GlobalData.Instance.GetKeyBoard();
         }
     }
 

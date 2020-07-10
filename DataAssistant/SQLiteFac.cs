@@ -95,6 +95,7 @@ namespace DatabaseLib
                     DataSet ds = new DataSet();
                     SQLiteDataAdapter da = new SQLiteDataAdapter(cmd);
                     DataTable dt = new DataTable();
+                    da.SelectCommand = cmd;
                     da.Fill(dt);
                     da.Dispose();
                     return ConvertToModel<T>(dt);

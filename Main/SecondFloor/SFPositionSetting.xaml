@@ -372,7 +372,7 @@
                     </MenuItem>
                 </Menu>
             </Grid>
-            <TextBox Grid.Column="5" Height="30" Text="200" PreviewMouseDown="tb_ParameterConfig_Focus"></TextBox>
+            <TextBox x:Name="tbTime" Grid.Column="5" Height="30" Text="200" PreviewMouseDown="tb_ParameterConfig_Focus"></TextBox>
             <Button Style="{StaticResource btnGreen}" Grid.Column="6" Height="35" Click="Save_Click">一键保存</Button>
             <Button Style="{StaticResource btnGreen}" Grid.Column="7" Height="35" Click="Import_Click">一键导入</Button>
         </Grid>
