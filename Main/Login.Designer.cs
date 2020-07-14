@@ -38,10 +38,9 @@
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(658, 596);
-            this.btnLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLogin.Location = new System.Drawing.Point(439, 397);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(105, 34);
+            this.btnLogin.Size = new System.Drawing.Size(70, 23);
             this.btnLogin.TabIndex = 2;
             this.btnLogin.Text = "登录";
             this.btnLogin.UseVisualStyleBackColor = true;
@@ -49,10 +48,9 @@
             // 
             // btnQuit
             // 
-            this.btnQuit.Location = new System.Drawing.Point(837, 596);
-            this.btnQuit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnQuit.Location = new System.Drawing.Point(558, 397);
             this.btnQuit.Name = "btnQuit";
-            this.btnQuit.Size = new System.Drawing.Size(105, 34);
+            this.btnQuit.Size = new System.Drawing.Size(70, 23);
             this.btnQuit.TabIndex = 3;
             this.btnQuit.Text = "退出";
             this.btnQuit.UseVisualStyleBackColor = true;
@@ -60,20 +58,18 @@
             // 
             // textBox_Name
             // 
-            this.textBox_Name.Location = new System.Drawing.Point(658, 440);
-            this.textBox_Name.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Name.Location = new System.Drawing.Point(439, 293);
             this.textBox_Name.Name = "textBox_Name";
-            this.textBox_Name.Size = new System.Drawing.Size(282, 28);
+            this.textBox_Name.Size = new System.Drawing.Size(189, 21);
             this.textBox_Name.TabIndex = 0;
             this.textBox_Name.Visible = false;
             // 
             // textBox_PassWord
             // 
-            this.textBox_PassWord.Location = new System.Drawing.Point(658, 519);
-            this.textBox_PassWord.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_PassWord.Location = new System.Drawing.Point(439, 346);
             this.textBox_PassWord.Name = "textBox_PassWord";
             this.textBox_PassWord.PasswordChar = '*';
-            this.textBox_PassWord.Size = new System.Drawing.Size(282, 28);
+            this.textBox_PassWord.Size = new System.Drawing.Size(189, 21);
             this.textBox_PassWord.TabIndex = 1;
             // 
             // cbType
@@ -85,26 +81,31 @@
             "技术员",
             "管理员",
             "操作员"});
-            this.cbType.Location = new System.Drawing.Point(658, 440);
+            this.cbType.Location = new System.Drawing.Point(439, 290);
+            this.cbType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbType.Name = "cbType";
-            this.cbType.Size = new System.Drawing.Size(282, 36);
+            this.cbType.Size = new System.Drawing.Size(189, 27);
             this.cbType.TabIndex = 4;
             // 
             // timeLable
             // 
             this.timeLable.AutoSize = true;
             this.timeLable.BackColor = System.Drawing.Color.Transparent;
-            this.timeLable.Location = new System.Drawing.Point(655, 419);
+            this.timeLable.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.timeLable.ForeColor = System.Drawing.Color.White;
+            this.timeLable.Location = new System.Drawing.Point(423, 260);
+            this.timeLable.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.timeLable.Name = "timeLable";
-            this.timeLable.Size = new System.Drawing.Size(0, 18);
+            this.timeLable.Size = new System.Drawing.Size(218, 19);
             this.timeLable.TabIndex = 5;
+            this.timeLable.Text = "2020-07-14 08:45:00";
             // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Main.Properties.Resources.loginLogo;
-            this.ClientSize = new System.Drawing.Size(1539, 1106);
+            this.ClientSize = new System.Drawing.Size(1026, 733);
             this.Controls.Add(this.timeLable);
             this.Controls.Add(this.cbType);
             this.Controls.Add(this.textBox_PassWord);
@@ -112,7 +113,6 @@
             this.Controls.Add(this.btnQuit);
             this.Controls.Add(this.btnLogin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";

@@ -405,5 +405,8 @@
   <ItemGroup>
     <Resource Include="Images\FullScreen.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="NewFolder1\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
