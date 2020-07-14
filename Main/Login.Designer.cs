@@ -77,10 +77,11 @@
             this.cbType.Font = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.cbType.FormattingEnabled = true;
             this.cbType.Items.AddRange(new object[] {
-            "调试员",
+                "操作员",
+                "管理员",
             "技术员",
-            "管理员",
-            "操作员"});
+            "调试员"
+            });
             this.cbType.Location = new System.Drawing.Point(439, 290);
             this.cbType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbType.Name = "cbType";
