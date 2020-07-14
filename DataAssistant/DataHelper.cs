@@ -166,22 +166,23 @@ namespace DatabaseLib
                         m_ConnStr = sb.ToString();
                     }
                 }
-                //_ins = new SQLiteFac();
-                switch (m_type.ToUpper())
-                {
-                    case "MSSQL":
-                        _ins = new MssqlFactory();
-                        break;
-                    case "ACCESS":
-                        _ins = new AccessFactory();
-                        break;
-                    case "SQLITE":
-                        _ins = new SQLiteFac();
-                        break;
-                    default:
-                        _ins = new AccessFactory();
-                        break;
-                }
+                _ins = new SQLiteFac();
+                //test
+                //switch (m_type.ToUpper())
+                //{
+                //    case "MSSQL":
+                //        _ins = new MssqlFactory();
+                //        break;
+                //    case "ACCESS":
+                //        _ins = new AccessFactory();
+                //        break;
+                //    case "SQLITE":
+                //        _ins = new SQLiteFac();
+                //        break;
+                //    default:
+                //        _ins = new AccessFactory();
+                //        break;
+                //}
             } 
             catch (Exception e)
             {

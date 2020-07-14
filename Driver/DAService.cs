@@ -153,9 +153,9 @@ namespace DemoDriver
             }
         }
 
-        public ExpressionEval Eval  { get{throw new NotImplementedException(); }}
+        public ExpressionEval Eval { get { throw new NotImplementedException(); } }
 
-        public IList<Scaling> ScalingList { get{throw new NotImplementedException(); }}
+        public IList<Scaling> ScalingList { get { throw new NotImplementedException(); } }
 
         public IEnumerable<IDriver> Drivers { get { throw new NotImplementedException(); } }
 
@@ -183,8 +183,9 @@ namespace DemoDriver
 
             _driver = new SecondFloorPLCDriver(this, 0, "SecondFloor");//中间参数ID,应为驱动ID 号
             _hda = new List<HistoryData>();
-            InitServerByDatabase();
-            //InitServerBySqlite();
+            //test
+            //InitServerByDatabase();
+            InitServerBySqlite();
             InitConnection();//创建驱动实例，并尝试建立连接
             DeleteHdaFromLog();//删除3天之前的历史数据
 
@@ -216,8 +217,8 @@ namespace DemoDriver
 
         private void DeleteHdaFromLog()
         {
-            DateTime now = DateTime.Now.AddDays(-3);
-            string sql = string.Format("DELETE FROM Log WHERE [TIMESTAMP]<'{0}'", now.ToString("yyyy/MM/dd HH:mm:ss"));
+            DateTime now = DateTime.Now.AddDays(-30);
+            string sql = string.Format("DELETE FROM Log WHERE [TIMESTAMP]<'{0}'", now.ToString("yyyy-MM-dd HH:mm:ss"));
             DataHelper.Instance.ExecuteNonQuery(sql);
         }
 
@@ -324,8 +325,8 @@ namespace DemoDriver
             foreach (IGroup grp in _driver.Groups)//驱动中每个组别 的数据变化，都绑定一个
             {
                 grp.DataChange += new DataChangeEventHandler(grp_DataChange);//暂时不存储变化的变量
-                // 可在此加入判断，如为ClientDriver发出，则变化数据毋须广播，只需归档。
-                 grp.IsActive = grp.IsActive;//该处是未来启用 组内部的时钟
+                                                                             // 可在此加入判断，如为ClientDriver发出，则变化数据毋须广播，只需归档。
+                grp.IsActive = grp.IsActive;//该处是未来启用 组内部的时钟
             }
         }
 
@@ -362,9 +363,9 @@ namespace DemoDriver
                 dataReader.NextResult();
                 while (dataReader.Read())
                 {
-                    var meta = new TagMetaData(dataReader.GetInt16(0), dataReader.GetInt16(1), dataReader.GetString(2), dataReader.GetString(3),dataReader.GetString(10), (DataType)dataReader.GetByte(4),
+                    var meta = new TagMetaData(dataReader.GetInt16(0), dataReader.GetInt16(1), dataReader.GetString(2), dataReader.GetString(3), dataReader.GetString(10), (DataType)dataReader.GetByte(4),
                      (ushort)dataReader.GetInt16(5), dataReader.GetBoolean(6), dataReader.GetFloat(7), dataReader.GetFloat(8), dataReader.GetInt32(9));
-                    
+
                     _list.Add(meta);
                     if (meta.Archive)
                     {
@@ -409,7 +410,7 @@ namespace DemoDriver
             foreach (Protocol protocol in protocolList)
             {
                 var meta = new TagMetaData((short)protocol.TagID, (short)protocol.GroupID, protocol.TagName, protocol.Address, protocol.Description, (DataType)protocol.DataType,
-                     (ushort)protocol.DataSize, protocol.Archive == 1?true:false, (float)protocol.Maximum, (float)protocol.Minimum, protocol.Cycle);
+                     (ushort)protocol.DataSize, protocol.Archive == 1 ? true : false, (float)protocol.Maximum, (float)protocol.Minimum, protocol.Cycle);
 
                 _list.Add(meta);
                 if (meta.Archive)
@@ -419,7 +420,18 @@ namespace DemoDriver
                 }
                 _list.Sort();//只是id 排序就好了
             }
-
+            sql = "select * from ProtocolGroup";
+            List<ProtocolGroup> groupList = DataHelper.Instance.ExecuteList<ProtocolGroup>(sql);
+            foreach (ProtocolGroup pgroup in groupList)
+            {
+                if (_driver != null)
+                {
+                    IGroup grp = _driver.AddGroup(pgroup.GroupName, (short)pgroup.GroupID, pgroup.UpdateRate,
+                           pgroup.DeadBand, pgroup.IsActive == 1 ? true : false);
+                    if (grp != null)
+                        grp.AddItems(_list);//这里完成 从 _list<TagMetaData> 到 _list<ITag>的转换  ，这个地方是需要根据 GroupID 的不同，生成不同的组别，对应于不同的页面??
+                }
+            }
 
             //using (var dataReader = DataHelper.Instance.ExecuteProcedureReader("InitServer"))
             //{
@@ -719,17 +731,34 @@ namespace DemoDriver
             {
                 var tempData = (List<HistoryData>)stateInfo;
                 _hda.AddRange(tempData);//把新产生的数据加入到 _hda末尾；
-                if (_hda.Count >= 1 && SaveTick >5)//这个是每次有 10000条数据才写入数据库里面
+                if (_hda.Count >= 1 && SaveTick > 5)//这个是每次有 10000条数据才写入数据库里面
                 {
-                    //Reverse(data);
-                    DateTime start = _hda[0].TimeStamp;
-                    //_array.CopyTo(data, 0);
-                    if (DataHelper.Instance.BulkCopy(new HDASqlReader(_hda, this), "Log",
-                    string.Format("DELETE FROM Log WHERE [TIMESTAMP]>'{0}'", start.ToString("yyyy/MM/dd HH:mm:ss"))))//删除历史数据库中存在的那些记录，这些记录的时间大于列表中最小时间记录
-                        _hdastart = DateTime.Now;
-                    else ThreadPool.UnsafeQueueUserWorkItem(new WaitCallback(this.SaveCachedData), _hda.ToArray());
-                    _hda.Clear();//最后面把列表清空。
-                    SaveTick = 0;
+                    if (DataHelper.Instance.GetType().Name == "SQLiteFac")
+                    {
+                        List<string> sqlList = new List<string>();
+                        foreach (HistoryData data in _hda)
+                        {
+                            //SysLog sysLog = new SysLog();
+                            //sysLog.Id = data.ID;
+                            //sysLog.Value = data.Value.Int32;
+                            //sysLog.TimeStamp = data.TimeStamp;
+                            string sql = string.Format("Insert Into Log (Id,Value,TimeStamp) Values('{0}','{1}','{2}')", data.ID, data.Value.Int32, data.TimeStamp.ToString("yyyy-MM-dd HH:mm:ss"));
+                            sqlList.Add(sql);
+                        }
+                        DataHelper.Instance.ExecuteNonQuery(sqlList.ToArray());
+                    }
+                    else
+                    {
+                        //Reverse(data);
+                        DateTime start = _hda[0].TimeStamp;
+                        //_array.CopyTo(data, 0);
+                        if (DataHelper.Instance.BulkCopy(new HDASqlReader(_hda, this), "Log",
+                        string.Format("DELETE FROM Log WHERE [TIMESTAMP]>'{0}'", start.ToString("yyyy/MM/dd HH:mm:ss"))))//删除历史数据库中存在的那些记录，这些记录的时间大于列表中最小时间记录
+                            _hdastart = DateTime.Now;
+                        else ThreadPool.UnsafeQueueUserWorkItem(new WaitCallback(this.SaveCachedData), _hda.ToArray());
+                        _hda.Clear();//最后面把列表清空。
+                        SaveTick = 0;
+                    }
                 }
             }
         }
@@ -1181,5 +1210,23 @@ namespace DemoDriver
         /// 入库日期
         /// </summary>
         public DateTime RowVersion { get; set; }
+    }
+
+    public class ProtocolGroup
+    {
+        public int GroupID { get; set; }
+        public int DriverID { get; set; }
+        public string GroupName { get; set; }
+        public int UpdateRate { get; set; }
+        public int DeadBand { get; set; }
+        public int IsActive { get; set; }
+    }
+
+    public class SysLog
+    {
+        public int Id { get; set; }
+        public int Value { get; set; }
+        public DateTime TimeStamp { get; set; }
+        public int OID{ get; set; }
     }
 }

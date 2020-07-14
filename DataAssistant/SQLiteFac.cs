@@ -1,5 +1,6 @@
 ﻿using DatabaseLib;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
@@ -15,7 +16,10 @@ namespace DatabaseLib
     {
         public bool BulkCopy(IDataReader reader, string tableName, string command = null, SqlBulkCopyOptions options = SqlBulkCopyOptions.Default)
         {
-            throw new NotImplementedException();
+            while (reader.Read())
+            {
+            }
+            return true;
         }
 
         public void CallException(string message)
@@ -78,6 +82,40 @@ namespace DatabaseLib
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// 执行多条SQL语句，实现数据库事务。
+        /// </summary>
+        /// <param name="SQLStringList">多条SQL语句</param>        
+        public static void ExecuteSqlTran(ArrayList SQLStringList)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection("Data Source=Monitor.db3;Version=3;"))
+            {
+                conn.Open();
+                SQLiteCommand cmd = new SQLiteCommand();
+                cmd.Connection = conn;
+                SQLiteTransaction tx = conn.BeginTransaction();
+                cmd.Transaction = tx;
+                try
+                {
+                    for (int n = 0; n < SQLStringList.Count; n++)
+                    {
+                        string strsql = SQLStringList[n].ToString();
+                        if (strsql.Trim().Length > 1)
+                        {
+                            cmd.CommandText = strsql;
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                    tx.Commit();
+                }
+                catch (System.Data.SQLite.SQLiteException E)
+                {
+                    tx.Rollback();
+                    throw new Exception(E.Message);
+                }
+            }
+        }
+
         public DataTable ExecuteDataTableProcedure(string ProName, ref int returnValue, DbParameter[] ParaName)
         {
             throw new NotImplementedException();
@@ -115,12 +153,60 @@ namespace DatabaseLib
 
         public int ExecuteNonQuery(string[] SQLs)
         {
-            throw new NotImplementedException();
+            using (SQLiteConnection conn = new SQLiteConnection("Data Source=Monitor.db3;Version=3;"))
+            {
+                conn.Open();
+                SQLiteCommand cmd = new SQLiteCommand();
+                cmd.Connection = conn;
+                SQLiteTransaction tx = conn.BeginTransaction();
+                cmd.Transaction = tx;
+                try
+                {
+                    for (int n = 0; n < SQLs.Count(); n++)
+                    {
+                        string strsql = SQLs[n].ToString();
+                        if (strsql.Trim().Length > 1)
+                        {
+                            cmd.CommandText = strsql;
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                    tx.Commit();
+                    return 1;
+                }
+                catch (System.Data.SQLite.SQLiteException E)
+                {
+                    tx.Rollback();
+                    return 0;
+                }
+            }
         }
 
         public int ExecuteNonQuery(string SQL)
         {
-            throw new NotImplementedException();
+            using (SQLiteConnection m_dbConnection = new SQLiteConnection("Data Source=Monitor.db3;Version=3;"))
+            {
+                SQLiteCommand cmd = new SQLiteCommand(SQL, m_dbConnection);
+                try
+                {
+                    if (cmd.Connection.State == ConnectionState.Closed)
+                        cmd.Connection.Open();
+                    int result = cmd.ExecuteNonQuery();
+                    cmd.Connection.Close();
+                    cmd.Dispose();
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    Log.Log4Net.AddLog(ex.ToString(), Log.InfoLevel.ERROR);
+                    return 0;
+                }
+                finally
+                {
+                
+                }
+            }
+
         }
 
         public int ExecuteNonQuery(string[] SQLs, object[][] Pars)

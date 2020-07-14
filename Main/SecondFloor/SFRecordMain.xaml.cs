@@ -118,7 +118,7 @@ namespace Main.SecondFloor
             //PageChange();
             QueryRecord();
             this.beginTime.Value = DateTime.Now.AddDays(-1);
-            this.endTime.Value = DateTime.Now;
+            this.endTime.Value = DateTime.Now.AddDays(1);
         }
 
 
@@ -140,7 +140,7 @@ namespace Main.SecondFloor
 
         private void BindingRecord()
         {
-            string sql = string.Format("SELECT TOP 1000 * FROM Log {0} Order by OID", cond);
+            string sql = string.Format("SELECT  * FROM Log {0} Order by OID DESC LIMIT 0,1000", cond);
             List<RecordDate> recordList = DataHelper.Instance.ExecuteList<RecordDate>(sql);
             List<ShowDate> showList = new List<ShowDate>();
             if (recordList != null)
@@ -422,8 +422,8 @@ namespace Main.SecondFloor
         private void Button_MouseDown(object sender, RoutedEventArgs e)
         {
             string tagID = this.cbTypeSelect.SelectedValue.ToString();
-            string bTime = this.beginTime.ToString();
-            string eTime = this.endTime.ToString();
+            string bTime = this.beginTime.Value.Value.ToString("yyyy-MM-dd HH:mm:ss");
+            string eTime = this.endTime.Value.Value.ToString("yyyy-MM-dd HH:mm:ss");
             string condition = string.Empty;
             if (tagID != "0") condition = string.Format("Where Id = '{0}' and TimeStamp>'{1}' and TimeStamp<'{2}'", tagID, bTime, eTime);
             else condition = string.Format("Where TimeStamp>'{1}' and TimeStamp<'{2}'", tagID, bTime, eTime);
