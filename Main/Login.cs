@@ -104,7 +104,7 @@ namespace Main
             else stryear = year.ToString();
             if (hour < 10) strhour = "0" + hour;
             else strhour = hour.ToString();
-            if (cbType.SelectedIndex == 0)
+            if (cbType.SelectedIndex == 3)
             {
 
                 pwd = strday + strmonth + strminute;
@@ -115,7 +115,7 @@ namespace Main
                     GlobalData.Instance.systemRole = SystemRole.DebugMan;
                 }
             }
-            else if (cbType.SelectedIndex == 1)
+            else if (cbType.SelectedIndex == 2)
             {
                 pwd = strday + strmonth + strhour;
                 if (password == pwd)
@@ -124,7 +124,7 @@ namespace Main
                     GlobalData.Instance.systemRole = SystemRole.TechMan;
                 }
             }
-            else if (cbType.SelectedIndex == 2)
+            else if (cbType.SelectedIndex == 1)
             {
                 pwd = stryear +strmonth;
                 if (password == pwd)
@@ -133,7 +133,7 @@ namespace Main
                     GlobalData.Instance.systemRole = SystemRole.TechMan;
                 }
             }
-            else if (cbType.SelectedIndex == 3)
+            else if (cbType.SelectedIndex == 0)
             {
                 if (password == "111111")
                 {

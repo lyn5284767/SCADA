@@ -125,9 +125,9 @@
                                 <ColumnDefinition Width="5"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <Label Grid.Row="0" Grid.Column="1">电机</Label>
-                            <cl:SymbolMapping Name="carMotorWorkStatus"  Grid.Row="0" Grid.Column="2" StrContent="" Margin="20,2,2,2"/>
-                            <cl:SymbolMapping Name="armMotorWorkStatus" Grid.Row="0" Grid.Column="3" StrContent="" Margin="20,2,2,2"/>
-                            <cl:SymbolMapping Name="rotateMotorWorkStatus" Grid.Row="0" Grid.Column="4" StrContent="" Margin="20,2,2,2"/>
+                            <cl:SymbolMapping Name="carMotorWorkStatus"  Grid.Row="0" Grid.Column="2" StrContent="" LampType="3" Margin="20,2,2,2"/>
+                            <cl:SymbolMapping Name="armMotorWorkStatus" Grid.Row="0" Grid.Column="3" StrContent="" LampType="3" Margin="20,2,2,2"/>
+                            <cl:SymbolMapping Name="rotateMotorWorkStatus" Grid.Row="0" Grid.Column="4" StrContent="" LampType="3" Margin="20,2,2,2"/>
                         </Grid>
                         <Grid Height="30">
                             <Grid.ColumnDefinitions>
