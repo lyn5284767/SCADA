@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Main.SecondFloor" 
              xmlns:TimeTool="clr-namespace:Loya.Dameer;assembly=Loya.Dameer"
-             xmlns:local="clr-namespace:Main.SecondFloor" xmlns:controllibrary="http://talonzeng.com/ControlLibrary"
+             xmlns:controllibrary="http://talonzeng.com/ControlLibrary"
              mc:Ignorable="d" 
             d:DesignHeight="608" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="sfRecordMain">
     <UserControl.Resources>
