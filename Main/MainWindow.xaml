@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:secondfloor="clr-namespace:Main.SecondFloor"
-        xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
+        xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero" xmlns:controllibrary="http://talonzeng.com/ControlLibrary"
         mc:Ignorable="d"
         Title="MainWindow" Height="768" Width="1024" WindowStyle="None" WindowState="Maximized" Background="#F5F6FA">
     <Window.Resources>
@@ -81,6 +81,7 @@ KeyboardNavigation.DirectionalNavigation="Cycle" Width="100"/>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Border Name="bdSf" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="0" MouseLeftButtonDown="MouseDownSF">
                 <TextBlock Name="tbSf" FontSize="16" FontWeight="Bold">二层台</TextBlock>
@@ -88,36 +89,39 @@ KeyboardNavigation.DirectionalNavigation="Cycle" Width="100"/>
             <Border Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="1" Name="bdDR" MouseLeftButtonDown="MouseDR">
                 <TextBlock FontSize="16" Foreground="#1F7AFF" FontWeight="Bold" Name="tbDR">钻台面</TextBlock>
             </Border>
-            <Border Name="bdSIR" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="2" MouseLeftButtonDown="SIR_MouseLeftButtonDown">
+            <Border Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="2" Name="bdHS" MouseLeftButtonDown="MouseHS">
+                <TextBlock FontSize="16" Foreground="#1F7AFF" FontWeight="Bold" Name="tbHS">液压站</TextBlock>
+            </Border>
+            <Border Name="bdSIR" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="3" MouseLeftButtonDown="SIR_MouseLeftButtonDown">
                 <TextBlock FontSize="16" Foreground="#1F7AFF" FontWeight="Bold" Name="tbSIR">铁钻工</TextBlock>
             </Border>
-            <Border Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="3">
+            <Border Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="4">
                 <TextBlock FontSize="16" Foreground="#1F7AFF" FontWeight="Bold">猫道</TextBlock>
             </Border>
-            <Border Name="bdIng" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="4" MouseLeftButtonDown="MouseIng">
+            <Border Name="bdIng" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="5" MouseLeftButtonDown="MouseIng">
                 <TextBlock Name="tbIng" FontSize="16" Foreground="#1F7AFF" FontWeight="Bold">集成<LineBreak/>
                         系统</TextBlock>
             </Border>
-            <Border Name="bdHome" Background="White" BorderThickness="1" CornerRadius="5"  Grid.Column="5" MouseLeftButtonDown="MouseDownHome">
+            <Border Name="bdHome" Background="White" BorderThickness="1" CornerRadius="5"  Grid.Column="6" MouseLeftButtonDown="MouseDownHome">
                 <Image Source="Images/home.png" Margin="2" Width="45" Height="45"></Image>
             </Border>
-            <Border Name="bdDrillSetting" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="6" MouseLeftButtonDown="MouseDownDrillSetting">
+            <Border Name="bdDrillSetting" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="7" MouseLeftButtonDown="MouseDownDrillSetting">
                 <Image Source="Images/setting.png" Margin="2" Width="45" Height="45"></Image>
             </Border>
-            <Border Name="bdSecureSetting" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="7" MouseLeftButtonDown="MouseDownSecureSetting">
+            <Border Name="bdSecureSetting" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="8" MouseLeftButtonDown="MouseDownSecureSetting">
                 <Image Source="Images/Secure.png" Margin="2" Width="45" Height="45"></Image>
             </Border>
-            <Border Name="bdIO" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="8" MouseLeftButtonDown="MouseDownIO">
+            <Border Name="bdIO" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="9" MouseLeftButtonDown="MouseDownIO">
                 <Image Source="Images/IO.png"  Margin="2" Width="45" Height="45"></Image>
             </Border>
-            <Border Name="bdDeviceStatus" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="9" MouseLeftButtonDown="MouseDownDeviceStatus">
+            <Border Name="bdDeviceStatus" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="10" MouseLeftButtonDown="MouseDownDeviceStatus">
                 <Image Source="Images/deviceStatus.png" Margin="0" Width="45" Height="45"></Image>
             </Border>
-            <Border Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="10" MouseLeftButtonDown="MouseDownExit">
+            <Border Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="11" MouseLeftButtonDown="MouseDownExit">
                 <Image Source="Images/exit.png" Margin="2" Width="45" Height="45"></Image>
             </Border>
 
-            <Border Name="bdOther" Background="White"  BorderThickness="1" CornerRadius="5" Grid.Column="11">
+            <Border Name="bdOther" Background="White"  BorderThickness="1" CornerRadius="5" Grid.Column="12">
                 <Menu Grid.Column="11" Margin="2" Width="45" Height="45" Name="bottomMenu">
                     <MenuItem Name="sfMenuItem">
                         <MenuItem.Header>

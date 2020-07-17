@@ -5,15 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:dxga="http://schemas.devexpress.com/winfx/2008/xaml/gauges"
              xmlns:local="clr-namespace:ControlLibrary"
-             mc:Ignorable="d" 
-             d:DesignHeight="364.151" d:DesignWidth="392.453" Name="uc">
+             mc:Ignorable="d" Name="uc">
     <Grid>
-        <dxga:CircularGaugeControl HorizontalAlignment="Center" Width="320">
+        <dxga:CircularGaugeControl>
             <dxga:CircularGaugeControl.Model>
-                <dxga:CircularEcoModel />
+                <dxga:CircularThemeableModel />
             </dxga:CircularGaugeControl.Model>
             <dxga:CircularGaugeControl.Scales>
-                <dxga:ArcScale StartValue="0" EndValue="200">
+                <dxga:ArcScale StartValue="0" EndValue="100" Margin="2,0,2,0">
                     <dxga:ArcScale.Layers>
                         <dxga:ArcScaleLayer />
                     </dxga:ArcScale.Layers>
@@ -21,19 +20,22 @@
                         <dxga:ArcScaleNeedle IsInteractive="True" x:Name="pressureNeedle" Value="{Binding ElementName=uc,Path=CurValue}"/>
                     </dxga:ArcScale.Needles>
                     <dxga:ArcScale.Ranges>
-                        <dxga:ArcScaleRange StartValue="0" EndValue="100" />
-                        <dxga:ArcScaleRange StartValue="100" EndValue="150" />
-                        <dxga:ArcScaleRange StartValue="150" EndValue="200" />
+                        <dxga:ArcScaleRange StartValue="0" EndValue="33" />
+                        <dxga:ArcScaleRange StartValue="33" EndValue="66" />
+                        <dxga:ArcScaleRange StartValue="66" EndValue="100" />
                     </dxga:ArcScale.Ranges>
                     <dxga:ArcScale.CustomElements>
-                        <dxga:ScaleCustomElement HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,95,0,0" FontSize="14">
-                            <TextBlock Text="高度(m)" />
+                        <dxga:ScaleCustomElement HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,27" FontSize="18">
+                            <TextBlock Text="{Binding ElementName=uc,Path=CurValue}" />
+                        </dxga:ScaleCustomElement>
+                        <dxga:ScaleCustomElement HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,0" FontSize="20">
+                            <TextBlock Text="{Binding ElementName=uc,Path=Txt}"/>
                         </dxga:ScaleCustomElement>
                     </dxga:ArcScale.CustomElements>
                 </dxga:ArcScale>
             </dxga:CircularGaugeControl.Scales>
         </dxga:CircularGaugeControl>
-        <dxga:StateIndicatorControl x:Name="stateIndicator"
+        <!--<dxga:StateIndicatorControl x:Name="stateIndicator"
                                             dxga:AnalogGaugeControl.ValueIndicator="{Binding ElementName=pressureNeedle}"
                                             Width="40"
                                             Height="40"
@@ -57,6 +59,6 @@
                     </dxga:State.Presentation>
                 </dxga:State>
             </dxga:StateIndicatorControl.AdditionalStates>
-        </dxga:StateIndicatorControl>
+        </dxga:StateIndicatorControl>-->
     </Grid>
 </UserControl>

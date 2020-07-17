@@ -20,6 +20,7 @@ namespace ControlLibrary
     public partial class CircleGauge : UserControl
     {
         public static readonly DependencyProperty CurValueProperty;
+        public static readonly DependencyProperty TxtProperty;
 
         public CircleGauge()
         { 
@@ -29,12 +30,19 @@ namespace ControlLibrary
         static CircleGauge()
         {
             CurValueProperty = DependencyProperty.Register("CurValue", typeof(int), typeof(CircleGauge), new PropertyMetadata((int)0));
+            TxtProperty = DependencyProperty.Register("Txt", typeof(string), typeof(CircleGauge), new PropertyMetadata("压力表"));
         }
 
         public int CurValue
         {
             get { return (int)GetValue(CurValueProperty); }
             set { SetValue(CurValueProperty, value); }
+        }
+
+        public string Txt
+        {
+            get { return (string)GetValue(TxtProperty); }
+            set { SetValue(TxtProperty, value); }
         }
     }
 }

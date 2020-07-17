@@ -53,7 +53,8 @@
                         <StackPanel>
                             <StackPanel Height="30" Orientation="Horizontal">
                                 <TextBlock Text="开机时间：" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
-                                <TextBlock Text="    0.0h" Name="startUpTime" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                                <TextBlock Text="0.0" Name="startUpTime" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                                <Label FontSize="16" FontFamily="宋体" FontWeight="Bold" VerticalAlignment="Center">h</Label>
                             </StackPanel>
                         </StackPanel>
                     </Border>
@@ -100,7 +101,8 @@
                         <StackPanel>
                             <StackPanel Height="30" Orientation="Horizontal">
                                 <TextBlock Text="工作时间：" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
-                                <TextBlock Text="    0.0h"  Name="workTime_EquipStatus" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                                <TextBlock Text="0.0"  Name="workTime_EquipStatus" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                                <Label FontSize="16" FontFamily="宋体" FontWeight="Bold" VerticalAlignment="Center">h</Label>
                             </StackPanel>
                         </StackPanel>
                     </Border>

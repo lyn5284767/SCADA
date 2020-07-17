@@ -775,8 +775,8 @@ namespace COM.Common
                 return "";
             }
             string year = string.Empty;
-            if (values[0].ToString().Length == 1) year = "200" + values[0].ToString();
-            else year = "20" + values[0].ToString();
+            if (values[0].ToString().Length == 1) year = "0" + values[0].ToString();
+            else year = values[0].ToString();
             int deviceModel = int.Parse(values[1].ToString());
             string dModel = string.Empty;
             if (deviceModel >= 2700) dModel = "0280";
@@ -3493,6 +3493,124 @@ namespace COM.Common
             bool val = (bool)value;
             if (val) return "正常";
             else return "异常";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    #endregion
+
+    #region 液压站
+    public class DivideTenConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null || value == DependencyProperty.UnsetValue)
+            {
+                return 0;
+            }
+
+            double val = (short)value / 10.0;
+
+            return val;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class ColorCoverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            var bc = new BrushConverter();
+            if (values[0] == DependencyProperty.UnsetValue || values[0] == null
+                || values[1] == DependencyProperty.UnsetValue || values[1] == null
+                || values[2] == DependencyProperty.UnsetValue || values[2] == null)
+            {
+                return (Brush)bc.ConvertFrom("#ADD8E6");
+            }
+            double val = (short)values[0] / 10.0;
+            double min = (double)values[1];
+            double max = (double)values[2];
+            if (max < 100) max = 100;
+            double levelOne = (max - min) / 3;
+            double levelTwo = ((max - min) / 3) * 2;
+            if (val < levelOne) return (Brush)bc.ConvertFrom("#ADD8E6");
+            else if (val < levelTwo) return (Brush)bc.ConvertFrom("#FFC464");
+            else return (Brush)bc.ConvertFrom("#FF7C96");
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class ColorDescCoverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            var bc = new BrushConverter();
+            if (values[0] == DependencyProperty.UnsetValue || values[0] == null
+                || values[1] == DependencyProperty.UnsetValue || values[1] == null
+                || values[2] == DependencyProperty.UnsetValue || values[2] == null)
+            {
+                return (Brush)bc.ConvertFrom("#FF7C96");
+            }
+            double val = (short)values[0] / 10.0;
+            double min = (double)values[1];
+            double max = (double)values[2];
+            if (max < 100) max = 100;
+            double levelOne = (max - min) / 3;
+            double levelTwo = ((max - min) / 3) * 2;
+            if (val < levelOne) return (Brush)bc.ConvertFrom("#FF7C96");
+            else if (val < levelTwo) return (Brush)bc.ConvertFrom("#FFC464");
+            else return (Brush)bc.ConvertFrom("#ADD8E6");
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class PumpImgConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null || value == DependencyProperty.UnsetValue)
+            {
+                return "../Images/pump1.png";
+            }
+
+            bool val = (bool)value;
+            if(val) return "../Images/pump2.png";
+            else return "../Images/pump1.png";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class HotImgConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null || value == DependencyProperty.UnsetValue)
+            {
+                return "../Images/hot1.png";
+            }
+
+            bool val = (bool)value;
+            if (val) return "../Images/hot2.png";
+            else return "../Images/hot1.png";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

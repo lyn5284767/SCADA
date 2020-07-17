@@ -77,7 +77,7 @@ namespace Main.SecondFloor
                 this.checkBoxInterlockingOfManipulatorRopes.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["116E1E2E4B5b3"], Mode = BindingMode.OneWay, Converter = new InterLockingOppConverter() });
                 this.checkBoxRobotInspectionMode.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["508b7"], Mode = BindingMode.OneWay, Converter = new InterLockingOppConverter() });
                 this.checkBoxRoteTurnZero.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["21b4"], Mode = BindingMode.OneWay, Converter = new InterLockingOppConverter() });
-                this.checkBoxElevatorOpenLimitCancel.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["504b0"], Mode = BindingMode.OneWay, Converter = new InterLockingConverter() });
+                this.checkBoxElevatorOpenLimitCancel.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["504b0"], Mode = BindingMode.OneWay, Converter = new InterLockingOppConverter() });
 
                 this.BigHookInterLockingAngleOfRobotShowValue.SetBinding(TextBox.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["153RobotBigHookInterlockAngle"], Mode = BindingMode.OneWay });
                 this.ManipulatorTopDriveInterlockAngleShowValue.SetBinding(TextBox.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["154RobotTopDriveInterlockAngle"], Mode = BindingMode.OneWay });

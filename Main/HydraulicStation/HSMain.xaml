@@ -1,0 +1,178 @@
+﻿<UserControl x:Class="Main.HydraulicStation.HSMain"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Main.HydraulicStation" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:controllibrary="http://talonzeng.com/ControlLibrary"
+             mc:Ignorable="d" 
+             d:DesignHeight="650" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="Ing">
+    <UserControl.Resources>
+    </UserControl.Resources>
+    <Grid>
+        <Grid>
+            <!--<Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="500"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Border Style="{StaticResource BorderRegion}" Grid.Row="0">
+                <Border Background="{DynamicResource BorderBrush}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Orientation="Horizontal">
+                            <TextBlock Text="压力(MPa)" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,0,0,0" VerticalAlignment="Center"/>
+                            <TextBlock Name="tbTips" Width="780" Text="液压站-距上次更换液压油已经大于2000小时，请更换液压油" FontSize="24" FontFamily="微软雅黑" FontWeight="Bold" Foreground="#FF5B9F" VerticalAlignment="Center" TextAlignment="Center"/>
+                        </StackPanel>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="251*" />
+                                <ColumnDefinition Width="251*"/>
+                                <ColumnDefinition Width="251*"/>
+                                <ColumnDefinition Width="207*"/>
+                                <ColumnDefinition Width="44*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Margin="0,10,0.5,0" Grid.Column="0">
+                                <hc:CircleProgressBar Name="cpbMainPump" Text="100.0" ArcThickness="15" Value="50" FontWeight="Bold" Width="140" Height="140" FontSize="28" Foreground="LightBlue"/>
+                                <Label Background="Transparent" FontSize="24" FontWeight="Bold">主泵</Label>
+                            </StackPanel>
+                            <StackPanel Margin="250,10,0,0" Grid.ColumnSpan="2">
+                                <hc:CircleProgressBar Name="cpbIronPump" Text="0" ArcThickness="15" Value="50" FontWeight="Bold" Width="140" Height="140" FontSize="28" Foreground="#FFC464"/>
+                                <Label Background="Transparent" FontSize="24" FontWeight="Bold">铁钻工</Label>
+                            </StackPanel>
+                            <StackPanel Margin="0,10,206.448,0" Grid.Column="2" Grid.ColumnSpan="2">
+                                <hc:CircleProgressBar Name="cpbFPPump" Text="0" ArcThickness="15" Value="50" FontWeight="Bold" Width="140" Height="140" FontSize="28" Foreground="#FF7C96"/>
+                                <Label Background="Transparent" FontSize="24" FontWeight="Bold">钻台面</Label>
+                            </StackPanel>
+                            <StackPanel Margin="0.5,10,0,0" Grid.Column="3" Grid.ColumnSpan="2">
+                                <hc:CircleProgressBar Name="cpbTongPump" Text="0" ArcThickness="15" Value="50" FontWeight="Bold" Width="140" Height="140" FontSize="28" Foreground="LightBlue"/>
+                                <Label Background="Transparent" FontSize="24" FontWeight="Bold">大钳</Label>
+                            </StackPanel>
+                            <!--<controllibrary:MyGauge Grid.Column="0"/>
+                            <controllibrary:MyGauge Grid.Column="1"/>
+                            <controllibrary:MyGauge Grid.Column="2"/>-->
+                            <!--<controllibrary:CircleGauge Txt="主泵" Grid.Column="0" Width="180"/>
+                            <controllibrary:CircleGauge Grid.Column="1" Txt="铁钻工"  Width="180"/>
+                            <controllibrary:CircleGauge Grid.Column="2" Txt="钻台面" Width="180" />-->
+                        </Grid>
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <!--<controllibrary:MyGauge Grid.Column="0"/>
+                            <controllibrary:MyGauge Grid.Column="1"/>
+                            <controllibrary:MyGauge Grid.Column="2"/>-->
+                            <!--<controllibrary:CircleGauge Txt="大钳" Grid.Column="0" Width="180"/>
+                            <controllibrary:CircleGauge Grid.Column="1" Txt="卡瓦"  Width="180"/>
+                            <controllibrary:CircleGauge Grid.Column="2" Txt="猫头" Width="180" />-->
+                            <StackPanel Margin="0,10,0,0" Grid.Column="0">
+                                <hc:CircleProgressBar Name="cpbKavaPump" Text="0" ArcThickness="15" Value="50" FontWeight="Bold" Width="140" Height="140" FontSize="28" Foreground="LightBlue"/>
+                                <Label Background="Transparent" FontSize="24" FontWeight="Bold">卡瓦</Label>
+                            </StackPanel>
+                            <StackPanel Margin="0,10,0,0" Grid.Column="1">
+                                <hc:CircleProgressBar Name="cpbCatHeadPump" Text="0" ArcThickness="15" Value="50" FontWeight="Bold" Width="140" Height="140" FontSize="28" Foreground="Red"/>
+                                <Label Background="Transparent" FontSize="24" FontWeight="Bold">猫头</Label>
+                            </StackPanel>
+                            <StackPanel Margin="0,10,0,0" Grid.Column="2">
+                                <hc:CircleProgressBar Name="cpbMovePump" Text="0" ArcThickness="15" Value="50" FontWeight="Bold" Width="140" Height="140" FontSize="28" Foreground="Red"/>
+                                <Label Background="Transparent" FontSize="24" FontWeight="Bold">平移</Label>
+                            </StackPanel>
+                            <StackPanel Margin="0,10,0,0" Grid.Column="3">
+                                <hc:CircleProgressBar Name="cpbLSPump" Text="0" ArcThickness="15" Value="50" FontWeight="Bold" Width="140" Height="140" FontSize="28" Foreground="Red"/>
+                                <Label Background="Transparent" FontSize="24" FontWeight="Bold">LS</Label>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Border>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border Style="{StaticResource BorderRegion}" Grid.Column="0" Height="150">
+                    <Border Background="{DynamicResource BorderBrush}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="油&#x0a;温&#x0a;°C" FontSize="24" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" />
+
+                            <!--<controllibrary:VerticalLinear Grid.Row="1" Margin="0,-25,0,0" Panel.ZIndex="0"/>-->
+                            <hc:WaveProgressBar Name="wpbOil" Grid.Column="1" Value="50" Text="50" Width="80" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" Margin="-20,0,0,0"/>
+                        </Grid>
+                    </Border>
+                </Border>
+                <Border Style="{StaticResource BorderRegion}" Grid.Column="1" Height="150">
+                    <Border Background="{DynamicResource BorderBrush}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="液&#x0a;位&#x0a;(L)" FontSize="24" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" />
+                            <!--<controllibrary:VerticalLinear Grid.Row="1" Margin="0,-25,0,0" Panel.ZIndex="0"/>-->
+                            <hc:WaveProgressBar Name="wpbHeight" Grid.Column="1" Grid.Row="1" Value="900" Text="3000" Width="80" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" Minimum="0" Maximum="3000" Margin="-20,0,0,0"/>
+                        </Grid>
+                    </Border>
+                </Border>
+                <Border Style="{StaticResource BorderRegion}" Grid.Column="2" Height="150">
+                    <Border Background="{DynamicResource BorderBrush}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="运&#x0a;行&#x0a;指&#x0a;示" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" />
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <StackPanel Grid.Row="0">
+                                    <Image Name="imgMainOne" Margin="10,0,0,0" Source="../Images/pump1.png" Width="60"/>
+                                    <TextBlock Text="1#主泵" VerticalAlignment="Center" TextAlignment="Center" FontWeight="Bold" FontFamily="微软雅黑" FontSize="16" Foreground="Black"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Grid.Row="1">
+                                    <Image Name="imgMainTwo" Margin="10,0,0,0" Source="../Images/pump1.png" Width="60"/>
+                                    <TextBlock Text="1#主泵" VerticalAlignment="Center" TextAlignment="Center" FontWeight="Bold" FontFamily="微软雅黑" FontSize="16" Foreground="Black"></TextBlock>
+                                </StackPanel>
+                            </Grid>
+                            <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                                <Image Name="imghot" Margin="10,0,0,0" Source="../Images/hot1.png" Width="80"/>
+                                <TextBlock Text="加热器" TextAlignment="Center" FontWeight="Bold" FontFamily="微软雅黑" FontSize="16" Foreground="Black"></TextBlock>
+                            </StackPanel>
+                            <Grid Grid.Column="3">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <StackPanel Grid.Row="0">
+                                    <Image Name="imgConstantVoltage" Margin="10,0,0,0" Source="../Images/pump1.png" Width="60"/>
+                                    <TextBlock Text="恒压泵" VerticalAlignment="Center" TextAlignment="Center" FontWeight="Bold" FontFamily="微软雅黑" FontSize="16" Foreground="Black"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Grid.Row="1">
+                                    <Image Name="imgDissipateHeat" Margin="10,0,0,0" Source="../Images/pump1.png" Width="60"/>
+                                    <TextBlock Text="散热泵" VerticalAlignment="Center" TextAlignment="Center" FontWeight="Bold" FontFamily="微软雅黑" FontSize="16" Foreground="Black"></TextBlock>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </Border>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

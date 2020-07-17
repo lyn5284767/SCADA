@@ -255,7 +255,11 @@ namespace COM.Common
         /// <summary>
         /// 集成控制系统
         /// </summary>
-        CIMS = 4
+        CIMS = 4,
+        /// <summary>
+        /// 液压站
+        /// </summary>
+        HydraulicStation = 5
     }
 
     public enum SystemRole

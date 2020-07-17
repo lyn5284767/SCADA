@@ -6,12 +6,15 @@
              xmlns:dxga="http://schemas.devexpress.com/winfx/2008/xaml/gauges"
              xmlns:local="clr-namespace:ControlLibrary"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Name="uc">
+             Name="uc">
     <Border>
         <dxga:LinearGaugeControl x:Name="gauge1"
-                                         Height="400"
+                                         Height="300"
                                          MaxWidth="160"
                                          EnableAnimation="True">
+            <dxga:LinearGaugeControl.Model>
+                <dxga:LinearThemeableModel/>
+            </dxga:LinearGaugeControl.Model>
             <dxga:LinearGaugeControl.Scales>
                 <dxga:LinearScale HorizontalAlignment="Center">
                     <dxga:LinearScale.Layers>

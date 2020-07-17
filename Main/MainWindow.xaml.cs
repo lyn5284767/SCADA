@@ -1,11 +1,13 @@
 ﻿using COM.Common;
 using DevExpress.Charts.Native;
 using Main.DrillFloor;
+using Main.HydraulicStation;
 using Main.Integration;
 using Main.SecondFloor;
 using Main.SIR;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Net.NetworkInformation;
 using System.Threading;
@@ -83,20 +85,19 @@ namespace Main
                 }
             }
         }
-
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
           
             GlobalData.Instance.da = new DemoDriver.DAService();
             IsLogin();
             MouseDownSF(null, null);
-
         }
+
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-           System.Windows.Application.Current.Shutdown();
+            System.Windows.Application.Current.Shutdown();
         }
 
         private void IsLogin()
@@ -259,6 +260,14 @@ namespace Main
                 this.Close();
                 
                 System.Windows.Application.Current.Shutdown();
+                System.Diagnostics.Process[] processList = System.Diagnostics.Process.GetProcesses();
+                foreach (System.Diagnostics.Process process in processList)
+                {
+                    if (process.ProcessName.Contains("Main"))
+                    {
+                        process.Kill();
+                    }
+                }
             }
         }
         /// <summary>
@@ -319,12 +328,18 @@ namespace Main
                     byte[] byteToSend = GlobalData.Instance.SendToDR(new List<byte> { 7, 1 });
                     GlobalData.Instance.da.SendBytes(byteToSend);
 
-                    this.BottomColorSetting(this.bdDR, this.tbDR, this.bdDrillSetting); ;
+                    this.BottomColorSetting(this.bdDR, this.tbDR, this.bdDrillSetting); 
                 }
                 else if (GlobalData.Instance.systemType == SystemType.SIR)
                 {
                     MessageBox.Show("功能未开放");
                     return;
+                }
+                else if (GlobalData.Instance.systemType == SystemType.HydraulicStation)
+                {
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(HSSetting.Instance);
+                    this.BottomColorSetting(this.bdDR, this.tbDR, this.bdDrillSetting);
                 }
             }
             catch (Exception ex)
@@ -400,7 +415,7 @@ namespace Main
                 if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
                 {
                     if (!SFToHandleModel()) return;
-                    if (GlobalData.Instance.da["operationModel"].Value.Byte == 4)
+                    if (GlobalData.Instance.da["operationModel"].Value.Byte != 5)
                     {
                         byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 23, 0 });
                         GlobalData.Instance.da.SendBytes(byteToSend);
@@ -457,7 +472,7 @@ namespace Main
                 if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
                 {
                     if (!SFToHandleModel()) return;
-                    if (GlobalData.Instance.da["operationModel"].Value.Byte == 4)
+                    if (GlobalData.Instance.da["operationModel"].Value.Byte != 5)
                     {
                         byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 12, 0 });
                         GlobalData.Instance.da.SendBytes(byteToSend);
@@ -514,7 +529,7 @@ namespace Main
                 if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
                 {
                     if (!SFToHandleModel()) return;
-                    if (GlobalData.Instance.da["operationModel"].Value.Byte == 4)
+                    if (GlobalData.Instance.da["operationModel"].Value.Byte != 5)
                     {
                         byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 1, 9 });
                         GlobalData.Instance.da.SendBytes(byteToSend);
@@ -831,7 +846,7 @@ namespace Main
             {
                 //bd.Background = (Brush)bc.ConvertFrom("#C4DEE8");
                 if (bd.Name == "bdHome"|| bd.Name == "bdSf" || bd.Name == "bdDR" || bd.Name == "bdIng" || bd.Name == "bdHome" || bd.Name == "bdDrillSetting"
-                    || bd.Name == "bdSecureSetting" || bd.Name == "bdIO" || bd.Name == "bdDeviceStatus" || bd.Name == "bdOther" || bd.Name=="bdSIR")
+                    || bd.Name == "bdSecureSetting" || bd.Name == "bdIO" || bd.Name == "bdDeviceStatus" || bd.Name == "bdOther" || bd.Name=="bdSIR" || bd.Name == "bdHS")
                 {
                     bd.Background = (Brush)bc.ConvertFrom("#FCFDFF");
                 }
@@ -888,15 +903,15 @@ namespace Main
         /// </summary>
         private bool SFToHandleModel()
         {
-            if (GlobalData.Instance.da["operationModel"].Value.Byte != 4)//这是判断如果是自动模式，需要切换到手动模式
+            if (GlobalData.Instance.da["operationModel"].Value.Byte == 5)//这是判断如果是自动模式，需要切换到手动模式
             {
-                MessageBoxResult result = MessageBox.Show("需切换至手动模式！确认切换？", "提示", MessageBoxButton.OKCancel);
+                MessageBoxResult result = MessageBox.Show("当前为自动模式需切换至手动模式！确认切换？", "提示", MessageBoxButton.OKCancel);
                 if (result == MessageBoxResult.OK)
                 {
                     byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 1, 4 });
                     GlobalData.Instance.da.SendBytes(byteToSend);
                     int count = 0;
-                    while (GlobalData.Instance.da["operationModel"].Value.Byte != 4 && count < 5)
+                    while (GlobalData.Instance.da["operationModel"].Value.Byte != 5 && count < 5)
                     {
                         count++;
                         Thread.Sleep(50);
@@ -937,6 +952,27 @@ namespace Main
                 }
             }
             return true;
+        }
+        /// <summary>
+        /// 液压站
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MouseHS(object sender, MouseButtonEventArgs e)
+        {
+            return;
+            try
+            {
+                this.spMain.Children.Clear();
+                this.spMain.Children.Add(HSMain.Instance);
+
+                GlobalData.Instance.systemType = SystemType.HydraulicStation;
+                this.BottomColorSetting(this.bdHS, this.tbHS, this.bdHome);
+            }
+            catch (Exception ex)
+            {
+                Log.Log4Net.AddLog(ex.ToString(), Log.InfoLevel.ERROR);
+            }
         }
     }
 }

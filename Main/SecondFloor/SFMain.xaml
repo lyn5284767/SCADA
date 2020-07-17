@@ -282,7 +282,7 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <Border BorderBrush="White" BorderThickness="1" CornerRadius="2" Padding="0" Margin="0,10,0,10" Grid.Column="0">
-                                <Menu Background="Transparent" Height="40" Width="85"  FontSize="18" FontFamily="微软雅黑" FontWeight="Bold" Foreground="#008AFF">
+                                <Menu Background="Transparent" Height="40" Width="85"  FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Foreground="#008AFF">
                                     <MenuItem>
                                         <MenuItem.Header>
                                             <StackPanel Orientation="Vertical">
@@ -333,7 +333,7 @@
                                 </Menu>
                             </Border>
                             <Border  BorderBrush="White" BorderThickness="1" CornerRadius="2" Padding="0" Margin="0,10,0,10" Grid.Column="1">
-                                <Menu Background="Transparent" Height="40" Width="85"  FontSize="18" FontFamily="微软雅黑" FontWeight="Bold" Foreground="#008AFF">
+                                <Menu Background="Transparent" Height="40" Width="85"  FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Foreground="#008AFF">
                                     <MenuItem>
                                         <MenuItem.Header>
                                             <StackPanel Orientation="Vertical">

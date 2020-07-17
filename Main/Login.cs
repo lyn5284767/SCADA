@@ -26,6 +26,14 @@ namespace Main
         public Login()
         {
             InitializeComponent();
+            System.Diagnostics.Process[] processList = System.Diagnostics.Process.GetProcesses();
+            foreach (System.Diagnostics.Process process in processList)
+            {
+                if (process.ProcessName.Contains("KeyBoard"))
+                {
+                    process.Kill();
+                }
+            }
             //textBox_Name.GotFocus += WinAPI.TextBox_Name_GotFocus;
             //textBox_Name.MouseDown += WinAPI.TextBox_Name_GotFocus;
             //textBox_Name.LostFocus += WinAPI.TextBox_Name_LostFocus;
@@ -63,6 +71,14 @@ namespace Main
             WinAPI.TextBox_Name_LostFocus(null, null);
             this.Close();
             System.Windows.Application.Current.Shutdown();
+            System.Diagnostics.Process[] processList = System.Diagnostics.Process.GetProcesses();
+            foreach (System.Diagnostics.Process process in processList)
+            {
+                if (process.ProcessName.Contains("Main"))
+                {
+                    process.Kill();
+                }
+            }
         }
 
         private void BtnLogin_Click(object sender, EventArgs e)
