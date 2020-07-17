@@ -960,7 +960,6 @@ namespace Main
         /// <param name="e"></param>
         private void MouseHS(object sender, MouseButtonEventArgs e)
         {
-            return;
             try
             {
                 this.spMain.Children.Clear();

@@ -58,18 +58,18 @@
                             <TextBlock Text="小&#x0a;车&#x0a;参&#x0a;数&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
                         </Border>
                         <StackPanel>
-                            <cl:TextBlockWithBtn Name="twtL1" ControlTag="1"  TbkText="最靠近井口位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent" />
-                            <cl:TextBlockWithBtn Name="twtL2" ControlTag="2"  TbkText="最远离井口位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
-                            <cl:TextBlockWithBtn Name="twtL3" ControlTag="3"  TbkText="左侧第一根" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
-                            <cl:TextBlockWithBtn Name="twtL4" ControlTag="4"  TbkText="右侧第一根" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
-                            <cl:TextBlockWithBtn Name="twtL5" ControlTag="5"  TbkText="右侧补偿" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
-                            <cl:TextBlockWithBtn Name="twtL6" ControlTag="6"  TbkText="排杆待机位" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
-                            <cl:TextBlockWithBtn Name="twtL7" ControlTag="7"  TbkText="回收位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
-                            <cl:TextBlockWithBtn Name="twtL8" ControlTag="8"  TbkText="井口位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
-                            <cl:TextBlockWithBtn Name="twtL10" ControlTag="10"  TbkText="运输位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
-                            <cl:TextBlockWithBtn Name="twtL11" ControlTag="11"  TbkText="钻铤指梁位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
-                            <cl:TextBlockWithBtn Name="twtL12" ControlTag="12"  TbkText="猫道位" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
-                            <cl:TextBlockWithBtn Name="twtL13" ControlTag="13"  TbkText="鼠洞位" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent"/>
+                            <cl:TextBlockWithBtn Name="twtL1" ControlTag="1"  TbkText="最靠近井口位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent" Height="25"/>
+                            <cl:TextBlockWithBtn Name="twtL2" ControlTag="2"  TbkText="最远离井口位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent" Height="25"/>
+                            <cl:TextBlockWithBtn Name="twtL3" ControlTag="3"  TbkText="左侧第一根" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent" Height="25"/>
+                            <cl:TextBlockWithBtn Name="twtL4" ControlTag="4"  TbkText="右侧第一根" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent" Height="25"/>
+                            <cl:TextBlockWithBtn Name="twtL5" ControlTag="5"  TbkText="右侧补偿" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent" Height="25"/>
+                            <cl:TextBlockWithBtn Name="twtL6" ControlTag="6"  TbkText="排杆待机位" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent" Height="25"/>
+                            <cl:TextBlockWithBtn Name="twtL7" ControlTag="7"  TbkText="回收位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent" Height="25"/>
+                            <cl:TextBlockWithBtn Name="twtL8" ControlTag="8"  TbkText="井口位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent" Height="25"/>
+                            <cl:TextBlockWithBtn Name="twtL10" ControlTag="10"  TbkText="运输位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent" Height="25"/>
+                            <cl:TextBlockWithBtn Name="twtL11" ControlTag="11"  TbkText="钻铤指梁位置" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent" Height="25"/>
+                            <cl:TextBlockWithBtn Name="twtL12" ControlTag="12"  TbkText="猫道位" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent" Height="25"/>
+                            <cl:TextBlockWithBtn Name="twtL13" ControlTag="13"  TbkText="鼠洞位" textBoxSetMouseDownEvent ="TwtL1_textBoxSetMouseDownEvent" Height="25"/>
                         </StackPanel>
                     </StackPanel>
                 </Border>
