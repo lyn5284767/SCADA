@@ -432,7 +432,7 @@ namespace Main
                 else if (GlobalData.Instance.systemType == SystemType.DrillFloor)
                 {
                     if (!DRToHandleModel()) return;
-                    if (GlobalData.Instance.da["droperationModel"].Value.Byte == 4)
+                    if (GlobalData.Instance.da["droperationModel"].Value.Byte != 5)
                     {
                         this.spMain.Children.Clear();
                         this.spMain.Children.Add(DRParamSettingMain.Instance);
@@ -489,7 +489,7 @@ namespace Main
                 else if (GlobalData.Instance.systemType == SystemType.DrillFloor)
                 {
                     if (!DRToHandleModel()) return;
-                    if (GlobalData.Instance.da["droperationModel"].Value.Byte == 4)
+                    if (GlobalData.Instance.da["droperationModel"].Value.Byte !=5)
                     {
                         this.spMain.Children.Clear();
                         this.spMain.Children.Add(DRPosSetting.Instance);
@@ -931,7 +931,7 @@ namespace Main
         /// </summary>
         private bool DRToHandleModel()
         {
-            if (GlobalData.Instance.da["droperationModel"].Value.Byte != 4)//这是判断如果是自动模式，需要切换到手动模式
+            if (GlobalData.Instance.da["droperationModel"].Value.Byte == 5)//这是判断如果是自动模式，需要切换到手动模式
             {
                 MessageBoxResult result = MessageBox.Show("需切换至手动模式！确认切换？", "提示", MessageBoxButton.OKCancel);
                 if (result == MessageBoxResult.OK)

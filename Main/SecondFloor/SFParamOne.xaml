@@ -137,6 +137,7 @@
                             <cl:TextBlockWithTextBox Name="twtR14" ControlTag="16"  TbkText="空载最大速度"/>
                             <cl:TextBlockWithTextBox Name="twtR15" ControlTag="17"  TbkText="钻杆最大速度"/>
                             <cl:TextBlockWithTextBox Name="twtR16" ControlTag="18"  TbkText="钻铤最大速度"/>
+                            <Button Content="确 定 配 置"  Click="Button_tabItemParameterConfiguration_Confirm"  Style="{StaticResource btnGreen}" FontWeight="Bold" FontFamily="宋体" FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="30" IsDefault="False"/>
                             <!--<cl:TextBlockWithTextBox Name="twtR17" ControlTag="51"  TbkText="左手柄"/>
                             <cl:TextBlockWithTextBox Name="twtR18" ControlTag="52"  TbkText="右手柄"/>
                             <cl:TextBlockWithTextBox Name="twtR19" ControlTag="53"  TbkText="按键面板"/>

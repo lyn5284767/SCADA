@@ -97,6 +97,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\x86\Debug\Loya.Dameer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="Microsoft.Windows.Shell, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\HandyControl.2.5.0.2\lib\net40\Microsoft.Windows.Shell.dll</HintPath>
     </Reference>
@@ -481,6 +484,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
+    <Fakes Include="Fakes\HandyControl.fakes" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -496,10 +500,6 @@
     <Resource Include="Images\OpenConnect.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CircularGauge\CircularGauge.csproj">
-      <Project>{6efd5895-177b-4bbb-af52-29f4d53b3fbd}</Project>
-      <Name>CircularGauge</Name>
-    </ProjectReference>
     <ProjectReference Include="..\COM.Common\COM.Common.csproj">
       <Project>{141042bf-8a01-45b8-bb00-1aac4641de69}</Project>
       <Name>COM.Common</Name>
