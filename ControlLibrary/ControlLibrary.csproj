@@ -158,9 +158,6 @@
       <DependentUpon>MotorSpeedChart.xaml</DependentUpon>
     </Compile>
     <Compile Include="MultiLineButton.cs" />
-    <Compile Include="MyGauge.xaml.cs">
-      <DependentUpon>MyGauge.xaml</DependentUpon>
-    </Compile>
     <Compile Include="OnOffButton.xaml.cs">
       <DependentUpon>OnOffButton.xaml</DependentUpon>
     </Compile>
@@ -279,10 +276,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MyGauge.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="OnOffButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -337,10 +330,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CircularGauge\CircularGauge.csproj">
-      <Project>{6efd5895-177b-4bbb-af52-29f4d53b3fbd}</Project>
-      <Name>CircularGauge</Name>
-    </ProjectReference>
     <ProjectReference Include="..\COM.Common\COM.Common.csproj">
       <Project>{141042bf-8a01-45b8-bb00-1aac4641de69}</Project>
       <Name>COM.Common</Name>
