@@ -36,10 +36,10 @@
     <Grid>
         <ScrollViewer  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <Grid>
-                <Grid.RowDefinitions>
+                <!--<Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="60"/>
-                </Grid.RowDefinitions>
+                </Grid.RowDefinitions>-->
                 <Grid Grid.Row="0" Name="gridParameterConfiguration">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="40"/>
@@ -50,10 +50,10 @@
                     <Grid Grid.Column="0">
                         <StackPanel Orientation="Vertical">
                             <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                                <TextBlock Text="基&#x0a;本&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="宋体" FontWeight="Bold" Height="160" />
+                                <TextBlock Text="基&#x0a;本&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="宋体" FontWeight="Bold" Height="210" />
                             </Border>
                             <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                                <TextBlock Text="钻&#x0a;杆&#x0a;钻&#x0a;铤&#x0a;参&#x0a;数&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="宋体" FontWeight="Bold" Height="158"/>
+                                <TextBlock Text="钻&#x0a;杆&#x0a;钻&#x0a;铤&#x0a;参&#x0a;数&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="宋体" FontWeight="Bold" Height="235"/>
                             </Border>
                             <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
                                 <TextBlock Text="钻&#x0a;杆&#x0a;容&#x0a;量&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="宋体" FontWeight="Bold" Height="140"/>
@@ -95,20 +95,18 @@
                             <cl:TextBlockWithTextBox Name="twtL19" ControlTag="39"  TbkText="4寸钻杆容量"/>
                             <cl:TextBlockWithTextBox Name="twtL20" ControlTag="40"  TbkText="4.5寸钻杆容量"/>
                             <cl:TextBlockWithTextBox Name="twtL21" ControlTag="41"  TbkText="5寸钻杆容量"/>
-                            <cl:TextBlockWithTextBox Name="twtL22" ControlTag="42"  TbkText="5.5寸钻杆容量"/>
-                            <cl:TextBlockWithTextBox Name="twtL23" ControlTag="43"  TbkText="6 5/8寸钻杆容量"/>
                         </StackPanel>
                     </Grid>
 
                     <Grid Grid.Column="2">
                         <StackPanel Orientation="Vertical">
-                            <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="5" Padding="3" Height="Auto">
+                            <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="5" Padding="3" Height="210">
                                 <TextBlock Text="小&#x0a;车&#x0a;电&#x0a;机&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="宋体" FontWeight="Bold"  Height="155" />
                             </Border>
-                            <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="5" Padding="3" Height="Auto">
+                            <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="5" Padding="3" Height="150">
                                 <TextBlock Text="手&#x0a;臂&#x0a;电&#x0a;机&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="宋体" FontWeight="Bold"  Height="105" />
                             </Border>
-                            <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="5" Padding="3" Height="Auto">
+                            <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="5" Padding="3" Height="120">
                                 <TextBlock Text="回&#x0a;转&#x0a;电&#x0a;机&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="宋体" FontWeight="Bold"  Height="85" />
                             </Border>
                             <!--<Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="5" Padding="3" Height="Auto">
@@ -137,6 +135,8 @@
                             <cl:TextBlockWithTextBox Name="twtR14" ControlTag="16"  TbkText="空载最大速度"/>
                             <cl:TextBlockWithTextBox Name="twtR15" ControlTag="17"  TbkText="钻杆最大速度"/>
                             <cl:TextBlockWithTextBox Name="twtR16" ControlTag="18"  TbkText="钻铤最大速度"/>
+                            <cl:TextBlockWithTextBox Name="twtL22" ControlTag="42"  TbkText="5.5寸钻杆容量"/>
+                            <cl:TextBlockWithTextBox Name="twtL23" ControlTag="43"  TbkText="6 5/8寸钻杆容量"/>
                             <Button Content="确 定 配 置"  Click="Button_tabItemParameterConfiguration_Confirm"  Style="{StaticResource btnGreen}" FontWeight="Bold" FontFamily="宋体" FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="30" IsDefault="False"/>
                             <!--<cl:TextBlockWithTextBox Name="twtR17" ControlTag="51"  TbkText="左手柄"/>
                             <cl:TextBlockWithTextBox Name="twtR18" ControlTag="52"  TbkText="右手柄"/>
@@ -170,11 +170,11 @@
                             <Button Content="确 认 配 置" Click="Button_tabItemParameterConfiguration_Confirm" Style="{StaticResource btnGreen}" FontWeight="Bold" FontFamily="宋体" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" IsDefault="False" Visibility="Collapsed"/>
                         </StackPanel>
                     </Grid>-->
-                    <Grid Grid.Column="3">
+                    <!--<Grid Grid.Column="3">
                         <StackPanel Orientation="Horizontal">
                             <Button Content="确 定 配 置"  Click="Button_tabItemParameterConfiguration_Confirm"  Style="{StaticResource btnGreen}" FontWeight="Bold" FontFamily="宋体" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" IsDefault="False"/>
                         </StackPanel>
-                    </Grid>
+                    </Grid>-->
                 </Grid>
             </Grid>
         </ScrollViewer>

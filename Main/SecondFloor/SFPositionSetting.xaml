@@ -106,19 +106,19 @@
                 <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Height="120">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <StackPanel >
-                            <TextBox Text="当前选择参数名称" VerticalAlignment="Center" HorizontalAlignment="Center" IsReadOnly="True" TextAlignment="Center" Width="160" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
-                            <TextBox Text="反馈参数名称" VerticalAlignment="Center" HorizontalAlignment="Center"  IsReadOnly="True"  TextAlignment="Center" Width="160" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
-                            <TextBox Text="当前值" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center"  IsReadOnly="True"  Width="160" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBox Text="当前选择参数名称" VerticalAlignment="Center" HorizontalAlignment="Center" IsReadOnly="True" TextAlignment="Center" Width="160" Margin="5,2,5,2" FontSize="12" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBox Text="反馈参数名称" VerticalAlignment="Center" HorizontalAlignment="Center"  IsReadOnly="True"  TextAlignment="Center" Width="160" Margin="5,2,5,2" FontSize="12" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBox Text="当前值" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center"  IsReadOnly="True"  Width="160" Margin="5,2,5,2" FontSize="12" FontFamily="宋体" FontWeight="Bold"/>
                         </StackPanel>
                         <StackPanel>
-                            <TextBox Text="未选择参数" TabIndex="0" Name="selectParaName"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Width="160" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBox Text="未选择参数" TabIndex="0" Name="selectParaName"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Width="160" Margin="5,2,5,2" FontSize="12" FontFamily="宋体" FontWeight="Bold"/>
 
-                            <TextBox Text="反馈参数名称" Name="returnSelectParaName" IsReadOnly="True"  VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Width="160" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
-                            <TextBox Text="0" VerticalAlignment="Center" Name="returnSelectParaValue"  IsReadOnly="True" HorizontalAlignment="Center" TextAlignment="Center" Width="160" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBox Text="反馈参数名称" Name="returnSelectParaName" IsReadOnly="True"  VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Width="160" Margin="5,2,5,2" FontSize="12" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBox Text="0" VerticalAlignment="Center" Name="returnSelectParaValue"  IsReadOnly="True" HorizontalAlignment="Center" TextAlignment="Center" Width="160" Margin="5,2,5,2" FontSize="12" FontFamily="宋体" FontWeight="Bold"/>
                         </StackPanel>
 
                         <StackPanel>
-                            <TextBox Text="参数读/写"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Width="160" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBox Text="参数读/写"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Width="160" Margin="5,2,5,2" FontSize="12" FontFamily="宋体" FontWeight="Bold"/>
                             <Button  Content="参数读取" HorizontalAlignment="Center" Width="160" Margin="4" FontSize="16" FontFamily="宋体" FontWeight="Bold" Click="btn_ParaRead_LocationCalibration">
                                 <Button.Style>
                                     <Style TargetType="Button">
@@ -189,7 +189,7 @@
                 <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0" Name="caliMenu">
-                <Menu Height="30" Width="135"  FontSize="16" FontFamily="宋体" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
+                <Menu Height="30" Width="135"  FontSize="14" FontFamily="宋体" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
                     <MenuItem>
                         <MenuItem.Header>
                             <StackPanel Orientation="Horizontal">
@@ -232,7 +232,7 @@
             </Grid>
 
             <Grid Grid.Column="1">
-                <Menu Height="30" Width="135"  FontSize="16" FontFamily="宋体" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
+                <Menu Height="30" Width="135"  FontSize="14" FontFamily="宋体" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
                     <MenuItem>
                         <MenuItem.Header>
                             <StackPanel Orientation="Horizontal">
@@ -271,7 +271,7 @@
             </Grid>
 
             <Grid Grid.Column="2">
-                <Menu Height="30" Width="135"  FontSize="16" FontFamily="宋体" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
+                <Menu Height="30" Width="135"  FontSize="14" FontFamily="宋体" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
                     <MenuItem>
                         <MenuItem.Header>
                             <StackPanel Orientation="Horizontal">
@@ -295,7 +295,7 @@
             </Grid>
 
             <Grid Grid.Column="3">
-                <Menu Height="30" Width="135"  FontSize="16" FontFamily="宋体" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
+                <Menu Height="30" Width="135"  FontSize="14" FontFamily="宋体" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
                     <MenuItem>
                         <MenuItem.Header>
                             <StackPanel Orientation="Horizontal">
@@ -345,7 +345,7 @@
             </Grid>
 
             <Grid Grid.Column="4">
-                <Menu Height="30" Width="135"  FontSize="16" FontFamily="宋体" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
+                <Menu Height="30" Width="135"  FontSize="14" FontFamily="宋体" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
                     <MenuItem>
                         <MenuItem.Header>
                             <StackPanel Orientation="Horizontal">
@@ -377,13 +377,13 @@
             <Button Style="{StaticResource btnGreen}" Grid.Column="7" Height="35" Click="Import_Click">一键导入</Button>
         </Grid>
         <Grid Grid.Row="3">
-            <DataGrid Name="lvCali" FontSize="20" FontFamily="微软雅黑" AutoGenerateColumns="False" ScrollViewer.VerticalScrollBarVisibility="Visible">
+            <DataGrid Name="lvCali" FontSize="18" FontFamily="微软雅黑" AutoGenerateColumns="False" ScrollViewer.VerticalScrollBarVisibility="Visible">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="序号" Width="50" Binding="{Binding ID}"/>
-                    <DataGridTextColumn Header="父参数" Width="200" Binding="{Binding Parent}"/>
-                    <DataGridTextColumn Header="参数名" Width="200" Binding="{Binding Name}"/>
-                    <DataGridTextColumn Header="值" Width="100" Binding="{Binding Value}"/>
-                    <DataGridTextColumn Header="检测" Width="100" Binding="{Binding Test}"/>
+                    <DataGridTextColumn Header="序号" Width="70" Binding="{Binding ID}"/>
+                    <DataGridTextColumn Header="父参数" Width="250" Binding="{Binding Parent}"/>
+                    <DataGridTextColumn Header="参数名" Width="250" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="值" Width="150" Binding="{Binding Value}"/>
+                    <DataGridTextColumn Header="检测" Width="150" Binding="{Binding Test}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

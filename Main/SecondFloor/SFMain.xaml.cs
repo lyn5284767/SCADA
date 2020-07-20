@@ -91,6 +91,9 @@ namespace Main.SecondFloor
             }
 
             GlobalData.Instance.DRNowPage = "SFMain";
+            GlobalData.Instance.Rows = GlobalData.Instance.da["DrillNums"].Value.Byte;
+            GlobalData.Instance.DrillNum = GlobalData.Instance.da["103E23B5"].Value.Byte;
+            amination.InitRowsColoms(SystemType.SecondFloor);
         }
 
         private void Init()

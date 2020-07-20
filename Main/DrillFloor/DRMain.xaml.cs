@@ -63,7 +63,7 @@ namespace Main.DrillFloor
             this.amination.SendFingerBeamNumberEvent += Amination_SendFingerBeamNumberEvent; ;
             this.amination.CIMSChange(SystemType.DrillFloor);
             this.amination.SystemChange(SystemType.DrillFloor);
-            this.amination.InitRowsColoms(SystemType.DrillFloor);
+            
             VariableBinding();
             this.Loaded += DRMain_Loaded;
         }
@@ -82,6 +82,8 @@ namespace Main.DrillFloor
             pageChange = new System.Timers.Timer(500);
             pageChange.Elapsed += PageChange_Elapsed;
             pageChange.Enabled = true;
+
+            this.amination.InitRowsColoms(SystemType.DrillFloor);
         }
         /// <summary>
         /// 切换页面发送指令

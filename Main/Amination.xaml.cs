@@ -376,7 +376,7 @@ namespace Main
 
             VariableBinding();
 
-            InitRowsColoms(SystemType.SecondFloor);
+            //InitRowsColoms(SystemType.SecondFloor);
 
         }
         /// <summary>

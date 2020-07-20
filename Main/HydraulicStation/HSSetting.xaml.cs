@@ -1,4 +1,6 @@
-﻿using System;
+﻿using COM.Common;
+using Log;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -43,11 +45,25 @@ namespace Main.HydraulicStation
         public HSSetting()
         {
             InitializeComponent();
+            VariableBinding();
         }
 
+        private void VariableBinding()
+        {
+            try
+            { 
+            }
+            catch (Exception ex)
+            {
+                Log4Net.AddLog(ex.StackTrace, InfoLevel.ERROR);
+            }
+        }
+        //司钻/本地控制
         private void btn_controlModel(object sender, EventArgs e)
         {
-
+            byte[] byteToSend;
+            byteToSend = new byte[10] { 0, 19, 1, 9, 0, 0, 0, 0, 0, 0 };// 疑问，所有切换都是这个协议？
+            GlobalData.Instance.da.SendBytes(byteToSend);
         }
     }
 }

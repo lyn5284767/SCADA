@@ -5,18 +5,20 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ControlLibrary"
              mc:Ignorable="d" 
-             d:DesignHeight="28" d:DesignWidth="360" Name="uc" TextOptions.TextFormattingMode="Display">
+             d:DesignHeight="40" d:DesignWidth="320" Name="uc" TextOptions.TextFormattingMode="Display">
     <Grid MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave">
         <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="2" Margin="1">
             <Border.Effect>
                 <DropShadowEffect x:Name="sh" BlurRadius="20" Color="Gray" Direction="20" Opacity="0" RenderingBias="Quality" ShadowDepth="1"/>
             </Border.Effect>
         </Border>
-        <StackPanel Orientation="Horizontal" Name="stackPanel" >
-            <TextBlock Name="tbk" Text="参数配置" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="14" FontFamily="微软雅黑" FontWeight="Bold"  Width="150" TextAlignment="Center">
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Name="stackPanel" >
+            <TextBlock Name="tbk" Text="参数配置" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold"  Width="150" TextAlignment="Center">
             </TextBlock>
-            <TextBox x:Name="textBoxShow" IsReadOnly="True" Text="{Binding Path=ShowTxt, ElementName=uc}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1,0,1,0" FontSize="12" FontFamily="微软雅黑" FontWeight="Bold" Width="95" TextAlignment="Center"/>
-            <TextBlock x:Name="textBoxSet"  MouseLeftButtonDown="TextBoxSet_MouseDown" Text="读取" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="18" FontFamily="微软雅黑" FontWeight="Bold" Background="#F49466" Width="95"  TextAlignment="Center"/>
+            <TextBox x:Name="textBoxShow" IsReadOnly="True" Text="{Binding Path=ShowTxt, ElementName=uc}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1,0,1,0" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Width="95" TextAlignment="Center"/>
+            <Grid Background="#F49466"  Width="65">
+                <TextBlock x:Name="textBoxSet"  MouseLeftButtonDown="TextBoxSet_MouseDown" Text="读取" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" TextAlignment="Center"/>
+            </Grid>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -54,7 +54,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <ComboBox Name="cbTypeSelect" SelectedIndex="0" FontSize="22" FontFamily="微软雅黑" Width="200" Grid.Column="0">
+            <ComboBox Name="cbTypeSelect" SelectedIndex="0" FontSize="20" FontFamily="微软雅黑" Width="200" Grid.Column="0">
             </ComboBox>
             <TimeTool:Dameer Name="beginTime" Format="Custom" CustomFormat="yyyy-MM-dd HH:mm:ss" ShowCheckBox="False" Grid.Column="1"/>
             <TimeTool:Dameer Name="endTime" Format="Custom" CustomFormat="yyyy-MM-dd HH:mm:ss" ShowCheckBox="False" Grid.Column="2"/>
@@ -63,10 +63,10 @@
         <Grid Grid.Row="1">
             <DataGrid Name="lvRecord" FontSize="20" FontFamily="微软雅黑" AutoGenerateColumns="False" ScrollViewer.VerticalScrollBarVisibility="Visible">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="序号" Width="50" Binding="{Binding OID}"/>
-                    <DataGridTextColumn Header="内容" Width="200" Binding="{Binding Content}"/>
+                    <DataGridTextColumn Header="序号" Width="70" Binding="{Binding OID}"/>
+                    <DataGridTextColumn Header="内容" Width="220" Binding="{Binding Content}"/>
                     <DataGridTextColumn Header="记录值" Width="200" Binding="{Binding Value}"/>
-                    <DataGridTextColumn Header="类别" Width="100" Binding="{Binding Type}"/>
+                    <DataGridTextColumn Header="类别" Width="120" Binding="{Binding Type}"/>
                     <DataGridTextColumn Header="时间" Width="300" Binding="{Binding TimeStamp}"/>
                 </DataGrid.Columns>
             </DataGrid>

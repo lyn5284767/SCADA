@@ -375,6 +375,12 @@ namespace Main
                     MessageBox.Show("功能未开放");
                     return;
                 }
+                else if (GlobalData.Instance.systemType == SystemType.HydraulicStation)
+                {
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(HSDeviceStatus.Instance);
+                    this.BottomColorSetting(this.bdDR, this.tbDR, this.bdDeviceStatus);
+                }
             }
             catch (Exception ex)
             {
