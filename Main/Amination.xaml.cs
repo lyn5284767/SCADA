@@ -648,9 +648,7 @@ namespace Main
                     
                     WinAPI.GetPrivateProfileString("SECONDFLOOR", "COLOMS", strColoms, sb, STRINGMAX, configPath);
                     strColoms = sb.ToString();
-                    int.TryParse(strColoms, out coloms);
-
-                    drillCnt = GlobalData.Instance.DrillNum; // 最大钻铤数量
+                    int.TryParse(strColoms, out coloms);                    drillCnt = GlobalData.Instance.DrillNum; // 最大钻铤数量
 
                     // 钻杠高度
                     WinAPI.GetPrivateProfileString("SECONDFLOOR", "HEIGHT", strHeight, sb, STRINGMAX, configPath);

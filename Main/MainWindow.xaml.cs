@@ -87,10 +87,16 @@ namespace Main
         }
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-          
-            GlobalData.Instance.da = new DemoDriver.DAService();
-            IsLogin();
-            MouseDownSF(null, null);
+            try
+            {
+                GlobalData.Instance.da = new DemoDriver.DAService();
+                IsLogin();
+                MouseDownSF(null, null);
+            }
+            catch (Exception ex)
+            {
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+            }
         }
 
 
