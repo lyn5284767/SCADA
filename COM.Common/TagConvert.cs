@@ -3619,4 +3619,111 @@ namespace COM.Common
         }
     }
     #endregion
+
+
+    /// <summary>
+    /// 排杆/送杆步骤
+    /// </summary>
+    public class AutoModeStepCoverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            string tb = (string)parameter;
+            int workModel = 1;
+            if ((values[1] == DependencyProperty.UnsetValue) || (values[1] == null))
+            {
+                workModel = 1;
+            }
+            else
+            {
+                if (values[1].ToString() == "2")
+                {
+                    workModel = 2;
+                }
+            }
+            int byteAutoModeNowStep = int.Parse(values[2].ToString());
+            if (tb == "one")
+            {
+                if (workModel == 1) //送杆
+                {
+                    if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null) || values[0].ToString() != "5") // 非自动模式
+                    {
+                        return 0;
+                    }
+
+                    if (byteAutoModeNowStep == 0) return 0;
+                    if ((byteAutoModeNowStep >= 1) && (byteAutoModeNowStep <= 10)) return 1;
+                    if ((byteAutoModeNowStep >= 11) && (byteAutoModeNowStep <= 16)) return 2;
+                    if ((byteAutoModeNowStep >= 17) && (byteAutoModeNowStep <= 18)) return 3;
+                    if ((byteAutoModeNowStep >= 19) && (byteAutoModeNowStep <= 25)) return 4;
+                    if ((byteAutoModeNowStep == 26)) return 5;
+                    if ((byteAutoModeNowStep >= 27) && (byteAutoModeNowStep <= 28)) return 6;
+                    if ((byteAutoModeNowStep >= 24) && (byteAutoModeNowStep <= 34)) return 7;
+                    if (byteAutoModeNowStep == 35) return 8;
+                }
+                else if (workModel == 2) // 排杆
+                {
+                    if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null) || values[0].ToString() != "5") // 非自动模式
+                    {
+                        return "排杆启动";
+                    }
+                    if ((byteAutoModeNowStep == 0)) return "排杆启动";
+                    if ((byteAutoModeNowStep >= 1) && (byteAutoModeNowStep <= 9)) return "井口定位";
+                    if ((byteAutoModeNowStep >= 10) && (byteAutoModeNowStep <= 11)) return "井口抓杆";
+                    if ((byteAutoModeNowStep >= 10) && (byteAutoModeNowStep <= 16)) return "井口位置";
+                    if ((byteAutoModeNowStep == 12)) return "吊卡确认";
+                    if ((byteAutoModeNowStep >= 13) && (byteAutoModeNowStep <= 16)) return "井口运动";
+                    if ((byteAutoModeNowStep >= 17) && (byteAutoModeNowStep <= 18)) return "指梁定位";
+                    if ((byteAutoModeNowStep == 19)) return "指梁锁确认";
+                    if ((byteAutoModeNowStep >= 20) && (byteAutoModeNowStep <= 24) || (byteAutoModeNowStep >= 25) && (byteAutoModeNowStep <= 27)) return "指梁排管";
+                    //if ((byteAutoModeNowStep >= 25) && (byteAutoModeNowStep <= 27)) last = true;
+                }
+            }
+            else if (tb == "two")
+            {
+                if (workModel == 1) //送杆
+                {
+                    if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null) || values[0].ToString() != "5") // 非自动模式
+                    {
+                        return "指梁定位";
+                    }
+                    if (byteAutoModeNowStep == 0) return "指梁定位";
+                    if ((byteAutoModeNowStep >= 1) && (byteAutoModeNowStep <= 10)) return "指梁抓杆";
+                    if ((byteAutoModeNowStep >= 11) && (byteAutoModeNowStep <= 16)) return "指梁锁确认";
+                    if ((byteAutoModeNowStep >= 17) && (byteAutoModeNowStep <= 18)) return "井口等待";
+                    if ((byteAutoModeNowStep >= 19) && (byteAutoModeNowStep <= 23)) return "井口旋转";
+                    if ((byteAutoModeNowStep >= 24) && (byteAutoModeNowStep <= 25)) return "吊卡送杆";
+                    if ((byteAutoModeNowStep == 26)) return "吊卡确认";
+                    if ((byteAutoModeNowStep >= 27) && (byteAutoModeNowStep <= 28)) return "井口位置";
+                    if ((byteAutoModeNowStep >= 29) && (byteAutoModeNowStep <= 34) || (byteAutoModeNowStep == 35)) return "送杆完成";
+                    //if (byteAutoModeNowStep == 35) last = true;
+                }
+                else if (workModel == 2) // 排杆
+                {
+                    if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null) || values[0].ToString() != "5") // 非自动模式
+                    {
+                        return "井口定位";
+                    }
+
+                    if ((byteAutoModeNowStep == 0)) return "井口定位";
+                    if ((byteAutoModeNowStep >= 1) && (byteAutoModeNowStep <= 9)) return "井口抓杆";
+                    if ((byteAutoModeNowStep >= 10) && (byteAutoModeNowStep <= 11)) return "井口位置";
+                    if ((byteAutoModeNowStep >= 10) && (byteAutoModeNowStep <= 16)) return "吊卡确认";
+                    if ((byteAutoModeNowStep == 12)) return "井口运动";
+                    if ((byteAutoModeNowStep >= 13) && (byteAutoModeNowStep <= 16)) return "指梁定位";
+                    if ((byteAutoModeNowStep >= 17) && (byteAutoModeNowStep <= 18)) return "指梁锁确认";
+                    if ((byteAutoModeNowStep == 19)) return "指梁排管";
+                    if ((byteAutoModeNowStep >= 20) && (byteAutoModeNowStep <= 24) || (byteAutoModeNowStep >= 25) && (byteAutoModeNowStep <= 27)) return "排杆完成";
+                    //if ((byteAutoModeNowStep >= 25) && (byteAutoModeNowStep <= 27)) last = true;
+                }
+            }
+
+            return "未知";
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

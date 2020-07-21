@@ -2,6 +2,7 @@
 using ControlLibrary;
 using DatabaseLib;
 using DemoDriver;
+using HandyControl.Controls;
 using HBGKTest;
 using HBGKTest.YiTongCamera;
 using System;
@@ -1203,67 +1204,77 @@ namespace Main.SecondFloor
             //this.tubeType.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drillPipeType"], Mode = BindingMode.OneWay, Converter = new DrillPipeTypeConverter() });
 
             MultiBinding stepOneMultiBind = new MultiBinding();
-            stepOneMultiBind.Converter = new AutoModeNowStepCoverter();
+            stepOneMultiBind.Converter = new AutoModeStepCoverter();
             stepOneMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
             stepOneMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["workModel"], Mode = BindingMode.OneWay });
             stepOneMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E5AutoModelCurrentStep"], Mode = BindingMode.OneWay });
             stepOneMultiBind.ConverterParameter = "one";
             stepOneMultiBind.NotifyOnSourceUpdated = true;
-            this.stepOne.SetBinding(TextBlock.TextProperty, stepOneMultiBind);
+            this.sbDrillDown.SetBinding(StepBar.StepIndexProperty, stepOneMultiBind);
+            // 测试
+            //MultiBinding stepOneMultiBind = new MultiBinding();
+            //stepOneMultiBind.Converter = new AutoModeNowStepCoverter();
+            //stepOneMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            //stepOneMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["workModel"], Mode = BindingMode.OneWay });
+            //stepOneMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E5AutoModelCurrentStep"], Mode = BindingMode.OneWay });
+            //stepOneMultiBind.ConverterParameter = "one";
+            //stepOneMultiBind.NotifyOnSourceUpdated = true;
+            //this.stepOne.SetBinding(TextBlock.TextProperty, stepOneMultiBind);
 
-            MultiBinding stepOneForeColorMultiBind = new MultiBinding();
-            stepOneForeColorMultiBind.Converter = new AutoModeForeColorCoverter();
-            stepOneForeColorMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-            stepOneForeColorMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["workModel"], Mode = BindingMode.OneWay });
-            stepOneForeColorMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E5AutoModelCurrentStep"], Mode = BindingMode.OneWay });
-            stepOneForeColorMultiBind.ConverterParameter = "foreColorOne";
-            stepOneForeColorMultiBind.NotifyOnSourceUpdated = true;
-            this.stepOne.SetBinding(TextBlock.ForegroundProperty, stepOneForeColorMultiBind);
+            //MultiBinding stepOneForeColorMultiBind = new MultiBinding();
+            //stepOneForeColorMultiBind.Converter = new AutoModeForeColorCoverter();
+            //stepOneForeColorMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            //stepOneForeColorMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["workModel"], Mode = BindingMode.OneWay });
+            //stepOneForeColorMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E5AutoModelCurrentStep"], Mode = BindingMode.OneWay });
+            //stepOneForeColorMultiBind.ConverterParameter = "foreColorOne";
+            //stepOneForeColorMultiBind.NotifyOnSourceUpdated = true;
+            //this.stepOne.SetBinding(TextBlock.ForegroundProperty, stepOneForeColorMultiBind);
 
-            MultiBinding stepOneBackColorMultiBind = new MultiBinding();
-            stepOneBackColorMultiBind.Converter = new AutoModeBackColorCoverter();
-            stepOneBackColorMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-            stepOneBackColorMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["workModel"], Mode = BindingMode.OneWay });
-            stepOneBackColorMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E5AutoModelCurrentStep"], Mode = BindingMode.OneWay });
-            stepOneBackColorMultiBind.ConverterParameter = "backColorOne";
-            stepOneBackColorMultiBind.NotifyOnSourceUpdated = true;
-            this.bdOne.SetBinding(Border.BackgroundProperty, stepOneBackColorMultiBind);
+            //MultiBinding stepOneBackColorMultiBind = new MultiBinding();
+            //stepOneBackColorMultiBind.Converter = new AutoModeBackColorCoverter();
+            //stepOneBackColorMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            //stepOneBackColorMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["workModel"], Mode = BindingMode.OneWay });
+            //stepOneBackColorMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E5AutoModelCurrentStep"], Mode = BindingMode.OneWay });
+            //stepOneBackColorMultiBind.ConverterParameter = "backColorOne";
+            //stepOneBackColorMultiBind.NotifyOnSourceUpdated = true;
+            //this.bdOne.SetBinding(Border.BackgroundProperty, stepOneBackColorMultiBind);
 
 
-            MultiBinding stepTwoMultiBind = new MultiBinding();
-            stepTwoMultiBind.Converter = new AutoModeNowStepCoverter();
-            stepTwoMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-            stepTwoMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["workModel"], Mode = BindingMode.OneWay });
-            stepTwoMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E5AutoModelCurrentStep"], Mode = BindingMode.OneWay });
-            stepTwoMultiBind.ConverterParameter = "two";
-            stepTwoMultiBind.NotifyOnSourceUpdated = true;
-            this.stepTwo.SetBinding(TextBlock.TextProperty, stepTwoMultiBind);
+            //MultiBinding stepTwoMultiBind = new MultiBinding();
+            //stepTwoMultiBind.Converter = new AutoModeNowStepCoverter();
+            //stepTwoMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            //stepTwoMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["workModel"], Mode = BindingMode.OneWay });
+            //stepTwoMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E5AutoModelCurrentStep"], Mode = BindingMode.OneWay });
+            //stepTwoMultiBind.ConverterParameter = "two";
+            //stepTwoMultiBind.NotifyOnSourceUpdated = true;
+            //this.stepTwo.SetBinding(TextBlock.TextProperty, stepTwoMultiBind);
 
-            MultiBinding stepTwoForeColorMultiBind = new MultiBinding();
-            stepTwoForeColorMultiBind.Converter = new AutoModeForeColorCoverter();
-            stepTwoForeColorMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-            stepTwoForeColorMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["workModel"], Mode = BindingMode.OneWay });
-            stepTwoForeColorMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E5AutoModelCurrentStep"], Mode = BindingMode.OneWay });
-            stepTwoForeColorMultiBind.ConverterParameter = "foreColorTwo";
-            stepTwoForeColorMultiBind.NotifyOnSourceUpdated = true;
-            this.stepTwo.SetBinding(TextBlock.ForegroundProperty, stepTwoForeColorMultiBind);
+            //MultiBinding stepTwoForeColorMultiBind = new MultiBinding();
+            //stepTwoForeColorMultiBind.Converter = new AutoModeForeColorCoverter();
+            //stepTwoForeColorMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            //stepTwoForeColorMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["workModel"], Mode = BindingMode.OneWay });
+            //stepTwoForeColorMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E5AutoModelCurrentStep"], Mode = BindingMode.OneWay });
+            //stepTwoForeColorMultiBind.ConverterParameter = "foreColorTwo";
+            //stepTwoForeColorMultiBind.NotifyOnSourceUpdated = true;
+            //this.stepTwo.SetBinding(TextBlock.ForegroundProperty, stepTwoForeColorMultiBind);
 
-            MultiBinding stepTwoBackColorMultiBind = new MultiBinding();
-            stepTwoBackColorMultiBind.Converter = new AutoModeBackColorCoverter();
-            stepTwoBackColorMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-            stepTwoBackColorMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["workModel"], Mode = BindingMode.OneWay });
-            stepTwoBackColorMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E5AutoModelCurrentStep"], Mode = BindingMode.OneWay });
-            stepTwoBackColorMultiBind.ConverterParameter = "backColorTwo";
-            stepTwoBackColorMultiBind.NotifyOnSourceUpdated = true;
-            this.bdTwo.SetBinding(Border.BackgroundProperty, stepTwoBackColorMultiBind);
+            //MultiBinding stepTwoBackColorMultiBind = new MultiBinding();
+            //stepTwoBackColorMultiBind.Converter = new AutoModeBackColorCoverter();
+            //stepTwoBackColorMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            //stepTwoBackColorMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["workModel"], Mode = BindingMode.OneWay });
+            //stepTwoBackColorMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E5AutoModelCurrentStep"], Mode = BindingMode.OneWay });
+            //stepTwoBackColorMultiBind.ConverterParameter = "backColorTwo";
+            //stepTwoBackColorMultiBind.NotifyOnSourceUpdated = true;
+            //this.bdTwo.SetBinding(Border.BackgroundProperty, stepTwoBackColorMultiBind);
 
-            MultiBinding stepTipVisibilityMultiBind = new MultiBinding();
-            stepTipVisibilityMultiBind.Converter = new AutoModeTipVisCoverter();
-            stepTipVisibilityMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-            stepTipVisibilityMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["workModel"], Mode = BindingMode.OneWay });
-            stepTipVisibilityMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E5AutoModelCurrentStep"], Mode = BindingMode.OneWay });
-            stepTipVisibilityMultiBind.NotifyOnSourceUpdated = true;
-            this.bdStepTip.SetBinding(Border.VisibilityProperty, stepTipVisibilityMultiBind);
+            //MultiBinding stepTipVisibilityMultiBind = new MultiBinding();
+            //stepTipVisibilityMultiBind.Converter = new AutoModeTipVisCoverter();
+            //stepTipVisibilityMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            //stepTipVisibilityMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["workModel"], Mode = BindingMode.OneWay });
+            //stepTipVisibilityMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E5AutoModelCurrentStep"], Mode = BindingMode.OneWay });
+            //stepTipVisibilityMultiBind.NotifyOnSourceUpdated = true;
+            //this.bdStepTip.SetBinding(Border.VisibilityProperty, stepTipVisibilityMultiBind);
+
 
 
             WarnInfoOne = new Dictionary<string, byte>();
@@ -2151,7 +2162,7 @@ namespace Main.SecondFloor
         /// </summary>
         private void btn_SPSelect(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("确认选择特殊指梁", "提示", MessageBoxButton.OKCancel);
+            MessageBoxResult result = HandyControl.Controls.MessageBox.Show("确认选择特殊指梁", "提示", MessageBoxButton.OKCancel);
             if (result == MessageBoxResult.OK)
             {
                 byte[] byteToSend = SendByte(new List<byte> { 20, 1, 0, 0, 2 });
