@@ -30,6 +30,18 @@ namespace ControlLibrary
             MinTime = minDate;
             MaxTime = argument;
         }
+
+        public void AddPoints(double v1)
+        {
+            DateTime argument = DateTime.Now;
+            DateTime minDate = argument.AddSeconds(-120);
+            IList<ProcessItem> itemsToInsert = new List<ProcessItem>();
+            itemsToInsert.Add(new ProcessItem() { DateAndTime = argument, Process1 = v1});
+            dataSource.AddRange(itemsToInsert);
+            dataSource.RemoveRangeAt(0, dataSource.TakeWhile(item => item.DateAndTime < minDate).Count());
+            MinTime = minDate;
+            MaxTime = argument;
+        }
     }
 
     public struct ProcessItem {

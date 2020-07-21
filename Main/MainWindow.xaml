@@ -64,7 +64,7 @@ KeyboardNavigation.DirectionalNavigation="Cycle" Width="100"/>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Image Source="Images/SANYTop.png" HorizontalAlignment="Left" Grid.Column="0" Margin="23,15,50,15"></Image>
-            <Label FontWeight="Bold" Foreground="White" FontSize="28" Grid.Column="1">三一井口自动化控制系统</Label>
+            <Label FontWeight="Bold" Foreground="White" FontSize="28" Grid.Column="1">SAPS</Label>
             <TextBlock Name="timeLable" Grid.Column="2" HorizontalAlignment="Right" Foreground="White" FontSize="20" >2020-5-12 09:11:32</TextBlock>
         </Grid>
         <Grid Height="55" Background="#F5F6FA" DockPanel.Dock="Bottom" Name="gdBottom">
@@ -95,8 +95,8 @@ KeyboardNavigation.DirectionalNavigation="Cycle" Width="100"/>
             <Border Name="bdSIR" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="3" MouseLeftButtonDown="SIR_MouseLeftButtonDown">
                 <TextBlock FontSize="16" Foreground="#1F7AFF" FontWeight="Bold" Name="tbSIR">铁钻工</TextBlock>
             </Border>
-            <Border Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="4">
-                <TextBlock FontSize="16" Foreground="#1F7AFF" FontWeight="Bold">猫道</TextBlock>
+            <Border Name="bdCat" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="4"  MouseLeftButtonDown="Cat_MouseLeftButtonDown">
+                <TextBlock Name="tbCat" FontSize="16" Foreground="#1F7AFF" FontWeight="Bold">猫道</TextBlock>
             </Border>
             <Border Name="bdIng" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="5" MouseLeftButtonDown="MouseIng">
                 <TextBlock Name="tbIng" FontSize="16" Foreground="#1F7AFF" FontWeight="Bold">集成<LineBreak/>

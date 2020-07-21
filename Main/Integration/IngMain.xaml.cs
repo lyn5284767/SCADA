@@ -49,7 +49,7 @@ namespace Main.Integration
         public IngMain()
         {
             InitializeComponent();
-            this.amination.CIMSChange(SystemType.SecondFloor);
+            SFSelectMouseDown(null, null);
             amination.SendFingerBeamNumberEvent += Amination_SendFingerBeamNumberEvent;
             VariableBinding();
             this.Loaded += IngMain_Loaded;

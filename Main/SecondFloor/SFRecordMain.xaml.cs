@@ -418,15 +418,15 @@ namespace Main.SecondFloor
                 || (content >= 34 && content <= 42)) return "报警信息";
             else return "状态信息";
         }
-        string cond = string.Empty;
+        string cond = "Where LogType='1'";
         private void Button_MouseDown(object sender, RoutedEventArgs e)
         {
             string tagID = this.cbTypeSelect.SelectedValue.ToString();
             string bTime = this.beginTime.Value.Value.ToString("yyyy-MM-dd HH:mm:ss");
             string eTime = this.endTime.Value.Value.ToString("yyyy-MM-dd HH:mm:ss");
             string condition = string.Empty;
-            if (tagID != "0") condition = string.Format("Where Id = '{0}' and TimeStamp>'{1}' and TimeStamp<'{2}'", tagID, bTime, eTime);
-            else condition = string.Format("Where TimeStamp>'{1}' and TimeStamp<'{2}'", tagID, bTime, eTime);
+            if (tagID != "0") condition = string.Format("Where LogType='1'and Id = '{0}' and TimeStamp>'{1}' and TimeStamp<'{2}'", tagID, bTime, eTime);
+            else condition = string.Format("Where LogType='1'and TimeStamp>'{1}' and TimeStamp<'{2}'", tagID, bTime, eTime);
             cond = condition;
             QueryRecord();
         }

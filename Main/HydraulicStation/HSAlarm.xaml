@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="Main.HydraulicStation.HSAlarm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Main.HydraulicStation" xmlns:TimeTool="clr-namespace:Loya.Dameer;assembly=Loya.Dameer" xmlns:controllibrary="http://talonzeng.com/ControlLibrary"
+             mc:Ignorable="d" 
+            d:DesignHeight="650" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="hsAlarm">
+    <Grid>
+        <Border Style="{StaticResource BorderRegion}" Grid.Row="0">
+            <Border Background="{DynamicResource BorderBrush}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="告警列表" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <ComboBox Name="cbTypeSelect" SelectedIndex="0" FontSize="20" FontFamily="微软雅黑" Width="200" Height="40" Grid.Column="0">
+                        </ComboBox>
+                        <TimeTool:Dameer Name="beginTime" Format="Custom" CustomFormat="yyyy-MM-dd HH:mm:ss" ShowCheckBox="False" Grid.Column="1"/>
+                        <TimeTool:Dameer Name="endTime" Format="Custom" CustomFormat="yyyy-MM-dd HH:mm:ss" ShowCheckBox="False" Grid.Column="2"/>
+                        <Button Click="Button_MouseDown" Grid.Column="3" Width="100">查询</Button>
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <DataGrid Name="lvRecord" FontSize="20" FontFamily="微软雅黑" AutoGenerateColumns="False" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="序号" Width="70" Binding="{Binding OID}"/>
+                                <DataGridTextColumn Header="内容" Width="400" Binding="{Binding Content}"/>
+                                <DataGridTextColumn Header="记录值" Width="200" Binding="{Binding Value}"/>
+                                <DataGridTextColumn Header="时间" Width="300" Binding="{Binding TimeStamp}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <controllibrary:LoadControl x:Name="projectLoad" Grid.Column="2" HorizontalAlignment="Center" Visibility="Collapsed"/>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Border>
+    </Grid>
+</UserControl>

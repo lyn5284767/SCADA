@@ -1,5 +1,6 @@
 ﻿using COM.Common;
 using DevExpress.Charts.Native;
+using Main.Cat;
 using Main.DrillFloor;
 using Main.HydraulicStation;
 using Main.Integration;
@@ -592,6 +593,12 @@ namespace Main
                     MessageBox.Show("功能未开放");
                     return;
                 }
+                else if (GlobalData.Instance.systemType == SystemType.HydraulicStation)
+                {
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(HSAlarm.Instance);
+                    this.BottomColorSetting(this.bdSf, this.tbSf, this.bdOther);
+                }
             }
             catch (Exception ex)
             {
@@ -852,7 +859,8 @@ namespace Main
             {
                 //bd.Background = (Brush)bc.ConvertFrom("#C4DEE8");
                 if (bd.Name == "bdHome"|| bd.Name == "bdSf" || bd.Name == "bdDR" || bd.Name == "bdIng" || bd.Name == "bdHome" || bd.Name == "bdDrillSetting"
-                    || bd.Name == "bdSecureSetting" || bd.Name == "bdIO" || bd.Name == "bdDeviceStatus" || bd.Name == "bdOther" || bd.Name=="bdSIR" || bd.Name == "bdHS")
+                    || bd.Name == "bdSecureSetting" || bd.Name == "bdIO" || bd.Name == "bdDeviceStatus" || bd.Name == "bdOther" || bd.Name=="bdSIR" || bd.Name == "bdHS"
+                    || bd.Name== "bdCat")
                 {
                     bd.Background = (Brush)bc.ConvertFrom("#FCFDFF");
                 }
@@ -973,6 +981,26 @@ namespace Main
 
                 GlobalData.Instance.systemType = SystemType.HydraulicStation;
                 this.BottomColorSetting(this.bdHS, this.tbHS, this.bdHome);
+            }
+            catch (Exception ex)
+            {
+                Log.Log4Net.AddLog(ex.ToString(), Log.InfoLevel.ERROR);
+            }
+        }
+        /// <summary>
+        /// 选择猫道
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Cat_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                this.spMain.Children.Clear();
+                this.spMain.Children.Add(BSCatMain.Instance);
+
+                GlobalData.Instance.systemType = SystemType.HydraulicStation;
+                this.BottomColorSetting(this.bdCat, this.tbCat, this.bdHome);
             }
             catch (Exception ex)
             {

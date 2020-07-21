@@ -140,6 +140,9 @@
     <Compile Include="Amination.xaml.cs">
       <DependentUpon>Amination.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Cat\BSCatMain.xaml.cs">
+      <DependentUpon>BSCatMain.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DrillFloor\DRCameraFullScreen.xaml.cs">
       <DependentUpon>DRCameraFullScreen.xaml</DependentUpon>
     </Compile>
@@ -172,6 +175,9 @@
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HydraulicStation\HSAlarm.xaml.cs">
+      <DependentUpon>HSAlarm.xaml</DependentUpon>
     </Compile>
     <Compile Include="HydraulicStation\HSDeviceStatus.xaml.cs">
       <DependentUpon>HSDeviceStatus.xaml</DependentUpon>
@@ -287,6 +293,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Cat\BSCatMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DrillFloor\DRCameraFullScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -320,6 +330,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DrillFloor\DRSecureSetting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HydraulicStation\HSAlarm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -692,5 +706,6 @@
     <Resource Include="Images\hot1.png" />
     <Resource Include="Images\hot2.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

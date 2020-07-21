@@ -31,11 +31,11 @@
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <cl:BasedSwitchButton Name="controlModel" ContentLeft="本地" ContentDown="控制模式" ContentRight="司钻" UserControlClicked="btn_controlModel" Grid.Column="0" />
-                        <cl:BasedSwitchButton Name="MainPumpOne" ContentLeft="停止" ContentDown="1#主泵" ContentRight="启动" UserControlClicked="btn_controlModel" Grid.Column="1" />
-                        <cl:BasedSwitchButton Name="MainPumpTwo" ContentLeft="停止" ContentDown="2#主泵" ContentRight="启动" UserControlClicked="btn_controlModel" Grid.Column="2" />
-                        <cl:BasedSwitchButton Name="constantVoltagePump" ContentLeft="停止" ContentDown="恒压泵" ContentRight="启动" UserControlClicked="btn_controlModel" Grid.Column="3" />
-                        <cl:BasedSwitchButton Name="dissipateHeat" ContentLeft="停止" ContentDown="散热泵" ContentRight="启动" UserControlClicked="btn_controlModel" Grid.Column="4" />
-                        <cl:BasedSwitchButton Name="hot" ContentLeft="停止" ContentDown="加热器" ContentRight="启动" UserControlClicked="btn_controlModel" Grid.Column="5" />
+                        <cl:BasedSwitchButton Name="MainPumpOne" ContentLeft="停止" ContentDown="1#主泵" ContentRight="启动" UserControlClicked="btn_MainPumpOne" Grid.Column="1" />
+                        <cl:BasedSwitchButton Name="MainPumpTwo" ContentLeft="停止" ContentDown="2#主泵" ContentRight="启动" UserControlClicked="btn_MainPumpTwo" Grid.Column="2" />
+                        <cl:BasedSwitchButton Name="constantVoltagePump" ContentLeft="停止" ContentDown="恒压泵" ContentRight="启动" UserControlClicked="btn_constantVoltagePump" Grid.Column="3" />
+                        <cl:BasedSwitchButton Name="dissipateHeat" ContentLeft="停止" ContentDown="散热泵" ContentRight="启动" UserControlClicked="btn_dissipateHeat" Grid.Column="4" />
+                        <cl:BasedSwitchButton Name="hot" ContentLeft="停止" ContentDown="加热器" ContentRight="启动" UserControlClicked="btn_hot" Grid.Column="5" />
                     </Grid>
                 </Grid>
             </Border>
@@ -80,8 +80,8 @@
                                     </Border>
                                     <Border Grid.Row="0" Grid.Column="1" BorderBrush="White" BorderThickness="1">
                                         <StackPanel Orientation="Horizontal">
-                                            <CheckBox FontSize="18" Margin="20,0,0,0">手动</CheckBox>
-                                            <CheckBox FontSize="18" Margin="20,0,0,0">自动</CheckBox>
+                                            <CheckBox Name="cbHotHand" FontSize="18" Margin="20,0,0,0" Checked="cbHotHand_Checked">手动</CheckBox>
+                                            <CheckBox Name="cbHotAuto" FontSize="18" Margin="20,0,0,0" Checked="cbHotAuto_Checked">自动</CheckBox>
                                         </StackPanel>
                                     </Border>
                                     <Border Grid.Row="1" Grid.Column="0" BorderBrush="White" BorderThickness="1">
@@ -89,8 +89,8 @@
                                     </Border>
                                     <Border Grid.Row="1" Grid.Column="1" BorderBrush="White" BorderThickness="1">
                                         <StackPanel Orientation="Horizontal">
-                                            <CheckBox FontSize="18" Margin="20,0,0,0">手动</CheckBox>
-                                            <CheckBox FontSize="18" Margin="20,0,0,0">自动</CheckBox>
+                                            <CheckBox Name="cbDisHotHand" FontSize="18" Margin="20,0,0,0" Checked="cbDisHotHand_Checked">手动</CheckBox>
+                                            <CheckBox Name="cbDisHotAuto" FontSize="18" Margin="20,0,0,0" Checked="cbDisHotAuto_Checked">自动</CheckBox>
                                         </StackPanel>
                                     </Border>
                                     <Border Grid.Row="2" Grid.Column="0" BorderBrush="White" BorderThickness="1">
@@ -98,8 +98,8 @@
                                     </Border>
                                     <Border Grid.Row="2" Grid.Column="1" BorderBrush="White" BorderThickness="1">
                                         <StackPanel Orientation="Horizontal">
-                                            <CheckBox FontSize="18" Margin="20,0,0,0">手动</CheckBox>
-                                            <CheckBox FontSize="18" Margin="20,0,0,0">自动</CheckBox>
+                                            <CheckBox Name="cbFanHand" FontSize="18" Margin="20,0,0,0" Checked="cbFanHand_Checked">手动</CheckBox>
+                                            <CheckBox Name="cbFanAuto" FontSize="18" Margin="20,0,0,0" Checked="cbFanuAuto_Checked">自动</CheckBox>
                                         </StackPanel>
                                     </Border>
                                 </Grid>
@@ -109,8 +109,8 @@
                                             <RowDefinition/>
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
-                                        <Button Grid.Row="0" Style="{StaticResource ButtonPrimary}" FontSize="18" Height="40">系统复位</Button>
-                                        <Button Grid.Row="1" Style="{StaticResource ButtonPrimary}" FontSize="18" Height="40">报警消除</Button>
+                                        <Button Grid.Row="0" Style="{StaticResource ButtonPrimary}" FontSize="18" Height="40" Click="BtnSysTurnZero_Click">系统复位</Button>
+                                        <Button Grid.Row="1" Style="{StaticResource ButtonPrimary}" FontSize="18" Height="40" Click="BtnAlarmClear_Click">报警消除</Button>
                                     </Grid>
                                 </Border>
                             </Grid>
@@ -138,13 +138,13 @@
                                     <RowDefinition/>
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
-                                <Button Grid.Column="0" Grid.Row="0" Width="240" Height="40" FontSize="18">已切换到主泵1运行</Button>
-                                <Button Grid.Column="1" Grid.Row="0" Width="240" Height="40" FontSize="18">已切换到主泵2运行</Button>
-                                <Button Grid.Column="0" Grid.Row="1" Width="240" Height="40" FontSize="18">主电机1已加注黄油</Button>
-                                <Button Grid.Column="1" Grid.Row="1" Width="240" Height="40" FontSize="18">主电机2已加注黄油</Button>
-                                <Button Grid.Column="0" Grid.Row="2" Width="240" Height="40" FontSize="18">滤芯已更换</Button>
-                                <Button Grid.Column="1" Grid.Row="2" Width="240" Height="40" FontSize="18">液压油已更换</Button>
-                                <Button Grid.Column="0" Grid.Row="3" Width="240" Height="40" FontSize="18">已确认无漏油</Button>
+                                <Button Grid.Column="0" Grid.Row="0" Width="240" Height="40" FontSize="18" Click="BtnTurnMainOne_Click">已切换到主泵1运行</Button>
+                                <Button Grid.Column="1" Grid.Row="0" Width="240" Height="40" FontSize="18" Click="BtnTurnMainTwo_Click">已切换到主泵2运行</Button>
+                                <Button Grid.Column="0" Grid.Row="1" Width="240" Height="40" FontSize="18" Click="BtnMonitorOneGetOil_Click">主电机1已加注黄油</Button>
+                                <Button Grid.Column="1" Grid.Row="1" Width="240" Height="40" FontSize="18" Click="BtnMonitorTwoGetOil_Click">主电机2已加注黄油</Button>
+                                <Button Grid.Column="0" Grid.Row="2" Width="240" Height="40" FontSize="18" Click="BtnFilterReplace_Click">滤芯已更换</Button>
+                                <Button Grid.Column="1" Grid.Row="2" Width="240" Height="40" FontSize="18" Click="BtnOilReplace_Click">液压油已更换</Button>
+                                <Button Grid.Column="0" Grid.Row="3" Width="240" Height="40" FontSize="18" Click="BtnOilLeakage_Click">已确认无漏油</Button>
                                 <Button Grid.Column="1" Grid.Row="3" Width="240" Height="40" FontSize="18">备用</Button>
                             </Grid>
                         </Grid>
@@ -173,24 +173,24 @@
                             </Grid.RowDefinitions>
                             <StackPanel Grid.Column="0" Grid.Row="0" VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Button FontSize="18" Width="50" Height="50">伸</Button>
-                                    <Button FontSize="18" Width="50" Height="50">缩</Button>
-                                    <Button FontSize="18" Width="50" Height="50">关</Button>
+                                    <Button FontSize="18" Width="50" Height="50" Click="BtnLeftCatReach_Click">伸</Button>
+                                    <Button FontSize="18" Width="50" Height="50" Click="BtnLeftCatRetract_Click">缩</Button>
+                                    <Button FontSize="18" Width="50" Height="50" Click="BtnLeftCatClose_Click">关</Button>
                                 </StackPanel>
                                 <TextBlock FontSize="18" Text="左猫头" HorizontalAlignment="Center"></TextBlock>
                             </StackPanel>
                             <StackPanel Grid.Column="1" Grid.Row="0" VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Button FontSize="18" Width="50" Height="50">伸</Button>
-                                    <Button FontSize="18" Width="50" Height="50">缩</Button>
-                                    <Button FontSize="18" Width="50" Height="50">关</Button>
+                                    <Button FontSize="18" Width="50" Height="50" Click="BtnRightCatReach_Click">伸</Button>
+                                    <Button FontSize="18" Width="50" Height="50" Click="BtnRightCatRetract_Click">缩</Button>
+                                    <Button FontSize="18" Width="50" Height="50" Click="BtnRightCatClose_Click">关</Button>
                                 </StackPanel>
                                 <TextBlock FontSize="18" Text="右猫头" HorizontalAlignment="Center"></TextBlock>
                             </StackPanel>
-                            <cl:BasedSwitchButton ContentLeft="关" ContentDown="铁钻工" ContentRight="开" UserControlClicked="btn_controlModel" Grid.Column="0" Grid.Row="1"/>
-                            <cl:BasedSwitchButton ContentLeft="关" ContentDown="大钳" ContentRight="开" UserControlClicked="btn_controlModel" Grid.Column="1" Grid.Row="1"/>
-                            <cl:BasedSwitchButton ContentLeft="关" ContentDown="钻台面" ContentRight="开" UserControlClicked="btn_controlModel" Grid.Column="0" Grid.Row="2"/>
-                            <cl:BasedSwitchButton ContentLeft="关" ContentDown="缓冲臂" ContentRight="开" UserControlClicked="btn_controlModel" Grid.Column="1" Grid.Row="2"/>
+                            <cl:BasedSwitchButton Name="Iron" ContentLeft="关" ContentDown="铁钻工" ContentRight="开" UserControlClicked="btn_Iron" Grid.Column="0" Grid.Row="1"/>
+                            <cl:BasedSwitchButton Name="Tongs" ContentLeft="关" ContentDown="大钳" ContentRight="开" UserControlClicked="btn_Tongs" Grid.Column="1" Grid.Row="1"/>
+                            <cl:BasedSwitchButton Name="DF" ContentLeft="关" ContentDown="钻台面" ContentRight="开" UserControlClicked="btn_DF" Grid.Column="0" Grid.Row="2"/>
+                            <cl:BasedSwitchButton Name="BufferArm" ContentLeft="关" ContentDown="缓冲臂" ContentRight="开" UserControlClicked="btn_BufferArm" Grid.Column="1" Grid.Row="2"/>
                         </Grid>
                     </Grid>
                 </Border>

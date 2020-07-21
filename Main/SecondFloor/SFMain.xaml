@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Main.SecondFloor"
              xmlns:cl="http://talonzeng.com/ControlLibrary"
              xmlns:gl ="clr-namespace:COM.Common;assembly=COM.Common"
-             xmlns:main="clr-namespace:Main"
+             xmlns:main="clr-namespace:Main" xmlns:hc="https://handyorg.github.io/handycontrol"
              mc:Ignorable="d" 
              d:DesignHeight="650" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="secondFloor">
     <UserControl.Resources>
@@ -41,6 +41,9 @@
         <Grid DockPanel.Dock="Top" Height="160">
             <StackPanel Orientation="Horizontal">
                 <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,5,10" Width="310">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+                    </Border.Effect>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="5"></ColumnDefinition>
@@ -114,6 +117,9 @@
                     </Grid>
                 </Border>
                 <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="10" Width="280">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+                    </Border.Effect>
                     <StackPanel>
                         <Grid Height="30">
                             <Grid.ColumnDefinitions>
@@ -260,6 +266,9 @@
                     </Grid>-->
                 </Border>
                 <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,5,10" Width="200">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+                    </Border.Effect>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -270,6 +279,9 @@
                     </Grid>
                 </Border>
                 <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,5,10" Width="180">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+                    </Border.Effect>
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="60"></RowDefinition>
@@ -379,6 +391,9 @@
         <Grid Height="490">
             <StackPanel Orientation="Horizontal">
                 <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,5,2,5" Width="630">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+                    </Border.Effect>
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50"/>
@@ -386,7 +401,19 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0" Orientation="Horizontal">
-                            <Border  BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Margin="20,5,20,5" Width="80" Background="#DCDEE3">
+                            <TextBlock Text="送&#13;杆" Name="tbDrillDown"/>
+                            <hc:StepBar Width="620" FontSize="10" Name="sbDrillDown">
+                                <hc:StepBarItem Content="送杆启动"/>
+                                <hc:StepBarItem Content="指梁定位"/>
+                                <hc:StepBarItem Content="指梁抓杆"/>
+                                <hc:StepBarItem Content="指梁锁确认"/>
+                                <hc:StepBarItem Content="井口等待"/>
+                                <hc:StepBarItem Content="井口送杆"/>
+                                <hc:StepBarItem Content="吊卡确认"/>
+                                <hc:StepBarItem Content="井口位置"/>
+                                <hc:StepBarItem Content="送杆完成"/>
+                            </hc:StepBar>
+                            <!--<Border  BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Margin="20,5,20,5" Width="80" Background="#DCDEE3">
                                 <TextBlock Text="{Binding ElementName=workMode,Path=IsChecked,Converter={StaticResource workModeFlowCvt}}" Foreground="#E02740" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
                             </Border>
                             <Border Name="bdOne" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Margin="10,5,20,5" Background="#1F7AFF" Width="120">
@@ -398,7 +425,7 @@
                             </Border>
                             <Border x:Name="bdStepTip"  BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Margin="10,5,20,5" Width="120" Background="#E02740" Visibility="Collapsed">
                                 <TextBlock  Text="井口位置" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/>
-                            </Border>
+                            </Border>-->
                         </StackPanel>
                         <!--6.15新增-->
                         <Grid Grid.Row="1">
@@ -443,6 +470,9 @@
                     </Grid>
                 </Border>
                 <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,5,2,5" Width="380">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+                    </Border.Effect>
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="90"></RowDefinition>

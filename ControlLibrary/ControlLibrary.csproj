@@ -154,6 +154,9 @@
     <Compile Include="MotorElecCurrentChart.xaml.cs">
       <DependentUpon>MotorElecCurrentChart.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MainPumpChart.xaml.cs">
+      <DependentUpon>MainPumpChart.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MotorSpeedChart.xaml.cs">
       <DependentUpon>MotorSpeedChart.xaml</DependentUpon>
     </Compile>
@@ -271,6 +274,10 @@
     <Page Include="MotorElecCurrentChart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainPumpChart.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="MotorSpeedChart.xaml">
       <SubType>Designer</SubType>

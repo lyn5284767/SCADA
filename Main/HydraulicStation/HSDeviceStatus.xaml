@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
              xmlns:local="clr-namespace:Main.HydraulicStation" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts" xmlns:cl="http://talonzeng.com/ControlLibrary" xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              mc:Ignorable="d" 
               d:DesignHeight="650" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="hsDeviceStatus">
@@ -13,20 +14,21 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="400"/>
-                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="500"/>
+                <ColumnDefinition Width="200"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Border Style="{StaticResource BorderRegion}" Grid.Column="0">
                 <Border Background="{DynamicResource BorderBrush}">
-                    <lvc:CartesianChart Series="{Binding SeriesCollection}" LegendLocation="Left">
+                    <!--<lvc:CartesianChart Name="chart" Series="{Binding SeriesCollection}" LegendLocation="Top">
                         <lvc:CartesianChart.AxisX>
                             <lvc:Axis Labels="{Binding Labels}"></lvc:Axis>
                         </lvc:CartesianChart.AxisX>
                         <lvc:CartesianChart.AxisY>
-                            <lvc:Axis MaxValue="100.0" MinValue="0.0"/>
+                            <lvc:Axis MinValue="0"/>
                         </lvc:CartesianChart.AxisY>
-                    </lvc:CartesianChart>
+                    </lvc:CartesianChart>-->
+                    <cl:MainPumpChart Name="chart"/>
                 </Border>
             </Border>
             <Border Style="{StaticResource BorderRegion}" Grid.Column="1">
@@ -47,23 +49,52 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="200"/>
-                                <ColumnDefinition/>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="80"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="主泵卸荷" Grid.Row="0" Grid.Column="0" FontSize="20" FontWeight="Bold" TextAlignment="Right"></TextBlock>
+                            <TextBlock Text="主泵卸荷" Grid.Row="0" Grid.Column="0" FontSize="20" FontWeight="Bold" TextAlignment="Right" ></TextBlock>
                             <TextBlock Text="卡瓦卸荷" Grid.Row="1" Grid.Column="0" FontSize="20" FontWeight="Bold" TextAlignment="Right"></TextBlock>
-                            <TextBlock Text="平移" Grid.Row="2" Grid.Column="0" FontSize="20" FontWeight="Bold" TextAlignment="Right"></TextBlock>
-                            <TextBlock Text="备用油阀" Grid.Row="3" Grid.Column="0" FontSize="20" FontWeight="Bold" TextAlignment="Right"></TextBlock>
-                            <cl:SymbolMapping Name="aa"  Grid.Row="0" Grid.Column="1" StrContent="" Margin="10,2,2,2"/>
-                            <cl:SymbolMapping Name="bb"  Grid.Row="1" Grid.Column="1" StrContent="" Margin="10,2,2,2"/>
-                            <cl:SymbolMapping Name="cc"  Grid.Row="2" Grid.Column="1" StrContent="" Margin="10,2,2,2"/>
-                            <cl:SymbolMapping Name="dd"  Grid.Row="3" Grid.Column="1" StrContent="" Margin="10,2,2,2"/>
+                            <TextBlock Text="平移" Grid.Row="2" Grid.Column="0" FontSize="20" FontWeight="Bold" TextAlignment="Right" ></TextBlock>
+                            <TextBlock Text="备用油阀" Grid.Row="3" Grid.Column="0" FontSize="20" FontWeight="Bold" TextAlignment="Right" ></TextBlock>
+                            <cl:SymbolMapping Name="smMainPumpUnLoad"  Grid.Row="0" Grid.Column="1" StrContent="" Margin="10,2,2,2"/>
+                            <cl:SymbolMapping Name="smKavaUnLoad"  Grid.Row="1" Grid.Column="1" StrContent="" Margin="10,2,2,2"/>
+                            <cl:SymbolMapping Name="smMove"  Grid.Row="2" Grid.Column="1" StrContent="" Margin="10,2,2,2"/>
+                            <cl:SymbolMapping Name="smSpareOil"  Grid.Row="3" Grid.Column="1" StrContent="" Margin="10,2,2,2"/>
                         </Grid>
                     </Grid>
                 </Border>
             </Border>
             <Border Style="{StaticResource BorderRegion}" Grid.Column="2">
                 <Border Background="{DynamicResource BorderBrush}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Orientation="Horizontal">
+                            <TextBlock Text="运行时间(H)" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,0,0,0" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <Grid Grid.Row="1" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="180"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="1#主泵" Grid.Row="0" Grid.Column="0" FontSize="20" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Text="2#主泵" Grid.Row="1" Grid.Column="0" FontSize="20" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Text="恒压泵" Grid.Row="2" Grid.Column="0" FontSize="20" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center" ></TextBlock>
+                            <TextBlock Text="散热泵" Grid.Row="3" Grid.Column="0" FontSize="20" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center" ></TextBlock>
+                            <TextBlock Name="tbMainOneTime"  Grid.Row="0" Grid.Column="1" Text="??" FontSize="20" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock Name="tbMainTwoTime"  Grid.Row="1" Grid.Column="1" Text="??" FontSize="20" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock Name="tbConstantVoltage"  Grid.Row="2" Grid.Column="1" Text="??" FontSize="20" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock Name="tbDissipateHeat"  Grid.Row="3" Grid.Column="1" Text="??" FontSize="20" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Grid>
                 </Border>
             </Border>
         </Grid>
@@ -86,19 +117,19 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <StackPanel Margin="0,10,0.5,0" Grid.Column="0">
-                            <hc:CircleProgressBar Name="cpbMainPump" Text="100.0" ArcThickness="15" Value="50" FontWeight="Bold" Width="120" Height="120" FontSize="24" Foreground="LightBlue"/>
+                            <hc:CircleProgressBar Name="cpbMainOnePumpSwash" Text="100.0" ArcThickness="15" Value="50" FontWeight="Bold" Width="120" Height="120" FontSize="24" Foreground="LightBlue"/>
                             <Label Background="Transparent" FontSize="20" FontWeight="Bold">1#主泵斜盘</Label>
                         </StackPanel>
                         <StackPanel Margin="0,10,0.5,0" Grid.Column="1">
-                            <hc:CircleProgressBar Name="cpbIronPump" Text="0" ArcThickness="15" Value="50" FontWeight="Bold" Width="120" Height="120" FontSize="24" Foreground="#FFC464"/>
+                            <hc:CircleProgressBar Name="cpbMainTwoPumpSwash" Text="0" ArcThickness="15" Value="50" FontWeight="Bold" Width="120" Height="120" FontSize="24" Foreground="#FFC464"/>
                             <Label Background="Transparent" FontSize="20" FontWeight="Bold">2#主泵斜盘</Label>
                         </StackPanel>
                         <StackPanel Margin="0,10,0.5,0" Grid.Column="2">
-                            <hc:CircleProgressBar Name="cpbFPPump" Text="0" ArcThickness="15" Value="50" FontWeight="Bold" Width="120" Height="120" FontSize="24" Foreground="#FF7C96"/>
+                            <hc:CircleProgressBar Name="cpbIron" Text="0" ArcThickness="15" Value="50" FontWeight="Bold" Width="120" Height="120" FontSize="24" Foreground="#FF7C96"/>
                             <Label Background="Transparent" FontSize="20" FontWeight="Bold">铁钻工</Label>
                         </StackPanel>
                         <StackPanel Margin="0,10,0.5,0" Grid.Column="3">
-                            <hc:CircleProgressBar Name="cpbTongPump" Text="0" ArcThickness="15" Value="50" FontWeight="Bold" Width="120" Height="120" FontSize="24" Foreground="LightBlue"/>
+                            <hc:CircleProgressBar Name="cpbTongs" Text="0" ArcThickness="15" Value="50" FontWeight="Bold" Width="120" Height="120" FontSize="24" Foreground="LightBlue"/>
                             <Label Background="Transparent" FontSize="20" FontWeight="Bold">大钳</Label>
                         </StackPanel>
                     </Grid>
@@ -110,20 +141,20 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <StackPanel Margin="0,10,0,0" Grid.Column="0">
-                            <hc:CircleProgressBar Name="cpbKavaPump" Text="0" ArcThickness="15" Value="50" FontWeight="Bold" Width="120" Height="120" FontSize="24" Foreground="LightBlue"/>
-                            <Label Background="Transparent" FontSize="24" FontWeight="Bold">猫头</Label>
+                            <hc:CircleProgressBar Name="cpbCatHead" Text="0" ArcThickness="15" Value="50" FontWeight="Bold" Width="120" Height="120" FontSize="24" Foreground="LightBlue"/>
+                            <Label Background="Transparent" FontSize="20" FontWeight="Bold">猫头</Label>
                         </StackPanel>
                         <StackPanel Margin="0,10,0,0" Grid.Column="1">
-                            <hc:CircleProgressBar Name="cpbCatHeadPump" Text="0" ArcThickness="15" Value="50" FontWeight="Bold" Width="120" Height="120" FontSize="24" Foreground="Red"/>
-                            <Label Background="Transparent" FontSize="24" FontWeight="Bold">缓冲臂</Label>
+                            <hc:CircleProgressBar Name="cpbBufferArm" Text="0" ArcThickness="15" Value="50" FontWeight="Bold" Width="120" Height="120" FontSize="24" Foreground="Red"/>
+                            <Label Background="Transparent" FontSize="20" FontWeight="Bold">缓冲臂</Label>
                         </StackPanel>
                         <StackPanel Margin="0,10,0,0" Grid.Column="2">
-                            <hc:CircleProgressBar Name="cpbMovePump" Text="0" ArcThickness="15" Value="50" FontWeight="Bold" Width="120" Height="120" FontSize="24" Foreground="Red"/>
-                            <Label Background="Transparent" FontSize="24" FontWeight="Bold">钻台面</Label>
+                            <hc:CircleProgressBar Name="cpbDF" Text="0" ArcThickness="15" Value="50" FontWeight="Bold" Width="120" Height="120" FontSize="24" Foreground="Red"/>
+                            <Label Background="Transparent" FontSize="20" FontWeight="Bold">钻台面</Label>
                         </StackPanel>
                         <StackPanel Margin="0,10,0,0" Grid.Column="3">
-                            <hc:CircleProgressBar Name="cpbLSPump" Text="0" ArcThickness="15" Value="50" FontWeight="Bold" Width="120" Height="120" FontSize="24" Foreground="Red"/>
-                            <Label Background="Transparent" FontSize="24" FontWeight="Bold">备用</Label>
+                            <hc:CircleProgressBar Name="cpbSpare" Text="0" ArcThickness="15" Value="50" FontWeight="Bold" Width="120" Height="120" FontSize="24" Foreground="Red"/>
+                            <Label Background="Transparent" FontSize="20" FontWeight="Bold">备用</Label>
                         </StackPanel>
                     </Grid>
                 </Grid>
