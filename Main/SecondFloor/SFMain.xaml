@@ -477,6 +477,7 @@
                             </StackPanel>
                         </Grid>
                         <Grid Grid.Row="2" Name="Am"  Height="380">
+                            <TextBlock Name="wellTips" Text="井口位置" TextAlignment="Center" FontSize="16" Foreground="Red"/>
                             <main:Amination x:Name="amination"/>
                         </Grid>
                     </Grid>

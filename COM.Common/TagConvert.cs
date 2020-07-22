@@ -1445,15 +1445,15 @@ namespace COM.Common
             if (workModel == 1) //送杆
             {
                 if ((byteAutoModeNowStep >= 24) && (byteAutoModeNowStep <= 34))
-                    return Visibility.Visible;
+                    return "井口位置";
             }
             else if (workModel == 2) // 排杆
             {
                 if ((byteAutoModeNowStep >= 10) && (byteAutoModeNowStep <= 16))
-                    return Visibility.Visible;
+                    return "井口位置";
             }
 
-            return Visibility.Collapsed;
+            return string.Empty;
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

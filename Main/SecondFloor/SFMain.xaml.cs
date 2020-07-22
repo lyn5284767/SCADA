@@ -96,6 +96,7 @@ namespace Main.SecondFloor
             GlobalData.Instance.Rows = GlobalData.Instance.da["DrillNums"].Value.Byte;
             GlobalData.Instance.DrillNum = GlobalData.Instance.da["103E23B5"].Value.Byte;
             amination.InitRowsColoms(SystemType.SecondFloor);
+            PlayCameraInThread();
         }
 
         private void Init()
@@ -124,7 +125,6 @@ namespace Main.SecondFloor
                 amination.SendFingerBeamNumberEvent += Instance_SendFingerBeamNumberEvent;
                 amination.SystemChange(SystemType.SecondFloor);
                 //this.Am.Children.Add(amination);
-                PlayCameraInThread();
             }
             catch (Exception ex)
             {
@@ -1229,6 +1229,23 @@ namespace Main.SecondFloor
             sbDrillDownMultiBind.ConverterParameter = "one";
             sbDrillDownMultiBind.NotifyOnSourceUpdated = true;
             this.sbDrillDown.SetBinding(StepBar.StepIndexProperty, sbDrillDownMultiBind);
+            // 排杆
+            MultiBinding sbDrillUpMultiBind = new MultiBinding();
+            sbDrillUpMultiBind.Converter = new AutoModeStepCoverter();
+            sbDrillUpMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            sbDrillUpMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["workModel"], Mode = BindingMode.OneWay });
+            sbDrillUpMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E5AutoModelCurrentStep"], Mode = BindingMode.OneWay });
+            sbDrillUpMultiBind.ConverterParameter = "one";
+            sbDrillUpMultiBind.NotifyOnSourceUpdated = true;
+            this.sbDrillUp.SetBinding(StepBar.StepIndexProperty, sbDrillUpMultiBind);
+
+            MultiBinding stepTipVisibilityMultiBind = new MultiBinding();
+            stepTipVisibilityMultiBind.Converter = new AutoModeTipVisCoverter();
+            stepTipVisibilityMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            stepTipVisibilityMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["workModel"], Mode = BindingMode.OneWay });
+            stepTipVisibilityMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E5AutoModelCurrentStep"], Mode = BindingMode.OneWay });
+            stepTipVisibilityMultiBind.NotifyOnSourceUpdated = true;
+            this.wellTips.SetBinding(TextBlock.TextProperty, stepTipVisibilityMultiBind);
             // 测试
             //MultiBinding stepOneMultiBind = new MultiBinding();
             //stepOneMultiBind.Converter = new AutoModeNowStepCoverter();
