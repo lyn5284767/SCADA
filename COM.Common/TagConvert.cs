@@ -3665,18 +3665,17 @@ namespace COM.Common
                 {
                     if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null) || values[0].ToString() != "5") // 非自动模式
                     {
-                        return "排杆启动";
+                        return 0;
                     }
-                    if ((byteAutoModeNowStep == 0)) return "排杆启动";
-                    if ((byteAutoModeNowStep >= 1) && (byteAutoModeNowStep <= 9)) return "井口定位";
-                    if ((byteAutoModeNowStep >= 10) && (byteAutoModeNowStep <= 11)) return "井口抓杆";
-                    if ((byteAutoModeNowStep >= 10) && (byteAutoModeNowStep <= 16)) return "井口位置";
-                    if ((byteAutoModeNowStep == 12)) return "吊卡确认";
-                    if ((byteAutoModeNowStep >= 13) && (byteAutoModeNowStep <= 16)) return "井口运动";
-                    if ((byteAutoModeNowStep >= 17) && (byteAutoModeNowStep <= 18)) return "指梁定位";
-                    if ((byteAutoModeNowStep == 19)) return "指梁锁确认";
-                    if ((byteAutoModeNowStep >= 20) && (byteAutoModeNowStep <= 24) || (byteAutoModeNowStep >= 25) && (byteAutoModeNowStep <= 27)) return "指梁排管";
-                    //if ((byteAutoModeNowStep >= 25) && (byteAutoModeNowStep <= 27)) last = true;
+                    if ((byteAutoModeNowStep == 0)) return 0;
+                    if ((byteAutoModeNowStep >= 1) && (byteAutoModeNowStep <= 9)) return 1;
+                    if ((byteAutoModeNowStep >= 10) && (byteAutoModeNowStep <= 11)) return 2;
+                    if ((byteAutoModeNowStep == 12)) return 3;
+                    if ((byteAutoModeNowStep >= 13) && (byteAutoModeNowStep <= 16)) return 4;
+                    if ((byteAutoModeNowStep >= 17) && (byteAutoModeNowStep <= 18)) return 5;
+                    if ((byteAutoModeNowStep == 19)) return 6;
+                    if ((byteAutoModeNowStep >= 20) && (byteAutoModeNowStep <= 24)) return 7;
+                    if ((byteAutoModeNowStep >= 25) && (byteAutoModeNowStep <= 27)) return 8;
                 }
             }
             else if (tb == "two")

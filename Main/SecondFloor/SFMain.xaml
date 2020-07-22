@@ -401,8 +401,8 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0" Orientation="Horizontal">
-                            <TextBlock Text="送&#13;杆" Name="tbDrillDown"/>
-                            <hc:StepBar Width="620" FontSize="10" Name="sbDrillDown">
+                            <TextBlock Text="送&#13;杆" Name="tbDrillDown" Visibility="Collapsed"/>
+                            <hc:StepBar Width="620" FontSize="10" Name="sbDrillDown" Visibility="Collapsed">
                                 <hc:StepBarItem Content="送杆启动"/>
                                 <hc:StepBarItem Content="指梁定位"/>
                                 <hc:StepBarItem Content="指梁抓杆"/>
@@ -412,6 +412,18 @@
                                 <hc:StepBarItem Content="吊卡确认"/>
                                 <hc:StepBarItem Content="井口位置"/>
                                 <hc:StepBarItem Content="送杆完成"/>
+                            </hc:StepBar>
+                            <TextBlock Text="排&#13;杆" Name="tbDrillUp"/>
+                            <hc:StepBar Width="620" FontSize="10" Name="sbDrillUp">
+                                <hc:StepBarItem Content="排杆启动"/>
+                                <hc:StepBarItem Content="井口定位"/>
+                                <hc:StepBarItem Content="井口抓杆"/>
+                                <hc:StepBarItem Content="吊卡确认"/>
+                                <hc:StepBarItem Content="井口运动"/>
+                                <hc:StepBarItem Content="指梁定位"/>
+                                <hc:StepBarItem Content="指梁锁确认"/>
+                                <hc:StepBarItem Content="指梁排管"/>
+                                <hc:StepBarItem Content="排杆完成"/>
                             </hc:StepBar>
                             <!--<Border  BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Margin="20,5,20,5" Width="80" Background="#DCDEE3">
                                 <TextBlock Text="{Binding ElementName=workMode,Path=IsChecked,Converter={StaticResource workModeFlowCvt}}" Foreground="#E02740" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>

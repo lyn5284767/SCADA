@@ -78,6 +78,7 @@ namespace Main.SecondFloor
             GlobalData.Instance.Rows = GlobalData.Instance.da["DrillNums"].Value.Byte;
             GlobalData.Instance.DrillNum = GlobalData.Instance.da["103E23B5"].Value.Byte;
             InitializeComponent();
+            this.operateMode.IsChecked = false;
             Init();
             this.Loaded += SFMain_Loaded;
         }
@@ -224,6 +225,23 @@ namespace Main.SecondFloor
                     this.Warnning();
                     this.ReportDataUpdate();
                     amination.LoadFingerBeamDrillPipe(SystemType.SecondFloor);
+                    if (GlobalData.Instance.da["operationModel"].Value.Byte==5)
+                    {
+                        if (GlobalData.Instance.da["workModel"].Value.Byte==2)
+                        {
+                            this.tbDrillUp.Visibility = Visibility.Visible;
+                            this.sbDrillUp.Visibility = Visibility.Visible;
+                            this.sbDrillDown.Visibility = Visibility.Collapsed;
+                            this.tbDrillDown.Visibility = Visibility.Collapsed;
+                        }
+                        else
+                        {
+                            this.tbDrillUp.Visibility = Visibility.Collapsed;
+                            this.sbDrillUp.Visibility = Visibility.Collapsed;
+                            this.sbDrillDown.Visibility = Visibility.Visible;
+                            this.tbDrillDown.Visibility = Visibility.Visible;
+                        }
+                    }
                 }));
             }
             catch (Exception ex)
@@ -1202,15 +1220,15 @@ namespace Main.SecondFloor
 
             this.bigHookCalibrationStatus.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["506b4"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
             //this.tubeType.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drillPipeType"], Mode = BindingMode.OneWay, Converter = new DrillPipeTypeConverter() });
-
-            MultiBinding stepOneMultiBind = new MultiBinding();
-            stepOneMultiBind.Converter = new AutoModeStepCoverter();
-            stepOneMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-            stepOneMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["workModel"], Mode = BindingMode.OneWay });
-            stepOneMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E5AutoModelCurrentStep"], Mode = BindingMode.OneWay });
-            stepOneMultiBind.ConverterParameter = "one";
-            stepOneMultiBind.NotifyOnSourceUpdated = true;
-            this.sbDrillDown.SetBinding(StepBar.StepIndexProperty, stepOneMultiBind);
+            // 送杆
+            MultiBinding sbDrillDownMultiBind = new MultiBinding();
+            sbDrillDownMultiBind.Converter = new AutoModeStepCoverter();
+            sbDrillDownMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            sbDrillDownMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["workModel"], Mode = BindingMode.OneWay });
+            sbDrillDownMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E5AutoModelCurrentStep"], Mode = BindingMode.OneWay });
+            sbDrillDownMultiBind.ConverterParameter = "one";
+            sbDrillDownMultiBind.NotifyOnSourceUpdated = true;
+            this.sbDrillDown.SetBinding(StepBar.StepIndexProperty, sbDrillDownMultiBind);
             // 测试
             //MultiBinding stepOneMultiBind = new MultiBinding();
             //stepOneMultiBind.Converter = new AutoModeNowStepCoverter();
