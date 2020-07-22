@@ -931,7 +931,7 @@ namespace Main
                     byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 1, 4 });
                     GlobalData.Instance.da.SendBytes(byteToSend);
                     int count = 0;
-                    while (GlobalData.Instance.da["operationModel"].Value.Byte != 5 && count < 5)
+                    while (GlobalData.Instance.da["operationModel"].Value.Byte == 5 && count < 5)
                     {
                         count++;
                         Thread.Sleep(50);

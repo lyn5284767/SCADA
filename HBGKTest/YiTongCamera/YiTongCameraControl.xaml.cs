@@ -365,7 +365,7 @@ namespace HBGKTest.YiTongCamera
                     }
                     else //摄像头登录失败
                     {
-                        MessageBox.Show("一通摄像头调用失败，请检查配置！");
+                        //MessageBox.Show("一通摄像头调用失败，请检查配置！");
                         return false;
                     }
                 }
