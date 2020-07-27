@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Main.DrillFloor"
              xmlns:cl="http://talonzeng.com/ControlLibrary"
              xmlns:gl="clr-namespace:COM.Common;assembly=COM.Common"
-             xmlns:main="clr-namespace:Main"
+             xmlns:main="clr-namespace:Main" xmlns:hc="https://handyorg.github.io/handycontrol"
              mc:Ignorable="d" 
              d:DesignHeight="650" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="drFloor">
     <UserControl.Resources>
@@ -55,7 +55,7 @@
                                 </Border>
                                 <StackPanel Margin="0,15,10,0">
                                     <TextBlock>小车</TextBlock>
-                                    <TextBlock Name="carPos" Text="9999"></TextBlock>
+                                    <TextBlock Name="carPos" Text="9999" Foreground="#4C80FF"></TextBlock>
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Width="100">
@@ -64,7 +64,7 @@
                                 </Border>
                                 <StackPanel Margin="0,15,10,0">
                                     <TextBlock>手臂</TextBlock>
-                                    <TextBlock Text="9999" Name="armPos"></TextBlock>
+                                    <TextBlock Text="9999" Name="armPos" Foreground="#4C80FF"></TextBlock>
                                 </StackPanel>
                             </StackPanel>
                         </StackPanel>
@@ -75,7 +75,7 @@
                                 </Border>
                                 <StackPanel Margin="0,15,10,0">
                                     <TextBlock>回转</TextBlock>
-                                    <TextBlock Name="rotatePos" Text="9999"></TextBlock>
+                                    <TextBlock Name="rotatePos" Text="9999" Foreground="#4C80FF"></TextBlock>
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Width="100">
@@ -84,7 +84,7 @@
                                 </Border>
                                 <StackPanel Margin="0,15,10,0">
                                     <TextBlock>抓手</TextBlock>
-                                    <TextBlock Text="未知" Name="gripMotor"></TextBlock>
+                                    <TextBlock Text="未知" Name="gripMotor" Foreground="#4C80FF"></TextBlock>
                                 </StackPanel>
                             </StackPanel>
                         </StackPanel>
@@ -216,15 +216,33 @@
                 <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,5,2,5" Width="630">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="30"/>
                             <RowDefinition Height="50"/>
+                            <RowDefinition Height="30"/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <cl:StepControl Name="drStep" Grid.Row="0" SetpNum="7" CtrWidth="560">
-                        </cl:StepControl>
-                        <StackPanel Grid.Row="1" Orientation="Horizontal">
-                            <TextBlock Text="{Binding ElementName=drworkMode,Path=IsChecked,Converter={StaticResource workModeFlowCvt}}" Foreground="#E02740" FontSize="24" Margin="230,0,0,0"></TextBlock>
-                            <TextBlock Name="stepTxt" Text="非自动模式"  FontSize="20" Margin="20,0,0,0"></TextBlock>
+                        <!--<cl:StepControl Name="drStep" Grid.Row="0" SetpNum="7" CtrWidth="560">
+                        </cl:StepControl>-->
+                        <hc:StepBar Width="620" FontSize="10" Name="sbDrillDown" Grid.Row="0">
+                            <hc:StepBarItem Content="送杆启动"/>
+                            <hc:StepBarItem Content="台面定位"/>
+                            <hc:StepBarItem Content="抓手夹紧"/>
+                            <hc:StepBarItem Content="井口定位"/>
+                            <hc:StepBarItem Content="井口送杆"/>
+                            <hc:StepBarItem Content="手臂回位"/>
+                            <hc:StepBarItem Content="送杆结束"/>
+                        </hc:StepBar>
+                        <hc:StepBar Width="620" FontSize="10" Name="sbDrillUp" Grid.Row="0" Visibility="Collapsed">
+                            <hc:StepBarItem Content="排管启动"/>
+                            <hc:StepBarItem Content="井口定位"/>
+                            <hc:StepBarItem Content="井口抓杆"/>
+                            <hc:StepBarItem Content="台面定位"/>
+                            <hc:StepBarItem Content="抓手松开"/>
+                            <hc:StepBarItem Content="手臂回位"/>
+                            <hc:StepBarItem Content="台面完成"/>
+                        </hc:StepBar>
+                        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Text="{Binding ElementName=drworkMode,Path=IsChecked,Converter={StaticResource workModeFlowCvt}}" Foreground="#E02740" FontSize="24"></TextBlock>
+                            <!--<TextBlock Name="stepTxt" Text="非自动模式"  FontSize="20" Margin="20,0,0,0"></TextBlock>-->
                         </StackPanel>
                         <Grid Grid.Row="2" Name="Am"  Height="380">
                             <main:Amination x:Name="amination"/>

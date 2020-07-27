@@ -28,7 +28,7 @@
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0" Orientation="Horizontal">
                             <TextBlock Text="压力(MPa)" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,0,0,0" VerticalAlignment="Center"/>
-                            <TextBlock Name="tbTips" Width="780" Text="液压站-距上次更换液压油已经大于2000小时，请更换液压油" FontSize="24" FontFamily="微软雅黑" FontWeight="Bold" Foreground="#FF5B9F" VerticalAlignment="Center" TextAlignment="Center"/>
+                            <TextBlock Name="tbTips" Width="780" Text="液压站-距上次更换液压油已经大于2000小时，请更换液压油" FontSize="24" FontFamily="微软雅黑" FontWeight="Bold" Foreground="red" VerticalAlignment="Center" TextAlignment="Center"/>
                         </StackPanel>
                         <Grid Grid.Row="1">
                             <Grid.ColumnDefinitions>

@@ -115,38 +115,49 @@ namespace Main.SecondFloor
                 this.lampType_UpSeesawButton_EquiptStatus.SetBinding(SymbolMappingV.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["LeftHandleUpSeesawBtn"], Mode = BindingMode.OneWay, Converter = boolTagConverter });
                 this.lampType_DownSeesawButton_EquiptStatus.SetBinding(SymbolMappingV.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["LeftHandleDownSeesawBtn"], Mode = BindingMode.OneWay, Converter = boolTagConverter });
 
+                // 7.27修改
                 ArrowDirectionMultiConverter arrowDirectionMultiConverter = new ArrowDirectionMultiConverter();
-                MultiBinding upArrowMultiBind = new MultiBinding();
-                upArrowMultiBind.Converter = arrowDirectionMultiConverter;
-                upArrowMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["144LeftHandleForwardBackwardSize"], Mode = BindingMode.OneWay });
-                upArrowMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["LeftHandleFrontBtn"], Mode = BindingMode.OneWay });
-                upArrowMultiBind.ConverterParameter = "up";
-                upArrowMultiBind.NotifyOnSourceUpdated = true;
-                this.upArrow_EquiptStatus.SetBinding(Image.SourceProperty, upArrowMultiBind);
+                MultiBinding ArrowMultiBind = new MultiBinding();
+                ArrowMultiBind.Converter = arrowDirectionMultiConverter;
+                ArrowMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["LeftHandleFrontBtn"], Mode = BindingMode.OneWay });
+                ArrowMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["LeftHandleBehindBtn"], Mode = BindingMode.OneWay });
+                ArrowMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["LeftHandleLeftBtn"], Mode = BindingMode.OneWay });
+                ArrowMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["LeftHandleRightBtn"], Mode = BindingMode.OneWay });
+                ArrowMultiBind.NotifyOnSourceUpdated = true;
+                this.Arrow_EquiptStatus.SetBinding(Image.SourceProperty, ArrowMultiBind);
 
-                MultiBinding downArrowMultiBind = new MultiBinding();
-                downArrowMultiBind.Converter = arrowDirectionMultiConverter;
-                downArrowMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["144LeftHandleForwardBackwardSize"], Mode = BindingMode.OneWay });
-                downArrowMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["LeftHandleBehindBtn"], Mode = BindingMode.OneWay });
-                downArrowMultiBind.ConverterParameter = "down";
-                downArrowMultiBind.NotifyOnSourceUpdated = true;
-                this.downArrow_EquiptStatus.SetBinding(Image.SourceProperty, downArrowMultiBind);
+                //ArrowDirectionMultiConverter arrowDirectionMultiConverter = new ArrowDirectionMultiConverter();
+                //MultiBinding upArrowMultiBind = new MultiBinding();
+                //upArrowMultiBind.Converter = arrowDirectionMultiConverter;
+                //upArrowMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["144LeftHandleForwardBackwardSize"], Mode = BindingMode.OneWay });
+                //upArrowMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["LeftHandleFrontBtn"], Mode = BindingMode.OneWay });
+                //upArrowMultiBind.ConverterParameter = "up";
+                //upArrowMultiBind.NotifyOnSourceUpdated = true;
+                //this.upArrow_EquiptStatus.SetBinding(Image.SourceProperty, upArrowMultiBind);
 
-                MultiBinding leftArrowMultiBind = new MultiBinding();
-                leftArrowMultiBind.Converter = arrowDirectionMultiConverter;
-                leftArrowMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["142LeftHandleLeftRightSize"], Mode = BindingMode.OneWay });
-                leftArrowMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["LeftHandleLeftBtn"], Mode = BindingMode.OneWay });
-                leftArrowMultiBind.ConverterParameter = "left";
-                leftArrowMultiBind.NotifyOnSourceUpdated = true;
-                this.leftArrow_EquiptStatus.SetBinding(Image.SourceProperty, leftArrowMultiBind);
+                //MultiBinding downArrowMultiBind = new MultiBinding();
+                //downArrowMultiBind.Converter = arrowDirectionMultiConverter;
+                //downArrowMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["144LeftHandleForwardBackwardSize"], Mode = BindingMode.OneWay });
+                //downArrowMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["LeftHandleBehindBtn"], Mode = BindingMode.OneWay });
+                //downArrowMultiBind.ConverterParameter = "down";
+                //downArrowMultiBind.NotifyOnSourceUpdated = true;
+                //this.downArrow_EquiptStatus.SetBinding(Image.SourceProperty, downArrowMultiBind);
 
-                MultiBinding rightArrowMultiBind = new MultiBinding();
-                rightArrowMultiBind.Converter = arrowDirectionMultiConverter;
-                rightArrowMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["142LeftHandleLeftRightSize"], Mode = BindingMode.OneWay });
-                rightArrowMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["LeftHandleRightBtn"], Mode = BindingMode.OneWay });
-                rightArrowMultiBind.ConverterParameter = "right";
-                rightArrowMultiBind.NotifyOnSourceUpdated = true;
-                this.rightArrow_EquiptStatus.SetBinding(Image.SourceProperty, rightArrowMultiBind);
+                //MultiBinding leftArrowMultiBind = new MultiBinding();
+                //leftArrowMultiBind.Converter = arrowDirectionMultiConverter;
+                //leftArrowMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["142LeftHandleLeftRightSize"], Mode = BindingMode.OneWay });
+                //leftArrowMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["LeftHandleLeftBtn"], Mode = BindingMode.OneWay });
+                //leftArrowMultiBind.ConverterParameter = "left";
+                //leftArrowMultiBind.NotifyOnSourceUpdated = true;
+                //this.leftArrow_EquiptStatus.SetBinding(Image.SourceProperty, leftArrowMultiBind);
+
+                //MultiBinding rightArrowMultiBind = new MultiBinding();
+                //rightArrowMultiBind.Converter = arrowDirectionMultiConverter;
+                //rightArrowMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["142LeftHandleLeftRightSize"], Mode = BindingMode.OneWay });
+                //rightArrowMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["LeftHandleRightBtn"], Mode = BindingMode.OneWay });
+                //rightArrowMultiBind.ConverterParameter = "right";
+                //rightArrowMultiBind.NotifyOnSourceUpdated = true;
+                //this.rightArrow_EquiptStatus.SetBinding(Image.SourceProperty, rightArrowMultiBind);
                 #endregion
 
                 #region 版本信息

@@ -158,6 +158,14 @@ namespace Main.SecondFloor
                     showList.Add(showDate);
                 }
             }
+            if (cbOprOrAlarm.SelectedIndex == 1)
+            {
+                showList = showList.Where(w => w.Type == "报警信息").ToList();
+            }
+            else if (cbOprOrAlarm.SelectedIndex == 2)
+            {
+                showList = showList.Where(w => w.Type == "状态信息").ToList();
+            }
             this.lvRecord.ItemsSource = showList;
         }
 

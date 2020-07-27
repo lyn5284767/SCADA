@@ -2114,29 +2114,32 @@ namespace Main.SecondFloor
 
         private void PlayOneAction()
         {
-            gridCamera1.Children.Clear();
             SFCameraFullScreen.Instance.gridCamera1.Children.Clear();
             ICameraFactory cameraOne = GlobalData.Instance.cameraList.Where(w => w.Info.ID == 1).FirstOrDefault();
             CameraVideoStop1();
             ChannelInfo info = GlobalData.Instance.chList.Where(w => w.ID == 1).FirstOrDefault();
-            cameraOne.InitCamera(info);
+            bool isPlay = cameraOne.InitCamera(info);
             CameraVideoStart1();
             cameraOne.SetSize(220, 380);
-            if (cameraOne is UIControl_HBGK1)
+            if (isPlay)
             {
-                gridCamera1.Children.Add(cameraOne as UIControl_HBGK1);
-                //(cameraOne as UIControl_HBGK1).SetValue(Grid.RowProperty, 0);
-                //(cameraOne as UIControl_HBGK1).SetValue(Grid.ColumnProperty, 0);
-            }
-            else if (cameraOne is YiTongCameraControl)
-            {
-                gridCamera1.Children.Add(cameraOne as YiTongCameraControl);
-                //(cameraOne as YiTongCameraControl).SetValue(Grid.RowProperty, 0);
-                //(cameraOne as YiTongCameraControl).SetValue(Grid.ColumnProperty, 0);
-            }
-            else
-            {
-                gridCamera1.Children.Add(cameraInitImage1);
+                gridCamera1.Children.Clear();
+                if (cameraOne is UIControl_HBGK1)
+                {
+                    gridCamera1.Children.Add(cameraOne as UIControl_HBGK1);
+                    //(cameraOne as UIControl_HBGK1).SetValue(Grid.RowProperty, 0);
+                    //(cameraOne as UIControl_HBGK1).SetValue(Grid.ColumnProperty, 0);
+                }
+                else if (cameraOne is YiTongCameraControl)
+                {
+                    gridCamera1.Children.Add(cameraOne as YiTongCameraControl);
+                    //(cameraOne as YiTongCameraControl).SetValue(Grid.RowProperty, 0);
+                    //(cameraOne as YiTongCameraControl).SetValue(Grid.ColumnProperty, 0);
+                }
+                else
+                {
+                    gridCamera1.Children.Add(cameraInitImage1);
+                }
             }
             cameraOne.FullScreenEvent -= CameraOne_FullScreenEvent;
             cameraOne.FullScreenEvent += CameraOne_FullScreenEvent;
@@ -2159,26 +2162,29 @@ namespace Main.SecondFloor
         {
             ICameraFactory cameraTwo = GlobalData.Instance.cameraList.Where(w => w.Info.ID == 2).FirstOrDefault();
             CameraVideoStop2();
-            gridCamera2.Children.Clear();
             ChannelInfo info = GlobalData.Instance.chList.Where(w => w.ID == 2).FirstOrDefault();
             cameraTwo.SetSize(220, 380);
-            if (cameraTwo is UIControl_HBGK1)
+            bool isPlay = cameraTwo.InitCamera(info);
+            if (isPlay)
             {
-                gridCamera2.Children.Add(cameraTwo as UIControl_HBGK1);
-                //(cameraTwo as UIControl_HBGK1).SetValue(Grid.RowProperty, 0);
-                //(cameraTwo as UIControl_HBGK1).SetValue(Grid.ColumnProperty, 0);
+                gridCamera2.Children.Clear();
+                if (cameraTwo is UIControl_HBGK1)
+                {
+                    gridCamera2.Children.Add(cameraTwo as UIControl_HBGK1);
+                    //(cameraTwo as UIControl_HBGK1).SetValue(Grid.RowProperty, 0);
+                    //(cameraTwo as UIControl_HBGK1).SetValue(Grid.ColumnProperty, 0);
+                }
+                else if (cameraTwo is YiTongCameraControl)
+                {
+                    gridCamera2.Children.Add(cameraTwo as YiTongCameraControl);
+                    //(cameraTwo as YiTongCameraControl).SetValue(Grid.RowProperty, 0);
+                    //(cameraTwo as YiTongCameraControl).SetValue(Grid.ColumnProperty, 0);
+                }
+                else
+                {
+                    gridCamera2.Children.Add(cameraInitImage1);
+                }
             }
-            else if (cameraTwo is YiTongCameraControl)
-            {
-                gridCamera2.Children.Add(cameraTwo as YiTongCameraControl);
-                //(cameraTwo as YiTongCameraControl).SetValue(Grid.RowProperty, 0);
-                //(cameraTwo as YiTongCameraControl).SetValue(Grid.ColumnProperty, 0);
-            }
-            else
-            {
-                gridCamera2.Children.Add(cameraInitImage1);
-            }
-            cameraTwo.InitCamera(info);
             cameraTwo.FullScreenEvent -= CameraTwo_FullScreenEvent;
             cameraTwo.FullScreenEvent += CameraTwo_FullScreenEvent;
             CameraVideoStart2();

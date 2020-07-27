@@ -122,7 +122,7 @@ KeyboardNavigation.DirectionalNavigation="Cycle" Width="100"/>
             </Border>
 
             <Border Name="bdOther" Background="White"  BorderThickness="1" CornerRadius="5" Grid.Column="12">
-                <Menu Grid.Column="11" Margin="2" Width="45" Height="45" Name="bottomMenu">
+                <Menu Grid.Column="11" Margin="2" Width="55" Height="45" Name="bottomMenu">
                     <MenuItem Name="sfMenuItem">
                         <MenuItem.Header>
                             <Border Name="bdMenu" BorderThickness="1" CornerRadius="5">

@@ -1,6 +1,7 @@
 ﻿using COM.Common;
 using ControlLibrary;
 using DatabaseLib;
+using HandyControl.Controls;
 using HBGKTest;
 using HBGKTest.YiTongCamera;
 using System;
@@ -84,6 +85,7 @@ namespace Main.DrillFloor
             pageChange.Enabled = true;
 
             this.amination.InitRowsColoms(SystemType.DrillFloor);
+            PlayCameraInThread();
         }
         /// <summary>
         /// 切换页面发送指令
@@ -152,22 +154,37 @@ namespace Main.DrillFloor
                 this.SelectType.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["325b0"], Mode = BindingMode.OneWay, Converter = new SelectTypeIsCheckConverter() });
                 this.drTelecontrolModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["325b1"], Mode = BindingMode.OneWay, Converter = new TelecontrolModelConverter() });
                 this.drTelecontrolModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["325b1"], Mode = BindingMode.OneWay, Converter = new TelecontrolModelIsCheckConverter() });
+                //送杆
+                MultiBinding sbDrillUpMultiBind = new MultiBinding();
+                sbDrillUpMultiBind.Converter = new DRStepCoverter();
+                sbDrillUpMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
+                sbDrillUpMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drworkModel"], Mode = BindingMode.OneWay });
+                sbDrillUpMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drAutoStep"], Mode = BindingMode.OneWay });
+                sbDrillUpMultiBind.NotifyOnSourceUpdated = true;
+                this.sbDrillUp.SetBinding(StepBar.StepIndexProperty, sbDrillUpMultiBind);
+                // 排杆
+                MultiBinding sbDrillDownMultiBind = new MultiBinding();
+                sbDrillDownMultiBind.Converter = new DRStepCoverter();
+                sbDrillDownMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
+                sbDrillDownMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drworkModel"], Mode = BindingMode.OneWay });
+                sbDrillDownMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drAutoStep"], Mode = BindingMode.OneWay });
+                sbDrillDownMultiBind.NotifyOnSourceUpdated = true;
+                this.sbDrillDown.SetBinding(StepBar.StepIndexProperty, sbDrillDownMultiBind);
+                //MultiBinding drStepMultiBind = new MultiBinding();
+                //drStepMultiBind.Converter = new DRStepCoverter();
+                //drStepMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
+                //drStepMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drworkModel"], Mode = BindingMode.OneWay });
+                //drStepMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drAutoStep"], Mode = BindingMode.OneWay });
+                //drStepMultiBind.NotifyOnSourceUpdated = true;
+                //this.drStep.SetBinding(StepControl.SelectStepProperty, drStepMultiBind);
 
-                MultiBinding drStepMultiBind = new MultiBinding();
-                drStepMultiBind.Converter = new DRStepCoverter();
-                drStepMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
-                drStepMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drworkModel"], Mode = BindingMode.OneWay });
-                drStepMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drAutoStep"], Mode = BindingMode.OneWay });
-                drStepMultiBind.NotifyOnSourceUpdated = true;
-                this.drStep.SetBinding(StepControl.SelectStepProperty, drStepMultiBind);
-
-                MultiBinding stepTxtMultiBind = new MultiBinding();
-                stepTxtMultiBind.Converter = new DRStepTxtCoverter();
-                stepTxtMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
-                stepTxtMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drworkModel"], Mode = BindingMode.OneWay });
-                stepTxtMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drAutoStep"], Mode = BindingMode.OneWay });
-                stepTxtMultiBind.NotifyOnSourceUpdated = true;
-                this.stepTxt.SetBinding(TextBlock.TextProperty, stepTxtMultiBind);
+                //MultiBinding stepTxtMultiBind = new MultiBinding();
+                //stepTxtMultiBind.Converter = new DRStepTxtCoverter();
+                //stepTxtMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
+                //stepTxtMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drworkModel"], Mode = BindingMode.OneWay });
+                //stepTxtMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drAutoStep"], Mode = BindingMode.OneWay });
+                //stepTxtMultiBind.NotifyOnSourceUpdated = true;
+                //this.stepTxt.SetBinding(TextBlock.TextProperty, stepTxtMultiBind);
 
                 this.drDestination.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drDes"], Mode = BindingMode.OneWay, Converter = new DesTypeConverter() });// 目的地选择
                 this.tubeType.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drdrillPipeType"], Mode = BindingMode.OneWay, Converter = new DrillPipeTypeConverter() });// 管柱选择
@@ -177,7 +194,7 @@ namespace Main.DrillFloor
                 //cameraTimer = new System.Timers.Timer(2 * 1000);
                 //cameraTimer.Elapsed += CameraTimer_Elapsed;
                 //cameraTimer.Enabled = true;
-                PlayCameraInThread();
+                //PlayCameraInThread();
                 timerWarning = new System.Threading.Timer(new TimerCallback(Timer_Elapsed), this, 2000, 50);//改成50ms 的时钟
             }
             catch (Exception ex)
@@ -208,6 +225,19 @@ namespace Main.DrillFloor
                     iTimeCnt++;
                     if (iTimeCnt > 1000) iTimeCnt = 0;
                     this.Warnning();
+                    if (GlobalData.Instance.da["droperationModel"].Value.Byte == 5)
+                    {
+                        if (GlobalData.Instance.da["drworkModel"].Value.Byte == 2)
+                        {
+                            this.sbDrillUp.Visibility = Visibility.Visible;
+                            this.sbDrillDown.Visibility = Visibility.Collapsed;
+                        }
+                        else
+                        {
+                            this.sbDrillUp.Visibility = Visibility.Collapsed;
+                            this.sbDrillDown.Visibility = Visibility.Visible;
+                        }
+                    }
                 }));
             }
             catch (Exception ex)
@@ -1029,30 +1059,33 @@ namespace Main.DrillFloor
         {
             try
             {
-                gridCamera1.Children.Clear();
                 DRCameraFullScreen.Instance.gridCamera1.Children.Clear();
                 ICameraFactory cameraOne = GlobalData.Instance.cameraList.Where(w => w.Info.ID == 3).FirstOrDefault();
                 CameraVideoStop1();
                 ChannelInfo info = GlobalData.Instance.chList.Where(w => w.ID == 3).FirstOrDefault();
 
                 cameraOne.SetSize(220, 380);
-                if (cameraOne is UIControl_HBGK1)
+                bool isPlay = cameraOne.InitCamera(info);
+                if (isPlay)
                 {
-                    gridCamera1.Children.Add(cameraOne as UIControl_HBGK1);
-                    //(cameraOne as UIControl_HBGK1).SetValue(Grid.RowProperty, 0);
-                    //(cameraOne as UIControl_HBGK1).SetValue(Grid.ColumnProperty, 0);
+                    gridCamera1.Children.Clear();
+                    if (cameraOne is UIControl_HBGK1)
+                    {
+                        gridCamera1.Children.Add(cameraOne as UIControl_HBGK1);
+                        //(cameraOne as UIControl_HBGK1).SetValue(Grid.RowProperty, 0);
+                        //(cameraOne as UIControl_HBGK1).SetValue(Grid.ColumnProperty, 0);
+                    }
+                    else if (cameraOne is YiTongCameraControl)
+                    {
+                        gridCamera1.Children.Add(cameraOne as YiTongCameraControl);
+                        //(cameraOne as YiTongCameraControl).SetValue(Grid.RowProperty, 0);
+                        //(cameraOne as YiTongCameraControl).SetValue(Grid.ColumnProperty, 0);
+                    }
+                    else
+                    {
+                        gridCamera1.Children.Add(cameraInitImage1);
+                    }
                 }
-                else if (cameraOne is YiTongCameraControl)
-                {
-                    gridCamera1.Children.Add(cameraOne as YiTongCameraControl);
-                    //(cameraOne as YiTongCameraControl).SetValue(Grid.RowProperty, 0);
-                    //(cameraOne as YiTongCameraControl).SetValue(Grid.ColumnProperty, 0);
-                }
-                else
-                {
-                    gridCamera1.Children.Add(cameraInitImage1);
-                }
-                cameraOne.InitCamera(info);
                 cameraOne.ChangeVideoEvent -= CameraTwo_ChangeVideoEvent;
                 cameraOne.FullScreenEvent -= CameraOne_FullScreenEvent;
                 cameraOne.ChangeVideoEvent += CameraTwo_ChangeVideoEvent;
@@ -1083,27 +1116,30 @@ namespace Main.DrillFloor
             {
                 ICameraFactory cameraTwo = GlobalData.Instance.cameraList.Where(w => w.Info.ID == 4).FirstOrDefault();
                 CameraVideoStop2();
-                gridCamera2.Children.Clear();
                 ChannelInfo info = GlobalData.Instance.chList.Where(w => w.ID == 4).FirstOrDefault();
                 //cameraTwo.SetSize(130, 200);
                 cameraTwo.SetSize(220, 380);
-                if (cameraTwo is UIControl_HBGK1)
+                bool isPlay = cameraTwo.InitCamera(info);
+                if (isPlay)
                 {
-                    gridCamera2.Children.Add(cameraTwo as UIControl_HBGK1);
-                    //(cameraTwo as UIControl_HBGK1).SetValue(Grid.RowProperty, 0);
-                    //(cameraTwo as UIControl_HBGK1).SetValue(Grid.ColumnProperty, 0);
+                    gridCamera2.Children.Clear();
+                    if (cameraTwo is UIControl_HBGK1)
+                    {
+                        gridCamera2.Children.Add(cameraTwo as UIControl_HBGK1);
+                        //(cameraTwo as UIControl_HBGK1).SetValue(Grid.RowProperty, 0);
+                        //(cameraTwo as UIControl_HBGK1).SetValue(Grid.ColumnProperty, 0);
+                    }
+                    else if (cameraTwo is YiTongCameraControl)
+                    {
+                        gridCamera2.Children.Add(cameraTwo as YiTongCameraControl);
+                        //(cameraTwo as YiTongCameraControl).SetValue(Grid.RowProperty, 0);
+                        //(cameraTwo as YiTongCameraControl).SetValue(Grid.ColumnProperty, 0);
+                    }
+                    else
+                    {
+                        gridCamera2.Children.Add(cameraInitImage1);
+                    }
                 }
-                else if (cameraTwo is YiTongCameraControl)
-                {
-                    gridCamera2.Children.Add(cameraTwo as YiTongCameraControl);
-                    //(cameraTwo as YiTongCameraControl).SetValue(Grid.RowProperty, 0);
-                    //(cameraTwo as YiTongCameraControl).SetValue(Grid.ColumnProperty, 0);
-                }
-                else
-                {
-                    gridCamera2.Children.Add(cameraInitImage1);
-                }
-                cameraTwo.InitCamera(info);
                 cameraTwo.ChangeVideoEvent -= CameraTwo_ChangeVideoEvent;
                 cameraTwo.FullScreenEvent -= CameraTwo_FullScreenEvent;
                 cameraTwo.ChangeVideoEvent += CameraTwo_ChangeVideoEvent;

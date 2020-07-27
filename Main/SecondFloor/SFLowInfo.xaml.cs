@@ -140,6 +140,11 @@ namespace Main.SecondFloor
                 drVersionDateMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drVerDay"], Mode = BindingMode.OneWay }); ;
                 drVersionDateMultiBind.NotifyOnSourceUpdated = true;
                 this.drVersionDate.SetBinding(TextBlock.TextProperty, drVersionDateMultiBind);
+
+                this.startUpTime.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["165To168DeviceBootTime"], Mode = BindingMode.OneWay, Converter = new UnitDivide10Converter() });
+                this.drillDownCount_EquiptStatus.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["114N23N1DrillDownCount"], Mode = BindingMode.OneWay });
+                this.drillUpCount_EquipStatus.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["114N23N1DrillUpCount"], Mode = BindingMode.OneWay });
+                this.workTime_EquipStatus.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["106N23WorkTime"], Mode = BindingMode.OneWay, Converter = new UnitDivide10Converter() });
             }
             catch (Exception ex)
             {

@@ -497,62 +497,25 @@ namespace COM.Common
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-
-            if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null) || (values[1] == DependencyProperty.UnsetValue) || (values[1] == null))
-            {
-                return "";
-            }
-
             string path = string.Empty;
-            string str = (string)parameter;
-            byte data = (byte)values[0];
-            bool press = (bool)values[1];
-
-            if (str == "up")
+            if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null) 
+                || (values[1] == DependencyProperty.UnsetValue) || (values[1] == null)
+                || (values[2] == DependencyProperty.UnsetValue) || (values[2] == null)
+                || (values[3] == DependencyProperty.UnsetValue) || (values[3] == null))
             {
-                if (press)
-                {
-                    path = "..\\Images\\A_Y_2.png";
-                }
-                else
-                {
-                    path = "..\\Images\\A_B_2.png";
-                }
-            }
-            else if (str == "down")
-            {
-                if (press)
-                {
-                    path = "..\\Images\\A_Y_4.png";
-                }
-                else
-                {
-                    path = "..\\Images\\A_B_4.png";
-                }
-            }
-            else if (str == "left")
-            {
-                if (press)
-                {
-                    path = "..\\Images\\A_Y_1.png";
-                }
-                else
-                {
-                    path = "..\\Images\\A_B_1.png";
-                }
-            }
-            else
-            {
-                if (press)
-                {
-                    path = "..\\Images\\A_Y_3.png";
-                }
-                else
-                {
-                    path = "..\\Images\\A_B_3.png";
-                }
+                path = "/Images/arrow.png";
             }
 
+            bool up = (bool)values[0];
+            bool down = (bool)values[1];
+            bool left = (bool)values[2];
+            bool right = (bool)values[3];
+
+            if (up) path = "/Images/arrowUp.png";
+            else if (down) path = "/Images/arrowDown.png";
+            else if (left) path = "/Images/arrowLeft.png";
+            else if(right) path = "/Images/arrowRight.png";
+            else path = "/Images/arrow.png";
             var uriSource = new Uri(path, UriKind.Relative);
             return new BitmapImage(uriSource);
         }
@@ -3614,6 +3577,50 @@ namespace COM.Common
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class BtnColorCoverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var bc = new BrushConverter();
+            if (value == DependencyProperty.UnsetValue || value == null)
+            {
+                return (Brush)bc.ConvertFrom("#FFFFFF");
+            }
+            bool val = (bool)value;
+            if(val) return (Brush)bc.ConvertFrom("#326CF3");
+            else return (Brush)bc.ConvertFrom("#FFFFFF");
+
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class BtnColorMuilCoverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            var bc = new BrushConverter();
+            if (values[0] == DependencyProperty.UnsetValue || values[0] == null
+                || values[1] == DependencyProperty.UnsetValue || values[1] == null)
+            {
+                return (Brush)bc.ConvertFrom("#FFFFFF");
+            }
+            bool valone = (bool)values[0];
+            bool valtwo = (bool)values[1];
+            if (valone && valtwo) return (Brush)bc.ConvertFrom("#326CF3");
+            else return (Brush)bc.ConvertFrom("#FFFFFF");
+
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

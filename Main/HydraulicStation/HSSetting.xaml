@@ -173,24 +173,48 @@
                             </Grid.RowDefinitions>
                             <StackPanel Grid.Column="0" Grid.Row="0" VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Button FontSize="18" Width="50" Height="50" Click="BtnLeftCatReach_Click">伸</Button>
-                                    <Button FontSize="18" Width="50" Height="50" Click="BtnLeftCatRetract_Click">缩</Button>
-                                    <Button FontSize="18" Width="50" Height="50" Click="BtnLeftCatClose_Click">关</Button>
+                                    <Button Name="btnLeftCatHeadRetract" FontSize="18" Width="50" Height="50" Click="BtnLeftCatRetract_Click">缩</Button>
+                                    <Button Name="btnLeftCatHeadClose"  FontSize="18" Width="50" Height="50" Click="BtnLeftCatClose_Click">关</Button>
+                                    <Button Name="btnLeftCatHeadReach" FontSize="18" Width="50" Height="50" Click="BtnLeftCatReach_Click">伸</Button>
                                 </StackPanel>
                                 <TextBlock FontSize="18" Text="左猫头" HorizontalAlignment="Center"></TextBlock>
                             </StackPanel>
                             <StackPanel Grid.Column="1" Grid.Row="0" VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Button FontSize="18" Width="50" Height="50" Click="BtnRightCatReach_Click">伸</Button>
-                                    <Button FontSize="18" Width="50" Height="50" Click="BtnRightCatRetract_Click">缩</Button>
-                                    <Button FontSize="18" Width="50" Height="50" Click="BtnRightCatClose_Click">关</Button>
+                                    <Button Name="btnRightCatHeadRetract" FontSize="18" Width="50" Height="50" Click="BtnRightCatRetract_Click">缩</Button>
+                                    <Button Name="btnRightCatHeadClose" FontSize="18" Width="50" Height="50" Click="BtnRightCatClose_Click">关</Button>
+                                    <Button Name="btnRightCatHeadReach" FontSize="18" Width="50" Height="50" Click="BtnRightCatReach_Click">伸</Button>
                                 </StackPanel>
                                 <TextBlock FontSize="18" Text="右猫头" HorizontalAlignment="Center"></TextBlock>
                             </StackPanel>
-                            <cl:BasedSwitchButton Name="Iron" ContentLeft="关" ContentDown="铁钻工" ContentRight="开" UserControlClicked="btn_Iron" Grid.Column="0" Grid.Row="1"/>
+                            <StackPanel Grid.Column="0" Grid.Row="1" VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button Name="btnIron" FontSize="18" Width="80" Height="50" Click="BtnIron_Click">铁钻工</Button>
+                                    <Button Name="btnIronClose" FontSize="18" Width="80" Height="50" Click="BtnIronClose_Click">关闭</Button>
+                                    <Button Name="btnTong" FontSize="18" Width="80" Height="50" Click="BtnTong_Click">大钳</Button>
+                                </StackPanel>
+                                <TextBlock FontSize="18" Text="铁钻工/大钳" HorizontalAlignment="Center"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button Name="btnDF" FontSize="18" Width="80" Height="50" Click="BtnDF_Click">钻台面</Button>
+                                    <Button Name="btnDFClose" FontSize="18" Width="80" Height="50" Click="BtnDFClose_Click">关闭</Button>
+                                    <Button Name="btnSpaceThree" FontSize="18" Width="80" Height="50" Click="BtnSpaceThree_Click">备用3</Button>
+                                </StackPanel>
+                                <TextBlock FontSize="18" Text="钻台面/备用3" HorizontalAlignment="Center"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Grid.Column="0" Grid.Row="2" VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button Name="btnWellBuffer" FontSize="18" Width="100" Height="50" Click="BtnWellBuffer_Click">井架缓冲</Button>
+                                    <Button Name="btnWellBufferClose" FontSize="18" Width="60" Height="50" Click="BtnWellBufferCloseClick">关闭</Button>
+                                    <Button Name="btnSpaceFour" FontSize="18" Width="80" Height="50" Click="BtnSpaceFour_Click">备用4</Button>
+                                </StackPanel>
+                                <TextBlock FontSize="18" Text="井架缓冲/备用4" HorizontalAlignment="Center"></TextBlock>
+                            </StackPanel>
+                            <!--<cl:BasedSwitchButton Name="Iron" ContentLeft="关" ContentDown="铁钻工" ContentRight="开" UserControlClicked="btn_Iron" Grid.Column="0" Grid.Row="1"/>
                             <cl:BasedSwitchButton Name="Tongs" ContentLeft="关" ContentDown="大钳" ContentRight="开" UserControlClicked="btn_Tongs" Grid.Column="1" Grid.Row="1"/>
                             <cl:BasedSwitchButton Name="DF" ContentLeft="关" ContentDown="钻台面" ContentRight="开" UserControlClicked="btn_DF" Grid.Column="0" Grid.Row="2"/>
-                            <cl:BasedSwitchButton Name="BufferArm" ContentLeft="关" ContentDown="缓冲臂" ContentRight="开" UserControlClicked="btn_BufferArm" Grid.Column="1" Grid.Row="2"/>
+                            <cl:BasedSwitchButton Name="BufferArm" ContentLeft="关" ContentDown="缓冲臂" ContentRight="开" UserControlClicked="btn_BufferArm" Grid.Column="1" Grid.Row="2"/>-->
                         </Grid>
                     </Grid>
                 </Border>

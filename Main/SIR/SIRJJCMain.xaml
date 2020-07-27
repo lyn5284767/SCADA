@@ -120,7 +120,7 @@
             </Border>
             <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,1,5,1" Width="120">
                 <StackPanel>
-                    <Menu Background="Transparent" Height="30" Width="75"  FontSize="16" FontFamily="宋体" FontWeight="Bold" Foreground="#008AFF">
+                    <Menu Background="Transparent" Height="30" Width="90"  FontSize="16" FontFamily="宋体" FontWeight="Bold" Foreground="#008AFF">
                         <MenuItem>
                             <MenuItem.Header>
                                 <StackPanel Orientation="Vertical">

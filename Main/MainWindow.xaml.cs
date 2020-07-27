@@ -167,8 +167,13 @@ namespace Main
                 //}
                 MouseDownSF(null, null);
             }
-            else if (GlobalData.Instance.systemType == SystemType.DrillFloor) {
+            else if (GlobalData.Instance.systemType == SystemType.DrillFloor)
+            {
                 MouseDR(null, null);
+            }
+            else if (GlobalData.Instance.systemType == SystemType.HydraulicStation)
+            {
+                MouseHS(null, null);
             }
         }
 
@@ -247,6 +252,11 @@ namespace Main
                     MessageBox.Show("功能未开放");
                     return;
                 }
+                else if (GlobalData.Instance.systemType == SystemType.HydraulicStation)
+                {
+                    MessageBox.Show("功能未开放");
+                    return;
+                }
             }
             catch (Exception ex)
             {
@@ -305,6 +315,11 @@ namespace Main
                     MessageBox.Show("功能未开放");
                     return;
                 }
+                else if (GlobalData.Instance.systemType == SystemType.HydraulicStation)
+                {
+                    MessageBox.Show("功能未开放");
+                    return;
+                }
             }
             catch (Exception ex)
             {
@@ -346,7 +361,7 @@ namespace Main
                 {
                     this.spMain.Children.Clear();
                     this.spMain.Children.Add(HSSetting.Instance);
-                    this.BottomColorSetting(this.bdDR, this.tbDR, this.bdDrillSetting);
+                    this.BottomColorSetting(this.bdHS, this.tbHS, this.bdDrillSetting);
                 }
             }
             catch (Exception ex)
@@ -386,7 +401,7 @@ namespace Main
                 {
                     this.spMain.Children.Clear();
                     this.spMain.Children.Add(HSDeviceStatus.Instance);
-                    this.BottomColorSetting(this.bdDR, this.tbDR, this.bdDeviceStatus);
+                    this.BottomColorSetting(this.bdHS, this.tbHS, this.bdDeviceStatus);
                 }
             }
             catch (Exception ex)
@@ -461,6 +476,11 @@ namespace Main
                     MessageBox.Show("功能未开放");
                     return;
                 }
+                else if (GlobalData.Instance.systemType == SystemType.HydraulicStation)
+                {
+                    MessageBox.Show("功能未开放");
+                    return;
+                }
             }
             catch (Exception ex)
             {
@@ -518,6 +538,11 @@ namespace Main
                     MessageBox.Show("功能未开放");
                     return;
                 }
+                else if (GlobalData.Instance.systemType == SystemType.HydraulicStation)
+                {
+                    MessageBox.Show("功能未开放");
+                    return;
+                }
             }
             catch (Exception ex)
             {
@@ -571,6 +596,11 @@ namespace Main
                     MessageBox.Show("功能未开放");
                     return;
                 }
+                else if (GlobalData.Instance.systemType == SystemType.HydraulicStation)
+                {
+                    MessageBox.Show("功能未开放");
+                    return;
+                }
             }
             catch (Exception ex)
             {
@@ -603,7 +633,7 @@ namespace Main
                 {
                     this.spMain.Children.Clear();
                     this.spMain.Children.Add(HSAlarm.Instance);
-                    this.BottomColorSetting(this.bdSf, this.tbSf, this.bdOther);
+                    this.BottomColorSetting(this.bdHS, this.tbHS, this.bdOther);
                 }
             }
             catch (Exception ex)
@@ -629,6 +659,11 @@ namespace Main
                     return;
                 }
                 else if (GlobalData.Instance.systemType == SystemType.SIR)
+                {
+                    MessageBox.Show("功能未开放");
+                    return;
+                }
+                else if (GlobalData.Instance.systemType == SystemType.HydraulicStation)
                 {
                     MessageBox.Show("功能未开放");
                     return;
@@ -662,6 +697,11 @@ namespace Main
                     MessageBox.Show("功能未开放");
                     return;
                 }
+                else if (GlobalData.Instance.systemType == SystemType.HydraulicStation)
+                {
+                    MessageBox.Show("功能未开放");
+                    return;
+                }
             }
             catch (Exception ex)
             {
@@ -689,6 +729,11 @@ namespace Main
                     this.BottomColorSetting(this.bdDR, this.tbDR, this.bdOther);
                 }
                 else if (GlobalData.Instance.systemType == SystemType.SIR)
+                {
+                    MessageBox.Show("功能未开放");
+                    return;
+                }
+                else if (GlobalData.Instance.systemType == SystemType.HydraulicStation)
                 {
                     MessageBox.Show("功能未开放");
                     return;
