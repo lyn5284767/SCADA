@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -43,10 +44,12 @@ namespace Main.HydraulicStation
             }
         }
 
+        System.Threading.Timer timerWarning;
         public HSSetting()
         {
             InitializeComponent();
             VariableBinding();
+            timerWarning = new System.Threading.Timer(new TimerCallback(TimerWarning_Elapsed), this, 2000, 500);//改成50ms 的时钟
         }
 
         private void VariableBinding()
@@ -88,7 +91,7 @@ namespace Main.HydraulicStation
                 btnIronCloseMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["768b3"], Mode = BindingMode.OneWay });
                 btnIronCloseMultiBind.NotifyOnSourceUpdated = true;
                 this.btnIronClose.SetBinding(Button.BackgroundProperty, btnIronCloseMultiBind);
-                this.btnRightCatHeadReach.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["768b2"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnTong.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["768b2"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
 
                 this.btnDF.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["769b2"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
                 BtnColorMuilCoverter btnDFCloseMultiConverter = new BtnColorMuilCoverter();
@@ -109,6 +112,14 @@ namespace Main.HydraulicStation
                 btnWellBufferCloseMultiBind.NotifyOnSourceUpdated = true;
                 this.btnWellBufferClose.SetBinding(Button.BackgroundProperty, btnWellBufferCloseMultiBind);
                 this.btnSpaceFour.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["770b0"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+
+                this.btnTurnMainOne.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["775b1"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnTurnMainTwo.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["775b0"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnMonitorOneGetOil.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["775b2"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnMonitorTwoGetOil.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["775b3"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnFilterReplace.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["775b4"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnOilReplace.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["775b5"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnOilLeakage.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["775b6"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
             }
             catch (Exception ex)
             {
@@ -499,6 +510,73 @@ namespace Main.HydraulicStation
         {
             byte[] byteToSend = new byte[10] { 0, 19, 4, 14, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        bool colorTag = false;
+        private void TimerWarning_Elapsed(object obj)
+        {
+            try
+            {
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    colorTag = !colorTag;
+                    var bc = new BrushConverter();
+                    if (GlobalData.Instance.da["775b1"].Value.Boolean)
+                    {
+                        if (colorTag) this.btnTurnMainOne.Background = (Brush)bc.ConvertFrom("#F73C14");
+                        else this.btnTurnMainOne.Background = (Brush)bc.ConvertFrom("#FFFFFF");
+                    }
+                    else
+                    {
+                        this.btnTurnMainOne.Background = (Brush)bc.ConvertFrom("#FFFFFF");
+                    }
+                    if (GlobalData.Instance.da["775b0"].Value.Boolean)
+                    {
+                        if (colorTag) this.btnTurnMainTwo.Background = (Brush)bc.ConvertFrom("#F73C14");
+                        else this.btnTurnMainTwo.Background = (Brush)bc.ConvertFrom("#FFFFFF");
+                    }
+                    else
+                    {
+                        this.btnTurnMainTwo.Background = (Brush)bc.ConvertFrom("#FFFFFF");
+                    }
+                    if (GlobalData.Instance.da["775b2"].Value.Boolean)
+                    {
+                        if (colorTag) this.btnMonitorOneGetOil.Background = (Brush)bc.ConvertFrom("#F73C14");
+                        else this.btnMonitorOneGetOil.Background = (Brush)bc.ConvertFrom("#FFFFFF");
+                    }
+                    else
+                    {
+                        this.btnMonitorOneGetOil.Background = (Brush)bc.ConvertFrom("#FFFFFF");
+                    }
+                    if (GlobalData.Instance.da["775b3"].Value.Boolean)
+                    {
+                        if (colorTag) this.btnMonitorTwoGetOil.Background = (Brush)bc.ConvertFrom("#F73C14");
+                        else this.btnMonitorTwoGetOil.Background = (Brush)bc.ConvertFrom("#FFFFFF");
+                    }
+                    else this.btnMonitorTwoGetOil.Background = (Brush)bc.ConvertFrom("#FFFFFF");
+                    if (GlobalData.Instance.da["775b4"].Value.Boolean)
+                    {
+                        if (colorTag) this.btnFilterReplace.Background = (Brush)bc.ConvertFrom("#F73C14");
+                        else this.btnFilterReplace.Background = (Brush)bc.ConvertFrom("#FFFFFF");
+                    }
+                    else this.btnFilterReplace.Background = (Brush)bc.ConvertFrom("#FFFFFF");
+                    if (GlobalData.Instance.da["775b5"].Value.Boolean)
+                    {
+                        if (colorTag) this.btnOilReplace.Background = (Brush)bc.ConvertFrom("#F73C14");
+                        else this.btnOilReplace.Background = (Brush)bc.ConvertFrom("#FFFFFF");
+                    }
+                    else this.btnOilReplace.Background = (Brush)bc.ConvertFrom("#FFFFFF");
+                    if (GlobalData.Instance.da["775b6"].Value.Boolean)
+                    {
+                        if (colorTag) this.btnOilLeakage.Background = (Brush)bc.ConvertFrom("#F73C14");
+                        else this.btnOilLeakage.Background = (Brush)bc.ConvertFrom("#FFFFFF");
+                    }
+                    else this.btnOilLeakage.Background = (Brush)bc.ConvertFrom("#FFFFFF");
+                }));
+            }
+            catch (Exception ex)
+            {
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+            }
         }
     }
 }

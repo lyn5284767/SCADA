@@ -138,13 +138,13 @@
                                     <RowDefinition/>
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
-                                <Button Grid.Column="0" Grid.Row="0" Width="240" Height="40" FontSize="18" Click="BtnTurnMainOne_Click">已切换到主泵1运行</Button>
-                                <Button Grid.Column="1" Grid.Row="0" Width="240" Height="40" FontSize="18" Click="BtnTurnMainTwo_Click">已切换到主泵2运行</Button>
-                                <Button Grid.Column="0" Grid.Row="1" Width="240" Height="40" FontSize="18" Click="BtnMonitorOneGetOil_Click">主电机1已加注黄油</Button>
-                                <Button Grid.Column="1" Grid.Row="1" Width="240" Height="40" FontSize="18" Click="BtnMonitorTwoGetOil_Click">主电机2已加注黄油</Button>
-                                <Button Grid.Column="0" Grid.Row="2" Width="240" Height="40" FontSize="18" Click="BtnFilterReplace_Click">滤芯已更换</Button>
-                                <Button Grid.Column="1" Grid.Row="2" Width="240" Height="40" FontSize="18" Click="BtnOilReplace_Click">液压油已更换</Button>
-                                <Button Grid.Column="0" Grid.Row="3" Width="240" Height="40" FontSize="18" Click="BtnOilLeakage_Click">已确认无漏油</Button>
+                                <Button Grid.Column="0" Grid.Row="0" Width="240" Height="40" FontSize="18" Click="BtnTurnMainOne_Click" Name="btnTurnMainOne">主泵1已切换</Button>
+                                <Button Grid.Column="1" Grid.Row="0" Width="240" Height="40" FontSize="18" Click="BtnTurnMainTwo_Click" Name="btnTurnMainTwo">主泵2已切换</Button>
+                                <Button Grid.Column="0" Grid.Row="1" Width="240" Height="40" FontSize="18" Click="BtnMonitorOneGetOil_Click" Name="btnMonitorOneGetOil">主电机1已加注黄油</Button>
+                                <Button Grid.Column="1" Grid.Row="1" Width="240" Height="40" FontSize="18" Click="BtnMonitorTwoGetOil_Click" Name="btnMonitorTwoGetOil">主电机2已加注黄油</Button>
+                                <Button Grid.Column="0" Grid.Row="2" Width="240" Height="40" FontSize="18" Click="BtnFilterReplace_Click" Name="btnFilterReplace">滤芯已更换</Button>
+                                <Button Grid.Column="1" Grid.Row="2" Width="240" Height="40" FontSize="18" Click="BtnOilReplace_Click" Name="btnOilReplace">液压油已更换</Button>
+                                <Button Grid.Column="0" Grid.Row="3" Width="240" Height="40" FontSize="18" Click="BtnOilLeakage_Click" Name="btnOilLeakage">液位已确认正常</Button>
                                 <Button Grid.Column="1" Grid.Row="3" Width="240" Height="40" FontSize="18">备用</Button>
                             </Grid>
                         </Grid>

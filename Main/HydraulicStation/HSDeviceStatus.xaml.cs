@@ -56,6 +56,7 @@ namespace Main.HydraulicStation
         public HSDeviceStatus()
         {
             InitializeComponent();
+            VariableBinding();
             timerChart.Interval = 1000;
             timerChart.Tick += TimerChart_Tick;
             timerChart.Start();
@@ -114,15 +115,15 @@ namespace Main.HydraulicStation
         {
             try
             {
-                this.smMainPumpUnLoad.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b0"], Mode = BindingMode.OneWay });
-                this.smKavaUnLoad.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b2"], Mode = BindingMode.OneWay });
-                this.smMove.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b4"], Mode = BindingMode.OneWay });
-                this.smSpareOil.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b6"], Mode = BindingMode.OneWay });
-
-                this.tbMainOneTime.SetBinding(SymbolMapping.LampTypeProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["M1RunTime"], Mode = BindingMode.OneWay });
-                this.tbMainTwoTime.SetBinding(SymbolMapping.LampTypeProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["M2RunTime"], Mode = BindingMode.OneWay });
-                this.tbConstantVoltage.SetBinding(SymbolMapping.LampTypeProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["CRunTime"], Mode = BindingMode.OneWay });
-                this.tbDissipateHeat.SetBinding(SymbolMapping.LampTypeProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["DRunTime"], Mode = BindingMode.OneWay });
+                this.smMainPumpUnLoad.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.smKavaUnLoad.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b2"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.smMove.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b4"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.smSpareOil.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b6"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                
+                this.tbMainOneTime.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["M1RunTime"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                this.tbMainTwoTime.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["M2RunTime"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                this.tbConstantVoltage.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["CRunTime"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                this.tbDissipateHeat.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["DRunTime"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
                 // 1#主泵斜盘
                 this.cpbMainOnePumpSwash.SetBinding(CircleProgressBar.ValueProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["M1ValuePWMR"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
                 this.cpbMainOnePumpSwash.SetBinding(CircleProgressBar.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["M1ValuePWMR"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });

@@ -3474,8 +3474,15 @@ namespace COM.Common
             {
                 return 0;
             }
-
-            double val = (short)value / 10.0;
+            double val = 0.0;
+            if (value.GetType().Name == "Int32")
+            {
+                val = (int)value / 10.0;
+            }
+            else if (value.GetType().Name == "Int16")
+            {
+                val = (short)value / 10.0;
+            }
 
             return val;
         }
@@ -3503,7 +3510,7 @@ namespace COM.Common
             if (max < 100) max = 100;
             double levelOne = (max - min) / 3;
             double levelTwo = ((max - min) / 3) * 2;
-            if (val < levelOne) return (Brush)bc.ConvertFrom("#ADD8E6");
+            if (val < levelOne) return (Brush)bc.ConvertFrom("#70B603");
             else if (val < levelTwo) return (Brush)bc.ConvertFrom("#FFC464");
             else return (Brush)bc.ConvertFrom("#FF7C96");
         }
@@ -3621,6 +3628,26 @@ namespace COM.Common
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class CbBoolTgaCoverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == DependencyProperty.UnsetValue || value == null)
+            {
+                return false;
+            }
+            bool val = (bool)value;
+            if (val) return true;
+            else return false;
+
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
