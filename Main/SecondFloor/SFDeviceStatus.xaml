@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Main.SecondFloor"
              xmlns:cl="http://talonzeng.com/ControlLibrary"
              mc:Ignorable="d" 
-             d:DesignHeight="608" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="sfDeviceStatus">
+             d:DesignHeight="608" d:DesignWidth="1024" Foreground="#525252" FontSize="14" FontFamily="微软雅黑" Background="#F5F6FA" Margin="1" Name="sfDeviceStatus">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="45"/>
@@ -28,7 +28,7 @@
                     <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Width="270">
                         <StackPanel>
                             <StackPanel Height="30" Orientation="Horizontal">
-                                <TextBlock Text="操作模式：" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                                <TextBlock Text="操作模式：" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
                                 <TextBlock Text="    " Name="opModel_EquiptStatusPage" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
                             </StackPanel>
                         </StackPanel>
@@ -40,7 +40,7 @@
                     <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Width="270">
                         <StackPanel>
                             <StackPanel Height="30" Orientation="Horizontal">
-                                <TextBlock Text="工作模式：" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                                <TextBlock Text="工作模式：" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
                                 <TextBlock Text="    " Name="wokeModel_EquiptStatusPage" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
                             </StackPanel>
                         </StackPanel>
@@ -52,9 +52,9 @@
                     <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Width="270">
                         <StackPanel>
                             <StackPanel Height="30" Orientation="Horizontal">
-                                <TextBlock Text="开机时间：" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
-                                <TextBlock Text="0.0" Name="startUpTime" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
-                                <Label FontSize="16" FontFamily="宋体" FontWeight="Bold" VerticalAlignment="Center">h</Label>
+                                <TextBlock Text="开机时间：" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
+                                <TextBlock Text="0.0" Name="startUpTime" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
+                                <TextBlock FontSize="16" FontWeight="Bold" VerticalAlignment="Center">h</TextBlock>
                             </StackPanel>
                         </StackPanel>
                     </Border>
@@ -76,8 +76,8 @@
                     <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Width="270">
                         <StackPanel>
                             <StackPanel Height="30" Orientation="Horizontal">
-                                <TextBlock Text="自动下钻次数：" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
-                                <TextBlock Text="  " Name="drillDownCount_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                                <TextBlock Text="自动下钻次数：" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
+                                <TextBlock Text="  " Name="drillDownCount_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
                             </StackPanel>
                         </StackPanel>
                     </Border>
@@ -100,9 +100,9 @@
                     <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Width="270">
                         <StackPanel>
                             <StackPanel Height="30" Orientation="Horizontal">
-                                <TextBlock Text="工作时间：" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
-                                <TextBlock Text="0.0"  Name="workTime_EquipStatus" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
-                                <Label FontSize="16" FontFamily="宋体" FontWeight="Bold" VerticalAlignment="Center">h</Label>
+                                <TextBlock Text="工作时间：" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
+                                <TextBlock Text="0.0"  Name="workTime_EquipStatus" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
+                                <TextBlock FontSize="16" FontWeight="Bold" VerticalAlignment="Center">h</TextBlock>
                             </StackPanel>
                         </StackPanel>
                     </Border>
@@ -119,23 +119,23 @@
                     <StackPanel Height="120" Orientation="Vertical">
                         <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
                             <cl:SymbolMapping StrContent="" LampType="3" Name="lampType_carMotorRet_EquiptStatus"/>
-                            <TextBlock Text="小车电机：" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="小车电机：" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
                             <cl:SymbolMapping StrContent="" LampType="3" Name="lampType_carMotorProximitySwitch_EquiptStatus"/>
                         </StackPanel>
                         <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="状态：" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="状态：" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
                             <!--<Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">-->
                             <TextBlock Text="0" Name="txt_CarMotorStatus_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
                             <!--</Border>-->
                         </StackPanel>
                         <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="位置：" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="位置：" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
                             <!--<Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">-->
                             <TextBlock Text="0" Name="txt_carMotorPosi_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
                             <!--</Border>-->
                         </StackPanel>
                         <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="错误：" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="错误：" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
                             <!--<Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">-->
                             <TextBlock Text="0" Name="txt_CarMotorWarnCode_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
                             <!--</Border>-->
@@ -150,23 +150,23 @@
                     <StackPanel Height="120" Orientation="Vertical">
                         <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
                             <cl:SymbolMapping StrContent="" LampType="3" Name="lampType_RotateMotorRet_EquipStatus"/>
-                            <TextBlock Text="回转电机：" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="回转电机：" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
                             <cl:SymbolMapping StrContent="" LampType="3" Name="lampType_RotateMotorProximitySwitch_EquiptStatus"/>
                         </StackPanel>
                         <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="状态：" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="状态：" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
                             <!--<Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">-->
-                            <TextBlock Text="0" Name="txt_RotateMotorStatus_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="0" Name="txt_RotateMotorStatus_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
                             <!--</Border>-->
                         </StackPanel>
                         <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="位置：" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="位置：" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
                             <!--<Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">-->
-                            <TextBlock Text="0" Name="txt_RotateMotorPosi_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="0" Name="txt_RotateMotorPosi_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
                             <!--</Border>-->
                         </StackPanel>
                         <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="错误：" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="错误：" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
                             <!--<Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">-->
                             <TextBlock Text="0" Name="txt_RotateMotorWarnCode_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
                             <!--</Border>-->
@@ -188,25 +188,25 @@
                     <StackPanel Height="160" Orientation="Vertical">
                         <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
                             <cl:SymbolMapping StrContent="" LampType="3" Name="lampType_ArmMotorRet_EquiptStatus"/>
-                            <TextBlock Text="手臂电机：" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="手臂电机：" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
                             <cl:SymbolMapping StrContent="" LampType="3" Name="lampType_ArmMotorProximitySwitch_EquiptStatus"/>
                         </StackPanel>
                         <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="状态：" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="状态：" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
                             <!--<Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">-->
                             <TextBlock Text="0" Name="txt_ArmMotorStatus_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
                             <!--</Border>-->
                         </StackPanel>
                         <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="位置：" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="位置：" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
                             <!--<Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">-->
-                            <TextBlock Text="0"  Name="txt_ArmMotorPosi_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="0"  Name="txt_ArmMotorPosi_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
                             <!--</Border>-->
                         </StackPanel>
                         <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="错误：" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="错误：" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
                             <!--<Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">-->
-                            <TextBlock Text="0" Name="txt_ArmMotorWarnCode_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="0" Name="txt_ArmMotorWarnCode_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
                             <!--</Border>-->
                         </StackPanel>
                     </StackPanel>
@@ -222,9 +222,9 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="0">
-                            <TextBlock Text="        " VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
-                            <TextBlock Text="手柄状态" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
-                            <TextBlock Text="        " VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="        " VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
+                            <TextBlock Text="手柄状态" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
+                            <TextBlock Text="        " VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
                         </StackPanel>
                         <Grid Grid.Row="1">
                             <Grid.ColumnDefinitions>
@@ -233,15 +233,15 @@
                             </Grid.ColumnDefinitions>
                             <StackPanel Grid.Column="0">
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="手柄X" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                                    <TextBlock Text="手柄X" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
                                     <!--<Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">-->
-                                    <TextBlock Text="0" Name="txt_HandleX_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                                    <TextBlock Text="0" Name="txt_HandleX_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
                                     <!--</Border>-->
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="手柄Y" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                                    <TextBlock Text="手柄Y" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
                                     <!--<Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">-->
-                                    <TextBlock Text="0" Name="txt_HandleY_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                                    <TextBlock Text="0" Name="txt_HandleY_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
                                     <!--</Border>-->
                                 </StackPanel>
 
@@ -299,17 +299,17 @@
             <Border Grid.Column="0" Grid.Row="0" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,5,10">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                     <StackPanel Margin="50,0,0,0" Orientation="Horizontal">
-                        <Label Content="设备编码:" Grid.Row="1"/>
+                        <Label FontSize="16" Content="设备编码:" Grid.Row="1"/>
                         <TextBlock Name="tbDeviceEncode" Grid.Row="2" Width="200">
                         </TextBlock>
                     </StackPanel>
                     <StackPanel Margin="50,0,0,0" Orientation="Horizontal">
-                        <Label Content="程序版本:" Grid.Row="3" Grid.Column="0"/>
+                        <Label FontSize="16" Content="程序版本:" Grid.Row="3" Grid.Column="0"/>
                         <TextBlock Name="tbSecondVersion" Grid.Row="4" Grid.Column="0" Width="200">
                         </TextBlock>
                     </StackPanel>
                     <StackPanel Margin="50,0,0,0" Orientation="Horizontal">
-                        <Label Content="版本日期:" Grid.Row="5" Grid.Column="0"/>
+                        <Label FontSize="16" Content="版本日期:" Grid.Row="5" Grid.Column="0"/>
                         <TextBlock Name="tbSecondVersionDate" Grid.Row="6" Grid.Column="0" Width="200">
                         </TextBlock>
                     </StackPanel>
@@ -325,11 +325,11 @@
                 <ColumnDefinition Width="140"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                <Menu Height="40" Width="150"  FontSize="16" FontFamily="宋体" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
+                <Menu Height="40" Width="150"  FontSize="16" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
                     <MenuItem>
                         <MenuItem.Header>
                             <StackPanel Orientation="Horizontal">
-                                <ContentPresenter Content="页 面 切 换" />
+                                <ContentPresenter Content="页 面 切 换"/>
                                 <Image Width="30" Source="..\Images\triangle.png" />
                             </StackPanel>
                         </MenuItem.Header>
@@ -343,7 +343,7 @@
                 </Menu>
             </Grid>
             <Grid Grid.Column="1">
-                <Menu Height="40" Width="140"  FontSize="16" FontFamily="宋体" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
+                <Menu Height="40" Width="140"  FontSize="16" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
                     <MenuItem>
                         <MenuItem.Header>
                             <StackPanel Orientation="Horizontal">

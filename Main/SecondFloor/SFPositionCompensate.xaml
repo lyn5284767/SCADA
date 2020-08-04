@@ -6,14 +6,14 @@
              xmlns:local="clr-namespace:Main.SecondFloor"
              xmlns:cl="http://talonzeng.com/ControlLibrary"
              mc:Ignorable="d" 
-             d:DesignHeight="608" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="sfPositionCompensate">
+             d:DesignHeight="608" d:DesignWidth="1024" Foreground="#525252" FontSize="14" FontFamily="微软雅黑" Background="#F5F6FA" Margin="1" Name="sfPositionCompensate">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
@@ -26,16 +26,16 @@
             <Grid Grid.Column="1">
                 <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3">
                     <StackPanel Height="30" Orientation="Horizontal">
-                        <TextBlock Text="当前模式：" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
-                        <TextBlock Text="        " VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold" Name="opMode_PositionCompensation"/>
+                        <TextBlock Text="当前模式：" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
+                        <TextBlock Text="        " VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold" Name="opMode_PositionCompensation"/>
                     </StackPanel>
                 </Border>
             </Grid>
             <Grid Grid.Column="3">
                 <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3">
                     <StackPanel Height="30" Orientation="Horizontal">
-                        <TextBlock Text="回转：" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
-                        <TextBlock Text="    0 deg" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold" Name="rotateAngle_PositionCompensation"/>
+                        <TextBlock Text="回转：" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
+                        <TextBlock Text="    0 deg" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold" Name="rotateAngle_PositionCompensation"/>
                     </StackPanel>
                 </Border>
             </Grid>
@@ -165,7 +165,7 @@
             </Grid>
         </Grid>
         <Grid Grid.Row="3">
-            <TextBlock Text="未选择补偿类型" FontSize="18" FontFamily="宋体" FontWeight="Bold" HorizontalAlignment="Center" Foreground="Red" Name="txtCompensationType"/>
+            <TextBlock Text="未选择补偿类型" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Foreground="Red" Name="txtCompensationType"/>
         </Grid>
         <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
@@ -176,7 +176,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="1">
-                <Menu Height="30" Width="130"  FontSize="16" FontFamily="宋体" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
+                <Menu Height="40" Width="145"  FontSize="16" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
                     <MenuItem>
                         <MenuItem.Header>
                             <StackPanel Orientation="Horizontal">
@@ -190,7 +190,7 @@
                 </Menu>
             </Grid>
             <Grid Grid.Column="2">
-                <Menu Height="30" Width="130"  FontSize="16" FontFamily="宋体" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
+                <Menu Height="40" Width="145"  FontSize="16" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
                     <MenuItem Name="menuCarCompensationSetting" IsEnabled="False">
                         <MenuItem.Header>
                             <StackPanel Orientation="Horizontal">
@@ -207,7 +207,7 @@
 
             </Grid>
             <Grid Grid.Column="3">
-                <Menu Height="30" Width="130"  FontSize="16" FontFamily="宋体" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black" >
+                <Menu Height="40" Width="145"  FontSize="16" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black" >
                     <MenuItem  Name="menuRotateCompensationSetting" IsEnabled="False">
                         <MenuItem.Header>
                             <StackPanel Orientation="Horizontal">

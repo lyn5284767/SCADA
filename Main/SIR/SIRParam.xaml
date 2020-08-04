@@ -1,12 +1,11 @@
-﻿<UserControl x:Class="Main.SecondFloor.SFParamOne"
+﻿<UserControl x:Class="Main.SIR.SIRParam"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Main.SecondFloor"
-             xmlns:cl="http://talonzeng.com/ControlLibrary"
+             xmlns:local="clr-namespace:Main.SIR" xmlns:cl="http://talonzeng.com/ControlLibrary"
              mc:Ignorable="d" 
-             d:DesignHeight="650" d:DesignWidth="800" Foreground="#525252" FontSize="14" FontFamily="微软雅黑" Background="#F5F6FA" Margin="1" Name="sfParamOne">
+              d:DesignHeight="650" d:DesignWidth="800" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="sfParamOne">
     <UserControl.Resources>
         <Style TargetType="Button" x:Key="btnGreen">
             <Setter Property="Background" Value="#fff"/>
@@ -50,13 +49,13 @@
                     <Grid Grid.Column="0">
                         <StackPanel Orientation="Vertical">
                             <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                                <TextBlock Text="基&#x0a;本&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold" Height="210" />
+                                <TextBlock Text="基&#x0a;本&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="宋体" FontWeight="Bold" Height="210" />
                             </Border>
                             <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                                <TextBlock Text="钻&#x0a;杆&#x0a;钻&#x0a;铤&#x0a;参&#x0a;数&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold" Height="235"/>
+                                <TextBlock Text="钻&#x0a;杆&#x0a;钻&#x0a;铤&#x0a;参&#x0a;数&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="宋体" FontWeight="Bold" Height="235"/>
                             </Border>
                             <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                                <TextBlock Text="钻&#x0a;杆&#x0a;容&#x0a;量&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold" Height="140"/>
+                                <TextBlock Text="钻&#x0a;杆&#x0a;容&#x0a;量&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="宋体" FontWeight="Bold" Height="140"/>
                             </Border>
 
 
@@ -85,7 +84,7 @@
                             <cl:TextBlockWithTextBox Name="twtL11" ControlTag="5"  TbkText="单边钻铤数目"/>
                             <cl:TextBlockWithTextBox Name="twtL49" ControlTag="49"  TbkText="单边指梁数目"/>
                             <cl:TextBlockWithTextBox Name="twtL12" ControlTag="26"  TbkText="钻杆限定电流值"/>
-                            
+
                             <!--<cl:TextBlockWithTextBox Name="twtL13" ControlTag="33"  TbkText="2 3/8钻杆容量"/>
                                 <cl:TextBlockWithTextBox Name="twtL14" ControlTag="34"  TbkText="2.5寸钻杆容量"/>
                                 <cl:TextBlockWithTextBox Name="twtL15" ControlTag="35"  TbkText="2 7/8钻杆容量"/>
@@ -101,13 +100,13 @@
                     <Grid Grid.Column="2">
                         <StackPanel Orientation="Vertical">
                             <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="5" Padding="3" Height="210">
-                                <TextBlock Text="小&#x0a;车&#x0a;电&#x0a;机&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontWeight="Bold"  Height="155" />
+                                <TextBlock Text="小&#x0a;车&#x0a;电&#x0a;机&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="宋体" FontWeight="Bold"  Height="155" />
                             </Border>
                             <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="5" Padding="3" Height="150">
-                                <TextBlock Text="手&#x0a;臂&#x0a;电&#x0a;机&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontWeight="Bold"  Height="105" />
+                                <TextBlock Text="手&#x0a;臂&#x0a;电&#x0a;机&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="宋体" FontWeight="Bold"  Height="105" />
                             </Border>
                             <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="5" Padding="3" Height="120">
-                                <TextBlock Text="回&#x0a;转&#x0a;电&#x0a;机&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontWeight="Bold"  Height="85" />
+                                <TextBlock Text="回&#x0a;转&#x0a;电&#x0a;机&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="宋体" FontWeight="Bold"  Height="85" />
                             </Border>
                             <!--<Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="5" Padding="3" Height="Auto">
                                 <TextBlock Text="配&#x0a;置&#x0a;信&#x0a;息&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="宋体" FontWeight="Bold"  Height="90" />

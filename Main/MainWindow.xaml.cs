@@ -175,6 +175,14 @@ namespace Main
             {
                 MouseHS(null, null);
             }
+            else if (GlobalData.Instance.systemType == SystemType.SIR)
+            {
+                SIR_MouseLeftButtonDown(null, null);
+            }
+            else if (GlobalData.Instance.systemType == SystemType.CatRoad)
+            {
+                Cat_MouseLeftButtonDown(null, null);
+            }
         }
 
         /// <summary>
@@ -312,7 +320,9 @@ namespace Main
                 }
                 else if (GlobalData.Instance.systemType == SystemType.SIR)
                 {
-                    MessageBox.Show("功能未开放");
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(SIRSelfIO.Instance);
+                    this.BottomColorSetting(this.bdSIR, this.tbSIR, this.bdIO);
                     return;
                 }
                 else if (GlobalData.Instance.systemType == SystemType.HydraulicStation)
@@ -944,9 +954,10 @@ namespace Main
             {
                 int sirType = GlobalData.Instance.da["IDFactoryType"].Value.Byte;
                 this.spMain.Children.Clear();
-                sirType = 3;
+                sirType = 1;
                 if (sirType == (int)SIRType.SANY)
                 {
+                    this.spMain.Children.Add(SIRSelfMain.Instance);
                 }
                 else if (sirType == (int)SIRType.JJC)
                 {
@@ -1054,7 +1065,7 @@ namespace Main
                 this.spMain.Children.Clear();
                 this.spMain.Children.Add(BSCatMain.Instance);
 
-                GlobalData.Instance.systemType = SystemType.HydraulicStation;
+                GlobalData.Instance.systemType = SystemType.CatRoad;
                 this.BottomColorSetting(this.bdCat, this.tbCat, this.bdHome);
             }
             catch (Exception ex)

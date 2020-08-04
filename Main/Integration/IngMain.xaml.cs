@@ -50,7 +50,8 @@ namespace Main.Integration
         {
             InitializeComponent();
             SFSelectMouseDown(null, null);
-            amination.SendFingerBeamNumberEvent += Amination_SendFingerBeamNumberEvent;
+            //amination.SendFingerBeamNumberEvent += Amination_SendFingerBeamNumberEvent;
+            aminationNew.SendFingerBeamNumberEvent += Amination_SendFingerBeamNumberEvent;
             VariableBinding();
             this.Loaded += IngMain_Loaded;
         }
@@ -241,7 +242,8 @@ namespace Main.Integration
             {
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
-                    amination.LoadFingerBeamDrillPipe(systemType);
+                    //amination.LoadFingerBeamDrillPipe(systemType);
+                    aminationNew.LoadFingerBeamDrillPipe(systemType);
                     this.Warnning();
                     this.AutoChange();
 
@@ -868,8 +870,10 @@ namespace Main.Integration
             byte[] byteToSend = new byte[10] { 1, 32, 1, 11, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
             systemType = SystemType.SecondFloor;
-            this.amination.CIMSChange(systemType);
-            this.amination.InitRowsColoms(systemType);
+            //this.amination.CIMSChange(systemType);
+            //this.amination.InitRowsColoms(systemType);
+            this.aminationNew.SystemChange(systemType);
+            this.aminationNew.InitRowsColoms(systemType);
             this.effSFSelect.Opacity = 0.5;
             this.effDRSelect.Opacity = 0;
         }
@@ -881,8 +885,10 @@ namespace Main.Integration
             byte[] byteToSend = new byte[10] { 1, 32, 1, 10, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
             systemType = SystemType.DrillFloor;
-            this.amination.CIMSChange(systemType);
-            this.amination.InitRowsColoms(systemType);
+            //this.amination.CIMSChange(systemType);
+            //this.amination.InitRowsColoms(systemType);
+            this.aminationNew.SystemChange(systemType);
+            this.aminationNew.InitRowsColoms(systemType);
             this.effSFSelect.Opacity = 0;
             this.effDRSelect.Opacity = 0.5;
         }

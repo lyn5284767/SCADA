@@ -293,6 +293,21 @@
     <Compile Include="SIR\SIRJJCMain.xaml.cs">
       <DependentUpon>SIRJJCMain.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SIR\SIRParam.xaml.cs">
+      <DependentUpon>SIRParam.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SIR\SIRPosSetting.xaml.cs">
+      <DependentUpon>SIRPosSetting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SIR\SIRSecureSetting.xaml.cs">
+      <DependentUpon>SIRSecureSetting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SIR\SIRSelfIO.xaml.cs">
+      <DependentUpon>SIRSelfIO.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SIR\SIRSelfMain.xaml.cs">
+      <DependentUpon>SIRSelfMain.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UIClass\RelayCommand.cs" />
     <Compile Include="UIClass\ScrollableTabPanel.cs" />
     <Page Include="Amination.xaml">
@@ -496,6 +511,26 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SIR\SIRJJCMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SIR\SIRParam.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SIR\SIRPosSetting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SIR\SIRSecureSetting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SIR\SIRSelfIO.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SIR\SIRSelfMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

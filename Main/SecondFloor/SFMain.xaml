@@ -379,7 +379,7 @@
                             </Border>
                         </Grid>
                         <Border BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0 5 0 0" Grid.Row="1">
-                            <TextBlock Text="未选择管柱类型" Name="tubeType" FontSize="14" FontFamily="宋体" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            <TextBlock Text="未选择管柱类型" Name="tubeType" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
                         <StackPanel Orientation="Horizontal" Grid.Row="2">
                             <Label Margin="25,0,5,0">标定状态</Label>
@@ -479,7 +479,8 @@
                         </Grid>
                         <Grid Grid.Row="2" Name="Am"  Height="380">
                             <TextBlock Name="wellTips" Text="井口位置" TextAlignment="Center" FontSize="16" Foreground="Red"/>
-                            <main:Amination x:Name="amination"/>
+                            <!--<main:Amination x:Name="amination"/>-->
+                            <main:AminationNew x:Name="aminationNew"/>
                         </Grid>
                     </Grid>
                 </Border>

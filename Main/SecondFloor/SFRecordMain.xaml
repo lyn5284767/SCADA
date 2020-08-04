@@ -7,7 +7,7 @@
              xmlns:TimeTool="clr-namespace:Loya.Dameer;assembly=Loya.Dameer"
              xmlns:controllibrary="http://talonzeng.com/ControlLibrary"
              mc:Ignorable="d" 
-            d:DesignHeight="608" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="sfRecordMain">
+            d:DesignHeight="608" d:DesignWidth="1024" Foreground="#525252" FontSize="14" FontFamily="微软雅黑" Background="#F5F6FA" Margin="1" Name="sfRecordMain">
     <UserControl.Resources>
         <Style TargetType="Label">
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -66,7 +66,7 @@
             <Button Style="{StaticResource btnGreen}" Click="Button_MouseDown" Grid.Column="4">查询</Button>
         </Grid>
         <Grid Grid.Row="1">
-            <DataGrid Name="lvRecord" FontSize="20" FontFamily="微软雅黑" AutoGenerateColumns="False" ScrollViewer.VerticalScrollBarVisibility="Visible">
+            <DataGrid Name="lvRecord" FontSize="16" FontFamily="微软雅黑" AutoGenerateColumns="False" ScrollViewer.VerticalScrollBarVisibility="Visible">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="序号" Width="70" Binding="{Binding OID}"/>
                     <DataGridTextColumn Header="内容" Width="220" Binding="{Binding Content}"/>

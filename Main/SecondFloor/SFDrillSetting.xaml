@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Main.SecondFloor"
              xmlns:cl="http://talonzeng.com/ControlLibrary"
              mc:Ignorable="d" 
-             d:DesignHeight="608" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="sfDrillSetting">
+             d:DesignHeight="608" d:DesignWidth="1024" Foreground="#525252" FontSize="16" FontFamily="微软雅黑" Background="#F5F6FA" Margin="1" Name="sfDrillSetting">
     <UserControl.Resources>
         <Style TargetType="Button" x:Key="btnGreen">
             <Setter Property="Background" Value="#fff"/>
@@ -83,7 +83,7 @@
                 </StackPanel>
                 <StackPanel Grid.Column="2">
                     <TextBlock Text="无操作" VerticalAlignment="Center" Width="150" Name="NumFixTips" Margin="5,12,5,15"/>
-                    <ComboBox Name="cbSysTypeSelect" SelectedIndex="0" SelectionChanged="ComboBox_SelectionChanged" FontSize="22" FontFamily="微软雅黑">
+                    <ComboBox Name="cbSysTypeSelect" SelectedIndex="0" SelectionChanged="ComboBox_SelectionChanged" FontFamily="微软雅黑">
                         <ComboBoxItem>全部</ComboBoxItem>
                         <ComboBoxItem>二层台</ComboBoxItem>
                         <ComboBoxItem>钻台面</ComboBoxItem>

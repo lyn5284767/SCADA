@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Main.DrillFloor"
              xmlns:cl="http://talonzeng.com/ControlLibrary"
              mc:Ignorable="d" 
-             Foreground="#525252" FontSize="14" Background="#F5F6FA" Width="800" Height="650" Margin="1" Name="drParamOne">
+             Foreground="#525252" FontSize="14" FontFamily="微软雅黑" Background="#F5F6FA" Width="800" Height="650" Margin="1" Name="drParamOne">
     <UserControl.Resources>
         <Style TargetType="Button" x:Key="btnGreen">
             <Setter Property="Background" Value="#fff"/>
@@ -63,7 +63,7 @@
                 <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="230">
                     <StackPanel Orientation="Horizontal">
                         <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                            <TextBlock Text="基&#x0a;本&#x0a;设&#x0a;置&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="基&#x0a;本&#x0a;设&#x0a;置&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
                         </Border>
                         <StackPanel>
                             <cl:TextBlockWithTextBox Name="twtL28" ControlTag="28"  TbkText="设备年份" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
@@ -79,7 +79,7 @@
                 <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="360">
                     <StackPanel Orientation="Horizontal">
                         <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                            <TextBlock Text="钻&#x0a;杆&#x0a;钻&#x0a;铤&#x0a;设&#x0a;置&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="钻&#x0a;杆&#x0a;钻&#x0a;铤&#x0a;设&#x0a;置&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
                         </Border>
                         <StackPanel>
                             <cl:TextBlockWithTextBox Name="twtL19" ControlTag="19"  TbkText="钻杆指梁宽度" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
@@ -101,7 +101,7 @@
                 <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="165">
                     <StackPanel Orientation="Horizontal">
                         <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                            <TextBlock Text="小&#x0a;车&#x0a;设&#x0a;置&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="小&#x0a;车&#x0a;设&#x0a;置&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
                         </Border>
                         <StackPanel>
                             <cl:TextBlockWithTextBox Name="twtR6" ControlTag="6"  TbkText="小车单圈行走值" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
@@ -115,7 +115,7 @@
                 <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="165">
                     <StackPanel Orientation="Horizontal">
                         <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                            <TextBlock Text="手&#x0a;臂&#x0a;设&#x0a;置&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="手&#x0a;臂&#x0a;设&#x0a;置&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
                         </Border>
                         <StackPanel>
                             <cl:TextBlockWithTextBox Name="twtR11" ControlTag="11"  TbkText="手臂减速比" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
@@ -129,7 +129,7 @@
                 <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="135">
                     <StackPanel Orientation="Horizontal">
                         <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                            <TextBlock Text="回&#x0a;转&#x0a;设&#x0a;置&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="回&#x0a;转&#x0a;设&#x0a;置&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
                         </Border>
                         <StackPanel>
                             <cl:TextBlockWithTextBox Name="twtR15" ControlTag="15"  TbkText="回转减速比" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />

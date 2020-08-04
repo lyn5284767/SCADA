@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Main.DrillFloor"
              xmlns:cl="http://talonzeng.com/ControlLibrary"
              mc:Ignorable="d" 
-            d:DesignHeight="608" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="drDeviceStatus">
+            d:DesignHeight="608" d:DesignWidth="1024" Foreground="#525252" FontSize="14" FontFamily="微软雅黑" Background="#F5F6FA" Margin="1" Name="drDeviceStatus">
     <UserControl.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -93,7 +93,7 @@
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0">
                             <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                                <TextBlock Text="滑车"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                                <TextBlock Text="滑车"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
                             </Border>
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -116,7 +116,7 @@
                                 <TextBlock Name="carError"></TextBlock>
                             </StackPanel>
                             <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                                <TextBlock Text="手臂"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                                <TextBlock Text="手臂"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
                             </Border>
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -140,7 +140,7 @@
                         </StackPanel>
                         <StackPanel Grid.Column="1">
                             <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                                <TextBlock Text="回转"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                                <TextBlock Text="回转"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
                             </Border>
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -163,7 +163,7 @@
                                 <TextBlock Name="rotateError"></TextBlock>
                             </StackPanel>
                             <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                                <TextBlock Text="抓手"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                                <TextBlock Text="抓手"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
                             </Border>
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -190,7 +190,7 @@
                 <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2">
                     <StackPanel>
                         <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                            <TextBlock Text="安全信息"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="安全信息"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
                         </Border>
                         <Grid>
                             <Grid.RowDefinitions>
@@ -213,7 +213,7 @@
                 <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2">
                     <StackPanel>
                         <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                            <TextBlock Text="手柄状态"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="手柄状态"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
                         </Border>
                         <Grid Margin="12,2,2,2">
                             <Grid.ColumnDefinitions>
@@ -255,7 +255,7 @@
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0">
                             <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                                <TextBlock Text="输入"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                                <TextBlock Text="输入"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
                             </Border>
                             <cl:SymbolMapping Name="gridOpen" StrContent="抓手打开" LampType="3" Height="25" Margin="12,2,2,2"/>
                             <cl:SymbolMapping Name="gridClose" StrContent="抓手关闭" LampType="3" Height="25" Margin="12,2,2,2"/>
@@ -270,7 +270,7 @@
                         </StackPanel>
                         <StackPanel Grid.Column="1">
                             <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                                <TextBlock Text="输出"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                                <TextBlock Text="输出"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
                             </Border>
                             <cl:SymbolMapping Name="gridOpenOut" StrContent="抓手打开" LampType="3" Height="25" Margin="12,2,2,2"/>
                             <cl:SymbolMapping Name="gridCloseOut" StrContent="抓手关闭" LampType="3" Height="25" Margin="12,2,2,2"/>
@@ -302,7 +302,7 @@
                 <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2">
                     <StackPanel>
                         <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                            <TextBlock Text="操作"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="操作"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
                         </Border>
                         <Grid>
                             <Grid.ColumnDefinitions>

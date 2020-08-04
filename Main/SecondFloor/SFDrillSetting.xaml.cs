@@ -47,12 +47,14 @@ namespace Main.SecondFloor
 
         SystemType systemType = SystemType.SecondFloor;
         private Regex regexFingerBeam = new Regex(@"(\d+)$", RegexOptions.Compiled | RegexOptions.CultureInvariant);
-        public Amination amination = new Amination();
+        //public Amination amination = new Amination();
+        public AminationNew aminationNew = new AminationNew();
         System.Threading.Timer timer;
         public SFDrillSetting()
         {
             InitializeComponent();
-            this.gdMain.Children.Add(amination);
+            //this.gdMain.Children.Add(amination);
+            this.gdMain.Children.Add(aminationNew);
             timer = new System.Threading.Timer(new TimerCallback(Timer_Elapsed), this, 2000, 100);//改成50ms 的时钟
 
             this.carPosistion.SetBinding(TextBox.TextProperty,new Binding("ShortTag") { Source = GlobalData.Instance.da["carRealPosition"], Mode = BindingMode.OneWay ,Converter = new CarPosCoverter()});//小车实际位置
@@ -79,7 +81,8 @@ namespace Main.SecondFloor
             {
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
-                    amination.LoadFingerBeamDrillPipe(systemType);
+                    //amination.LoadFingerBeamDrillPipe(systemType);
+                    aminationNew.LoadFingerBeamDrillPipe(systemType);
                 }));
             }
             catch (Exception ex)
@@ -103,10 +106,14 @@ namespace Main.SecondFloor
         {
             try
             {
-                amination.InitRowsColoms(systemType);
-                SFMain.Instance.amination.InitRowsColoms(systemType);
-                SFPositionCompensate.Instance.amination.InitRowsColoms(systemType);
-                IngMain.Instance.amination.InitRowsColoms(systemType);
+                //amination.InitRowsColoms(systemType);
+                //SFMain.Instance.amination.InitRowsColoms(systemType);
+                aminationNew.InitRowsColoms(systemType);
+                SFMain.Instance.aminationNew.InitRowsColoms(systemType);
+                //SFPositionCompensate.Instance.amination.InitRowsColoms(systemType);
+                SFPositionCompensate.Instance.aminationNew.InitRowsColoms(systemType);
+                //IngMain.Instance.amination.InitRowsColoms(systemType);
+                IngMain.Instance.aminationNew.InitRowsColoms(systemType);
                 this.NumFixTips.Text = "加载成功";
             }
             catch (Exception ex)
@@ -411,7 +418,8 @@ namespace Main.SecondFloor
             if (comboBox.SelectedIndex == 1)
             {
                 systemType = SystemType.SecondFloor;
-                amination.SystemChange(systemType);
+                //amination.SystemChange(systemType);
+                aminationNew.SystemChange(systemType);
                 this.carPosistion.Visibility = Visibility.Visible;
                 this.armPosistion.Visibility = Visibility.Visible;
                 this.drarmPosistion.Visibility = Visibility.Collapsed;
@@ -420,16 +428,21 @@ namespace Main.SecondFloor
             else if (comboBox.SelectedIndex == 2)
             {
                 systemType = SystemType.DrillFloor;
-                amination.SystemChange(systemType);
+                //amination.SystemChange(systemType);
+                aminationNew.SystemChange(systemType);
                 this.carPosistion.Visibility = Visibility.Collapsed;
                 this.armPosistion.Visibility = Visibility.Collapsed;
                 this.drarmPosistion.Visibility = Visibility.Visible;
                 this.drcarPosistion.Visibility = Visibility.Visible;
             }
-            amination.InitRowsColoms(systemType);
-            SFMain.Instance.amination.InitRowsColoms(systemType);
-            SFPositionCompensate.Instance.amination.InitRowsColoms(systemType);
-            IngMain.Instance.amination.InitRowsColoms(systemType);
+            //amination.InitRowsColoms(systemType);
+            //SFMain.Instance.amination.InitRowsColoms(systemType);
+            aminationNew.InitRowsColoms(systemType);
+            SFMain.Instance.aminationNew.InitRowsColoms(systemType);
+            //SFPositionCompensate.Instance.amination.InitRowsColoms(systemType);
+            SFPositionCompensate.Instance.aminationNew.InitRowsColoms(systemType);
+            //IngMain.Instance.amination.InitRowsColoms(systemType);
+            IngMain.Instance.aminationNew.InitRowsColoms(systemType);
         }
 
         public void SysTypeSelect(int index)

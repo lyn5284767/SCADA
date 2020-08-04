@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:Main.SecondFloor"
              xmlns:cl="http://talonzeng.com/ControlLibrary"
              mc:Ignorable="d" 
-             Foreground="#525252" FontSize="14" Background="#F5F6FA" Width="800" Height="650" Margin="1" Name="sfParamThree">
+             Foreground="#525252" FontSize="14" Background="#F5F6FA" Width="800" Height="650" Margin="1" FontFamily="微软雅黑" Name="sfParamThree">
     <UserControl.Resources>
         <Style TargetType="Label">
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -55,7 +55,7 @@
                 <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="165">
                     <StackPanel Orientation="Horizontal">
                         <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="5" Padding="3" Height="Auto">
-                            <TextBlock Text="配&#x0a;置&#x0a;信&#x0a;息&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="宋体" FontWeight="Bold"  Height="90" />
+                            <TextBlock Text="配&#x0a;置&#x0a;信&#x0a;息&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontWeight="Bold"  Height="90" />
                         </Border>
                         <StackPanel>
                             <cl:TextBlockWithTextBox Name="twtR17" ControlTag="51"  TbkText="左手柄"/>

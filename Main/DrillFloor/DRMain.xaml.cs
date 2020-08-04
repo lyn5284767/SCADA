@@ -61,10 +61,12 @@ namespace Main.DrillFloor
         public DRMain()
         {
             InitializeComponent();
-            this.amination.SendFingerBeamNumberEvent += Amination_SendFingerBeamNumberEvent; ;
-            this.amination.CIMSChange(SystemType.DrillFloor);
-            this.amination.SystemChange(SystemType.DrillFloor);
-            
+            //this.amination.SendFingerBeamNumberEvent += Amination_SendFingerBeamNumberEvent; ;
+            //this.amination.CIMSChange(SystemType.DrillFloor);
+            //this.amination.SystemChange(SystemType.DrillFloor);
+            this.aminationNew.SendFingerBeamNumberEvent += Amination_SendFingerBeamNumberEvent;
+            this.aminationNew.SystemChange(SystemType.DrillFloor);
+
             VariableBinding();
             this.Loaded += DRMain_Loaded;
         }
@@ -84,7 +86,8 @@ namespace Main.DrillFloor
             pageChange.Elapsed += PageChange_Elapsed;
             pageChange.Enabled = true;
 
-            this.amination.InitRowsColoms(SystemType.DrillFloor);
+            //this.amination.InitRowsColoms(SystemType.DrillFloor);
+            this.aminationNew.InitRowsColoms(SystemType.DrillFloor);
             PlayCameraInThread();
         }
         /// <summary>
@@ -221,7 +224,8 @@ namespace Main.DrillFloor
             {
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
-                    amination.LoadFingerBeamDrillPipe(SystemType.DrillFloor);
+                    //amination.LoadFingerBeamDrillPipe(SystemType.DrillFloor);
+                    aminationNew.LoadFingerBeamDrillPipe(SystemType.DrillFloor);
                     iTimeCnt++;
                     if (iTimeCnt > 1000) iTimeCnt = 0;
                     this.Warnning();

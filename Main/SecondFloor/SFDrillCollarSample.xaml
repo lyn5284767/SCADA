@@ -13,7 +13,7 @@
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="左右参考位置：站在井架位置，面对机械手" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="左右参考位置：站在井架位置，面对机械手" Margin="5" FontSize="16"  FontWeight="Bold"/>
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -24,73 +24,73 @@
                 <StackPanel Orientation="Vertical">
                     <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Padding="3">
                         <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="左 1 # 钻 铤 锁" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="左 1 # 钻 铤 锁" VerticalAlignment="Center" Margin="5" FontSize="14"  FontWeight="Bold"/>
                             <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3">
-                                <TextBlock Text="" Name="txt_drillCollarSampleLeft1" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="160"/>
+                                <TextBlock Text="" Name="txt_drillCollarSampleLeft1" VerticalAlignment="Center" Margin="5" FontSize="14"  FontWeight="Bold" Width="160"/>
                             </Border>
                         </StackPanel>
                     </Border>
                     <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Padding="3">
                         <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="左 2 # 钻 铤 锁" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="左 2 # 钻 铤 锁" VerticalAlignment="Center" Margin="5" FontSize="14"  FontWeight="Bold"/>
                             <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3">
-                                <TextBlock Text="" Name="txt_drillCollarSampleLeft2" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="160"/>
+                                <TextBlock Text="" Name="txt_drillCollarSampleLeft2" VerticalAlignment="Center" Margin="5" FontSize="14"  FontWeight="Bold" Width="160"/>
                             </Border>
                         </StackPanel>
                     </Border>
                     <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Padding="3">
                         <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="左 3 # 钻 铤 锁" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="左 3 # 钻 铤 锁" VerticalAlignment="Center" Margin="5" FontSize="14"  FontWeight="Bold"/>
                             <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3">
-                                <TextBlock Text="" VerticalAlignment="Center" Name="txt_drillCollarSampleLeft3" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="160"/>
+                                <TextBlock Text="" VerticalAlignment="Center" Name="txt_drillCollarSampleLeft3" Margin="5" FontSize="14"  FontWeight="Bold" Width="160"/>
                             </Border>
                         </StackPanel>
                     </Border>
                     <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Padding="3">
                         <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="左 4 # 钻 铤 锁" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="左 4 # 钻 铤 锁" VerticalAlignment="Center" Margin="5" FontSize="14"  FontWeight="Bold"/>
                             <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3">
-                                <TextBlock Text="" VerticalAlignment="Center" Margin="5" Name="txt_drillCollarSampleLeft4" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="160"/>
+                                <TextBlock Text="" VerticalAlignment="Center" Margin="5" Name="txt_drillCollarSampleLeft4" FontSize="14"  FontWeight="Bold" Width="160"/>
                             </Border>
                         </StackPanel>
                     </Border>
                     <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Padding="3">
                         <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="左 5 # 钻 铤 锁" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="左 5 # 钻 铤 锁" VerticalAlignment="Center" Margin="5" FontSize="14"  FontWeight="Bold"/>
                             <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3">
-                                <TextBlock Text="" Name="txt_drillCollarSampleLeft5" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="160"/>
+                                <TextBlock Text="" Name="txt_drillCollarSampleLeft5" VerticalAlignment="Center" Margin="5" FontSize="14"  FontWeight="Bold" Width="160"/>
                             </Border>
                         </StackPanel>
                     </Border>
                     <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Padding="3">
                         <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="左 6 # 钻 铤 锁" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="左 6 # 钻 铤 锁" VerticalAlignment="Center" Margin="5" FontSize="14"  FontWeight="Bold"/>
                             <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3">
-                                <TextBlock Text="" Name="txt_drillCollarSampleLeft6" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="160"/>
+                                <TextBlock Text="" Name="txt_drillCollarSampleLeft6" VerticalAlignment="Center" Margin="5" FontSize="14"  FontWeight="Bold" Width="160"/>
                             </Border>
                         </StackPanel>
                     </Border>
                     <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Padding="3">
                         <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="左 7 # 钻 铤 锁" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="左 7 # 钻 铤 锁" VerticalAlignment="Center" Margin="5" FontSize="14"  FontWeight="Bold"/>
                             <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3">
-                                <TextBlock Text="" Name="txt_drillCollarSampleLeft7" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="160"/>
+                                <TextBlock Text="" Name="txt_drillCollarSampleLeft7" VerticalAlignment="Center" Margin="5" FontSize="14"  FontWeight="Bold" Width="160"/>
                             </Border>
                         </StackPanel>
                     </Border>
                     <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Padding="3">
                         <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="左 8 # 钻 铤 锁" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="左 8 # 钻 铤 锁" VerticalAlignment="Center" Margin="5" FontSize="14"  FontWeight="Bold"/>
                             <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3">
-                                <TextBlock Text="" Name="txt_drillCollarSampleLeft8" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="160"/>
+                                <TextBlock Text="" Name="txt_drillCollarSampleLeft8" VerticalAlignment="Center" Margin="5" FontSize="14"  FontWeight="Bold" Width="160"/>
                             </Border>
                         </StackPanel>
                     </Border>
                     <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Padding="3">
                         <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="      左 挡 绳 " VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="          左 挡 绳" VerticalAlignment="Center" Margin="5" FontSize="14"  FontWeight="Bold"/>
                             <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3">
-                                <TextBlock Text="" Name="txt_retainingRopeSampleLeft" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="160"/>
+                                <TextBlock Text="" Name="txt_retainingRopeSampleLeft" VerticalAlignment="Center" Margin="5" FontSize="14"  FontWeight="Bold" Width="160"/>
                             </Border>
                         </StackPanel>
                     </Border>
@@ -101,73 +101,73 @@
                 <StackPanel Orientation="Vertical">
                     <Border BorderBrush="Gray" BorderThickness="1,0,0,0" CornerRadius="1,0,0,0" Padding="3">
                         <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="右 1 # 钻 铤 锁" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="右 1 # 钻 铤 锁" VerticalAlignment="Center" Margin="5" FontSize="14"  FontWeight="Bold"/>
                             <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3">
-                                <TextBlock Text="" Name="txt_drillCollarSampleRight1" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="160"/>
+                                <TextBlock Text="" Name="txt_drillCollarSampleRight1" VerticalAlignment="Center" Margin="5" FontSize="14"  FontWeight="Bold" Width="160"/>
                             </Border>
                         </StackPanel>
                     </Border>
                     <Border BorderBrush="Gray" BorderThickness="1,0,0,0" CornerRadius="1,0,0,0" Padding="3">
                         <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="右 2 # 钻 铤 锁" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="右 2 # 钻 铤 锁" VerticalAlignment="Center" Margin="5" FontSize="14"  FontWeight="Bold"/>
                             <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3">
-                                <TextBlock Text=""  Name="txt_drillCollarSampleRight2"  VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="160"/>
+                                <TextBlock Text=""  Name="txt_drillCollarSampleRight2"  VerticalAlignment="Center" Margin="5" FontSize="14"  FontWeight="Bold" Width="160"/>
                             </Border>
                         </StackPanel>
                     </Border>
                     <Border BorderBrush="Gray" BorderThickness="1,0,0,0" CornerRadius="1,0,0,0" Padding="3">
                         <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="右 3 # 钻 铤 锁" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="右 3 # 钻 铤 锁" VerticalAlignment="Center" Margin="5" FontSize="14"  FontWeight="Bold"/>
                             <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3">
-                                <TextBlock Text=""  Name="txt_drillCollarSampleRight3"  VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="160"/>
+                                <TextBlock Text=""  Name="txt_drillCollarSampleRight3"  VerticalAlignment="Center" Margin="5" FontSize="14"  FontWeight="Bold" Width="160"/>
                             </Border>
                         </StackPanel>
                     </Border>
                     <Border BorderBrush="Gray" BorderThickness="1,0,0,0" CornerRadius="1,0,0,0" Padding="3">
                         <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="右 4 # 钻 铤 锁" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="右 4 # 钻 铤 锁" VerticalAlignment="Center" Margin="5" FontSize="14"  FontWeight="Bold"/>
                             <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3">
-                                <TextBlock Text=""  Name="txt_drillCollarSampleRight4"  VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="160"/>
+                                <TextBlock Text=""  Name="txt_drillCollarSampleRight4"  VerticalAlignment="Center" Margin="5" FontSize="14"  FontWeight="Bold" Width="160"/>
                             </Border>
                         </StackPanel>
                     </Border>
                     <Border BorderBrush="Gray" BorderThickness="1,0,0,0" CornerRadius="1,0,0,0" Padding="3">
                         <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="右 5 # 钻 铤 锁" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="右 5 # 钻 铤 锁" VerticalAlignment="Center" Margin="5" FontSize="14"  FontWeight="Bold"/>
                             <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3">
-                                <TextBlock Text=""  Name="txt_drillCollarSampleRight5"  VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="160"/>
+                                <TextBlock Text=""  Name="txt_drillCollarSampleRight5"  VerticalAlignment="Center" Margin="5" FontSize="14"  FontWeight="Bold" Width="160"/>
                             </Border>
                         </StackPanel>
                     </Border>
                     <Border BorderBrush="Gray" BorderThickness="1,0,0,0" CornerRadius="1,0,0,0" Padding="3">
                         <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="右 6 # 钻 铤 锁" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="右 6 # 钻 铤 锁" VerticalAlignment="Center" Margin="5" FontSize="14"  FontWeight="Bold"/>
                             <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3">
-                                <TextBlock Text=""  Name="txt_drillCollarSampleRight6"  VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="160"/>
+                                <TextBlock Text=""  Name="txt_drillCollarSampleRight6"  VerticalAlignment="Center" Margin="5" FontSize="14"  FontWeight="Bold" Width="160"/>
                             </Border>
                         </StackPanel>
                     </Border>
                     <Border BorderBrush="Gray" BorderThickness="1,0,0,0" CornerRadius="1,0,0,0" Padding="3">
                         <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="右 7 # 钻 铤 锁" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="右 7 # 钻 铤 锁" VerticalAlignment="Center" Margin="5" FontSize="14"  FontWeight="Bold"/>
                             <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3">
-                                <TextBlock Text=""  Name="txt_drillCollarSampleRight7"  VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="160"/>
+                                <TextBlock Text=""  Name="txt_drillCollarSampleRight7"  VerticalAlignment="Center" Margin="5" FontSize="14"  FontWeight="Bold" Width="160"/>
                             </Border>
                         </StackPanel>
                     </Border>
                     <Border BorderBrush="Gray" BorderThickness="1,0,0,0" CornerRadius="1,0,0,0" Padding="3">
                         <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="右 8 # 钻 铤 锁" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="右 8 # 钻 铤 锁" VerticalAlignment="Center" Margin="5" FontSize="14"  FontWeight="Bold"/>
                             <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3">
-                                <TextBlock Text=""  Name="txt_drillCollarSampleRight8"  VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="160"/>
+                                <TextBlock Text=""  Name="txt_drillCollarSampleRight8"  VerticalAlignment="Center" Margin="5" FontSize="14"  FontWeight="Bold" Width="160"/>
                             </Border>
                         </StackPanel>
                     </Border>
                     <Border BorderBrush="Gray" BorderThickness="1,0,0,0" CornerRadius="1,0,0,0" Padding="3">
                         <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="      右 挡 绳 " VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="          右 挡 绳 " VerticalAlignment="Center" Margin="5" FontSize="14"  FontWeight="Bold"/>
                             <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3">
-                                <TextBlock Text=""  Name="txt_retainingRopeSampleRight"  VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold" Width="160"/>
+                                <TextBlock Text=""  Name="txt_retainingRopeSampleRight"  VerticalAlignment="Center" Margin="5" FontSize="14"  FontWeight="Bold" Width="160"/>
                             </Border>
                         </StackPanel>
                     </Border>
