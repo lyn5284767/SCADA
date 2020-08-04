@@ -8,7 +8,7 @@
              xmlns:gl ="clr-namespace:COM.Common;assembly=COM.Common"
              xmlns:main="clr-namespace:Main" xmlns:hc="https://handyorg.github.io/handycontrol"
              mc:Ignorable="d" 
-             d:DesignHeight="650" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="secondFloor">
+             d:DesignHeight="650" d:DesignWidth="1024" Foreground="#525252" FontSize="14" FontFamily="微软雅黑" Background="#F5F6FA" Margin="1" Name="secondFloor">
     <UserControl.Resources>
         <gl:WorkModeFlowConverter x:Key="workModeFlowCvt"/>
         <Style TargetType="TextBlock">

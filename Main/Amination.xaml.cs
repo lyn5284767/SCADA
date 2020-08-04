@@ -408,6 +408,7 @@ namespace Main
                 LeftDrillCoverter leftDrillCoverter = new LeftDrillCoverter();
                 MultiBinding leftDrillMultiBind = new MultiBinding();
                 leftDrillMultiBind.Converter = leftDrillCoverter;
+                leftDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["112N2N22N9FingerBeamDrillPipeCount16"], Mode = BindingMode.OneWay });
                 leftDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["111N2N22N9FingerBeamDrillPipeCount1"], Mode = BindingMode.OneWay });
                 leftDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["111N2N22N9FingerBeamDrillPipeCount2"], Mode = BindingMode.OneWay });
                 leftDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["111N2N22N9FingerBeamDrillPipeCount3"], Mode = BindingMode.OneWay });
@@ -418,7 +419,6 @@ namespace Main
                 leftDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["111N2N22N9FingerBeamDrillPipeCount8"], Mode = BindingMode.OneWay });
                 leftDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["112N2N22N9FingerBeamDrillPipeCount9"], Mode = BindingMode.OneWay });
                 leftDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["112N2N22N9FingerBeamDrillPipeCount10"], Mode = BindingMode.OneWay });
-                leftDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["112N2N22N9FingerBeamDrillPipeCount16"], Mode = BindingMode.OneWay });
                 leftDrillMultiBind.NotifyOnSourceUpdated = true;
                 leftDrillMultiBind.ConverterParameter = "RP L:";
                 this.tbRPLeft.SetBinding(TextBlock.TextProperty, leftDrillMultiBind);
@@ -426,6 +426,7 @@ namespace Main
                 RightDrillCoverter rightDrillCoverter = new RightDrillCoverter();
                 MultiBinding rightDrillMultiBind = new MultiBinding();
                 rightDrillMultiBind.Converter = rightDrillCoverter;
+                rightDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["114N2N22N9FingerBeamDrillPipeCount32"], Mode = BindingMode.OneWay });
                 rightDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["113N2N22N9FingerBeamDrillPipeCount17"], Mode = BindingMode.OneWay });
                 rightDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["113N2N22N9FingerBeamDrillPipeCount18"], Mode = BindingMode.OneWay });
                 rightDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["113N2N22N9FingerBeamDrillPipeCount19"], Mode = BindingMode.OneWay });
@@ -436,7 +437,6 @@ namespace Main
                 rightDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["113N2N22N9FingerBeamDrillPipeCount24"], Mode = BindingMode.OneWay });
                 rightDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["114N2N22N9FingerBeamDrillPipeCount25"], Mode = BindingMode.OneWay });
                 rightDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["114N2N22N9FingerBeamDrillPipeCount26"], Mode = BindingMode.OneWay });
-                rightDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["114N2N22N9FingerBeamDrillPipeCount32"], Mode = BindingMode.OneWay });
                 rightDrillMultiBind.NotifyOnSourceUpdated = true;
                 this.tbRPRight.SetBinding(TextBlock.TextProperty, rightDrillMultiBind);
 
@@ -550,6 +550,7 @@ namespace Main
                 LeftDrillCoverter leftFPDrillCoverter = new LeftDrillCoverter();
                 MultiBinding leftFPDrillMultiBind = new MultiBinding();
                 leftFPDrillMultiBind.Converter = leftFPDrillCoverter;
+                leftFPDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drDrillNum16"], Mode = BindingMode.OneWay });
                 leftFPDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drDrillNum1"], Mode = BindingMode.OneWay });
                 leftFPDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drDrillNum2"], Mode = BindingMode.OneWay });
                 leftFPDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drDrillNum3"], Mode = BindingMode.OneWay });
@@ -560,7 +561,6 @@ namespace Main
                 leftFPDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drDrillNum8"], Mode = BindingMode.OneWay });
                 leftFPDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drDrillNum9"], Mode = BindingMode.OneWay });
                 leftFPDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drDrillNum10"], Mode = BindingMode.OneWay });
-                leftFPDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drDrillNum16"], Mode = BindingMode.OneWay });
                 leftFPDrillMultiBind.NotifyOnSourceUpdated = true;
                 leftFPDrillMultiBind.ConverterParameter = "FP L:";
                 this.tbFPLeft.SetBinding(TextBlock.TextProperty, leftFPDrillMultiBind);
@@ -580,6 +580,7 @@ namespace Main
                 LeftDrillCoverter RightFPDrillCoverter = new LeftDrillCoverter();
                 MultiBinding RightFPDrillMultiBind = new MultiBinding();
                 RightFPDrillMultiBind.Converter = RightFPDrillCoverter;
+                RightFPDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drDrillNum32"], Mode = BindingMode.OneWay });
                 RightFPDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drDrillNum17"], Mode = BindingMode.OneWay });
                 RightFPDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drDrillNum18"], Mode = BindingMode.OneWay });
                 RightFPDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drDrillNum19"], Mode = BindingMode.OneWay });
@@ -590,7 +591,6 @@ namespace Main
                 RightFPDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drDrillNum24"], Mode = BindingMode.OneWay });
                 RightFPDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drDrillNum25"], Mode = BindingMode.OneWay });
                 RightFPDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drDrillNum26"], Mode = BindingMode.OneWay });
-                RightFPDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drDrillNum32"], Mode = BindingMode.OneWay });
                 RightFPDrillMultiBind.NotifyOnSourceUpdated = true;
                 RightFPDrillMultiBind.ConverterParameter = "R:";
                 this.tbFPRight.SetBinding(TextBlock.TextProperty, RightFPDrillMultiBind);

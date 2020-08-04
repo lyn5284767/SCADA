@@ -38,7 +38,7 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <StackPanel Margin="0,10,0.5,0" Grid.Column="0" Grid.Row="0">
-                                <hc:CircleProgressBar Name="cpbMainPump" Text="100.0" ArcThickness="15" Value="50" FontWeight="Bold" Width="140" Height="140" FontSize="28" Foreground="LightBlue"/>
+                                <hc:CircleProgressBar Name="cpbMainPump" Text="100.0" ArcThickness="15" Value="50" FontWeight="Bold" Width="140" Height="140" FontSize="28" Foreground="#2968DC"/>
                                 <Label Background="Transparent" FontSize="24" FontWeight="Bold">主泵</Label>
                             </StackPanel>
                             <StackPanel Margin="0,10,0.5,0" Grid.Column="1" Grid.Row="0">
@@ -46,7 +46,7 @@
                                 <Label Background="Transparent" FontSize="24" FontWeight="Bold">铁钻工</Label>
                             </StackPanel>
                             <StackPanel Margin="0,10,0.5,0" Grid.Column="2" Grid.Row="0">
-                                <hc:CircleProgressBar Name="cpbFPPump" Text="0" ArcThickness="15" Value="50" FontWeight="Bold" Width="140" Height="140" FontSize="28" Foreground="#FF7C96"/>
+                                <hc:CircleProgressBar Name="cpbFPPump" Text="0" ArcThickness="15" Value="50" FontWeight="Bold" Width="140" Height="140" FontSize="28" Foreground="#EF3308"/>
                                 <Label Background="Transparent" FontSize="24" FontWeight="Bold">钻台面</Label>
                             </StackPanel>
                             <StackPanel Margin="0,10,0.5,0" Grid.Column="3" Grid.Row="0">

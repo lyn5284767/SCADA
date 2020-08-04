@@ -291,6 +291,7 @@ namespace COM.Common
         /// <summary>
         /// JJC
         /// </summary>
-        JJC=2
+        JJC=2,
+        BS=3
     }
 }

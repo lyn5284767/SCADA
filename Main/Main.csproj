@@ -140,6 +140,9 @@
     <Compile Include="Amination.xaml.cs">
       <DependentUpon>Amination.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AminationNew.xaml.cs">
+      <DependentUpon>AminationNew.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Cat\BSCatMain.xaml.cs">
       <DependentUpon>BSCatMain.xaml</DependentUpon>
     </Compile>
@@ -284,12 +287,19 @@
     <Compile Include="SecondFloor\SFDrillCollarSample.xaml.cs">
       <DependentUpon>SFDrillCollarSample.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SIR\SIRBSMain.xaml.cs">
+      <DependentUpon>SIRBSMain.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SIR\SIRJJCMain.xaml.cs">
       <DependentUpon>SIRJJCMain.xaml</DependentUpon>
     </Compile>
     <Compile Include="UIClass\RelayCommand.cs" />
     <Compile Include="UIClass\ScrollableTabPanel.cs" />
     <Page Include="Amination.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AminationNew.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -478,6 +488,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SecondFloor\SFDrillCollarSample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SIR\SIRBSMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

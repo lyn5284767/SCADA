@@ -2463,7 +2463,7 @@ namespace COM.Common
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             int drOne = 0, drTwo = 0;
-            for (int i = 0; i < values.Count() - 1; i++)
+            for (int i = 1; i < values.Count(); i++)
             {
                 if (values[i] == null || values[i] == DependencyProperty.UnsetValue)
                 {
@@ -2474,13 +2474,13 @@ namespace COM.Common
                     drOne += (byte)values[i];
                 }
             }
-            if (values[10] == null || values[10] == DependencyProperty.UnsetValue)
+            if (values[0] == null || values[0] == DependencyProperty.UnsetValue)
             {
                 drTwo = 0;
             }
             else
             {
-                drTwo += (byte)values[10];
+                drTwo += (byte)values[0];
             }
             string txt = parameter.ToString();
             return txt + drOne.ToString() + " + " + drTwo.ToString();
@@ -2500,7 +2500,7 @@ namespace COM.Common
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             int drOne = 0, drTwo = 0;
-            for (int i = 0; i < values.Count() - 1; i++)
+            for (int i = 1; i < values.Count(); i++)
             {
                 if (values[i] == null || values[i] == DependencyProperty.UnsetValue)
                 {
@@ -2511,13 +2511,13 @@ namespace COM.Common
                     drOne += (byte)values[i];
                 }
             }
-            if (values[10] == null || values[10] == DependencyProperty.UnsetValue)
+            if (values[0] == null || values[0] == DependencyProperty.UnsetValue)
             {
                 drTwo = 0;
             }
             else
             {
-                drTwo += (byte)values[10];
+                drTwo += (byte)values[0];
             }
             return "R:" + drOne.ToString() + " + " + drTwo.ToString();
         }

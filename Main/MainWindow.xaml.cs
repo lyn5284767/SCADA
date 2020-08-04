@@ -944,13 +944,17 @@ namespace Main
             {
                 int sirType = GlobalData.Instance.da["IDFactoryType"].Value.Byte;
                 this.spMain.Children.Clear();
-                sirType = 2;
+                sirType = 3;
                 if (sirType == (int)SIRType.SANY)
                 {
                 }
                 else if (sirType == (int)SIRType.JJC)
                 {
                     this.spMain.Children.Add(SIRJJCMain.Instance);
+                }
+                else if (sirType == (int)SIRType.BS)
+                {
+                    this.spMain.Children.Add(SIRBSMain.Instance);
                 }
 
                 GlobalData.Instance.systemType = SystemType.SIR;
