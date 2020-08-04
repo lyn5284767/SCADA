@@ -143,7 +143,7 @@ namespace Main.SecondFloor
 
         private void SFPositionCompensate_Loaded(object sender, RoutedEventArgs e)
         {
-            
+            amination.InitRowsColoms(SystemType.SecondFloor);
         }
 
         /// <summary>
