@@ -2044,7 +2044,7 @@ namespace Main.SecondFloor
             // 硬盘空间小于1G，开始清理录像
             foreach (System.IO.DriveInfo drive in drives)
             {
-                if (drive.Name == disk[0] + "\\" && drive.TotalFreeSpace / (1024 * 1024) < 1024 *2)
+                if (drive.Name == disk[0] + "\\" && drive.TotalFreeSpace / (1024 * 1024) < 1024 *544)
                 {
                     DirectoryInfo root = new DirectoryInfo(path);
                     List<FileInfo> fileList = root.GetFiles().OrderBy(s => s.CreationTime).Take(10).ToList();
