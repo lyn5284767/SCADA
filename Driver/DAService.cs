@@ -19,6 +19,7 @@ namespace DemoDriver
     {
         //const int PORT = 6543;
 
+
         const char SPLITCHAR = '.';
         //const string SERVICELOGSOURCE = "DataProcess";
         //const string SERVICELOGNAME = "DataProcess";
