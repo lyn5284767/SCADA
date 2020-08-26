@@ -46,22 +46,22 @@
                         <ColumnDefinition Width="40"/>
                         <ColumnDefinition Width="360"/>
                     </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0">
+                    <Grid Grid.Column="2">
                         <StackPanel Orientation="Vertical">
                             <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                                <TextBlock Text="基&#x0a;本&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="宋体" FontWeight="Bold" Height="210" />
+                                <TextBlock Text="钻&#x0a;杆&#x0a;参&#x0a;数"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Height="120" />
                             </Border>
                             <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                                <TextBlock Text="钻&#x0a;杆&#x0a;钻&#x0a;铤&#x0a;参&#x0a;数&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="宋体" FontWeight="Bold" Height="235"/>
+                                <TextBlock Text="套&#x0a;管&#x0a;参&#x0a;数&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Height="110"/>
                             </Border>
                             <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                                <TextBlock Text="钻&#x0a;杆&#x0a;容&#x0a;量&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="宋体" FontWeight="Bold" Height="140"/>
+                                <TextBlock Text="大&#x0a;钳&#x0a;参&#x0a;数&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Height="300"/>
                             </Border>
 
 
                         </StackPanel>
                     </Grid>
-                    <Grid Grid.Column="1">
+                    <Grid Grid.Column="3">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="160*"/>
                             <RowDefinition Height="47*"/>
@@ -69,44 +69,40 @@
                             <RowDefinition Height="224*"/>
                         </Grid.RowDefinitions>
                         <StackPanel Orientation="Vertical" Grid.RowSpan="4">
-                            <cl:TextBlockWithTextBox Name="twtL1" ControlTag="3"  TbkText="伺服电机极性"/>
-                            <cl:TextBlockWithTextBox Name="twtL2" ControlTag="1"  TbkText="设备型号"/>
-                            <cl:TextBlockWithTextBox Name="twtL3" ControlTag="2"  TbkText="驱动器型号"/>
-                            <cl:TextBlockWithTextBox Name="twtL4" ControlTag="45"  TbkText="臂架型号"/>
-                            <cl:TextBlockWithTextBox Name="twtL5" ControlTag="27"  TbkText="休眠计时(min)"/>
-                            <cl:TextBlockWithTextBox Name="twtLDeviceYear" ControlTag="46"  TbkText="设备年份"/>
-                            <cl:TextBlockWithTextBox Name="twtLDeviceEncode" ControlTag="48"  TbkText="设备编码"/>
-                            <cl:TextBlockWithTextBox Name="twtL6" ControlTag="19"  TbkText="钻杆指梁间距"/>
-                            <cl:TextBlockWithTextBox Name="twtL7" ControlTag="20"  TbkText="钻杆指梁宽度"/>
-                            <cl:TextBlockWithTextBox Name="twtL8" ControlTag="21"  TbkText="钻铤指梁宽度"/>
-                            <cl:TextBlockWithTextBox Name="twtL9" ControlTag="22"  TbkText="钻铤指梁间距"/>
-                            <cl:TextBlockWithTextBox Name="twtL10" ControlTag="4"  TbkText="左右钻铤有无"/>
-                            <cl:TextBlockWithTextBox Name="twtL11" ControlTag="5"  TbkText="单边钻铤数目"/>
-                            <cl:TextBlockWithTextBox Name="twtL49" ControlTag="49"  TbkText="单边指梁数目"/>
-                            <cl:TextBlockWithTextBox Name="twtL12" ControlTag="26"  TbkText="钻杆限定电流值"/>
+                            <cl:TextBlockWithTextBox Name="twtL1" TagTwo="1" ControlTag="1"  TbkText="上扣动作设置"/>
+                            <cl:TextBlockWithTextBox Name="twtL2" TagTwo="1" ControlTag="2"  TbkText="上扣安全保护"/>
+                            <cl:TextBlockWithTextBox Name="twtL3" TagTwo="1" ControlTag="3"  TbkText="卸扣动作设置"/>
+                            <cl:TextBlockWithTextBox Name="twtL4" TagTwo="1" ControlTag="4"  TbkText="卸扣安全保护"/>
 
-                            <!--<cl:TextBlockWithTextBox Name="twtL13" ControlTag="33"  TbkText="2 3/8钻杆容量"/>
-                                <cl:TextBlockWithTextBox Name="twtL14" ControlTag="34"  TbkText="2.5寸钻杆容量"/>
-                                <cl:TextBlockWithTextBox Name="twtL15" ControlTag="35"  TbkText="2 7/8钻杆容量"/>
-                                <cl:TextBlockWithTextBox Name="twtL16" ControlTag="36"  TbkText="3寸钻杆容量"/>-->
-                            <cl:TextBlockWithTextBox Name="twtL17" ControlTag="37"  TbkText="3.5寸钻杆容量"/>
-                            <!--<cl:TextBlockWithTextBox Name="twtL18" ControlTag="38"  TbkText="3 7/8钻杆容量"/>-->
-                            <cl:TextBlockWithTextBox Name="twtL19" ControlTag="39"  TbkText="4寸钻杆容量"/>
-                            <cl:TextBlockWithTextBox Name="twtL20" ControlTag="40"  TbkText="4.5寸钻杆容量"/>
-                            <cl:TextBlockWithTextBox Name="twtL21" ControlTag="41"  TbkText="5寸钻杆容量"/>
+                            <cl:TextBlockWithTextBox Name="twtL5" TagTwo="2" ControlTag="1"  TbkText="上扣动作设置"/>
+                            <cl:TextBlockWithTextBox Name="twtL6" TagTwo="2" ControlTag="2"  TbkText="上扣安全保护"/>
+                            <cl:TextBlockWithTextBox Name="twtL7" TagTwo="2" ControlTag="3"  TbkText="卸扣动作设置"/>
+                            <cl:TextBlockWithTextBox Name="twtL8" TagTwo="2" ControlTag="4"  TbkText="卸扣安全保护"/>
+
+                            <cl:TextBlockWithTextBox Name="twtL9" TagTwo="3" ControlTag="1"  TbkText="上扣圈数"/>
+                            <cl:TextBlockWithTextBox Name="twtL10" TagTwo="3" ControlTag="2"  TbkText="卸扣圈数"/>
+                            <cl:TextBlockWithTextBox Name="twtL11" TagTwo="3" ControlTag="3"  TbkText="上扣速度"/>
+                            <cl:TextBlockWithTextBox Name="twtL12" TagTwo="3" ControlTag="4"  TbkText="卸扣速度"/>
+                            <cl:TextBlockWithTextBox Name="twtL13" TagTwo="3" ControlTag="5"  TbkText="上扣对缺启动速度"/>
+                            <cl:TextBlockWithTextBox Name="twtL14" TagTwo="3" ControlTag="6"  TbkText="上扣对缺平稳速度"/>
+                            <cl:TextBlockWithTextBox Name="twtL15" TagTwo="3" ControlTag="7"  TbkText="上扣对缺缓冲速度"/>
+                            <cl:TextBlockWithTextBox Name="twtL16" TagTwo="3" ControlTag="8"  TbkText="卸扣对缺启动速度"/>
+                            <cl:TextBlockWithTextBox Name="twtL17" TagTwo="3" ControlTag="9"  TbkText="卸扣对缺平稳速度"/>
+                            <cl:TextBlockWithTextBox Name="twtL18" TagTwo="3" ControlTag="10"  TbkText="卸扣对缺缓冲速度"/>
+                            <Button Content="确 定 配 置"  Click="Button_Setting"  Style="{StaticResource btnGreen}" FontWeight="Bold" FontFamily="微软雅黑" FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="40" IsDefault="False"/>
                         </StackPanel>
                     </Grid>
 
-                    <Grid Grid.Column="2">
+                    <Grid Grid.Column="0">
                         <StackPanel Orientation="Vertical">
-                            <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="5" Padding="3" Height="210">
-                                <TextBlock Text="小&#x0a;车&#x0a;电&#x0a;机&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="宋体" FontWeight="Bold"  Height="155" />
+                            <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="5" Padding="3">
+                                <TextBlock Text="悬&#x0a;臂&#x0a;运&#x0a;动&#x0a;参&#x0a;数" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Height="300"/>
                             </Border>
-                            <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="5" Padding="3" Height="150">
-                                <TextBlock Text="手&#x0a;臂&#x0a;电&#x0a;机&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="宋体" FontWeight="Bold"  Height="105" />
+                            <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="5" Padding="3">
+                                <TextBlock Text="回&#x0a;转&#x0a;运&#x0a;动&#x0a;参&#x0a;数" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold"  Height="170" />
                             </Border>
                             <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="5" Padding="3" Height="120">
-                                <TextBlock Text="回&#x0a;转&#x0a;电&#x0a;机&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="宋体" FontWeight="Bold"  Height="85" />
+                                <TextBlock Text="立&#x0a;柱&#x0a;参&#x0a;数&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold"  Height="85" />
                             </Border>
                             <!--<Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="5" Padding="3" Height="Auto">
                                 <TextBlock Text="配&#x0a;置&#x0a;信&#x0a;息&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="宋体" FontWeight="Bold"  Height="90" />
@@ -116,27 +112,31 @@
 
 
                     </Grid>
-                    <Grid Grid.Column="3">
+                    <Grid Grid.Column="1">
                         <StackPanel Orientation="Vertical">
-                            <cl:TextBlockWithTextBox Name="twtR1" ControlTag="23"  TbkText="最大钻杆尺寸数值"/>
-                            <cl:TextBlockWithTextBox Name="twtR2" ControlTag="24"  TbkText="最大管柱尺寸数值"/>
-                            <cl:TextBlockWithTextBox Name="twtR3" ControlTag="6"  TbkText="小车单圈行走距离"/>
-                            <cl:TextBlockWithTextBox Name="twtR4" ControlTag="7"  TbkText="小车减速比"/>
-                            <cl:TextBlockWithTextBox Name="twtR5" ControlTag="8"  TbkText="空载最大速度"/>
-                            <cl:TextBlockWithTextBox Name="twtR6" ControlTag="9"  TbkText="钻杆最大速度"/>
-                            <cl:TextBlockWithTextBox Name="twtR7" ControlTag="10"  TbkText="钻铤最大速度"/>
-                            <cl:TextBlockWithTextBox Name="twtR8" ControlTag="11"  TbkText="手臂减速比"/>
-                            <cl:TextBlockWithTextBox Name="twtR9" ControlTag="12"  TbkText="空载最大速度"/>
-                            <cl:TextBlockWithTextBox Name="twtR10" ControlTag="13"  TbkText="钻杆最大速度"/>
-                            <cl:TextBlockWithTextBox Name="twtR11" ControlTag="14"  TbkText="钻铤最大速度"/>
-                            <cl:TextBlockWithTextBox Name="twtR12" ControlTag="25"  TbkText="手臂水平最大距离"/>
-                            <cl:TextBlockWithTextBox Name="twtR13" ControlTag="15"  TbkText="回转减速比"/>
-                            <cl:TextBlockWithTextBox Name="twtR14" ControlTag="16"  TbkText="空载最大速度"/>
-                            <cl:TextBlockWithTextBox Name="twtR15" ControlTag="17"  TbkText="钻杆最大速度"/>
-                            <cl:TextBlockWithTextBox Name="twtR16" ControlTag="18"  TbkText="钻铤最大速度"/>
-                            <cl:TextBlockWithTextBox Name="twtL22" ControlTag="42"  TbkText="5.5寸钻杆容量"/>
-                            <cl:TextBlockWithTextBox Name="twtL23" ControlTag="43"  TbkText="6 5/8寸钻杆容量"/>
-                            <Button Content="确 定 配 置"  Click="Button_tabItemParameterConfiguration_Confirm"  Style="{StaticResource btnGreen}" FontWeight="Bold" FontFamily="宋体" FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="30" IsDefault="False"/>
+                            <cl:TextBlockWithTextBox Name="twtR1" TagTwo="4" ControlTag="1"  TbkText="伸出速度"/>
+                            <cl:TextBlockWithTextBox Name="twtR2" TagTwo="4" ControlTag="2"  TbkText="缩回速度"/>
+                            <cl:TextBlockWithTextBox Name="twtR3" TagTwo="4" ControlTag="3"  TbkText="爬坡速度"/>
+                            <cl:TextBlockWithTextBox Name="twtR4" TagTwo="4" ControlTag="4"  TbkText="爬坡周期"/>
+                            <cl:TextBlockWithTextBox Name="twtR5" TagTwo="4" ControlTag="5"  TbkText="平稳伸出速度"/>
+                            <cl:TextBlockWithTextBox Name="twtR6" TagTwo="4" ControlTag="6"  TbkText="平稳缩回速度"/>
+                            <cl:TextBlockWithTextBox Name="twtR7" TagTwo="4" ControlTag="7"  TbkText="缓冲速度"/>
+                            <cl:TextBlockWithTextBox Name="twtR8" TagTwo="5" ControlTag="1"  TbkText="响应周期"/>
+                            <cl:TextBlockWithTextBox Name="twtR9" TagTwo="5" ControlTag="2"  TbkText="工作缸低压预警"/>
+                            <cl:TextBlockWithTextBox Name="twtR10" TagTwo="5" ControlTag="3"  TbkText="制动缸低压预警"/>
+
+                            <cl:TextBlockWithTextBox Name="twtR11" TagTwo="6" ControlTag="1"  TbkText="工位左向回转速度"/>
+                            <cl:TextBlockWithTextBox Name="twtR12" TagTwo="6" ControlTag="2"  TbkText="工位右向回转速度"/>
+                            <cl:TextBlockWithTextBox Name="twtR13" TagTwo="6" ControlTag="3"  TbkText="非工位左向回转速度"/>
+                            <cl:TextBlockWithTextBox Name="twtR14" TagTwo="6" ControlTag="4"  TbkText="非工位右向回转速度"/>
+                            <cl:TextBlockWithTextBox Name="twtR15" TagTwo="6" ControlTag="5"  TbkText="左极限回转限位"/>
+                            <cl:TextBlockWithTextBox Name="twtR16" TagTwo="6" ControlTag="6" TbkText="右极限极回转限位"/>
+
+                            <cl:TextBlockWithTextBox Name="twtR17" TagTwo="7" ControlTag="1" TbkText="立柱上升速度"/>
+                            <cl:TextBlockWithTextBox Name="twtR18" TagTwo="7" ControlTag="2" TbkText="立柱下降速度"/>
+                            <cl:TextBlockWithTextBox Name="twtR19" TagTwo="7" ControlTag="3" TbkText="立柱上限高度"/>
+                            <cl:TextBlockWithTextBox Name="twtR20" TagTwo="7" ControlTag="4" TbkText="立柱下限高度"/>
+         
                             <!--<cl:TextBlockWithTextBox Name="twtR17" ControlTag="51"  TbkText="左手柄"/>
                             <cl:TextBlockWithTextBox Name="twtR18" ControlTag="52"  TbkText="右手柄"/>
                             <cl:TextBlockWithTextBox Name="twtR19" ControlTag="53"  TbkText="按键面板"/>

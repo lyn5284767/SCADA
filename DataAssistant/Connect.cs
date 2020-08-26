@@ -31,6 +31,7 @@ namespace DatabaseLib
         void CloseConnect();
         void RcvData();
         void SendData(byte[] buffer);
+        void SendDataToIPAndPort(byte[] buffer, string ip, int port);
         int Readbytes(int index,int len, byte[] retBuffer);
         int Readbits(int index, int bitOrder, out bool bRet);
         void ClearStatistics();
@@ -146,6 +147,11 @@ namespace DatabaseLib
         }
 
         public void ClearStatistics()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SendDataToIPAndPort(byte[] buffer, string ip, int port)
         {
             throw new NotImplementedException();
         }
@@ -468,6 +474,27 @@ namespace DatabaseLib
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
+            }
+        }
+        /// <summary>
+        /// add by lyn2020.8.21，向指定ip端口发送数据
+        /// </summary>
+        public void SendDataToIPAndPort(byte[] buffer,string ip,int port)
+        {
+             EndPoint assginToPoint;
+            if (ip!= null && port>0)
+            {
+                try
+                {
+                    assginToPoint = new IPEndPoint(IPAddress.Parse(ip), port);
+                    int iSend = udpSend.SendTo(buffer, assginToPoint);//返回实际发送的字节数
+                    SendByteCnt = iSend;
+                    SendByteSumCnt += iSend;
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
             }
         }
 

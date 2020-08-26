@@ -1,4 +1,6 @@
-﻿using System;
+﻿using COM.Common;
+using ControlLibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,46 @@ namespace Main.SIR
     /// </summary>
     public partial class SIRSecureSetting : UserControl
     {
+        private static SIRSecureSetting _instance = null;
+        private static readonly object syncRoot = new object();
+
+        public static SIRSecureSetting Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    lock (syncRoot)
+                    {
+                        if (_instance == null)
+                        {
+                            _instance = new SIRSecureSetting();
+                        }
+                    }
+                }
+                return _instance;
+            }
+        }
         public SIRSecureSetting()
         {
             InitializeComponent();
+        }
+        /// <summary>
+        /// 绑定变量
+        /// </summary>
+        private void VariableBinding()
+        {
+            try
+            {
+                //this.cbGapLock.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["506b5"], Mode = BindingMode.OneWay, Converter = new InterLockingConverter() });
+                //this.cbSafeDoorLock.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["506b5"], Mode = BindingMode.OneWay, Converter = new InterLockingConverter() });
+                //this.cbWellFendersLock.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["506b5"], Mode = BindingMode.OneWay, Converter = new InterLockingConverter() });
+
+            }
+            catch (Exception ex)
+            {
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+            }
         }
 
         private void BoxBigHookInterLockingOfRobot_Clicked(object sender, EventArgs e)
@@ -92,6 +131,96 @@ namespace Main.SIR
         private void btn_BigHookHeightCannel_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+        /// <summary>
+        /// 缺口互锁
+        /// </summary>
+        private void cbGapLock_Clicked(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+
+            if (this.cbGapLock.IsChecked)
+            {
+                if (GlobalData.Instance.systemRole == SystemRole.OperMan)
+                {
+                    MessageBox.Show("您不具备取消权限！", "提示信息", MessageBoxButton.OK);
+                    return;
+                }
+                MessageBoxResult result = MessageBox.Show("确认关闭缺口互锁？", "提示信息", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
+                {
+                    byteToSend = GlobalData.Instance.SendByte(new List<byte> { 21, 6, 2 });
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                byteToSend = GlobalData.Instance.SendByte(new List<byte> { 21, 6, 1 });
+            }
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 安全门互锁
+        /// </summary>
+        private void cbSafeDoorLock_Clicked(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+
+            if (this.cbSafeDoorLock.IsChecked)
+            {
+                if (GlobalData.Instance.systemRole == SystemRole.OperMan)
+                {
+                    MessageBox.Show("您不具备取消权限！", "提示信息", MessageBoxButton.OK);
+                    return;
+                }
+                MessageBoxResult result = MessageBox.Show("确认关闭安全门互锁？", "提示信息", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
+                {
+                    byteToSend = GlobalData.Instance.SendByte(new List<byte> { 21, 7, 2 });
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                byteToSend = GlobalData.Instance.SendByte(new List<byte> { 21, 7, 1 });
+            }
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 井口防碰互锁
+        /// </summary>
+        private void cbWellFendersLock_Clicked(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+
+            if (this.cbSafeDoorLock.IsChecked)
+            {
+                if (GlobalData.Instance.systemRole == SystemRole.OperMan)
+                {
+                    MessageBox.Show("您不具备取消权限！", "提示信息", MessageBoxButton.OK);
+                    return;
+                }
+                MessageBoxResult result = MessageBox.Show("确认关闭井口防碰互锁？", "提示信息", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
+                {
+                    byteToSend = GlobalData.Instance.SendByte(new List<byte> { 21, 8, 2 });
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                byteToSend = GlobalData.Instance.SendByte(new List<byte> { 21, 8, 1 });
+            }
+            GlobalData.Instance.da.SendBytes(byteToSend);
         }
     }
 }

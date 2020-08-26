@@ -32,4 +32,23 @@ namespace COM.Common
         public int DrillCollarMotorAlarm;
         public int RetainingRopeMotorAlarm;
     }
+    /// <summary>
+    /// UDP发送模型
+    /// </summary>
+    public class UdpModel
+    {
+        /// <summary>
+        /// 协议类型
+        /// </summary>
+        public UdpType UdpType { get; set; }
+        /// <summary>
+        /// 协议内容
+        /// </summary>
+        public string Content { get; set; }
+    }
+
+    public enum UdpType
+    {
+        PlayCamera = 0
+    }
 }

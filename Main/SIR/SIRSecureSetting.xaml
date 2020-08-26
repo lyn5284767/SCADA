@@ -87,15 +87,10 @@
             </Grid.ColumnDefinitions>
             <Border Grid.Column="0" BorderBrush="Gray" Padding="20" BorderThickness="0 1 1 0">
                 <StackPanel>
-                    <cl:CustomCheckBox ContentString="机械手大钩互锁" Margin="15" Name="checkBoxBigHookInterLockingOfRobot" UserControlClicked="BoxBigHookInterLockingOfRobot_Clicked"/>
-                    <cl:CustomCheckBox ContentString="机械手顶驱互锁" Margin="15" Name="checkBoxManipulatorTopDriveInterlock" UserControlClicked="ManipulatorTopDriverInterlock_Clicked"/>
-                    <cl:CustomCheckBox ContentString="指梁锁打开确认"  Margin="15" Name="checkBoxFingerBeamLockOpenConfirmation" UserControlClicked="FingerBeamLockOpenConfirm_Clicked"/>
-                    <cl:CustomCheckBox ContentString="伺服电机过载限制" Margin="15" Name="checkBoxServoMotorOverloadLimit" UserControlClicked="ServoMotorOverloadLimit_Clicked"/>
-                    <cl:CustomCheckBox ContentString="机械手挡绳互锁" Margin="15" Name="checkBoxInterlockingOfManipulatorRopes" UserControlClicked="InterlockOfManipulatorRopes_Clicked"/>
-                    <cl:CustomCheckBox ContentString="吊卡关门信号屏蔽" Margin="15" Name="checkBoxElevatorClosingSignalShielding" UserControlClicked="ElevatorCloseSignShield_Clicked"/>
-                    <cl:CustomCheckBox ContentString="吊卡打开限制解除" Margin="15" Name="checkBoxElevatorOpenLimitCancel" UserControlClicked="ElevatorOpenLimitCancel_Clicked"/>
-                    <cl:CustomCheckBox ContentString="机械手检修模式" Margin="15" Name="checkBoxRobotInspectionMode" UserControlClicked="RobotInspectionMode_Clicked"/>
-                    <cl:CustomCheckBox ContentString="回转回零限制" Margin="15" Name="checkBoxRoteTurnZero" UserControlClicked="CheckBoxRoteTurnZero_UserControlClicked"/>
+                    <cl:CustomCheckBox ContentString="缺口互锁" Margin="15" Name="cbGapLock" UserControlClicked="cbGapLock_Clicked"/>
+                    <cl:CustomCheckBox ContentString="安全门互锁" Margin="15" Name="cbSafeDoorLock" UserControlClicked="cbSafeDoorLock_Clicked"/>
+                    <cl:CustomCheckBox ContentString="井口防碰互锁"  Margin="15" Name="cbWellFendersLock" UserControlClicked="cbWellFendersLock_Clicked"/>
+                    
                 </StackPanel>
             </Border>
             <Border Grid.Column="1" BorderBrush="Gray" BorderThickness="0 1 0 0" Padding="20">
