@@ -1,13 +1,11 @@
-﻿<!--6.15新增-->
-<UserControl x:Class="Main.SecondFloor.SFParamThree"
+﻿<UserControl x:Class="Main.SIR.SIRPosSetting"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Main.SecondFloor"
-             xmlns:cl="http://talonzeng.com/ControlLibrary"
+             xmlns:local="clr-namespace:Main.SIR" xmlns:cl="http://talonzeng.com/ControlLibrary"
              mc:Ignorable="d" 
-             Foreground="#525252" FontSize="14" Background="#F5F6FA" Width="800" Height="650" Margin="1" FontFamily="微软雅黑" Name="sfParamThree">
+             Foreground="#525252" FontSize="14" Background="#F5F6FA" d:DesignHeight="650" d:DesignWidth="1024" Margin="1" Name="drDRPosSetting">
     <UserControl.Resources>
         <Style TargetType="Label">
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -42,43 +40,34 @@
         </Style>
     </UserControl.Resources>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="60"/>
-        </Grid.RowDefinitions>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="380"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
-                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="165">
+                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="320">
                     <StackPanel Orientation="Horizontal">
-                        <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="5" Padding="3" Height="Auto">
-                            <TextBlock Text="配&#x0a;置&#x0a;信&#x0a;息&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontWeight="Bold"  Height="90" />
-                        </Border>
+                        <!--<Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
+                            <TextBlock Text="小&#x0a;车&#x0a;参&#x0a;数&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                        </Border>-->
                         <StackPanel>
-                            <cl:TextBlockWithTextBox Name="twtR17" ControlTag="51"  TbkText="左手柄"/>
-                            <cl:TextBlockWithTextBox Name="twtR18" ControlTag="52"  TbkText="右手柄"/>
-                            <cl:TextBlockWithTextBox Name="twtR19" ControlTag="53"  TbkText="按键面板"/>
-                            <cl:TextBlockWithTextBox Name="twtR20" ControlTag="54"  TbkText="操作面板"/>
-                            <cl:TextBlockWithTextBox Name="twtR21" ControlTag="71"  TbkText="钻台面遥控器"/>
+                            <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5" Padding="3">
+                                <TextBlock Text="工位位置"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" FontFamily="微软雅黑" FontWeight="Bold"/>
+                            </Border>
+                            <cl:TextBlockWithTextBox Name="twtL1" TagTwo="8" ControlTag="1"  TbkText="井口位置"/>
+                            <cl:TextBlockWithTextBox Name="twtL2" TagTwo="8" ControlTag="2"  TbkText="鼠洞位置"/>
+                            <cl:TextBlockWithTextBox Name="twtL3" TagTwo="8" ControlTag="3"  TbkText="顶销位置"/>
+                            <cl:TextBlockWithTextBox Name="twtL4" TagTwo="8" ControlTag="4"  TbkText="待机位置"/>
+                            <cl:TextBlockWithTextBox Name="twtL5" TagTwo="8" ControlTag="5"  TbkText="回收位置"/>
+                            <cl:TextBlockWithTextBox Name="twtL6" TagTwo="8" ControlTag="6"  TbkText="立柱位置"/>
+                            <cl:TextBlockWithTextBox Name="twtL7" TagTwo="8" ControlTag="7"  TbkText="防干涉位置"/>
+                            <Button Content="确 定 配 置"  Click="Button_Setting"  Style="{StaticResource btnGreen}" FontWeight="Bold" FontFamily="微软雅黑" FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="40" IsDefault="False"/>
                         </StackPanel>
                     </StackPanel>
                 </Border>
             </StackPanel>
         </Grid>
 
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="160"/>
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="1">
-                <StackPanel Orientation="Horizontal">
-                    <Button Content="确 定 配 置"  Click="ParamThreeSet"  Style="{StaticResource btnGreen}" FontWeight="Bold" FontFamily="宋体" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" IsDefault="False"/>
-                </StackPanel>
-            </Grid>
-        </Grid>
     </Grid>
 </UserControl>

@@ -19,6 +19,7 @@ namespace DemoDriver
     {
         //const int PORT = 6543;
 
+
         const char SPLITCHAR = '.';
         //const string SERVICELOGSOURCE = "DataProcess";
         //const string SERVICELOGNAME = "DataProcess";
@@ -119,6 +120,7 @@ namespace DemoDriver
         Dictionary<string, ITag> _mapping;
 
         IDriver _driver;
+        IDriver _camDriver; // add by lyn,2020.8.21摄像头通信
 
 
         private object _myLock = new object();
@@ -159,6 +161,8 @@ namespace DemoDriver
 
         public IEnumerable<IDriver> Drivers { get { throw new NotImplementedException(); } }
 
+        public GloConfig GloConfig { get; set; }
+
         object _syncRoot;
         public object SyncRoot
         {
@@ -182,6 +186,8 @@ namespace DemoDriver
             InitServerByXml();
 
             _driver = new SecondFloorPLCDriver(this, 0, "SecondFloor");//中间参数ID,应为驱动ID 号
+            // add by lyn,2020.8.21摄像头通信
+            //_camDriver = new CameraDriver(this, 0, "Camera");
             _hda = new List<HistoryData>();
             //test
             //InitServerByDatabase();
@@ -221,10 +227,19 @@ namespace DemoDriver
             string sql = string.Format("DELETE FROM Log WHERE [TIMESTAMP]<'{0}'", now.ToString("yyyy-MM-dd HH:mm:ss"));
             DataHelper.Instance.ExecuteNonQuery(sql);
         }
-
+        // add by lyn,2020.8.21,摄像头通信
+        public void CamSendBytes(byte[] bytes)
+        {
+            _camDriver.SendBytes(bytes);
+        }
         public void SendBytes(byte[] bytes)
         {
             _driver.SendBytes(bytes);
+        }
+
+        public void SendDataToIPAndPort(byte[] buffer, string ip, int port)
+        {
+            _driver.SendDataToIPAndPort(buffer, ip, port);
         }
 
         public void Dispose()
@@ -433,6 +448,8 @@ namespace DemoDriver
                 }
             }
 
+            sql = "Select * from GloConfig";
+            GloConfig = DataHelper.Instance.ExecuteList<GloConfig>(sql).FirstOrDefault();
             //using (var dataReader = DataHelper.Instance.ExecuteProcedureReader("InitServer"))
             //{
             //    if (dataReader == null) return;// Stopwatch sw = Stopwatch.StartNew();
@@ -1244,5 +1261,40 @@ namespace DemoDriver
         public int Value { get; set; }
         public DateTime TimeStamp { get; set; }
         public int OID{ get; set; }
+    }
+
+    /// <summary>
+    /// 全局配置
+    /// </summary>
+    public class GloConfig
+    {
+        /// <summary>
+        /// UDP发送IP
+        /// </summary>
+        public string UdpSendIP { set; get; }
+        /// <summary>
+        /// UDP端口
+        /// </summary>
+        public int UdpSendPort { set; get; }
+        /// <summary>
+        /// Udp是否开放
+        /// </summary>
+        public bool UdpOpen { set; get; }
+        /// <summary>
+        /// 铁钻工类型 0-无 1-自研 2-JJC 3-宝石 4-江汉
+        /// </summary>
+        public int SIRType { get; set; }
+        /// <summary>
+        /// 猫道类型 0-无猫道 1-自研 2-宝石猫道 3-宏达猫道
+        /// </summary>
+        public int CatType { get; set; }
+        /// <summary>
+        /// 液压站类型 0-无液压站 1-自研 2-宝石液压站 3- JJC液压站
+        /// </summary>
+        public int HydType { get; set; }
+        /// <summary>
+        /// 钻台面类型 0-自研 1-杰瑞
+        /// </summary>
+        public int DRType { get; set; }
     }
 }

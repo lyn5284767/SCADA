@@ -45,7 +45,7 @@ namespace COM.Common
         }
         
 
-        public byte[] ConfigParameter = new byte[3];
+        public byte[] ConfigParameter = new byte[4];
         /// <summary>
         /// 二层台移动X轴补偿
         /// </summary>
@@ -292,6 +292,13 @@ namespace COM.Common
         /// JJC
         /// </summary>
         JJC=2,
-        BS=3
+        /// <summary>
+        /// 宝石
+        /// </summary>
+        BS=3,
+        /// <summary>
+        /// 江汉
+        /// </summary>
+        JH = 4
     }
 }

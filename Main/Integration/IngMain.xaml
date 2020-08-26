@@ -369,7 +369,8 @@
                         </Border>
                     </StackPanel>-->
                     <Grid Grid.Row="2" Name="Am"  Height="380">
-                        <main:Amination x:Name="amination"/>
+                        <!--<main:Amination x:Name="amination"/>-->
+                        <main:AminationNew x:Name="aminationNew"/>
                     </Grid>
                 </Grid>
             </Border>

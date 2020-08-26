@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Main.SecondFloor"
              mc:Ignorable="d" 
-             d:DesignHeight="608" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="sfPositionSetting">
+             d:DesignHeight="608" d:DesignWidth="1024" Foreground="#525252" FontSize="14" FontFamily="微软雅黑" Background="#F5F6FA" Margin="1" Name="sfPositionSetting">
     <UserControl.Resources>
         <Style TargetType="Label">
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -65,8 +65,8 @@
                 <StackPanel Orientation="Horizontal" Height="40">
                     <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Width="310">
                         <StackPanel Height="25" Orientation="Horizontal">
-                            <TextBlock Text="操作模式：" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
-                            <TextBlock Text="       0 " Name="txtOpModel_LocationCalibration" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="操作模式：" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
+                            <TextBlock Text="       0 " Name="txtOpModel_LocationCalibration" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
                         </StackPanel>
                     </Border>
                 </StackPanel>
@@ -75,8 +75,8 @@
                 <StackPanel Orientation="Horizontal" Height="40">
                     <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Width="310">
                         <StackPanel Height="25" Orientation="Horizontal">
-                            <TextBlock Text="工作模式：" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
-                            <TextBlock Text="       0 " Name="txtWorkModel_LocationCalibration" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="工作模式：" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
+                            <TextBlock Text="       0 " Name="txtWorkModel_LocationCalibration" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
                         </StackPanel>
                     </Border>
                 </StackPanel>
@@ -85,8 +85,8 @@
                 <StackPanel Orientation="Horizontal" Height="40">
                     <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Width="310">
                         <StackPanel Height="25" Orientation="Horizontal">
-                            <TextBlock Text="回转：" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
-                            <TextBlock Text="       0 " Name="txtRotateAngle_LocationCalibration" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBlock Text="回转：" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
+                            <TextBlock Text="       0 " Name="txtRotateAngle_LocationCalibration" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
                         </StackPanel>
                     </Border>
 
@@ -106,20 +106,20 @@
                 <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Height="120">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <StackPanel >
-                            <TextBox Text="当前选择参数名称" VerticalAlignment="Center" HorizontalAlignment="Center" IsReadOnly="True" TextAlignment="Center" Width="160" Margin="5,2,5,2" FontSize="12" FontFamily="宋体" FontWeight="Bold"/>
-                            <TextBox Text="反馈参数名称" VerticalAlignment="Center" HorizontalAlignment="Center"  IsReadOnly="True"  TextAlignment="Center" Width="160" Margin="5,2,5,2" FontSize="12" FontFamily="宋体" FontWeight="Bold"/>
-                            <TextBox Text="当前值" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center"  IsReadOnly="True"  Width="160" Margin="5,2,5,2" FontSize="12" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBox Text="当前选择参数名称" VerticalAlignment="Center" HorizontalAlignment="Center" IsReadOnly="True" TextAlignment="Center" Width="160" Margin="5,2,5,2" FontSize="16" FontWeight="Bold"/>
+                            <TextBox Text="反馈参数名称" VerticalAlignment="Center" HorizontalAlignment="Center"  IsReadOnly="True"  TextAlignment="Center" Width="160" Margin="5,2,5,2" FontSize="16" FontWeight="Bold"/>
+                            <TextBox Text="当前值" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center"  IsReadOnly="True"  Width="160" Margin="5,2,5,2" FontSize="16" FontWeight="Bold"/>
                         </StackPanel>
                         <StackPanel>
-                            <TextBox Text="未选择参数" TabIndex="0" Name="selectParaName"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Width="160" Margin="5,2,5,2" FontSize="12" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBox Text="未选择参数" TabIndex="0" Name="selectParaName"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Width="160" Margin="5,2,5,2" FontSize="16" FontWeight="Bold"/>
 
-                            <TextBox Text="反馈参数名称" Name="returnSelectParaName" IsReadOnly="True"  VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Width="160" Margin="5,2,5,2" FontSize="12" FontFamily="宋体" FontWeight="Bold"/>
-                            <TextBox Text="0" VerticalAlignment="Center" Name="returnSelectParaValue"  IsReadOnly="True" HorizontalAlignment="Center" TextAlignment="Center" Width="160" Margin="5,2,5,2" FontSize="12" FontFamily="宋体" FontWeight="Bold"/>
+                            <TextBox Text="反馈参数名称" Name="returnSelectParaName" IsReadOnly="True"  VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Width="160" Margin="5,2,5,2" FontSize="16" FontWeight="Bold"/>
+                            <TextBox Text="0" VerticalAlignment="Center" Name="returnSelectParaValue"  IsReadOnly="True" HorizontalAlignment="Center" TextAlignment="Center" Width="160" Margin="5,2,5,2" FontSize="6" FontWeight="Bold"/>
                         </StackPanel>
 
                         <StackPanel>
-                            <TextBox Text="参数读/写"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Width="160" Margin="5,2,5,2" FontSize="12" FontFamily="宋体" FontWeight="Bold"/>
-                            <Button  Content="参数读取" HorizontalAlignment="Center" Width="160" Margin="4" FontSize="16" FontFamily="宋体" FontWeight="Bold" Click="btn_ParaRead_LocationCalibration">
+                            <TextBox Text="参数读/写"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Width="160" Margin="5,2,5,2" FontSize="16" FontWeight="Bold"/>
+                            <Button  Content="参数读取" HorizontalAlignment="Center" Width="160" Margin="4" FontSize="16" FontWeight="Bold" Click="btn_ParaRead_LocationCalibration">
                                 <Button.Style>
                                     <Style TargetType="Button">
                                         <Style.Triggers>
@@ -130,7 +130,7 @@
                                     </Style>
                                 </Button.Style>
                             </Button>
-                            <Button  Content="参数标定" HorizontalAlignment="Center" Width="160" Margin="4" FontSize="16" FontFamily="宋体" FontWeight="Bold" Click="btn_ParaWrite_LocationCalibration">
+                            <Button  Content="参数标定" HorizontalAlignment="Center" Width="160" Margin="4" FontSize="16" FontWeight="Bold" Click="btn_ParaWrite_LocationCalibration">
                                 <Button.Style>
                                     <Style TargetType="Button">
                                         <Style.Triggers>
@@ -162,8 +162,8 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0" Orientation="Horizontal">
-                    <Label>读取数目：</Label>
-                    <TextBlock Name="tbprocess" Text="0/0"></TextBlock>
+                    <Label FontSize="16">读取数目：</Label>
+                    <TextBlock FontSize="16" Name="tbprocess" Text="0/0"></TextBlock>
                 </StackPanel>
                 <StackPanel Grid.Row="1" Orientation="Horizontal">
                     <Label>检测数目</Label>
@@ -189,7 +189,7 @@
                 <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0" Name="caliMenu">
-                <Menu Height="30" Width="135"  FontSize="14" FontFamily="宋体" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
+                <Menu Height="40" Width="145"  FontSize="16" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
                     <MenuItem>
                         <MenuItem.Header>
                             <StackPanel Orientation="Horizontal">
@@ -232,7 +232,7 @@
             </Grid>
 
             <Grid Grid.Column="1">
-                <Menu Height="30" Width="135"  FontSize="14" FontFamily="宋体" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
+                <Menu Height="40" Width="145"  FontSize="16" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
                     <MenuItem>
                         <MenuItem.Header>
                             <StackPanel Orientation="Horizontal">
@@ -271,7 +271,7 @@
             </Grid>
 
             <Grid Grid.Column="2">
-                <Menu Height="30" Width="135"  FontSize="14" FontFamily="宋体" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
+                <Menu Height="40" Width="145"  FontSize="16" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
                     <MenuItem>
                         <MenuItem.Header>
                             <StackPanel Orientation="Horizontal">
@@ -295,7 +295,7 @@
             </Grid>
 
             <Grid Grid.Column="3">
-                <Menu Height="30" Width="135"  FontSize="14" FontFamily="宋体" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
+                <Menu Height="40" Width="145"  FontSize="16" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
                     <MenuItem>
                         <MenuItem.Header>
                             <StackPanel Orientation="Horizontal">
@@ -345,7 +345,7 @@
             </Grid>
 
             <Grid Grid.Column="4">
-                <Menu Height="30" Width="135"  FontSize="14" FontFamily="宋体" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
+                <Menu Height="40" Width="145"  FontSize="16" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
                     <MenuItem>
                         <MenuItem.Header>
                             <StackPanel Orientation="Horizontal">
@@ -372,12 +372,12 @@
                     </MenuItem>
                 </Menu>
             </Grid>
-            <TextBox x:Name="tbTime" Grid.Column="5" Height="30" Text="200" PreviewMouseDown="tb_ParameterConfig_Focus"></TextBox>
-            <Button Style="{StaticResource btnGreen}" Grid.Column="6" Height="35" Click="Save_Click">一键保存</Button>
-            <Button Style="{StaticResource btnGreen}" Grid.Column="7" Height="35" Click="Import_Click">一键导入</Button>
+            <TextBox x:Name="tbTime" Grid.Column="5" Height="40" Text="200" PreviewMouseDown="tb_ParameterConfig_Focus"></TextBox>
+            <Button Style="{StaticResource btnGreen}" Grid.Column="6" Height="40" Click="Save_Click">一键保存</Button>
+            <Button Style="{StaticResource btnGreen}" Grid.Column="7" Height="40" Click="Import_Click">一键导入</Button>
         </Grid>
         <Grid Grid.Row="3">
-            <DataGrid Name="lvCali" FontSize="18" FontFamily="微软雅黑" AutoGenerateColumns="False" ScrollViewer.VerticalScrollBarVisibility="Visible">
+            <DataGrid Name="lvCali" FontSize="16" FontFamily="微软雅黑" AutoGenerateColumns="False" ScrollViewer.VerticalScrollBarVisibility="Visible">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="序号" Width="70" Binding="{Binding ID}"/>
                     <DataGridTextColumn Header="父参数" Width="250" Binding="{Binding Parent}"/>

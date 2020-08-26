@@ -8,7 +8,7 @@
              xmlns:gl="clr-namespace:COM.Common;assembly=COM.Common"
              xmlns:main="clr-namespace:Main" xmlns:hc="https://handyorg.github.io/handycontrol"
              mc:Ignorable="d" 
-             d:DesignHeight="650" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="drFloor">
+             d:DesignHeight="650" d:DesignWidth="1024" Foreground="#525252" FontSize="14" FontFamily="微软雅黑" Background="#F5F6FA" Margin="1" Name="drFloor">
     <UserControl.Resources>
         <gl:WorkModeFlowConverter x:Key="workModeFlowCvt"/>
         <Style TargetType="TextBlock">
@@ -154,7 +154,7 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0">
-                            <Menu Background="Transparent" Height="40" Width="100"  FontSize="18" FontWeight="Bold" Foreground="#008AFF">
+                            <Menu Background="Transparent" Height="40" Width="100"  FontSize="16" FontWeight="Bold" Foreground="#008AFF">
                                 <MenuItem>
                                     <MenuItem.Header>
                                         <StackPanel Orientation="Vertical">
@@ -177,7 +177,7 @@
                             <TextBlock Text="未选择目的地" Name="drDestination" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </StackPanel>
                         <StackPanel Grid.Row="1">
-                            <Menu Background="Transparent" Height="40" Width="100"  FontSize="18" FontWeight="Bold" Foreground="#008AFF">
+                            <Menu Background="Transparent" Height="40" Width="100"  FontSize="16" FontWeight="Bold" Foreground="#008AFF">
                                 <MenuItem >
                                     <MenuItem.Header>
                                         <StackPanel Orientation="Vertical">
@@ -245,7 +245,8 @@
                             <!--<TextBlock Name="stepTxt" Text="非自动模式"  FontSize="20" Margin="20,0,0,0"></TextBlock>-->
                         </StackPanel>
                         <Grid Grid.Row="2" Name="Am"  Height="380">
-                            <main:Amination x:Name="amination"/>
+                            <!--<main:Amination x:Name="amination"/>-->
+                            <main:AminationNew x:Name="aminationNew"/>
                         </Grid>
                     </Grid>
                 </Border>

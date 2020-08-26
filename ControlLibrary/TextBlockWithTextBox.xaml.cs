@@ -30,6 +30,10 @@ namespace ControlLibrary
         /// </summary>
         public int ControlTag { get; set; }
         /// <summary>
+        /// 第二标志，用于发送通信协议
+        /// </summary>
+        public int TagTwo { get; set; }
+        /// <summary>
         /// 控件输入值
         /// </summary>
         public int ControlText { get; set; }
@@ -89,11 +93,23 @@ namespace ControlLibrary
             {
                 try
                 {
-                    short i16Text = Convert.ToInt16(strText);
-                    byte[] tempByte = BitConverter.GetBytes(i16Text);
-                    GlobalData.Instance.ConfigParameter[0] = (byte)ControlTag;
-                    GlobalData.Instance.ConfigParameter[1] = tempByte[0];
-                    GlobalData.Instance.ConfigParameter[2] = tempByte[1];
+                    if (GlobalData.Instance.systemType == SystemType.SIR)
+                    {
+                        short i16Text = Convert.ToInt16(strText);
+                        byte[] tempByte = BitConverter.GetBytes(i16Text);
+                        GlobalData.Instance.ConfigParameter[0] = (byte)TagTwo;
+                        GlobalData.Instance.ConfigParameter[1] = (byte)ControlTag;
+                        GlobalData.Instance.ConfigParameter[2] = tempByte[0];
+                        GlobalData.Instance.ConfigParameter[3] = tempByte[1];
+                    }
+                    else
+                    {
+                        short i16Text = Convert.ToInt16(strText);
+                        byte[] tempByte = BitConverter.GetBytes(i16Text);
+                        GlobalData.Instance.ConfigParameter[0] = (byte)ControlTag;
+                        GlobalData.Instance.ConfigParameter[1] = tempByte[0];
+                        GlobalData.Instance.ConfigParameter[2] = tempByte[1];
+                    }
                 }
                 catch (Exception ex)
                 {

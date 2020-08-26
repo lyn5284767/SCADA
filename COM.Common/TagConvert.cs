@@ -3759,4 +3759,190 @@ namespace COM.Common
             throw new NotImplementedException();
         }
     }
+
+    /// <summary>
+    /// Bool型通用，取反
+    /// </summary>
+    public class CheckedIsFalseConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null || value == DependencyProperty.UnsetValue)
+            {
+                return false;
+            }
+
+            bool type = (bool)value;
+            if (type) return false;
+            else return true;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    #region 自研铁钻工
+    /// <summary>
+    /// 自研铁钻工-操作模式
+    /// </summary>
+    public class SIRSelfOperationModelConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return string.Empty;
+            }
+
+            byte bType = (byte)value;
+            switch (bType)
+            {
+                case 1:
+                    return "急停";
+                case 2:
+                    return "调试模式";
+                case 3:
+                    return "回零";
+                case 4:
+                    return "手动";
+                case 5:
+                    return "自动";
+                case 6:
+                    return "回收";
+                case 7:
+                    return "运输";
+                case 8:
+                    return "实验";
+                case 9:
+                    return "补偿模式";
+            }
+
+            return "操作模式";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    /// <summary>
+    /// 自研铁钻工-操作模式选择
+    /// </summary>
+    public class SIRSelfOperationModelIsCheckConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return true;
+            }
+
+            byte bType = (byte)value;
+
+            if (bType == 5)//5 是自动，4 是手动
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 自研铁钻工-工作模式
+    /// </summary>
+    public class SIRSelfWorkModelConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return string.Empty;
+            }
+
+            byte bType = (byte)value;
+            switch (bType)
+            {
+                case 1:
+                    return "上扣";
+                case 2:
+                    return "卸扣";
+            }
+
+            return "工作模式";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 自研铁钻工-钻具选择
+    /// </summary>
+    public class SIRSelfPipeTypeModelConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return string.Empty;
+            }
+
+            byte bType = (byte)value;
+            switch (bType)
+            {
+                case 1:
+                    return "钻杆";
+                case 2:
+                    return "套管";
+            }
+
+            return "钻具选择";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 自研铁钻工-工位选择
+    /// </summary>
+    public class SIRSelfLocationModelConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return string.Empty;
+            }
+
+            byte bType = (byte)value;
+            switch (bType)
+            {
+                case 1:
+                    return "井口";
+                case 2:
+                    return "鼠洞";
+            }
+
+            return "工位选择";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    #endregion
 }

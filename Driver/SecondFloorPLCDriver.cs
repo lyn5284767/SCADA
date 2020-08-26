@@ -607,6 +607,17 @@ namespace DemoDriver
             return false;
         }
 
+        public bool SendDataToIPAndPort(byte[] buffer, string ip, int port)
+        {
+            if (con != null && !con.IsClosed)
+            {
+                con.SendDataToIPAndPort(buffer, ip, port);
+                return true;
+            }
+
+            return false;
+        }
+
         public event IOErrorEventHandler OnError;
     }
 

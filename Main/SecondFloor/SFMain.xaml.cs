@@ -95,7 +95,8 @@ namespace Main.SecondFloor
             GlobalData.Instance.DRNowPage = "SFMain";
             GlobalData.Instance.Rows = GlobalData.Instance.da["DrillNums"].Value.Byte;
             GlobalData.Instance.DrillNum = GlobalData.Instance.da["103E23B5"].Value.Byte;
-            amination.InitRowsColoms(SystemType.SecondFloor);
+            //amination.InitRowsColoms(SystemType.SecondFloor);
+            aminationNew.InitRowsColoms(SystemType.SecondFloor);
             PlayCameraInThread();
         }
 
@@ -122,9 +123,12 @@ namespace Main.SecondFloor
                 //cameraTimer = new System.Timers.Timer(2 * 1000);
                 //cameraTimer.Elapsed += CameraTimer_Elapsed;
                 //cameraTimer.Enabled = true;
-                amination.SendFingerBeamNumberEvent += Instance_SendFingerBeamNumberEvent;
-                amination.SystemChange(SystemType.SecondFloor);
+                //amination.SendFingerBeamNumberEvent += Instance_SendFingerBeamNumberEvent;
+                //amination.SystemChange(SystemType.SecondFloor);
                 //this.Am.Children.Add(amination);
+
+                aminationNew.SendFingerBeamNumberEvent += Instance_SendFingerBeamNumberEvent;
+                aminationNew.SystemChange(SystemType.SecondFloor);
             }
             catch (Exception ex)
             {
@@ -224,7 +228,8 @@ namespace Main.SecondFloor
                     this.Communcation();
                     this.Warnning();
                     this.ReportDataUpdate();
-                    amination.LoadFingerBeamDrillPipe(SystemType.SecondFloor);
+                    //amination.LoadFingerBeamDrillPipe(SystemType.SecondFloor);
+                    aminationNew.LoadFingerBeamDrillPipe(SystemType.SecondFloor);
                     if (GlobalData.Instance.da["operationModel"].Value.Byte==5)
                     {
                         if (GlobalData.Instance.da["workModel"].Value.Byte==2)
@@ -1161,10 +1166,10 @@ namespace Main.SecondFloor
                 {
                     WarnInfoOne.Keys.ToList().ForEach(k => WarnInfoOne[k] = 1);
                 }
-                else if (WarnInfoOne.Count == 0)
-                {
-                    warnOne.Text = "";
-                }
+                //else if (WarnInfoOne.Count == 0)
+                //{
+                //    warnOne.Text = "";
+                //}
 
                 foreach (var key in WarnInfoOne.Keys.ToList())
                 {
@@ -1995,23 +2000,37 @@ namespace Main.SecondFloor
 
         private void CameraVideoSave1(object value)
         {
-            string str1 = System.Environment.CurrentDirectory;
-            string filePath = str1 + "\\video" + "\\video1";
-            string fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + ".avi";
-            ICameraFactory cameraOne = GlobalData.Instance.cameraList.Where(w => w.Info.ID == 1).FirstOrDefault();
-            cameraOne.StopFile();
-            cameraOne.SaveFile(filePath, fileName);
-            DeleteOldFileName(filePath);
+            try
+            {
+                string str1 = System.Environment.CurrentDirectory;
+                string filePath = str1 + "\\video" + "\\video1";
+                string fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + ".avi";
+                ICameraFactory cameraOne = GlobalData.Instance.cameraList.Where(w => w.Info.ID == 1).FirstOrDefault();
+                cameraOne.StopFile();
+                cameraOne.SaveFile(filePath, fileName);
+                DeleteOldFileName(filePath);
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.StackTrace);
+            }
         }
         private void CameraVideoSave2(object value)
         {
-            string str1 = System.Environment.CurrentDirectory;
-            string filePath = str1 + "\\video" + "\\video2";
-            string fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + ".avi";
-            ICameraFactory cameraTwo = GlobalData.Instance.cameraList.Where(w => w.Info.ID == 2).FirstOrDefault();
-            cameraTwo.StopFile();
-            cameraTwo.SaveFile(filePath, fileName);
-            DeleteOldFileName(filePath);
+            try
+            {
+                string str1 = System.Environment.CurrentDirectory;
+                string filePath = str1 + "\\video" + "\\video2";
+                string fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + ".avi";
+                ICameraFactory cameraTwo = GlobalData.Instance.cameraList.Where(w => w.Info.ID == 2).FirstOrDefault();
+                cameraTwo.StopFile();
+                cameraTwo.SaveFile(filePath, fileName);
+                DeleteOldFileName(filePath);
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.StackTrace);
+            }
         }
 
         /// <summary>
@@ -2025,11 +2044,14 @@ namespace Main.SecondFloor
             // 硬盘空间小于1G，开始清理录像
             foreach (System.IO.DriveInfo drive in drives)
             {
-                if (drive.Name == disk[0] + "\\" && drive.TotalFreeSpace / (1024 * 1024) < 1024)
+                if (drive.Name == disk[0] + "\\" && drive.TotalFreeSpace / (1024 * 1024) < 1024 *544)
                 {
                     DirectoryInfo root = new DirectoryInfo(path);
-                    var file = root.GetFiles().OrderBy(s => s.CreationTime).FirstOrDefault();
-                    file.Delete();
+                    List<FileInfo> fileList = root.GetFiles().OrderBy(s => s.CreationTime).Take(10).ToList();
+                    foreach (FileInfo file in fileList)
+                    {
+                        file.Delete();
+                    }
                 }
             }
         }
@@ -2225,7 +2247,14 @@ namespace Main.SecondFloor
         {
             byte[] byteToSend = SendByte(new List<byte> { 24, 2 });
             GlobalData.Instance.da.SendBytes(byteToSend);
+            //UdpModel model = new UdpModel();
+            //model.UdpType = UdpType.PlayCamera;
+            //model.Content = "172.16.16.120";
+            //byte[] bytes = Encoding.UTF8.GetBytes(model.ToJson());
+            //GlobalData.Instance.da.SendDataToIPAndPort(bytes, "192.168.137.167", 8050);
         }
+
+
         /// <summary>
         /// 自动选择指梁右
         /// </summary>

@@ -64,6 +64,7 @@ namespace DataService
         IDataServer Parent { get; }
         bool Connect();
         bool SendBytes(byte[] bytes);
+        bool SendDataToIPAndPort(byte[] buffer, string ip, int port);
         IGroup AddGroup(string name, short id, int updateRate, float deadBand = 0f, bool active = false);
         bool RemoveGroup(IGroup group);
         event IOErrorEventHandler OnError;//IO 错误事件处理

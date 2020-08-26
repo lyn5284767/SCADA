@@ -175,6 +175,14 @@ namespace Main
             {
                 MouseHS(null, null);
             }
+            else if (GlobalData.Instance.systemType == SystemType.SIR)
+            {
+                SIR_MouseLeftButtonDown(null, null);
+            }
+            else if (GlobalData.Instance.systemType == SystemType.CatRoad)
+            {
+                Cat_MouseLeftButtonDown(null, null);
+            }
         }
 
         /// <summary>
@@ -249,7 +257,9 @@ namespace Main
                 }
                 else if (GlobalData.Instance.systemType == SystemType.SIR)
                 {
-                    MessageBox.Show("功能未开放");
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(SIRSecureSetting.Instance);
+                    this.BottomColorSetting(this.bdSIR, this.tbSIR, this.bdSecureSetting);
                     return;
                 }
                 else if (GlobalData.Instance.systemType == SystemType.HydraulicStation)
@@ -312,7 +322,9 @@ namespace Main
                 }
                 else if (GlobalData.Instance.systemType == SystemType.SIR)
                 {
-                    MessageBox.Show("功能未开放");
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(SIRSelfIO.Instance);
+                    this.BottomColorSetting(this.bdSIR, this.tbSIR, this.bdIO);
                     return;
                 }
                 else if (GlobalData.Instance.systemType == SystemType.HydraulicStation)
@@ -473,7 +485,9 @@ namespace Main
                 }
                 else if (GlobalData.Instance.systemType == SystemType.SIR)
                 {
-                    MessageBox.Show("功能未开放");
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(SIRParam.Instance);
+                    this.BottomColorSetting(this.bdSIR, this.tbSIR, this.bdOther);
                     return;
                 }
                 else if (GlobalData.Instance.systemType == SystemType.HydraulicStation)
@@ -535,7 +549,9 @@ namespace Main
                 }
                 else if (GlobalData.Instance.systemType == SystemType.SIR)
                 {
-                    MessageBox.Show("功能未开放");
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(SIRPosSetting.Instance);
+                    this.BottomColorSetting(this.bdSIR, this.tbSIR, this.bdOther);
                     return;
                 }
                 else if (GlobalData.Instance.systemType == SystemType.HydraulicStation)
@@ -789,21 +805,29 @@ namespace Main
         {
             try
             {
-                this.spMain.Children.Clear();
-                DRMain.Instance.DRFullScreenEvent -= Instance_DRFullScreenEvent;
-                DRMain.Instance.DRFullScreenEvent += Instance_DRFullScreenEvent;
-                this.spMain.Children.Add(DRMain.Instance);
-
-                GlobalData.Instance.systemType = SystemType.DrillFloor;
-                this.BottomColorSetting(this.bdDR, this.tbDR, this.bdHome);
-
-                // 不是手动模式（4）或自动模式（5）切换回主界面变为手动模式
-                if (!(GlobalData.Instance.da["droperationModel"].Value.Byte == 5 || GlobalData.Instance.da["droperationModel"].Value.Byte == 4))
+                // 自研
+                if (GlobalData.Instance.da.GloConfig.DRType == 0)
                 {
-                    byte[] byteToSend;
-                    byteToSend = new byte[10] { 1, 32, 3, 31, 0, 0, 0, 0, 0, 0 };
+                    this.spMain.Children.Clear();
+                    DRMain.Instance.DRFullScreenEvent -= Instance_DRFullScreenEvent;
+                    DRMain.Instance.DRFullScreenEvent += Instance_DRFullScreenEvent;
+                    this.spMain.Children.Add(DRMain.Instance);
 
-                    GlobalData.Instance.da.SendBytes(byteToSend);
+                    GlobalData.Instance.systemType = SystemType.DrillFloor;
+                    this.BottomColorSetting(this.bdDR, this.tbDR, this.bdHome);
+
+                    // 不是手动模式（4）或自动模式（5）切换回主界面变为手动模式
+                    if (!(GlobalData.Instance.da["droperationModel"].Value.Byte == 5 || GlobalData.Instance.da["droperationModel"].Value.Byte == 4))
+                    {
+                        byte[] byteToSend;
+                        byteToSend = new byte[10] { 1, 32, 3, 31, 0, 0, 0, 0, 0, 0 };
+
+                        GlobalData.Instance.da.SendBytes(byteToSend);
+                    }
+                }// 杰瑞
+                else
+                {
+                    
                 }
             }
             catch (Exception ex)
@@ -942,19 +966,28 @@ namespace Main
         {
             try
             {
-                int sirType = GlobalData.Instance.da["IDFactoryType"].Value.Byte;
                 this.spMain.Children.Clear();
-                sirType = 3;
-                if (sirType == (int)SIRType.SANY)
+                // 无
+                if (GlobalData.Instance.da.GloConfig.SIRType == 0)
                 {
+                    MessageBox.Show("未配置铁钻工");
+                    return;
                 }
-                else if (sirType == (int)SIRType.JJC)
+                else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANY)
+                {
+                    this.spMain.Children.Add(SIRSelfMain.Instance);
+                }
+                else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.JJC)
                 {
                     this.spMain.Children.Add(SIRJJCMain.Instance);
                 }
-                else if (sirType == (int)SIRType.BS)
+                else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.BS)
                 {
                     this.spMain.Children.Add(SIRBSMain.Instance);
+                }
+                else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.JH)
+                {
+                  
                 }
 
                 GlobalData.Instance.systemType = SystemType.SIR;
@@ -1031,8 +1064,24 @@ namespace Main
         {
             try
             {
-                this.spMain.Children.Clear();
-                this.spMain.Children.Add(HSMain.Instance);
+                if (GlobalData.Instance.da.GloConfig.HydType == 0)
+                {
+                    MessageBox.Show("未配置液压站");
+                    return;
+                }// 自研
+                if (GlobalData.Instance.da.GloConfig.HydType == 1)
+                {
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(HSMain.Instance);
+                }// 宝石
+                else if (GlobalData.Instance.da.GloConfig.HydType == 2)
+                {
+                   
+                }// JJC
+                else if (GlobalData.Instance.da.GloConfig.HydType == 3)
+                {
+
+                }
 
                 GlobalData.Instance.systemType = SystemType.HydraulicStation;
                 this.BottomColorSetting(this.bdHS, this.tbHS, this.bdHome);
@@ -1051,10 +1100,29 @@ namespace Main
         {
             try
             {
-                this.spMain.Children.Clear();
-                this.spMain.Children.Add(BSCatMain.Instance);
+                if (GlobalData.Instance.da.GloConfig.CatType == 0)
+                {
+                    MessageBox.Show("未配置猫道");
+                    return;
+                }
+                // 自研
+                else if (GlobalData.Instance.da.GloConfig.CatType == 1)
+                {
+         
+                }
+                // 宝石
+                else if (GlobalData.Instance.da.GloConfig.CatType == 2)
+                {
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(BSCatMain.Instance);
+                }
+                // 宏达
+                else if (GlobalData.Instance.da.GloConfig.CatType == 3)
+                {
+                    
+                }
 
-                GlobalData.Instance.systemType = SystemType.HydraulicStation;
+                GlobalData.Instance.systemType = SystemType.CatRoad;
                 this.BottomColorSetting(this.bdCat, this.tbCat, this.bdHome);
             }
             catch (Exception ex)

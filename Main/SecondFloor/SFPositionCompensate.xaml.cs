@@ -45,7 +45,7 @@ namespace Main.SecondFloor
 
         List<TextBox> carCompensaList = new List<TextBox>();
         List<TextBox> rotateCompensaList = new List<TextBox>();
-        public Amination amination = new Amination();
+        public AminationNew aminationNew = new AminationNew();
         System.Threading.Timer timer;
         public SFPositionCompensate()
         {
@@ -121,7 +121,7 @@ namespace Main.SecondFloor
             rotateCompensaList.Add(RotatePosiCompensation30);
             rotateCompensaList.Add(RotatePosiCompensation31);
             rotateCompensaList.Add(RotatePosiCompensation32);
-            this.spAm.Children.Add(amination);
+            this.spAm.Children.Add(aminationNew);
             timer = new System.Threading.Timer(new TimerCallback(Timer_Elapsed), this, 2000, 100);//改成50ms 的时钟
             VariableBinding();
         }
@@ -132,7 +132,7 @@ namespace Main.SecondFloor
             {
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
-                    amination.LoadFingerBeamDrillPipe(SystemType.SecondFloor);
+                    aminationNew.LoadFingerBeamDrillPipe(SystemType.SecondFloor);
                 }));
             }
             catch (Exception ex)
@@ -143,7 +143,7 @@ namespace Main.SecondFloor
 
         private void SFPositionCompensate_Loaded(object sender, RoutedEventArgs e)
         {
-            amination.InitRowsColoms(SystemType.SecondFloor);
+            aminationNew.InitRowsColoms(SystemType.SecondFloor);
         }
 
         /// <summary>
@@ -182,7 +182,7 @@ namespace Main.SecondFloor
                         {
                             item.Visibility = Visibility.Visible;
                         }
-                        else if ((index <= (this.amination.RowsCnt + 1)) || (index > 17 && index <= (this.amination.RowsCnt + 17)))
+                        else if ((index <= (this.aminationNew.RowsCnt + 1)) || (index > 17 && index <= (this.aminationNew.RowsCnt + 17)))
                         {
                             item.Visibility = Visibility.Visible;
                         }
@@ -222,7 +222,7 @@ namespace Main.SecondFloor
                         {
                             item.Visibility = Visibility.Visible;
                         }
-                        else if ((index <= (this.amination.RowsCnt + 1)) || (index > 17 && index <= (this.amination.RowsCnt + 17)))
+                        else if ((index <= (this.aminationNew.RowsCnt + 1)) || (index > 17 && index <= (this.aminationNew.RowsCnt + 17)))
                         {
                             item.Visibility = Visibility.Visible;
                         }

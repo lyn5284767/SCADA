@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Main.SecondFloor"
              xmlns:cl="http://talonzeng.com/ControlLibrary"
              mc:Ignorable="d" 
-             d:DesignHeight="608" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="sfSecureSetting">
+             d:DesignHeight="608" d:DesignWidth="1024" Foreground="#525252" FontSize="14" FontFamily="微软雅黑" Background="#F5F6FA" Margin="1" Name="sfSecureSetting">
     <UserControl.Resources>
         <Style TargetType="Button" x:Key="btnGreen">
             <Setter Property="Background" Value="#fff"/>
@@ -49,24 +49,24 @@
             </Grid.ColumnDefinitions>
             <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Grid.Column="0" Margin="10">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="操作模式："/>
-                    <TextBlock Text="       " Name="opModel_SecuritySettingsPage"/>
+                    <TextBlock Text="操作模式：" FontSize="16"/>
+                    <TextBlock Text="       " Name="opModel_SecuritySettingsPage" FontSize="16"/>
                 </StackPanel>
             </Border>
             <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Grid.Column="1" Margin="10">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="工作模式："/>
-                    <TextBlock Text="       " Name="workModel_SecuritySettingsPage"/>
+                    <TextBlock Text="工作模式：" FontSize="16"/>
+                    <TextBlock Text="       " Name="workModel_SecuritySettingsPage" FontSize="16"/>
                 </StackPanel>
             </Border>
             <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Grid.Column="2" Margin="10">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="回转："/>
-                    <TextBlock Text="       " Name="rotateAngle_SecuritySettingsPage"/>
+                    <TextBlock Text="回转：" FontSize="16"/>
+                    <TextBlock Text="       " Name="rotateAngle_SecuritySettingsPage" FontSize="16"/>
                 </StackPanel>
             </Border>
             <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Grid.Column="3" Margin="10">
-                <cl:SymbolMapping StrContent="大钩标定状态" LampType="3" Height="35" Margin="10" Grid.Column="2" Name="HookStatus"/>
+                <cl:SymbolMapping StrContent="大钩标定状态" LampType="3" Height="35" Margin="10" Grid.Column="2" Name="HookStatus" FontSize="16"/>
             </Border>
         </Grid>
 
@@ -113,25 +113,25 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Grid.Row="0" Text="机械手大钩互锁角度" Margin="15" VerticalAlignment="Center"/>
-                    <TextBox Grid.Column="1" Grid.Row="0" Width="80" Text="0" Margin="15" IsReadOnly="True" TextAlignment="Center" Name="BigHookInterLockingAngleOfRobotShowValue"/>
-                    <TextBox PreviewMouseDown="tb_GotFocus" Grid.Column="2" Grid.Row="0" Width="80" Text="0" Margin="15" TextAlignment="Center" Name="BigHookInterLockingAngleOfRobotSettingValue"/>
-                    <Button Content="设置" Style="{StaticResource btnGreen}" Grid.Column="3" Grid.Row="0" Margin="15" Width="80" Click="btn_SetBigHookInterLockAngle_Click"/>
+                    <TextBlock Grid.Column="0" Grid.Row="0" Text="机械手大钩互锁角度" Margin="15" VerticalAlignment="Center" FontSize="16"/>
+                    <TextBox Grid.Column="1" Grid.Row="0" Width="80" Text="0" Margin="15" IsReadOnly="True" TextAlignment="Center" Name="BigHookInterLockingAngleOfRobotShowValue" FontSize="16"/>
+                    <TextBox PreviewMouseDown="tb_GotFocus" Grid.Column="2" Grid.Row="0" Width="80" Text="0" Margin="15" TextAlignment="Center" Name="BigHookInterLockingAngleOfRobotSettingValue" FontSize="16"/>
+                    <Button Content="设置" Style="{StaticResource btnGreen}" Grid.Column="3" Grid.Row="0" Margin="15" Width="80" Click="btn_SetBigHookInterLockAngle_Click" FontSize="16"/>
 
-                    <TextBlock Grid.Column="0" Grid.Row="1" Text="机械手顶驱互锁角度" Margin="15" VerticalAlignment="Center"/>
-                    <TextBox Grid.Column="1" Grid.Row="1" Width="80" Text="0" Margin="15" IsReadOnly="True" TextAlignment="Center" Name="ManipulatorTopDriveInterlockAngleShowValue"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1" Text="机械手顶驱互锁角度" Margin="15" VerticalAlignment="Center" FontSize="16"/>
+                    <TextBox Grid.Column="1" Grid.Row="1" Width="80" Text="0" Margin="15" IsReadOnly="True" TextAlignment="Center" Name="ManipulatorTopDriveInterlockAngleShowValue" FontSize="16"/>
                     <!--<TextBox Grid.Column="2" Grid.Row="0" Width="80" Text="0" Margin="15" TextAlignment="Center" Name="BigHookInterLockingAngleOfRobotSettingValue"/>-->
-                    <TextBox PreviewMouseDown="tb_GotFocus"  Grid.Column="2" Grid.Row="1" Width="80" Text="0" Margin="15" TextAlignment="Center" Name="ManipulatorTopDriveInterlockAngleSetValue"/>
-                    <Button Content="设置" Style="{StaticResource btnGreen}" Grid.Column="3" Grid.Row="1" Margin="15" Width="80" Click="btn_SetTopDriverInterlockAngle_Click"/>
+                    <TextBox PreviewMouseDown="tb_GotFocus"  Grid.Column="2" Grid.Row="1" Width="80" Text="0" Margin="15" TextAlignment="Center" Name="ManipulatorTopDriveInterlockAngleSetValue" FontSize="16"/>
+                    <Button Content="设置" Style="{StaticResource btnGreen}" Grid.Column="3" Grid.Row="1" Margin="15" Width="80" Click="btn_SetTopDriverInterlockAngle_Click" FontSize="16"/>
 
-                    <TextBlock Grid.Column="0" Grid.Row="2" Text="大钩高度显示值" Margin="15" VerticalAlignment="Center"/>
-                    <TextBox Grid.Column="1" Grid.Row="2" Width="80" Text="0" Margin="15" TextAlignment="Center" IsReadOnly="True" Name="BigHookHeightShowValue"/>
-                    <Button Content="设置" Style="{StaticResource btnGreen}" Grid.Column="3" Grid.Row="2" Margin="15" Width="80" Visibility="Hidden"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2" Text="大钩高度显示值" Margin="15" VerticalAlignment="Center" FontSize="16"/>
+                    <TextBox Grid.Column="1" Grid.Row="2" Width="80" Text="0" Margin="15" TextAlignment="Center" IsReadOnly="True" Name="BigHookHeightShowValue" FontSize="16"/>
+                    <Button Content="设置" Style="{StaticResource btnGreen}" Grid.Column="3" Grid.Row="2" Margin="15" Width="80" Visibility="Hidden" FontSize="16"/>
 
-                    <TextBlock Grid.Column="0" Grid.Row="3" Text="大钩高度标定值" Margin="15" VerticalAlignment="Center"/>
-                    <TextBox PreviewMouseDown="tb_GotFocus"  Grid.Column="1" Grid.Row="3" Width="80" Text="0" Margin="15" TextAlignment="Center" Name="BigHookHeightSetValue"/>
-                    <Button Content="标定" Style="{StaticResource btnGreen}" Grid.Column="2" Grid.Row="4" Margin="15" Width="80" Click="btn_BigHookHeight_Click"/>
-                    <Button Content="取消" Style="{StaticResource btnGreen}" Grid.Column="3" Grid.Row="4" Margin="15" Width="80" Click="btn_BigHookHeightCannel_Click"/>
+                    <TextBlock Grid.Column="0" Grid.Row="3" Text="大钩高度标定值" Margin="15" VerticalAlignment="Center" FontSize="16"/>
+                    <TextBox PreviewMouseDown="tb_GotFocus"  Grid.Column="1" Grid.Row="3" Width="80" Text="0" Margin="15" TextAlignment="Center" Name="BigHookHeightSetValue" FontSize="16"/>
+                    <Button Content="标定" Style="{StaticResource btnGreen}" Grid.Column="2" Grid.Row="4" Margin="15" Width="80" Click="btn_BigHookHeight_Click" FontSize="16"/>
+                    <Button Content="取消" Style="{StaticResource btnGreen}" Grid.Column="3" Grid.Row="4" Margin="15" Width="80" Click="btn_BigHookHeightCannel_Click" FontSize="16"/>
                 </Grid>
             </Border>
         </Grid>
