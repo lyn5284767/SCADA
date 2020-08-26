@@ -52,9 +52,9 @@ namespace Main.SIR
         {
             try
             {
-                //this.cbGapLock.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["506b5"], Mode = BindingMode.OneWay, Converter = new InterLockingConverter() });
-                //this.cbSafeDoorLock.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["506b5"], Mode = BindingMode.OneWay, Converter = new InterLockingConverter() });
-                //this.cbWellFendersLock.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["506b5"], Mode = BindingMode.OneWay, Converter = new InterLockingConverter() });
+                this.cbGapLock.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfGapLock"], Mode = BindingMode.OneWay });
+                this.cbSafeDoorLock.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfSafeDoorLock"], Mode = BindingMode.OneWay});
+                this.cbWellFendersLock.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfWellFendersLock"], Mode = BindingMode.OneWay });
 
             }
             catch (Exception ex)
