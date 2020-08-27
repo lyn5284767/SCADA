@@ -44,6 +44,7 @@ namespace Main.SIR
         public SIRSecureSetting()
         {
             InitializeComponent();
+            VariableBinding();
         }
         /// <summary>
         /// 绑定变量
@@ -52,9 +53,9 @@ namespace Main.SIR
         {
             try
             {
-                this.cbGapLock.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfGapLock"], Mode = BindingMode.OneWay });
-                this.cbSafeDoorLock.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfSafeDoorLock"], Mode = BindingMode.OneWay});
-                this.cbWellFendersLock.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfWellFendersLock"], Mode = BindingMode.OneWay });
+                this.cbGapLock.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfGapLock"], Mode = BindingMode.OneWay, Converter = new SIRSelfIsCheckConverter() });
+                this.cbSafeDoorLock.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfSafeDoorLock"], Mode = BindingMode.OneWay, Converter = new SIRSelfIsCheckConverter() });
+                this.cbWellFendersLock.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfWellFendersLock"], Mode = BindingMode.OneWay, Converter = new SIRSelfIsCheckConverter() });
 
             }
             catch (Exception ex)
@@ -63,75 +64,6 @@ namespace Main.SIR
             }
         }
 
-        private void BoxBigHookInterLockingOfRobot_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ManipulatorTopDriverInterlock_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ServoMotorOverloadLimit_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
-        private void InterlockOfManipulatorRopes_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
-        private void FingerBeamLockOpenConfirm_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ElevatorCloseSignShield_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ElevatorOpenLimitCancel_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
-        private void RobotInspectionMode_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CheckBoxRoteTurnZero_UserControlClicked(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tb_GotFocus(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-        private void btn_SetBigHookInterLockAngle_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btn_SetTopDriverInterlockAngle_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btn_BigHookHeight_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btn_BigHookHeightCannel_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
         /// <summary>
         /// 缺口互锁
         /// </summary>
@@ -149,7 +81,7 @@ namespace Main.SIR
                 MessageBoxResult result = MessageBox.Show("确认关闭缺口互锁？", "提示信息", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
-                    byteToSend = GlobalData.Instance.SendByte(new List<byte> { 21, 6, 2 });
+                    byteToSend = new byte[] { 23, 17, 7, 2, 0, 0, 0, 0, 0, 0 };
                 }
                 else
                 {
@@ -158,7 +90,7 @@ namespace Main.SIR
             }
             else
             {
-                byteToSend = GlobalData.Instance.SendByte(new List<byte> { 21, 6, 1 });
+                byteToSend = new byte[] { 23, 17, 7, 1, 0, 0, 0, 0, 0, 0 };
             }
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
@@ -179,7 +111,7 @@ namespace Main.SIR
                 MessageBoxResult result = MessageBox.Show("确认关闭安全门互锁？", "提示信息", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
-                    byteToSend = GlobalData.Instance.SendByte(new List<byte> { 21, 7, 2 });
+                    byteToSend = new byte[] { 23, 17, 8, 2, 0, 0, 0, 0, 0, 0 };
                 }
                 else
                 {
@@ -188,7 +120,7 @@ namespace Main.SIR
             }
             else
             {
-                byteToSend = GlobalData.Instance.SendByte(new List<byte> { 21, 7, 1 });
+                byteToSend = new byte[] { 23, 17, 8, 1, 0, 0, 0, 0, 0, 0 };
             }
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
@@ -199,7 +131,7 @@ namespace Main.SIR
         {
             byte[] byteToSend;
 
-            if (this.cbSafeDoorLock.IsChecked)
+            if (this.cbWellFendersLock.IsChecked)
             {
                 if (GlobalData.Instance.systemRole == SystemRole.OperMan)
                 {
@@ -209,7 +141,7 @@ namespace Main.SIR
                 MessageBoxResult result = MessageBox.Show("确认关闭井口防碰互锁？", "提示信息", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
-                    byteToSend = GlobalData.Instance.SendByte(new List<byte> { 21, 8, 2 });
+                    byteToSend = new byte[] { 23, 17, 9, 2, 0, 0, 0, 0, 0, 0 };
                 }
                 else
                 {
@@ -218,7 +150,7 @@ namespace Main.SIR
             }
             else
             {
-                byteToSend = GlobalData.Instance.SendByte(new List<byte> { 21, 8, 1 });
+                byteToSend = new byte[] { 23, 17, 9, 1, 0, 0, 0, 0, 0, 0 };
             }
             GlobalData.Instance.da.SendBytes(byteToSend);
         }

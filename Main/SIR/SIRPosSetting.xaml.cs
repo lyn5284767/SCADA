@@ -54,13 +54,13 @@ namespace Main.SIR
         {
             try
             {
-                this.twtL1.SetBinding(TextBlockWithBtn.ShowTxtProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["SIRSelfWellPosSet"], Mode = BindingMode.OneWay });
-                this.twtL2.SetBinding(TextBlockWithBtn.ShowTxtProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["SIRSelfMousePosSet"], Mode = BindingMode.OneWay });
-                this.twtL3.SetBinding(TextBlockWithBtn.ShowTxtProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfTopPosSet"], Mode = BindingMode.OneWay });
-                this.twtL4.SetBinding(TextBlockWithBtn.ShowTxtProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfStayPosSet"], Mode = BindingMode.OneWay });
-                this.twtL5.SetBinding(TextBlockWithBtn.ShowTxtProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfRecoveryPosSet"], Mode = BindingMode.OneWay });
-                this.twtL6.SetBinding(TextBlockWithBtn.ShowTxtProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfPipePosSet"], Mode = BindingMode.OneWay });
-                this.twtL7.SetBinding(TextBlockWithBtn.ShowTxtProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfAntiInterferePosSet"], Mode = BindingMode.OneWay });
+                this.twtL1.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["SIRSelfWellPosSet"], Mode = BindingMode.OneWay });
+                this.twtL2.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["SIRSelfMousePosSet"], Mode = BindingMode.OneWay });
+                this.twtL3.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfTopPosSet"], Mode = BindingMode.OneWay });
+                this.twtL4.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfStayPosSet"], Mode = BindingMode.OneWay });
+                this.twtL5.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfRecoveryPosSet"], Mode = BindingMode.OneWay });
+                this.twtL6.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfPipePosSet"], Mode = BindingMode.OneWay });
+                this.twtL7.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfAntiInterferePosSet"], Mode = BindingMode.OneWay });
             }
             catch (Exception ex)
             {

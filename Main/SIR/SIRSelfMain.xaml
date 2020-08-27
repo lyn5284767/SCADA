@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="700"/>
+                <ColumnDefinition Width="680"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Border Grid.Column="0" Style="{StaticResource BorderRegion}">
@@ -44,7 +44,7 @@
                             </Grid.ColumnDefinitions>
                             <cl:BasedSwitchButton Name="oprModel" ContentLeft="手动" ContentDown="操作模式" ContentRight="自动" UserControlClicked="btn_oprModel" Grid.Column="0" />
                             <cl:BasedSwitchButton Name="workModel" ContentLeft="上扣" ContentDown="工作模式" ContentRight="卸扣" UserControlClicked="btn_workModel" Grid.Column="1" />
-                            <cl:BasedSwitchButton Name="PipeTypeModel" ContentLeft="钻杆" ContentDown="钻具选择" ContentRight="套管" UserControlClicked="btn_controlModel" Grid.Column="2" />
+                            <cl:BasedSwitchButton Name="PipeTypeModel" ContentLeft="钻杆" ContentDown="钻具选择" ContentRight="套管" UserControlClicked="btn_PipeTypeModel" Grid.Column="2" />
                             <cl:BasedSwitchButton Name="locationModel" ContentLeft="井口" ContentDown="工位选择" ContentRight="鼠洞" UserControlClicked="btn_locationModel" Grid.Column="3" />
                             <StackPanel Grid.Column="4" VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" Height="40">
@@ -126,7 +126,7 @@
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="700"/>
+                <ColumnDefinition Width="680"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Border Grid.Column="0" Style="{StaticResource BorderRegion}">
@@ -246,45 +246,45 @@
                         <StackPanel Grid.Row="1">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,10,0,0">
                                 <TextBlock Text="手臂伸缩:" FontSize="22" Margin="20,0,0,0" Width="120" TextAlignment="Left"></TextBlock>
-                                <TextBlock Name="tbArmPos" Text="??" FontSize="22" Width="80"></TextBlock>
+                                <TextBlock Name="tbArmPos" Text="??" FontSize="22" Width="120"></TextBlock>
                                 <TextBlock Text="mm" FontSize="22"></TextBlock>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,10,0,0">
                                 <TextBlock Text="钳体升降:" FontSize="22" Margin="20,0,0,0" Width="120" TextAlignment="Left"></TextBlock>
-                                <TextBlock Name="tbClampHeight" Text="??" FontSize="22" Width="80"></TextBlock>
+                                <TextBlock Name="tbClampHeight" Text="??" FontSize="22" Width="120"></TextBlock>
                                 <TextBlock Text="mm" FontSize="22"></TextBlock>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,10,0,0">
                                 <TextBlock Text="工作缸压力:" FontSize="22" Margin="20,0,0,0" Width="120" TextAlignment="Left"></TextBlock>
-                                <TextBlock Name="tbWorkCylinderPress" Text="??" FontSize="22" Width="80"></TextBlock>
+                                <TextBlock Name="tbWorkCylinderPress" Text="??" FontSize="22" Width="120"></TextBlock>
                                 <TextBlock Text="Mpa" FontSize="22"></TextBlock>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,10,0,0">
                                 <TextBlock Text="制动缸压力:" FontSize="22" Margin="20,0,0,0" Width="120" TextAlignment="Left"></TextBlock>
-                                <TextBlock Name="tbBrakingCylinderPress" Text="??" FontSize="22" Width="80"></TextBlock>
+                                <TextBlock Name="tbBrakingCylinderPress" Text="??" FontSize="22" Width="120"></TextBlock>
                                 <TextBlock Text="Mpa" FontSize="22"></TextBlock>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,10,0,0">
                                 <TextBlock Text="上扣扭矩:" FontSize="22" Margin="20,0,0,0" Width="120" TextAlignment="Left"></TextBlock>
-                                <TextBlock Name="tbInButtonTorque" Text="??" FontSize="22" Width="80"></TextBlock>
+                                <TextBlock Name="tbInButtonTorque" Text="??" FontSize="22" Width="120"></TextBlock>
                                 <TextBlock Text="KN.m" FontSize="22"></TextBlock>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,10,0,0">
                                 <TextBlock Text="卸扣扭矩:" FontSize="22" Margin="20,0,0,0" Width="120" TextAlignment="Left"></TextBlock>
-                                <TextBlock Name="tbOutButtonTorque" Text="??" FontSize="22" Width="80"></TextBlock>
+                                <TextBlock Name="tbOutButtonTorque" Text="??" FontSize="22" Width="120"></TextBlock>
                                 <TextBlock Text="KN.m" FontSize="22"></TextBlock>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,10,0,0">
                                 <TextBlock Text="上扣圈数:" FontSize="22" Margin="20,0,0,0" Width="120" TextAlignment="Left"></TextBlock>
-                                <TextBlock Name="tbInButtonCircle" Text="??" FontSize="22" Width="80"></TextBlock>
+                                <TextBlock Name="tbInButtonCircle" Text="??" FontSize="22" Width="120"></TextBlock>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,10,0,0">
                                 <TextBlock Text="卸扣圈数:" FontSize="22" Margin="20,0,0,0" Width="120" TextAlignment="Left"></TextBlock>
-                                <TextBlock Name="tbOutButtonCircle" Text="??" FontSize="22" Width="80"></TextBlock>
+                                <TextBlock Name="tbOutButtonCircle" Text="??" FontSize="22" Width="120"></TextBlock>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,10,0,0">
                                 <TextBlock Text="运行时间:" FontSize="22" Margin="20,0,0,0" Width="120" TextAlignment="Left"></TextBlock>
-                                <TextBlock Name="tbWorkTime" Text="??" FontSize="22" Width="80"></TextBlock>
+                                <TextBlock Name="tbWorkTime" Text="??" FontSize="22" Width="120"></TextBlock>
                             </StackPanel>
                         </StackPanel>
                     </Grid>

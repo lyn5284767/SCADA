@@ -3483,6 +3483,10 @@ namespace COM.Common
             {
                 val = (short)value / 10.0;
             }
+            else if (value.GetType().Name == "Byte")
+            {
+                val = (byte)value / 10.0;
+            }
 
             return val;
         }
@@ -3800,23 +3804,11 @@ namespace COM.Common
             switch (bType)
             {
                 case 1:
-                    return "急停";
-                case 2:
-                    return "调试模式";
-                case 3:
-                    return "回零";
-                case 4:
                     return "手动";
-                case 5:
+                case 2:
                     return "自动";
-                case 6:
-                    return "回收";
-                case 7:
-                    return "运输";
-                case 8:
-                    return "实验";
-                case 9:
-                    return "补偿模式";
+                case 5:
+                    return "急停";
             }
 
             return "操作模式";
@@ -3830,23 +3822,23 @@ namespace COM.Common
     /// <summary>
     /// 自研铁钻工-操作模式选择
     /// </summary>
-    public class SIRSelfOperationModelIsCheckConverter : IValueConverter
+    public class SIRSelfIsCheckConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value == null)
             {
-                return true;
+                return false;
             }
 
             byte bType = (byte)value;
 
-            if (bType == 5)//5 是自动，4 是手动
+            if (bType == 1)
             {
-                return false;
+                return true;
             }
 
-            return true;
+            return false;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -3900,13 +3892,43 @@ namespace COM.Common
             byte bType = (byte)value;
             switch (bType)
             {
-                case 1:
+                case 109:
                     return "钻杆";
-                case 2:
+                case 99:
                     return "套管";
             }
 
             return "钻具选择";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 自研铁钻工-钻具选择
+    /// </summary>
+    public class SIRSelfPipeTypeIsCheckConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return false;
+            }
+
+            byte bType = (byte)value;
+            switch (bType)
+            {
+                case 109:
+                    return true;
+                case 99:
+                    return false;
+            }
+
+            return false;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -3937,6 +3959,33 @@ namespace COM.Common
             }
 
             return "工位选择";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    /// <summary>
+    /// 1-false;2-true
+    /// </summary>
+    public class SIRSelfTwoToCheckConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return false;
+            }
+
+            byte bType = (byte)value;
+
+            if (bType == 2)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
