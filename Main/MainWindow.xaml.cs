@@ -257,10 +257,13 @@ namespace Main
                 }
                 else if (GlobalData.Instance.systemType == SystemType.SIR)
                 {
-                    this.spMain.Children.Clear();
-                    this.spMain.Children.Add(SIRSecureSetting.Instance);
-                    this.BottomColorSetting(this.bdSIR, this.tbSIR, this.bdSecureSetting);
-                    return;
+                    if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANY)
+                    {
+                        this.spMain.Children.Clear();
+                        this.spMain.Children.Add(SIRSecureSetting.Instance);
+                        this.BottomColorSetting(this.bdSIR, this.tbSIR, this.bdSecureSetting);
+                        return;
+                    }
                 }
                 else if (GlobalData.Instance.systemType == SystemType.HydraulicStation)
                 {
@@ -322,10 +325,13 @@ namespace Main
                 }
                 else if (GlobalData.Instance.systemType == SystemType.SIR)
                 {
-                    this.spMain.Children.Clear();
-                    this.spMain.Children.Add(SIRSelfIO.Instance);
-                    this.BottomColorSetting(this.bdSIR, this.tbSIR, this.bdIO);
-                    return;
+                    if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANY)
+                    {
+                        this.spMain.Children.Clear();
+                        this.spMain.Children.Add(SIRSelfIO.Instance);
+                        this.BottomColorSetting(this.bdSIR, this.tbSIR, this.bdIO);
+                        return;
+                    }
                 }
                 else if (GlobalData.Instance.systemType == SystemType.HydraulicStation)
                 {
@@ -371,9 +377,12 @@ namespace Main
                 }
                 else if (GlobalData.Instance.systemType == SystemType.HydraulicStation)
                 {
-                    this.spMain.Children.Clear();
-                    this.spMain.Children.Add(HSSetting.Instance);
-                    this.BottomColorSetting(this.bdHS, this.tbHS, this.bdDrillSetting);
+                    if (GlobalData.Instance.da.GloConfig.HydType == 1)
+                    {
+                        this.spMain.Children.Clear();
+                        this.spMain.Children.Add(HSSetting.Instance);
+                        this.BottomColorSetting(this.bdHS, this.tbHS, this.bdDrillSetting);
+                    }
                 }
             }
             catch (Exception ex)
@@ -411,9 +420,12 @@ namespace Main
                 }
                 else if (GlobalData.Instance.systemType == SystemType.HydraulicStation)
                 {
-                    this.spMain.Children.Clear();
-                    this.spMain.Children.Add(HSDeviceStatus.Instance);
-                    this.BottomColorSetting(this.bdHS, this.tbHS, this.bdDeviceStatus);
+                    if (GlobalData.Instance.da.GloConfig.HydType == 1)
+                    {
+                        this.spMain.Children.Clear();
+                        this.spMain.Children.Add(HSDeviceStatus.Instance);
+                        this.BottomColorSetting(this.bdHS, this.tbHS, this.bdDeviceStatus);
+                    }
                 }
             }
             catch (Exception ex)
@@ -485,10 +497,13 @@ namespace Main
                 }
                 else if (GlobalData.Instance.systemType == SystemType.SIR)
                 {
-                    this.spMain.Children.Clear();
-                    this.spMain.Children.Add(SIRParam.Instance);
-                    this.BottomColorSetting(this.bdSIR, this.tbSIR, this.bdOther);
-                    return;
+                    if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANY)
+                    {
+                        this.spMain.Children.Clear();
+                        this.spMain.Children.Add(SIRParam.Instance);
+                        this.BottomColorSetting(this.bdSIR, this.tbSIR, this.bdOther);
+                        return;
+                    }
                 }
                 else if (GlobalData.Instance.systemType == SystemType.HydraulicStation)
                 {
@@ -549,10 +564,13 @@ namespace Main
                 }
                 else if (GlobalData.Instance.systemType == SystemType.SIR)
                 {
-                    this.spMain.Children.Clear();
-                    this.spMain.Children.Add(SIRPosSetting.Instance);
-                    this.BottomColorSetting(this.bdSIR, this.tbSIR, this.bdOther);
-                    return;
+                    if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANY)
+                    {
+                        this.spMain.Children.Clear();
+                        this.spMain.Children.Add(SIRPosSetting.Instance);
+                        this.BottomColorSetting(this.bdSIR, this.tbSIR, this.bdOther);
+                        return;
+                    }
                 }
                 else if (GlobalData.Instance.systemType == SystemType.HydraulicStation)
                 {
@@ -624,7 +642,9 @@ namespace Main
                 MessageBox.Show(ex.StackTrace);
             }
         }
-
+        /// <summary>
+        /// 纪录查询
+        /// </summary>
         private void Record_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -647,9 +667,12 @@ namespace Main
                 }
                 else if (GlobalData.Instance.systemType == SystemType.HydraulicStation)
                 {
-                    this.spMain.Children.Clear();
-                    this.spMain.Children.Add(HSAlarm.Instance);
-                    this.BottomColorSetting(this.bdHS, this.tbHS, this.bdOther);
+                    if (GlobalData.Instance.da.GloConfig.HydType == 1)// 自研液压站
+                    {
+                        this.spMain.Children.Clear();
+                        this.spMain.Children.Add(HSAlarm.Instance);
+                        this.BottomColorSetting(this.bdHS, this.tbHS, this.bdOther);
+                    }
                 }
             }
             catch (Exception ex)

@@ -656,5 +656,6 @@ namespace Main.SIR
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         #endregion
+
     }
 }
