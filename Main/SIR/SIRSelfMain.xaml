@@ -137,20 +137,6 @@
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="50"/>
                         </Grid.RowDefinitions>
-                        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Visibility="Collapsed">
-                            <TextBlock Text="卸&#x0a;扣" Grid.Row="1" Foreground="#E02740" FontSize="18" TextAlignment="Center" FontWeight="Bold"></TextBlock>
-                            <hc:StepBar Width="620" FontSize="10" Name="sbOutButton" Grid.Row="0">
-                                <hc:StepBarItem Content="卸扣启动"/>
-                                <hc:StepBarItem Content="鼠洞定位"/>
-                                <hc:StepBarItem Content="钳体伸出"/>
-                                <hc:StepBarItem Content="卸扣确认"/>
-                                <hc:StepBarItem Content="大钳冲扣"/>
-                                <hc:StepBarItem Content="快速卸扣"/>
-                                <hc:StepBarItem Content="钳口对缺"/>
-                                <hc:StepBarItem Content="钳体回应"/>
-                                <hc:StepBarItem Content="卸扣结束"/>
-                            </hc:StepBar>
-                        </StackPanel>
                         <Grid Grid.Row="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="15*"/>
@@ -216,8 +202,8 @@
                             </Grid>-->
                         </Grid>
                         <TextBlock Text="操作提示" Grid.Row="1" Foreground="#E02740" FontSize="30" TextAlignment="Center" FontWeight="Bold"></TextBlock>
-                        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="上&#x0a;扣" Grid.Row="1" Foreground="#E02740" FontSize="18" TextAlignment="Center" FontWeight="Bold"></TextBlock>
+                        <StackPanel Name="spOneKeyInbutton" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Visibility="Visible">
+                            <TextBlock Text="上&#x0a;扣" Name="txbOneKeyInButton" Grid.Row="1" Foreground="#E02740" FontSize="18" TextAlignment="Center" FontWeight="Bold"></TextBlock>
                             <hc:StepBar Width="620" FontSize="10" Name="sbInButton">
                                 <hc:StepBarItem Content="上扣启动"/>
                                 <hc:StepBarItem Content="鼠洞定位"/>
@@ -228,6 +214,20 @@
                                 <hc:StepBarItem Content="钳口对缺"/>
                                 <hc:StepBarItem Content="钳体回应"/>
                                 <hc:StepBarItem Content="上扣结束"/>
+                            </hc:StepBar>
+                        </StackPanel>
+                        <StackPanel Name="spOneKeyOutButton" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Visibility="Collapsed">
+                            <TextBlock Text="卸&#x0a;扣" Grid.Row="1" Foreground="#E02740" FontSize="18" TextAlignment="Center" FontWeight="Bold"></TextBlock>
+                            <hc:StepBar Width="620" FontSize="10" Name="sbOutButton" Grid.Row="0">
+                                <hc:StepBarItem Content="卸扣启动"/>
+                                <hc:StepBarItem Content="鼠洞定位"/>
+                                <hc:StepBarItem Content="钳体伸出"/>
+                                <hc:StepBarItem Content="卸扣确认"/>
+                                <hc:StepBarItem Content="大钳冲扣"/>
+                                <hc:StepBarItem Content="快速卸扣"/>
+                                <hc:StepBarItem Content="钳口对缺"/>
+                                <hc:StepBarItem Content="钳体回应"/>
+                                <hc:StepBarItem Content="卸扣结束"/>
                             </hc:StepBar>
                         </StackPanel>
                     </Grid>

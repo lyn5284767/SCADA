@@ -45,15 +45,15 @@ namespace Main
         }
 
         private string configPath = System.Environment.CurrentDirectory + @"\Config.ini";
-        private bool bLoaded = false;
+        //private bool bLoaded = false;
         const int STRINGMAX = 255;
         #region 二层台参数
         private int rows;//行数
         private int coloms;//列数 
         private int drillCnt;//钻铤的个数
         private int space = 45; // 间距
-        private int firstRowHeight = 25;// 第一行高度
-        private int rowHeight = 20; // 每行高度
+        //private int firstRowHeight = 25;// 第一行高度
+        //private int rowHeight = 20; // 每行高度
         List<DrillModel> FingerBeamDrillPipeCountList = new List<DrillModel>();// 各个指梁所拥有的钻杆数目
         private int carMaxPosistion = 0;
         private int carMinPosistion = 0;
@@ -228,8 +228,8 @@ namespace Main
 
         #region 钻台面参数
         List<DrillModel> drDrillCountList = new List<DrillModel>();// 各个指梁所拥有的钻杆数目
-        private int drFirstHeight = 25;// 第一行高度
-        private int drHeight = 20; // 每行高度
+        //private int drFirstHeight = 25;// 第一行高度
+        //private int drHeight = 20; // 每行高度
         private int drSpace = 45; // 间距
         private int drcarMaxPosistion = 0;
         private int drcarMinPosistion = 0;

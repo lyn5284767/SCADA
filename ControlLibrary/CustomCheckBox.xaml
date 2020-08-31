@@ -17,7 +17,7 @@
                                     <ColumnDefinition Width="20"/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock x:Name="rightText" Grid.Column="1" HorizontalAlignment="Left"  TextAlignment="Left" Text="{Binding Path=ContentString, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type UserControl}}}"  FontSize="16" FontWeight="Bold" Margin="5,2,2,0" FontFamily="微软雅黑"/>
+                                <TextBlock x:Name="rightText" Grid.Column="1" HorizontalAlignment="Left"  TextAlignment="Left" Text="{Binding Path=ContentString, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type UserControl}}}"  FontSize="20" FontWeight="Bold" Margin="5,2,2,0" Foreground="#525252"/>
                                 <Image Grid.Column="0" Width="20" HorizontalAlignment="Left">
                                     <Image.Style>
                                         <Style TargetType="{x:Type Image}">

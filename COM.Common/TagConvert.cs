@@ -3514,9 +3514,9 @@ namespace COM.Common
             if (max < 100) max = 100;
             double levelOne = (max - min) / 3;
             double levelTwo = ((max - min) / 3) * 2;
-            if (val < levelOne) return (Brush)bc.ConvertFrom("#70B603");
+            if (val < levelOne) return (Brush)bc.ConvertFrom("#2968DC");
             else if (val < levelTwo) return (Brush)bc.ConvertFrom("#FFC464");
-            else return (Brush)bc.ConvertFrom("#FF7C96");
+            else return (Brush)bc.ConvertFrom("#FF0000");
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
@@ -3605,7 +3605,29 @@ namespace COM.Common
             bool val = (bool)value;
             if(val) return (Brush)bc.ConvertFrom("#326CF3");
             else return (Brush)bc.ConvertFrom("#FFFFFF");
+        }
 
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    /// <summary>
+    /// 上扣模式
+    /// </summary>
+    public class InButtonModelCoverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == DependencyProperty.UnsetValue || value == null)
+            {
+                return "上扣模式选择:未知";
+            }
+            byte val = (byte)value;
+            if (val ==0) return "上扣模式选择:全自动";
+            else if(val == 1) return "上扣模式选择:高速";
+            else if (val == 2) return "上扣模式选择:低速";
+            else return "上扣模式选择:未知";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

@@ -44,7 +44,7 @@ namespace Main
             }
         }
         private string configPath = System.Environment.CurrentDirectory + @"\Config.ini";
-        private bool bLoaded = false;
+        //private bool bLoaded = false;
         const int STRINGMAX = 255;
         #region 二层台参数
         private int rows;//行数

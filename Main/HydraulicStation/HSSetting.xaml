@@ -173,19 +173,27 @@
                             </Grid.RowDefinitions>
                             <StackPanel Grid.Column="0" Grid.Row="0" VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Button Name="btnLeftCatHeadRetract" FontSize="18" Width="50" Height="50" Click="BtnLeftCatRetract_Click">缩</Button>
+                                    <Button Name="btnLeftCatHeadRetract" FontSize="18" Width="50" Height="50" MouseUp="btnLeftCatHeadRetract_MouseUp" Click="BtnLeftCatRetract_Click">缩</Button>
                                     <Button Name="btnLeftCatHeadClose"  FontSize="18" Width="50" Height="50" Click="BtnLeftCatClose_Click">关</Button>
-                                    <Button Name="btnLeftCatHeadReach" FontSize="18" Width="50" Height="50" Click="BtnLeftCatReach_Click">伸</Button>
+                                    <Button Name="btnLeftCatHeadReach" FontSize="18" Width="50" Height="50" MouseUp="btnLeftCatHeadReach_MouseUp" Click="BtnLeftCatReach_Click">伸</Button>
                                 </StackPanel>
-                                <TextBlock FontSize="18" Text="左猫头" HorizontalAlignment="Center"></TextBlock>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <TextBlock FontSize="18" Text="左猫头:"></TextBlock>
+                                    <TextBlock Name="tbLeftCatHead" FontSize="18" Width="60" Text="8888.8"></TextBlock>
+                                    <TextBlock FontSize="18" Text="Mpa"></TextBlock>
+                                </StackPanel>
                             </StackPanel>
                             <StackPanel Grid.Column="1" Grid.Row="0" VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Button Name="btnRightCatHeadRetract" FontSize="18" Width="50" Height="50" Click="BtnRightCatRetract_Click">缩</Button>
+                                    <Button Name="btnRightCatHeadRetract" FontSize="18" Width="50" Height="50" MouseUp="btnRightCatHeadRetract_MouseUp" Click="BtnRightCatRetract_Click">缩</Button>
                                     <Button Name="btnRightCatHeadClose" FontSize="18" Width="50" Height="50" Click="BtnRightCatClose_Click">关</Button>
-                                    <Button Name="btnRightCatHeadReach" FontSize="18" Width="50" Height="50" Click="BtnRightCatReach_Click">伸</Button>
+                                    <Button Name="btnRightCatHeadReach" FontSize="18" Width="50" Height="50" MouseUp="btnRightCatHeadReach_MouseUp" Click="BtnRightCatReach_Click">伸</Button>
                                 </StackPanel>
-                                <TextBlock FontSize="18" Text="右猫头" HorizontalAlignment="Center"></TextBlock>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <TextBlock FontSize="18" Text="右猫头:"></TextBlock>
+                                    <TextBlock Name="tbRightCatHead" FontSize="18" Width="60" Text="8888.8"></TextBlock>
+                                    <TextBlock FontSize="18" Text="Mpa"></TextBlock>
+                                </StackPanel>
                             </StackPanel>
                             <StackPanel Grid.Column="0" Grid.Row="1" VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
@@ -193,7 +201,11 @@
                                     <Button Name="btnIronClose" FontSize="18" Width="80" Height="50" Click="BtnIronClose_Click">关闭</Button>
                                     <Button Name="btnTong" FontSize="18" Width="80" Height="50" Click="BtnTong_Click">大钳</Button>
                                 </StackPanel>
-                                <TextBlock FontSize="18" Text="铁钻工/大钳" HorizontalAlignment="Center"></TextBlock>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <TextBlock FontSize="18" Text="铁钻工/大钳:"></TextBlock>
+                                    <TextBlock Name="tbIronTongs" FontSize="18" Width="60" Text="8888.8"></TextBlock>
+                                    <TextBlock FontSize="18" Text="Mpa"></TextBlock>
+                                </StackPanel>
                             </StackPanel>
                             <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
@@ -201,7 +213,11 @@
                                     <Button Name="btnDFClose" FontSize="18" Width="80" Height="50" Click="BtnDFClose_Click">关闭</Button>
                                     <Button Name="btnSpaceThree" FontSize="18" Width="80" Height="50" Click="BtnSpaceThree_Click">备用3</Button>
                                 </StackPanel>
-                                <TextBlock FontSize="18" Text="钻台面/备用3" HorizontalAlignment="Center"></TextBlock>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <TextBlock FontSize="18" Text="钻台面/备用3:"></TextBlock>
+                                    <TextBlock Name="tbDFSpThree" FontSize="18" Width="60" Text="8888.8"></TextBlock>
+                                    <TextBlock FontSize="18" Text="Mpa"></TextBlock>
+                                </StackPanel>
                             </StackPanel>
                             <StackPanel Grid.Column="0" Grid.Row="2" VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">

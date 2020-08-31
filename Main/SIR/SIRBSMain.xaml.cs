@@ -77,64 +77,112 @@ namespace Main.SIR
                 this.tbInButtonTorqueSet.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["BSSIRInButtonTorqueSet"], Mode = BindingMode.OneWay });
                 this.tbReachOrRetractDis.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["BSSIRReachOrRetractDis"], Mode = BindingMode.OneWay });
                 this.tbRotateAngle.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["BSSIRRotateAngle"], Mode = BindingMode.OneWay });
-                this.tbInButtonTime.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["BSSIRInButtonTime"], Mode = BindingMode.OneWay });
-                this.tbOutButtonTime.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["BSSIROutButtonTime"], Mode = BindingMode.OneWay });
+                //this.tbInButtonTime.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["BSSIRInButtonTime"], Mode = BindingMode.OneWay });
+                //this.tbOutButtonTime.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["BSSIROutButtonTime"], Mode = BindingMode.OneWay });
+                this.tbInButtonTimeSetValue.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["BSSIRInButtonTime"], Mode = BindingMode.OneWay });
+                this.tbOutButtonTimeSetValue.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["BSSIROutButtonTime"], Mode = BindingMode.OneWay });
+                this.tbInButtonTimesShow.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["BSSIROutButtonTimes"], Mode = BindingMode.OneWay });
                 #endregion
 
-                #region 右手柄信息
-                this.tbHandleX.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["RgihtHandLeftOrRight"], Mode = BindingMode.OneWay });
-                this.tbHandleY.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["RgihtHandFrontOrBehind"], Mode = BindingMode.OneWay });
-                this.smL.SetBinding(SymbolMappingV.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["518b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
-                this.smR.SetBinding(SymbolMappingV.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["518b1"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
-                this.smQ.SetBinding(SymbolMappingV.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["518b2"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
-                this.smB.SetBinding(SymbolMappingV.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["518b3"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
-                this.smEnable.SetBinding(SymbolMappingV.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["517b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
-                //7.28 修改
-                ArrowDirectionMultiConverter arrowDirectionMultiConverter = new ArrowDirectionMultiConverter();
-                MultiBinding ArrowMultiBind = new MultiBinding();
-                ArrowMultiBind.Converter = arrowDirectionMultiConverter;
-                ArrowMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["517b4"], Mode = BindingMode.OneWay });
-                ArrowMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["517b5"], Mode = BindingMode.OneWay });
-                ArrowMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["517b2"], Mode = BindingMode.OneWay });
-                ArrowMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["517b3"], Mode = BindingMode.OneWay });
-                ArrowMultiBind.NotifyOnSourceUpdated = true;
-                this.Arrow_EquiptStatus.SetBinding(Image.SourceProperty, ArrowMultiBind);
+                #region 右手柄信息 弃用
+                //this.tbHandleX.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["RgihtHandLeftOrRight"], Mode = BindingMode.OneWay });
+                //this.tbHandleY.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["RgihtHandFrontOrBehind"], Mode = BindingMode.OneWay });
+                //this.smL.SetBinding(SymbolMappingV.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["518b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                //this.smR.SetBinding(SymbolMappingV.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["518b1"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                //this.smQ.SetBinding(SymbolMappingV.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["518b2"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                //this.smB.SetBinding(SymbolMappingV.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["518b3"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                //this.smEnable.SetBinding(SymbolMappingV.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["517b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                ////7.28 修改
+                //ArrowDirectionMultiConverter arrowDirectionMultiConverter = new ArrowDirectionMultiConverter();
+                //MultiBinding ArrowMultiBind = new MultiBinding();
+                //ArrowMultiBind.Converter = arrowDirectionMultiConverter;
+                //ArrowMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["517b4"], Mode = BindingMode.OneWay });
+                //ArrowMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["517b5"], Mode = BindingMode.OneWay });
+                //ArrowMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["517b2"], Mode = BindingMode.OneWay });
+                //ArrowMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["517b3"], Mode = BindingMode.OneWay });
+                //ArrowMultiBind.NotifyOnSourceUpdated = true;
+                //this.Arrow_EquiptStatus.SetBinding(Image.SourceProperty, ArrowMultiBind);
 
+                //this.smCloseButton.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b3"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                //this.smOpenButton.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b4"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                //this.smUp.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b5"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                //this.smDown.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b6"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                #endregion
+
+                #region 状态反馈
+                this.smStop.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["804b7"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
                 this.smPressSenorError.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["804b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
                 this.smRetractOrReachSenorError.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["804b1"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
                 this.smSwitchError.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["804b2"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
                 this.smEncoderError.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["804b3"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
                 this.smGetOil.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["804b6"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
                 this.smRightHandleActive.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["504b2"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
-                this.smCloseButton.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b3"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
-                this.smOpenButton.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b4"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
-                this.smUp.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b5"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
-                this.smDown.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b6"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                #endregion
+
+                #region 动作选择
+                this.cbTorqueMemory.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["535b0"], Mode = BindingMode.OneWay });
+                this.cbTongsReset.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["535b1"], Mode = BindingMode.OneWay });
+                this.cbRotateBtnClose.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["535b2"], Mode = BindingMode.OneWay });
+                this.cbRotateBtnOpen.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["535b3"], Mode = BindingMode.OneWay });
+                this.cbUpBtnClose.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["535b6"], Mode = BindingMode.OneWay });
+                this.cbUpBtnOpen.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["535b7"], Mode = BindingMode.OneWay });
+                this.cbDownBtnClose.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["536b0"], Mode = BindingMode.OneWay });
+                this.cbDownBtnOpen.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["536b1"], Mode = BindingMode.OneWay });
+                this.cbWellSet.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["536b2"], Mode = BindingMode.OneWay });
+                this.cbMouseSet.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["536b3"], Mode = BindingMode.OneWay });
+                this.cbStaySet.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["536b4"], Mode = BindingMode.OneWay });
+
                 #endregion
 
                 #region 操作选择
                 this.btnDrillerOpr.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["804b5"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
                 this.btnStart.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b7"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.btnInButtonModel.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b5"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.btnButtonMemory.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b7"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnInbuttonModel.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b5"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnInbuttonModel.SetBinding(Button.ContentProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["BSSIRInButtonModel"], Mode = BindingMode.OneWay, Converter = new InButtonModelCoverter() });
+                this.btnAutoInButton.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b3"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnAutoOutButton.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b4"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnAutoToWell.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b0"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnAutoToMouse.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b1"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnAutoBack.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b2"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnAutoToStay.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["802b1"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+
+                //this.btnInButtonModel.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b5"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnButtonMemory.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b7"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
                 #endregion
 
                 #region 钳头动作
-                this.btnNipperReset.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b6"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.btnRoteNipperClamp.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["802b2"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.btnRoteNipperRelease.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["802b3"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.btnUpNipperClamp.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["802b5"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.btnUpNipperRelease.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["802b6"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.btnDownNipperClamp.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["802b7"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.btnDownNipperRelease.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b0"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnNipperReset.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b6"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnRoteNipperClamp.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["802b2"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnRoteNipperRelease.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["802b3"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnUpNipperClamp.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["802b5"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnUpNipperRelease.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["802b6"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnDownNipperClamp.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["802b7"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnDownNipperRelease.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b0"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
                 #endregion
 
-                #region 自动模式
-                this.btnAutoInNipper.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b3"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.btnAutoOutNipper.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b4"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.btnGotoWell.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b0"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.btnGotoMouse.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b1"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.btnBack.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b2"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                #region 自动模式 弃用
+                //this.btnAutoInNipper.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b3"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnAutoOutNipper.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b4"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnGotoWell.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b0"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnGotoMouse.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b1"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnBack.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b2"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                #endregion
+
+                #region 当前动作
+                this.btnTorqueMemory.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b7"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnTongsReset.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b6"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnRotateBtnClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["802b2"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnRotateBtnOpen.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["802b3"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnUpBtnClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["802b5"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnUpBtnOpen.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["802b6"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnDownBtnClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["802b7"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnDownBtnOpen.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b0"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnInBtn.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b4"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnOutBtn.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b3"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnRotateIn.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b1"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnRotateOut.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b2"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnUp.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b5"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnDown.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b6"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
                 #endregion
 
             }
@@ -238,6 +286,54 @@ namespace Main.SIR
         private void BtnButtonMemory_Click(object sender, RoutedEventArgs e)
         {
             byte[] data = new byte[10] { 80, 16, 1, 17, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(data);
+        }
+        /// <summary>
+        /// 自动上扣
+        /// </summary>
+        private void BtnAutoInButton_Click(object sender, RoutedEventArgs e)
+        {
+            byte[] data = new byte[10] { 80, 16, 1, 4, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(data);
+        }
+        /// <summary>
+        /// 自动卸扣
+        /// </summary>
+        private void BtnAutoOutButton_Click(object sender, RoutedEventArgs e)
+        {
+            byte[] data = new byte[10] { 80, 16, 1, 5, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(data);
+        }
+        /// <summary>
+        /// 自动去井口
+        /// </summary>
+        private void BtnAutoToWell_Click(object sender, RoutedEventArgs e)
+        {
+            byte[] data = new byte[10] { 80, 16, 1, 1, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(data);
+        }
+        /// <summary>
+        /// 自动去鼠洞
+        /// </summary>
+        private void BtnAutoToMouse_Click(object sender, RoutedEventArgs e)
+        {
+            byte[] data = new byte[10] { 80, 16, 1, 2, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(data);
+        }
+        /// <summary>
+        /// 自动返回
+        /// </summary>
+        private void BtnAutoBack_Click(object sender, RoutedEventArgs e)
+        {
+            byte[] data = new byte[10] { 80, 16, 1, 3, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(data);
+        }
+        /// <summary>
+        /// 自动去待命位
+        /// </summary>
+        private void BtnAutoToStay_Click(object sender, RoutedEventArgs e)
+        {
+            byte[] data = new byte[10] { 80, 16, 1, 10, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(data);
         }
         #endregion
@@ -368,6 +464,196 @@ namespace Main.SIR
         {
             byte[] data = new byte[10] { 80, 16, 1, 20, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(data);
+        }
+        #endregion
+
+        #region 动作选择
+        /// <summary>
+        /// 扭矩记忆
+        /// </summary>
+        private void cbTorqueMemory_Clicked(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+
+            if (this.cbTorqueMemory.IsChecked)
+            {
+                byteToSend = new byte[10] { 80, 16, 1, 23, 0, 0, 0, 0, 0, 0 };
+            }
+            else
+            {
+                byteToSend = new byte[10] { 80, 16, 1, 21, 1, 0, 0, 0, 0, 0 };
+            }
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 钳头复位
+        /// </summary>
+        private void cbTongsReset_Clicked(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+
+            if (this.cbTongsReset.IsChecked)
+            {
+                byteToSend = new byte[10] { 80, 16, 1, 23, 0, 0, 0, 0, 0, 0 };
+            }
+            else
+            {
+                byteToSend = new byte[10] { 80, 16, 1, 21, 2, 0, 0, 0, 0, 0 };
+            }
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 旋扣钳夹紧
+        /// </summary>
+        private void cbRotateBtnClose_Clicked(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+
+            if (this.cbRotateBtnClose.IsChecked)
+            {
+                byteToSend = new byte[10] { 80, 16, 1, 23, 0, 0, 0, 0, 0, 0 };
+            }
+            else
+            {
+                byteToSend = new byte[10] { 80, 16, 1, 21, 4, 0, 0, 0, 0, 0 };
+            }
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 旋扣钳松开
+        /// </summary>
+        private void cbRotateBtnOpen_Clicked(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+
+            if (this.cbRotateBtnOpen.IsChecked)
+            {
+                byteToSend = new byte[10] { 80, 16, 1, 23, 0, 0, 0, 0, 0, 0 };
+            }
+            else
+            {
+                byteToSend = new byte[10] { 80, 16, 1, 21, 6, 0, 0, 0, 0, 0 };
+            }
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 上钳夹紧
+        /// </summary>
+        private void cbUpBtnClose_Clicked(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+
+            if (this.cbUpBtnClose.IsChecked)
+            {
+                byteToSend = new byte[10] { 80, 16, 1, 23, 0, 0, 0, 0, 0, 0 };
+            }
+            else
+            {
+                byteToSend = new byte[10] { 80, 16, 1, 21, 64, 0, 0, 0, 0, 0 };
+            }
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 上钳松开
+        /// </summary>
+        private void cbUpBtnOpen_Clicked(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+
+            if (this.cbUpBtnOpen.IsChecked)
+            {
+                byteToSend = new byte[10] { 80, 16, 1, 23, 0, 0, 0, 0, 0, 0 };
+            }
+            else
+            {
+                byteToSend = new byte[10] { 80, 16, 1, 21, 128, 0, 0, 0, 0, 0 };
+            }
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 下钳夹紧
+        /// </summary>
+        private void cbDownBtnClose_Clicked(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+
+            if (this.cbUpBtnOpen.IsChecked)
+            {
+                byteToSend = new byte[10] { 80, 16, 1, 23, 0, 0, 0, 0, 0, 0 };
+            }
+            else
+            {
+                byteToSend = new byte[10] { 80, 16, 1, 22, 1, 0, 0, 0, 0, 0 };
+            }
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 下钳松开
+        /// </summary>
+        private void cbDownBtnOpen_Clicked(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+
+            if (this.cbUpBtnOpen.IsChecked)
+            {
+                byteToSend = new byte[10] { 80, 16, 1, 23, 0, 0, 0, 0, 0, 0 };
+            }
+            else
+            {
+                byteToSend = new byte[10] { 80, 16, 1, 22, 2, 0, 0, 0, 0, 0 };
+            }
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 井口标定
+        /// </summary>
+        private void cbWellSet_Clicked(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+
+            if (this.cbUpBtnOpen.IsChecked)
+            {
+                byteToSend = new byte[10] { 80, 16, 1, 23, 0, 0, 0, 0, 0, 0 };
+            }
+            else
+            {
+                byteToSend = new byte[10] { 80, 16, 1, 22, 4, 0, 0, 0, 0, 0 };
+            }
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 鼠洞标定
+        /// </summary>
+        private void cbMouseSet_Clicked(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+
+            if (this.cbUpBtnOpen.IsChecked)
+            {
+                byteToSend = new byte[10] { 80, 16, 1, 23, 0, 0, 0, 0, 0, 0 };
+            }
+            else
+            {
+                byteToSend = new byte[10] { 80, 16, 1, 22, 8, 0, 0, 0, 0, 0 };
+            }
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 待命标定
+        /// </summary>
+        private void cbStaySet_Clicked(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+
+            if (this.cbUpBtnOpen.IsChecked)
+            {
+                byteToSend = new byte[10] { 80, 16, 1, 23, 0, 0, 0, 0, 0, 0 };
+            }
+            else
+            {
+                byteToSend = new byte[10] { 80, 16, 1, 22, 16, 0, 0, 0, 0, 0 };
+            }
+            GlobalData.Instance.da.SendBytes(byteToSend);
         }
         #endregion
     }

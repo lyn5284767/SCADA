@@ -55,7 +55,14 @@ namespace Main.HydraulicStation
         private void VariableBinding()
         {
             try
-            { 
+            {
+                #region 处理与mouse与click事件冲突
+                btnLeftCatHeadReach.AddHandler(Button.MouseUpEvent, new RoutedEventHandler(btnLeftCatHeadReach_MouseUp), true);
+                btnLeftCatHeadRetract.AddHandler(Button.MouseUpEvent, new RoutedEventHandler(btnLeftCatHeadRetract_MouseUp), true);
+                btnRightCatHeadReach.AddHandler(Button.MouseUpEvent, new RoutedEventHandler(btnRightCatHeadReach_MouseUp), true);
+                btnRightCatHeadRetract.AddHandler(Button.MouseUpEvent, new RoutedEventHandler(btnRightCatHeadRetract_MouseUp), true);
+                #endregion
+
                 this.controlModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["771b5"], Mode = BindingMode.OneWay});
                 this.MainPumpOne.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["770b3"], Mode = BindingMode.OneWay });
                 this.MainPumpTwo.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["770b5"], Mode = BindingMode.OneWay });
@@ -120,6 +127,12 @@ namespace Main.HydraulicStation
                 this.btnFilterReplace.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["775b4"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
                 this.btnOilReplace.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["775b5"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
                 this.btnOilLeakage.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["775b6"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+            
+                this.tbLeftCatHead.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["CatPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                this.tbRightCatHead.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["CatPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                this.tbIronTongs.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IRPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                this.tbDFSpThree.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["FPPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+
             }
             catch (Exception ex)
             {
@@ -386,7 +399,15 @@ namespace Main.HydraulicStation
         /// </summary>
         private void BtnLeftCatReach_Click(object sender, RoutedEventArgs e)
         {
-            byte[] byteToSend = new byte[10] { 0, 19, 4, 3, 0, 0, 0, 0, 0, 0 };
+            byte[] byteToSend = new byte[10] { 0, 19, 4, 4, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 左猫头伸-按键抬起关闭
+        /// </summary>
+        private void btnLeftCatHeadReach_MouseUp(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 0, 19, 4, 6, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
@@ -394,7 +415,15 @@ namespace Main.HydraulicStation
         /// </summary>
         private void BtnLeftCatRetract_Click(object sender, RoutedEventArgs e)
         {
-            byte[] byteToSend = new byte[10] { 0, 19, 4, 4, 0, 0, 0, 0, 0, 0 };
+            byte[] byteToSend = new byte[10] { 0, 19, 4, 5, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 左猫头缩-按键抬起关闭
+        /// </summary>
+        private void btnLeftCatHeadRetract_MouseUp(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 0, 19, 4, 6, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
@@ -410,7 +439,15 @@ namespace Main.HydraulicStation
         /// </summary>
         private void BtnRightCatReach_Click(object sender, RoutedEventArgs e)
         {
-            byte[] byteToSend = new byte[10] { 0, 19, 4, 6, 0, 0, 0, 0, 0, 0 };
+            byte[] byteToSend = new byte[10] { 0, 19, 4, 7, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 右猫头伸-抬起关闭
+        /// </summary>
+        private void btnRightCatHeadReach_MouseUp(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 0, 19, 4, 9, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
@@ -418,7 +455,15 @@ namespace Main.HydraulicStation
         /// </summary>
         private void BtnRightCatRetract_Click(object sender, RoutedEventArgs e)
         {
-            byte[] byteToSend = new byte[10] { 0, 19, 4, 7, 0, 0, 0, 0, 0, 0 };
+            byte[] byteToSend = new byte[10] { 0, 19, 4, 8, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 右猫头缩-按键抬起关闭
+        /// </summary>
+        private void btnRightCatHeadRetract_MouseUp(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 0, 19, 4, 9, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
@@ -426,7 +471,7 @@ namespace Main.HydraulicStation
         /// </summary>
         private void BtnRightCatClose_Click(object sender, RoutedEventArgs e)
         {
-            byte[] byteToSend = new byte[10] { 0, 19, 4, 8, 0, 0, 0, 0, 0, 0 };
+            byte[] byteToSend = new byte[10] { 0, 19, 4, 9, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
@@ -457,55 +502,73 @@ namespace Main.HydraulicStation
             byte[] byteToSend = new byte[10] { 0, 19, 4, 10, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
-
+        /// <summary>
+        /// 铁钻工打开
+        /// </summary>
         private void BtnIron_Click(object sender, RoutedEventArgs e)
         {
             byte[] byteToSend = new byte[10] { 0, 19, 4, 1, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
-
+        /// <summary>
+        /// 铁钻工/大钳关闭
+        /// </summary>
         private void BtnIronClose_Click(object sender, RoutedEventArgs e)
         {
             byte[] byteToSend = new byte[10] { 0, 19, 4, 3, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
-
+        /// <summary>
+        /// 大钳打开
+        /// </summary>
         private void BtnTong_Click(object sender, RoutedEventArgs e)
         {
             byte[] byteToSend = new byte[10] { 0, 19, 4, 2, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
-
+        /// <summary>
+        /// 钻台面打开
+        /// </summary>
         private void BtnDF_Click(object sender, RoutedEventArgs e)
         {
             byte[] byteToSend = new byte[10] { 0, 19, 4, 10, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
-
+        /// <summary>
+        /// 钻台面/备用3关闭
+        /// </summary>
         private void BtnDFClose_Click(object sender, RoutedEventArgs e)
         {
             byte[] byteToSend = new byte[10] { 0, 19, 4, 12, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
-
+        /// <summary>
+        /// 备用3打开
+        /// </summary>
         private void BtnSpaceThree_Click(object sender, RoutedEventArgs e)
         {
             byte[] byteToSend = new byte[10] { 0, 19, 4, 11, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
-
+        /// <summary>
+        /// 井架缓冲打开
+        /// </summary>
         private void BtnWellBuffer_Click(object sender, RoutedEventArgs e)
         {
             byte[] byteToSend = new byte[10] { 0, 19, 4, 13, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
-
+        /// <summary>
+        /// 井架缓冲/备用4关闭
+        /// </summary>
         private void BtnWellBufferCloseClick(object sender, RoutedEventArgs e)
         {
             byte[] byteToSend = new byte[10] { 0, 19, 4, 15, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
-
+        /// <summary>
+        /// 备用4打开
+        /// </summary>
         private void BtnSpaceFour_Click(object sender, RoutedEventArgs e)
         {
             byte[] byteToSend = new byte[10] { 0, 19, 4, 14, 0, 0, 0, 0, 0, 0 };

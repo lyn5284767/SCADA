@@ -1,9 +1,11 @@
 ﻿using COM.Common;
 using ControlLibrary;
+using HandyControl.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -42,10 +44,13 @@ namespace Main.SIR
                 return _instance;
             }
         }
+        System.Threading.Timer timerWarning;
         public SIRSelfMain()
         {
             InitializeComponent();
             VariableBinding();
+            timerWarning = new System.Threading.Timer(new TimerCallback(TimerWarning_Elapsed), this, 2000, 50);//改成50ms 的时钟
+
         }
         /// <summary>
         /// 绑定变量
@@ -99,10 +104,29 @@ namespace Main.SIR
                 this.tbOutButtonCircle.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOutButtonCircle"], Mode = BindingMode.OneWay });
                 this.tbWorkTime.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["SIRSelfWorkTime"], Mode = BindingMode.OneWay });
 
+                // 一键上扣
+                MultiBinding sbDrillDownMultiBind = new MultiBinding();
+                sbDrillDownMultiBind.Converter = new AutoModeStepCoverter();
+                sbDrillDownMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOperModel"], Mode = BindingMode.OneWay });
+                sbDrillDownMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOneKeyInButton"], Mode = BindingMode.OneWay });
+                sbDrillDownMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfAutoStep"], Mode = BindingMode.OneWay });
+                sbDrillDownMultiBind.ConverterParameter = "one";
+                sbDrillDownMultiBind.NotifyOnSourceUpdated = true;
+                this.sbInButton.SetBinding(StepBar.StepIndexProperty, sbDrillDownMultiBind);
+                // 排杆
+                MultiBinding sbDrillUpMultiBind = new MultiBinding();
+                sbDrillUpMultiBind.Converter = new AutoModeStepCoverter();
+                sbDrillUpMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOperModel"], Mode = BindingMode.OneWay });
+                sbDrillUpMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOneKeyOutButton"], Mode = BindingMode.OneWay });
+                sbDrillUpMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfAutoStep"], Mode = BindingMode.OneWay });
+                sbDrillUpMultiBind.ConverterParameter = "one";
+                sbDrillUpMultiBind.NotifyOnSourceUpdated = true;
+                this.sbOutButton.SetBinding(StepBar.StepIndexProperty, sbDrillUpMultiBind);
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.StackTrace);
+                System.Windows.MessageBox.Show(ex.StackTrace);
                 Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
             }
         }
@@ -204,6 +228,57 @@ namespace Main.SIR
                 byteToSend = new byte[10] { 23, 17, 6, 2, 0, 0, 0, 0, 0, 0 };
             }
             GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+
+        private void TimerWarning_Elapsed(object obj)
+        {
+            try
+            {
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    this.Warnning();
+                    this.Communcation();
+                    if (GlobalData.Instance.da["SIRSelfOperModel"].Value.Byte == 2) // 自动模式
+                    {
+                        if (GlobalData.Instance.da["SIRSelfOneKeyInButton"].Value.Byte == 2)//一键上扣开启
+                        {
+                            this.spOneKeyInbutton.Visibility = Visibility.Visible;
+                            this.spOneKeyOutButton.Visibility = Visibility.Collapsed;
+                        }
+                        else // 一键卸扣
+                        {
+                            this.spOneKeyInbutton.Visibility = Visibility.Collapsed;
+                            this.spOneKeyOutButton.Visibility = Visibility.Visible;
+                        }
+                    }
+                }));
+            }
+            catch (Exception ex)
+            {
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+            }
+        }
+
+        /// <summary>
+        /// 融信数据
+        /// </summary>
+        private void Communcation()
+        {
+            #region 通信
+
+            if (!GlobalData.Instance.ComunciationNormal) this.tbTips.Text = "网络连接失败！";
+            #endregion
+        }
+
+        private void Warnning()
+        {
+            try
+            { }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.StackTrace);
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.DEBUG);
+            }
         }
     }
 }
