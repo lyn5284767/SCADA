@@ -203,7 +203,7 @@ namespace Main.HydraulicStation
                 cpbSpareMultiBind.Bindings.Add(new Binding("Minimum") { Source = this.cpbSpare, Mode = BindingMode.OneWay });
                 cpbSpareMultiBind.Bindings.Add(new Binding("Maximum") { Source = this.cpbSpare, Mode = BindingMode.OneWay });
                 cpbSpareMultiBind.NotifyOnSourceUpdated = true;
-                this.cpbSpare.SetBinding(CircleProgressBar.ForegroundProperty, cpbDFMultiBind);
+                this.cpbSpare.SetBinding(CircleProgressBar.ForegroundProperty, cpbSpareMultiBind);
             }
             catch (Exception ex)
             {

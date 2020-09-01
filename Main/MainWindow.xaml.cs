@@ -555,7 +555,7 @@ namespace Main
                     {
                         this.spMain.Children.Clear();
                         this.spMain.Children.Add(DRPosSetting.Instance);
-                        this.BottomColorSetting(this.bdSf, this.tbSf, this.bdOther);
+                        this.BottomColorSetting(this.bdDR, this.tbDR, this.bdOther);
                     }
                     else
                     {
