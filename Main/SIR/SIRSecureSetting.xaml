@@ -46,7 +46,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Grid.Column="0" Margin="10">
+            <!--<Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Grid.Column="0" Margin="10">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="操作模式："/>
                     <TextBlock Text="       " Name="opModel_SecuritySettingsPage"/>
@@ -66,7 +66,7 @@
             </Border>
             <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Grid.Column="3" Margin="10">
                 <cl:SymbolMapping StrContent="大钩标定状态" LampType="3" Height="35" Margin="10" Grid.Column="2" Name="HookStatus"/>
-            </Border>
+            </Border>-->
         </Grid>
 
         <Grid Grid.Row="1">
@@ -75,9 +75,9 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <cl:SymbolMapping StrContent="井口手指打开使能" LampType="3" Height="35" Margin="10" Grid.Column="0" Name="WellheadfingerOpen"/>
-            <cl:SymbolMapping StrContent="井口手臂缩回使能" LampType="3" Height="35" Margin="10" Grid.Column="1" Name="WellheadarmOpen"/>
-            <cl:SymbolMapping StrContent="靠近井口运动使能" LampType="3" Height="35" Margin="10" Grid.Column="2" Name="ApproachingWellheadOpen"/>
+            <!--<cl:SymbolMapping StrContent="井口手指打开使能" LampType="3" Height="35" Margin="10" Grid.Column="0" Name="WellheadfingerOpen"/>
+            <cl:SymbolMapping StrContent="井口手臂缩回使能" LampType="3" Height="35" Margin="10" Grid.Column="1" Name="WellheadarmOpen"/>-->
+            <!--<cl:SymbolMapping StrContent="靠近井口运动使能" LampType="3" Height="35" Margin="10" Grid.Column="2" Name="ApproachingWellheadOpen"/>-->
         </Grid>
 
         <Grid Grid.Row="2">
