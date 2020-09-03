@@ -168,6 +168,7 @@ namespace Main.SecondFloor
         private int controlHeartTimes = 0; // 控制台心跳次数
         private bool tmpStatus = false; // 控制台心跳临时存储状态
         private bool bCommunicationCheck = false; // 是否有中断标志
+        private bool bCheckTwo = false;
         private bool bPre506b5 = false;
         private bool bPre506b6 = false;
         private bool bPre506b7 = false;
@@ -277,15 +278,16 @@ namespace Main.SecondFloor
                     //Communication = 2;
                     this.warnOne.Text = "操作台信号中断";
                 }
-                if (!bCommunicationCheck && controlHeartTimes > 600)
+                if (!bCheckTwo && controlHeartTimes > 600)
                 {
                     GlobalData.Instance.reportData.OperationFloorCommunication += 1;//the report
-                    bCommunicationCheck = true;
+                    bCheckTwo = true;
                 }
             }
             else
             {
                 this.controlHeartTimes = 0;
+                bCheckTwo = false;
             }
             this.tmpStatus = GlobalData.Instance.da["508b6"].Value.Boolean;
 
@@ -2044,7 +2046,7 @@ namespace Main.SecondFloor
             // 硬盘空间小于1G，开始清理录像
             foreach (System.IO.DriveInfo drive in drives)
             {
-                if (drive.Name == disk[0] + "\\" && drive.TotalFreeSpace / (1024 * 1024) < 1024 *544)
+                if (drive.Name == disk[0] + "\\" && drive.TotalFreeSpace / (1024 * 1024) < 1024 *2)
                 {
                     DirectoryInfo root = new DirectoryInfo(path);
                     List<FileInfo> fileList = root.GetFiles().OrderBy(s => s.CreationTime).Take(10).ToList();
