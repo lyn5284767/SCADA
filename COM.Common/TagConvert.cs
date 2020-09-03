@@ -4015,5 +4015,72 @@ namespace COM.Common
             throw new NotImplementedException();
         }
     }
+
+    /// <summary>
+    /// 铁钻工自动步骤
+    /// </summary>
+    public class SIRSelfAutoModeStepCoverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            string tb = (string)parameter;
+            bool autoOpr = false;
+            bool isOpen = false; 
+            if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null))
+            {
+                autoOpr = false;
+            }
+            else
+            {
+                if ((byte)values[0] == 2)
+                    autoOpr = true;
+            }
+            if ((values[1] == DependencyProperty.UnsetValue) || (values[1] == null))
+            {
+                isOpen = false;
+            }
+            else
+            {
+                if ((byte)values[1] == 2)
+                    isOpen = true;
+            }
+            int byteAutoModeNowStep = (byte)values[2];
+            if (autoOpr && isOpen)
+            {
+                if (tb == "inButton") //上扣
+                {
+                    if (byteAutoModeNowStep == 0) return 0;
+                    if ((byteAutoModeNowStep >= 1) && (byteAutoModeNowStep <= 10)) return 1;
+                    if ((byteAutoModeNowStep >= 11) && (byteAutoModeNowStep <= 16)) return 2;
+                    if ((byteAutoModeNowStep >= 17) && (byteAutoModeNowStep <= 18)) return 3;
+                    if ((byteAutoModeNowStep >= 19) && (byteAutoModeNowStep <= 25)) return 4;
+                    if ((byteAutoModeNowStep == 26)) return 5;
+                    if ((byteAutoModeNowStep >= 27) && (byteAutoModeNowStep <= 28)) return 6;
+                    if ((byteAutoModeNowStep >= 24) && (byteAutoModeNowStep <= 34)) return 7;
+                    if (byteAutoModeNowStep == 35) return 8;
+                }
+                else if (tb == "outButton")// 卸扣
+                {
+                    if (byteAutoModeNowStep == 0) return 0;
+                    if ((byteAutoModeNowStep >= 1) && (byteAutoModeNowStep <= 10)) return 1;
+                    if ((byteAutoModeNowStep >= 11) && (byteAutoModeNowStep <= 16)) return 2;
+                    if ((byteAutoModeNowStep >= 17) && (byteAutoModeNowStep <= 18)) return 3;
+                    if ((byteAutoModeNowStep >= 19) && (byteAutoModeNowStep <= 25)) return 4;
+                    if ((byteAutoModeNowStep == 26)) return 5;
+                    if ((byteAutoModeNowStep >= 27) && (byteAutoModeNowStep <= 28)) return 6;
+                    if ((byteAutoModeNowStep >= 24) && (byteAutoModeNowStep <= 34)) return 7;
+                    if (byteAutoModeNowStep == 35) return 8;
+                }
+            }
+
+            return 0;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     #endregion
 }

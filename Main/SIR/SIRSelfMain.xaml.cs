@@ -105,23 +105,23 @@ namespace Main.SIR
                 this.tbWorkTime.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["SIRSelfWorkTime"], Mode = BindingMode.OneWay });
 
                 // 一键上扣
-                MultiBinding sbDrillDownMultiBind = new MultiBinding();
-                sbDrillDownMultiBind.Converter = new AutoModeStepCoverter();
-                sbDrillDownMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOperModel"], Mode = BindingMode.OneWay });
-                sbDrillDownMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOneKeyInButton"], Mode = BindingMode.OneWay });
-                sbDrillDownMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfAutoStep"], Mode = BindingMode.OneWay });
-                sbDrillDownMultiBind.ConverterParameter = "one";
-                sbDrillDownMultiBind.NotifyOnSourceUpdated = true;
-                this.sbInButton.SetBinding(StepBar.StepIndexProperty, sbDrillDownMultiBind);
+                MultiBinding sbInbuttonMultiBind = new MultiBinding();
+                sbInbuttonMultiBind.Converter = new SIRSelfAutoModeStepCoverter();
+                sbInbuttonMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOperModel"], Mode = BindingMode.OneWay });
+                sbInbuttonMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOneKeyInButton"], Mode = BindingMode.OneWay });
+                sbInbuttonMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfAutoStep"], Mode = BindingMode.OneWay });
+                sbInbuttonMultiBind.ConverterParameter = "inButton";
+                sbInbuttonMultiBind.NotifyOnSourceUpdated = true;
+                this.sbInButton.SetBinding(StepBar.StepIndexProperty, sbInbuttonMultiBind);
                 // 排杆
-                MultiBinding sbDrillUpMultiBind = new MultiBinding();
-                sbDrillUpMultiBind.Converter = new AutoModeStepCoverter();
-                sbDrillUpMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOperModel"], Mode = BindingMode.OneWay });
-                sbDrillUpMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOneKeyOutButton"], Mode = BindingMode.OneWay });
-                sbDrillUpMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfAutoStep"], Mode = BindingMode.OneWay });
-                sbDrillUpMultiBind.ConverterParameter = "one";
-                sbDrillUpMultiBind.NotifyOnSourceUpdated = true;
-                this.sbOutButton.SetBinding(StepBar.StepIndexProperty, sbDrillUpMultiBind);
+                MultiBinding sbOutButtonMultiBind = new MultiBinding();
+                sbOutButtonMultiBind.Converter = new SIRSelfAutoModeStepCoverter();
+                sbOutButtonMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOperModel"], Mode = BindingMode.OneWay });
+                sbOutButtonMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOneKeyOutButton"], Mode = BindingMode.OneWay });
+                sbOutButtonMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfAutoStep"], Mode = BindingMode.OneWay });
+                sbOutButtonMultiBind.ConverterParameter = "outButton";
+                sbOutButtonMultiBind.NotifyOnSourceUpdated = true;
+                this.sbOutButton.SetBinding(StepBar.StepIndexProperty, sbOutButtonMultiBind);
 
             }
             catch (Exception ex)
