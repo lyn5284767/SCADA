@@ -3496,6 +3496,66 @@ namespace COM.Common
             throw new NotImplementedException();
         }
     }
+    public class TakeTenConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null || value == DependencyProperty.UnsetValue)
+            {
+                return 0;
+            }
+            int val = 0;
+            if (value.GetType().Name == "Int32")
+            {
+                val = (int)value / 10;
+            }
+            else if (value.GetType().Name == "Int16")
+            {
+                val = (short)value / 10;
+            }
+            else if (value.GetType().Name == "Byte")
+            {
+                val = (byte)value / 10;
+            }
+
+            return val;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class DivideHundredConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null || value == DependencyProperty.UnsetValue)
+            {
+                return 0;
+            }
+            double val = 0.0;
+            if (value.GetType().Name == "Int32")
+            {
+                val = (int)value / 100.0;
+            }
+            else if (value.GetType().Name == "Int16")
+            {
+                val = (short)value / 100.0;
+            }
+            else if (value.GetType().Name == "Byte")
+            {
+                val = (byte)value / 100.0;
+            }
+
+            return val;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 
     public class ColorCoverter : IMultiValueConverter
     {
@@ -3870,6 +3930,40 @@ namespace COM.Common
     }
 
     /// <summary>
+    /// 自研铁钻工-液压钳缺口
+    /// </summary>
+    public class SIRSelfTongsGapConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return "未知";
+            }
+
+            byte bType = (byte)value;
+            switch (bType)
+            {
+                case 10:
+                    return "仅主钳完成复位";
+                case 11:
+                    return "仅背钳完成复位";
+                case 12:
+                    return "复位状态正常";
+                case 20:
+                    return "安全设置关闭";
+            }
+
+            return "未知";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
     /// 自研铁钻工-工作模式
     /// </summary>
     public class SIRSelfWorkModelConverter : IValueConverter
@@ -4025,7 +4119,7 @@ namespace COM.Common
         {
             string tb = (string)parameter;
             bool autoOpr = false;
-            bool isOpen = false; 
+            byte workmodel = 0; 
             if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null))
             {
                 autoOpr = false;
@@ -4037,41 +4131,38 @@ namespace COM.Common
             }
             if ((values[1] == DependencyProperty.UnsetValue) || (values[1] == null))
             {
-                isOpen = false;
+                workmodel = 0;
             }
             else
             {
-                if ((byte)values[1] == 2)
-                    isOpen = true;
+                    workmodel = (byte)values[1];
             }
             int byteAutoModeNowStep = (byte)values[2];
-            if (autoOpr && isOpen)
+            if (autoOpr && workmodel == 1)
             {
-                if (tb == "inButton") //上扣
-                {
-                    if (byteAutoModeNowStep == 0) return 0;
-                    if ((byteAutoModeNowStep >= 1) && (byteAutoModeNowStep <= 10)) return 1;
-                    if ((byteAutoModeNowStep >= 11) && (byteAutoModeNowStep <= 16)) return 2;
-                    if ((byteAutoModeNowStep >= 17) && (byteAutoModeNowStep <= 18)) return 3;
-                    if ((byteAutoModeNowStep >= 19) && (byteAutoModeNowStep <= 25)) return 4;
-                    if ((byteAutoModeNowStep == 26)) return 5;
-                    if ((byteAutoModeNowStep >= 27) && (byteAutoModeNowStep <= 28)) return 6;
-                    if ((byteAutoModeNowStep >= 24) && (byteAutoModeNowStep <= 34)) return 7;
-                    if (byteAutoModeNowStep == 35) return 8;
-                }
-                else if (tb == "outButton")// 卸扣
-                {
-                    if (byteAutoModeNowStep == 0) return 0;
-                    if ((byteAutoModeNowStep >= 1) && (byteAutoModeNowStep <= 10)) return 1;
-                    if ((byteAutoModeNowStep >= 11) && (byteAutoModeNowStep <= 16)) return 2;
-                    if ((byteAutoModeNowStep >= 17) && (byteAutoModeNowStep <= 18)) return 3;
-                    if ((byteAutoModeNowStep >= 19) && (byteAutoModeNowStep <= 25)) return 4;
-                    if ((byteAutoModeNowStep == 26)) return 5;
-                    if ((byteAutoModeNowStep >= 27) && (byteAutoModeNowStep <= 28)) return 6;
-                    if ((byteAutoModeNowStep >= 24) && (byteAutoModeNowStep <= 34)) return 7;
-                    if (byteAutoModeNowStep == 35) return 8;
-                }
+                if (byteAutoModeNowStep == 0) return 0;
+                if ((byteAutoModeNowStep >= 1) && (byteAutoModeNowStep <= 6)) return 1;
+                if ((byteAutoModeNowStep >= 7) && (byteAutoModeNowStep <= 8)) return 2;
+                if ((byteAutoModeNowStep >= 49) && (byteAutoModeNowStep <= 51)) return 3;
+                if ((byteAutoModeNowStep >= 52) && (byteAutoModeNowStep <= 53)) return 4;
+                if ((byteAutoModeNowStep >= 9) && (byteAutoModeNowStep <= 10)) return 5;
+                if ((byteAutoModeNowStep >= 11) && (byteAutoModeNowStep <= 12)) return 6;
+                if ((byteAutoModeNowStep >= 13) && (byteAutoModeNowStep <= 17)) return 7;
+                if (byteAutoModeNowStep == 18) return 8;
             }
+            else if (autoOpr && workmodel == 2)// 卸扣
+            {
+                if (byteAutoModeNowStep == 0) return 0;
+                if ((byteAutoModeNowStep >= 1) && (byteAutoModeNowStep <= 6)) return 1;
+                if ((byteAutoModeNowStep >= 7) && (byteAutoModeNowStep <= 8)) return 2;
+                if ((byteAutoModeNowStep >= 49) && (byteAutoModeNowStep <= 51)) return 3;
+                if ((byteAutoModeNowStep >= 52) && (byteAutoModeNowStep <= 53)) return 4;
+                if ((byteAutoModeNowStep >= 9) && (byteAutoModeNowStep <= 10)) return 5;
+                if ((byteAutoModeNowStep >= 11) && (byteAutoModeNowStep <= 12)) return 6;
+                if ((byteAutoModeNowStep >= 13) && (byteAutoModeNowStep <= 17)) return 7;
+                if (byteAutoModeNowStep == 18) return 8;
+            }
+            
 
             return 0;
         }
