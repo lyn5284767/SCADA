@@ -87,10 +87,51 @@ namespace Main.SIR
                 //this.tbSafeDoor.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfControlModel"], Mode = BindingMode.OneWay, Converter = new OperationModelConverter() });
                 //this.tbGap.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfControlModel"], Mode = BindingMode.OneWay, Converter = new OperationModelConverter() });
                 this.tbTongsGap.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfClampStatus"], Mode = BindingMode.OneWay, Converter = new SIRSelfTongsGapConverter() });
-                this.tbInButtonPress.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfInButtonPress"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
-                this.tbOutButtonPress.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfOutButtonPress"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
-                this.tbInButtonClampingForce.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfInButtonClampingForce"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
-                this.tbOutButtonClampingForce.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfOutButtonClampingForce"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                //this.tbInButtonPress.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfInButtonPress"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                // 上扣压力
+                this.cpbInButtonPress.SetBinding(CircleProgressBar.ValueProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfInButtonPress"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                this.cpbInButtonPress.SetBinding(CircleProgressBar.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfInButtonPress"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                MultiBinding cpbInButtonPressMultiBind = new MultiBinding();
+                cpbInButtonPressMultiBind.Converter = new ColorCoverter();
+                cpbInButtonPressMultiBind.Bindings.Add(new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfInButtonPress"], Mode = BindingMode.OneWay });
+                cpbInButtonPressMultiBind.Bindings.Add(new Binding("Minimum") { Source = this.cpbInButtonPress, Mode = BindingMode.OneWay });
+                cpbInButtonPressMultiBind.Bindings.Add(new Binding("Maximum") { Source = this.cpbInButtonPress, Mode = BindingMode.OneWay });
+                cpbInButtonPressMultiBind.NotifyOnSourceUpdated = true;
+                this.cpbInButtonPress.SetBinding(CircleProgressBar.ForegroundProperty, cpbInButtonPressMultiBind);
+                // 卸扣压力
+                this.cpbOutButtonPress.SetBinding(CircleProgressBar.ValueProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfOutButtonPress"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                this.cpbOutButtonPress.SetBinding(CircleProgressBar.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfOutButtonPress"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                MultiBinding cpbOutButtonPressMultiBind = new MultiBinding();
+                cpbOutButtonPressMultiBind.Converter = new ColorCoverter();
+                cpbOutButtonPressMultiBind.Bindings.Add(new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfOutButtonPress"], Mode = BindingMode.OneWay });
+                cpbOutButtonPressMultiBind.Bindings.Add(new Binding("Minimum") { Source = this.cpbOutButtonPress, Mode = BindingMode.OneWay });
+                cpbOutButtonPressMultiBind.Bindings.Add(new Binding("Maximum") { Source = this.cpbOutButtonPress, Mode = BindingMode.OneWay });
+                cpbOutButtonPressMultiBind.NotifyOnSourceUpdated = true;
+                this.cpbOutButtonPress.SetBinding(CircleProgressBar.ForegroundProperty, cpbOutButtonPressMultiBind);
+                // 上扣背钳加紧
+                this.cpbInButtonClampingForce.SetBinding(CircleProgressBar.ValueProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfInButtonClampingForce"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                this.cpbInButtonClampingForce.SetBinding(CircleProgressBar.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfInButtonClampingForce"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                MultiBinding cpbInButtonClampingForceMultiBind = new MultiBinding();
+                cpbInButtonClampingForceMultiBind.Converter = new ColorCoverter();
+                cpbInButtonClampingForceMultiBind.Bindings.Add(new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfInButtonClampingForce"], Mode = BindingMode.OneWay });
+                cpbInButtonClampingForceMultiBind.Bindings.Add(new Binding("Minimum") { Source = this.cpbInButtonClampingForce, Mode = BindingMode.OneWay });
+                cpbInButtonClampingForceMultiBind.Bindings.Add(new Binding("Maximum") { Source = this.cpbInButtonClampingForce, Mode = BindingMode.OneWay });
+                cpbInButtonClampingForceMultiBind.NotifyOnSourceUpdated = true;
+                this.cpbInButtonClampingForce.SetBinding(CircleProgressBar.ForegroundProperty, cpbInButtonClampingForceMultiBind);
+                // 卸扣背钳加紧
+                this.cpbOutButtonClampingForce.SetBinding(CircleProgressBar.ValueProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfOutButtonClampingForce"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                this.cpbOutButtonClampingForce.SetBinding(CircleProgressBar.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfOutButtonClampingForce"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                MultiBinding cpbOutButtonClampingForceMultiBind = new MultiBinding();
+                cpbOutButtonClampingForceMultiBind.Converter = new ColorCoverter();
+                cpbOutButtonClampingForceMultiBind.Bindings.Add(new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfOutButtonClampingForce"], Mode = BindingMode.OneWay });
+                cpbOutButtonClampingForceMultiBind.Bindings.Add(new Binding("Minimum") { Source = this.cpbOutButtonClampingForce, Mode = BindingMode.OneWay });
+                cpbOutButtonClampingForceMultiBind.Bindings.Add(new Binding("Maximum") { Source = this.cpbOutButtonClampingForce, Mode = BindingMode.OneWay });
+                cpbOutButtonClampingForceMultiBind.NotifyOnSourceUpdated = true;
+                this.cpbOutButtonClampingForce.SetBinding(CircleProgressBar.ForegroundProperty, cpbOutButtonClampingForceMultiBind);
+
+                //this.tbOutButtonPress.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfOutButtonPress"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                //this.tbInButtonClampingForce.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfInButtonClampingForce"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                //this.tbOutButtonClampingForce.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfOutButtonClampingForce"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
                 this.tbRotate.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfRotate"], Mode = BindingMode.OneWay });
                 this.tbSysPress.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfSysPress"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
 

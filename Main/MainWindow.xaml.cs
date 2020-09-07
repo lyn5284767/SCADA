@@ -769,12 +769,16 @@ namespace Main
                 }
                 else if (GlobalData.Instance.systemType == SystemType.SIR)
                 {
-                    MessageBox.Show("功能未开放");
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(SFLowInfo.Instance);
+                    this.BottomColorSetting(this.bdSIR, this.tbSIR, this.bdOther);
                     return;
                 }
                 else if (GlobalData.Instance.systemType == SystemType.HydraulicStation)
                 {
-                    MessageBox.Show("功能未开放");
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(SFLowInfo.Instance);
+                    this.BottomColorSetting(this.bdHS, this.tbHS, this.bdOther);
                     return;
                 }
             }
