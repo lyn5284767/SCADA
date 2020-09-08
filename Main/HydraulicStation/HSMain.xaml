@@ -28,7 +28,7 @@
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0" Orientation="Horizontal">
                             <TextBlock Text="压力(MPa)" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,0,0,0" VerticalAlignment="Center"/>
-                            <TextBlock Name="tbTips" Width="780" Text="液压站-距上次更换液压油已经大于2000小时，请更换液压油" FontSize="24" FontFamily="微软雅黑" FontWeight="Bold" Foreground="red" VerticalAlignment="Center" TextAlignment="Center"/>
+                            <TextBlock Name="tbTips" Width="780" Text="" FontSize="24" FontFamily="微软雅黑" FontWeight="Bold" Foreground="red" VerticalAlignment="Center" TextAlignment="Center"/>
                         </StackPanel>
                         <Grid Grid.Row="1">
                             <Grid.ColumnDefinitions>
@@ -147,7 +147,7 @@
                                 </StackPanel>
                                 <StackPanel Grid.Row="1">
                                     <Image Name="imgMainTwo" Margin="10,0,0,0" Source="../Images/pump1.png" Width="60"/>
-                                    <TextBlock Text="1#主泵" VerticalAlignment="Center" TextAlignment="Center" FontWeight="Bold" FontFamily="微软雅黑" FontSize="16" Foreground="Black"></TextBlock>
+                                    <TextBlock Text="2#主泵" VerticalAlignment="Center" TextAlignment="Center" FontWeight="Bold" FontFamily="微软雅黑" FontSize="16" Foreground="Black"></TextBlock>
                                 </StackPanel>
                             </Grid>
                             <StackPanel Grid.Column="2" VerticalAlignment="Center">

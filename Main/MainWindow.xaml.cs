@@ -17,6 +17,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
 namespace Main
@@ -26,6 +27,7 @@ namespace Main
     /// </summary>
     public partial class MainWindow : Window
     {
+        BrushConverter brush = new BrushConverter();
         private DispatcherTimer timer;
         System.Timers.Timer serviceTimer;
 
@@ -143,6 +145,7 @@ namespace Main
 
                 GlobalData.Instance.da.SendBytes(byteToSend);
             }
+            SetBorderBackGround();
         }
         /// <summary>
         /// 主页
@@ -197,20 +200,34 @@ namespace Main
         private void Instance_FullScreenEvent(int camId)
         {
             SFMain.Instance.FullScreenEvent -= Instance_FullScreenEvent;
+            SFMain.Instance.FullScreenEvent += Instance_FullScreenEvent;
             this.spMain.Children.Clear();
-            SFCameraFullScreen.Instance.CanelFullScreenEvent += Instance_CanelFullScreenEvent;
             this.spMain.Children.Add(SFCameraFullScreen.Instance);
+            SFCameraFullScreen.Instance.CanelFullScreenEvent -= Instance_CanelFullScreenEvent;
+            SFCameraFullScreen.Instance.CanelFullScreenEvent += Instance_CanelFullScreenEvent;
             SFCameraFullScreen.Instance.Button_CameraStart(camId);
+        }
+        private void Instance_SIRFullScreenEvent(int camId)
+        {
+            SIRSelfMain.Instance.FullScreenEvent -= Instance_SIRFullScreenEvent;
+            SIRSelfMain.Instance.FullScreenEvent += Instance_SIRFullScreenEvent;
+            this.spMain.Children.Clear();
+            this.spMain.Children.Add(SIRCameraFullScreen.Instance);
+            SIRCameraFullScreen.Instance.CanelFullScreenEvent -= Instance_SIRCanelFullScreenEvent;
+            SIRCameraFullScreen.Instance.CanelFullScreenEvent += Instance_SIRCanelFullScreenEvent;
+            SIRCameraFullScreen.Instance.Button_CameraStart(camId);
         }
 
 
         private void Instance_CanelFullScreenEvent()
         {
             SFCameraFullScreen.Instance.CanelFullScreenEvent -= Instance_CanelFullScreenEvent;
+            SFCameraFullScreen.Instance.CanelFullScreenEvent += Instance_CanelFullScreenEvent;
             this.spMain.Children.Clear();
-            SFMain.Instance.FullScreenEvent += Instance_FullScreenEvent;
             this.spMain.Children.Add(SFMain.Instance);
-            SFMain.Instance.PlayCamera();
+            SFCameraFullScreen.Instance.CanelFullScreenEvent -= Instance_CanelFullScreenEvent;
+            SFCameraFullScreen.Instance.CanelFullScreenEvent += Instance_CanelFullScreenEvent;
+            //SFMain.Instance.PlayCamera();
         }
         /// <summary>
         /// 钻台面-摄像头播放全屏
@@ -218,7 +235,9 @@ namespace Main
         private void Instance_DRFullScreenEvent(int camId)
         {
             DRMain.Instance.DRFullScreenEvent -= Instance_DRFullScreenEvent;
+            DRMain.Instance.DRFullScreenEvent += Instance_DRFullScreenEvent;
             this.spMain.Children.Clear();
+            DRCameraFullScreen.Instance.CanelFullScreenEvent -= Instance_DRCanelFullScreenEvent;
             DRCameraFullScreen.Instance.CanelFullScreenEvent += Instance_DRCanelFullScreenEvent;
             this.spMain.Children.Add(DRCameraFullScreen.Instance);
             DRCameraFullScreen.Instance.Button_CameraStart(camId);
@@ -230,10 +249,30 @@ namespace Main
         private void Instance_DRCanelFullScreenEvent()
         {
             DRCameraFullScreen.Instance.CanelFullScreenEvent -= Instance_DRCanelFullScreenEvent;
-            this.spMain.Children.Clear();
-            DRMain.Instance.DRFullScreenEvent += Instance_DRFullScreenEvent;
+            DRCameraFullScreen.Instance.CanelFullScreenEvent += Instance_DRCanelFullScreenEvent;
+            this.spMain.Children.Clear();           
             this.spMain.Children.Add(DRMain.Instance);
-            DRMain.Instance.PlayCamera();
+            DRMain.Instance.DRFullScreenEvent -= Instance_DRFullScreenEvent;
+            DRMain.Instance.DRFullScreenEvent += Instance_DRFullScreenEvent;
+            //DRMain.Instance.PlayCamera();
+        }
+
+        private void Instance_SIRCanelFullScreenEvent()
+        {
+            try
+            {
+                SIRCameraFullScreen.Instance.CanelFullScreenEvent -= Instance_SIRCanelFullScreenEvent;
+                SIRCameraFullScreen.Instance.CanelFullScreenEvent += Instance_SIRCanelFullScreenEvent;
+                this.spMain.Children.Clear();
+                this.spMain.Children.Add(SIRSelfMain.Instance);
+                SIRSelfMain.Instance.FullScreenEvent -= Instance_SIRFullScreenEvent;
+                SIRSelfMain.Instance.FullScreenEvent += Instance_SIRFullScreenEvent;
+                //SIRSelfMain.Instance.PlayCameraInThread();
+            }
+            catch(Exception ex)
+            { 
+            }
+
         }
 
         /// <summary>
@@ -383,6 +422,11 @@ namespace Main
                         this.spMain.Children.Add(HSSetting.Instance);
                         this.BottomColorSetting(this.bdHS, this.tbHS, this.bdDrillSetting);
                     }
+                }
+                else if(GlobalData.Instance.systemType == SystemType.CatRoad)
+                {
+                    MessageBox.Show("功能未开放");
+                    return;
                 }
             }
             catch (Exception ex)
@@ -856,6 +900,7 @@ namespace Main
                 {
                     
                 }
+                SetBorderBackGround();
             }
             catch (Exception ex)
             {
@@ -888,6 +933,7 @@ namespace Main
                 this.tbIng.Foreground = (Brush)bc.ConvertFrom("#000000");
 
                 this.bdHome.Background = (Brush)bc.ConvertFrom("#F4C8B3");
+                SetBorderBackGround();
             }
             catch (Exception ex)
             {
@@ -1002,6 +1048,8 @@ namespace Main
                 }
                 else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANY)
                 {
+                    SIRSelfMain.Instance.FullScreenEvent -= Instance_SIRFullScreenEvent;
+                    SIRSelfMain.Instance.FullScreenEvent += Instance_SIRFullScreenEvent;
                     this.spMain.Children.Add(SIRSelfMain.Instance);
                 }
                 else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.JJC)
@@ -1019,6 +1067,7 @@ namespace Main
 
                 GlobalData.Instance.systemType = SystemType.SIR;
                 this.BottomColorSetting(this.bdSIR, this.tbSIR, this.bdHome);
+                SetBorderBackGround();
             }
             catch (Exception ex)
             {
@@ -1112,6 +1161,7 @@ namespace Main
 
                 GlobalData.Instance.systemType = SystemType.HydraulicStation;
                 this.BottomColorSetting(this.bdHS, this.tbHS, this.bdHome);
+                SetBorderBackGround();
             }
             catch (Exception ex)
             {
@@ -1151,10 +1201,57 @@ namespace Main
 
                 GlobalData.Instance.systemType = SystemType.CatRoad;
                 this.BottomColorSetting(this.bdCat, this.tbCat, this.bdHome);
+                SetBorderBackGround();
             }
             catch (Exception ex)
             {
                 Log.Log4Net.AddLog(ex.ToString(), Log.InfoLevel.ERROR);
+            }
+        }
+
+        private void SetBorderBackGround()
+        {
+            if (GlobalData.Instance.systemType == SystemType.SecondFloor)
+            {
+                this.imgDeviceStatus.Source = new BitmapImage(new Uri("Images/deviceStatus.png", UriKind.Relative));
+                this.imgDrillSetting.Source = new BitmapImage(new Uri("Images/setting.png", UriKind.Relative));
+                this.imgSecureSetting.Source = new BitmapImage(new Uri("Images/Secure.png", UriKind.Relative));
+                this.imgIO.Source = new BitmapImage(new Uri("Images/IO.png", UriKind.Relative));
+            }
+            else if (GlobalData.Instance.systemType == SystemType.DrillFloor)
+            {
+                this.imgDeviceStatus.Source = new BitmapImage(new Uri("Images/deviceStatus.png", UriKind.Relative));
+                this.imgDrillSetting.Source = new BitmapImage(new Uri("Images/setting.png", UriKind.Relative));
+                this.imgSecureSetting.Source = new BitmapImage(new Uri("Images/Secure.png", UriKind.Relative));
+                this.imgIO.Source = new BitmapImage(new Uri("Images/UnIO.png", UriKind.Relative));
+            }
+            else if (GlobalData.Instance.systemType == SystemType.CatRoad)
+            {
+                this.imgDeviceStatus.Source = new BitmapImage(new Uri("Images/UndeviceStatus.png", UriKind.Relative));
+                this.imgDrillSetting.Source = new BitmapImage(new Uri("Images/Unsetting.png", UriKind.Relative));
+                this.imgSecureSetting.Source = new BitmapImage(new Uri("Images/UnSecure.png", UriKind.Relative));
+                this.imgIO.Source = new BitmapImage(new Uri("Images/UnIO.png", UriKind.Relative));
+            }
+            else if (GlobalData.Instance.systemType == SystemType.HydraulicStation)
+            {
+                this.imgDeviceStatus.Source = new BitmapImage(new Uri("Images/deviceStatus.png", UriKind.Relative));
+                this.imgDrillSetting.Source = new BitmapImage(new Uri("Images/setting.png", UriKind.Relative));
+                this.imgSecureSetting.Source = new BitmapImage(new Uri("Images/UnSecure.png", UriKind.Relative));
+                this.imgIO.Source = new BitmapImage(new Uri("Images/UnIO.png", UriKind.Relative));
+            }
+            else if (GlobalData.Instance.systemType == SystemType.SIR)
+            {
+                this.imgDeviceStatus.Source = new BitmapImage(new Uri("Images/UndeviceStatus.png", UriKind.Relative));
+                this.imgDrillSetting.Source = new BitmapImage(new Uri("Images/Unsetting.png", UriKind.Relative));
+                this.imgSecureSetting.Source = new BitmapImage(new Uri("Images/Secure.png", UriKind.Relative));
+                this.imgIO.Source = new BitmapImage(new Uri("Images/IO.png", UriKind.Relative));
+            }
+            else if (GlobalData.Instance.systemType == SystemType.CIMS)
+            {
+                this.imgDeviceStatus.Source = new BitmapImage(new Uri("Images/deviceStatus.png", UriKind.Relative));
+                this.imgDrillSetting.Source = new BitmapImage(new Uri("Images/setting.png", UriKind.Relative));
+                this.imgSecureSetting.Source = new BitmapImage(new Uri("Images/Secure.png", UriKind.Relative));
+                this.imgIO.Source = new BitmapImage(new Uri("Images/IO.png", UriKind.Relative));
             }
         }
     }

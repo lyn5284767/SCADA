@@ -501,7 +501,7 @@
                         </StackPanel>
                         <Grid x:Name="gridRow1Column1" Grid.Row="1" Margin="0 5 0 0">
                             <StackPanel Grid.Column="1">
-                                <Viewbox x:Name="viewboxCameral1" Stretch="Uniform" Height="180">
+                                <Viewbox x:Name="viewboxCameral1" Stretch="Uniform" Height="180" Margin="0,0,0.333,0">
                                     <Grid x:Name="gridCamera1">
                                         <Image Source="../Images/camera.jpg"/>
                                     </Grid>

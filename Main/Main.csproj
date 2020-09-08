@@ -290,6 +290,9 @@
     <Compile Include="SIR\SIRBSMain.xaml.cs">
       <DependentUpon>SIRBSMain.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SIR\SIRCameraFullScreen.xaml.cs">
+      <DependentUpon>SIRCameraFullScreen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SIR\SIRJJCMain.xaml.cs">
       <DependentUpon>SIRJJCMain.xaml</DependentUpon>
     </Compile>
@@ -507,6 +510,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SIR\SIRBSMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SIR\SIRCameraFullScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -763,6 +770,14 @@
     <Resource Include="Images\arrowLeft.png" />
     <Resource Include="Images\arrowRight.png" />
     <Resource Include="Images\arrowUp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\UndeviceStatus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\UnIO.png" />
+    <Resource Include="Images\UnSecure.png" />
+    <Resource Include="Images\Unsetting.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

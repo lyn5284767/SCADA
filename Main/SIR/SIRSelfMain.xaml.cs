@@ -1,11 +1,17 @@
 ﻿using COM.Common;
 using ControlLibrary;
+using DatabaseLib;
 using HandyControl.Controls;
+using HBGKTest;
+using HBGKTest.YiTongCamera;
+using Main.SecondFloor;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -48,10 +54,18 @@ namespace Main.SIR
         public SIRSelfMain()
         {
             InitializeComponent();
+            InitControls();
+            InitCameraInfo();
             VariableBinding();
             timerWarning = new System.Threading.Timer(new TimerCallback(TimerWarning_Elapsed), this, 2000, 50);//改成50ms 的时钟
-
+            this.Loaded += SIRSelfMain_Loaded;
         }
+
+        private void SIRSelfMain_Loaded(object sender, RoutedEventArgs e)
+        {
+            PlayCameraInThread();
+        }
+
         /// <summary>
         /// 绑定变量
         /// </summary>
@@ -71,8 +85,8 @@ namespace Main.SIR
                 this.tbOneKeyInButton.SetBinding(ToggleButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOneKeyInButton"], Mode = BindingMode.OneWay, Converter = new SIRSelfTwoToCheckConverter() });
                 this.tbOneKeyOutButton.SetBinding(ToggleButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOneKeyOutButton"], Mode = BindingMode.OneWay, Converter = new SIRSelfTwoToCheckConverter() });
 
-                this.smMainGapOne.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["carMotorRetZeroStatus"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
-                this.smMainGapOne.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["carMotorRetZeroStatus"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.smMainGapOne.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["841b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.smMainGapTwo.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["841b1"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
                 this.smBackGapOne.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["841b2"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
                 this.smInButtonPosOne.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["841b3"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
                 this.smInButtonPosTwo.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["841b5"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
@@ -132,7 +146,7 @@ namespace Main.SIR
                 //this.tbOutButtonPress.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfOutButtonPress"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
                 //this.tbInButtonClampingForce.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfInButtonClampingForce"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
                 //this.tbOutButtonClampingForce.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfOutButtonClampingForce"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
-                this.tbRotate.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfRotate"], Mode = BindingMode.OneWay });
+                this.tbRotate.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["SIRSelfRotateEncodePulse"], Mode = BindingMode.OneWay ,Converter= new SIRSelfRotateConverter ()});
                 this.tbSysPress.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfSysPress"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
 
                 this.tbArmPos.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfArmPos"], Mode = BindingMode.OneWay,Converter= new TakeTenConverter() });
@@ -199,7 +213,6 @@ namespace Main.SIR
             }
             else//当前卸扣模式
             {
-    
                    byteToSend = new byte[10] { 23, 17, 2, 1, 0, 0, 0, 0, 0, 0 };
             }
             GlobalData.Instance.da.SendBytes(byteToSend);
@@ -320,7 +333,7 @@ namespace Main.SIR
             {
 
                 byte alarmTips = GlobalData.Instance.da["SIRSelfAlarm"].Value.Byte;
-                if (iTimeCnt % 10 == 0)
+                if (iTimeCnt % 10 != 0)
                 {
                     switch (alarmTips)
                     {
@@ -334,7 +347,7 @@ namespace Main.SIR
                             this.tbTips.Text = "背钳复位故障";
                             break;
                         case 102:
-                            this.tbTips.Text = "工控信号丢失";
+                            this.tbTips.Text = "工况选择错误";
                             break;
                         case 61:
                             this.tbTips.Text = "背钳夹紧故障";
@@ -376,12 +389,18 @@ namespace Main.SIR
                 }
                 else
                 {
-                    tbTips.Visibility = Visibility.Hidden;
+                    //tbTips.Visibility = Visibility.Hidden;
                     tbTips.Text = "";
                 }
                 byte oprTips = GlobalData.Instance.da["SIRSelfOprInfo"].Value.Byte;
                 switch (oprTips)
                 {
+                    case 60:
+                        this.tbOprTips.Text = "工况选择结束后，请执行上扣对缺确认";
+                        break;
+                    case 61:
+                        this.tbOprTips.Text = "工况选择结束后，请执行卸扣对缺确认";
+                        break;
                     case 50:
                         this.tbOprTips.Text = "进入井口工位后切换自动模式";
                         break;
@@ -416,7 +435,7 @@ namespace Main.SIR
                         this.tbOprTips.Text = "请退出自动模式检测故障";
                         break;
                     default:
-                        this.tbOprTips.Text = "无提示";
+                        this.tbOprTips.Text = "";
                         break;
                 }
             
@@ -427,5 +446,308 @@ namespace Main.SIR
                 Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.DEBUG);
             }
         }
+
+        #region 摄像头操作
+        System.Threading.Timer cameraSaveThreadTimer1; //摄像头录像线程
+        System.Threading.Timer cameraSaveThreadTimer2;
+        private string configPath = System.Environment.CurrentDirectory + @"\Config.ini";
+        const int STRINGMAX = 255;
+
+        Image cameraInitImage1 = new Image();
+        Image cameraInitImage2 = new Image();
+        /// <summary>
+        /// 初始化摄像头信息
+        /// </summary>
+        private void InitCameraInfo()
+        {
+            ChannelInfo info5 = GetConfigPara("CAMERA5");
+            if (info5 != null)
+            {
+                info5.ID = 5;
+                GlobalData.Instance.chList.Add(info5);
+            }
+            foreach (ChannelInfo info in GlobalData.Instance.chList)
+            {
+                switch (info.CameraType)
+                {
+                    case 0:
+                        {
+                            GlobalData.Instance.cameraList.Add(new UIControl_HBGK1(info));
+                            break;
+                        }
+                    case 1:
+                        {
+                            GlobalData.Instance.cameraList.Add(new YiTongCameraControl(info));
+                            break;
+                        }
+                }
+            }
+            InitCameraSaveTimeThread();
+        }
+        /// <summary>
+        /// 初始化摄像头录像线程
+        /// </summary>
+        private void InitCameraSaveTimeThread()
+        {
+            cameraSaveThreadTimer1 = new System.Threading.Timer(new TimerCallback(CameraVideoSave1), null, Timeout.Infinite, 60000);
+        }
+
+        /// <summary>
+        /// 读取配置文件
+        /// </summary>
+        /// <returns></returns>
+        private ChannelInfo GetConfigPara(string cameraTag)
+        {
+            try
+            {
+                if (System.IO.File.Exists(configPath))
+                {
+                    StringBuilder sb = new StringBuilder(STRINGMAX);
+                    string strChlID = "0";
+                    string strNDeviceType = "0";
+                    string strRemoteChannle = "0";
+                    string strRemoteIP = "0.0.0.0";
+                    string strRemotePort = "0";
+                    string strRemoteUser = "0";
+                    string strRemotePwd = "0";
+                    string strNPlayPort = "0";
+                    string strPtzPort = "0";
+                    string strCameraType = "0";
+                    ChannelInfo ch1 = new ChannelInfo();
+                    WinAPI.GetPrivateProfileString(cameraTag, "CHLID", strChlID, sb, STRINGMAX, configPath);
+                    strChlID = sb.ToString();
+                    ch1.ChlID = strChlID;
+
+                    WinAPI.GetPrivateProfileString(cameraTag, "NDEVICETYPE", strNDeviceType, sb, STRINGMAX, configPath);
+                    strNDeviceType = sb.ToString();
+                    int.TryParse(strNDeviceType, out ch1.nDeviceType);
+
+                    WinAPI.GetPrivateProfileString(cameraTag, "REMOTECHANNLE", strRemoteChannle, sb, STRINGMAX, configPath);
+                    strRemoteChannle = sb.ToString();
+                    ch1.RemoteChannle = strRemoteChannle;
+
+                    WinAPI.GetPrivateProfileString(cameraTag, "REMOTEIP", strRemoteIP, sb, STRINGMAX, configPath);
+                    strRemoteIP = sb.ToString();
+                    ch1.RemoteIP = strRemoteIP;
+
+                    WinAPI.GetPrivateProfileString(cameraTag, "REMOTEPORT", strRemotePort, sb, STRINGMAX, configPath);
+                    strRemotePort = sb.ToString();
+                    int tmpRemotePort = 0;
+                    int.TryParse(strRemotePort, out tmpRemotePort);
+                    ch1.RemotePort = tmpRemotePort;
+
+                    WinAPI.GetPrivateProfileString(cameraTag, "REMOTEUSER", strRemoteUser, sb, STRINGMAX, configPath);
+                    strRemoteUser = sb.ToString();
+                    ch1.RemoteUser = strRemoteUser;
+
+                    WinAPI.GetPrivateProfileString(cameraTag, "REMOTEPWD", strRemotePwd, sb, STRINGMAX, configPath);
+                    strRemotePwd = sb.ToString();
+                    ch1.RemotePwd = strRemotePwd;
+
+                    WinAPI.GetPrivateProfileString(cameraTag, "NPLAYPORT", strNPlayPort, sb, STRINGMAX, configPath);
+                    strNPlayPort = sb.ToString();
+                    int tmpNPlayPort = 0;
+                    int.TryParse(strNPlayPort, out tmpNPlayPort);
+                    ch1.nPlayPort = tmpNPlayPort;
+
+                    WinAPI.GetPrivateProfileString(cameraTag, "PTZPORT", strPtzPort, sb, STRINGMAX, configPath);
+                    strPtzPort = sb.ToString();
+                    int tmpPtzPort = 0;
+                    int.TryParse(strPtzPort, out tmpPtzPort);
+                    ch1.PtzPort = tmpPtzPort;
+
+                    WinAPI.GetPrivateProfileString(cameraTag, "CAMERATYPE", strCameraType, sb, STRINGMAX, configPath);
+                    strCameraType = sb.ToString();
+                    int cameraType = 0;
+                    int.TryParse(strCameraType, out cameraType);
+                    ch1.CameraType = cameraType;
+
+                    return ch1;//正常返回。
+                }
+                else
+                {
+                    return null;//配置文件不存在
+                }
+            }
+            catch (Exception e)
+            {
+                DataHelper.AddErrorLog(e);
+                return null;//出现异常情况
+            }
+        }
+        /// <summary>
+        /// 摄像头1播放
+        /// </summary>
+        private void Button_CameraStart(object sender, RoutedEventArgs e)
+        {
+            gridCamera1.Children.Clear();
+            ICameraFactory cameraOne = GlobalData.Instance.cameraList.Where(w => w.Info.ID == 1).FirstOrDefault();
+            CameraVideoStop1();
+            ChannelInfo info = GlobalData.Instance.chList.Where(w => w.ID == 1).FirstOrDefault();
+            cameraOne.InitCamera(info);
+            CameraVideoStart1();
+            cameraOne.SetSize(300, 400);
+            if (cameraOne is UIControl_HBGK1)
+            {
+                gridCamera1.Children.Add(cameraOne as UIControl_HBGK1);
+                //(cameraOne as UIControl_HBGK1).SetValue(Grid.RowProperty, 0);
+                //(cameraOne as UIControl_HBGK1).SetValue(Grid.ColumnProperty, 0);
+            }
+            else if (cameraOne is YiTongCameraControl)
+            {
+                gridCamera1.Children.Add(cameraOne as YiTongCameraControl);
+                //(cameraOne as YiTongCameraControl).SetValue(Grid.RowProperty, 0);
+                //(cameraOne as YiTongCameraControl).SetValue(Grid.ColumnProperty, 0);
+            }
+            else
+            {
+                gridCamera1.Children.Add(cameraInitImage1);
+            }
+            viewboxCameral1.Height = 300;
+            viewboxCameral1.Width = 403;
+        }  
+
+        private void CameraVideoStop1()
+        {
+            ICameraFactory cameraOne = GlobalData.Instance.cameraList.Where(w => w.Info.ID == 5).FirstOrDefault();
+            cameraOne.StopCamera();
+            cameraSaveThreadTimer1.Change(Timeout.Infinite, 60000);
+        }
+
+        private void CameraVideoStart1()
+        {
+            cameraSaveThreadTimer1.Change(0, 60000);
+        }
+
+
+        private void CameraVideoSave1(object value)
+        {
+            try
+            {
+                string str1 = System.Environment.CurrentDirectory;
+                string filePath = str1 + "\\video" + "\\video5";
+                string fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + ".avi";
+                ICameraFactory cameraOne = GlobalData.Instance.cameraList.Where(w => w.Info.ID == 5).FirstOrDefault();
+                cameraOne.StopFile();
+                cameraOne.SaveFile(filePath, fileName);
+                DeleteOldFileName(filePath);
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.StackTrace);
+            }
+        }
+     
+
+        /// <summary>
+        /// 删除最老的视频文件
+        /// </summary>
+        /// <param name="path"></param>
+        private void DeleteOldFileName(string path)
+        {
+            System.IO.DriveInfo[] drives = System.IO.DriveInfo.GetDrives();
+            string[] disk = path.Split('\\');
+            // 硬盘空间小于1G，开始清理录像
+            foreach (System.IO.DriveInfo drive in drives)
+            {
+                if (drive.Name == disk[0] + "\\" && drive.TotalFreeSpace / (1024 * 1024) < 1024 * 2)
+                {
+                    DirectoryInfo root = new DirectoryInfo(path);
+                    List<FileInfo> fileList = root.GetFiles().OrderBy(s => s.CreationTime).Take(10).ToList();
+                    foreach (FileInfo file in fileList)
+                    {
+                        file.Delete();
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 全屏
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button_CameraFullScreen(object sender, RoutedEventArgs e)
+        {
+            //if (FullScreenEvent != null)
+            //{
+            //    FullScreenEvent();
+            //}
+        }
+
+        /// <summary>
+        /// 跨线程调用播放视频
+        /// </summary>
+        public void PlayCamera()
+        {
+            this.gridCamera1.Dispatcher.Invoke(new PayOneDelegate(PlayOneAction), null);
+        }
+
+        private delegate void PayOneDelegate();
+
+        private void PlayOneAction()
+        {
+            SIRCameraFullScreen.Instance.gridCamera1.Children.Clear();
+            ICameraFactory cameraOne = GlobalData.Instance.cameraList.Where(w => w.Info.ID == 5).FirstOrDefault();
+            CameraVideoStop1();
+            ChannelInfo info = GlobalData.Instance.chList.Where(w => w.ID == 5).FirstOrDefault();
+            bool isPlay = cameraOne.InitCamera(info);
+            CameraVideoStart1();
+            cameraOne.SetSize(220, 420);
+            if (isPlay)
+            {
+                gridCamera1.Children.Clear();
+                if (cameraOne is UIControl_HBGK1)
+                {
+                    gridCamera1.Children.Add(cameraOne as UIControl_HBGK1);
+                    //(cameraOne as UIControl_HBGK1).SetValue(Grid.RowProperty, 0);
+                    //(cameraOne as UIControl_HBGK1).SetValue(Grid.ColumnProperty, 0);
+                }
+                else if (cameraOne is YiTongCameraControl)
+                {
+                    gridCamera1.Children.Add(cameraOne as YiTongCameraControl);
+                    //(cameraOne as YiTongCameraControl).SetValue(Grid.RowProperty, 0);
+                    //(cameraOne as YiTongCameraControl).SetValue(Grid.ColumnProperty, 0);
+                }
+                else
+                {
+                    gridCamera1.Children.Add(cameraInitImage1);
+                }
+            }
+            cameraOne.FullScreenEvent -= CameraOne_FullScreenEvent;
+            cameraOne.FullScreenEvent += CameraOne_FullScreenEvent;
+            //viewboxCameral1.Height = 300;
+            //viewboxCameral1.Width = 403;
+        }
+        public delegate void FullScreenHandler(int camId);
+
+        public event FullScreenHandler FullScreenEvent;
+        private void CameraOne_FullScreenEvent()
+        {
+            if (FullScreenEvent != null)
+            {
+                FullScreenEvent(5);
+            }
+        }
+
+        private void InitControls()
+        {
+            cameraInitImage1.Source = new BitmapImage(new Uri("../Images/camera.jpg", UriKind.Relative));
+
+            gridCamera1.Children.Add(cameraInitImage1);
+
+           
+        }
+
+        public void PlayCameraInThread()
+        {
+            Task.Factory.StartNew(() =>
+            {
+                Thread.Sleep(2 * 1000);
+                PlayCamera();
+            });
+        }
+
+        #endregion
     }
 }
