@@ -3466,6 +3466,25 @@ namespace COM.Common
     #endregion
 
     #region 液压站
+    public class SIRSelfRotateConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null || value == DependencyProperty.UnsetValue)
+            {
+                return 0;
+            }
+            int val = (int)value;
+            double ret = (val - 141666) * 8 / 4096.0;
+            ret = Math.Round(ret, 1);
+            return ret;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     public class DivideTenConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -3571,7 +3590,7 @@ namespace COM.Common
             double val = (short)values[0] / 10.0;
             double min = (double)values[1];
             double max = (double)values[2];
-            if (max < 100) max = 100;
+            if (max ==0) max = 100;
             double levelOne = (max - min) / 3;
             double levelTwo = ((max - min) / 3) * 2;
             if (val < levelOne) return (Brush)bc.ConvertFrom("#2968DC");
@@ -3982,6 +4001,8 @@ namespace COM.Common
                     return "上扣";
                 case 2:
                     return "卸扣";
+                case 101:
+                    return "切换中";
             }
 
             return "工作模式";
