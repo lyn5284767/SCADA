@@ -3525,7 +3525,7 @@ namespace COM.Common
             }
             int val = (int)value;
             double ret = (val - 141666) * 8 / 4096.0;
-            ret = Math.Round(ret, 1);
+            ret = Math.Round(ret, 0);
             return ret;
         }
 

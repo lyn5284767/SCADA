@@ -49,13 +49,13 @@
                     <Grid Grid.Column="2">
                         <StackPanel Orientation="Vertical">
                             <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                                <TextBlock Text="钻&#x0a;杆&#x0a;参&#x0a;数"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Height="120" />
+                                <TextBlock Text="钻&#x0a;杆&#x0a;类&#x0a;型"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Height="240" />
                             </Border>
                             <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                                <TextBlock Text="套&#x0a;管&#x0a;参&#x0a;数&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Height="110"/>
+                                <TextBlock Text="套&#x0a;管&#x0a;类&#x0a;型&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Height="110"/>
                             </Border>
                             <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                                <TextBlock Text="大&#x0a;钳&#x0a;参&#x0a;数&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Height="300"/>
+                                <TextBlock Text="自&#x0a;动&#x0a;对&#x0a;缺&#x0a;参&#x0a;数&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Height="180"/>
                             </Border>
 
 
@@ -69,20 +69,20 @@
                             <RowDefinition Height="224*"/>
                         </Grid.RowDefinitions>
                         <StackPanel Orientation="Vertical" Grid.RowSpan="4">
-                            <cl:TextBlockWithTextBox Name="twtL1" TagTwo="1" ControlTag="1"  TbkText="上扣动作设置"/>
+                            <cl:TextBlockWithTextBox Name="twtL9" TagTwo="3" ControlTag="1"  TbkText="上扣圈数设置"/>
+                            <cl:TextBlockWithTextBox Name="twtL10" TagTwo="3" ControlTag="2"  TbkText="卸扣圈数设置"/>
+                            <cl:TextBlockWithTextBox Name="twtL1" TagTwo="1" ControlTag="1"  TbkText="高速上扣设置"/>
                             <cl:TextBlockWithTextBox Name="twtL2" TagTwo="1" ControlTag="2"  TbkText="上扣安全保护"/>
-                            <cl:TextBlockWithTextBox Name="twtL3" TagTwo="1" ControlTag="3"  TbkText="卸扣动作设置"/>
+                            <cl:TextBlockWithTextBox Name="twtL11" TagTwo="3" ControlTag="3"  TbkText="紧扣动作设置"/>
+                            <cl:TextBlockWithTextBox Name="twtL12" TagTwo="3" ControlTag="4"  TbkText="紧扣安全保护"/>
+                            <cl:TextBlockWithTextBox Name="twtL3" TagTwo="1" ControlTag="3"  TbkText="冲扣动作周期"/>
                             <cl:TextBlockWithTextBox Name="twtL4" TagTwo="1" ControlTag="4"  TbkText="卸扣安全保护"/>
-
+                            
                             <cl:TextBlockWithTextBox Name="twtL5" TagTwo="2" ControlTag="1"  TbkText="上扣动作设置"/>
                             <cl:TextBlockWithTextBox Name="twtL6" TagTwo="2" ControlTag="2"  TbkText="上扣安全保护"/>
                             <cl:TextBlockWithTextBox Name="twtL7" TagTwo="2" ControlTag="3"  TbkText="卸扣动作设置"/>
                             <cl:TextBlockWithTextBox Name="twtL8" TagTwo="2" ControlTag="4"  TbkText="卸扣安全保护"/>
 
-                            <cl:TextBlockWithTextBox Name="twtL9" TagTwo="3" ControlTag="1"  TbkText="上扣圈数"/>
-                            <cl:TextBlockWithTextBox Name="twtL10" TagTwo="3" ControlTag="2"  TbkText="卸扣圈数"/>
-                            <cl:TextBlockWithTextBox Name="twtL11" TagTwo="3" ControlTag="3"  TbkText="上扣速度"/>
-                            <cl:TextBlockWithTextBox Name="twtL12" TagTwo="3" ControlTag="4"  TbkText="卸扣速度"/>
                             <cl:TextBlockWithTextBox Name="twtL13" TagTwo="3" ControlTag="5"  TbkText="上扣对缺启动速度"/>
                             <cl:TextBlockWithTextBox Name="twtL14" TagTwo="3" ControlTag="6"  TbkText="上扣对缺平稳速度"/>
                             <cl:TextBlockWithTextBox Name="twtL15" TagTwo="3" ControlTag="7"  TbkText="上扣对缺缓冲速度"/>
@@ -96,11 +96,14 @@
                     <Grid Grid.Column="0">
                         <StackPanel Orientation="Vertical">
                             <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="5" Padding="3">
-                                <TextBlock Text="悬&#x0a;臂&#x0a;运&#x0a;动&#x0a;参&#x0a;数" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Height="300"/>
+                                <TextBlock Text="气&#x0a;缸&#x0a;参&#x0a;数" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Height="90"/>
+                            </Border>
+                            <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="5" Padding="3">
+                                <TextBlock Text="悬&#x0a;臂&#x0a;参&#x0a;数" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Height="190"/>
                             </Border>
                             <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="5" Padding="3">
                                 <TextBlock Text="回&#x0a;转&#x0a;运&#x0a;动&#x0a;参&#x0a;数" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold"  Height="170" />
-                            </Border>
+                            </Border>   
                             <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="5" Padding="3" Height="120">
                                 <TextBlock Text="立&#x0a;柱&#x0a;参&#x0a;数&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold"  Height="85" />
                             </Border>
@@ -114,16 +117,17 @@
                     </Grid>
                     <Grid Grid.Column="1">
                         <StackPanel Orientation="Vertical">
-                            <cl:TextBlockWithTextBox Name="twtR1" TagTwo="4" ControlTag="1"  TbkText="伸出速度"/>
-                            <cl:TextBlockWithTextBox Name="twtR2" TagTwo="4" ControlTag="2"  TbkText="缩回速度"/>
-                            <cl:TextBlockWithTextBox Name="twtR3" TagTwo="4" ControlTag="3"  TbkText="爬坡速度"/>
-                            <cl:TextBlockWithTextBox Name="twtR4" TagTwo="4" ControlTag="4"  TbkText="爬坡周期"/>
-                            <cl:TextBlockWithTextBox Name="twtR5" TagTwo="4" ControlTag="5"  TbkText="平稳伸出速度"/>
-                            <cl:TextBlockWithTextBox Name="twtR6" TagTwo="4" ControlTag="6"  TbkText="平稳缩回速度"/>
-                            <cl:TextBlockWithTextBox Name="twtR7" TagTwo="4" ControlTag="7"  TbkText="缓冲速度"/>
                             <cl:TextBlockWithTextBox Name="twtR8" TagTwo="5" ControlTag="1"  TbkText="响应周期"/>
                             <cl:TextBlockWithTextBox Name="twtR9" TagTwo="5" ControlTag="2"  TbkText="工作缸低压预警"/>
                             <cl:TextBlockWithTextBox Name="twtR10" TagTwo="5" ControlTag="3"  TbkText="制动缸低压预警"/>
+
+                            <cl:TextBlockWithTextBox Name="twtR1" TagTwo="4" ControlTag="1"  TbkText="伸出速度" />
+                            <cl:TextBlockWithTextBox Name="twtR2" TagTwo="4" ControlTag="2"  TbkText="缩回速度"/>
+                            <cl:TextBlockWithTextBox Name="twtR3" TagTwo="4" ControlTag="3"  TbkText="爬坡速度" />
+                            <cl:TextBlockWithTextBox Name="twtR4" TagTwo="4" ControlTag="4"  TbkText="爬坡周期" />
+                            <cl:TextBlockWithTextBox Name="twtR5" TagTwo="4" ControlTag="5"  TbkText="平稳伸出速度" />
+                            <cl:TextBlockWithTextBox Name="twtR6" TagTwo="4" ControlTag="6"  TbkText="平稳缩回速度" />
+                            <cl:TextBlockWithTextBox Name="twtR7" TagTwo="4" ControlTag="7"  TbkText="缓冲速度" />
 
                             <cl:TextBlockWithTextBox Name="twtR11" TagTwo="6" ControlTag="1"  TbkText="工位左向回转速度"/>
                             <cl:TextBlockWithTextBox Name="twtR12" TagTwo="6" ControlTag="2"  TbkText="工位右向回转速度"/>
@@ -133,9 +137,9 @@
                             <cl:TextBlockWithTextBox Name="twtR16" TagTwo="6" ControlTag="6" TbkText="右极限极回转限位"/>
 
                             <cl:TextBlockWithTextBox Name="twtR17" TagTwo="7" ControlTag="1" TbkText="立柱上升速度"/>
-                            <cl:TextBlockWithTextBox Name="twtR18" TagTwo="7" ControlTag="2" TbkText="立柱下降速度"/>
-                            <cl:TextBlockWithTextBox Name="twtR19" TagTwo="7" ControlTag="3" TbkText="立柱上限高度"/>
-                            <cl:TextBlockWithTextBox Name="twtR20" TagTwo="7" ControlTag="4" TbkText="立柱下限高度"/>
+                            <cl:TextBlockWithTextBox Name="twtR18" TagTwo="7" ControlTag="2" TbkText="立柱下降速度" />
+                            <cl:TextBlockWithTextBox Name="twtR19" TagTwo="7" ControlTag="3" TbkText="立柱上限高度" />
+                            <cl:TextBlockWithTextBox Name="twtR20" TagTwo="7" ControlTag="4" TbkText="立柱下限高度" />
          
                             <!--<cl:TextBlockWithTextBox Name="twtR17" ControlTag="51"  TbkText="左手柄"/>
                             <cl:TextBlockWithTextBox Name="twtR18" ControlTag="52"  TbkText="右手柄"/>
