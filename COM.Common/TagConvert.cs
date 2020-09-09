@@ -3466,6 +3466,55 @@ namespace COM.Common
     #endregion
 
     #region 液压站
+
+    public class HyControlModelMuilCoverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            var bc = new BrushConverter();
+            if (values[0] == DependencyProperty.UnsetValue || values[0] == null
+                || values[1] == DependencyProperty.UnsetValue || values[1] == null)
+            {
+                return false;
+            }
+            bool valone = (bool)values[0];
+            bool valtwo = (bool)values[1];
+            if (valone && !valtwo) return true;
+            else if (valtwo && !valone) return false;
+            else if (!valtwo && !valone) return true;
+            return false;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class HyControlModelTxtMuilCoverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            var bc = new BrushConverter();
+            if (values[0] == DependencyProperty.UnsetValue || values[0] == null
+                || values[1] == DependencyProperty.UnsetValue || values[1] == null)
+            {
+                return "未知";
+            }
+            bool valone = (bool)values[0];
+            bool valtwo = (bool)values[1];
+            if (valone && !valtwo) return "本地";
+            else if (valtwo && !valone) return "司钻";
+            else if (!valtwo && !valone) return "分阀箱";
+            return "未知";
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     public class SIRSelfRotateConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -4157,6 +4206,10 @@ namespace COM.Common
             else
             {
                     workmodel = (byte)values[1];
+            }
+            if ((values[2] == DependencyProperty.UnsetValue) || (values[2] == null))
+            {
+                return 0;
             }
             int byteAutoModeNowStep = (byte)values[2];
             if (autoOpr && workmodel == 1)

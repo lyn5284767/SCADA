@@ -412,7 +412,7 @@ namespace DemoDriver
 
         void InitServerBySqlite()
         {
-            string sql = "select * from Protocol";
+            string sql = "select * from Protocol where IsActive = 1";
             List<Protocol> protocolList = DataHelper.Instance.ExecuteList<Protocol>(sql);
             if (protocolList.Count == 0)
             {

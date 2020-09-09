@@ -51,6 +51,9 @@ namespace Main.SIR
             }
         }
         System.Threading.Timer timerWarning;
+        System.Threading.Timer VariableReBinding;
+        byte bworkModel = 0;
+        bool workModelCheck = false;
         public SIRSelfMain()
         {
             InitializeComponent();
@@ -58,6 +61,8 @@ namespace Main.SIR
             InitCameraInfo();
             VariableBinding();
             timerWarning = new System.Threading.Timer(new TimerCallback(TimerWarning_Elapsed), this, 2000, 50);//改成50ms 的时钟
+            VariableReBinding = new System.Threading.Timer(new TimerCallback(VariableTimer), null, Timeout.Infinite, 500);
+            VariableReBinding.Change(0, 500);
             this.Loaded += SIRSelfMain_Loaded;
         }
 
@@ -178,6 +183,7 @@ namespace Main.SIR
                 sbOutButtonMultiBind.NotifyOnSourceUpdated = true;
                 this.sbOutButton.SetBinding(StepBar.StepIndexProperty, sbOutButtonMultiBind);
 
+
             }
             catch (Exception ex)
             {
@@ -216,6 +222,8 @@ namespace Main.SIR
                    byteToSend = new byte[10] { 23, 17, 2, 1, 0, 0, 0, 0, 0, 0 };
             }
             GlobalData.Instance.da.SendBytes(byteToSend);
+            this.workModel.ContentDown = "切换中";
+            workModelCheck = true;
         }
         /// <summary>
         /// 管柱选择
@@ -283,6 +291,18 @@ namespace Main.SIR
                 byteToSend = new byte[10] { 23, 17, 6, 2, 0, 0, 0, 0, 0, 0 };
             }
             GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        private void VariableTimer(object value)
+        {
+            if (bworkModel != GlobalData.Instance.da["SIRSelfWorkModel"].Value.Byte && workModelCheck)
+            {
+                this.workModel.Dispatcher.Invoke(new Action(() =>
+                {        
+                    this.workModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfWorkModel"], Mode = BindingMode.OneWay, Converter = new SIRSelfWorkModelConverter() });
+                }));
+                workModelCheck = false;
+            }
+            bworkModel = GlobalData.Instance.da["SIRSelfWorkModel"].Value.Byte;
         }
         private int iTimeCnt = 0;//用来为时钟计数的变量
         private void TimerWarning_Elapsed(object obj)
@@ -461,10 +481,16 @@ namespace Main.SIR
         private void InitCameraInfo()
         {
             ChannelInfo info5 = GetConfigPara("CAMERA5");
+            ChannelInfo info6 = GetConfigPara("CAMERA6");
             if (info5 != null)
             {
                 info5.ID = 5;
                 GlobalData.Instance.chList.Add(info5);
+            }
+            if (info6 != null)
+            {
+                info6.ID = 6;
+                GlobalData.Instance.chList.Add(info6);
             }
             foreach (ChannelInfo info in GlobalData.Instance.chList)
             {
@@ -490,6 +516,7 @@ namespace Main.SIR
         private void InitCameraSaveTimeThread()
         {
             cameraSaveThreadTimer1 = new System.Threading.Timer(new TimerCallback(CameraVideoSave1), null, Timeout.Infinite, 60000);
+            cameraSaveThreadTimer2 = new System.Threading.Timer(new TimerCallback(CameraVideoSave2), null, Timeout.Infinite, 60000);
         }
 
         /// <summary>
@@ -618,7 +645,17 @@ namespace Main.SIR
         {
             cameraSaveThreadTimer1.Change(0, 60000);
         }
+        private void CameraVideoStop2()
+        {
+            ICameraFactory cameraTwo = GlobalData.Instance.cameraList.Where(w => w.Info.ID == 6).FirstOrDefault();
+            cameraTwo.StopCamera();
+            cameraSaveThreadTimer2.Change(Timeout.Infinite, 60000);
+        }
 
+        private void CameraVideoStart2()
+        {
+            cameraSaveThreadTimer2.Change(0, 60000);
+        }
 
         private void CameraVideoSave1(object value)
         {
@@ -637,7 +674,25 @@ namespace Main.SIR
                 System.Windows.MessageBox.Show(ex.StackTrace);
             }
         }
-     
+
+        private void CameraVideoSave2(object value)
+        {
+            try
+            {
+                string str1 = System.Environment.CurrentDirectory;
+                string filePath = str1 + "\\video" + "\\video6";
+                string fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + ".avi";
+                ICameraFactory cameraOne = GlobalData.Instance.cameraList.Where(w => w.Info.ID == 6).FirstOrDefault();
+                cameraOne.StopFile();
+                cameraOne.SaveFile(filePath, fileName);
+                DeleteOldFileName(filePath);
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.StackTrace);
+            }
+        }
+
 
         /// <summary>
         /// 删除最老的视频文件
@@ -681,10 +736,11 @@ namespace Main.SIR
         public void PlayCamera()
         {
             this.gridCamera1.Dispatcher.Invoke(new PayOneDelegate(PlayOneAction), null);
+            this.gridCamera2.Dispatcher.Invoke(new PayTwoDelegate(PlayTwoAction), null);
         }
 
         private delegate void PayOneDelegate();
-
+        private delegate void PayTwoDelegate();
         private void PlayOneAction()
         {
             SIRCameraFullScreen.Instance.gridCamera1.Children.Clear();
@@ -693,7 +749,7 @@ namespace Main.SIR
             ChannelInfo info = GlobalData.Instance.chList.Where(w => w.ID == 5).FirstOrDefault();
             bool isPlay = cameraOne.InitCamera(info);
             CameraVideoStart1();
-            cameraOne.SetSize(220, 420);
+            cameraOne.SetSize(200, 330);
             if (isPlay)
             {
                 gridCamera1.Children.Clear();
@@ -719,6 +775,41 @@ namespace Main.SIR
             //viewboxCameral1.Height = 300;
             //viewboxCameral1.Width = 403;
         }
+
+        private void PlayTwoAction()
+        {
+            ICameraFactory cameraTwo = GlobalData.Instance.cameraList.Where(w => w.Info.ID == 6).FirstOrDefault();
+            CameraVideoStop2();
+            ChannelInfo info = GlobalData.Instance.chList.Where(w => w.ID == 6).FirstOrDefault();
+            bool isPlay = cameraTwo.InitCamera(info);
+            CameraVideoStart2();
+            cameraTwo.SetSize(180, 340);
+            if (isPlay)
+            {
+                gridCamera2.Children.Clear();
+                if (cameraTwo is UIControl_HBGK1)
+                {
+                    gridCamera2.Children.Add(cameraTwo as UIControl_HBGK1);
+                    //(cameraOne as UIControl_HBGK1).SetValue(Grid.RowProperty, 0);
+                    //(cameraOne as UIControl_HBGK1).SetValue(Grid.ColumnProperty, 0);
+                }
+                else if (cameraTwo is YiTongCameraControl)
+                {
+                    gridCamera2.Children.Add(cameraTwo as YiTongCameraControl);
+                    //(cameraOne as YiTongCameraControl).SetValue(Grid.RowProperty, 0);
+                    //(cameraOne as YiTongCameraControl).SetValue(Grid.ColumnProperty, 0);
+                }
+                else
+                {
+                    gridCamera2.Children.Add(cameraInitImage1);
+                }
+            }
+            cameraTwo.FullScreenEvent -= CameraTwo_FullScreenEvent;
+            cameraTwo.FullScreenEvent += CameraTwo_FullScreenEvent;
+            //viewboxCameral1.Height = 300;
+            //viewboxCameral1.Width = 403;
+        }
+
         public delegate void FullScreenHandler(int camId);
 
         public event FullScreenHandler FullScreenEvent;
@@ -730,13 +821,23 @@ namespace Main.SIR
             }
         }
 
+        private void CameraTwo_FullScreenEvent()
+        {
+            if (FullScreenEvent != null)
+            {
+                FullScreenEvent(6);
+            }
+        }
+
         private void InitControls()
         {
             cameraInitImage1.Source = new BitmapImage(new Uri("../Images/camera.jpg", UriKind.Relative));
 
             gridCamera1.Children.Add(cameraInitImage1);
 
-           
+            cameraInitImage2.Source = new BitmapImage(new Uri("../Images/camera.jpg", UriKind.Relative));
+
+            gridCamera2.Children.Add(cameraInitImage2);
         }
 
         public void PlayCameraInThread()

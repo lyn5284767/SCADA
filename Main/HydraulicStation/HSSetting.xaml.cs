@@ -1,5 +1,6 @@
 ﻿using COM.Common;
 using ControlLibrary;
+using DataService;
 using Log;
 using System;
 using System.Collections.Generic;
@@ -45,10 +46,17 @@ namespace Main.HydraulicStation
         }
 
         System.Threading.Timer timerWarning;
+        System.Threading.Timer VariableReBinding;
+        bool bMainPumpOne = false;
+        bool MainPumpOneCheck = false;
+        bool bMainPumpTwo = false;
+        bool MainPumpTwoCheck = false;
         public HSSetting()
         {
             InitializeComponent();
             VariableBinding();
+            VariableReBinding = new System.Threading.Timer(new TimerCallback(VariableTimer), null, Timeout.Infinite, 500);
+            VariableReBinding.Change(0, 500);
             timerWarning = new System.Threading.Timer(new TimerCallback(TimerWarning_Elapsed), this, 2000, 500);//改成50ms 的时钟
         }
 
@@ -68,6 +76,22 @@ namespace Main.HydraulicStation
                 #endregion
 
                 this.controlModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["771b5"], Mode = BindingMode.OneWay});
+                HyControlModelMuilCoverter hyControlModelMultiConverter = new HyControlModelMuilCoverter();
+                MultiBinding hyControlModelMultiBind = new MultiBinding();
+                hyControlModelMultiBind.Converter = hyControlModelMultiConverter;
+                hyControlModelMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["771b5"], Mode = BindingMode.OneWay });
+                hyControlModelMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["771b6"], Mode = BindingMode.OneWay });
+                hyControlModelMultiBind.NotifyOnSourceUpdated = true;
+                this.controlModel.SetBinding(BasedSwitchButton.IsCheckedProperty, hyControlModelMultiBind);
+                HyControlModelTxtMuilCoverter hyControlModelTxtMultiConverter = new HyControlModelTxtMuilCoverter();
+                MultiBinding hyControlModelTxtlMultiBind = new MultiBinding();
+                hyControlModelTxtlMultiBind.Converter = hyControlModelTxtMultiConverter;
+                hyControlModelTxtlMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["771b5"], Mode = BindingMode.OneWay });
+                hyControlModelTxtlMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["771b6"], Mode = BindingMode.OneWay });
+                hyControlModelTxtlMultiBind.NotifyOnSourceUpdated = true;
+                this.controlModel.SetBinding(BasedSwitchButton.ContentDownProperty, hyControlModelTxtlMultiBind);
+
+
                 this.MainPumpOne.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["770b3"], Mode = BindingMode.OneWay });
                 this.MainPumpTwo.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["770b5"], Mode = BindingMode.OneWay });
                 this.constantVoltagePump.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["770b7"], Mode = BindingMode.OneWay });
@@ -165,6 +189,8 @@ namespace Main.HydraulicStation
                 byteToSend = new byte[10] { 0, 19, 3, 2, 0, 0, 0, 0, 0, 0 };
             }
             GlobalData.Instance.da.SendBytes(byteToSend);
+            this.MainPumpOne.ContentDown = "切换中";
+            this.MainPumpOneCheck = true;
         }
         /// <summary>
         /// 主泵2启动/停止
@@ -181,6 +207,8 @@ namespace Main.HydraulicStation
                 byteToSend = new byte[10] { 0, 19, 3, 4, 0, 0, 0, 0, 0, 0 };
             }
             GlobalData.Instance.da.SendBytes(byteToSend);
+            this.MainPumpTwo.ContentDown = "切换中";
+            this.MainPumpTwoCheck = true;
         }
         /// <summary>
         /// 恒压泵启动/停止
@@ -650,6 +678,28 @@ namespace Main.HydraulicStation
             {
                 Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
             }
+        }
+
+        private void VariableTimer(object value)
+        {
+            if (this.bMainPumpOne != GlobalData.Instance.da["770b3"].Value.Boolean && this.MainPumpOneCheck)
+            {
+                this.MainPumpOne.Dispatcher.Invoke(new Action(() =>
+                {
+                    this.MainPumpOne.ContentDown = "1#主泵";
+                }));
+                MainPumpOneCheck = false;
+            }
+            bMainPumpOne = GlobalData.Instance.da["770b3"].Value.Boolean;
+            if (this.bMainPumpTwo != GlobalData.Instance.da["770b5"].Value.Boolean && this.MainPumpTwoCheck)
+            {
+                this.MainPumpOne.Dispatcher.Invoke(new Action(() =>
+                {
+                    this.MainPumpTwo.ContentDown = "2#主泵";
+                }));
+                MainPumpTwoCheck = false;
+            }
+            bMainPumpTwo = GlobalData.Instance.da["770b5"].Value.Boolean;
         }
     }
 }
