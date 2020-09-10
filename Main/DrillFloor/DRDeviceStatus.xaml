@@ -196,6 +196,7 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
                                 <RowDefinition/>
+                                <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -205,6 +206,8 @@
                             <cl:SymbolMapping Grid.Column="1" Grid.Row="0" Name="ForbidMoveToWell" StrContent="禁止向井口移动" LampType="3" Height="25" Margin="12,2,2,2"/>
                             <cl:SymbolMapping Grid.Column="0" Grid.Row="1" Name="ForbidHandRetract" StrContent="禁止机械手缩回" LampType="3" Height="25" Margin="12,2,2,2"/>
                             <cl:SymbolMapping Grid.Column="1" Grid.Row="1" Name="WellLocation" StrContent="井口位置" LampType="3" Height="25" Margin="12,2,2,2"/>
+                            <cl:SymbolMapping Grid.Column="0" Grid.Row="2" Name="ForbidToCat" StrContent="禁止向猫道移动" LampType="3" Height="25" Margin="12,2,2,2"/>
+                            <cl:SymbolMapping Grid.Column="1" Grid.Row="2" Name="CatLocked" StrContent="猫道互锁" LampType="3" Height="25" Margin="12,2,2,2"/>
                         </Grid>
                     </StackPanel>
                 </Border>

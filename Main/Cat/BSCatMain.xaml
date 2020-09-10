@@ -40,11 +40,11 @@
                     </StackPanel>
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                            <ColumnDefinition />
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="120" />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <cl:BasedSwitchButton Name="controlModel" ContentLeft="本地" ContentDown="控制模式" ContentRight="司钻" UserControlClicked="btn_controlModel" Grid.Column="0" />
@@ -56,9 +56,11 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
                                 <RowDefinition/>
+                                <RowDefinition/>
                             </Grid.RowDefinitions>
-                            <CheckBox Name="cbIgnoreLimit" Grid.Row="0" FontSize="20" Checked="cbIgnoreLimit_Checked">忽略限制</CheckBox>
-                            <CheckBox Name="cbSelectPipe" Grid.Row="1" FontSize="20" Checked="cbSelectPipe_Checked">选择套管</CheckBox>
+                            <CheckBox Name="cbDRSafeLimit" Grid.Row="0" FontSize="20" Checked="cbDRSafeLimit_Checked">钻台面安全限制解除</CheckBox>
+                            <CheckBox Name="cbIgnoreLimit" Grid.Row="1" FontSize="20" Checked="cbIgnoreLimit_Checked">忽略限制</CheckBox>
+                            <CheckBox Name="cbSelectPipe" Grid.Row="2" FontSize="20" Checked="cbSelectPipe_Checked">选择套管</CheckBox>
                         </Grid>
                     </Grid>
                 </Grid>

@@ -480,34 +480,34 @@ namespace Main.SIR
         /// </summary>
         private void InitCameraInfo()
         {
-            ChannelInfo info5 = GetConfigPara("CAMERA5");
-            ChannelInfo info6 = GetConfigPara("CAMERA6");
-            if (info5 != null)
-            {
-                info5.ID = 5;
-                GlobalData.Instance.chList.Add(info5);
-            }
-            if (info6 != null)
-            {
-                info6.ID = 6;
-                GlobalData.Instance.chList.Add(info6);
-            }
-            foreach (ChannelInfo info in GlobalData.Instance.chList)
-            {
-                switch (info.CameraType)
-                {
-                    case 0:
-                        {
-                            GlobalData.Instance.cameraList.Add(new UIControl_HBGK1(info));
-                            break;
-                        }
-                    case 1:
-                        {
-                            GlobalData.Instance.cameraList.Add(new YiTongCameraControl(info));
-                            break;
-                        }
-                }
-            }
+            //ChannelInfo info5 = GetConfigPara("CAMERA5");
+            //ChannelInfo info6 = GetConfigPara("CAMERA6");
+            //if (info5 != null)
+            //{
+            //    info5.ID = 5;
+            //    GlobalData.Instance.chList.Add(info5);
+            //}
+            //if (info6 != null)
+            //{
+            //    info6.ID = 6;
+            //    GlobalData.Instance.chList.Add(info6);
+            //}
+            //foreach (ChannelInfo info in GlobalData.Instance.chList)
+            //{
+            //    switch (info.CameraType)
+            //    {
+            //        case 0:
+            //            {
+            //                GlobalData.Instance.cameraList.Add(new UIControl_HBGK1(info));
+            //                break;
+            //            }
+            //        case 1:
+            //            {
+            //                GlobalData.Instance.cameraList.Add(new YiTongCameraControl(info));
+            //                break;
+            //            }
+            //    }
+            //}
             InitCameraSaveTimeThread();
         }
         /// <summary>
@@ -783,7 +783,7 @@ namespace Main.SIR
             ChannelInfo info = GlobalData.Instance.chList.Where(w => w.ID == 6).FirstOrDefault();
             bool isPlay = cameraTwo.InitCamera(info);
             CameraVideoStart2();
-            cameraTwo.SetSize(180, 340);
+            cameraTwo.SetSize(200, 330);
             if (isPlay)
             {
                 gridCamera2.Children.Clear();

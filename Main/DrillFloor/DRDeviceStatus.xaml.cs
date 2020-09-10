@@ -135,12 +135,14 @@ namespace Main.DrillFloor
                 gridErrorMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["337b5"], Mode = BindingMode.OneWay });
                 gridErrorMultiBind.NotifyOnSourceUpdated = true;
                 this.gridError.SetBinding(TextBlock.TextProperty, gridErrorMultiBind);
-
+                #region 安全信息
                 this.pliersForbidOpen.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["333b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
                 this.ForbidMoveToWell.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["333b1"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
                 this.ForbidHandRetract.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["333b2"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
                 this.WellLocation.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["334b1"], Mode = BindingMode.OneWay, Converter = new OppositeBoolTagConverter() });
-
+                this.ForbidToCat.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["333b3"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.CatLocked.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["334b4"], Mode = BindingMode.OneWay, Converter = new OppositeBoolTagConverter() });
+                #endregion
                 this.handleX.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drX"], Mode = BindingMode.OneWay });
                 this.handleY.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drY"], Mode = BindingMode.OneWay });
                 this.btnLeft.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["427b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });

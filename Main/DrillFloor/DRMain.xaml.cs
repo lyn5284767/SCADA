@@ -690,34 +690,34 @@ namespace Main.DrillFloor
         {
             try
             {
-                ChannelInfo info3 = GetConfigPara("CAMERA3");
-                ChannelInfo info4 = GetConfigPara("CAMERA4");
-                if (info3 != null)
-                {
-                    info3.ID = 3;
-                    GlobalData.Instance.chList.Add(info3);
-                }
-                if (info4 != null)
-                {
-                    info4.ID = 4;
-                    GlobalData.Instance.chList.Add(info4);
-                }
-                foreach (ChannelInfo info in GlobalData.Instance.chList)
-                {
-                    switch (info.CameraType)
-                    {
-                        case 0:
-                            {
-                                GlobalData.Instance.cameraList.Add(new UIControl_HBGK1(info));
-                                break;
-                            }
-                        case 1:
-                            {
-                                GlobalData.Instance.cameraList.Add(new YiTongCameraControl(info));
-                                break;
-                            }
-                    }
-                }
+                //ChannelInfo info3 = GetConfigPara("CAMERA3");
+                //ChannelInfo info4 = GetConfigPara("CAMERA4");
+                //if (info3 != null)
+                //{
+                //    info3.ID = 3;
+                //    GlobalData.Instance.chList.Add(info3);
+                //}
+                //if (info4 != null)
+                //{
+                //    info4.ID = 4;
+                //    GlobalData.Instance.chList.Add(info4);
+                //}
+                //foreach (ChannelInfo info in GlobalData.Instance.chList)
+                //{
+                //    switch (info.CameraType)
+                //    {
+                //        case 0:
+                //            {
+                //                GlobalData.Instance.cameraList.Add(new UIControl_HBGK1(info));
+                //                break;
+                //            }
+                //        case 1:
+                //            {
+                //                GlobalData.Instance.cameraList.Add(new YiTongCameraControl(info));
+                //                break;
+                //            }
+                //    }
+                //}
                 InitCameraSaveTimeThread();
             }
             catch (Exception ex)

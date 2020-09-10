@@ -82,6 +82,8 @@ namespace Main.SIR
                 this.tbInButtonTimeSetValue.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["BSSIRInButtonTime"], Mode = BindingMode.OneWay });
                 this.tbOutButtonTimeSetValue.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["BSSIROutButtonTime"], Mode = BindingMode.OneWay });
                 this.tbInButtonTimesShow.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["BSSIROutButtonTimes"], Mode = BindingMode.OneWay });
+
+                this.cbDRSafeLimit.SetBinding(CheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["505b6"], Mode = BindingMode.OneWay });
                 #endregion
 
                 #region 右手柄信息 弃用
@@ -656,6 +658,28 @@ namespace Main.SIR
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         #endregion
-
+        /// <summary>
+        /// 钻台面安全限制解除
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cbDRSafeLimit_Checked(object sender, RoutedEventArgs e)
+        {
+            CheckBox cb = sender as CheckBox;
+            if (cb.IsChecked.Value)
+            {
+                byte[] byteToSend = new byte[10] { 80, 16, 1, 24, 2, 0, 0, 0, 0, 0 };
+                GlobalData.Instance.da.SendBytes(byteToSend);
+            }
+            else
+            {
+                MessageBoxResult result = System.Windows.MessageBox.Show("确认解除钻台面对铁钻工的安全设置?", "提示", MessageBoxButton.OKCancel);
+                if (result == MessageBoxResult.OK)
+                {
+                    byte[] byteToSend = new byte[10] { 80, 16, 1, 24, 1, 0, 0, 0, 0, 0 };
+                    GlobalData.Instance.da.SendBytes(byteToSend);
+                }
+            }
+        }
     }
 }

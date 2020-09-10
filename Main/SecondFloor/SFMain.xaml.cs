@@ -1794,6 +1794,10 @@ namespace Main.SecondFloor
         {
             ChannelInfo info1 = GetConfigPara("CAMERA1");
             ChannelInfo info2 = GetConfigPara("CAMERA2");
+            ChannelInfo info3 = GetConfigPara("CAMERA3");
+            ChannelInfo info4 = GetConfigPara("CAMERA4");
+            ChannelInfo info5 = GetConfigPara("CAMERA5");
+            ChannelInfo info6 = GetConfigPara("CAMERA6");
             if (info1 != null)
             {
                 info1.ID = 1;
@@ -1803,6 +1807,26 @@ namespace Main.SecondFloor
             {
                 info2.ID = 2;
                 GlobalData.Instance.chList.Add(info2);
+            }
+            if (info3 != null)
+            {
+                info3.ID = 3;
+                GlobalData.Instance.chList.Add(info3);
+            }
+            if (info4 != null)
+            {
+                info4.ID = 4;
+                GlobalData.Instance.chList.Add(info4);
+            }
+            if (info5 != null)
+            {
+                info5.ID = 5;
+                GlobalData.Instance.chList.Add(info5);
+            }
+            if (info6 != null)
+            {
+                info6.ID = 6;
+                GlobalData.Instance.chList.Add(info6);
             }
             foreach (ChannelInfo info in GlobalData.Instance.chList)
             {
