@@ -28,7 +28,7 @@ namespace ControlLibrary
         /// 控件标志
         /// </summary>
         public int ControlTag { get; set; }
-        public static readonly DependencyProperty ShowTxtProperty = DependencyProperty.Register("ShowTxt", typeof(string), typeof(TextBlockWithBtn), new PropertyMetadata("9999999"));
+        public static readonly DependencyProperty ShowTxtProperty = DependencyProperty.Register("ShowTxt", typeof(string), typeof(TextBlockWithBtn), new PropertyMetadata("0"));
         /// <summary>
         /// 控件显示
         /// </summary>

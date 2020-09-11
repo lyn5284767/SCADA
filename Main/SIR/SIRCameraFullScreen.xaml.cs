@@ -61,6 +61,8 @@ namespace Main.SIR
             {
                 gridCamera1.Children.Clear();
                 SIRSelfMain.Instance.gridCamera1.Children.Clear();
+                SIRSelfMain.Instance.gridCamera2.Children.Clear();
+
                 ICameraFactory cameraOne = GlobalData.Instance.cameraList.Where(w => w.Info.ID == camId).FirstOrDefault();
                 CameraVideoStop1(camId);
                 ChannelInfo info = GlobalData.Instance.chList.Where(w => w.ID == camId).FirstOrDefault();
