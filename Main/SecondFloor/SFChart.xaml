@@ -7,7 +7,7 @@
              xmlns:cl="http://talonzeng.com/ControlLibrary"
              mc:Ignorable="d" 
              d:DesignHeight="608" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" FontFamily="微软雅黑" Margin="1" Name="sfChart">
-    <Grid>
+    <Grid Name="gdMain">
         <Grid.RowDefinitions>
             <RowDefinition Height="180"/>
             <RowDefinition/>

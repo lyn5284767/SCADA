@@ -782,8 +782,9 @@ namespace Main
                 }
                 else if (GlobalData.Instance.systemType == SystemType.HydraulicStation)
                 {
-                    MessageBox.Show("功能未开放");
-                    return;
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(HSReport.Instance);
+                    this.BottomColorSetting(this.bdHS, this.tbHS, this.bdOther);
                 }
             }
             catch (Exception ex)

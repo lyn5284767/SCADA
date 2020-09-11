@@ -188,6 +188,9 @@
     <Compile Include="HydraulicStation\HSMain.xaml.cs">
       <DependentUpon>HSMain.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HydraulicStation\HSReport.xaml.cs">
+      <DependentUpon>HSReport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HydraulicStation\HSSetting.xaml.cs">
       <DependentUpon>HSSetting.xaml</DependentUpon>
     </Compile>
@@ -370,6 +373,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="HydraulicStation\HSMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HydraulicStation\HSReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

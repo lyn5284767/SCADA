@@ -45,6 +45,9 @@ namespace Main.SIR
         {
             InitializeComponent();
             VariableBinding();
+            this.cbGapLock.IsChecked = true;
+            this.cbSafeDoorLock.IsChecked = true;
+            this.cbWellFendersLock.IsChecked = true;
         }
         /// <summary>
         /// 绑定变量

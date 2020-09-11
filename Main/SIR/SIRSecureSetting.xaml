@@ -87,13 +87,18 @@
             </Grid.ColumnDefinitions>
             <Border Grid.Column="0" BorderBrush="Gray" Padding="20" BorderThickness="0 1 1 0">
                 <StackPanel>
-                    <cl:CustomCheckBox ContentString="缺口互锁" Margin="15" Name="cbGapLock" UserControlClicked="cbGapLock_Clicked"/>
-                    <cl:CustomCheckBox ContentString="安全门互锁" Margin="15" Name="cbSafeDoorLock" UserControlClicked="cbSafeDoorLock_Clicked"/>
-                    <cl:CustomCheckBox ContentString="井口防碰互锁"  Margin="15" Name="cbWellFendersLock" UserControlClicked="cbWellFendersLock_Clicked"/>
+                    <cl:CustomCheckBox ContentString="缺口互锁" Margin="15" Name="cbGapLock" UserControlClicked="cbGapLock_Clicked" IsChecked="True"/>
+                    <cl:CustomCheckBox ContentString="安全门互锁" Margin="15" Name="cbSafeDoorLock" UserControlClicked="cbSafeDoorLock_Clicked" IsChecked="True"/>
+                    <cl:CustomCheckBox ContentString="井口防碰互锁"  Margin="15" Name="cbWellFendersLock" UserControlClicked="cbWellFendersLock_Clicked" IsChecked="True"/>
                     
                 </StackPanel>
             </Border>
             <Border Grid.Column="1" BorderBrush="Gray" BorderThickness="0 1 0 0" Padding="20">
+                <StackPanel>
+                    <TextBlock Margin="0,10,0,0" HorizontalAlignment="Center" Grid.Row="0" FontSize="34" Foreground="Red" FontWeight="Bold" FontFamily="微软雅黑">警告</TextBlock>
+                    <TextBlock Margin="0,10,0,0"  HorizontalAlignment="Center" Grid.Row="1" Foreground="Red" FontSize="24" FontFamily="微软雅黑" Text="互锁是保证系统安全，人员安全的一道屏障"></TextBlock>
+                    <TextBlock Margin="0,10,0,0" HorizontalAlignment="Center" Grid.Row="1" Foreground="Red" FontSize="24" FontFamily="微软雅黑" Text="非专业人员请勿随意操作"></TextBlock>
+                </StackPanel>
             </Border>
         </Grid>
     </Grid>
