@@ -1,5 +1,9 @@
 ﻿using COM.Common;
+using DatabaseLib;
+using DemoDriver;
 using DevExpress.Charts.Native;
+using HBGKTest;
+using HBGKTest.YiTongCamera;
 using Main.Cat;
 using Main.DrillFloor;
 using Main.HydraulicStation;
@@ -10,9 +14,12 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using System.Net.NetworkInformation;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -30,6 +37,7 @@ namespace Main
         BrushConverter brush = new BrushConverter();
         private DispatcherTimer timer;
         System.Timers.Timer serviceTimer;
+        System.Timers.Timer reportTimer;
 
         public MainWindow()
         {
@@ -43,6 +51,151 @@ namespace Main
             serviceTimer = new System.Timers.Timer(60 * 60 * 1000);
             serviceTimer.Elapsed += ServiceTimer_Elapsed;
             serviceTimer.Enabled = true;
+            InitCameraInfo();
+        }
+
+        /// <summary>
+        /// 初始化摄像头信息
+        /// </summary>
+        private void InitCameraInfo()
+        {
+            ChannelInfo info1 = GetConfigPara("CAMERA1");
+            ChannelInfo info2 = GetConfigPara("CAMERA2");
+            ChannelInfo info3 = GetConfigPara("CAMERA3");
+            ChannelInfo info4 = GetConfigPara("CAMERA4");
+            ChannelInfo info5 = GetConfigPara("CAMERA5");
+            ChannelInfo info6 = GetConfigPara("CAMERA6");
+            if (info1 != null)
+            {
+                info1.ID = 1;
+                GlobalData.Instance.chList.Add(info1);
+            }
+            if (info2 != null)
+            {
+                info2.ID = 2;
+                GlobalData.Instance.chList.Add(info2);
+            }
+            if (info3 != null)
+            {
+                info3.ID = 3;
+                GlobalData.Instance.chList.Add(info3);
+            }
+            if (info4 != null)
+            {
+                info4.ID = 4;
+                GlobalData.Instance.chList.Add(info4);
+            }
+            if (info5 != null)
+            {
+                info5.ID = 5;
+                GlobalData.Instance.chList.Add(info5);
+            }
+            if (info6 != null)
+            {
+                info6.ID = 6;
+                GlobalData.Instance.chList.Add(info6);
+            }
+            foreach (ChannelInfo info in GlobalData.Instance.chList)
+            {
+                switch (info.CameraType)
+                {
+                    case 0:
+                        {
+                            GlobalData.Instance.cameraList.Add(new UIControl_HBGK1(info));
+                            break;
+                        }
+                    case 1:
+                        {
+                            GlobalData.Instance.cameraList.Add(new YiTongCameraControl(info));
+                            break;
+                        }
+                }
+            }
+        }
+        private string configPath = System.Environment.CurrentDirectory + @"\Config.ini";
+        const int STRINGMAX = 255;
+        /// <summary>
+        /// 读取配置文件
+        /// </summary>
+        /// <returns></returns>
+        private ChannelInfo GetConfigPara(string cameraTag)
+        {
+            try
+            {
+                if (System.IO.File.Exists(configPath))
+                {
+                    StringBuilder sb = new StringBuilder(STRINGMAX);
+                    string strChlID = "0";
+                    string strNDeviceType = "0";
+                    string strRemoteChannle = "0";
+                    string strRemoteIP = "0.0.0.0";
+                    string strRemotePort = "0";
+                    string strRemoteUser = "0";
+                    string strRemotePwd = "0";
+                    string strNPlayPort = "0";
+                    string strPtzPort = "0";
+                    string strCameraType = "0";
+                    ChannelInfo ch1 = new ChannelInfo();
+                    WinAPI.GetPrivateProfileString(cameraTag, "CHLID", strChlID, sb, STRINGMAX, configPath);
+                    strChlID = sb.ToString();
+                    ch1.ChlID = strChlID;
+
+                    WinAPI.GetPrivateProfileString(cameraTag, "NDEVICETYPE", strNDeviceType, sb, STRINGMAX, configPath);
+                    strNDeviceType = sb.ToString();
+                    int.TryParse(strNDeviceType, out ch1.nDeviceType);
+
+                    WinAPI.GetPrivateProfileString(cameraTag, "REMOTECHANNLE", strRemoteChannle, sb, STRINGMAX, configPath);
+                    strRemoteChannle = sb.ToString();
+                    ch1.RemoteChannle = strRemoteChannle;
+
+                    WinAPI.GetPrivateProfileString(cameraTag, "REMOTEIP", strRemoteIP, sb, STRINGMAX, configPath);
+                    strRemoteIP = sb.ToString();
+                    ch1.RemoteIP = strRemoteIP;
+
+                    WinAPI.GetPrivateProfileString(cameraTag, "REMOTEPORT", strRemotePort, sb, STRINGMAX, configPath);
+                    strRemotePort = sb.ToString();
+                    int tmpRemotePort = 0;
+                    int.TryParse(strRemotePort, out tmpRemotePort);
+                    ch1.RemotePort = tmpRemotePort;
+
+                    WinAPI.GetPrivateProfileString(cameraTag, "REMOTEUSER", strRemoteUser, sb, STRINGMAX, configPath);
+                    strRemoteUser = sb.ToString();
+                    ch1.RemoteUser = strRemoteUser;
+
+                    WinAPI.GetPrivateProfileString(cameraTag, "REMOTEPWD", strRemotePwd, sb, STRINGMAX, configPath);
+                    strRemotePwd = sb.ToString();
+                    ch1.RemotePwd = strRemotePwd;
+
+                    WinAPI.GetPrivateProfileString(cameraTag, "NPLAYPORT", strNPlayPort, sb, STRINGMAX, configPath);
+                    strNPlayPort = sb.ToString();
+                    int tmpNPlayPort = 0;
+                    int.TryParse(strNPlayPort, out tmpNPlayPort);
+                    ch1.nPlayPort = tmpNPlayPort;
+
+                    WinAPI.GetPrivateProfileString(cameraTag, "PTZPORT", strPtzPort, sb, STRINGMAX, configPath);
+                    strPtzPort = sb.ToString();
+                    int tmpPtzPort = 0;
+                    int.TryParse(strPtzPort, out tmpPtzPort);
+                    ch1.PtzPort = tmpPtzPort;
+
+                    WinAPI.GetPrivateProfileString(cameraTag, "CAMERATYPE", strCameraType, sb, STRINGMAX, configPath);
+                    strCameraType = sb.ToString();
+                    int cameraType = 0;
+                    int.TryParse(strCameraType, out cameraType);
+                    ch1.CameraType = cameraType;
+
+                    return ch1;//正常返回。
+                }
+                else
+                {
+                    return null;//配置文件不存在
+                }
+            }
+            catch (Exception e)
+            {
+                DataHelper.AddErrorLog(e);
+                return null;//出现异常情况
+            }
         }
 
         /// <summary>
@@ -59,6 +212,44 @@ namespace Main
                 {
                     f.Delete();
                 }
+            }
+        }
+
+        /// <summary>
+        /// 报表数据记录
+        /// </summary>
+        private void ReportTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            try
+            {
+                if ((sender as System.Timers.Timer).Interval == 1000)
+                {
+                    (sender as System.Timers.Timer).Interval = 60*10 * 1000;
+                }
+                if (GlobalData.Instance.da.GloConfig.ReportRecord == 1)
+                {
+                    List<string> sqlList = new List<string>();
+                    // 系统压力
+                    double systemPress = GlobalData.Instance.da["MPressAI"].Value.Int16 / 10.0;
+                    string sql = string.Format("Insert Into DateBaseReport (Name,Value,CreateTime,Type,Cycle) Values('{0}','{1}','{2}','{3}','{4}')", "自研液压站-系统压力",
+                        systemPress, DateTime.Now.ToString("yyyy-MM-dd HH:mm"), (int)SaveType.HS_Self_SystemPress, 10 * 60 * 1000);
+                    sqlList.Add(sql);
+                    // 油温
+                    double oilTem = GlobalData.Instance.da["OilTemAI"].Value.Int16 / 10.0;
+                    sql = string.Format("Insert Into DateBaseReport (Name,Value,CreateTime,Type,Cycle) Values('{0}','{1}','{2}','{3}','{4}')", "自研液压站-油温",
+                        oilTem, DateTime.Now.ToString("yyyy-MM-dd HH:mm"), (int)SaveType.HS_Self_OilTmp, 10 * 60 * 1000);
+                    sqlList.Add(sql);
+                    // 液压
+                    double oilLevel = GlobalData.Instance.da["OilLevelAI"].Value.Int16 / 10.0;
+                    sql = string.Format("Insert Into DateBaseReport (Name,Value,CreateTime,Type,Cycle) Values('{0}','{1}','{2}','{3}','{4}')", "自研液压站-液位",
+                        oilLevel, DateTime.Now.ToString("yyyy-MM-dd HH:mm"), (int)SaveType.HS_Self_OilLevel, 10 * 60 * 1000);
+                    sqlList.Add(sql);
+                    DataHelper.Instance.ExecuteNonQuery(sqlList.ToArray());
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
             }
         }
         int heat = 0;
@@ -94,7 +285,12 @@ namespace Main
             {
                 GlobalData.Instance.da = new DemoDriver.DAService();
                 IsLogin();
-                MouseDownSF(null, null);
+                //MouseDownSF(null, null);
+                MouseIng(null, null);
+                reportTimer = new System.Timers.Timer();
+                reportTimer.Interval = 1000;
+                reportTimer.Elapsed += ReportTimer_Elapsed;
+                reportTimer.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -706,15 +902,25 @@ namespace Main
                 }
                 else if (GlobalData.Instance.systemType == SystemType.SIR)
                 {
-                    MessageBox.Show("功能未开放");
+                    //if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANY)
+                    //{
+                    //    this.spMain.Children.Clear();
+                    //    this.spMain.Children.Add(SIRSelfRecord.Instance);
+                    //    this.BottomColorSetting(this.bdSIR, this.tbSIR, this.bdOther);
+                    //    return;
+                    //}
+                    MessageBox.Show("功能未开放!");
                     return;
                 }
                 else if (GlobalData.Instance.systemType == SystemType.HydraulicStation)
                 {
                     if (GlobalData.Instance.da.GloConfig.HydType == 1)// 自研液压站
                     {
+                        //this.spMain.Children.Clear();
+                        //this.spMain.Children.Add(HSAlarm.Instance);
+                        //this.BottomColorSetting(this.bdHS, this.tbHS, this.bdOther);
                         this.spMain.Children.Clear();
-                        this.spMain.Children.Add(HSAlarm.Instance);
+                        this.spMain.Children.Add(SIRSelfRecord.Instance);
                         this.BottomColorSetting(this.bdHS, this.tbHS, this.bdOther);
                     }
                 }

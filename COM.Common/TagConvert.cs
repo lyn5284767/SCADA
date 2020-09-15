@@ -1520,78 +1520,90 @@ namespace COM.Common
                 }
                 else
                 {
-                    switch (feedBackFingerBeamNumber)
+                    if (feedBackFingerBeamNumber >= 17 && feedBackFingerBeamNumber <= 32)
                     {
-                        case 32:
-                            path = "/Images/A_Y_3.png";
-                            break;
-                        case 17:
-                            path = "/Images/A_Y_3.png";
-                            break;
-                        case 18:
-                            path = "/Images/A_Y_3.png";
-                            break;
-                        case 19:
-                            path = "/Images/A_Y_3.png";
-                            break;
-                        case 20:
-                            path = "/Images/A_Y_3.png";
-                            break;
-                        case 21:
-                            path = "/Images/A_Y_3.png";
-                            break;
-                        case 22:
-                            path = "/Images/A_Y_3.png";
-                            break;
-                        case 23:
-                            path = "/Images/A_Y_3.png";
-                            break;
-                        case 24:
-                            path = "/Images/A_Y_3.png";
-                            break;
-                        case 25:
-                            path = "/Images/A_Y_3.png";
-                            break;
-                        case 26:
-                            path = "/Images/A_Y_3.png";
-                            break;
-                        case 16:
-                            path = "/Images/A_Y_1.png";
-                            break;
-                        case 1:
-                            path = "/Images/A_Y_1.png";
-                            break;
-                        case 2:
-                            path = "/Images/A_Y_1.png";
-                            break;
-                        case 3:
-                            path = "/Images/A_Y_1.png";
-                            break;
-                        case 4:
-                            path = "/Images/A_Y_1.png";
-                            break;
-                        case 5:
-                            path = "/Images/A_Y_1.png";
-                            break;
-                        case 6:
-                            path = "/Images/A_Y_1.png";
-                            break;
-                        case 7:
-                            path = "/Images/A_Y_1.png";
-                            break;
-                        case 8:
-                            path = "/Images/A_Y_1.png";
-                            break;
-                        case 9:
-                            path = "/Images/A_Y_1.png";
-                            break;
-                        case 10:
-                            path = "/Images/A_Y_1.png";
-                            break;
-                        default:
-                            path = "/Images/A_5.png";
-                            break;
+                        path = "/Images/A_Y_3.png";
                     }
+                    else if (feedBackFingerBeamNumber >= 1 && feedBackFingerBeamNumber <= 16)
+                    {
+                        path = "/Images/A_Y_1.png";
+                    }
+                    else
+                    {
+                        path = "/Images/A_5.png";
+                    }
+                    //switch (feedBackFingerBeamNumber)
+                    //{
+                    //    case 32:
+                    //        path = "/Images/A_Y_3.png";
+                    //        break;
+                    //    case 17:
+                    //        path = "/Images/A_Y_3.png";
+                    //        break;
+                    //    case 18:
+                    //        path = "/Images/A_Y_3.png";
+                    //        break;
+                    //    case 19:
+                    //        path = "/Images/A_Y_3.png";
+                    //        break;
+                    //    case 20:
+                    //        path = "/Images/A_Y_3.png";
+                    //        break;
+                    //    case 21:
+                    //        path = "/Images/A_Y_3.png";
+                    //        break;
+                    //    case 22:
+                    //        path = "/Images/A_Y_3.png";
+                    //        break;
+                    //    case 23:
+                    //        path = "/Images/A_Y_3.png";
+                    //        break;
+                    //    case 24:
+                    //        path = "/Images/A_Y_3.png";
+                    //        break;
+                    //    case 25:
+                    //        path = "/Images/A_Y_3.png";
+                    //        break;
+                    //    case 26:
+                    //        path = "/Images/A_Y_3.png";
+                    //        break;
+                    //    case 16:
+                    //        path = "/Images/A_Y_1.png";
+                    //        break;
+                    //    case 1:
+                    //        path = "/Images/A_Y_1.png";
+                    //        break;
+                    //    case 2:
+                    //        path = "/Images/A_Y_1.png";
+                    //        break;
+                    //    case 3:
+                    //        path = "/Images/A_Y_1.png";
+                    //        break;
+                    //    case 4:
+                    //        path = "/Images/A_Y_1.png";
+                    //        break;
+                    //    case 5:
+                    //        path = "/Images/A_Y_1.png";
+                    //        break;
+                    //    case 6:
+                    //        path = "/Images/A_Y_1.png";
+                    //        break;
+                    //    case 7:
+                    //        path = "/Images/A_Y_1.png";
+                    //        break;
+                    //    case 8:
+                    //        path = "/Images/A_Y_1.png";
+                    //        break;
+                    //    case 9:
+                    //        path = "/Images/A_Y_1.png";
+                    //        break;
+                    //    case 10:
+                    //        path = "/Images/A_Y_1.png";
+                    //        break;
+                    //    default:
+                    //        path = "/Images/A_5.png";
+                    //        break;
+                    //}
                 }
             }
             else
@@ -2416,6 +2428,77 @@ namespace COM.Common
     }
 
     /// <summary>
+    /// 1 CurrentPointFingerBeamNumber，当前点击的指梁号
+    /// 2 Name 绑定的是 border 自己的 name
+    /// 3 OperationModel 操作模式
+    /// </summary>
+    public class AnimationCurrentFingerBeamVisableCoverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+
+            //Thickness myThickness = new Thickness(0, 0, 0, 0);
+
+            byte feedBackFingerBeamNumber;
+            if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null))
+            {
+                feedBackFingerBeamNumber = 0;
+                return Visibility.Visible;
+            }
+            else
+            {
+                feedBackFingerBeamNumber = (byte)values[0];
+            }
+
+            string strImageName;
+            if ((values[1] == DependencyProperty.UnsetValue) || (values[1] == null))
+            {
+                strImageName = "";
+            }
+            else
+            {
+                strImageName = (string)(values[1]);
+            }
+
+            byte bOperationModel;
+            if ((values[2] == DependencyProperty.UnsetValue) || (values[2] == null))
+            {
+                bOperationModel = 0;
+            }
+            else
+            {
+                bOperationModel = (byte)(values[2]);
+            }
+
+            Regex regex = new Regex(@"(\d+)$", RegexOptions.Compiled | RegexOptions.CultureInvariant);//后面必须是以数字结尾的
+            Match match = regex.Match(strImageName);
+            byte imageFingerBeamNumber;
+            imageFingerBeamNumber = byte.Parse(match.Groups[1].Value);
+            if (match.Success && (bOperationModel == 9 || bOperationModel == 4))//修改为==9    只有在补偿模式下面才有效
+            {
+
+                if (imageFingerBeamNumber != feedBackFingerBeamNumber)
+                {
+                    return Visibility.Visible;
+                }
+                else
+                {
+                    return Visibility.Hidden;
+                }
+            }
+            else
+            {
+                return Visibility.Visible;
+            }
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
     /// 小车位置
     /// </summary>
     public class CarPosCoverter : IValueConverter
@@ -2982,7 +3065,7 @@ namespace COM.Common
                 else if (b1) return "联动已开启，二层台使能";
                 else if (b2) return "联动已开启，钻台面使能";
             }
-                                            return "";
+            return "";
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

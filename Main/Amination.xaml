@@ -903,24 +903,25 @@
                                 <StackPanel Width="170" Name="drDrillR10" Orientation="Horizontal" Tag="26" FlowDirection ="RightToLeft"></StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Border x:Name="drFingerBeamArrow10" Width="45" BorderBrush="#6D6F72" Tag="space">
-                                    <Border.BorderThickness>
+                                <Border x:Name="drFingerBeamArrow10" Width="2" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0">
+                                    <!--<Border.BorderThickness>
                                         <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
                                             <Binding Path="DRCurrentPointFingerBeamNumber" ElementName="uc"/>
                                             <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
                                             <Binding Path="DROperationModel"  ElementName="uc"/>
                                         </MultiBinding>
-                                    </Border.BorderThickness>
-                                    <Image x:Name="drBeamArrow10" MouseLeftButtonDown="btn_SendFingerBeamNumber">
-                                        <Image.Source>
+                                    </Border.BorderThickness>-->
+                                    
+                                </Border>
+                                <Image x:Name="drBeamArrow10" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43" Height="20">
+                                    <Image.Source>
                                             <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
                                                 <Binding Path="DRPCFingerBeamNumberFeedBack" ElementName="uc"/>
                                                 <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
                                                 <Binding Path="DROperationModel"  ElementName="uc"/>
                                             </MultiBinding>
                                         </Image.Source>
-                                    </Image>
-                                </Border>
+                                </Image>
                                 <Border Width="30" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
                                 <Border x:Name="drFingerBeamArrow26" Width="45" BorderBrush="#6D6F72" Tag="space">
                                     <Border.BorderThickness>

@@ -108,16 +108,6 @@ namespace Main.SecondFloor
                 InitControls();
                 InitCameraInfo();
 
-                string configPath = System.Environment.CurrentDirectory + "\\KeyBoard.exe";
-                System.Diagnostics.Process[] processList = System.Diagnostics.Process.GetProcesses();
-                foreach (System.Diagnostics.Process process in processList)
-                {
-                    if (process.ProcessName.Contains("KeyBoard"))
-                    {
-                        process.Kill();
-                    }
-                }
-
                 timerWarning = new System.Threading.Timer(new TimerCallback(TimerWarning_Elapsed), this, 2000, 50);//改成50ms 的时钟
 
                 //cameraTimer = new System.Timers.Timer(2 * 1000);
@@ -1792,58 +1782,58 @@ namespace Main.SecondFloor
         /// </summary>
         private void InitCameraInfo()
         {
-            ChannelInfo info1 = GetConfigPara("CAMERA1");
-            ChannelInfo info2 = GetConfigPara("CAMERA2");
-            ChannelInfo info3 = GetConfigPara("CAMERA3");
-            ChannelInfo info4 = GetConfigPara("CAMERA4");
-            ChannelInfo info5 = GetConfigPara("CAMERA5");
-            ChannelInfo info6 = GetConfigPara("CAMERA6");
-            if (info1 != null)
-            {
-                info1.ID = 1;
-                GlobalData.Instance.chList.Add(info1);
-            }
-            if (info2 != null)
-            {
-                info2.ID = 2;
-                GlobalData.Instance.chList.Add(info2);
-            }
-            if (info3 != null)
-            {
-                info3.ID = 3;
-                GlobalData.Instance.chList.Add(info3);
-            }
-            if (info4 != null)
-            {
-                info4.ID = 4;
-                GlobalData.Instance.chList.Add(info4);
-            }
-            if (info5 != null)
-            {
-                info5.ID = 5;
-                GlobalData.Instance.chList.Add(info5);
-            }
-            if (info6 != null)
-            {
-                info6.ID = 6;
-                GlobalData.Instance.chList.Add(info6);
-            }
-            foreach (ChannelInfo info in GlobalData.Instance.chList)
-            {
-                switch (info.CameraType)
-                {
-                    case 0:
-                        {
-                            GlobalData.Instance.cameraList.Add(new UIControl_HBGK1(info));
-                            break;
-                        }
-                    case 1:
-                        {
-                            GlobalData.Instance.cameraList.Add(new YiTongCameraControl(info));
-                            break;
-                        }
-                }
-            }
+            //ChannelInfo info1 = GetConfigPara("CAMERA1");
+            //ChannelInfo info2 = GetConfigPara("CAMERA2");
+            //ChannelInfo info3 = GetConfigPara("CAMERA3");
+            //ChannelInfo info4 = GetConfigPara("CAMERA4");
+            //ChannelInfo info5 = GetConfigPara("CAMERA5");
+            //ChannelInfo info6 = GetConfigPara("CAMERA6");
+            //if (info1 != null)
+            //{
+            //    info1.ID = 1;
+            //    GlobalData.Instance.chList.Add(info1);
+            //}
+            //if (info2 != null)
+            //{
+            //    info2.ID = 2;
+            //    GlobalData.Instance.chList.Add(info2);
+            //}
+            //if (info3 != null)
+            //{
+            //    info3.ID = 3;
+            //    GlobalData.Instance.chList.Add(info3);
+            //}
+            //if (info4 != null)
+            //{
+            //    info4.ID = 4;
+            //    GlobalData.Instance.chList.Add(info4);
+            //}
+            //if (info5 != null)
+            //{
+            //    info5.ID = 5;
+            //    GlobalData.Instance.chList.Add(info5);
+            //}
+            //if (info6 != null)
+            //{
+            //    info6.ID = 6;
+            //    GlobalData.Instance.chList.Add(info6);
+            //}
+            //foreach (ChannelInfo info in GlobalData.Instance.chList)
+            //{
+            //    switch (info.CameraType)
+            //    {
+            //        case 0:
+            //            {
+            //                GlobalData.Instance.cameraList.Add(new UIControl_HBGK1(info));
+            //                break;
+            //            }
+            //        case 1:
+            //            {
+            //                GlobalData.Instance.cameraList.Add(new YiTongCameraControl(info));
+            //                break;
+            //            }
+            //    }
+            //}
             InitCameraSaveTimeThread();
         }
         /// <summary>

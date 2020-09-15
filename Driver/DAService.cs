@@ -1296,6 +1296,10 @@ namespace DemoDriver
         /// 钻台面类型 0-自研 1-杰瑞
         /// </summary>
         public int DRType { get; set; }
+        /// <summary>
+        /// 报表数据是否记录 0-不记录 1-记录
+        /// </summary>
+        public int ReportRecord { get; set; }
     }
 
     /// <summary>

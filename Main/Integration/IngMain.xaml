@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Main.Integration"
              xmlns:cl="http://talonzeng.com/ControlLibrary"
              xmlns:main="clr-namespace:Main"
-             xmlns:gl="clr-namespace:COM.Common;assembly=COM.Common"
+             xmlns:gl="clr-namespace:COM.Common;assembly=COM.Common" xmlns:hc="https://handyorg.github.io/handycontrol"
              mc:Ignorable="d" 
              d:DesignHeight="650" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="Ing">
     <UserControl.Resources>
@@ -44,11 +44,12 @@
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="160"/>
-            <RowDefinition Height="490"/>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="410"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Row="0">
-            <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,5,10" Width="310">
+            <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,5,5,5" Width="310">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -119,7 +120,7 @@
                     </Grid>
                 </Grid>
             </Border>
-            <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,5,10" Width="190">
+            <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,5,5,5" Width="190">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -148,18 +149,18 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="5,5,5,2" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btn_AllMotorRetZero">
+                            <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="5,2,5,2" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btn_AllMotorRetZero">
                                 <StackPanel Orientation="Vertical">
                                     <!--<Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Margin="10,5,10,0" Height="45" Width="45">-->
-                                <TextBlock FontSize="32" Foreground="#008AFF" FontWeight="Bold" Text="  0  "></TextBlock>
+                                <TextBlock FontSize="28" Foreground="#008AFF" FontWeight="Bold" Text="  0  "></TextBlock>
                                 <!--</Border>-->
                                 <TextBlock>一键回零</TextBlock>
                             </StackPanel>
                             </Border>
-                            <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="5,5,5,2" Grid.Column="1" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btn_MotorEnable">
+                            <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="5,2,5,2" Grid.Column="1" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btn_MotorEnable">
                                 <StackPanel Grid.Column="1" Orientation="Vertical">
                                     <!--<Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Margin="10,5,10,0" Height="45" Width="45">-->
-                                        <Image Source="../Images/enable.png" Margin="1" Width="40" Height="40"></Image>
+                                        <Image Source="../Images/enable.png" Margin="1" Width="35" Height="35"></Image>
                                     <!--</Border>-->
                                     <TextBlock>电机使能</TextBlock>
                                 </StackPanel>
@@ -171,7 +172,7 @@
                     </Border>
                 </Grid>
             </Border>
-            <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,5,10" Width="190">
+            <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,5,5,5" Width="190">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="30"/>
@@ -201,18 +202,18 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="5,5,5,2" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btn_drAllMotorRetZero">
+                            <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="5,2,5,2" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btn_drAllMotorRetZero">
                                 <StackPanel Orientation="Vertical">
                                     <!--<Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Margin="10,5,10,0" Height="45" Width="45">-->
-                                    <TextBlock FontSize="32" Foreground="#008AFF" FontWeight="Bold" Text="  0  "></TextBlock>
+                                    <TextBlock FontSize="28" Foreground="#008AFF" FontWeight="Bold" Text="  0  "></TextBlock>
                                     <!--</Border>-->
                                     <TextBlock>一键回零</TextBlock>
                                 </StackPanel>
                             </Border>
-                            <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="5,5,5,2" Grid.Column="1" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btn_drMotorEnable">
+                            <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="5,2,5,2" Grid.Column="1" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btn_drMotorEnable">
                                 <StackPanel Orientation="Vertical">
                                     <!--<Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Margin="10,5,10,0" Height="45" Width="45">-->
-                                    <Image Source="../Images/enable.png" Margin="1" Width="40" Height="40"></Image>
+                                    <Image Source="../Images/enable.png" Margin="1" Width="35" Height="35"></Image>
                                     <!--</Border>-->
                                     <TextBlock>电机使能</TextBlock>
                                 </StackPanel>
@@ -221,7 +222,7 @@
                     </Grid>
                 </Grid>
             </Border>
-            <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,5,10" Width="300">
+            <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,5,5,5" Width="300">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
@@ -256,22 +257,110 @@
                 </Grid>
             </Border>
         </StackPanel>
-        <DockPanel Grid.Row="1">
-            <Border MouseLeftButtonDown="SFSelectMouseDown" DockPanel.Dock="Left" Width="160" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,5,10">
+        <Border Grid.Row="1"  Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,0,5,5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <StackPanel Name="spDrillDown" Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Visibility="Collapsed" Margin="10,0,0,0">
+                    <TextBlock Text="送&#x0a;杆" Name="txbDrillDown" Grid.Row="1" VerticalAlignment="Center" Foreground="#E02740" FontSize="16" TextAlignment="Center" FontWeight="Bold"></TextBlock>
+                    <hc:StepBar Width="1050" FontSize="12" Name="sbDrillDown">
+                        <hc:StepBarItem Content="送杆启动" />
+                        <hc:StepBarItem Content="指梁定位"/>
+                        <hc:StepBarItem Content="指梁抓杆"/>
+                        <hc:StepBarItem Content="指梁确认"/>
+                        <hc:StepBarItem Content="井口等待"/>
+                        <hc:StepBarItem Content="井口送杆"/>
+                        <hc:StepBarItem Content="吊卡确认"/>
+                        <hc:StepBarItem Content="二层完成"/>
+                        <hc:StepBarItem Content="台面定位"/>
+                        <hc:StepBarItem Content="抓手夹紧"/>
+                        <hc:StepBarItem Content="井口定位"/>
+                        <hc:StepBarItem Content="井口送杆"/>
+                        <hc:StepBarItem Content="手臂回位"/>
+                        <hc:StepBarItem Content="送杆结束"/>
+                    </hc:StepBar>
+                </StackPanel>
+                <StackPanel Name="spDrillUp" Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Visibility="Visible" Margin="10,0,0,0">
+                    <TextBlock Text="排&#x0a;杆" Name="txbDrillUp" Grid.Row="1" VerticalAlignment="Center" Foreground="#E02740" FontSize="16" TextAlignment="Center" FontWeight="Bold"></TextBlock>
+                    <hc:StepBar Width="950" FontSize="12" Name="sbDrillUp">
+                        <hc:StepBarItem Content="排杆启动" />
+                        <hc:StepBarItem Content="井口定位"/>
+                        <hc:StepBarItem Content="井口抓杆"/>
+                        <hc:StepBarItem Content="台面定位"/>
+                        <hc:StepBarItem Content="抓手松开"/>
+                        <hc:StepBarItem Content="手臂回位"/>
+                        <hc:StepBarItem Content="台面完成"/>
+                        <hc:StepBarItem Content="井口定位"/>
+                        <hc:StepBarItem Content="井口抓杆"/>
+                        <hc:StepBarItem Content="吊卡确认"/>
+                        <hc:StepBarItem Content="指梁定位"/>
+                        <hc:StepBarItem Content="指梁确认"/>
+                        <hc:StepBarItem Content="指梁排管"/>
+                        <hc:StepBarItem Content="排管结束"/>
+                    </hc:StepBar>
+                </StackPanel>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="630"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Name="spOneKeyInbutton" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" Visibility="Visible" Margin="10,0,0,0">
+                        <TextBlock Text="上&#x0a;扣" Name="txbOneKeyInButton" Grid.Row="1" VerticalAlignment="Center" Foreground="#E02740" FontSize="16" TextAlignment="Center" FontWeight="Bold"></TextBlock>
+                        <hc:StepBar Width="610" FontSize="12" Name="sbInButton">
+                            <hc:StepBarItem Content="上扣启动" />
+                            <hc:StepBarItem Content="目标定位"/>
+                            <hc:StepBarItem Content="钳体伸出"/>
+                            <hc:StepBarItem Content="抓杆"/>
+                            <hc:StepBarItem Content="上扣确认"/>
+                            <hc:StepBarItem Content="上扣中"/>
+                            <hc:StepBarItem Content="钳口对缺"/>
+                            <hc:StepBarItem Content="钳体回收"/>
+                            <hc:StepBarItem Content="上扣结束"/>
+                        </hc:StepBar>
+                    </StackPanel>
+                    <StackPanel Name="spOneKeyOutButton" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" Visibility="Collapsed" Margin="10,0,0,0">
+                        <TextBlock Text="卸&#x0a;扣" Grid.Row="1" Foreground="#E02740" FontSize="16" VerticalAlignment="Center" TextAlignment="Center" FontWeight="Bold"></TextBlock>
+                        <hc:StepBar Width="610" FontSize="12" Name="sbOutButton" Grid.Row="0">
+                            <hc:StepBarItem Content="卸扣启动"/>
+                            <hc:StepBarItem Content="目标定位"/>
+                            <hc:StepBarItem Content="钳体伸出"/>
+                            <hc:StepBarItem Content="抓杆"/>
+                            <hc:StepBarItem Content="卸扣确认"/>
+                            <hc:StepBarItem Content="卸扣中"/>
+                            <hc:StepBarItem Content="钳口对缺"/>
+                            <hc:StepBarItem Content="钳体回收"/>
+                            <hc:StepBarItem Content="卸扣结束"/>
+                        </hc:StepBar>
+                    </StackPanel>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Name="LinkError" Text="检测到联动流程调整异常，请确认并重新开启"  FontSize="16"></TextBlock>
+                        <TextBlock Grid.Row="1" Name="tbOprTips"  Foreground="#E02740" Text="操作提示" FontSize="16" TextAlignment="Center" FontWeight="Bold"></TextBlock>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Border>
+        <DockPanel Grid.Row="2">
+            <Border MouseLeftButtonDown="SFSelectMouseDown" DockPanel.Dock="Left" Width="160" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,0,5,10">
                 <Border.Effect>
                     <DropShadowEffect x:Name="effSFSelect" BlurRadius="20" Color="Gray" Direction="20" Opacity="0.5" RenderingBias="Quality" ShadowDepth="5"/>
                 </Border.Effect>
                 <StackPanel Name="spSFSelect">
                     <TextBlock FontSize="20" Text="         二层台         "></TextBlock>
-                    <Grid Height="30"></Grid>
+                    <Grid Height="5"></Grid>
                     <cl:BasedSwitchButton Name="operateMode" ContentLeft="手动" ContentDown="操作模式" ContentRight="自动" UserControlClicked="btn_OpState"/>
-                    <Grid Height="20"></Grid>
+                    <Grid Height="5"></Grid>
                     <cl:BasedSwitchButton Name="workMode" ContentLeft="排杆" ContentDown="工作模式" ContentRight="送杆" UserControlClicked="btn_WorkModel"/>
-                    <Grid Height="20"></Grid>
+                    <Grid Height="5"></Grid>
                     <cl:BasedSwitchButton Name="RopeModel" ContentLeft="缩回" ContentDown="档绳" ContentRight="伸出" UserControlClicked="btn_RopeModel"/>
-                    <Border  BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Margin="2,10,2,10" Grid.Column="1" Height="80">
-                        <StackPanel Height="71" Margin="0,0,-0.333,0.333" VerticalAlignment="Bottom">
-                            <Menu Background="Transparent" Height="30" Width="100"  FontSize="16" FontFamily="宋体" FontWeight="Bold" Foreground="#008AFF">
+                    <Border  BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Margin="2,5,2,10" Grid.Column="1" Height="70">
+                        <StackPanel Height="60" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                            <Menu Background="Transparent" Height="30" Width="90"  FontSize="16" FontFamily="宋体" FontWeight="Bold" Foreground="#008AFF">
                             <MenuItem>
                                 <MenuItem.Header>
                                     <StackPanel Orientation="Vertical">
@@ -306,21 +395,21 @@
                     </Border>
                 </StackPanel>
             </Border>
-            <Border DockPanel.Dock="Right" Width="160" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,5,10">
+            <Border DockPanel.Dock="Right" Width="160" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,0,5,10">
                 <Border.Effect>
                     <DropShadowEffect x:Name="effDRSelect" BlurRadius="20" Color="Gray" Direction="20" Opacity="0" RenderingBias="Quality" ShadowDepth="5"/>
                 </Border.Effect>
                 <StackPanel>
                     <TextBlock FontSize="20" Text="         钻台面         " MouseDown="DRSelectMouseDown"></TextBlock>
-                    <Grid Height="30"></Grid>
+                    <Grid Height="5"></Grid>
                     <cl:BasedSwitchButton Name="droperateMode" ContentLeft="手动" ContentDown="操作模式" ContentRight="自动" UserControlClicked="btn_drOpState"/>
-                    <Grid Height="20"></Grid>
+                    <Grid Height="5"></Grid>
                     <cl:BasedSwitchButton Name="drworkMode" ContentLeft="排杆" ContentDown="工作模式" ContentRight="送杆" UserControlClicked="btn_drWorkModel"/>
-                    <Grid Height="20"></Grid>
+                    <Grid Height="5"></Grid>
                     <cl:BasedSwitchButton Name="drCarMoveModel" ContentLeft="左移" ContentDown="行车" ContentRight="右移" UserControlClicked="btn_drCarMoveModel"/>
-                    <Border  BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Margin="2,10,2,10" Grid.Column="1" Height="80">
+                    <Border  BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Margin="2,5,2,10" Grid.Column="1" Height="70">
                         <StackPanel>
-                            <Menu Background="Transparent" Height="30" Width="110"  FontSize="16" FontFamily="宋体" FontWeight="Bold" Foreground="#008AFF">
+                            <Menu Background="Transparent" Height="30" Width="105"  FontSize="16" FontFamily="宋体" FontWeight="Bold" Foreground="#008AFF">
                                 <MenuItem>
                                     <MenuItem.Header>
                                         <StackPanel Orientation="Vertical">
@@ -339,20 +428,20 @@
                     </Border>
                 </StackPanel>
             </Border>
-            <Border Name="bdMid" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,5,10">
+            <Border Name="bdMid" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,0,5,10">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="0"/>
+                        <RowDefinition Height="0"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <cl:StepControl Name="IngStep" Grid.Row="0" SetpNum="14" CtrWidth="600">
-                    </cl:StepControl>
-                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    <!--<StackPanel Grid.Row="0" Orientation="Horizontal">
                         <TextBlock Text="{Binding ElementName=workMode,Path=IsChecked,Converter={StaticResource workModeFlowCvt}}" Foreground="#E02740" FontSize="24" Margin="30,0,0,0"></TextBlock>
                         <TextBlock Name="AutoStepCurrentTxt" Width="100" Text="送杆启动"  FontSize="20" Margin="20,0,0,0"></TextBlock>
                         <TextBlock Name="LinkError" Text="联动暂未开启"  FontSize="24" Margin="20,0,0,0"></TextBlock>
-                    </StackPanel>
+                    </StackPanel>-->
+                    <!--<cl:StepControl Name="IngStep" Grid.Row="0" SetpNum="14" CtrWidth="600">
+                    </cl:StepControl>-->
                     <!--<StackPanel Grid.Row="0" Orientation="Horizontal">
                         <Border  BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Margin="20,20,20,20" Width="80" Background="#DCDEE3">
                             <TextBlock Text="{Binding ElementName=workMode,Path=IsChecked,Converter={StaticResource workModeFlowCvt}}" Foreground="#E02740" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>

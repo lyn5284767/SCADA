@@ -86,6 +86,23 @@ namespace Main.HydraulicStation
         {
             #region 告警
             int key = 0;
+            if (GlobalData.Instance.da["771b7"].Value.Boolean)
+            {
+                this.tipList.TryGetValue("液压站急停", out key);
+                if (key == 0)
+                {
+                    this.tipList.Add("液压站急停", 1);
+                }
+            }
+            else
+            {
+                this.tipList.TryGetValue("液压站急停", out key);
+                if (key != 0)
+                {
+                    this.tipList.Remove("液压站急停");
+                }
+            }
+
             if (GlobalData.Instance.da["774b0"].Value.Boolean)
             {
                 this.tipList.TryGetValue("液压油高温报警，请及时降温", out key);

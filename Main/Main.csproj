@@ -109,6 +109,10 @@
     <Reference Include="Microsoft.Windows.Shell, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\HandyControl.2.5.0.2\lib\net40\Microsoft.Windows.Shell.dll</HintPath>
     </Reference>
+    <Reference Include="PdfSharp, Version=1.0.898.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\x86\Debug\PdfSharp.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -313,6 +317,9 @@
     </Compile>
     <Compile Include="SIR\SIRSelfMain.xaml.cs">
       <DependentUpon>SIRSelfMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SIR\SIRSelfRecord.xaml.cs">
+      <DependentUpon>SIRSelfRecord.xaml</DependentUpon>
     </Compile>
     <Compile Include="UIClass\RelayCommand.cs" />
     <Compile Include="UIClass\ScrollableTabPanel.cs" />
@@ -545,6 +552,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SIR\SIRSelfMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SIR\SIRSelfRecord.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

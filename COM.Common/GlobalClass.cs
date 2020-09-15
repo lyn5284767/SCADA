@@ -111,4 +111,39 @@ namespace COM.Common
     {
         PlayCamera = 0
     }
+
+    public class DateBaseReport
+    {
+        /// <summary>
+        /// 主键ID
+        /// </summary>
+        public int ID { get; set; }
+        /// <summary>
+        /// 名称
+        /// </summary>
+        public string Name { get; set; }
+        /// <summary>
+        /// 记录值
+        /// </summary>
+        public string Value { get; set; }
+        /// <summary>
+        /// 创建日期
+        /// </summary>
+        public DateTime CreateTime { get; set; }
+        /// <summary>
+        /// 数据类型
+        /// </summary>
+        public int Type { get; set; }
+        /// <summary>
+        /// 存储周期
+        /// </summary>
+        public int Cycle { get; set; }
+    }
+
+    public enum SaveType
+    {
+        HS_Self_SystemPress = 1,
+        HS_Self_OilTmp = 2,
+        HS_Self_OilLevel = 3
+    }
 }

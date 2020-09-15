@@ -83,24 +83,24 @@ KeyboardNavigation.DirectionalNavigation="Cycle" Width="100"/>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Border Name="bdSf" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="0" MouseLeftButtonDown="MouseDownSF">
-                <TextBlock Name="tbSf" FontSize="16" FontWeight="Bold">二层台</TextBlock>
-            </Border>
-            <Border Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="1" Name="bdDR" MouseLeftButtonDown="MouseDR">
-                <TextBlock FontSize="16" Foreground="#1F7AFF" FontWeight="Bold" Name="tbDR">钻台面</TextBlock>
-            </Border>
-            <Border Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="2" Name="bdHS" MouseLeftButtonDown="MouseHS">
-                <TextBlock FontSize="16" Foreground="#1F7AFF" FontWeight="Bold" Name="tbHS">液压站</TextBlock>
-            </Border>
-            <Border Name="bdSIR" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="3" MouseLeftButtonDown="SIR_MouseLeftButtonDown">
-                <TextBlock FontSize="16" Foreground="#1F7AFF" FontWeight="Bold" Name="tbSIR">铁钻工</TextBlock>
-            </Border>
-            <Border Name="bdCat" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="4"  MouseLeftButtonDown="Cat_MouseLeftButtonDown">
-                <TextBlock Name="tbCat" FontSize="16" Foreground="#1F7AFF" FontWeight="Bold">猫道</TextBlock>
-            </Border>
-            <Border Name="bdIng" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="5" MouseLeftButtonDown="MouseIng">
+            <Border Name="bdIng" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="0" MouseLeftButtonDown="MouseIng">
                 <TextBlock Name="tbIng" FontSize="16" Foreground="#1F7AFF" FontWeight="Bold">集成<LineBreak/>
                         系统</TextBlock>
+            </Border>
+            <Border Name="bdSIR" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="1" MouseLeftButtonDown="SIR_MouseLeftButtonDown">
+                <TextBlock FontSize="16" Foreground="#1F7AFF" FontWeight="Bold" Name="tbSIR">铁钻工</TextBlock>
+            </Border>
+            <Border Name="bdSf" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="2" MouseLeftButtonDown="MouseDownSF">
+                <TextBlock Name="tbSf" FontSize="16" FontWeight="Bold">二层台</TextBlock>
+            </Border>
+            <Border Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="3" Name="bdDR" MouseLeftButtonDown="MouseDR">
+                <TextBlock FontSize="16" Foreground="#1F7AFF" FontWeight="Bold" Name="tbDR">钻台面</TextBlock>
+            </Border>
+            <Border Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="4" Name="bdHS" MouseLeftButtonDown="MouseHS">
+                <TextBlock FontSize="16" Foreground="#1F7AFF" FontWeight="Bold" Name="tbHS">液压站</TextBlock>
+            </Border>
+            <Border Name="bdCat" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="5"  MouseLeftButtonDown="Cat_MouseLeftButtonDown">
+                <TextBlock Name="tbCat" FontSize="16" Foreground="#1F7AFF" FontWeight="Bold">猫道</TextBlock>
             </Border>
             <Border Name="bdHome" Background="White" BorderThickness="1" CornerRadius="5"  Grid.Column="6" MouseLeftButtonDown="MouseDownHome">
                 <Image Source="Images/home.png" Margin="2" Width="45" Height="45"></Image>

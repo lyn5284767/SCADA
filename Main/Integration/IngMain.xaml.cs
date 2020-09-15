@@ -1,5 +1,6 @@
 ﻿using COM.Common;
 using ControlLibrary;
+using HandyControl.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -66,6 +67,16 @@ namespace Main.Integration
             pageChange = new System.Timers.Timer(500);
             pageChange.Elapsed += PageChange_Elapsed;
             pageChange.Enabled = true;
+
+            string configPath = System.Environment.CurrentDirectory + "\\KeyBoard.exe";
+            System.Diagnostics.Process[] processList = System.Diagnostics.Process.GetProcesses();
+            foreach (System.Diagnostics.Process process in processList)
+            {
+                if (process.ProcessName.Contains("KeyBoard"))
+                {
+                    process.Kill();
+                }
+            }
         }
 
         /// <summary>
@@ -188,20 +199,41 @@ namespace Main.Integration
                 IngStepMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E5AutoModelCurrentStep"], Mode = BindingMode.OneWay });
                 IngStepMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["460b1"], Mode = BindingMode.OneWay });
                 IngStepMultiBind.NotifyOnSourceUpdated = true;
-                this.IngStep.SetBinding(StepControl.SelectStepProperty, IngStepMultiBind);
-        
+                this.sbDrillUp.SetBinding(StepBar.StepIndexProperty, IngStepMultiBind);
+                this.sbDrillDown.SetBinding(StepBar.StepIndexProperty, IngStepMultiBind);
+                //this.IngStep.SetBinding(StepControl.SelectStepProperty, IngStepMultiBind);
 
-                MultiBinding AutoStepCurrentTxtMultiBind = new MultiBinding();
-                AutoStepCurrentTxtMultiBind.Converter = new IngAutoModeNowStepCoverter();
-                AutoStepCurrentTxtMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
-                AutoStepCurrentTxtMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drworkModel"], Mode = BindingMode.OneWay });
-                AutoStepCurrentTxtMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drAutoStep"], Mode = BindingMode.OneWay });
-                AutoStepCurrentTxtMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-                AutoStepCurrentTxtMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["workModel"], Mode = BindingMode.OneWay });
-                AutoStepCurrentTxtMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E5AutoModelCurrentStep"], Mode = BindingMode.OneWay });
-                AutoStepCurrentTxtMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["460b1"], Mode = BindingMode.OneWay });
-                AutoStepCurrentTxtMultiBind.NotifyOnSourceUpdated = true;
-                this.AutoStepCurrentTxt.SetBinding(TextBlock.TextProperty, AutoStepCurrentTxtMultiBind);
+
+                //MultiBinding AutoStepCurrentTxtMultiBind = new MultiBinding();
+                //AutoStepCurrentTxtMultiBind.Converter = new IngAutoModeNowStepCoverter();
+                //AutoStepCurrentTxtMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
+                //AutoStepCurrentTxtMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drworkModel"], Mode = BindingMode.OneWay });
+                //AutoStepCurrentTxtMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drAutoStep"], Mode = BindingMode.OneWay });
+                //AutoStepCurrentTxtMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+                //AutoStepCurrentTxtMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["workModel"], Mode = BindingMode.OneWay });
+                //AutoStepCurrentTxtMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E5AutoModelCurrentStep"], Mode = BindingMode.OneWay });
+                //AutoStepCurrentTxtMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["460b1"], Mode = BindingMode.OneWay });
+                //AutoStepCurrentTxtMultiBind.NotifyOnSourceUpdated = true;
+                //this.AutoStepCurrentTxt.SetBinding(TextBlock.TextProperty, AutoStepCurrentTxtMultiBind);
+
+                // 一键上扣
+                MultiBinding sbInbuttonMultiBind = new MultiBinding();
+                sbInbuttonMultiBind.Converter = new SIRSelfAutoModeStepCoverter();
+                sbInbuttonMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOperModel"], Mode = BindingMode.OneWay });
+                sbInbuttonMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfWorkModel"], Mode = BindingMode.OneWay });
+                sbInbuttonMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfAutoStep"], Mode = BindingMode.OneWay });
+                sbInbuttonMultiBind.ConverterParameter = "inButton";
+                sbInbuttonMultiBind.NotifyOnSourceUpdated = true;
+                this.sbInButton.SetBinding(StepBar.StepIndexProperty, sbInbuttonMultiBind);
+                // 一键卸扣
+                MultiBinding sbOutButtonMultiBind = new MultiBinding();
+                sbOutButtonMultiBind.Converter = new SIRSelfAutoModeStepCoverter();
+                sbOutButtonMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOperModel"], Mode = BindingMode.OneWay });
+                sbOutButtonMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfWorkModel"], Mode = BindingMode.OneWay });
+                sbOutButtonMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfAutoStep"], Mode = BindingMode.OneWay });
+                sbOutButtonMultiBind.ConverterParameter = "outButton";
+                sbOutButtonMultiBind.NotifyOnSourceUpdated = true;
+                this.sbOutButton.SetBinding(StepBar.StepIndexProperty, sbOutButtonMultiBind);
 
                 this.warningOne.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["155InterlockPromptMessageCode"], Mode = BindingMode.OneWay, Converter = new IngLockTipsCoverter() });
                 timerWarning = new System.Threading.Timer(new TimerCallback(Timer_Elapsed), this, 2000, 50);//改成50ms 的时钟
@@ -246,6 +278,7 @@ namespace Main.Integration
                     aminationNew.LoadFingerBeamDrillPipe(systemType);
                     this.Warnning();
                     this.AutoChange();
+                    this.IronTips();
 
                     if (!GlobalData.Instance.da["459b0"].Value.Boolean) b459b0 = false;
                     if (!GlobalData.Instance.da["459b1"].Value.Boolean) b459b1 = false;
@@ -264,6 +297,72 @@ namespace Main.Integration
             catch (Exception ex)
             {
                 Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+            }
+        }
+        /// <summary>
+        /// 铁钻工的模式切换和操作提示
+        /// </summary>
+        private void IronTips()
+        {
+            if (GlobalData.Instance.da["SIRSelfOperModel"].Value.Byte == 2) // 自动模式
+            {
+                if (GlobalData.Instance.da["SIRSelfWorkModel"].Value.Byte == 1)//一键上扣开启
+                {
+                    this.spOneKeyInbutton.Visibility = Visibility.Visible;
+                    this.spOneKeyOutButton.Visibility = Visibility.Collapsed;
+                }
+                else // 一键卸扣
+                {
+                    this.spOneKeyInbutton.Visibility = Visibility.Collapsed;
+                    this.spOneKeyOutButton.Visibility = Visibility.Visible;
+                }
+            }
+
+            byte oprTips = GlobalData.Instance.da["SIRSelfOprInfo"].Value.Byte;
+            switch (oprTips)
+            {
+                case 60:
+                    this.tbOprTips.Text = "工况选择结束后，请执行上扣对缺确认";
+                    break;
+                case 61:
+                    this.tbOprTips.Text = "工况选择结束后，请执行卸扣对缺确认";
+                    break;
+                case 50:
+                    this.tbOprTips.Text = "进入井口工位后切换自动模式";
+                    break;
+                case 51:
+                    this.tbOprTips.Text = "进入井口工位后切换自动模式";
+                    break;
+                case 20:
+                    this.tbOprTips.Text = "请检测钳头缺口状态";
+                    break;
+                case 30:
+                    this.tbOprTips.Text = "请确认安全门打开状态";
+                    break;
+                case 29:
+                    this.tbOprTips.Text = "请确认接箍高度";
+                    break;
+                case 32:
+                    this.tbOprTips.Text = "请确认井口安全";
+                    break;
+                case 33:
+                    this.tbOprTips.Text = "请将钳体缺口对正";
+                    break;
+                case 34:
+                    this.tbOprTips.Text = "请人工确认缺口状态";
+                    break;
+                case 35:
+                    this.tbOprTips.Text = "请人工确认安全门状态";
+                    break;
+                case 101:
+                    this.tbOprTips.Text = "请注意紧急停止";
+                    break;
+                case 99:
+                    this.tbOprTips.Text = "请退出自动模式检测故障";
+                    break;
+                default:
+                    this.tbOprTips.Text = "";
+                    break;
             }
         }
         private int controlHeartTimes = 0; // 控制台心跳次数
@@ -539,41 +638,72 @@ namespace Main.Integration
         {
             try
             {
+                #region 联动界面修改暂时弃用
                 //if (GlobalData.Instance.da["460b0"].Value.Boolean) // 联动开启
                 //{
-                    //if (GlobalData.Instance.da["325b0"].Value.Boolean)
-                    //{
-                    //    DRSelectMouseDown(null, null);
-                    //}
-                    //else
-                    //{
-                    //    sfSelectMouseDown(null, null);
-                    //}
-                    if (GlobalData.Instance.da["operationModel"].Value.Byte == 5 && GlobalData.Instance.da["droperationModel"].Value.Byte == 5) // 自动模式
+                //if (GlobalData.Instance.da["325b0"].Value.Boolean)
+                //{
+                //    DRSelectMouseDown(null, null);
+                //}
+                //else
+                //{
+                //    sfSelectMouseDown(null, null);
+                //}
+                //    if (GlobalData.Instance.da["operationModel"].Value.Byte == 5 && GlobalData.Instance.da["droperationModel"].Value.Byte == 5) // 自动模式
+                //    {
+                //        if (GlobalData.Instance.da["workModel"].Value.Byte == 2 && GlobalData.Instance.da["drworkModel"].Value.Byte == 2) // 排管
+                //        {
+                //            if (this.IngStep.SelectStep <= 6 && systemType == SystemType.SecondFloor) // 自动操作钻台面但界面处于二层台界面，切换钻台面界面
+                //            {
+                //                DRSelectMouseDown(null, null);
+                //            }
+                //            else if (this.IngStep.SelectStep > 6 && systemType == SystemType.DrillFloor)
+                //            {
+                //            SFSelectMouseDown(null, null);
+                //            }
+                //        }
+                //        else if (GlobalData.Instance.da["workModel"].Value.Byte == 1 && GlobalData.Instance.da["drworkModel"].Value.Byte == 1)// 送杆
+                //        {
+                //            if (this.IngStep.SelectStep <= 7 && systemType == SystemType.DrillFloor)
+                //            {
+                //            SFSelectMouseDown(null, null);
+                //            }
+                //            else if (this.IngStep.SelectStep > 7 && systemType == SystemType.SecondFloor)
+                //            {
+                //                DRSelectMouseDown(null, null);
+                //            }
+                //        }
+                //    //}
+                //}
+                #endregion
+                if (GlobalData.Instance.da["operationModel"].Value.Byte == 5 && GlobalData.Instance.da["droperationModel"].Value.Byte == 5) // 自动模式
+                {
+                    if (GlobalData.Instance.da["workModel"].Value.Byte == 2 && GlobalData.Instance.da["drworkModel"].Value.Byte == 2) // 排管
                     {
-                        if (GlobalData.Instance.da["workModel"].Value.Byte == 2 && GlobalData.Instance.da["drworkModel"].Value.Byte == 2) // 排管
+                        this.spDrillUp.Visibility = Visibility.Visible;
+                        this.spDrillDown.Visibility = Visibility.Collapsed;
+                        if (this.sbDrillUp.StepIndex <= 6 && systemType == SystemType.SecondFloor) // 自动操作钻台面但界面处于二层台界面，切换钻台面界面
                         {
-                            if (this.IngStep.SelectStep <= 6 && systemType == SystemType.SecondFloor) // 自动操作钻台面但界面处于二层台界面，切换钻台面界面
-                            {
-                                DRSelectMouseDown(null, null);
-                            }
-                            else if (this.IngStep.SelectStep > 6 && systemType == SystemType.DrillFloor)
-                            {
-                            SFSelectMouseDown(null, null);
-                            }
+                            DRSelectMouseDown(null, null);
                         }
-                        else if (GlobalData.Instance.da["workModel"].Value.Byte == 1 && GlobalData.Instance.da["drworkModel"].Value.Byte == 1)// 送杆
+                        else if (this.sbDrillUp.StepIndex > 6 && systemType == SystemType.DrillFloor)
                         {
-                            if (this.IngStep.SelectStep <= 7 && systemType == SystemType.DrillFloor)
-                            {
                             SFSelectMouseDown(null, null);
-                            }
-                            else if (this.IngStep.SelectStep > 7 && systemType == SystemType.SecondFloor)
-                            {
-                                DRSelectMouseDown(null, null);
-                            }
                         }
-                    //}
+                    }
+                    else if (GlobalData.Instance.da["workModel"].Value.Byte == 1 && GlobalData.Instance.da["drworkModel"].Value.Byte == 1)// 送杆
+                    {
+                        this.spDrillUp.Visibility = Visibility.Collapsed;
+                        this.spDrillDown.Visibility = Visibility.Visible;
+                        if (this.sbDrillDown.StepIndex <= 7 && systemType == SystemType.DrillFloor)
+                        {
+                            SFSelectMouseDown(null, null);
+                        }
+                        else if (this.sbDrillDown.StepIndex > 7 && systemType == SystemType.SecondFloor)
+                        {
+                            DRSelectMouseDown(null, null);
+                        }
+                    }
                 }
             }
             catch (Exception ex)

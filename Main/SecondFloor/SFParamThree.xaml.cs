@@ -61,7 +61,11 @@ namespace Main.SecondFloor
                 this.twtR19.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["KeyPanelSetting"], Mode = BindingMode.OneWay });
                 this.twtR20.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["OperPanelSetting"], Mode = BindingMode.OneWay });
                 this.twtR21.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["DRTelectrSetting"], Mode = BindingMode.OneWay });
-                //this.twtR22.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = Global.Instance.da["IntegrateOrSingle"], Mode = BindingMode.OneWay });
+                this.twtR22.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["Kava"], Mode = BindingMode.OneWay });
+                this.twtR23.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["IDFactoryType"], Mode = BindingMode.OneWay });
+                this.twtR24.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["CatType"], Mode = BindingMode.OneWay });
+                this.twtR25.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["HSType"], Mode = BindingMode.OneWay });
+                this.twtR26.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["DRType"], Mode = BindingMode.OneWay });
                 #endregion
             }
             catch (Exception ex)
