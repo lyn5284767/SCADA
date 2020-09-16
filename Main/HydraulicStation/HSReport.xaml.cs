@@ -174,11 +174,15 @@ namespace Main.HydraulicStation
             SystemPressSeries.Add(systemPressLine);
             string sql = string.Format("Select * from DateBaseReport Where Type = '{0}' and CreateTime>'{1}'", (int)SaveType.HS_Self_SystemPress, Date);
             List<DateBaseReport> systemPressList = DataHelper.Instance.ExecuteList<DateBaseReport>(sql);
+            List<double> vList = new List<double>();
             foreach (DateBaseReport dateBaseReport in systemPressList)
             {
                 SystemPressLabels.Add(dateBaseReport.CreateTime.ToString());
                 SystemPressSeries[0].Values.Add(double.Parse(dateBaseReport.Value));
+                vList.Add(double.Parse(dateBaseReport.Value));
             }
+            this.lvcSystemPress.MinValue = vList.Min()-1;
+            this.lvcSystemPress.MaxValue = vList.Max();
         }
         /// <summary>
         /// 绘制油温曲线
@@ -194,11 +198,15 @@ namespace Main.HydraulicStation
             OilTemSeries.Add(oilTemLine);
             string sql = string.Format("Select * from DateBaseReport Where Type = '{0}' and CreateTime>'{1}'", (int)SaveType.HS_Self_OilTmp, Date);
             List<DateBaseReport> OilTemList = DataHelper.Instance.ExecuteList<DateBaseReport>(sql);
+            List<double> vList = new List<double>();
             foreach (DateBaseReport dateBaseReport in OilTemList)
             {
                 OilTemLabels.Add(dateBaseReport.CreateTime.ToString());
                 OilTemSeries[0].Values.Add(double.Parse(dateBaseReport.Value));
+                vList.Add(double.Parse(dateBaseReport.Value));
             }
+            this.lvcOilTem.MinValue = vList.Min()-1;
+            this.lvcOilTem.MaxValue = vList.Max();
         }
         /// <summary>
         /// 绘制液位曲线
@@ -214,11 +222,15 @@ namespace Main.HydraulicStation
             OilLevelSeries.Add(oilLevelLine);
             string sql = string.Format("Select * from DateBaseReport Where Type = '{0}' and CreateTime>'{1}'", (int)SaveType.HS_Self_OilLevel, Date);
             List<DateBaseReport> OilLevelList = DataHelper.Instance.ExecuteList<DateBaseReport>(sql);
+            List<double> vList = new List<double>();
             foreach (DateBaseReport dateBaseReport in OilLevelList)
             {
                 OilLevelLabels.Add(dateBaseReport.CreateTime.ToString());
                 OilLevelSeries[0].Values.Add(double.Parse(dateBaseReport.Value));
+                vList.Add(double.Parse(dateBaseReport.Value));
             }
+            this.lvcOilLevel.MinValue = vList.Min()-1;
+            this.lvcOilLevel.MaxValue = vList.Max();
         }
         /// <summary>
         /// 查询一月内

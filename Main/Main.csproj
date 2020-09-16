@@ -201,6 +201,15 @@
     <Compile Include="Integration\IngMain.xaml.cs">
       <DependentUpon>IngMain.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Integration\IngMainNew.xaml.cs">
+      <DependentUpon>IngMainNew.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Integration\IngSet.xaml.cs">
+      <DependentUpon>IngSet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Integration\SFSet.xaml.cs">
+      <DependentUpon>SFSet.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -392,6 +401,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Integration\IngMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Integration\IngMainNew.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Integration\IngSet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Integration\SFSet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

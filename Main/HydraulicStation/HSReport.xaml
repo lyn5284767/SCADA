@@ -109,7 +109,7 @@
                             <TextBlock Text="系统压力"  FontSize="18" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             <lvc:CartesianChart Series="{Binding SystemPressSeries}" Grid.Column="1" Grid.ColumnSpan="4">
                                 <lvc:CartesianChart.AxisY>
-                                    <lvc:Axis Title="压力(Mpa)"></lvc:Axis>
+                                    <lvc:Axis Name="lvcSystemPress" Title="压力(Mpa)"></lvc:Axis>
                                 </lvc:CartesianChart.AxisY>
                                 <lvc:CartesianChart.AxisX>
                                     <lvc:Axis Title="时间" Labels="{Binding SystemPressLabels}"></lvc:Axis>
@@ -129,7 +129,7 @@
                             <TextBlock Text="油温"  FontSize="18" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             <lvc:CartesianChart Series="{Binding OilTemSeries}" Grid.Column="1" Grid.ColumnSpan="4">
                                 <lvc:CartesianChart.AxisY>
-                                    <lvc:Axis Title="温度(°)"></lvc:Axis>
+                                    <lvc:Axis Name="lvcOilTem" Title="温度(°)"></lvc:Axis>
                                 </lvc:CartesianChart.AxisY>
                                 <lvc:CartesianChart.AxisX>
                                     <lvc:Axis Title="时间" Labels="{Binding OilTemLabels}"></lvc:Axis>
@@ -149,7 +149,7 @@
                             <TextBlock Text="液压"  FontSize="18" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             <lvc:CartesianChart Series="{Binding OilLevelSeries}" Grid.Column="1" Grid.ColumnSpan="4">
                                 <lvc:CartesianChart.AxisY>
-                                    <lvc:Axis Title="升"></lvc:Axis>
+                                    <lvc:Axis Name="lvcOilLevel" Title="升"></lvc:Axis>
                                 </lvc:CartesianChart.AxisY>
                                 <lvc:CartesianChart.AxisX>
                                     <lvc:Axis Title="时间" Labels="{Binding OilLevelLabels}"></lvc:Axis>

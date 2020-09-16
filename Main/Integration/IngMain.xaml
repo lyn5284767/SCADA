@@ -309,7 +309,7 @@
                     <StackPanel Name="spOneKeyInbutton" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" Visibility="Visible" Margin="10,0,0,0">
                         <TextBlock Text="上&#x0a;扣" Name="txbOneKeyInButton" Grid.Row="1" VerticalAlignment="Center" Foreground="#E02740" FontSize="16" TextAlignment="Center" FontWeight="Bold"></TextBlock>
                         <hc:StepBar Width="610" FontSize="12" Name="sbInButton">
-                            <hc:StepBarItem Content="上扣启动" />
+                            <hc:StepBarItem Content="上扣启动"/>
                             <hc:StepBarItem Content="目标定位"/>
                             <hc:StepBarItem Content="钳体伸出"/>
                             <hc:StepBarItem Content="抓杆"/>
