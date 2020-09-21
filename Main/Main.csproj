@@ -327,7 +327,7 @@
     <Compile Include="SIR\SIRSelfMain.xaml.cs">
       <DependentUpon>SIRSelfMain.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SIR\SIRSelfRecord.xaml.cs">
+    <Compile Include="HydraulicStation\SIRSelfRecord.xaml.cs">
       <DependentUpon>SIRSelfRecord.xaml</DependentUpon>
     </Compile>
     <Compile Include="UIClass\RelayCommand.cs" />
@@ -576,7 +576,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SIR\SIRSelfRecord.xaml">
+    <Page Include="HydraulicStation\SIRSelfRecord.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

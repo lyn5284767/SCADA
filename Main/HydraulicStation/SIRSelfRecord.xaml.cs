@@ -49,8 +49,17 @@ namespace Main.SIR
         public SIRSelfRecord()
         {
             InitializeComponent();
+            this.VariableBinding();
             Init();
             this.Loaded += SIRSelfRecord_Loaded;
+        }
+
+        private void VariableBinding()
+        {
+            this.tbMainOneTime.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["M1RunTime"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+            this.tbMainTwoTime.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["M2RunTime"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+            this.tbConstantVoltage.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["CRunTime"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+            this.tbDissipateHeat.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["DRunTime"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
         }
 
         private void SIRSelfRecord_Loaded(object sender, RoutedEventArgs e)
@@ -68,7 +77,7 @@ namespace Main.SIR
             dicNumToValue.Add(0, "全部");
             dicNumToValue.Add(1, "系统压力");
             dicNumToValue.Add(2, "油温");
-            dicNumToValue.Add(3, "液压");
+            dicNumToValue.Add(3, "液位");
 
             this.cbTypeSelect.ItemsSource = dicNumToValue;
             this.cbTypeSelect.SelectedValuePath = "Key";
@@ -149,6 +158,14 @@ namespace Main.SIR
             else condition = string.Format("Where CreateTime>'{0}' and CreateTime<'{1}'", bTime, eTime);
             cond = condition;
             QueryRecord();
+        }
+
+        private void endTime_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.endTime.SelectedDate <= this.beginTime.SelectedDate)
+            {
+                MessageBox.Show("结束日期必须大于开始日期");
+            }
         }
     }
 }

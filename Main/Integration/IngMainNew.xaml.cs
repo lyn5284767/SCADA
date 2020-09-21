@@ -1,7 +1,10 @@
-﻿using System;
+﻿using ControlLibrary;
+using HandyControl.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -39,9 +42,11 @@ namespace Main.Integration
                 return _instance;
             }
         }
+
         public IngMainNew()
         {
             InitializeComponent();
+            this.gdSet.AddHandler(Grid.MouseDownEvent, new RoutedEventHandler(BtnDrawerBottom_Click), true);
         }
 
         /// <summary>
@@ -51,14 +56,42 @@ namespace Main.Integration
         /// <param name="e"></param>
         private void tbIng_Click(object sender, RoutedEventArgs e)
         {
-            this.gdSet.Children.Clear();
-            this.gdSet.Children.Add(IngSet.Instance);
+            //UIElementCollection childrens = this.gdMain.Children;
+            //foreach (UIElement ui in childrens)
+            //{
+            //    if (ui is Drawer)
+            //    {
+            //        ((ui as Drawer).Content as Grid).Children.Clear();
+            //        ((ui as Drawer).Content as Grid).Children.Add(IngSet.Instance);
+
+            //    }
+            //}
+            //this.DrawerBottom.IsOpen = true;
+            //this.gdSet.Children.Clear();
+            //this.gdSet.Children.Add(IngSet.Instance);
+            MyPopupWindow window = new MyPopupWindow();
+            window.ShowDialog();
         }
 
         private void tbSF_Click(object sender, RoutedEventArgs e)
         {
-            this.gdSet.Children.Clear();
-            this.gdSet.Children.Add(SFSet.Instance);
+            //this.gdSet.Children.Clear();
+            //this.gdSet.Children.Add(SFSet.Instance);
+            //UIElementCollection childrens = this.gdMain.Children;
+            //foreach (UIElement ui in childrens)
+            //{
+            //    if (ui is Grid && (ui as Grid).Name == "gdSet")
+            //    {
+            //        (ui as Grid).Children.Clear();
+            //        (ui as Grid).Children.Add(SFSet.Instance);
+            //    }
+            //}
+        }
+
+        private void BtnDrawerBottom_Click(object sender, RoutedEventArgs e)
+        {
+            this.DrawerBottom.IsOpen = false;
+            this.DrawerBottom.Height = 0.0;
         }
     }
 }

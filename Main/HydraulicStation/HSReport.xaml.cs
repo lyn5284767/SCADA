@@ -83,6 +83,7 @@ namespace Main.HydraulicStation
         /// </summary>
         private void HSReport_Loaded(object sender, RoutedEventArgs e)
         {
+            IsExist = false;
             this.tbReportTime.Text = "报表生成时间:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm");
             BtnDay_Click(null, null);
         }
@@ -94,15 +95,17 @@ namespace Main.HydraulicStation
             this.tbConstantVoltage.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["CRunTime"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
             this.tbDissipateHeat.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["DRunTime"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
         }
+        bool IsExist = false;
         /// <summary>
         /// 预览报表
         /// </summary>
         private void btn_PreviewReport(object sender, RoutedEventArgs e)
         {
             string filePath = System.Environment.CurrentDirectory + "\\HSReport";
-            if (!File.Exists(filePath + @"\image.jpg"))
+            if (!IsExist || !File.Exists(filePath + @"\image.jpg"))
             {
                 MessageBox.Show("请先生成报表");
+                return;
             }
             Process.Start(filePath + @"\image.jpg");
         }
@@ -112,7 +115,7 @@ namespace Main.HydraulicStation
         private void btn_GenerateReport(object sender, RoutedEventArgs e)
         {
             string filePath = System.Environment.CurrentDirectory + "\\HSReport";
-            if (!Directory.Exists(filePath))
+            if (!Directory.Exists(filePath + @"\image.jpg"))
             {
                 Directory.CreateDirectory(filePath);
             }
@@ -133,8 +136,10 @@ namespace Main.HydraulicStation
             XGraphics xgr = XGraphics.FromPdfPage(doc.Pages[0]);
             XImage img = XImage.FromFile(filePath + @"\image.jpg");
             xgr.DrawImage(img, 0, 0, img.Size.Width, img.Size.Height);
-            doc.Save(filePath +"\\"+ DateTime.Now.ToString("yyyyMMdd") + ".pdf");
+            doc.Save(filePath +"\\"+ DateTime.Now.ToString("yyyyMMddHHmm") + ".pdf");
             doc.Close();
+            IsExist = true;
+            MessageBox.Show("报表生成成功!");
         }
 
         /// <summary>

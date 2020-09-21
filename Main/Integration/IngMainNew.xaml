@@ -3,60 +3,85 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Main.Integration" xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:local="clr-namespace:Main.Integration" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:main="clr-namespace:Main"
              mc:Ignorable="d" 
-             d:DesignHeight="650" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" Name="IngNew">
+             d:DesignHeight="650" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" Name="IngNew" FontFamily="微软雅黑">
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="500"/>
+                <RowDefinition Height="100"/>
                 <RowDefinition Height="50"/>
-                <RowDefinition/>
-                <RowDefinition Height="100"/>
-                <RowDefinition Height="100"/>
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
-                <ToggleButton Content="联动设置" IsChecked="{Binding IsOpen,ElementName=DrawerTop}" FontSize="18" Height="50" Click="tbIng_Click"></ToggleButton>
-                <ToggleButton Content="二层台设置" IsChecked="{Binding IsOpen,ElementName=DrawerTop}" FontSize="18" Height="50" Click="tbSF_Click"></ToggleButton>
-                <ToggleButton Content="钻台面设置" IsChecked="{Binding IsOpen,ElementName=DrawerTop}" FontSize="18" Height="50"></ToggleButton>
-                <ToggleButton Content="铁钻工设置" IsChecked="{Binding IsOpen,ElementName=DrawerTop}" FontSize="18" Height="50"></ToggleButton>
-                <ToggleButton Content="液压站设置" IsChecked="{Binding IsOpen,ElementName=DrawerTop}" FontSize="18" Height="50"></ToggleButton>
-                <ToggleButton Content="猫道设置" IsChecked="{Binding IsOpen,ElementName=DrawerTop}" FontSize="18" Height="50"></ToggleButton>
-            </StackPanel>
-            <Grid Grid.Row="1"></Grid>
-            <Grid Grid.Row="3">
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0" Orientation="Horizontal">
-                    <TextBlock Text="当前设备:" FontWeight="Bold" FontSize="24" VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
-                    <TextBlock Name="tbNowDevice" Text="二层台" FontSize="18" VerticalAlignment="Center"></TextBlock>
-                    <TextBlock Text="当前操作:" FontWeight="Bold" FontSize="24" VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
-                    <TextBlock Name="tbNowOpr" Text="排杆" FontSize="18" VerticalAlignment="Center"></TextBlock>
-                    <TextBlock Text="下个设备:" FontWeight="Bold" FontSize="24"  VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
-                    <TextBlock Text="钻台面" FontSize="18" VerticalAlignment="Center"></TextBlock>
-                    <TextBlock Name="tbTips" Text="操作提示" Foreground="#E02740" FontWeight="Bold" FontSize="24" VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
-                </StackPanel>
-                <hc:StepBar Width="1000" FontSize="12" Name="sbDrillUp" HorizontalAlignment="Left"  Grid.Row="1">
-                    <hc:StepBarItem Content="排杆启动" />
-                    <hc:StepBarItem Content="井口定位"/>
-                    <hc:StepBarItem Content="井口抓杆"/>
-                    <hc:StepBarItem Content="台面定位"/>
-                    <hc:StepBarItem Content="抓手松开"/>
-                    <hc:StepBarItem Content="手臂回位"/>
-                    <hc:StepBarItem Content="台面完成"/>
-                    <hc:StepBarItem Content="井口定位"/>
-                    <hc:StepBarItem Content="井口抓杆"/>
-                    <hc:StepBarItem Content="吊卡确认"/>
-                    <hc:StepBarItem Content="指梁定位"/>
-                    <hc:StepBarItem Content="指梁确认"/>
-                    <hc:StepBarItem Content="指梁排管"/>
-                    <hc:StepBarItem Content="排管结束"/>
-                </hc:StepBar>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="650"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border Name="bdMid" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,0,5,5" Grid.Column="0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="620"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" FontSize="32" FontWeight="Bold" HorizontalAlignment="Center">二层台</TextBlock>
+                            <main:AminationNew Grid.Row="1"/>
+                        </Grid>
+                    </Grid>
+                </Border>
+                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,0,5,5" Grid.Column="1">
+                    <TextBlock Text="设备状态" FontSize="32" FontWeight="Bold" HorizontalAlignment="Center"></TextBlock>
+                </Border>
             </Grid>
+            <Border Name="bdBottom" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,0,5,5" Grid.Row="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <TextBlock Text="当前设备:" FontWeight="Bold" FontSize="24" VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
+                        <TextBlock Name="tbNowDevice" Text="二层台" FontSize="18" VerticalAlignment="Center"></TextBlock>
+                        <TextBlock Text="当前操作:" FontWeight="Bold" FontSize="24" VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
+                        <TextBlock Name="tbNowOpr" Text="排杆" FontSize="18" VerticalAlignment="Center"></TextBlock>
+                        <TextBlock Text="下个设备:" FontWeight="Bold" FontSize="24"  VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
+                        <TextBlock Text="钻台面" FontSize="18" VerticalAlignment="Center"></TextBlock>
+                        <TextBlock Name="tbTips" Text="操作提示" Foreground="#E02740" FontWeight="Bold" FontSize="24" VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
+                    </StackPanel>
+                    <hc:StepBar Width="1000" FontSize="12" Name="sbDrillUp" HorizontalAlignment="Left"  Grid.Row="1">
+                        <hc:StepBarItem Content="排杆启动" />
+                        <hc:StepBarItem Content="井口定位"/>
+                        <hc:StepBarItem Content="井口抓杆"/>
+                        <hc:StepBarItem Content="台面定位"/>
+                        <hc:StepBarItem Content="抓手松开"/>
+                        <hc:StepBarItem Content="手臂回位"/>
+                        <hc:StepBarItem Content="台面完成"/>
+                        <hc:StepBarItem Content="井口定位"/>
+                        <hc:StepBarItem Content="井口抓杆"/>
+                        <hc:StepBarItem Content="吊卡确认"/>
+                        <hc:StepBarItem Content="指梁定位"/>
+                        <hc:StepBarItem Content="指梁确认"/>
+                        <hc:StepBarItem Content="指梁排管"/>
+                        <hc:StepBarItem Content="排管结束"/>
+                    </hc:StepBar>
+                </Grid>
+            </Border>
+            <DockPanel Grid.Row="2">
+                <ToggleButton Name="tbIng" DockPanel.Dock="Left" Width="170" Content="联动设置" FontSize="18" Height="50" Click="tbIng_Click"></ToggleButton>
+                <ToggleButton DockPanel.Dock="Left" Width="170" Content="二层台设置" IsChecked="{Binding IsOpen,ElementName=DrawerBottom}" FontSize="18" Height="50" Click="tbSF_Click"></ToggleButton>
+                <ToggleButton DockPanel.Dock="Left" Width="170" Content="钻台面设置" IsChecked="{Binding IsOpen,ElementName=DrawerBottom}" FontSize="18" Height="50"></ToggleButton>
+                <ToggleButton DockPanel.Dock="Right" Width="170" Content="液压站设置" IsChecked="{Binding IsOpen,ElementName=DrawerBottom}" FontSize="18" Height="50"></ToggleButton>
+                <ToggleButton DockPanel.Dock="Right" Width="170" Content="猫道设置" IsChecked="{Binding IsOpen,ElementName=DrawerBottom}" FontSize="18" Height="50"></ToggleButton>
+                <ToggleButton DockPanel.Dock="Right" Width="170" Content="铁钻工设置" IsChecked="{Binding IsOpen,ElementName=DrawerBottom}" FontSize="18" Height="50"></ToggleButton>
+            </DockPanel>
+            <hc:Drawer Name="DrawerBottom" Dock="Bottom" ShowMode="Press">
+                <Grid Name="gdSet"></Grid>
+            </hc:Drawer>
         </Grid>
-        <hc:Drawer Name="DrawerTop" Dock="Top" ShowMode="Press">
-            <Grid Name="gdSet"></Grid>
-        </hc:Drawer>
     </Grid>
 </UserControl>
