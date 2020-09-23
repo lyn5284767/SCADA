@@ -164,9 +164,6 @@
     <Compile Include="OnOffButton.xaml.cs">
       <DependentUpon>OnOffButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PopupWindow.xaml.cs">
-      <DependentUpon>PopupWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="RealtimeViewModel.cs" />
     <Compile Include="Report.cs" />
     <Compile Include="ShadowButton.xaml.cs">
@@ -287,10 +284,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OnOffButton.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="PopupWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

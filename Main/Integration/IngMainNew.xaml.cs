@@ -1,5 +1,6 @@
 ﻿using ControlLibrary;
 using HandyControl.Controls;
+using HandyControl.Tools.Extension;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,8 +70,8 @@ namespace Main.Integration
             //this.DrawerBottom.IsOpen = true;
             //this.gdSet.Children.Clear();
             //this.gdSet.Children.Add(IngSet.Instance);
-            MyPopupWindow window = new MyPopupWindow();
-            window.ShowDialog();
+            IngSetWindow ingSet = new IngSetWindow();
+            ingSet.ShowDialog();
         }
 
         private void tbSF_Click(object sender, RoutedEventArgs e)

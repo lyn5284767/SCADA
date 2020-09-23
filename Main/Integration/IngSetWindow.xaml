@@ -1,11 +1,11 @@
-﻿<Window x:Class="ControlLibrary.MyPopupWindow"
+﻿<Window x:Class="Main.Integration.IngSetWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ControlLibrary"
+        xmlns:local="clr-namespace:Main.Integration"
         mc:Ignorable="d"
-        Title="PopupWindow" Height="650" Width="1024"  WindowStyle="None" AllowsTransparency="True" Background="Gray" Opacity="0.2" WindowStartupLocation="CenterOwner">
+        Title="联动设置" Height="450" Width="400" WindowStartupLocation="CenterScreen">
     <Grid>
         
     </Grid>

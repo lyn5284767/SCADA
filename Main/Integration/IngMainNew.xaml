@@ -27,7 +27,8 @@
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="50"/>
-                                <RowDefinition/>
+                                <RowDefinition Height="380"/>
+                                <RowDefinition Height="70"/>
                             </Grid.RowDefinitions>
                             <TextBlock Grid.Row="0" FontSize="32" FontWeight="Bold" HorizontalAlignment="Center">二层台</TextBlock>
                             <main:AminationNew Grid.Row="1"/>
