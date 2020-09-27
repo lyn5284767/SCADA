@@ -91,7 +91,7 @@ KeyboardNavigation.DirectionalNavigation="Cycle" Width="100"/>
                 <TextBlock FontSize="16" Foreground="#1F7AFF" FontWeight="Bold" Name="tbSIR">铁钻工</TextBlock>
             </Border>
             <Border Name="bdSf" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="2" MouseLeftButtonDown="MouseDownSF">
-                <TextBlock Name="tbSf" FontSize="16" FontWeight="Bold">二层台</TextBlock>
+                <TextBlock Name="tbSf" Foreground="#1F7AFF" FontSize="16" FontWeight="Bold">二层台</TextBlock>
             </Border>
             <Border Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="3" Name="bdDR" MouseLeftButtonDown="MouseDR">
                 <TextBlock FontSize="16" Foreground="#1F7AFF" FontWeight="Bold" Name="tbDR">钻台面</TextBlock>

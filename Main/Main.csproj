@@ -204,11 +204,26 @@
     <Compile Include="Integration\IngMainNew.xaml.cs">
       <DependentUpon>IngMainNew.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Integration\IngSet.xaml.cs">
-      <DependentUpon>IngSet.xaml</DependentUpon>
+    <Compile Include="Integration\IngParamSet.xaml.cs">
+      <DependentUpon>IngParamSet.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Integration\SFSet.xaml.cs">
-      <DependentUpon>SFSet.xaml</DependentUpon>
+    <Compile Include="Integration\IngPosSetting.xaml.cs">
+      <DependentUpon>IngPosSetting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Integration\IngSecureMain.xaml.cs">
+      <DependentUpon>IngSecureMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Integration\IngSecureOne.xaml.cs">
+      <DependentUpon>IngSecureOne.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Integration\IngSecureTwo.xaml.cs">
+      <DependentUpon>IngSecureTwo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Integration\IngSetWindow.xaml.cs">
+      <DependentUpon>IngSetWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Integration\IngSFSetWindow.xaml.cs">
+      <DependentUpon>IngSFSetWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -408,11 +423,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Integration\IngSet.xaml">
+    <Page Include="Integration\IngParamSet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Integration\SFSet.xaml">
+    <Page Include="Integration\IngPosSetting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Integration\IngSecureMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Integration\IngSecureOne.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Integration\IngSecureTwo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Integration\IngSetWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Integration\IngSFSetWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

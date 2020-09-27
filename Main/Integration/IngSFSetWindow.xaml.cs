@@ -11,14 +11,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace ControlLibrary
+namespace Main.Integration
 {
     /// <summary>
-    /// PopupWindow.xaml 的交互逻辑
+    /// SFSetWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class MyPopupWindow : Window
+    public partial class IngSFSetWindow : Window
     {
-        public MyPopupWindow()
+        public IngSFSetWindow()
         {
             InitializeComponent();
         }

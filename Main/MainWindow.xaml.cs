@@ -324,6 +324,7 @@ namespace Main
         /// </summary>
         private void MouseDownSF(object sender, MouseButtonEventArgs e)
         {
+            GlobalData.Instance.Ing = false;
             this.spMain.Children.Clear();
             SFMain.Instance.FullScreenEvent -= Instance_FullScreenEvent;
             SFMain.Instance.FullScreenEvent += Instance_FullScreenEvent;
@@ -478,6 +479,13 @@ namespace Main
         {
             try
             {
+                if (GlobalData.Instance.Ing)
+                {
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(IngSecureMain.Instance);
+                    this.BottomColorSetting(this.bdIng, this.tbIng, this.bdSecureSetting);
+                    return;
+                }
                 if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
                 {
                     this.spMain.Children.Clear();
@@ -704,6 +712,13 @@ namespace Main
                     MessageBox.Show("您不具备权限！");
                     return;
                 }
+                if (GlobalData.Instance.Ing)// 集成系统
+                {
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(IngParamSet.Instance);
+                    this.BottomColorSetting(this.bdIng, this.tbIng, this.bdOther);
+                    return;
+                }
                 if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
                 {
                     if (!SFToHandleModel()) return;
@@ -769,6 +784,13 @@ namespace Main
                 if (GlobalData.Instance.systemRole > SystemRole.TechMan)
                 {
                     MessageBox.Show("您不具备权限！");
+                    return;
+                }
+                if (GlobalData.Instance.Ing)
+                {
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(IngPosSetting.Instance);
+                    this.BottomColorSetting(this.bdIng, this.tbIng, this.bdOther);
                     return;
                 }
                 if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
@@ -1083,6 +1105,7 @@ namespace Main
         {
             try
             {
+                GlobalData.Instance.Ing = false;
                 // 自研
                 if (GlobalData.Instance.da.GloConfig.DRType == 0)
                 {
@@ -1125,6 +1148,7 @@ namespace Main
                 this.spMain.Children.Add(IngMain.Instance);
                 //this.spMain.Children.Add(IngMainNew.Instance);
                 GlobalData.Instance.systemType = SystemType.SecondFloor;
+                GlobalData.Instance.Ing = true;
 
                 var bc = new BrushConverter();
                 foreach (Border bd in FindVisualChildren<Border>(this.gdBottom))
@@ -1247,6 +1271,7 @@ namespace Main
         {
             try
             {
+                GlobalData.Instance.Ing = false;
                 this.spMain.Children.Clear();
                 // 无
                 if (GlobalData.Instance.da.GloConfig.SIRType == 0)
@@ -1348,6 +1373,7 @@ namespace Main
         {
             try
             {
+                GlobalData.Instance.Ing = false;
                 if (GlobalData.Instance.da.GloConfig.HydType == 0)
                 {
                     MessageBox.Show("未配置液压站");
@@ -1385,6 +1411,7 @@ namespace Main
         {
             try
             {
+                GlobalData.Instance.Ing = false;
                 if (GlobalData.Instance.da.GloConfig.CatType == 0)
                 {
                     MessageBox.Show("未配置猫道");

@@ -27,10 +27,11 @@
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="50"/>
-                                <RowDefinition/>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="380"/>
                             </Grid.RowDefinitions>
                             <TextBlock Grid.Row="0" FontSize="32" FontWeight="Bold" HorizontalAlignment="Center">二层台</TextBlock>
-                            <main:AminationNew Grid.Row="1"/>
+                            <main:AminationNew Grid.Row="2"/>
                         </Grid>
                     </Grid>
                 </Border>
@@ -73,15 +74,12 @@
             </Border>
             <DockPanel Grid.Row="2">
                 <ToggleButton Name="tbIng" DockPanel.Dock="Left" Width="170" Content="联动设置" FontSize="18" Height="50" Click="tbIng_Click"></ToggleButton>
-                <ToggleButton DockPanel.Dock="Left" Width="170" Content="二层台设置" IsChecked="{Binding IsOpen,ElementName=DrawerBottom}" FontSize="18" Height="50" Click="tbSF_Click"></ToggleButton>
-                <ToggleButton DockPanel.Dock="Left" Width="170" Content="钻台面设置" IsChecked="{Binding IsOpen,ElementName=DrawerBottom}" FontSize="18" Height="50"></ToggleButton>
-                <ToggleButton DockPanel.Dock="Right" Width="170" Content="液压站设置" IsChecked="{Binding IsOpen,ElementName=DrawerBottom}" FontSize="18" Height="50"></ToggleButton>
-                <ToggleButton DockPanel.Dock="Right" Width="170" Content="猫道设置" IsChecked="{Binding IsOpen,ElementName=DrawerBottom}" FontSize="18" Height="50"></ToggleButton>
-                <ToggleButton DockPanel.Dock="Right" Width="170" Content="铁钻工设置" IsChecked="{Binding IsOpen,ElementName=DrawerBottom}" FontSize="18" Height="50"></ToggleButton>
+                <ToggleButton DockPanel.Dock="Left" Width="170" Content="二层台设置" FontSize="18" Height="50" Click="tbSF_Click"></ToggleButton>
+                <ToggleButton DockPanel.Dock="Left" Width="170" Content="钻台面设置" FontSize="18" Height="50"></ToggleButton>
+                <ToggleButton DockPanel.Dock="Right" Width="170" Content="液压站设置" FontSize="18" Height="50"></ToggleButton>
+                <ToggleButton DockPanel.Dock="Right" Width="170" Content="猫道设置" FontSize="18" Height="50"></ToggleButton>
+                <ToggleButton DockPanel.Dock="Right" Width="170" Content="铁钻工设置" FontSize="18" Height="50"></ToggleButton>
             </DockPanel>
-            <hc:Drawer Name="DrawerBottom" Dock="Bottom" ShowMode="Press">
-                <Grid Name="gdSet"></Grid>
-            </hc:Drawer>
         </Grid>
     </Grid>
 </UserControl>

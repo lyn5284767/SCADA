@@ -12,17 +12,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Main.SecondFloor
+namespace Main.Integration
 {
     /// <summary>
-    /// SFParamMain.xaml 的交互逻辑
+    /// IngSecureMain.xaml 的交互逻辑
     /// </summary>
-    public partial class SFParamMain : UserControl
+    public partial class IngSecureMain : UserControl
     {
-        private static SFParamMain _instance = null;
+        private static IngSecureMain _instance = null;
         private static readonly object syncRoot = new object();
 
-        public static SFParamMain Instance
+        public static IngSecureMain Instance
         {
             get
             {
@@ -32,7 +32,7 @@ namespace Main.SecondFloor
                     {
                         if (_instance == null)
                         {
-                            _instance = new SFParamMain();
+                            _instance = new IngSecureMain();
                         }
                     }
                 }
@@ -41,15 +41,14 @@ namespace Main.SecondFloor
         }
 
         public int page = 1;
-
-        public SFParamMain()
+        public IngSecureMain()
         {
             InitializeComponent();
             PageChange();
         }
 
         /// <summary>
-        /// IO页面切换
+        /// 集成安全页面切换
         /// </summary>
         private void PageChange()
         {
@@ -60,26 +59,14 @@ namespace Main.SecondFloor
                 {
                     this.left.Visibility = Visibility.Hidden;
                     this.right.Visibility = Visibility.Visible;
-                    this.ParamPage.Children.Add(SFParamOne.Instance);
+                    this.ParamPage.Children.Add(IngSecureOne.Instance);
                 }
                 else if (page == 2)
                 {
                     this.left.Visibility = Visibility.Visible;
                     this.right.Visibility = Visibility.Hidden;
-                    this.ParamPage.Children.Add(SFParamTwo.Instance);
+                    this.ParamPage.Children.Add(IngSecureTwo.Instance);
                 }
-                //else if (page == 3)
-                //{
-                //    this.left.Visibility = Visibility.Visible;
-                //    this.right.Visibility = Visibility.Hidden;
-                //    this.ParamPage.Children.Add(SFParamThree.Instance);
-                //}
-                //else if (page == 4)
-                //{
-                //    this.left.Visibility = Visibility.Visible;
-                //    this.right.Visibility = Visibility.Hidden;
-                //    this.ParamPage.Children.Add(DRParamFour.Instance);
-                //}
             }
             catch (Exception ex)
             {
