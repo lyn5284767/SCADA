@@ -50,6 +50,8 @@ namespace Main.Integration
         public IngMain()
         {
             InitializeComponent();
+            GlobalData.Instance.Rows = GlobalData.Instance.da["DrillNums"].Value.Byte;
+            GlobalData.Instance.DrillNum = GlobalData.Instance.da["103E23B5"].Value.Byte;
             SFSelectMouseDown(null, null);
             //amination.SendFingerBeamNumberEvent += Amination_SendFingerBeamNumberEvent;
             aminationNew.SendFingerBeamNumberEvent += Amination_SendFingerBeamNumberEvent;

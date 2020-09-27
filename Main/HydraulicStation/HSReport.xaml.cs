@@ -96,18 +96,19 @@ namespace Main.HydraulicStation
             this.tbDissipateHeat.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["DRunTime"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
         }
         bool IsExist = false;
+        string pdfPath = string.Empty;
         /// <summary>
         /// 预览报表
         /// </summary>
         private void btn_PreviewReport(object sender, RoutedEventArgs e)
         {
             string filePath = System.Environment.CurrentDirectory + "\\HSReport";
-            if (!IsExist || !File.Exists(filePath + @"\image.jpg"))
+            if (!IsExist || !File.Exists(pdfPath))
             {
                 MessageBox.Show("请先生成报表");
                 return;
             }
-            Process.Start(filePath + @"\image.jpg");
+            Process.Start(pdfPath);
         }
         /// <summary>
         /// 生成报表
@@ -120,7 +121,7 @@ namespace Main.HydraulicStation
                 Directory.CreateDirectory(filePath);
             }
             // 页面保存为图片
-            FileStream fs = new FileStream(filePath +@"\image.jpg", FileMode.Create);
+            FileStream fs = new FileStream(filePath + @"\image.jpg", FileMode.Create);
             RenderTargetBitmap bmp = new RenderTargetBitmap((int)this.gdMain.ActualWidth, (int)this.gdMain.ActualHeight, 0, 0, PixelFormats.Pbgra32);
             bmp.Render(this.gdMain);
             BitmapEncoder encoder = new PngBitmapEncoder();
@@ -139,6 +140,7 @@ namespace Main.HydraulicStation
             doc.Save(filePath +"\\"+ DateTime.Now.ToString("yyyyMMddHHmm") + ".pdf");
             doc.Close();
             IsExist = true;
+            pdfPath = filePath + "\\" + DateTime.Now.ToString("yyyyMMddHHmm") + ".pdf";
             MessageBox.Show("报表生成成功!");
         }
 
@@ -171,7 +173,7 @@ namespace Main.HydraulicStation
         private void DrawSystemPress(string Date)
         {
             LineSeries systemPressLine = new LineSeries();
-            systemPressLine.LineSmoothness = 1;
+            systemPressLine.LineSmoothness = 0;
             systemPressLine.PointGeometry = null;
             SystemPressLabels = new List<string>();
             systemPressLine.Values = new ChartValues<double>();

@@ -224,7 +224,8 @@ namespace Main
             {
                 if ((sender as System.Timers.Timer).Interval == 1000)
                 {
-                    (sender as System.Timers.Timer).Interval = 60*10 * 1000;
+                    //(sender as System.Timers.Timer).Interval = 60 * 10 * 1000;
+                    (sender as System.Timers.Timer).Interval = 5 * 1000;
                 }
                 if (GlobalData.Instance.da.GloConfig.ReportRecord == 1)
                 {
@@ -1122,8 +1123,8 @@ namespace Main
             try
             {
                 this.spMain.Children.Clear();
-                //this.spMain.Children.Add(IngMain.Instance);
-                this.spMain.Children.Add(IngMainNew.Instance);
+                this.spMain.Children.Add(IngMain.Instance);
+                //this.spMain.Children.Add(IngMainNew.Instance);
                 GlobalData.Instance.systemType = SystemType.SecondFloor;
 
                 var bc = new BrushConverter();
