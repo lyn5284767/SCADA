@@ -135,6 +135,8 @@ namespace COM.Common
 
         public SystemType systemType;
 
+        public bool Ing { get; set; }
+
         /// <summary>
         /// 组协议
         /// </summary>

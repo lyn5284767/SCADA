@@ -1,0 +1,176 @@
+﻿<UserControl x:Class="Main.Integration.IngSecureTwo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Main.Integration" xmlns:cl="http://talonzeng.com/ControlLibrary"
+             mc:Ignorable="d" 
+             d:DesignHeight="650" d:DesignWidth="800" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="ingSecureOne">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="微软雅黑"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="微软雅黑"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="微软雅黑"/>
+        </Style>
+        <Style x:Key="ShadowBorder" TargetType="Border">
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="20" Color="Gray" Direction="20" Opacity="0.1" RenderingBias="Quality" ShadowDepth="1"/>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect BlurRadius="20" Color="Gray" Direction="20" Opacity="0.5" RenderingBias="Quality" ShadowDepth="1"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label HorizontalAlignment="Center" Grid.Row="0" FontSize="34" FontWeight="Bold" FontFamily="微软雅黑">警告</Label>
+        <Label HorizontalAlignment="Center" Grid.Row="1" Foreground="#E0496D" FontSize="18" FontFamily="微软雅黑">互锁是保证系统安全运行的前提，请勿随意解除互锁，须在专业人员指导下进行操作!</Label>
+        <StackPanel Orientation="Horizontal" Grid.Row="2">
+            <StackPanel>
+                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,5,2,5" Width="390">
+                <StackPanel>
+                    <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,0,1" Margin="5" Padding="3">
+                        <Label HorizontalAlignment="Center" FontFamily="微软雅黑" Foreground="#E0496D" FontSize="24">二层台设置</Label>
+                    </Border>
+                    <StackPanel Orientation="Horizontal">
+                        <cl:SymbolMapping Name="smFingerLockElevator" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
+                        <TextBlock Text="手指使能与吊卡互锁" FontSize="20"></TextBlock>
+                        <cl:CustomCheckBox ContentString="互锁" Margin="15,5,15,5"  Name="cbFingerLockElevator" UserControlClicked="CBFingerLockElevator_Clicked"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <cl:SymbolMapping Name="smHandLockElevator" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
+                        <TextBlock Text="手臂回收与吊卡互锁" FontSize="20"></TextBlock>
+                        <cl:CustomCheckBox ContentString="互锁" Margin="15,5,15,5"  Name="cbHandLockElevator" UserControlClicked="CBHandLockElevator_Clicked"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <cl:SymbolMapping Name="smHandLockHook" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
+                        <TextBlock Text="手臂井口移动锁大钩" FontSize="20"></TextBlock>
+                        <cl:CustomCheckBox ContentString="互锁" Margin="15,5,15,5"  Name="cbHandLockHook" UserControlClicked="CBHandLockHook_Clicked"/>
+                    </StackPanel>
+                   
+                </StackPanel>
+            </Border>
+                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,5,2,5" Width="390">
+                    <StackPanel>
+                        <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,0,1" Margin="5" Padding="3">
+                            <Label HorizontalAlignment="Center" FontFamily="微软雅黑" Foreground="#E0496D" FontSize="24">钻台面设置</Label>
+                        </Border>
+                        <StackPanel Orientation="Horizontal">
+                            <cl:SymbolMapping Name="smDRFingerLockElevator" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
+                            <TextBlock Text="手指使能与吊卡互锁" FontSize="20"></TextBlock>
+                            <cl:CustomCheckBox ContentString="互锁" Margin="15,5,15,5"  Name="cbDRFingerLockElevator" UserControlClicked="CBDRFingerLockElevator_Clicked"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <cl:SymbolMapping Name="smDRHandLockHook" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
+                            <TextBlock Text="手臂井口移动锁大钩" FontSize="20"></TextBlock>
+                            <cl:CustomCheckBox ContentString="互锁" Margin="15,5,15,5"  Name="cbDRHandLockHook" UserControlClicked="CBDRHandLockHook_Clicked"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <cl:SymbolMapping Name="smIronLockDR" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
+                            <TextBlock Text="铁钻工与钻台面互锁" FontSize="20"></TextBlock>
+                            <cl:CustomCheckBox ContentString="互锁" Margin="15,5,15,5"  Name="cbIronLockDR" UserControlClicked="CBIronLockDR_Clicked"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <cl:SymbolMapping Name="smPreventBoxLockDR" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
+                            <TextBlock Text="防喷盒与钻台面互锁" FontSize="20"></TextBlock>
+                            <cl:CustomCheckBox ContentString="互锁" Margin="15,5,15,5"  Name="cbPreventBoxLockDR" UserControlClicked="CBPreventBoxLockDR_Clicked"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <cl:SymbolMapping Name="smDRCarLock" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
+                            <TextBlock Text="钻台面行车左移锁定" FontSize="20"></TextBlock>
+                            <cl:CustomCheckBox ContentString="互锁" Margin="15,5,15,5"  Name="cbDRCarLock" UserControlClicked="CBDRCarLock_Clicked"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+            <StackPanel>
+                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,5,2,5" Width="390">
+                <StackPanel>
+                    <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,0,1" Margin="5" Padding="3">
+                            <Label HorizontalAlignment="Center" FontFamily="微软雅黑" Foreground="#E0496D" FontSize="24">铁钻工设置</Label>
+                    </Border>
+                        <StackPanel Orientation="Horizontal">
+                            <cl:SymbolMapping Name="smHookLockIron" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
+                            <TextBlock Text="大钩与铁钻工互锁" FontSize="20"></TextBlock>
+                            <cl:CustomCheckBox ContentString="互锁" Margin="35,5,15,5"  Name="cbHookLockIron" UserControlClicked="CBHookLockIron_Clicked"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <cl:SymbolMapping Name="smDRLockIron" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
+                            <TextBlock Text="钻台面与铁钻工互锁" FontSize="20"></TextBlock>
+                            <cl:CustomCheckBox ContentString="互锁" Margin="15,5,15,5"  Name="cbDRLockIron" UserControlClicked="CBDRLockIron_Clicked"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <cl:SymbolMapping Name="smPreventBoxLockIron" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
+                            <TextBlock Text="防喷盒与铁钻工互锁" FontSize="20"></TextBlock>
+                            <cl:CustomCheckBox ContentString="互锁" Margin="15,5,15,5"  Name="cbPreventBoxLockIron" UserControlClicked="CBPreventBoxLockIron_Clicked"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <cl:SymbolMapping Name="smIronInOutBtnLock" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
+                            <TextBlock Text="铁钻工上卸扣锁定" FontSize="20"></TextBlock>
+                            <cl:CustomCheckBox ContentString="互锁" Margin="35,5,15,5"  Name="cbIronInOutBtnLock" UserControlClicked="CBIronInOutBtnLock_Clicked"/>
+                        </StackPanel>
+                    </StackPanel>
+            </Border>
+                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,5,2,5" Width="390">
+                    <StackPanel>
+                        <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,0,1" Margin="5" Padding="3">
+                            <Label HorizontalAlignment="Center" FontFamily="微软雅黑" Foreground="#E0496D" FontSize="24">防喷盒设置</Label>
+                        </Border>
+                        <StackPanel Orientation="Horizontal">
+                            <cl:SymbolMapping Name="smHookLockPreventBox" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
+                            <TextBlock Text="大钩与防喷盒互锁" FontSize="20"></TextBlock>
+                            <cl:CustomCheckBox ContentString="互锁" Margin="35,5,15,5"  Name="cbHookLockPreventBox" UserControlClicked="CBHookLockPreventBox_Clicked"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <cl:SymbolMapping Name="smDRLockPreventBox" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
+                            <TextBlock Text="钻台面与防喷盒互锁" FontSize="20"></TextBlock>
+                            <cl:CustomCheckBox ContentString="互锁" Margin="15,5,15,5"  Name="cbDRLockPreventBox" UserControlClicked="CBDRLockPreventBox_Clicked"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <cl:SymbolMapping Name="smIronLockPreventBox" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
+                            <TextBlock Text="铁钻工与防喷盒互锁" FontSize="20"></TextBlock>
+                            <cl:CustomCheckBox ContentString="互锁" Margin="15,5,15,5"  Name="cbIronLockPreventBox" UserControlClicked="CBIronLockPreventBox_Clicked"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,5,2,5" Width="390">
+                    <StackPanel>
+                        <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,0,1" Margin="5" Padding="3">
+                            <Label HorizontalAlignment="Center" FontFamily="微软雅黑" Foreground="#E0496D" FontSize="24">猫道设置</Label>
+                        </Border>
+                        <StackPanel Orientation="Horizontal">
+                            <cl:SymbolMapping Name="smCatToDRLock" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
+                            <TextBlock Text="猫道上钻台面锁定" FontSize="20"></TextBlock>
+                            <cl:CustomCheckBox ContentString="互锁" Margin="35,5,15,5"  Name="cbCatToDRLock" UserControlClicked="CBCatToDRLock_Clicked"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

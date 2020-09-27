@@ -47,7 +47,6 @@ namespace Main.Integration
         public IngMainNew()
         {
             InitializeComponent();
-            this.gdSet.AddHandler(Grid.MouseDownEvent, new RoutedEventHandler(BtnDrawerBottom_Click), true);
         }
 
         /// <summary>
@@ -87,12 +86,8 @@ namespace Main.Integration
             //        (ui as Grid).Children.Add(SFSet.Instance);
             //    }
             //}
-        }
-
-        private void BtnDrawerBottom_Click(object sender, RoutedEventArgs e)
-        {
-            this.DrawerBottom.IsOpen = false;
-            this.DrawerBottom.Height = 0.0;
+            IngSFSetWindow sfSet = new IngSFSetWindow();
+            sfSet.ShowDialog();
         }
     }
 }

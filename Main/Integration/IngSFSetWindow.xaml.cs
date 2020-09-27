@@ -16,9 +16,9 @@ namespace Main.Integration
     /// <summary>
     /// SFSetWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class SFSetWindow : Window
+    public partial class IngSFSetWindow : Window
     {
-        public SFSetWindow()
+        public IngSFSetWindow()
         {
             InitializeComponent();
         }

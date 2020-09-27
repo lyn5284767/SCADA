@@ -299,7 +299,39 @@
                                 <StackPanel Width="170" Name="sfDrillR15" Orientation="Horizontal" Tag="31" FlowDirection ="RightToLeft"></StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Border x:Name="borderFingerBeamArrow15" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2"/>
+                                        <ColumnDefinition Width="43"/>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="43"/>
+                                        <ColumnDefinition Width="2"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border x:Name="FingerBeamArrow15" Grid.Column="0" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0">
+                                    </Border>
+                                    <Image x:Name="BeamArrow15" Grid.Column="1" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border Width="30" Grid.Column="2" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                    <Image x:Name="BeamArrow31" Grid.Column="3" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border x:Name="FingerBeamArrow31" Grid.Column="4" Width="2" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0">
+                                    </Border>
+                                </Grid>
+                                <!--<Border x:Name="borderFingerBeamArrow15" Width="45" BorderBrush="#6D6F72" Tag="space">
                                     <Border.BorderThickness>
                                         <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
                                             <Binding Path="CurrentPointFingerBeamNumber" ElementName="uc"/>
@@ -335,7 +367,7 @@
                                             </MultiBinding>
                                         </Image.Source>
                                     </Image>
-                                </Border>
+                                </Border>-->
                             </StackPanel>
                         </DockPanel>
                         <DockPanel Name="dpunderrow15">
@@ -358,7 +390,39 @@
                                 <StackPanel Width="170" Name="sfDrillR30" Orientation="Horizontal" Tag="30" FlowDirection ="RightToLeft"></StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Border x:Name="borderFingerBeamArrow14" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2"/>
+                                        <ColumnDefinition Width="43"/>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="43"/>
+                                        <ColumnDefinition Width="2"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border x:Name="FingerBeamArrow14" Grid.Column="0" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0">
+                                    </Border>
+                                    <Image x:Name="BeamArrow14" Grid.Column="1" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border Width="30" Grid.Column="2" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                    <Image x:Name="BeamArrow30" Grid.Column="3" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border x:Name="FingerBeamArrow30" Grid.Column="4" Width="2" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0">
+                                    </Border>
+                                </Grid>
+                                <!--<Border x:Name="borderFingerBeamArrow14" Width="45" BorderBrush="#6D6F72" Tag="space">
                                     <Border.BorderThickness>
                                         <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
                                             <Binding Path="CurrentPointFingerBeamNumber" ElementName="uc"/>
@@ -394,7 +458,7 @@
                                             </MultiBinding>
                                         </Image.Source>
                                     </Image>
-                                </Border>
+                                </Border>-->
                             </StackPanel>
                         </DockPanel>
                         <DockPanel Name="dpunderrow14">
@@ -417,7 +481,39 @@
                                 <StackPanel Width="170" Name="sfDrillR13" Orientation="Horizontal" Tag="29" FlowDirection ="RightToLeft"></StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Border x:Name="borderFingerBeamArrow13" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2"/>
+                                        <ColumnDefinition Width="43"/>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="43"/>
+                                        <ColumnDefinition Width="2"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border x:Name="FingerBeamArrow13" Grid.Column="0" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0">
+                                    </Border>
+                                    <Image x:Name="BeamArrow13" Grid.Column="1" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border Width="30" Grid.Column="2" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                    <Image x:Name="BeamArrow29" Grid.Column="3" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border x:Name="FingerBeamArrow29" Grid.Column="4" Width="2" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0">
+                                    </Border>
+                                </Grid>
+                                <!--<Border x:Name="borderFingerBeamArrow13" Width="45" BorderBrush="#6D6F72" Tag="space">
                                     <Border.BorderThickness>
                                         <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
                                             <Binding Path="CurrentPointFingerBeamNumber" ElementName="uc"/>
@@ -453,7 +549,7 @@
                                             </MultiBinding>
                                         </Image.Source>
                                     </Image>
-                                </Border>
+                                </Border>-->
                             </StackPanel>
                         </DockPanel>
                         <DockPanel Name="dpunderrow13">
@@ -476,7 +572,39 @@
                                 <StackPanel Width="170" Name="sfDrillR12" Orientation="Horizontal" Tag="28" FlowDirection ="RightToLeft"></StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Border x:Name="borderFingerBeamArrow12" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2"/>
+                                        <ColumnDefinition Width="43"/>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="43"/>
+                                        <ColumnDefinition Width="2"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border x:Name="FingerBeamArrow12" Grid.Column="0" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0">
+                                    </Border>
+                                    <Image x:Name="BeamArrow12" Grid.Column="1" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border Width="30" Grid.Column="2" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                    <Image x:Name="BeamArrow28" Grid.Column="3" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border x:Name="FingerBeamArrow28" Grid.Column="4" Width="2" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0">
+                                    </Border>
+                                </Grid>
+                                <!--<Border x:Name="borderFingerBeamArrow12" Width="45" BorderBrush="#6D6F72" Tag="space">
                                     <Border.BorderThickness>
                                         <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
                                             <Binding Path="CurrentPointFingerBeamNumber" ElementName="uc"/>
@@ -512,7 +640,7 @@
                                             </MultiBinding>
                                         </Image.Source>
                                     </Image>
-                                </Border>
+                                </Border>-->
                             </StackPanel>
                         </DockPanel>
                         <DockPanel Name="dpunderrow12">
@@ -535,7 +663,39 @@
                                 <StackPanel Width="170" Name="sfDrillR11" Orientation="Horizontal" Tag="27" FlowDirection ="RightToLeft"></StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Border x:Name="borderFingerBeamArrow11" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2"/>
+                                        <ColumnDefinition Width="43"/>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="43"/>
+                                        <ColumnDefinition Width="2"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border x:Name="FingerBeamArrow11" Grid.Column="0" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0">
+                                    </Border>
+                                    <Image x:Name="BeamArrow11" Grid.Column="1" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border Width="30" Grid.Column="2" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                    <Image x:Name="BeamArrow27" Grid.Column="3" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border x:Name="FingerBeamArrow27" Grid.Column="4" Width="2" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0">
+                                    </Border>
+                                </Grid>
+                                <!--<Border x:Name="borderFingerBeamArrow11" Width="45" BorderBrush="#6D6F72" Tag="space">
                                     <Border.BorderThickness>
                                         <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
                                             <Binding Path="CurrentPointFingerBeamNumber" ElementName="uc"/>
@@ -571,7 +731,7 @@
                                             </MultiBinding>
                                         </Image.Source>
                                     </Image>
-                                </Border>
+                                </Border>-->
                             </StackPanel>
                         </DockPanel>
                         <DockPanel Name="dpunderrow11">
@@ -594,7 +754,39 @@
                                 <StackPanel Width="170" Name="sfDrillR10" Orientation="Horizontal" Tag="26" FlowDirection ="RightToLeft"></StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Border x:Name="borderFingerBeamArrow10" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2"/>
+                                        <ColumnDefinition Width="43"/>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="43"/>
+                                        <ColumnDefinition Width="2"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border x:Name="FingerBeamArrow10" Grid.Column="0" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0">
+                                    </Border>
+                                    <Image x:Name="BeamArrow10" Grid.Column="1" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border Width="30" Grid.Column="2" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                    <Image x:Name="BeamArrow26" Grid.Column="3" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border x:Name="FingerBeamArrow26" Grid.Column="4" Width="2" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0">
+                                    </Border>
+                                </Grid>
+                                <!--<Border x:Name="borderFingerBeamArrow10" Width="45" BorderBrush="#6D6F72" Tag="space">
                                     <Border.BorderThickness>
                                         <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
                                             <Binding Path="CurrentPointFingerBeamNumber" ElementName="uc"/>
@@ -630,7 +822,7 @@
                                             </MultiBinding>
                                         </Image.Source>
                                     </Image>
-                                </Border>
+                                </Border>-->
                             </StackPanel>
                         </DockPanel>
                         <DockPanel Name="dpunderrow10">
@@ -653,7 +845,39 @@
                                 <StackPanel Width="170" Name="sfDrillR9" Orientation="Horizontal" Tag="25" FlowDirection ="RightToLeft"></StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Border x:Name="borderFingerBeamArrow9" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2"/>
+                                        <ColumnDefinition Width="43"/>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="43"/>
+                                        <ColumnDefinition Width="2"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border x:Name="FingerBeamArrow9" Grid.Column="0" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0">
+                                    </Border>
+                                    <Image x:Name="BeamArrow9" Grid.Column="1" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border Width="30" Grid.Column="2" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                    <Image x:Name="BeamArrow25" Grid.Column="3" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border x:Name="FingerBeamArrow25" Grid.Column="4" Width="2" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0">
+                                    </Border>
+                                </Grid>
+                                <!--<Border x:Name="borderFingerBeamArrow9" Width="45" BorderBrush="#6D6F72" Tag="space">
                                     <Border.BorderThickness>
                                         <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
                                             <Binding Path="CurrentPointFingerBeamNumber" ElementName="uc"/>
@@ -689,7 +913,7 @@
                                             </MultiBinding>
                                         </Image.Source>
                                     </Image>
-                                </Border>
+                                </Border>-->
                             </StackPanel>
                         </DockPanel>
                         <DockPanel Name="dpunderrow9">
@@ -712,7 +936,39 @@
                                 <StackPanel Width="170" Name="sfDrillR8" Orientation="Horizontal" Tag="24" FlowDirection ="RightToLeft"></StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Border x:Name="borderFingerBeamArrow8" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2"/>
+                                        <ColumnDefinition Width="43"/>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="43"/>
+                                        <ColumnDefinition Width="2"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border x:Name="FingerBeamArrow8" Grid.Column="0" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0">
+                                    </Border>
+                                    <Image x:Name="BeamArrow8" Grid.Column="1" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border Width="30" Grid.Column="2" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                    <Image x:Name="BeamArrow24" Grid.Column="3" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border x:Name="FingerBeamArrow24" Grid.Column="4" Width="2" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0">
+                                    </Border>
+                                </Grid>
+                                <!--<Border x:Name="borderFingerBeamArrow8" Width="45" BorderBrush="#6D6F72" Tag="space">
                                     <Border.BorderThickness>
                                         <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
                                             <Binding Path="CurrentPointFingerBeamNumber" ElementName="uc"/>
@@ -748,7 +1004,7 @@
                                             </MultiBinding>
                                         </Image.Source>
                                     </Image>
-                                </Border>
+                                </Border>-->
                             </StackPanel>
                         </DockPanel>
                         <DockPanel Name="dpunderrow8">
@@ -771,7 +1027,39 @@
                                 <StackPanel Width="170" Name="sfDrillR7" Orientation="Horizontal" Tag="23" FlowDirection ="RightToLeft"></StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Border x:Name="borderFingerBeamArrow7" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2"/>
+                                        <ColumnDefinition Width="43"/>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="43"/>
+                                        <ColumnDefinition Width="2"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border x:Name="FingerBeamArrow7" Grid.Column="0" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0">
+                                    </Border>
+                                    <Image x:Name="BeamArrow7" Grid.Column="1" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border Width="30" Grid.Column="2" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                    <Image x:Name="BeamArrow23" Grid.Column="3" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border x:Name="FingerBeamArrow23" Grid.Column="4" Width="2" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0">
+                                    </Border>
+                                </Grid>
+                                <!--<Border x:Name="borderFingerBeamArrow7" Width="45" BorderBrush="#6D6F72" Tag="space">
                                     <Border.BorderThickness>
                                         <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
                                             <Binding Path="CurrentPointFingerBeamNumber" ElementName="uc"/>
@@ -807,7 +1095,7 @@
                                             </MultiBinding>
                                         </Image.Source>
                                     </Image>
-                                </Border>
+                                </Border>-->
                             </StackPanel>
                         </DockPanel>
                         <DockPanel Name="dpunderrow7">
@@ -830,7 +1118,39 @@
                                 <StackPanel Width="170" Name="sfDrillR6" Orientation="Horizontal" Tag="22" FlowDirection ="RightToLeft"></StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Border x:Name="borderFingerBeamArrow6" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2"/>
+                                        <ColumnDefinition Width="43"/>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="43"/>
+                                        <ColumnDefinition Width="2"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border x:Name="FingerBeamArrow6" Grid.Column="0" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0">
+                                    </Border>
+                                    <Image x:Name="BeamArrow6" Grid.Column="1" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border Width="30" Grid.Column="2" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                    <Image x:Name="BeamArrow22" Grid.Column="3" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border x:Name="FingerBeamArrow22" Grid.Column="4" Width="2" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0">
+                                    </Border>
+                                </Grid>
+                                <!--<Border x:Name="borderFingerBeamArrow6" Width="45" BorderBrush="#6D6F72" Tag="space">
                                     <Border.BorderThickness>
                                         <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
                                             <Binding Path="CurrentPointFingerBeamNumber" ElementName="uc"/>
@@ -866,7 +1186,7 @@
                                             </MultiBinding>
                                         </Image.Source>
                                     </Image>
-                                </Border>
+                                </Border>-->
                             </StackPanel>
                         </DockPanel>
                         <DockPanel Name="dpunderrow6">
@@ -889,7 +1209,39 @@
                                 <StackPanel Width="170" Name="sfDrillR5" Orientation="Horizontal" Tag="21" FlowDirection ="RightToLeft"></StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Border x:Name="borderFingerBeamArrow5" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2"/>
+                                        <ColumnDefinition Width="43"/>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="43"/>
+                                        <ColumnDefinition Width="2"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border x:Name="FingerBeamArrow5" Grid.Column="0" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0">
+                                    </Border>
+                                    <Image x:Name="BeamArrow5" Grid.Column="1" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border Width="30" Grid.Column="2" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                    <Image x:Name="BeamArrow21" Grid.Column="3" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border x:Name="FingerBeamArrow21" Grid.Column="4" Width="2" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0">
+                                    </Border>
+                                </Grid>
+                                <!--<Border x:Name="borderFingerBeamArrow5" Width="45" BorderBrush="#6D6F72" Tag="space">
                                     <Border.BorderThickness>
                                         <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
                                             <Binding Path="CurrentPointFingerBeamNumber" ElementName="uc"/>
@@ -925,7 +1277,7 @@
                                             </MultiBinding>
                                         </Image.Source>
                                     </Image>
-                                </Border>
+                                </Border>-->
                             </StackPanel>
                         </DockPanel>
                         <DockPanel Name="dpunderrow5">
@@ -948,7 +1300,39 @@
                                 <StackPanel Width="170" Name="sfDrillR4" Orientation="Horizontal" Tag="20" FlowDirection ="RightToLeft"></StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Border x:Name="borderFingerBeamArrow4" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2"/>
+                                        <ColumnDefinition Width="43"/>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="43"/>
+                                        <ColumnDefinition Width="2"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border x:Name="FingerBeamArrow4" Grid.Column="0" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0">
+                                    </Border>
+                                    <Image x:Name="BeamArrow4" Grid.Column="1" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border Width="30" Grid.Column="2" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                    <Image x:Name="BeamArrow20" Grid.Column="3" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border x:Name="FingerBeamArrow20" Grid.Column="4" Width="2" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0">
+                                    </Border>
+                                </Grid>
+                                <!--<Border x:Name="borderFingerBeamArrow4" Width="45" BorderBrush="#6D6F72" Tag="space">
                                     <Border.BorderThickness>
                                         <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
                                             <Binding Path="CurrentPointFingerBeamNumber" ElementName="uc"/>
@@ -984,7 +1368,7 @@
                                             </MultiBinding>
                                         </Image.Source>
                                     </Image>
-                                </Border>
+                                </Border>-->
                             </StackPanel>
                         </DockPanel>
                         <DockPanel Name="dpunderrow4">
@@ -1007,7 +1391,39 @@
                                 <StackPanel Width="170" Name="sfDrillR3" Orientation="Horizontal" Tag="19" FlowDirection ="RightToLeft"></StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Border x:Name="borderFingerBeamArrow3" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2"/>
+                                        <ColumnDefinition Width="43"/>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="43"/>
+                                        <ColumnDefinition Width="2"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border x:Name="FingerBeamArrow3" Grid.Column="0" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0">
+                                    </Border>
+                                    <Image x:Name="BeamArrow3" Grid.Column="1" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border Width="30" Grid.Column="2" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                    <Image x:Name="BeamArrow19" Grid.Column="3" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border x:Name="FingerBeamArrow19" Grid.Column="4" Width="2" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0">
+                                    </Border>
+                                </Grid>
+                                <!--<Border x:Name="borderFingerBeamArrow3" Width="45" BorderBrush="#6D6F72" Tag="space">
                                     <Border.BorderThickness>
                                         <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
                                             <Binding Path="CurrentPointFingerBeamNumber" ElementName="uc"/>
@@ -1043,7 +1459,7 @@
                                             </MultiBinding>
                                         </Image.Source>
                                     </Image>
-                                </Border>
+                                </Border>-->
                             </StackPanel>
                         </DockPanel>
                         <DockPanel Name="dpunderrow3">
@@ -1066,7 +1482,39 @@
                                 <StackPanel Width="170" Name="sfDrillR2" Orientation="Horizontal" Tag="18" FlowDirection ="RightToLeft"></StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Border x:Name="borderFingerBeamArrow2" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2"/>
+                                        <ColumnDefinition Width="43"/>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="43"/>
+                                        <ColumnDefinition Width="2"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border x:Name="FingerBeamArrow2" Grid.Column="0" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0">
+                                    </Border>
+                                    <Image x:Name="BeamArrow2" Grid.Column="1" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border Width="30" Grid.Column="2" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                    <Image x:Name="BeamArrow18" Grid.Column="3" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border x:Name="FingerBeamArrow18" Grid.Column="4" Width="2" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0">
+                                    </Border>
+                                </Grid>
+                                <!--<Border x:Name="borderFingerBeamArrow2" Width="45" BorderBrush="#6D6F72" Tag="space">
                                     <Border.BorderThickness>
                                         <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
                                             <Binding Path="CurrentPointFingerBeamNumber" ElementName="uc"/>
@@ -1102,7 +1550,7 @@
                                             </MultiBinding>
                                         </Image.Source>
                                     </Image>
-                                </Border>
+                                </Border>-->
                             </StackPanel>
                         </DockPanel>
                         <DockPanel Name="dpunderrow2">
@@ -1125,7 +1573,39 @@
                                 <StackPanel Width="170" Name="sfDrillR1" Orientation="Horizontal" Tag="17" FlowDirection ="RightToLeft"></StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Border x:Name="borderFingerBeamArrow1" Width="45" BorderBrush="#6D6F72" Tag="space">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2"/>
+                                        <ColumnDefinition Width="43"/>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="43"/>
+                                        <ColumnDefinition Width="2"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border x:Name="FingerBeamArrow1" Grid.Column="0" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0">
+                                    </Border>
+                                    <Image x:Name="BeamArrow1" Grid.Column="1" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border Width="30" Grid.Column="2" BorderThickness="5,0,5,0" BorderBrush="#6D6F72"/>
+                                    <Image x:Name="BeamArrow17" Grid.Column="3" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border x:Name="FingerBeamArrow17" Grid.Column="4" Width="2" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0">
+                                    </Border>
+                                </Grid>
+                                <!--<Border x:Name="borderFingerBeamArrow1" Width="45" BorderBrush="#6D6F72" Tag="space">
                                     <Border.BorderThickness>
                                         <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
                                             <Binding Path="CurrentPointFingerBeamNumber" ElementName="uc"/>
@@ -1161,7 +1641,7 @@
                                             </MultiBinding>
                                         </Image.Source>
                                     </Image>
-                                </Border>
+                                </Border>-->
                             </StackPanel>
                         </DockPanel>
                         <DockPanel Name="dpunderrow1">
