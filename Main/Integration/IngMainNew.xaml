@@ -42,7 +42,7 @@
             <Border Name="bdBottom" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,0,5,5" Grid.Row="1">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition/>
+                        <RowDefinition Height="40"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" Orientation="Horizontal">
@@ -55,17 +55,76 @@
                         <TextBlock Text="钻台面" FontSize="18" VerticalAlignment="Center"></TextBlock>
                         <TextBlock Name="tbTips" Text="操作提示" Foreground="#E02740" FontWeight="Bold" FontSize="24" VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
                     </StackPanel>
-                    <hc:StepBar Width="620" FontSize="10" Name="sbDrillUp" Grid.Row="1">
-                        <hc:StepBarItem Content="排杆启动"/>
-                        <hc:StepBarItem Content="井口定位"/>
-                        <hc:StepBarItem Content="井口抓杆"/>
-                        <hc:StepBarItem Content="吊卡确认"/>
-                        <hc:StepBarItem Content="井口运动"/>
-                        <hc:StepBarItem Content="指梁定位"/>
-                        <hc:StepBarItem Content="指梁锁确认"/>
-                        <hc:StepBarItem Content="指梁排管"/>
-                        <hc:StepBarItem Content="排杆完成"/>
-                    </hc:StepBar>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" >
+                        <!--排杆-铁钻工步骤-->
+                        <hc:StepBar Width="760" FontSize="16" Name="sbIronOutButton" HorizontalAlignment="Left" Margin="5,0,0,0" Visibility="Visible">
+                            <hc:StepBarItem Content="卸扣启动"/>
+                            <hc:StepBarItem Content="目标定位"/>
+                            <hc:StepBarItem Content="钳体伸出"/>
+                            <hc:StepBarItem Content="抓杆"/>
+                            <hc:StepBarItem Content="卸扣确认"/>
+                            <hc:StepBarItem Content="卸扣中"/>
+                            <hc:StepBarItem Content="钳口对缺"/>
+                            <hc:StepBarItem Content="钳体回收"/>
+                            <hc:StepBarItem Content="卸扣结束"/>
+                        </hc:StepBar>
+                        <!--排杆-钻台面步骤-->
+                        <hc:StepBar Width="760" FontSize="16" Name="sbDRDrillUpStep" HorizontalAlignment="Left" Margin="5,0,0,0"  Visibility="Collapsed">
+                            <hc:StepBarItem Content="排管启动"/>
+                            <hc:StepBarItem Content="井口定位"/>
+                            <hc:StepBarItem Content="井口抓杆"/>
+                            <hc:StepBarItem Content="台面定位"/>
+                            <hc:StepBarItem Content="抓手松开"/>
+                            <hc:StepBarItem Content="手臂回位"/>
+                            <hc:StepBarItem Content="台面完成"/>
+                        </hc:StepBar>
+                        <!--排杆-二层台步骤-->
+                        <hc:StepBar Width="760" FontSize="16" Name="sbSFDrillUpStep" HorizontalAlignment="Left" Margin="5,0,0,0" Visibility="Collapsed">
+                            <hc:StepBarItem Content="排杆启动"/>
+                            <hc:StepBarItem Content="井口定位"/>
+                            <hc:StepBarItem Content="井口抓杆"/>
+                            <hc:StepBarItem Content="吊卡确认"/>
+                            <hc:StepBarItem Content="井口运动"/>
+                            <hc:StepBarItem Content="指梁定位"/>
+                            <hc:StepBarItem Content="指梁锁确认"/>
+                            <hc:StepBarItem Content="指梁排管"/>
+                            <hc:StepBarItem Content="排杆完成"/>
+                        </hc:StepBar>
+                        <!--送杆-二层台步骤-->
+                        <hc:StepBar Width="760" FontSize="16" Name="sbSFDrillDownStep" HorizontalAlignment="Left" Margin="5,0,0,0" Visibility="Collapsed">
+                            <hc:StepBarItem Content="送杆启动"/>
+                            <hc:StepBarItem Content="指梁定位"/>
+                            <hc:StepBarItem Content="指梁抓杆"/>
+                            <hc:StepBarItem Content="指梁锁确认"/>
+                            <hc:StepBarItem Content="井口等待"/>
+                            <hc:StepBarItem Content="井口送杆"/>
+                            <hc:StepBarItem Content="吊卡确认"/>
+                            <hc:StepBarItem Content="井口位置"/>
+                            <hc:StepBarItem Content="送杆完成"/>
+                        </hc:StepBar>
+                        <!--送杆-钻台面步骤-->
+                        <hc:StepBar Width="760" FontSize="16" Name="sbDRDrillDown" HorizontalAlignment="Left" Margin="5,0,0,0" Visibility="Collapsed">
+                            <hc:StepBarItem Content="送杆启动"/>
+                            <hc:StepBarItem Content="台面定位"/>
+                            <hc:StepBarItem Content="抓手夹紧"/>
+                            <hc:StepBarItem Content="井口定位"/>
+                            <hc:StepBarItem Content="井口送杆"/>
+                            <hc:StepBarItem Content="手臂回位"/>
+                            <hc:StepBarItem Content="送杆结束"/>
+                        </hc:StepBar>
+                        <!--送杆-铁钻工步骤-->
+                        <hc:StepBar Width="760" FontSize="16" Name="sbIronInButton" HorizontalAlignment="Left" Margin="5,0,0,0" Visibility="Collapsed">
+                            <hc:StepBarItem Content="上扣启动" />
+                            <hc:StepBarItem Content="目标定位"/>
+                            <hc:StepBarItem Content="钳体伸出"/>
+                            <hc:StepBarItem Content="抓杆"/>
+                            <hc:StepBarItem Content="上扣确认"/>
+                            <hc:StepBarItem Content="上扣中"/>
+                            <hc:StepBarItem Content="钳口对缺"/>
+                            <hc:StepBarItem Content="钳体回收"/>
+                            <hc:StepBarItem Content="上扣结束"/>
+                        </hc:StepBar>
+                    </StackPanel>
                 </Grid>
             </Border>
             <DockPanel Grid.Row="2">
