@@ -46,29 +46,25 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" Orientation="Horizontal">
-                        <TextBlock Text="当前设备:" FontWeight="Bold" FontSize="24" VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
-                        <TextBlock Name="tbNowDevice" Text="二层台" FontSize="18" VerticalAlignment="Center"></TextBlock>
                         <TextBlock Text="当前操作:" FontWeight="Bold" FontSize="24" VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
                         <TextBlock Name="tbNowOpr" Text="排杆" FontSize="18" VerticalAlignment="Center"></TextBlock>
+                        <TextBlock Text="当前设备:" FontWeight="Bold" FontSize="24" VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
+                        <TextBlock Name="tbNowDevice" Text="二层台" FontSize="18" VerticalAlignment="Center"></TextBlock>
+                        
                         <TextBlock Text="下个设备:" FontWeight="Bold" FontSize="24"  VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
                         <TextBlock Text="钻台面" FontSize="18" VerticalAlignment="Center"></TextBlock>
                         <TextBlock Name="tbTips" Text="操作提示" Foreground="#E02740" FontWeight="Bold" FontSize="24" VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
                     </StackPanel>
-                    <hc:StepBar Width="1000" FontSize="12" Name="sbDrillUp" HorizontalAlignment="Left"  Grid.Row="1">
-                        <hc:StepBarItem Content="排杆启动" />
-                        <hc:StepBarItem Content="井口定位"/>
-                        <hc:StepBarItem Content="井口抓杆"/>
-                        <hc:StepBarItem Content="台面定位"/>
-                        <hc:StepBarItem Content="抓手松开"/>
-                        <hc:StepBarItem Content="手臂回位"/>
-                        <hc:StepBarItem Content="台面完成"/>
+                    <hc:StepBar Width="620" FontSize="10" Name="sbDrillUp" Grid.Row="1">
+                        <hc:StepBarItem Content="排杆启动"/>
                         <hc:StepBarItem Content="井口定位"/>
                         <hc:StepBarItem Content="井口抓杆"/>
                         <hc:StepBarItem Content="吊卡确认"/>
+                        <hc:StepBarItem Content="井口运动"/>
                         <hc:StepBarItem Content="指梁定位"/>
-                        <hc:StepBarItem Content="指梁确认"/>
+                        <hc:StepBarItem Content="指梁锁确认"/>
                         <hc:StepBarItem Content="指梁排管"/>
-                        <hc:StepBarItem Content="排管结束"/>
+                        <hc:StepBarItem Content="排杆完成"/>
                     </hc:StepBar>
                 </Grid>
             </Border>

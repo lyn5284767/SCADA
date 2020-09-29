@@ -1,10 +1,12 @@
-﻿using ControlLibrary;
+﻿using COM.Common;
+using ControlLibrary;
 using HandyControl.Controls;
 using HandyControl.Tools.Extension;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
@@ -43,10 +45,54 @@ namespace Main.Integration
                 return _instance;
             }
         }
-
+        // 流程定时器
+        System.Threading.Timer ProcessTimer;
         public IngMainNew()
         {
             InitializeComponent();
+            Init();
+            this.Loaded += IngMainNew_Loaded;
+        }
+
+        private void Init()
+        {
+            GlobalData.Instance.Rows = GlobalData.Instance.da["DrillNums"].Value.Byte;
+            GlobalData.Instance.DrillNum = GlobalData.Instance.da["103E23B5"].Value.Byte;
+            ProcessTimer = new System.Threading.Timer(new TimerCallback(ProcessTimer_Elapsed), this, 2000, 50);//改成50ms 的时钟
+        }
+
+        private void IngMainNew_Loaded(object sender, RoutedEventArgs e)
+        {
+            byte[] data = new byte[10] { 80, 33, 0, 0, 0, 0, 0, 0, 30, 30 };
+            GlobalData.Instance.da.SendBytes(data);
+
+            string configPath = System.Environment.CurrentDirectory + "\\KeyBoard.exe";
+            System.Diagnostics.Process[] processList = System.Diagnostics.Process.GetProcesses();
+            foreach (System.Diagnostics.Process process in processList)
+            {
+                if (process.ProcessName.Contains("KeyBoard"))
+                {
+                    process.Kill();
+                }
+            }
+        }
+        /// <summary>
+        /// 切换当前运行设备顶上去
+        /// </summary>
+        /// <param name="obj"></param>
+        private void ProcessTimer_Elapsed(object obj)
+        {
+            try
+            {
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                   
+                }));
+            }
+            catch (Exception ex)
+            {
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+            }
         }
 
         /// <summary>
