@@ -150,31 +150,31 @@
     <Compile Include="Cat\BSCatMain.xaml.cs">
       <DependentUpon>BSCatMain.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DrillFloor\DRCameraFullScreen.xaml.cs">
+    <Compile Include="DrillFloor\Sany\DRCameraFullScreen.xaml.cs">
       <DependentUpon>DRCameraFullScreen.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DrillFloor\DRDeviceStatus.xaml.cs">
+    <Compile Include="DrillFloor\Sany\DRDeviceStatus.xaml.cs">
       <DependentUpon>DRDeviceStatus.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DrillFloor\DRMain.xaml.cs">
+    <Compile Include="DrillFloor\Sany\DRMain.xaml.cs">
       <DependentUpon>DRMain.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DrillFloor\DRParamOne.xaml.cs">
+    <Compile Include="DrillFloor\Sany\DRParamOne.xaml.cs">
       <DependentUpon>DRParamOne.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DrillFloor\DRPosSetting.xaml.cs">
+    <Compile Include="DrillFloor\Sany\DRPosSetting.xaml.cs">
       <DependentUpon>DRPosSetting.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DrillFloor\DRParamSettingMain.xaml.cs">
+    <Compile Include="DrillFloor\Sany\DRParamSettingMain.xaml.cs">
       <DependentUpon>DRParamSettingMain.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DrillFloor\DRParamTwo.xaml.cs">
+    <Compile Include="DrillFloor\Sany\DRParamTwo.xaml.cs">
       <DependentUpon>DRParamTwo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DrillFloor\DRParamThree.xaml.cs">
+    <Compile Include="DrillFloor\Sany\DRParamThree.xaml.cs">
       <DependentUpon>DRParamThree.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DrillFloor\DRSecureSetting.xaml.cs">
+    <Compile Include="DrillFloor\Sany\DRSecureSetting.xaml.cs">
       <DependentUpon>DRSecureSetting.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
@@ -183,20 +183,23 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="HydraulicStation\HSAlarm.xaml.cs">
+    <Compile Include="HydraulicStation\Sany\HSAlarm.xaml.cs">
       <DependentUpon>HSAlarm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="HydraulicStation\HSDeviceStatus.xaml.cs">
+    <Compile Include="HydraulicStation\Sany\HSDeviceStatus.xaml.cs">
       <DependentUpon>HSDeviceStatus.xaml</DependentUpon>
     </Compile>
-    <Compile Include="HydraulicStation\HSMain.xaml.cs">
+    <Compile Include="HydraulicStation\Sany\HSMain.xaml.cs">
       <DependentUpon>HSMain.xaml</DependentUpon>
     </Compile>
-    <Compile Include="HydraulicStation\HSReport.xaml.cs">
+    <Compile Include="HydraulicStation\Sany\HSReport.xaml.cs">
       <DependentUpon>HSReport.xaml</DependentUpon>
     </Compile>
-    <Compile Include="HydraulicStation\HSSetting.xaml.cs">
+    <Compile Include="HydraulicStation\Sany\HSSetting.xaml.cs">
       <DependentUpon>HSSetting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Integration\IngDR.xaml.cs">
+      <DependentUpon>IngDR.xaml</DependentUpon>
     </Compile>
     <Compile Include="Integration\IngMain.xaml.cs">
       <DependentUpon>IngMain.xaml</DependentUpon>
@@ -222,8 +225,14 @@
     <Compile Include="Integration\IngSetWindow.xaml.cs">
       <DependentUpon>IngSetWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Integration\IngSF.xaml.cs">
+      <DependentUpon>IngSF.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Integration\IngSFSetWindow.xaml.cs">
       <DependentUpon>IngSFSetWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Integration\IngSIR.xaml.cs">
+      <DependentUpon>IngSIR.xaml</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -318,31 +327,31 @@
     <Compile Include="SecondFloor\SFDrillCollarSample.xaml.cs">
       <DependentUpon>SFDrillCollarSample.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SIR\SIRBSMain.xaml.cs">
+    <Compile Include="SIR\BS\SIRBSMain.xaml.cs">
       <DependentUpon>SIRBSMain.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SIR\SIRCameraFullScreen.xaml.cs">
+    <Compile Include="SIR\Sany\SIRCameraFullScreen.xaml.cs">
       <DependentUpon>SIRCameraFullScreen.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SIR\SIRJJCMain.xaml.cs">
+    <Compile Include="SIR\JJC\SIRJJCMain.xaml.cs">
       <DependentUpon>SIRJJCMain.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SIR\SIRParam.xaml.cs">
+    <Compile Include="SIR\Sany\SIRParam.xaml.cs">
       <DependentUpon>SIRParam.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SIR\SIRPosSetting.xaml.cs">
+    <Compile Include="SIR\Sany\SIRPosSetting.xaml.cs">
       <DependentUpon>SIRPosSetting.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SIR\SIRSecureSetting.xaml.cs">
+    <Compile Include="SIR\Sany\SIRSecureSetting.xaml.cs">
       <DependentUpon>SIRSecureSetting.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SIR\SIRSelfIO.xaml.cs">
+    <Compile Include="SIR\Sany\SIRSelfIO.xaml.cs">
       <DependentUpon>SIRSelfIO.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SIR\SIRSelfMain.xaml.cs">
+    <Compile Include="SIR\Sany\SIRSelfMain.xaml.cs">
       <DependentUpon>SIRSelfMain.xaml</DependentUpon>
     </Compile>
-    <Compile Include="HydraulicStation\SIRSelfRecord.xaml.cs">
+    <Compile Include="HydraulicStation\Sany\SIRSelfRecord.xaml.cs">
       <DependentUpon>SIRSelfRecord.xaml</DependentUpon>
     </Compile>
     <Compile Include="UIClass\RelayCommand.cs" />
@@ -359,59 +368,63 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DrillFloor\DRCameraFullScreen.xaml">
+    <Page Include="DrillFloor\Sany\DRCameraFullScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DrillFloor\DRDeviceStatus.xaml">
+    <Page Include="DrillFloor\Sany\DRDeviceStatus.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DrillFloor\DRMain.xaml">
+    <Page Include="DrillFloor\Sany\DRMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DrillFloor\DRParamOne.xaml">
+    <Page Include="DrillFloor\Sany\DRParamOne.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DrillFloor\DRPosSetting.xaml">
+    <Page Include="DrillFloor\Sany\DRPosSetting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DrillFloor\DRParamSettingMain.xaml">
+    <Page Include="DrillFloor\Sany\DRParamSettingMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DrillFloor\DRParamTwo.xaml">
+    <Page Include="DrillFloor\Sany\DRParamTwo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DrillFloor\DRParamThree.xaml">
+    <Page Include="DrillFloor\Sany\DRParamThree.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DrillFloor\DRSecureSetting.xaml">
+    <Page Include="DrillFloor\Sany\DRSecureSetting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="HydraulicStation\HSAlarm.xaml">
+    <Page Include="HydraulicStation\Sany\HSAlarm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="HydraulicStation\HSDeviceStatus.xaml">
+    <Page Include="HydraulicStation\Sany\HSDeviceStatus.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="HydraulicStation\HSMain.xaml">
+    <Page Include="HydraulicStation\Sany\HSMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="HydraulicStation\HSReport.xaml">
+    <Page Include="HydraulicStation\Sany\HSReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="HydraulicStation\HSSetting.xaml">
+    <Page Include="HydraulicStation\Sany\HSSetting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Integration\IngDR.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -447,7 +460,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Integration\IngSF.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Integration\IngSFSetWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Integration\IngSIR.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -579,39 +600,39 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SIR\SIRBSMain.xaml">
+    <Page Include="SIR\BS\SIRBSMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SIR\SIRCameraFullScreen.xaml">
+    <Page Include="SIR\Sany\SIRCameraFullScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SIR\SIRJJCMain.xaml">
+    <Page Include="SIR\JJC\SIRJJCMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SIR\SIRParam.xaml">
+    <Page Include="SIR\Sany\SIRParam.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SIR\SIRPosSetting.xaml">
+    <Page Include="SIR\Sany\SIRPosSetting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SIR\SIRSecureSetting.xaml">
+    <Page Include="SIR\Sany\SIRSecureSetting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SIR\SIRSelfIO.xaml">
+    <Page Include="SIR\Sany\SIRSelfIO.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SIR\SIRSelfMain.xaml">
+    <Page Include="SIR\Sany\SIRSelfMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="HydraulicStation\SIRSelfRecord.xaml">
+    <Page Include="HydraulicStation\Sany\SIRSelfRecord.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

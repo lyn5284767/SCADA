@@ -17,14 +17,14 @@ using System.Windows.Shapes;
 namespace Main.Integration
 {
     /// <summary>
-    /// IngSF.xaml 的交互逻辑
+    /// IngDR.xaml 的交互逻辑
     /// </summary>
-    public partial class IngSF : UserControl
+    public partial class IngDR : UserControl
     {
-        private static IngSF _instance = null;
+        private static IngDR _instance = null;
         private static readonly object syncRoot = new object();
 
-        public static IngSF Instance
+        public static IngDR Instance
         {
             get
             {
@@ -34,7 +34,7 @@ namespace Main.Integration
                     {
                         if (_instance == null)
                         {
-                            _instance = new IngSF();
+                            _instance = new IngDR();
                         }
                     }
                 }
@@ -42,27 +42,22 @@ namespace Main.Integration
             }
         }
         System.Threading.Timer timer;
-        public IngSF()
+        public IngDR()
         {
             InitializeComponent();
             timer = new System.Threading.Timer(new TimerCallback(TimerWarning_Elapsed), this, 2000, 50);
             aminationNew.SendFingerBeamNumberEvent += Instance_SendFingerBeamNumberEvent;
-            aminationNew.SystemChange(SystemType.SecondFloor);
-            this.Loaded += IngSF_Loaded;
+            aminationNew.SystemChange(SystemType.DrillFloor);
+            this.Loaded += IngDR_Loaded; ;
         }
 
-        private void IngSF_Loaded(object sender, RoutedEventArgs e)
+        private void IngDR_Loaded(object sender, RoutedEventArgs e)
         {
-            aminationNew.InitRowsColoms(SystemType.SecondFloor);
+            byte[] data = new byte[10] { 80, 33, 0, 0, 0, 0, 0, 0, 30, 30 };
+            GlobalData.Instance.da.SendBytes(data);
+            this.aminationNew.InitRowsColoms(SystemType.DrillFloor);
         }
-        private void Instance_SendFingerBeamNumberEvent(byte number)
-        {
-            if (GlobalData.Instance.da["operationModel"].Value.Byte == 5 || GlobalData.Instance.da["operationModel"].Value.Byte == 3)
-            {
-                byte[] byteToSend = new byte[10] { 80, 1, 5, number, 0, 0, 0, 0, 0, 0 };
-                GlobalData.Instance.da.SendBytes(byteToSend);
-            }
-        }
+
         /// <summary>
         /// 50ms定时器
         /// </summary>
@@ -79,6 +74,15 @@ namespace Main.Integration
             catch (Exception ex)
             {
                 Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+            }
+        }
+
+        private void Instance_SendFingerBeamNumberEvent(byte number)
+        {
+            if (GlobalData.Instance.da["droperationModel"].Value.Byte == 5 || GlobalData.Instance.da["droperationModel"].Value.Byte == 3)
+            {
+                byte[] byteToSend = GlobalData.Instance.SendToDR(new List<byte> { 5, number });
+                GlobalData.Instance.da.SendBytes(byteToSend);
             }
         }
     }

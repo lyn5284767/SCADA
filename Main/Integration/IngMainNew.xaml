@@ -19,21 +19,6 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Border Name="bdMid" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,0,5,5" Grid.Column="0">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="620"/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <Grid Grid.Column="0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="50"/>
-                                <RowDefinition Height="50"/>
-                                <RowDefinition Height="380"/>
-                            </Grid.RowDefinitions>
-                            <TextBlock Grid.Row="0" FontSize="32" FontWeight="Bold" HorizontalAlignment="Center">二层台</TextBlock>
-                            <main:AminationNew Grid.Row="2"/>
-                        </Grid>
-                    </Grid>
                 </Border>
                 <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,0,5,5" Grid.Column="1">
                     <TextBlock Text="设备状态" FontSize="32" FontWeight="Bold" HorizontalAlignment="Center"></TextBlock>
@@ -47,17 +32,18 @@
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" Orientation="Horizontal">
                         <TextBlock Text="当前操作:" FontWeight="Bold" FontSize="24" VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
-                        <TextBlock Name="tbNowOpr" Text="排杆" FontSize="18" VerticalAlignment="Center"></TextBlock>
+                        <TextBlock Name="tbNowOpr" Text="送杆" FontSize="18" VerticalAlignment="Center"></TextBlock>
                         <TextBlock Text="当前设备:" FontWeight="Bold" FontSize="24" VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
                         <TextBlock Name="tbNowDevice" Text="二层台" FontSize="18" VerticalAlignment="Center"></TextBlock>
                         
                         <TextBlock Text="下个设备:" FontWeight="Bold" FontSize="24"  VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
-                        <TextBlock Text="钻台面" FontSize="18" VerticalAlignment="Center"></TextBlock>
+                        <TextBlock Name="tbNextDevice" Text="钻台面" FontSize="18" VerticalAlignment="Center"></TextBlock>
                         <TextBlock Name="tbTips" Text="操作提示" Foreground="#E02740" FontWeight="Bold" FontSize="24" VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
+                        <Button Click="Button_Click">下个设备</Button>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Grid.Row="1" >
                         <!--排杆-铁钻工步骤-->
-                        <hc:StepBar Width="760" FontSize="16" Name="sbIronOutButton" HorizontalAlignment="Left" Margin="5,0,0,0" Visibility="Visible">
+                        <hc:StepBar Width="760" FontSize="16" Name="sbIronOutButton" HorizontalAlignment="Left" Margin="5,0,0,0" Visibility="Collapsed">
                             <hc:StepBarItem Content="卸扣启动"/>
                             <hc:StepBarItem Content="目标定位"/>
                             <hc:StepBarItem Content="钳体伸出"/>
@@ -91,7 +77,7 @@
                             <hc:StepBarItem Content="排杆完成"/>
                         </hc:StepBar>
                         <!--送杆-二层台步骤-->
-                        <hc:StepBar Width="760" FontSize="16" Name="sbSFDrillDownStep" HorizontalAlignment="Left" Margin="5,0,0,0" Visibility="Collapsed">
+                        <hc:StepBar Width="760" FontSize="16" Name="sbSFDrillDownStep" HorizontalAlignment="Left" Margin="5,0,0,0" Visibility="Visible">
                             <hc:StepBarItem Content="送杆启动"/>
                             <hc:StepBarItem Content="指梁定位"/>
                             <hc:StepBarItem Content="指梁抓杆"/>
@@ -103,7 +89,7 @@
                             <hc:StepBarItem Content="送杆完成"/>
                         </hc:StepBar>
                         <!--送杆-钻台面步骤-->
-                        <hc:StepBar Width="760" FontSize="16" Name="sbDRDrillDown" HorizontalAlignment="Left" Margin="5,0,0,0" Visibility="Collapsed">
+                        <hc:StepBar Width="760" FontSize="16" Name="sbDRDrillDownStep" HorizontalAlignment="Left" Margin="5,0,0,0" Visibility="Collapsed">
                             <hc:StepBarItem Content="送杆启动"/>
                             <hc:StepBarItem Content="台面定位"/>
                             <hc:StepBarItem Content="抓手夹紧"/>

@@ -7,6 +7,15 @@
         mc:Ignorable="d"
         Title="联动设置" Height="450" Width="400" WindowStartupLocation="CenterScreen">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <CheckBox Name="cbSF">二层台</CheckBox>
+            <CheckBox Name="cbDR">钻台面</CheckBox>
+            <CheckBox Name="cbSIR">铁钻工</CheckBox>
+            <Button Click="Button_Click">确定</Button>
+        </StackPanel>
     </Grid>
 </Window>

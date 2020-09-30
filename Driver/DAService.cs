@@ -1297,6 +1297,26 @@ namespace DemoDriver
         /// </summary>
         public int DRType { get; set; }
         /// <summary>
+        /// 二层台类型 0-无；1有
+        /// </summary>
+        public int SFType { get; set; }
+        /// <summary>
+        /// 卡瓦类型 0-无；1有
+        /// </summary>
+        public int KavaType { get; set; }
+        /// <summary>
+        /// 吊卡类型 0-无；1.如通带关门，2.如通带关门和管柱
+        /// </summary>
+        public int ElevatorType { get; set; }
+        /// <summary>
+        /// 清扣厂家类型 0：无，1.诚创带关门
+        /// </summary>
+        public int ClearBtnType { get; set; }
+        /// <summary>
+        /// 防喷盒厂家类型 0：无，1.有
+        /// </summary>
+        public int PreventBoxType { get; set; }
+        /// <summary>
         /// 报表数据是否记录 0-不记录 1-记录
         /// </summary>
         public int ReportRecord { get; set; }

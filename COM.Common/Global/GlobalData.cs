@@ -231,8 +231,14 @@ namespace COM.Common
         /// 当前页面
         /// </summary>
         public string DRNowPage = string.Empty;
-
+        /// <summary>
+        /// 系统角色
+        /// </summary>
         public SystemRole systemRole;
+        /// <summary>
+        /// 集成界面设备链表
+        /// </summary>
+        public LinkList<IngDeviceStatus> DeviceLink = new LinkList<IngDeviceStatus>();
     }
 
     // 系统类型
