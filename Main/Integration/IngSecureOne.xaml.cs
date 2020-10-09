@@ -61,6 +61,9 @@ namespace Main.Integration
                 // 大钩与卡瓦互锁
                 this.smHookLockKava.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["576b5"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
                 this.cbHookLockKava.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["576b4"], Mode = BindingMode.OneWay, Converter = new InterLockingOppConverter() });
+                // 顶驱与卡瓦互锁
+                this.smTopLockKava.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["583b1"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.cbTopLockKava.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["583b0"], Mode = BindingMode.OneWay, Converter = new InterLockingOppConverter() });
                 #endregion
                 #region 吊卡锁
                 // 机械手在井口与吊卡互锁
@@ -69,11 +72,20 @@ namespace Main.Integration
                 // 卡瓦与吊卡互锁
                 this.smKavaLockElevator.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["577b1"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
                 this.cbKavaLockElevator.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["577b0"], Mode = BindingMode.OneWay, Converter = new InterLockingOppConverter() });
+                // 顶驱与吊卡互锁
+                this.smTopLockElevator.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["583b3"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.cbTopLockElevator.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["583b2"], Mode = BindingMode.OneWay, Converter = new InterLockingOppConverter() });
 
                 #endregion
                 // 二层台与顶驱互锁
                 this.smSFLockTop.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["577b3"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
                 this.cbSFLockTop.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["577b2"], Mode = BindingMode.OneWay, Converter = new InterLockingOppConverter() });
+                // 顶驱与吊卡互锁
+                this.smKavaLockTop.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["583b5"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.cbKavaLockTop.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["583b4"], Mode = BindingMode.OneWay, Converter = new InterLockingOppConverter() });
+                // 顶驱与吊卡互锁
+                this.smElevatorLockTop.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["583b7"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.cbElevatorLockTop.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["583b6"], Mode = BindingMode.OneWay, Converter = new InterLockingOppConverter() });
                 #region 大钩锁
                 // 吊卡关门锁大钩
                 this.smElevatorLockHook.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["577b5"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
@@ -105,7 +117,7 @@ namespace Main.Integration
 
         #region 卡瓦锁
         /// <summary>
-        /// 吊卡与卡瓦互锁
+        /// 吊卡与卡瓦互锁888
         /// </summary>
         private void CBElevatorLockKava_Clicked(object sender, EventArgs e)
         {
@@ -113,7 +125,7 @@ namespace Main.Integration
 
             if (!this.cbElevatorLockKava.IsChecked)
             {
-                MessageBoxResult result = MessageBox.Show("确认解除吊卡关门与卡瓦互锁？", "提示信息", MessageBoxButton.YesNo);
+                MessageBoxResult result = MessageBox.Show("确认解除吊卡允许卡瓦打开？", "提示信息", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
                     byteToSend = new byte[] { 16, 1, 26, 1, 1, 0, 0, 0, 0, 0 };
@@ -139,7 +151,7 @@ namespace Main.Integration
 
             if (!this.cbIronLockKava.IsChecked)
             {
-                MessageBoxResult result = MessageBox.Show("确认解除铁钻工与卡瓦互锁？", "提示信息", MessageBoxButton.YesNo);
+                MessageBoxResult result = MessageBox.Show("确认解除铁钻工允许卡瓦打开？", "提示信息", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
                     byteToSend = new byte[] { 16, 1, 26, 2, 1, 0, 0, 0, 0, 0 };
@@ -165,7 +177,7 @@ namespace Main.Integration
 
             if (!this.cbHookLockKava.IsChecked)
             {
-                MessageBoxResult result = MessageBox.Show("确认解除大钩与卡瓦互锁？", "提示信息", MessageBoxButton.YesNo);
+                MessageBoxResult result = MessageBox.Show("确认解除大钩允许卡瓦关闭？", "提示信息", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
                     byteToSend = new byte[] { 16, 1, 26, 3, 1, 0, 0, 0, 0, 0 };
@@ -182,6 +194,30 @@ namespace Main.Integration
 
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
+
+        private void CBTopLockKava_Clicked(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+
+            if (!this.cbTopLockKava.IsChecked)
+            {
+                MessageBoxResult result = MessageBox.Show("确认解除顶驱卡扣允许卡瓦打开？", "提示信息", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
+                {
+                    byteToSend = new byte[] { 16, 1, 26, 4, 1, 0, 0, 0, 0, 0 };
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                byteToSend = new byte[] { 16, 1, 26, 4, 2, 0, 0, 0, 0, 0 };
+            }
+
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
         #endregion
 
         #region 吊卡锁
@@ -194,7 +230,7 @@ namespace Main.Integration
 
             if (!this.cbHandLockElevaltor.IsChecked)
             {
-                MessageBoxResult result = MessageBox.Show("确认解除井口机械手与吊卡互锁？", "提示信息", MessageBoxButton.YesNo);
+                MessageBoxResult result = MessageBox.Show("确认解除抓手禁止吊卡打开？", "提示信息", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
                     byteToSend = new byte[] { 16, 1, 26, 11, 1, 0, 0, 0, 0, 0 };
@@ -220,7 +256,7 @@ namespace Main.Integration
 
             if (!this.cbKavaLockElevator.IsChecked)
             {
-                MessageBoxResult result = MessageBox.Show("确认解除卡瓦与吊卡互锁？", "提示信息", MessageBoxButton.YesNo);
+                MessageBoxResult result = MessageBox.Show("确认解除卡瓦禁止吊卡打开？", "提示信息", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
                     byteToSend = new byte[] { 16, 1, 26, 12, 1, 0, 0, 0, 0, 0 };
@@ -237,7 +273,34 @@ namespace Main.Integration
 
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
+        /// <summary>
+        /// 顶驱卡扣允许吊卡打开
+        /// </summary>
+        private void CBTopLockElevator_Clicked(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+
+            if (!this.cbTopLockElevator.IsChecked)
+            {
+                MessageBoxResult result = MessageBox.Show("确认解除顶驱卡扣允许吊卡打开？", "提示信息", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
+                {
+                    byteToSend = new byte[] { 16, 1, 26, 13, 1, 0, 0, 0, 0, 0 };
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                byteToSend = new byte[] { 16, 1, 26, 13, 2, 0, 0, 0, 0, 0 };
+            }
+
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
         #endregion
+        #region 顶驱互锁
         /// <summary>
         /// 二层台与顶驱互锁
         /// </summary>
@@ -264,6 +327,59 @@ namespace Main.Integration
 
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
+        /// <summary>
+        /// 卡瓦与顶驱解扣输出
+        /// </summary>
+        private void CBKavaLockTop_Clicked(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+
+            if (!this.cbKavaLockTop.IsChecked)
+            {
+                MessageBoxResult result = MessageBox.Show("确认卡瓦与顶驱解扣输出？", "提示信息", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
+                {
+                    byteToSend = new byte[] { 16, 1, 26, 22, 1, 0, 0, 0, 0, 0 };
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                byteToSend = new byte[] { 16, 1, 26, 22, 2, 0, 0, 0, 0, 0 };
+            }
+
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 吊卡与顶驱解扣输出
+        /// </summary>
+        private void CBElevatorLockTop_Clicked(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+
+            if (!this.cbElevatorLockTop.IsChecked)
+            {
+                MessageBoxResult result = MessageBox.Show("确认吊卡与顶驱解扣输出？", "提示信息", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
+                {
+                    byteToSend = new byte[] { 16, 1, 26, 23, 1, 0, 0, 0, 0, 0 };
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                byteToSend = new byte[] { 16, 1, 26, 23, 2, 0, 0, 0, 0, 0 };
+            }
+
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        #endregion
         #region 大钩互锁
         /// <summary>
         /// 吊卡关门锁大钩
