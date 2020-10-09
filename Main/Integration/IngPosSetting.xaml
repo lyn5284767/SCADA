@@ -57,7 +57,11 @@
                             </Border>
                             <StackPanel Orientation="Horizontal">
                                 <CheckBox Name="cbZeroSet" Content="零位标定" FontSize="18" Margin="40,0,0,0" Click="cbZeroSet_Checked"></CheckBox>
-                                <CheckBox Name="cbHighSet" Content="高位标定" FontSize="18" Margin="40,0,0,0" Click="cbHighSet_Checked"></CheckBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox Margin="40,0,0,0" Width="100" Name="tbHighVal"></TextBox>
+                                <Button Name="tbHighSet" Content="高位标定" FontSize="14" Margin="10,0,0,0" Click="tbHighSet_Checked"></Button>
+                                <Button Name="tbHighUnSet" Content="取消标定" FontSize="14" Margin="10,0,0,0"  Click="tbHighUnSet_Checked"></Button>
                             </StackPanel>
                             <cl:TextBlockWithTextBox Name="twtL3" TagTwo="25" ControlTag="1"  TbkText="低位刹车区"/>
                             <cl:TextBlockWithTextBox Name="twtL4" TagTwo="25" ControlTag="2"  TbkText="低位报警区"/>

@@ -58,51 +58,51 @@
                     </Border>
                     <StackPanel Orientation="Horizontal">
                         <cl:SymbolMapping Name="smFingerLockElevator" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
-                        <TextBlock Text="手指使能与吊卡互锁" FontSize="20"></TextBlock>
-                        <cl:CustomCheckBox ContentString="互锁" Margin="15,5,15,5"  Name="cbFingerLockElevator" UserControlClicked="CBFingerLockElevator_Clicked"/>
+                            <TextBlock Text="吊卡关门锁抓手打开" FontSize="20"></TextBlock>
+                            <cl:CustomCheckBox ContentString="解锁" Margin="15,5,15,5" IsChecked="True"  Name="cbFingerLockElevator" UserControlClicked="CBFingerLockElevator_Clicked"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <cl:SymbolMapping Name="smHandLockElevator" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
-                        <TextBlock Text="手臂回收与吊卡互锁" FontSize="20"></TextBlock>
-                        <cl:CustomCheckBox ContentString="互锁" Margin="15,5,15,5"  Name="cbHandLockElevator" UserControlClicked="CBHandLockElevator_Clicked"/>
+                            <TextBlock Text="吊卡开门锁手臂回收" FontSize="20"></TextBlock>
+                            <cl:CustomCheckBox ContentString="解锁" Margin="15,5,15,5"  IsChecked="True" Name="cbHandLockElevator" UserControlClicked="CBHandLockElevator_Clicked"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <cl:SymbolMapping Name="smHandLockHook" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
-                        <TextBlock Text="手臂井口移动锁大钩" FontSize="20"></TextBlock>
-                        <cl:CustomCheckBox ContentString="互锁" Margin="15,5,15,5"  Name="cbHandLockHook" UserControlClicked="CBHandLockHook_Clicked"/>
+                            <TextBlock Text="大钩锁手臂井口移动" FontSize="20"></TextBlock>
+                            <cl:CustomCheckBox ContentString="解锁" Margin="15,5,15,5"  IsChecked="True" Name="cbHandLockHook" UserControlClicked="CBHandLockHook_Clicked"/>
                     </StackPanel>
                    
                 </StackPanel>
             </Border>
-                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,5,2,5" Width="390">
+                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,5,2,5" Width="390" Height="355">
                     <StackPanel>
                         <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,0,1" Margin="5" Padding="3">
                             <Label HorizontalAlignment="Center" FontFamily="微软雅黑" Foreground="#E0496D" FontSize="24">钻台面设置</Label>
                         </Border>
                         <StackPanel Orientation="Horizontal">
                             <cl:SymbolMapping Name="smDRFingerLockElevator" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
-                            <TextBlock Text="手指使能与吊卡互锁" FontSize="20"></TextBlock>
-                            <cl:CustomCheckBox ContentString="互锁" Margin="15,5,15,5"  Name="cbDRFingerLockElevator" UserControlClicked="CBDRFingerLockElevator_Clicked"/>
+                            <TextBlock Text="吊卡关门锁抓手打开" FontSize="20"></TextBlock>
+                            <cl:CustomCheckBox ContentString="解锁" Margin="15,5,15,5"  IsChecked="True" Name="cbDRFingerLockElevator" UserControlClicked="CBDRFingerLockElevator_Clicked"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <cl:SymbolMapping Name="smDRHandLockHook" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
-                            <TextBlock Text="手臂井口移动锁大钩" FontSize="20"></TextBlock>
-                            <cl:CustomCheckBox ContentString="互锁" Margin="15,5,15,5"  Name="cbDRHandLockHook" UserControlClicked="CBDRHandLockHook_Clicked"/>
+                            <TextBlock Text="大钩锁手臂井口移动" FontSize="20"></TextBlock>
+                            <cl:CustomCheckBox ContentString="解锁" Margin="15,5,15,5"  IsChecked="True" Name="cbDRHandLockHook" UserControlClicked="CBDRHandLockHook_Clicked"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <cl:SymbolMapping Name="smIronLockDR" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
                             <TextBlock Text="铁钻工与钻台面互锁" FontSize="20"></TextBlock>
-                            <cl:CustomCheckBox ContentString="互锁" Margin="15,5,15,5"  Name="cbIronLockDR" UserControlClicked="CBIronLockDR_Clicked"/>
+                            <cl:CustomCheckBox ContentString="解锁" Margin="15,5,15,5" IsChecked="True"  Name="cbIronLockDR" UserControlClicked="CBIronLockDR_Clicked"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <cl:SymbolMapping Name="smPreventBoxLockDR" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
                             <TextBlock Text="防喷盒与钻台面互锁" FontSize="20"></TextBlock>
-                            <cl:CustomCheckBox ContentString="互锁" Margin="15,5,15,5"  Name="cbPreventBoxLockDR" UserControlClicked="CBPreventBoxLockDR_Clicked"/>
+                            <cl:CustomCheckBox ContentString="解锁" Margin="15,5,15,5" IsChecked="True"  Name="cbPreventBoxLockDR" UserControlClicked="CBPreventBoxLockDR_Clicked"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <cl:SymbolMapping Name="smDRCarLock" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
                             <TextBlock Text="钻台面行车左移锁定" FontSize="20"></TextBlock>
-                            <cl:CustomCheckBox ContentString="互锁" Margin="15,5,15,5"  Name="cbDRCarLock" UserControlClicked="CBDRCarLock_Clicked"/>
+                            <cl:CustomCheckBox ContentString="解锁" Margin="15,5,15,5" IsChecked="True"  Name="cbDRCarLock" UserControlClicked="CBDRCarLock_Clicked"/>
                         </StackPanel>
                     </StackPanel>
                 </Border>
@@ -116,22 +116,22 @@
                         <StackPanel Orientation="Horizontal">
                             <cl:SymbolMapping Name="smHookLockIron" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
                             <TextBlock Text="大钩与铁钻工互锁" FontSize="20"></TextBlock>
-                            <cl:CustomCheckBox ContentString="互锁" Margin="35,5,15,5"  Name="cbHookLockIron" UserControlClicked="CBHookLockIron_Clicked"/>
+                            <cl:CustomCheckBox ContentString="解锁" Margin="35,5,15,5" IsChecked="True"  Name="cbHookLockIron" UserControlClicked="CBHookLockIron_Clicked"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <cl:SymbolMapping Name="smDRLockIron" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
                             <TextBlock Text="钻台面与铁钻工互锁" FontSize="20"></TextBlock>
-                            <cl:CustomCheckBox ContentString="互锁" Margin="15,5,15,5"  Name="cbDRLockIron" UserControlClicked="CBDRLockIron_Clicked"/>
+                            <cl:CustomCheckBox ContentString="解锁" Margin="15,5,15,5"  IsChecked="True" Name="cbDRLockIron" UserControlClicked="CBDRLockIron_Clicked"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <cl:SymbolMapping Name="smPreventBoxLockIron" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
                             <TextBlock Text="防喷盒与铁钻工互锁" FontSize="20"></TextBlock>
-                            <cl:CustomCheckBox ContentString="互锁" Margin="15,5,15,5"  Name="cbPreventBoxLockIron" UserControlClicked="CBPreventBoxLockIron_Clicked"/>
+                            <cl:CustomCheckBox ContentString="解锁" Margin="15,5,15,5"  IsChecked="True" Name="cbPreventBoxLockIron" UserControlClicked="CBPreventBoxLockIron_Clicked"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <cl:SymbolMapping Name="smIronInOutBtnLock" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
                             <TextBlock Text="铁钻工上卸扣锁定" FontSize="20"></TextBlock>
-                            <cl:CustomCheckBox ContentString="互锁" Margin="35,5,15,5"  Name="cbIronInOutBtnLock" UserControlClicked="CBIronInOutBtnLock_Clicked"/>
+                            <cl:CustomCheckBox ContentString="解锁" Margin="35,5,15,5" IsChecked="True" Name="cbIronInOutBtnLock" UserControlClicked="CBIronInOutBtnLock_Clicked"/>
                         </StackPanel>
                     </StackPanel>
             </Border>
@@ -143,17 +143,17 @@
                         <StackPanel Orientation="Horizontal">
                             <cl:SymbolMapping Name="smHookLockPreventBox" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
                             <TextBlock Text="大钩与防喷盒互锁" FontSize="20"></TextBlock>
-                            <cl:CustomCheckBox ContentString="互锁" Margin="35,5,15,5"  Name="cbHookLockPreventBox" UserControlClicked="CBHookLockPreventBox_Clicked"/>
+                            <cl:CustomCheckBox ContentString="解锁" Margin="35,5,15,5" IsChecked="True" Name="cbHookLockPreventBox" UserControlClicked="CBHookLockPreventBox_Clicked"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <cl:SymbolMapping Name="smDRLockPreventBox" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
                             <TextBlock Text="钻台面与防喷盒互锁" FontSize="20"></TextBlock>
-                            <cl:CustomCheckBox ContentString="互锁" Margin="15,5,15,5"  Name="cbDRLockPreventBox" UserControlClicked="CBDRLockPreventBox_Clicked"/>
+                            <cl:CustomCheckBox ContentString="解锁" Margin="15,5,15,5" IsChecked="True"  Name="cbDRLockPreventBox" UserControlClicked="CBDRLockPreventBox_Clicked"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <cl:SymbolMapping Name="smIronLockPreventBox" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
                             <TextBlock Text="铁钻工与防喷盒互锁" FontSize="20"></TextBlock>
-                            <cl:CustomCheckBox ContentString="互锁" Margin="15,5,15,5"  Name="cbIronLockPreventBox" UserControlClicked="CBIronLockPreventBox_Clicked"/>
+                            <cl:CustomCheckBox ContentString="解锁" Margin="15,5,15,5"  IsChecked="True" Name="cbIronLockPreventBox" UserControlClicked="CBIronLockPreventBox_Clicked"/>
                         </StackPanel>
                     </StackPanel>
                 </Border>
@@ -165,7 +165,7 @@
                         <StackPanel Orientation="Horizontal">
                             <cl:SymbolMapping Name="smCatToDRLock" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
                             <TextBlock Text="猫道上钻台面锁定" FontSize="20"></TextBlock>
-                            <cl:CustomCheckBox ContentString="互锁" Margin="35,5,15,5"  Name="cbCatToDRLock" UserControlClicked="CBCatToDRLock_Clicked"/>
+                            <cl:CustomCheckBox ContentString="解锁" Margin="35,5,15,5"  IsChecked="True" Name="cbCatToDRLock" UserControlClicked="CBCatToDRLock_Clicked"/>
                         </StackPanel>
                     </StackPanel>
                 </Border>

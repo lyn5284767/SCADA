@@ -51,7 +51,7 @@
                         <StackPanel Grid.Row="0" Orientation="Horizontal">
                             <StackPanel Orientation="Horizontal" Width="100">
                                 <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,2,10" Width="45" Height="45">
-                                    <Image Source="../Images/enable.png" Margin="2"></Image>
+                                    <Image Source="../../Images/enable.png" Margin="2"></Image>
                                 </Border>
                                 <StackPanel Margin="0,15,10,0">
                                     <TextBlock>小车</TextBlock>
@@ -60,7 +60,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Width="100">
                                 <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,5,10" Width="45" Height="45">
-                                    <Image Source="../Images/hook.png" Margin="2"></Image>
+                                    <Image Source="../../Images/hook.png" Margin="2"></Image>
                                 </Border>
                                 <StackPanel Margin="0,15,10,0">
                                     <TextBlock>手臂</TextBlock>
@@ -71,7 +71,7 @@
                         <StackPanel Grid.Row="1" Orientation="Horizontal">
                             <StackPanel Orientation="Horizontal" Width="100">
                                 <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,2,10" Width="45" Height="45">
-                                    <Image Source="../Images/roate.png" Margin="2"></Image>
+                                    <Image Source="../../Images/roate.png" Margin="2"></Image>
                                 </Border>
                                 <StackPanel Margin="0,15,10,0">
                                     <TextBlock>回转</TextBlock>
@@ -80,7 +80,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Width="100">
                                 <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,5,10" Width="45" Height="45">
-                                    <Image Source="../Images/finger.png" Margin="2"></Image>
+                                    <Image Source="../../Images/finger.png" Margin="2"></Image>
                                 </Border>
                                 <StackPanel Margin="0,15,10,0">
                                     <TextBlock>抓手</TextBlock>
@@ -122,7 +122,7 @@
                                 <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="5,5,5,2" Grid.Column="1" Style="{StaticResource ShadowBorder}">
                                     <StackPanel Orientation="Vertical" MouseDown="btn_drMotorEnable">
                                         <!--<Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Margin="10,5,10,0" Height="45" Width="45">-->
-                                        <Image Source="../Images/enable.png" Margin="1" Width="40" Height="40"></Image>
+                                        <Image Source="../../Images/enable.png" Margin="1" Width="40" Height="40"></Image>
                                         <!--</Border>-->
                                         <TextBlock>电机使能</TextBlock>
                                     </StackPanel>

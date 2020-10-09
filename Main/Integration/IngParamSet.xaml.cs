@@ -69,6 +69,8 @@ namespace Main.Integration
                 this.twtR28.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["ElevatorType"], Mode = BindingMode.OneWay });
                 this.twtR29.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["ClearBtnType"], Mode = BindingMode.OneWay });
                 this.twtR30.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["PreventBoxType"], Mode = BindingMode.OneWay });
+                this.twtR31.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["HookType"], Mode = BindingMode.OneWay });
+                this.twtR32.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["TopType"], Mode = BindingMode.OneWay });
                 #endregion
             }
             catch (Exception ex)

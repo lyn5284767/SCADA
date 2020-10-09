@@ -400,6 +400,30 @@ namespace COM.Common
             throw new NotImplementedException();
         }
     }
+    public class IngInterLockingOppConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return true;
+            }
+
+            if ((bool)value)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     /// <summary>
     /// 钻台面-安全设置-大钩标定状态
     /// </summary>
@@ -3277,7 +3301,7 @@ namespace COM.Common
             }
             byte val = (byte)value;
             if (val == 30) return "吊卡与大钩互锁中";
-            else if(val == 31) return "互锁解除中，请注意吊卡是否关闭";
+            else if (val == 31) return "互锁解除中，请注意吊卡是否关闭";
             else if (val == 32) return "互锁解除中，请谨慎操作大钩";
             else if (val == 33) return "危险区域，大钩安全高度未标定";
             else if (val == 34) return "危险区域，机械手与大钩互锁中";
@@ -3290,6 +3314,22 @@ namespace COM.Common
             else if (val == 46) return "大钩上升中";
             else if (val == 47) return "大钩在机械手下方";
             else if (val == 34) return "大钩在机械手上方";
+            else if (val == 1) return "零位标定不合理";
+            else if (val == 2) return "高位标定不合理";
+            else if (val == 3) return "高度设置不合理";
+            else if (val == 11) return "低位刹车设置成功";
+            else if (val == 12) return "低位报警区设置成功";
+            else if (val == 22) return "低位报警区设置不合理";
+            else if (val == 13) return "低位设置成功";
+            else if (val == 23) return "低位设置不合理";
+            else if (val == 14) return "中位设置成功";
+            else if (val == 24) return "中位设置不合理";
+            else if (val == 15) return "高位设置成功";
+            else if (val == 25) return "高位设置不合理";
+            else if (val == 16) return "高位报警区设置成功";
+            else if (val == 26) return "高位报警区设置不合理";
+            else if (val == 17) return "高位刹车区设置成功";
+            else if (val == 27) return "高位刹车区设置不合理";
             return "";
         }
 

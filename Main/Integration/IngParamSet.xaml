@@ -50,7 +50,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
-                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="460">
+                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="520">
                     <StackPanel Orientation="Horizontal">
                         <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="5" Padding="3" Height="Auto">
                             <TextBlock Text="配&#x0a;置&#x0a;信&#x0a;息&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontWeight="Bold"  Height="90" />
@@ -70,6 +70,8 @@
                             <cl:TextBlockWithTextBox Name="twtR28" ControlTag="86"  TbkText="吊卡厂家"/>
                             <cl:TextBlockWithTextBox Name="twtR29" ControlTag="87"  TbkText="清扣厂家"/>
                             <cl:TextBlockWithTextBox Name="twtR30" ControlTag="88"  TbkText="防喷盒厂家"/>
+                            <cl:TextBlockWithTextBox Name="twtR31" ControlTag="89"  TbkText="大钩厂家"/>
+                            <cl:TextBlockWithTextBox Name="twtR32" ControlTag="90"  TbkText="顶驱厂家"/>
                         </StackPanel>
                     </StackPanel>
                 </Border>
