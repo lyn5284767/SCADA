@@ -61,7 +61,8 @@ namespace Main.Integration
         {
             GlobalData.Instance.Rows = GlobalData.Instance.da["DrillNums"].Value.Byte;
             GlobalData.Instance.DrillNum = GlobalData.Instance.da["103E23B5"].Value.Byte;
-            ProcessTimer = new System.Threading.Timer(new TimerCallback(ProcessTimer_Elapsed), this, 2000, 50);//改成50ms 的时钟
+            ProcessTimer = new System.Threading.Timer(new TimerCallback(ProcessTimer_Elapsed), this,Timeout.Infinite, 500);//改成50ms 的时钟
+            ProcessTimer.Change(0, 500);
             GlobalData.Instance.DeviceLink.Clear();
             if(GlobalData.Instance.da.GloConfig.SFType !=0) GlobalData.Instance.DeviceLink.Append(new IngDeviceStatus() { NowType = SystemType.SecondFloor, IsLoad = false,DeviceName="二层台" });
             if (GlobalData.Instance.da.GloConfig.DRType != 0) GlobalData.Instance.DeviceLink.Append(new IngDeviceStatus() { NowType = SystemType.DrillFloor, IsLoad = false, DeviceName = "钻台面" });
