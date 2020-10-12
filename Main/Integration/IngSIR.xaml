@@ -4,16 +4,53 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Main.Integration"
+             xmlns:cl="http://talonzeng.com/ControlLibrary"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="620">
+             d:DesignHeight="500" d:DesignWidth="620" Background="#F5F6FA" >
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="220"/>
             <RowDefinition Height="100"/>
             <RowDefinition Height="40"/>
-            <RowDefinition Height="80"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock Text="主钳缺口:" FontSize="18" VerticalAlignment="Center" Margin="5,0,0,0"></TextBlock>
+                <cl:SymbolMapping Name="smMainGapOne"  StrContent="" LampType="3" Width="30" Height="30" Margin="5,0,0,0"/>
+                <cl:SymbolMapping Name="smMainGapTwo"  StrContent="" LampType="3" Width="30" Height="30" Margin="5,0,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock Text="背钳缺口:" VerticalAlignment="Center" FontSize="18" Margin="15,0,0,0"></TextBlock>
+                <cl:SymbolMapping Name="smBackGapOne"  StrContent="" LampType="3" Width="30" Height="30" Margin="5,0,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock Text="上扣工位:" FontSize="18" VerticalAlignment="Center" Margin="30,0,0,0"></TextBlock>
+                <cl:SymbolMapping Name="smInButtonPosOne" StrContent="" LampType="3" Width="30" Height="30" Margin="5,0,0,0"/>
+                <cl:SymbolMapping Name="smInButtonPosTwo" StrContent="" LampType="3" Width="30" Height="30" Margin="5,0,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock Text="卸扣工位:" FontSize="18" Margin="15,0,0,0" VerticalAlignment="Center"></TextBlock>
+                <cl:SymbolMapping Name="smOutButtonPosOne" StrContent="" LampType="3" Width="30" Height="30" Margin="5,0,0,0"/>
+                <cl:SymbolMapping Name="smOutButtonPosTwo" StrContent="" LampType="3" Width="30" Height="30" Margin="5,0,0,0"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" Grid.Row="4" VerticalAlignment="Center">
+                <TextBlock Text="安全门复位:" VerticalAlignment="Center" FontSize="18" Margin="5,0,0,0"></TextBlock>
+                <cl:SymbolMapping Name="smSafeDoorReset" StrContent="" LampType="3" Width="30" Height="30" Margin="5,0,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="5" VerticalAlignment="Center">
+                <TextBlock Text="安全门关闭:" VerticalAlignment="Center" FontSize="18" Margin="30,0,0,0"></TextBlock>
+                <cl:SymbolMapping Name="smSafeDoorClose"  StrContent="" LampType="3" Width="30" Height="30" Margin="5,0,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="6" VerticalAlignment="Center">
+                <TextBlock Text="液压钳缺口:" FontSize="18" Margin="15,0,0,0"></TextBlock>
+                <TextBlock Name="tbTongsGap"  Text="安全设置已关闭" Foreground="#008AFF" FontSize="18" Margin="10,0,0,0"></TextBlock>
+            </StackPanel>
+        </StackPanel>
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -33,7 +70,7 @@
                 </Viewbox>
             </Grid>
         </Grid>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
@@ -122,7 +159,7 @@
                                 </StackPanel>
                             </Grid>-->
         </Grid>
-        <TextBlock x:Name="tbOprTips" Text="操作提示" Grid.Row="2" Foreground="#E02740" FontSize="30" TextAlignment="Center" FontWeight="Bold"></TextBlock>
+        <TextBlock x:Name="tbOprTips" Text="操作提示" Grid.Row="4" Foreground="#E02740" FontSize="30" TextAlignment="Center" FontWeight="Bold"></TextBlock>
         
     </Grid>
 </UserControl>

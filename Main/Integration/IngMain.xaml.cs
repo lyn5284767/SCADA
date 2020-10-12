@@ -262,6 +262,7 @@ namespace Main.Integration
             //}
             //else if (systemType == SystemType.DrillFloor)
             //{
+            Thread.Sleep(50);
                 if (GlobalData.Instance.da["droperationModel"].Value.Byte == 5 || GlobalData.Instance.da["droperationModel"].Value.Byte == 3)
                 {
                     byte[] byteToSend = GlobalData.Instance.SendToDR(new List<byte> { 5, number });

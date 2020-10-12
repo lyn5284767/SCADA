@@ -34,7 +34,7 @@
                         <TextBlock Text="当前操作:" FontWeight="Bold" FontSize="24" VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
                         <TextBlock Name="tbNowOpr" Text="送杆" FontSize="18" VerticalAlignment="Center"></TextBlock>
                         <TextBlock Text="当前设备:" FontWeight="Bold" FontSize="24" VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
-                        <TextBlock Name="tbNowDevice" Text="二层台" FontSize="18" VerticalAlignment="Center"></TextBlock>
+                        <TextBox Name="tbNowDevice" Text="二层台" FontSize="18" VerticalAlignment="Center" IsReadOnly="True" TextChanged="tbNowDevice_TextChanged"></TextBox>
                         
                         <TextBlock Text="下个设备:" FontWeight="Bold" FontSize="24"  VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
                         <TextBlock Name="tbNextDevice" Text="钻台面" FontSize="18" VerticalAlignment="Center"></TextBlock>

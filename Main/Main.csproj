@@ -201,6 +201,9 @@
     <Compile Include="Integration\IngDR.xaml.cs">
       <DependentUpon>IngDR.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Integration\IngDRSetWindow.xaml.cs">
+      <DependentUpon>IngDRSetWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Integration\IngMain.xaml.cs">
       <DependentUpon>IngMain.xaml</DependentUpon>
     </Compile>
@@ -428,6 +431,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Integration\IngDR.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Integration\IngDRSetWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

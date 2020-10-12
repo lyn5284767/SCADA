@@ -82,6 +82,12 @@ namespace Main.Integration
 
         private void Instance_SendFingerBeamNumberEvent(byte number)
         {
+            if (GlobalData.Instance.da["operationModel"].Value.Byte == 5 || GlobalData.Instance.da["operationModel"].Value.Byte == 3)
+            {
+                byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 5, number });
+                GlobalData.Instance.da.SendBytes(byteToSend);
+            }
+            Thread.Sleep(50);
             if (GlobalData.Instance.da["droperationModel"].Value.Byte == 5 || GlobalData.Instance.da["droperationModel"].Value.Byte == 3)
             {
                 byte[] byteToSend = GlobalData.Instance.SendToDR(new List<byte> { 5, number });

@@ -62,7 +62,13 @@ namespace Main.Integration
         {
             if (GlobalData.Instance.da["operationModel"].Value.Byte == 5 || GlobalData.Instance.da["operationModel"].Value.Byte == 3)
             {
-                byte[] byteToSend = new byte[10] { 80, 1, 5, number, 0, 0, 0, 0, 0, 0 };
+                byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 5, number });
+                GlobalData.Instance.da.SendBytes(byteToSend);
+            }
+            Thread.Sleep(50);
+            if (GlobalData.Instance.da["droperationModel"].Value.Byte == 5 || GlobalData.Instance.da["droperationModel"].Value.Byte == 3)
+            {
+                byte[] byteToSend = GlobalData.Instance.SendToDR(new List<byte> { 5, number });
                 GlobalData.Instance.da.SendBytes(byteToSend);
             }
         }

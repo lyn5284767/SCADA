@@ -183,6 +183,49 @@ namespace Main.Integration
                 Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
             }
         }
+
+        private void InitSetpBar()
+        {
+            #region 步骤条相关
+            if (GlobalData.Instance.da["operationModel"].Value.Byte == 5 && GlobalData.Instance.da["droperationModel"].Value.Byte == 5) // 自动模式
+            {
+                if (GlobalData.Instance.da["workModel"].Value.Byte == 2 && GlobalData.Instance.da["drworkModel"].Value.Byte == 2) // 排管
+                {
+                    this.tbNowOpr.Text = "排杆";
+                    if (NowDeviceNode.Data.NowType == SystemType.SecondFloor)
+                    {
+                    }
+                    else if (NowDeviceNode.Data.NowType == SystemType.DrillFloor)
+                    {
+                    }
+                    else if (NowDeviceNode.Data.NowType == SystemType.SIR)
+                    {
+                        
+                    }
+                }
+                else if (GlobalData.Instance.da["workModel"].Value.Byte == 1 && GlobalData.Instance.da["drworkModel"].Value.Byte == 1)// 送杆
+                {
+                    this.tbNowOpr.Text = "送杆"; 
+                    if (NowDeviceNode.Data.NowType == SystemType.SecondFloor)
+                    {
+                        this.sbSFDrillDownStep.Visibility = Visibility.Visible;
+                        this.sbDRDrillDownStep.Visibility = Visibility.Collapsed;
+                        this.sbIronInButton.Visibility = Visibility.Collapsed;
+                        this.sbIronOutButton.Visibility = Visibility.Collapsed;
+                        this.sbDRDrillUpStep.Visibility = Visibility.Collapsed;
+                        this.sbSFDrillUpStep.Visibility = Visibility.Collapsed;
+                    }
+                    else if (NowDeviceNode.Data.NowType == SystemType.DrillFloor)
+                    {
+                    }
+                    else if (NowDeviceNode.Data.NowType == SystemType.SIR)
+                    {
+
+                    }
+                }
+            }
+            #endregion
+        }
         /// <summary>
         /// 设备切换后重新初始化面板
         /// </summary>
@@ -260,6 +303,13 @@ namespace Main.Integration
             NowDeviceNode.Data.IsLoad = false;
             NowDeviceNode = NowDeviceNode.Next;
             if (NowDeviceNode == null) NowDeviceNode = GlobalData.Instance.DeviceLink.Head;
+        }
+        /// <summary>
+        /// 根据设备变化改变步骤条
+        /// </summary>
+        private void tbNowDevice_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            InitSetpBar();
         }
     }
 }
