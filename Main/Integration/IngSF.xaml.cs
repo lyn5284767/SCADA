@@ -53,6 +53,9 @@ namespace Main.Integration
 
         private void IngSF_Loaded(object sender, RoutedEventArgs e)
         {
+            byte[] byteToSend = new byte[10] { 1, 32, 1, 11, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+            //systemType = SystemType.SecondFloor;
             aminationNew.InitRowsColoms(SystemType.SecondFloor);
         }
         private void Instance_SendFingerBeamNumberEvent(byte number)

@@ -12,13 +12,15 @@ namespace DataService
         public QUALITIES Quality;
         public Storage Value;
         public DateTime TimeStamp;
+        public short GroupID;
 
-        public HistoryData(short id, QUALITIES qualitie, Storage value, DateTime timeStamp)
+        public HistoryData(short id, QUALITIES qualitie, Storage value, DateTime timeStamp, short groupID)
         {
             ID = id;
             Quality = qualitie;
             Value = value;
             TimeStamp = timeStamp;//数据产生的时间戳
+            GroupID = groupID;
         }
 
         public override bool Equals(object obj)

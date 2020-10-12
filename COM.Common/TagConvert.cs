@@ -1154,6 +1154,7 @@ namespace COM.Common
         {
             string tb = (string)parameter;
             int workModel = 1;
+            bool last = false;
             if ((values[1] == DependencyProperty.UnsetValue) || (values[1] == null))
             {
                 workModel = 1;
@@ -1166,7 +1167,7 @@ namespace COM.Common
                 }
             }
             int byteAutoModeNowStep = int.Parse(values[2].ToString());
-            bool last = false;
+        
             if (tb == "one")
             {
                 if (workModel == 1) //送杆
@@ -2702,6 +2703,7 @@ namespace COM.Common
         {
             string tb = (string)parameter;
             int workModel = 1;
+            bool last = false;
             if ((values[1] == DependencyProperty.UnsetValue) || (values[1] == null))
             {
                 workModel = 1;
@@ -2714,7 +2716,7 @@ namespace COM.Common
                 }
             }
             int byteAutoModeNowStep = int.Parse(values[2].ToString());
-            bool last = false;
+     
             if (workModel == 1) //送杆
             {
                 if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null) || values[0].ToString() != "5") // 非自动模式
@@ -4370,5 +4372,159 @@ namespace COM.Common
         }
     }
 
+    #endregion
+
+    #region 通用
+    /// <summary>
+    /// Dictionary
+    /// </summary>
+    public class NumToTextConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null || value == DependencyProperty.UnsetValue)
+            {
+                return string.Empty;
+            }
+            Dictionary<int, string> keyValues = (Dictionary<int, string>)parameter;
+            int val = (byte)value;
+            string str = string.Empty;
+            bool hasVal = keyValues.TryGetValue(val, out str);
+            if (hasVal) return str;
+            else return val.ToString();
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    #endregion
+
+    #region 集成系统
+    /// <summary>
+    /// 操作模式-描述
+    /// </summary>
+    public class IngOprCoverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (values[0] == null || values[0] == DependencyProperty.UnsetValue
+                || values[1] == null || values[1] == DependencyProperty.UnsetValue
+                || values[2] == null || values[2] == DependencyProperty.UnsetValue)
+            {
+                return "操作模式";
+            }
+            byte sfType = (byte)values[0];
+            byte drType = (byte)values[1];
+            byte sirType = (byte)values[2];
+            if (sfType == 4 && drType == 4 && sirType == 1) return "手动";
+            if (sfType == 5 && drType == 5 && sirType == 2) return "自动";
+            if (sfType ==1) return "二层台急停";
+            if (drType == 1) return "钻台面急停";
+            if (sirType == 5) return "铁钻工急停";
+            if (sfType == 2) return "二层台调试";
+            if (drType == 2) return "钻台面调试";
+            if (sfType == 3) return "二层台回零";
+            if (drType == 3) return "钻台面回零";
+            if (sfType == 6) return "二层台回收";
+            if (drType == 6) return "钻台面回收";
+            if (sfType == 7) return "二层台运输";
+            if (drType == 7) return "钻台面运输";
+            if (sfType == 8) return "二层台实验";
+            if (drType == 8) return "钻台面实验";
+            if (sfType == 9) return "二层台补偿";
+            if (drType == 9) return "钻台面补偿";
+
+            return "操作模式";
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    /// <summary>
+    /// 操作模式-选择
+    /// </summary>
+    public class IngOprCheckCoverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (values[0] == null || values[0] == DependencyProperty.UnsetValue
+                || values[1] == null || values[1] == DependencyProperty.UnsetValue
+                || values[2] == null || values[2] == DependencyProperty.UnsetValue)
+            {
+                return false;
+            }
+            byte sfType = (byte)values[0];
+            byte drType = (byte)values[1];
+            byte sirType = (byte)values[2];
+            if (sfType == 4 && drType == 4 && sirType == 1) return true;
+            if (sfType == 5 && drType == 5 && sirType == 2) return false;
+
+            return false;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 工作模式-描述
+    /// </summary>
+    public class IngWorkCoverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (values[0] == null || values[0] == DependencyProperty.UnsetValue
+                || values[1] == null || values[1] == DependencyProperty.UnsetValue
+                || values[2] == null || values[2] == DependencyProperty.UnsetValue)
+            {
+                return "工作模式";
+            }
+            byte sfType = (byte)values[0];
+            byte drType = (byte)values[1];
+            byte sirType = (byte)values[2];
+            if (sfType == 1 && drType == 1 && sirType == 1) return "送杆";
+            if (sfType == 2 && drType == 2 && sirType == 2) return "排杆";
+
+            return "工作模式";
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    /// <summary>
+    /// 工作模式-选择
+    /// </summary>
+    public class IngWorkCheckCoverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (values[0] == null || values[0] == DependencyProperty.UnsetValue
+                || values[1] == null || values[1] == DependencyProperty.UnsetValue
+                || values[2] == null || values[2] == DependencyProperty.UnsetValue)
+            {
+                return false;
+            }
+            byte sfType = (byte)values[0];
+            byte drType = (byte)values[1];
+            byte sirType = (byte)values[2];
+            if (sfType == 1 && drType == 1 && sirType == 1) return false;
+            if (sfType == 2 && drType == 2 && sirType == 2) return true;
+
+            return false;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     #endregion
 }

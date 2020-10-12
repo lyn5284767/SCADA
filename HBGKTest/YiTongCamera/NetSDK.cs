@@ -1437,9 +1437,9 @@ namespace HBGKTest
             {
                 return int.Parse(text);
             }
-            catch (Exception e)
+            catch
             {
-
+                
             }
             return nDef;
         }

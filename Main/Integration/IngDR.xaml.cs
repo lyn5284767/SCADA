@@ -53,6 +53,9 @@ namespace Main.Integration
 
         private void IngDR_Loaded(object sender, RoutedEventArgs e)
         {
+            byte[] byteToSend = new byte[10] { 1, 32, 1, 10, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+
             byte[] data = new byte[10] { 80, 33, 0, 0, 0, 0, 0, 0, 30, 30 };
             GlobalData.Instance.da.SendBytes(data);
             this.aminationNew.InitRowsColoms(SystemType.DrillFloor);

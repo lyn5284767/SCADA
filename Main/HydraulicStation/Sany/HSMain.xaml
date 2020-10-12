@@ -142,16 +142,16 @@
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
                                 <StackPanel Grid.Row="0">
-                                    <Image Name="imgMainOne" Margin="10,0,0,0" Source="../Images/pump1.png" Width="60"/>
+                                    <Image Name="imgMainOne" Margin="10,0,0,0" Source="../../Images/pump1.png" Width="60"/>
                                     <TextBlock Text="1#主泵" VerticalAlignment="Center" TextAlignment="Center" FontWeight="Bold" FontFamily="微软雅黑" FontSize="16" Foreground="Black"></TextBlock>
                                 </StackPanel>
                                 <StackPanel Grid.Row="1">
-                                    <Image Name="imgMainTwo" Margin="10,0,0,0" Source="../Images/pump1.png" Width="60"/>
+                                    <Image Name="imgMainTwo" Margin="10,0,0,0" Source="../../Images/pump1.png" Width="60"/>
                                     <TextBlock Text="2#主泵" VerticalAlignment="Center" TextAlignment="Center" FontWeight="Bold" FontFamily="微软雅黑" FontSize="16" Foreground="Black"></TextBlock>
                                 </StackPanel>
                             </Grid>
                             <StackPanel Grid.Column="2" VerticalAlignment="Center">
-                                <Image Name="imghot" Margin="10,0,0,0" Source="../Images/hot1.png" Width="80"/>
+                                <Image Name="imghot" Margin="10,0,0,0" Source="../../Images/hot1.png" Width="80"/>
                                 <TextBlock Text="加热器" TextAlignment="Center" FontWeight="Bold" FontFamily="微软雅黑" FontSize="16" Foreground="Black"></TextBlock>
                             </StackPanel>
                             <Grid Grid.Column="3">
@@ -160,11 +160,11 @@
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
                                 <StackPanel Grid.Row="0">
-                                    <Image Name="imgConstantVoltage" Margin="10,0,0,0" Source="../Images/pump1.png" Width="60"/>
+                                    <Image Name="imgConstantVoltage" Margin="10,0,0,0" Source="../../Images/pump1.png" Width="60"/>
                                     <TextBlock Text="恒压泵" VerticalAlignment="Center" TextAlignment="Center" FontWeight="Bold" FontFamily="微软雅黑" FontSize="16" Foreground="Black"></TextBlock>
                                 </StackPanel>
                                 <StackPanel Grid.Row="1">
-                                    <Image Name="imgDissipateHeat" Margin="10,0,0,0" Source="../Images/pump1.png" Width="60"/>
+                                    <Image Name="imgDissipateHeat" Margin="10,0,0,0" Source="../../Images/pump1.png" Width="60"/>
                                     <TextBlock Text="散热泵" VerticalAlignment="Center" TextAlignment="Center" FontWeight="Bold" FontFamily="微软雅黑" FontSize="16" Foreground="Black"></TextBlock>
                                 </StackPanel>
                             </Grid>
