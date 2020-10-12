@@ -159,7 +159,7 @@
                                     <MenuItem.Header>
                                         <StackPanel Orientation="Vertical">
                                             <ContentPresenter Content="附属功能"/>
-                                            <Image Margin="0,2,0,0"  Width="15" Source="..\Images\downTrangle.png" />
+                                            <Image Margin="0,2,0,0"  Width="15" Source="..\..\Images\downTrangle.png" />
                                         </StackPanel>
                                     </MenuItem.Header>
                                     <MenuItem Header="目的地选择"  FontSize="24">
@@ -182,7 +182,7 @@
                                     <MenuItem.Header>
                                         <StackPanel Orientation="Vertical">
                                             <ContentPresenter Content="管柱选择" />
-                                            <Image Margin="0,2,0,0"  Width="15" Source="..\Images\downTrangle.png" />
+                                            <Image Margin="0,2,0,0"  Width="15" Source="..\..\Images\downTrangle.png" />
                                         </StackPanel>
                                     </MenuItem.Header>
                                     <MenuItem Header="钻铤"  FontSize="24">
@@ -277,7 +277,7 @@
                             <StackPanel Grid.Column="1">
                                 <Viewbox x:Name="viewboxCameral1" Stretch="Uniform" Height="180">
                                     <Grid x:Name="gridCamera1">
-                                        <Image Source="../Images/camera.jpg"/>
+                                        <Image Source="../../Images/camera.jpg"/>
                                     </Grid>
                                 </Viewbox>
                             </StackPanel>
@@ -287,7 +287,7 @@
                             <StackPanel Grid.Column="1">
                                 <Viewbox x:Name="viewboxCameral2" Stretch="Uniform" Height="180">
                                     <Grid x:Name="gridCamera2">
-                                        <Image Source="../Images/camera.jpg"/>
+                                        <Image Source="../../Images/camera.jpg"/>
                                     </Grid>
                                 </Viewbox>
                             </StackPanel>

@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Main.Integration"
              xmlns:main="clr-namespace:Main" xmlns:cl="http://talonzeng.com/ControlLibrary"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="620">
+             d:DesignHeight="500" d:DesignWidth="620" Background="#F5F6FA">
     <UserControl.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="FontWeight" Value="Bold"/>

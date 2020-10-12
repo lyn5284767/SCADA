@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="ControlLibrary.InputControl.TextWithCombox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ControlLibrary.InputControl"
+             mc:Ignorable="d" 
+             d:DesignHeight="14" d:DesignWidth="450" Name="textWithCombox" FontFamily="微软雅黑">
+    <Grid>
+        <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="2" Margin="1">
+            <Border.Effect>
+                <DropShadowEffect x:Name="sh" BlurRadius="20" Color="Gray" Direction="20" Opacity="0" RenderingBias="Quality" ShadowDepth="1"/>
+            </Border.Effect>
+        </Border>
+        <StackPanel Orientation="Horizontal" Name="stackPanel">
+            <TextBlock Name="tbk" Text="参数配置" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="14" FontFamily="微软雅黑" FontWeight="Bold"  Width="150" TextAlignment="Center">
+            </TextBlock>
+            <TextBox x:Name="textBoxShow" IsReadOnly="True" Text="{Binding Path=ShowTxtWithCB, ElementName=textWithCombox}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="12" FontFamily="微软雅黑" FontWeight="Bold" Width="140" TextAlignment="Center"/>
+            <ComboBox x:Name="cbSet" Width="140" LostFocus="textBox_ParameterConfig_LostFocus" FontSize="12"></ComboBox>
+        </StackPanel>
+    </Grid>
+</UserControl>

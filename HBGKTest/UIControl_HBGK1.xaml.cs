@@ -296,6 +296,7 @@ namespace HBGKTest
             }
             catch (Exception ex)
             {
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
                 return "截图失败";
             }
         }
@@ -680,6 +681,7 @@ namespace HBGKTest
             }
             catch (Exception ex)
             {
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
                 return -1;
             }
         }
@@ -925,6 +927,7 @@ namespace HBGKTest
             }
             catch (Exception ex)
             {
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
                 return false;
             }
         }

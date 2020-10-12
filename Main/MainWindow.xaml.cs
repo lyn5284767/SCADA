@@ -350,6 +350,11 @@ namespace Main
         private void MouseDownHome(object sender, MouseButtonEventArgs e)
         {
             //this.spMain.Children.Clear();
+            if(GlobalData.Instance.Ing) // 集成界面
+            {
+                MouseIng(null, null);
+                return;
+            }
             if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
             {
                 //SFMain.Instance.FullScreenEvent -= Instance_FullScreenEvent;
@@ -467,7 +472,8 @@ namespace Main
                 //SIRSelfMain.Instance.PlayCameraInThread();
             }
             catch(Exception ex)
-            { 
+            {
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
             }
 
         }
@@ -911,6 +917,13 @@ namespace Main
         {
             try
             {
+                if (GlobalData.Instance.Ing)
+                {
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(IngRecord.Instance);
+                    this.BottomColorSetting(this.bdIng, this.tbIng, this.bdOther);
+                    return;
+                }
                 if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
                 {
                     this.spMain.Children.Clear();
@@ -1209,7 +1222,9 @@ namespace Main
                 ping.PingCompleted += new PingCompletedEventHandler(ping_Complete);
             }
             catch (Exception ex)
-            { }
+            {
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+            }
         }
         private void ping_Complete(object sender, PingCompletedEventArgs k)
         {
@@ -1350,7 +1365,7 @@ namespace Main
                     byte[] byteToSend = new byte[10] { 1, 32, 3, 30, 0, 0, 0, 0, 0, 0 };
                     GlobalData.Instance.da.SendBytes(byteToSend);
                     int count = 0;
-                    while (GlobalData.Instance.da["droperationModel"].Value.Byte != 4 && count < 5)
+                    while (GlobalData.Instance.da["droperationModel"].Value.Byte != 4 && count < 5)// 每隔50ms检查一次看是否切换成手动
                     {
                         count++;
                         Thread.Sleep(50);
@@ -1443,7 +1458,9 @@ namespace Main
                 Log.Log4Net.AddLog(ex.ToString(), Log.InfoLevel.ERROR);
             }
         }
-
+        /// <summary>
+        /// 根据选择不同类型设备，显示可用和不可用功能
+        /// </summary>
         private void SetBorderBackGround()
         {
             if (GlobalData.Instance.systemType == SystemType.SecondFloor)

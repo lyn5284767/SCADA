@@ -174,8 +174,9 @@ namespace DatabaseLib
                     tx.Commit();
                     return 1;
                 }
-                catch (System.Data.SQLite.SQLiteException E)
+                catch (System.Data.SQLite.SQLiteException ex)
                 {
+                    Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
                     tx.Rollback();
                     return 0;
                 }

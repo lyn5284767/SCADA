@@ -7,10 +7,10 @@
              d:DesignHeight="650" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="DRParamSet">
     <DockPanel>
         <Grid DockPanel.Dock="Left" Width="100">
-            <Image Source="../Images/left.png" Name="left" MouseDown="Left_MouseDown"></Image>
+            <Image Source="../../Images/left.png" Name="left" MouseDown="Left_MouseDown"></Image>
         </Grid>
         <Grid DockPanel.Dock="Right" Width="100">
-            <Image Source="../Images/right.png" Name="right" MouseDown="Right_MouseDown"></Image>
+            <Image Source="../../Images/right.png" Name="right" MouseDown="Right_MouseDown"></Image>
         </Grid>
         <Grid Name="ParamPage"></Grid>
     </DockPanel>

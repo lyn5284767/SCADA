@@ -313,7 +313,7 @@ namespace DemoDriver
                     var tag = this[archive.Key];//取出当前 Itag,并且当前内存中的 Itag值 的时间已经更新了，于是加入归档列表，说明数据有更新
                     if (tag != null && tag.TimeStamp > archiveTime.LastTime)
                     {
-                        tempData.Add(new HistoryData(tag.ID, tag.Quality, tag.Value, now));
+                        tempData.Add(new HistoryData(tag.ID, tag.Quality, tag.Value, now, tag.Parent.ID));
                         archive.Value.LastTime = now;
                     }
                 }
@@ -760,16 +760,14 @@ namespace DemoDriver
                             //sysLog.Id = data.ID;
                             //sysLog.Value = data.Value.Int32;
                             //sysLog.TimeStamp = data.TimeStamp;
-                            if (data.ID == 465 || data.ID == 505 || data.ID == 545 || data.ID == 463 || data.ID == 503 || data.ID == 543 || data.ID == 37
-                                || data.ID == 40 || data.ID == 38 || data.ID == 41 || data.ID == 39 || data.ID == 42 || data.ID == 34 || data.ID == 35
-                                || data.ID == 36 || data.ID == 18 || data.ID == 19 || data.ID == 593 || data.ID == 603 || data.ID == 592 || data.ID == 603
-                                || data.ID == 592 || data.ID == 20 || data.ID == 21 || data.ID == 25 || data.ID == 27 || data.ID == 29 || data.ID == 15
-                                || data.ID == 13 || data.ID == 727 || data.ID == 722 || data.ID == 724 || data.ID == 739 || data.ID == 736 || data.ID == 698
-                                || data.ID == 701 || data.ID == 700 || data.ID == 699 || data.ID == 75 || data.ID == 76 || data.ID == 77 || data.ID == 78
-                                || data.ID == 600 || data.ID == 810 || data.ID == 1071 || data.ID == 1072 || data.ID == 1073 || data.ID == 1074 || data.ID == 1075
-                                || data.ID == 1135)
+                            if (data.GroupID==0) // 二层台存储数据
                             {
                                 string sql = string.Format("Insert Into Log (Id,Value,TimeStamp,LogType) Values('{0}','{1}','{2}','1')", data.ID, data.Value.Int32, data.TimeStamp.ToString("yyyy-MM-dd HH:mm:ss"));
+                                sqlList.Add(sql);
+                            }
+                            else if (data.GroupID == 11) //集成系统互锁数据
+                            {
+                                string sql = string.Format("Insert Into Log (Id,Value,TimeStamp,LogType) Values('{0}','{1}','{2}','11')", data.ID, data.Value.Int32, data.TimeStamp.ToString("yyyy-MM-dd HH:mm:ss"));
                                 sqlList.Add(sql);
                             }
                             else

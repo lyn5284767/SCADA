@@ -141,8 +141,6 @@ namespace HBGKTest
 
         public int OnDecCallBackFunction(int nPort, IntPtr pBuf, int nSize, ref FRAME_INFO pFrameInfo, IntPtr pUser, int nReserved2)
         {
-            int kkk = 0;
-            int jj=0;
             return 0;
         }
         #region ICCTVBrowse ≥…‘±
@@ -618,6 +616,7 @@ namespace HBGKTest
             }
             catch (Exception ex)
             {
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
                 return -1;
             }
         }

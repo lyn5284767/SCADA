@@ -4,6 +4,8 @@ using DatabaseLib;
 using HandyControl.Controls;
 using HBGKTest;
 using HBGKTest.YiTongCamera;
+using LiveCharts;
+using LiveCharts.Wpf;
 using Main.SecondFloor;
 using System;
 using System.Collections.Generic;
@@ -52,6 +54,7 @@ namespace Main.SIR
         }
         System.Threading.Timer timerWarning;
         System.Threading.Timer VariableReBinding;
+        System.Threading.Timer ReportTimer;
         byte bworkModel = 0;
         bool workModelCheck = false;
         public SIRSelfMain()
@@ -60,9 +63,11 @@ namespace Main.SIR
             InitControls();
             InitCameraInfo();
             VariableBinding();
+            //InitReport();
             timerWarning = new System.Threading.Timer(new TimerCallback(TimerWarning_Elapsed), this, 2000, 50);//改成50ms 的时钟
             VariableReBinding = new System.Threading.Timer(new TimerCallback(VariableTimer), null, Timeout.Infinite, 500);
             VariableReBinding.Change(0, 500);
+            ReportTimer = new System.Threading.Timer(new TimerCallback(ReportTimer_Elapse), null, 500, 2000);
             this.Loaded += SIRSelfMain_Loaded;
         }
 
@@ -87,8 +92,8 @@ namespace Main.SIR
                 this.locationModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfLocationModel"], Mode = BindingMode.OneWay, Converter = new SIRSelfLocationModelConverter() });
                 this.locationModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfLocationModel"], Mode = BindingMode.OneWay, Converter = new SIRSelfIsCheckConverter() });
 
-                this.tbOneKeyInButton.SetBinding(ToggleButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOneKeyInButton"], Mode = BindingMode.OneWay, Converter = new SIRSelfTwoToCheckConverter() });
-                this.tbOneKeyOutButton.SetBinding(ToggleButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOneKeyOutButton"], Mode = BindingMode.OneWay, Converter = new SIRSelfTwoToCheckConverter() });
+                //this.tbOneKeyInButton.SetBinding(ToggleButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOneKeyInButton"], Mode = BindingMode.OneWay, Converter = new SIRSelfTwoToCheckConverter() });
+                //this.tbOneKeyOutButton.SetBinding(ToggleButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOneKeyOutButton"], Mode = BindingMode.OneWay, Converter = new SIRSelfTwoToCheckConverter() });
 
                 this.smMainGapOne.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["841b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
                 this.smMainGapTwo.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["841b1"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
@@ -158,8 +163,9 @@ namespace Main.SIR
                 this.tbClampHeight.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfClampHeight"], Mode = BindingMode.OneWay, Converter = new TakeTenConverter() });
                 this.tbWorkCylinderPress.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfWorkCylinderPress"], Mode = BindingMode.OneWay, Converter = new DivideHundredConverter() });
                 this.tbBrakingCylinderPress.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfBrakingCylinderPress"], Mode = BindingMode.OneWay, Converter = new DivideHundredConverter() });
-                this.tbInButtonTorque.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["SIRSelfInButtonTorque"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
-                this.tbOutButtonTorque.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["SIRSelfOutButtonTorque"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+               //改为曲线显示
+                //this.tbInButtonTorque.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["SIRSelfInButtonTorque"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                //this.tbOutButtonTorque.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["SIRSelfOutButtonTorque"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
                 this.tbInButtonCircle.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfInButtonCircle"], Mode = BindingMode.OneWay });
                 this.tbOutButtonCircle.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOutButtonCircle"], Mode = BindingMode.OneWay });
                 this.tbWorkTime.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["SIRSelfWorkTime"], Mode = BindingMode.OneWay });
@@ -304,6 +310,98 @@ namespace Main.SIR
             }
             bworkModel = GlobalData.Instance.da["SIRSelfWorkModel"].Value.Byte;
         }
+        #region 扭矩曲线
+        private int SaveCount = 20;
+        /// <summary>
+        /// 钻杆扭矩
+        /// </summary>
+        public SeriesCollection DrillTorqueSeries { get; set; }
+        /// <summary>
+        /// 钻杆扭矩时间
+        /// </summary>
+        public List<string> DrillTorqueLabels { get; set; }
+        /// <summary>
+        /// 钻杆扭矩
+        /// </summary>
+        public SeriesCollection CasingTorqueSeries { get; set; }
+        /// <summary>
+        /// 钻杆扭矩时间
+        /// </summary>
+        public List<string> CasingTorqueLabels { get; set; }
+        private void InitReport()
+        {
+            LineSeries drillTorqueLine = new LineSeries();
+            //drillTorqueLine.LineSmoothness = 0;
+            //drillTorqueLine.PointGeometry = null;
+            DrillTorqueLabels = new List<string> ();
+            drillTorqueLine.Values = new ChartValues<double>();
+            DrillTorqueSeries = new SeriesCollection { };
+            DrillTorqueSeries.Add(drillTorqueLine);
+
+            LineSeries casingTorqueLine = new LineSeries();
+            //drillTorqueLine.LineSmoothness = 0;
+            //drillTorqueLine.PointGeometry = null;
+            CasingTorqueLabels = new List<string>();
+            casingTorqueLine.Values = new ChartValues<double>();
+            CasingTorqueSeries = new SeriesCollection { };
+            CasingTorqueSeries.Add(casingTorqueLine);
+            DataContext = this;
+        }
+        List<double> data = new List<double>();
+        List<double> datad = new List<double>();
+        /// <summary>
+        /// 扭矩定时器
+        /// </summary>
+        /// <param name="value"></param>
+        private void ReportTimer_Elapse(object value)
+        {
+            try
+            {
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    Random rd = new Random();
+                    double d = rd.Next(0, 200) / 10.0;
+                    this.drillTorqueChart.AddPoints(d);
+                    this.cosingTorqueChart.AddPoints(d);
+                    //DrillTorqueLabels.Add(DateTime.Now.ToString("mm:ss"));
+                    //if (DrillTorqueLabels.Count > SaveCount)
+                    //{
+                    //    DrillTorqueLabels.RemoveAt(0);
+                    //}
+                    //DrillTorqueSeries[0].Values.Add(d);
+                    //if (DrillTorqueSeries[0].Values.Count > SaveCount)
+                    //{
+                    //    DrillTorqueSeries[0].Values.RemoveAt(0);
+                    //    data.RemoveAt(0);
+                    //}
+                    //data.Add(d);
+                    //this.lvcDrillTorque.MinValue = data.Min()-1;
+                    //this.lvcDrillTorque.MaxValue = data.Max();
+
+                    //Random rdd = new Random();
+                    //double dd = rdd.Next(0, 200) / 10.0;
+                    //CasingTorqueLabels.Add(DateTime.Now.ToString("mm:ss"));
+                    //if (CasingTorqueLabels.Count > SaveCount)
+                    //{
+                    //    CasingTorqueLabels.RemoveAt(0);
+                    //}
+                    //CasingTorqueSeries[0].Values.Add(dd);
+                    //if (CasingTorqueSeries[0].Values.Count > SaveCount)
+                    //{
+                    //    CasingTorqueSeries[0].Values.RemoveAt(0);
+                    //    datad.RemoveAt(0);
+                    //}
+                    //datad.Add(dd);
+                    //this.lvcCasingTorque.MinValue = datad.Min() - 1;
+                    //this.lvcCasingTorque.MaxValue = datad.Max();
+                }));
+            }
+            catch (Exception ex)
+            {
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+            }
+        }
+        #endregion
         private int iTimeCnt = 0;//用来为时钟计数的变量
         private void TimerWarning_Elapsed(object obj)
         {

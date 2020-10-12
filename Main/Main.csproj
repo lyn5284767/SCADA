@@ -213,6 +213,9 @@
     <Compile Include="Integration\IngPosSetting.xaml.cs">
       <DependentUpon>IngPosSetting.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Integration\IngRecord.xaml.cs">
+      <DependentUpon>IngRecord.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Integration\IngSecureMain.xaml.cs">
       <DependentUpon>IngSecureMain.xaml</DependentUpon>
     </Compile>
@@ -441,6 +444,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Integration\IngPosSetting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Integration\IngRecord.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

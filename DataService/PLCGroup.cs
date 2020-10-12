@@ -619,7 +619,7 @@ namespace DataService
                     if (tag != null)
                         DataChange(this, new DataChangeEventArgs(1, new HistoryData[1]
                 {
-                    new HistoryData(tag.ID,QUALITIES.QUALITY_GOOD,new Storage{Int32=value}, DateTime.Now)
+                    new HistoryData(tag.ID,QUALITIES.QUALITY_GOOD,new Storage{Int32=value}, DateTime.Now,tag.Parent.ID)
                 }));
                 }
             }
@@ -637,7 +637,7 @@ namespace DataService
                     if (tag != null)
                         DataChange(this, new DataChangeEventArgs(1, new HistoryData[1]
                 {
-                    new HistoryData(tag.ID,QUALITIES.QUALITY_GOOD,new Storage{DWord=value}, DateTime.Now)
+                    new HistoryData(tag.ID,QUALITIES.QUALITY_GOOD,new Storage{DWord=value}, DateTime.Now,tag.Parent.ID)
                 }));
                 }
             }
@@ -655,7 +655,7 @@ namespace DataService
                     if (tag != null)
                         DataChange(this, new DataChangeEventArgs(1, new HistoryData[1]
                 {
-                    new HistoryData(tag.ID,QUALITIES.QUALITY_GOOD,new Storage{Word=value}, DateTime.Now)
+                    new HistoryData(tag.ID,QUALITIES.QUALITY_GOOD,new Storage{Word=value}, DateTime.Now,tag.Parent.ID)
                 }));
                 }
             }
@@ -673,7 +673,7 @@ namespace DataService
                     if (tag != null)
                         DataChange(this, new DataChangeEventArgs(1, new HistoryData[1]
                 {
-                    new HistoryData(tag.ID,QUALITIES.QUALITY_GOOD,new Storage{Int16=value}, DateTime.Now)
+                    new HistoryData(tag.ID,QUALITIES.QUALITY_GOOD,new Storage{Int16=value}, DateTime.Now,tag.Parent.ID)
                 }));
                 }
             }
@@ -691,7 +691,7 @@ namespace DataService
                     if (tag != null)
                         DataChange(this, new DataChangeEventArgs(1, new HistoryData[1]
                 {
-                    new HistoryData(tag.ID,QUALITIES.QUALITY_GOOD,new Storage{Single=value}, DateTime.Now)
+                    new HistoryData(tag.ID,QUALITIES.QUALITY_GOOD,new Storage{Single=value}, DateTime.Now,tag.Parent.ID)
                 }));
                 }
             }
@@ -709,7 +709,7 @@ namespace DataService
                     if (tag != null)
                         DataChange(this, new DataChangeEventArgs(1, new HistoryData[1]
                 {
-                    new HistoryData(tag.ID,QUALITIES.QUALITY_GOOD,Storage.Empty, DateTime.Now)
+                    new HistoryData(tag.ID,QUALITIES.QUALITY_GOOD,Storage.Empty, DateTime.Now,tag.Parent.ID)
                 }));
                 }
             }
@@ -727,7 +727,7 @@ namespace DataService
                     if (tag != null)
                         DataChange(this, new DataChangeEventArgs(1, new HistoryData[1]
                 {
-                    new HistoryData(tag.ID,QUALITIES.QUALITY_GOOD,new Storage{Boolean=value}, DateTime.Now)
+                    new HistoryData(tag.ID,QUALITIES.QUALITY_GOOD,new Storage{Boolean=value}, DateTime.Now,tag.Parent.ID)
                 }));
                 }
             }
@@ -745,7 +745,7 @@ namespace DataService
                     if (tag != null)
                         DataChange(this, new DataChangeEventArgs(1, new HistoryData[1]
                 {
-                    new HistoryData(tag.ID,QUALITIES.QUALITY_GOOD,new Storage{Byte=value}, DateTime.Now)
+                    new HistoryData(tag.ID,QUALITIES.QUALITY_GOOD,new Storage{Byte=value}, DateTime.Now,tag.Parent.ID)
                 }));
                 }
             }

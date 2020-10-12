@@ -138,6 +138,9 @@
     <Compile Include="HalfCircleGauge.xaml.cs">
       <DependentUpon>HalfCircleGauge.xaml</DependentUpon>
     </Compile>
+    <Compile Include="InputControl\TextWithCombox.xaml.cs">
+      <DependentUpon>TextWithCombox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="KeyWindow.xaml.cs">
       <DependentUpon>KeyWindow.xaml</DependentUpon>
     </Compile>
@@ -168,6 +171,12 @@
     <Compile Include="Report.cs" />
     <Compile Include="ShadowButton.xaml.cs">
       <DependentUpon>ShadowButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SIRCosingTorque.xaml.cs">
+      <DependentUpon>SIRCosingTorque.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SIRDrillTorque.xaml.cs">
+      <DependentUpon>SIRDrillTorque.xaml</DependentUpon>
     </Compile>
     <Compile Include="StepControl.xaml.cs">
       <DependentUpon>StepControl.xaml</DependentUpon>
@@ -255,6 +264,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="InputControl\TextWithCombox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="KeyWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -296,6 +309,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ShadowButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SIRCosingTorque.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SIRDrillTorque.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -417,8 +438,6 @@
   <ItemGroup>
     <Resource Include="Images\FullScreen.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="NewFolder1\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

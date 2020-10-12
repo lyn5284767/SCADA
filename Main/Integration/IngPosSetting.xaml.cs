@@ -96,7 +96,7 @@ namespace Main.Integration
         {
             try
             {
-                this.cbZeroSet.SetBinding(CheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["575b0"], Mode = BindingMode.OneWay });
+                this.tbZeroSet.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["575b0"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
                 this.tbHighSet.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["575b1"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
                 this.twtL3.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["LowBrakeArea"], Mode = BindingMode.OneWay });
                 this.twtL4.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["LowAlarmArea"], Mode = BindingMode.OneWay });
@@ -135,7 +135,7 @@ namespace Main.Integration
         }
 
         /// <summary>
-        /// 零位标定
+        /// 零位标定--弃用2020.10.9
         /// </summary>
         private void cbZeroSet_Checked(object sender, RoutedEventArgs e)
         {
@@ -153,7 +153,7 @@ namespace Main.Integration
             ShowTips();
         }
         /// <summary>
-        /// 高位标定
+        /// 高位标定--弃用2020.10.9
         /// </summary>
         private void cbHighSet_Checked(object sender, RoutedEventArgs e)
         {
@@ -172,8 +172,6 @@ namespace Main.Integration
         /// <summary>
         /// 高位标定
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void tbHighSet_Checked(object sender, RoutedEventArgs e)
         {
             Regex regexParameterConfigurationConfirm = new Regex(@"^[0-9]+$");
@@ -198,6 +196,24 @@ namespace Main.Integration
         private void tbHighUnSet_Checked(object sender, RoutedEventArgs e)
         {
             byte[] byteToSend = new byte[] { 16, 1, 24, 12, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+            ShowTips();
+        }
+        /// <summary>
+        /// 零位标定
+        /// </summary>
+        private void tbZeroSet_Checked(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[] { 16, 1, 24, 1, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+            ShowTips();
+        }
+        /// <summary>
+        /// 取消零位标定
+        /// </summary>
+        private void tbZeroUnSet_Checked(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[] { 16, 1, 24, 11, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
             ShowTips();
         }

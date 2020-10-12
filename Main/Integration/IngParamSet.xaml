@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Main.Integration" xmlns:cl="http://talonzeng.com/ControlLibrary"
+             xmlns:local="clr-namespace:Main.Integration" xmlns:cl="http://talonzeng.com/ControlLibrary" xmlns:inputcontrol="clr-namespace:ControlLibrary.InputControl;assembly=ControlLibrary"
              mc:Ignorable="d" 
               Foreground="#525252" FontSize="14" Background="#F5F6FA" Width="800" Height="650" Margin="1" FontFamily="微软雅黑" Name="sfParamThree">
     <UserControl.Resources>
@@ -46,32 +46,49 @@
         </Grid.RowDefinitions>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="480"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
-                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="520">
+                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="550">
                     <StackPanel Orientation="Horizontal">
                         <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="5" Padding="3" Height="Auto">
                             <TextBlock Text="配&#x0a;置&#x0a;信&#x0a;息&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontWeight="Bold"  Height="90" />
                         </Border>
                         <StackPanel>
-                            <cl:TextBlockWithTextBox Name="twtR17" ControlTag="51"  TbkText="左手柄"/>
-                            <cl:TextBlockWithTextBox Name="twtR18" ControlTag="52"  TbkText="右手柄"/>
-                            <cl:TextBlockWithTextBox Name="twtR19" ControlTag="53"  TbkText="按键面板"/>
-                            <cl:TextBlockWithTextBox Name="twtR20" ControlTag="54"  TbkText="操作面板"/>
-                            <cl:TextBlockWithTextBox Name="twtR21" ControlTag="71"  TbkText="钻台面遥控器"/>
-                            <cl:TextBlockWithTextBox Name="twtR22" ControlTag="80"  TbkText="卡瓦"/>
-                            <cl:TextBlockWithTextBox Name="twtR23" ControlTag="81"  TbkText="铁钻工厂家"/>
-                            <cl:TextBlockWithTextBox Name="twtR24" ControlTag="82"  TbkText="猫道厂家"/>
-                            <cl:TextBlockWithTextBox Name="twtR25" ControlTag="83"  TbkText="液压站厂家"/>
-                            <cl:TextBlockWithTextBox Name="twtR26" ControlTag="84"  TbkText="钻台面厂家"/>
-                            <cl:TextBlockWithTextBox Name="twtR27" ControlTag="85"  TbkText="二层台厂家"/>
-                            <cl:TextBlockWithTextBox Name="twtR28" ControlTag="86"  TbkText="吊卡厂家"/>
-                            <cl:TextBlockWithTextBox Name="twtR29" ControlTag="87"  TbkText="清扣厂家"/>
-                            <cl:TextBlockWithTextBox Name="twtR30" ControlTag="88"  TbkText="防喷盒厂家"/>
-                            <cl:TextBlockWithTextBox Name="twtR31" ControlTag="89"  TbkText="大钩厂家"/>
-                            <cl:TextBlockWithTextBox Name="twtR32" ControlTag="90"  TbkText="顶驱厂家"/>
+                            <!--<cl:TextBlockWithTextBox Name="twtR17" ControlTag="51"  TbkText="左手柄"/>-->
+                            <!--<cl:TextBlockWithTextBox Name="twtR18" ControlTag="52"  TbkText="右手柄"/>-->
+                            <!--<cl:TextBlockWithTextBox Name="twtR19" ControlTag="53"  TbkText="按键面板"/>-->
+                            <!--<cl:TextBlockWithTextBox Name="twtR20" ControlTag="54"  TbkText="操作面板"/>-->
+                            <!--<cl:TextBlockWithTextBox Name="twtR21" ControlTag="71"  TbkText="钻台面遥控器"/>-->
+                            <!--<cl:TextBlockWithTextBox Name="twtR22" ControlTag="80"  TbkText="卡瓦"/>-->
+                            <!--<cl:TextBlockWithTextBox Name="twtR23" ControlTag="81"  TbkText="铁钻工厂家"/>-->
+                            <!--<cl:TextBlockWithTextBox Name="twtR24" ControlTag="82"  TbkText="猫道厂家"/>-->
+                            <!--<cl:TextBlockWithTextBox Name="twtR25" ControlTag="83"  TbkText="液压站厂家"/>-->
+                            <!--<cl:TextBlockWithTextBox Name="twtR26" ControlTag="84"  TbkText="钻台面厂家"/>-->
+                            <!--<cl:TextBlockWithTextBox Name="twtR27" ControlTag="85"  TbkText="二层台厂家"/>-->
+                            <!--<cl:TextBlockWithTextBox Name="twtR28" ControlTag="86"  TbkText="吊卡厂家"/>-->
+                            <!--<cl:TextBlockWithTextBox Name="twtR29" ControlTag="87"  TbkText="清扣厂家"/>-->
+                            <!--<cl:TextBlockWithTextBox Name="twtR30" ControlTag="88"  TbkText="防喷盒厂家"/>-->
+                            <!--<cl:TextBlockWithTextBox Name="twtR31" ControlTag="89"  TbkText="大钩厂家"/>-->
+                            <!--<cl:TextBlockWithTextBox Name="twtR32" ControlTag="90"  TbkText="顶驱厂家"/>-->
+                            <inputcontrol:TextWithCombox Name="twt1" TbkText="左手柄" TagOne="51"/>
+                            <inputcontrol:TextWithCombox Name="twt2" TbkText="右手柄" TagOne="52"/>
+                            <inputcontrol:TextWithCombox Name="twt3" TbkText="按键面板" TagOne="53"/>
+                            <inputcontrol:TextWithCombox Name="twt4" TbkText="操作面板" TagOne="54"/>
+                            <inputcontrol:TextWithCombox Name="twt5" TbkText="钻台面遥控器" TagOne="71"/>
+                            <inputcontrol:TextWithCombox Name="twt6" TbkText="卡瓦厂家" TagOne="80"/>
+                            <inputcontrol:TextWithCombox Name="twt7" TbkText="铁钻工厂家" TagOne="81"/>
+                            <inputcontrol:TextWithCombox Name="twt8" TbkText="猫道厂家" TagOne="82"/>
+                            <inputcontrol:TextWithCombox Name="twt9" TbkText="液压站厂家" TagOne="83"/>
+                            <inputcontrol:TextWithCombox Name="twt10" TbkText="钻台面厂家" TagOne="84"/>
+                            <inputcontrol:TextWithCombox Name="twt11" TbkText="二层台厂家" TagOne="85"/>
+                            <inputcontrol:TextWithCombox Name="twt12" TbkText="吊卡厂家" TagOne="86"/>
+                            <inputcontrol:TextWithCombox Name="twt13" TbkText="清扣厂家" TagOne="87"/>
+                            <inputcontrol:TextWithCombox Name="twt14" TbkText="防喷盒厂家" TagOne="88"/>
+                            <inputcontrol:TextWithCombox Name="twt15" TbkText="大钩厂家" TagOne="89"/>
+                            <inputcontrol:TextWithCombox Name="twt16" TbkText="顶驱厂家" TagOne="90"/>
+                            <inputcontrol:TextWithCombox Name="twt17" TbkText="吊卡打开方式" TagOne="90"/>
                         </StackPanel>
                     </StackPanel>
                 </Border>

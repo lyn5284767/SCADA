@@ -189,7 +189,9 @@ namespace Main.SIR
 
             }
             catch (Exception ex)
-            { }
+            {
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+            }
         }
 
         private void BtnTurnMainOne_Click(object sender, RoutedEventArgs e)
