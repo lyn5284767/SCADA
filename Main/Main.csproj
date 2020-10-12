@@ -240,6 +240,9 @@
     <Compile Include="Integration\IngSIR.xaml.cs">
       <DependentUpon>IngSIR.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Integration\IngSIRSetWindow.xaml.cs">
+      <DependentUpon>IngSIRSetWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -483,6 +486,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Integration\IngSIR.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Integration\IngSIRSetWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

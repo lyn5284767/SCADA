@@ -13,6 +13,8 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="220"/>
             <RowDefinition Height="100"/>
+            <RowDefinition/>
+            <RowDefinition/>
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal">
@@ -159,7 +161,55 @@
                                 </StackPanel>
                             </Grid>-->
         </Grid>
-        <TextBlock x:Name="tbOprTips" Text="操作提示" Grid.Row="4" Foreground="#E02740" FontSize="30" TextAlignment="Center" FontWeight="Bold"></TextBlock>
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,2,0,0" Grid.Column="0">
+                <TextBlock Text="旋转角度:" FontSize="18" Margin="5,0,0,0" TextAlignment="Left"></TextBlock>
+                <TextBlock Name="tbRotate" Text="??" FontSize="18"></TextBlock>
+                <TextBlock Text="°" FontSize="18"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,2,0,0" Grid.Column="1">
+                <TextBlock Text="手臂伸缩:" FontSize="18" Margin="15,0,0,0" TextAlignment="Left"></TextBlock>
+                <TextBlock Name="tbArmPos" Text="??" FontSize="18"></TextBlock>
+                <TextBlock Text="mm" FontSize="18"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,2,0,0" Grid.Column="2">
+                <TextBlock Text="钳体升降:" FontSize="18" Margin="15,0,0,0"  TextAlignment="Left"></TextBlock>
+                <TextBlock Name="tbClampHeight" Text="??" FontSize="18"></TextBlock>
+                <TextBlock Text="mm" FontSize="18"></TextBlock>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Column="0">
+                <TextBlock Text="钻杆扭矩:" FontSize="18" Margin="5,0,0,0" TextAlignment="Left"></TextBlock>
+                <TextBlock Name="tbInButtonTorque" Text="??" FontSize="18"></TextBlock>
+                <TextBlock Text="KN.m" FontSize="18"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Column="1">
+                <TextBlock Text="套管扭矩:" FontSize="18" Margin="15,0,0,0" TextAlignment="Left"></TextBlock>
+                <TextBlock Name="tbOutButtonTorque" Text="??" FontSize="18"></TextBlock>
+                <TextBlock Text="KN.m" FontSize="18"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,2,0,0" Grid.Column="2">
+                <TextBlock Text="上扣圈数:" FontSize="18" Margin="5,0,0,0" TextAlignment="Left"></TextBlock>
+                <TextBlock Name="tbInButtonCircle" Text="??" FontSize="18"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,2,0,0" Grid.Column="3">
+                <TextBlock Text="卸扣圈数:" FontSize="18" Margin="5,0,0,0" TextAlignment="Left"></TextBlock>
+                <TextBlock Name="tbOutButtonCircle" Text="??" FontSize="18"></TextBlock>
+            </StackPanel>
+        </Grid>
+        <TextBlock x:Name="tbOprTips" Text="操作提示" Grid.Row="6" Foreground="#E02740" FontSize="30" TextAlignment="Center" FontWeight="Bold"></TextBlock>
         
     </Grid>
 </UserControl>
