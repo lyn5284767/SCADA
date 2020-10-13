@@ -339,6 +339,9 @@
     <Compile Include="SIR\BS\SIRBSMain.xaml.cs">
       <DependentUpon>SIRBSMain.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SIR\SanyRail\SIRRailWayMain.xaml.cs">
+      <DependentUpon>SIRRailWayMain.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SIR\Sany\SIRCameraFullScreen.xaml.cs">
       <DependentUpon>SIRCameraFullScreen.xaml</DependentUpon>
     </Compile>
@@ -622,6 +625,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SIR\BS\SIRBSMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SIR\SanyRail\SIRRailWayMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

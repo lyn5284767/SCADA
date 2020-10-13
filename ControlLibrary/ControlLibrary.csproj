@@ -135,6 +135,12 @@
     <Compile Include="ElectricDashboard.xaml.cs">
       <DependentUpon>ElectricDashboard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Figure\SIRRailWayPress.xaml.cs">
+      <DependentUpon>SIRRailWayPress.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Figure\SIRRailWayTorque.xaml.cs">
+      <DependentUpon>SIRRailWayTorque.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HalfCircleGauge.xaml.cs">
       <DependentUpon>HalfCircleGauge.xaml</DependentUpon>
     </Compile>
@@ -257,6 +263,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ElectricDashboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Figure\SIRRailWayPress.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Figure\SIRRailWayTorque.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

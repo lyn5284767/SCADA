@@ -42,6 +42,7 @@
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
             <RowDefinition/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
@@ -99,7 +100,25 @@
             </Menu>
             <TextBlock Text="未选择管柱类型" Name="tubeType" FontSize="14" FontFamily="宋体" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
         </StackPanel>
-       
-        <Button Grid.Row="6" FontSize="20" Height="40" Click="BtnClose_Click">关闭</Button>
+        <StackPanel Orientation="Horizontal" Grid.Row="5">
+            <TextBlock Text="目的地选择:" Margin="10,0,0,0"></TextBlock>
+            <Menu Background="Transparent" Height="30" Width="120"  FontSize="16" FontFamily="宋体" FontWeight="Bold" Foreground="#008AFF">
+                <MenuItem>
+                    <MenuItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <ContentPresenter Content="目的地选择" />
+                            <Image Margin="0,2,0,0"  Width="15" Source="..\Images\downTrangle.png" />
+                        </StackPanel>
+                    </MenuItem.Header>
+                    <MenuItem Header="立根盒" Click="btn_SelectDes" TabIndex="1"/>
+                    <MenuItem Header="猫道-井口" Click="btn_SelectDes" TabIndex="2"/>
+                    <MenuItem Header="猫道-鼠洞" Click="btn_SelectDes" TabIndex="3"/>
+                </MenuItem>
+            </Menu>
+            <Grid Height="5"></Grid>
+            <TextBlock Text="未选择目的地" Name="drDestination" FontSize="14" FontFamily="宋体" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+        </StackPanel>
+        <Button Grid.Row="7" FontSize="20" Height="40" Click="BtnClose_Click">关闭</Button>
     </Grid>
 </Window>

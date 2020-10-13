@@ -311,5 +311,10 @@ namespace Main.Integration
         {
             InitSetpBar();
         }
+
+        private void tbDR_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

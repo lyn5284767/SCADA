@@ -43,9 +43,10 @@ namespace COM.Common
             /// </summary>
             OneMinute = 60000
         }
-        
+
 
         public byte[] ConfigParameter = new byte[4];
+        public byte[] SetParam = new byte[10];
         /// <summary>
         /// 二层台移动X轴补偿
         /// </summary>

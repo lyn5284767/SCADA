@@ -4420,6 +4420,30 @@ namespace COM.Common
             throw new NotImplementedException();
         }
     }
+
+    /// <summary>
+    /// Dictionary
+    /// </summary>
+    public class BoolToTextConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null || value == DependencyProperty.UnsetValue)
+            {
+                return string.Empty;
+            }
+            Dictionary<int, string> keyValues = (Dictionary<int, string>)parameter;
+            bool val = (bool)value;
+            if (val) return "停用";
+            else return "启用";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     #endregion
 
     #region 集成系统

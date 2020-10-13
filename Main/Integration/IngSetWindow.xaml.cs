@@ -60,20 +60,20 @@ namespace Main.Integration
                 this.operateMode.SetBinding(BasedSwitchButton.IsCheckedProperty, IngOprCheckMultiBind);
                 // 工作模式-描述
                 MultiBinding IngWorkMultiBind = new MultiBinding();
-                IngOprMultiBind.Converter = new IngWorkCoverter();
-                IngOprMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["workModel"], Mode = BindingMode.OneWay });
-                IngOprMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drworkModel"], Mode = BindingMode.OneWay });
-                IngOprMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOperModel"], Mode = BindingMode.OneWay });
-                IngOprMultiBind.NotifyOnSourceUpdated = true;
-                this.workMode.SetBinding(BasedSwitchButton.ContentDownProperty, IngOprMultiBind);
+                IngWorkMultiBind.Converter = new IngWorkCoverter();
+                IngWorkMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["workModel"], Mode = BindingMode.OneWay });
+                IngWorkMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drworkModel"], Mode = BindingMode.OneWay });
+                IngWorkMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOperModel"], Mode = BindingMode.OneWay });
+                IngWorkMultiBind.NotifyOnSourceUpdated = true;
+                this.workMode.SetBinding(BasedSwitchButton.ContentDownProperty, IngWorkMultiBind);
                 // 工作模式-选择
                 MultiBinding IngWorkCheckMultiBind = new MultiBinding();
-                IngOprCheckMultiBind.Converter = new IngWorkCheckCoverter();
-                IngOprCheckMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-                IngOprCheckMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
-                IngOprCheckMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfWorkModel"], Mode = BindingMode.OneWay });
-                IngOprCheckMultiBind.NotifyOnSourceUpdated = true;
-                this.workMode.SetBinding(BasedSwitchButton.IsCheckedProperty, IngOprCheckMultiBind);
+                IngWorkCheckMultiBind.Converter = new IngWorkCheckCoverter();
+                IngWorkCheckMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+                IngWorkCheckMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
+                IngWorkCheckMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfWorkModel"], Mode = BindingMode.OneWay });
+                IngWorkCheckMultiBind.NotifyOnSourceUpdated = true;
+                this.workMode.SetBinding(BasedSwitchButton.IsCheckedProperty, IngWorkCheckMultiBind);
                 // 管柱选择
                 IngDrillPipeTypeConverter ingDrillPipeTypeConverter = new IngDrillPipeTypeConverter();
                 MultiBinding ingDrillPipeTypeMultiBind = new MultiBinding();
@@ -82,6 +82,8 @@ namespace Main.Integration
                 ingDrillPipeTypeMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drdrillPipeType"], Mode = BindingMode.OneWay });
                 ingDrillPipeTypeMultiBind.NotifyOnSourceUpdated = true;
                 this.tubeType.SetBinding(TextBlock.TextProperty, ingDrillPipeTypeMultiBind);
+
+                this.drDestination.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drDes"], Mode = BindingMode.OneWay, Converter = new DesTypeConverter() });
             }
             catch (Exception ex)
             {
@@ -191,6 +193,17 @@ namespace Main.Integration
             GlobalData.Instance.da.SendBytes(byteToSend);
             Thread.Sleep(50);
             byteToSend = GlobalData.Instance.SendToDR(new List<byte>() { 3, (byte)tag });
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 目的地旋转
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_SelectDes(object sender, RoutedEventArgs e)
+        {
+            int tag = (sender as MenuItem).TabIndex;
+            byte[] byteToSend = new byte[10] { 80, 33, 11, (byte)tag, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
     }

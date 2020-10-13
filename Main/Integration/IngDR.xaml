@@ -20,8 +20,9 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="30"/>
                 <RowDefinition Height="380"/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" FontSize="32" FontWeight="Bold" HorizontalAlignment="Center">钻台面</TextBlock>
@@ -33,7 +34,16 @@
                 <cl:SymbolMapping Name="drcarMotorRetZero" StrContent="" Margin="20,2,2,2"/>
                 <cl:SymbolMapping Name="drRotateMotorRetZero" StrContent="" Margin="20,2,2,2"/>
             </StackPanel>
-            <main:AminationNew x:Name="aminationNew" Grid.Row="2"/>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="89*"/>
+                    <ColumnDefinition Width="221*"/>
+                    <ColumnDefinition Width="310*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="1" Name="tbOprTips" Text="操作提示"  FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Foreground="#E0496D"></TextBlock>
+                <TextBlock Grid.Column="2" Name="tbAlarmTips" Text="告警提示"  FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Foreground="#E0496D"></TextBlock>
+            </Grid>
+            <main:AminationNew x:Name="aminationNew" Grid.Row="3"/>
         </Grid>
     </Grid>
 </UserControl>

@@ -172,6 +172,22 @@ namespace Main.Integration
                 this.twt16.dicNumToValue.Add(0, "无");
                 this.twt16.dicNumToValue.Add(1, "有");
                 this.twt16.SetBinding(TextWithCombox.ShowTxtWithCBProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["TopType"], Mode = BindingMode.OneWay, ConverterParameter = this.twt16.dicNumToValue, Converter = new NumToTextConverter() });
+                // 吊卡自动打开关闭
+                this.twt17.dicNumToValue = new Dictionary<int, string>();
+                this.twt17.dicNumToValue.Add(1, "关闭");
+                this.twt17.dicNumToValue.Add(2, "开启");
+                this.twt17.SetBinding(TextWithCombox.ShowTxtWithCBProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["589b0"], Mode = BindingMode.OneWay, ConverterParameter = this.twt16.dicNumToValue, Converter = new BoolToTextConverter() });
+                // 吊卡自动关闭
+                this.twt18.dicNumToValue = new Dictionary<int, string>();
+                this.twt18.dicNumToValue.Add(1, "关闭");
+                this.twt18.dicNumToValue.Add(2, "开启");
+                this.twt18.SetBinding(TextWithCombox.ShowTxtWithCBProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["589b1"], Mode = BindingMode.OneWay, ConverterParameter = this.twt16.dicNumToValue, Converter = new BoolToTextConverter() });
+                // 防喷盒自动打开
+                this.twt19.dicNumToValue = new Dictionary<int, string>();
+                this.twt19.dicNumToValue.Add(1, "关闭");
+                this.twt19.dicNumToValue.Add(2, "开启");
+                this.twt19.SetBinding(TextWithCombox.ShowTxtWithCBProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["589b2"], Mode = BindingMode.OneWay, ConverterParameter = this.twt16.dicNumToValue, Converter = new BoolToTextConverter() });
+
                 #endregion
             }
             catch (Exception ex)
@@ -182,10 +198,15 @@ namespace Main.Integration
         private byte[] bConfigParameter = new byte[3];
         private void ParamThreeSet(object sender, RoutedEventArgs e)
         {
-            bConfigParameter = GlobalData.Instance.ConfigParameter;
-            if (bConfigParameter[0] != 0)
+            //bConfigParameter = GlobalData.Instance.ConfigParameter;
+            //if (bConfigParameter[0] != 0)
+            //{
+            //    byte[] byteToSend = GlobalData.Instance.SFSendToOpr(new List<byte> { 23, bConfigParameter[0], bConfigParameter[1], bConfigParameter[2] });
+            //    GlobalData.Instance.da.SendBytes(byteToSend);
+            //}
+            if (GlobalData.Instance.SetParam[0] != 0)
             {
-                byte[] byteToSend = GlobalData.Instance.SFSendToOpr(new List<byte> { 23, bConfigParameter[0], bConfigParameter[1], bConfigParameter[2] });
+                byte[] byteToSend = GlobalData.Instance.SetParam;
                 GlobalData.Instance.da.SendBytes(byteToSend);
             }
         }
