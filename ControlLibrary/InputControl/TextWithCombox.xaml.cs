@@ -23,6 +23,8 @@ namespace ControlLibrary.InputControl
         /// 第二标志，用于发送通信协议
         /// </summary>
         public int TagTwo { get; set; }
+
+        public string Head { get; set; }
         public Dictionary<int, string> dicNumToValue { get; set; }
         public static readonly DependencyProperty ShowTxtWithCBProperty = DependencyProperty.Register("ShowTxtWithCB", typeof(string), typeof(TextWithCombox), new PropertyMetadata("无"));
         /// <summary>
@@ -51,32 +53,24 @@ namespace ControlLibrary.InputControl
         private void textBox_ParameterConfig_LostFocus(object sender, RoutedEventArgs e)
         {
             this.sh.Opacity = 0;
-            string strText = this.cbSet.SelectedValue.ToString();
+            string strText = string.Empty;
+            if (this.cbSet.SelectedValue != null) strText = this.cbSet.SelectedValue.ToString();
             if (strText.Length == 0) strText = "0";
-                try
-                {
-                    if (GlobalData.Instance.systemType == SystemType.SIR)
-                    {
-                        short i16Text = Convert.ToInt16(strText);
-                        byte[] tempByte = BitConverter.GetBytes(i16Text);
-                        GlobalData.Instance.ConfigParameter[0] = (byte)TagTwo;
-                        GlobalData.Instance.ConfigParameter[1] = (byte)TagOne;
-                        GlobalData.Instance.ConfigParameter[2] = tempByte[0];
-                        GlobalData.Instance.ConfigParameter[3] = tempByte[1];
-                    }
-                    else
-                    {
-                        short i16Text = Convert.ToInt16(strText);
-                        byte[] tempByte = BitConverter.GetBytes(i16Text);
-                        GlobalData.Instance.ConfigParameter[0] = (byte)TagOne;
-                        GlobalData.Instance.ConfigParameter[1] = tempByte[0];
-                        GlobalData.Instance.ConfigParameter[2] = tempByte[1];
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("参数数值范围异常:" + ex.Message);
-                }
+            short i16Text = Convert.ToInt16(strText);
+            byte[] tempByte = BitConverter.GetBytes(i16Text);
+            string[] strs = this.Head.Split(',');
+            for (int i = 0; i < strs.Length; i++) // 协议头
+            {
+                    GlobalData.Instance.SetParam[i] = byte.Parse(strs[i]);
+            }
+            // 协议内容
+            GlobalData.Instance.SetParam[strs.Length] = tempByte[0];
+            GlobalData.Instance.SetParam[strs.Length +1] = tempByte[1];
+            // 补零
+            for (int i = strs.Length + 2; i < 10; i++)
+            {
+                GlobalData.Instance.SetParam[i] = 0;
+            }
         }
     }
 }

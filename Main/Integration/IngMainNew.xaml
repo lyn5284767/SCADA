@@ -116,7 +116,7 @@
             <DockPanel Grid.Row="2">
                 <ToggleButton Name="tbIng" DockPanel.Dock="Left" Width="170" Content="联动设置" FontSize="18" Height="50" Click="tbIng_Click"></ToggleButton>
                 <ToggleButton DockPanel.Dock="Left" Width="170" Content="二层台设置" FontSize="18" Height="50" Click="tbSF_Click"></ToggleButton>
-                <ToggleButton DockPanel.Dock="Left" Width="170" Content="钻台面设置" FontSize="18" Height="50"></ToggleButton>
+                <ToggleButton DockPanel.Dock="Left" Width="170" Content="钻台面设置" FontSize="18" Height="50" Click="tbDR_Click"></ToggleButton>
                 <ToggleButton DockPanel.Dock="Right" Width="170" Content="液压站设置" FontSize="18" Height="50"></ToggleButton>
                 <ToggleButton DockPanel.Dock="Right" Width="170" Content="猫道设置" FontSize="18" Height="50"></ToggleButton>
                 <ToggleButton DockPanel.Dock="Right" Width="170" Content="铁钻工设置" FontSize="18" Height="50"></ToggleButton>
