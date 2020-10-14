@@ -1,11 +1,13 @@
 ﻿using COM.Common;
 using ControlLibrary;
 using DatabaseLib;
+using DevExpress.Mvvm.Native;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -43,10 +45,12 @@ namespace Main
                 return _instance;
             }
         }
-
+        private List<BorderNum> drSelectFingerList = new List<BorderNum>(); // 钻台面对准指梁
+        private List<BorderNum> sfSelectFingerList = new List<BorderNum>(); // 钻台面对准指梁
         private string configPath = System.Environment.CurrentDirectory + @"\Config.ini";
         //private bool bLoaded = false;
         const int STRINGMAX = 255;
+        System.Threading.Timer timer;
         #region 二层台参数
         private int rows;//行数
         private int coloms;//列数 
@@ -366,6 +370,74 @@ namespace Main
         {
             try
             {
+                #region 钻台面所有指梁
+                drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow1, Num = 1 });
+                drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow2, Num = 2 });
+                drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow3, Num = 3 });
+                drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow4, Num = 4 });
+                drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow5, Num = 5 });
+                drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow6, Num = 6 });
+                drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow7, Num = 7 });
+                drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow8, Num = 8 });
+                drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow9, Num = 9 });
+                drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow10, Num = 10 });
+                drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow11, Num = 11 });
+                drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow12, Num = 12 });
+                drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow13, Num = 13 });
+                drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow14, Num = 14 });
+                drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow15, Num = 15 });
+
+                drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow17, Num = 17 });
+                drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow18, Num = 18 });
+                drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow19, Num = 19 });
+                drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow20, Num = 20 });
+                drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow21, Num = 21 });
+                drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow22, Num = 22 });
+                drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow23, Num = 23 });
+                drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow24, Num = 24 });
+                drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow25, Num = 25 });
+                drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow26, Num = 26 });
+                drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow27, Num = 27 });
+                drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow28, Num = 28 });
+                drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow29, Num = 29 });
+                drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow30, Num = 30 });
+                drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow31, Num = 31 });
+
+                #endregion
+
+                #region 二层台所有指梁
+                sfSelectFingerList.Add(new BorderNum { SelectBorder = this.FingerBeamArrow1, Num = 1 });
+                sfSelectFingerList.Add(new BorderNum { SelectBorder = this.FingerBeamArrow2, Num = 2 });
+                sfSelectFingerList.Add(new BorderNum { SelectBorder = this.FingerBeamArrow3, Num = 3 });
+                sfSelectFingerList.Add(new BorderNum { SelectBorder = this.FingerBeamArrow4, Num = 4 });
+                sfSelectFingerList.Add(new BorderNum { SelectBorder = this.FingerBeamArrow5, Num = 5 });
+                sfSelectFingerList.Add(new BorderNum { SelectBorder = this.FingerBeamArrow6, Num = 6 });
+                sfSelectFingerList.Add(new BorderNum { SelectBorder = this.FingerBeamArrow7, Num = 7 });
+                sfSelectFingerList.Add(new BorderNum { SelectBorder = this.FingerBeamArrow8, Num = 8 });
+                sfSelectFingerList.Add(new BorderNum { SelectBorder = this.FingerBeamArrow9, Num = 9 });
+                sfSelectFingerList.Add(new BorderNum { SelectBorder = this.FingerBeamArrow10, Num = 10 });
+                sfSelectFingerList.Add(new BorderNum { SelectBorder = this.FingerBeamArrow11, Num = 11 });
+                sfSelectFingerList.Add(new BorderNum { SelectBorder = this.FingerBeamArrow12, Num = 12 });
+                sfSelectFingerList.Add(new BorderNum { SelectBorder = this.FingerBeamArrow13, Num = 13 });
+                sfSelectFingerList.Add(new BorderNum { SelectBorder = this.FingerBeamArrow14, Num = 14 });
+                sfSelectFingerList.Add(new BorderNum { SelectBorder = this.FingerBeamArrow15, Num = 15 });
+
+                sfSelectFingerList.Add(new BorderNum { SelectBorder = this.FingerBeamArrow17, Num = 17 });
+                sfSelectFingerList.Add(new BorderNum { SelectBorder = this.FingerBeamArrow18, Num = 18 });
+                sfSelectFingerList.Add(new BorderNum { SelectBorder = this.FingerBeamArrow19, Num = 19 });
+                sfSelectFingerList.Add(new BorderNum { SelectBorder = this.FingerBeamArrow20, Num = 20 });
+                sfSelectFingerList.Add(new BorderNum { SelectBorder = this.FingerBeamArrow21, Num = 21 });
+                sfSelectFingerList.Add(new BorderNum { SelectBorder = this.FingerBeamArrow22, Num = 22 });
+                sfSelectFingerList.Add(new BorderNum { SelectBorder = this.FingerBeamArrow23, Num = 23 });
+                sfSelectFingerList.Add(new BorderNum { SelectBorder = this.FingerBeamArrow24, Num = 24 });
+                sfSelectFingerList.Add(new BorderNum { SelectBorder = this.FingerBeamArrow25, Num = 25 });
+                sfSelectFingerList.Add(new BorderNum { SelectBorder = this.FingerBeamArrow26, Num = 26 });
+                sfSelectFingerList.Add(new BorderNum { SelectBorder = this.FingerBeamArrow27, Num = 27 });
+                sfSelectFingerList.Add(new BorderNum { SelectBorder = this.FingerBeamArrow28, Num = 28 });
+                sfSelectFingerList.Add(new BorderNum { SelectBorder = this.FingerBeamArrow29, Num = 29 });
+                sfSelectFingerList.Add(new BorderNum { SelectBorder = this.FingerBeamArrow30, Num = 30 });
+                sfSelectFingerList.Add(new BorderNum { SelectBorder = this.FingerBeamArrow31, Num = 31 });
+                #endregion
                 this.imageElevatorStatus.SetBinding(Image.SourceProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["164ElevatorStatus"], Mode = BindingMode.OneWay, Converter = new ElevatorStatusConverter() });
                 this.SetBinding(OperationModelProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });//操作模式   
                 this.SetBinding(PCFingerBeamNumberFeedBackProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["pcFingerBeamNumberFeedback"], Mode = BindingMode.OneWay });//当前所移动到的指梁号反馈
@@ -625,7 +697,10 @@ namespace Main
                     if (bd.Tag != null && bd.Tag.ToString() == "space") bdSpace.Add(bd);
                     if (bd.Tag != null && bd.Tag.ToString() == "space1") bdSpace1.Add(bd);
                 }
-                this.FingerBeamArrowBind();
+                //this.FingerBeamArrowBind();
+
+                timer = new System.Threading.Timer(new TimerCallback(Timer_Elapsed), this, 2000, 50);//改成50ms 的时钟
+                timer.Change(0, 500);
             }
             catch (Exception ex)
             {
@@ -1130,491 +1205,293 @@ namespace Main
         /// </summary>
         private void FingerBeamArrowBindByTime()
         {
-            //#region 钻台面
-            //AnimationCurrentFingerBeamVisableCoverter drCurrentFingerBeamCoverter = new AnimationCurrentFingerBeamVisableCoverter();
-            //MultiBinding dr15DrillMultiBind = new MultiBinding();
-            //dr15DrillMultiBind.Converter = drCurrentFingerBeamCoverter;
-            //dr15DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drSelectDrill"], Mode = BindingMode.OneWay });
-            //dr15DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.drFingerBeamArrow15, Mode = BindingMode.OneWay });
-            //dr15DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
-            //dr15DrillMultiBind.NotifyOnSourceUpdated = true;
-            //this.drFingerBeamArrow15.SetBinding(Border.VisibilityProperty, dr15DrillMultiBind);
+            // 钻台面指梁绑定
+            byte drSelectDrill = GlobalData.Instance.da["drSelectDrill"].Value.Byte;
+            byte droperationModel = GlobalData.Instance.da["droperationModel"].Value.Byte;
+            if (droperationModel == 4 || droperationModel == 9)
+            {
+                Border selectbd = drSelectFingerList.Where(w => w.Num == drSelectDrill).Select(s => s.SelectBorder).FirstOrDefault();
+                if (selectbd != null && selectbd.Visibility == Visibility.Visible)
+                {
+                    selectbd.Visibility = Visibility.Hidden;
+                    drSelectFingerList.Where(w => w.Num != drSelectDrill).ForEach(o => o.SelectBorder.Visibility = Visibility.Visible);
+                }
+            }
+            // 二层台指梁绑定
+            byte sfSelectDrill = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"].Value.Byte;
+            byte sfoperationModel = GlobalData.Instance.da["operationModel"].Value.Byte;
+            if (sfoperationModel == 4 || sfoperationModel == 9)
+            {
+                Border selectbd = sfSelectFingerList.Where(w => w.Num == sfSelectDrill).Select(s => s.SelectBorder).FirstOrDefault();
+                if (selectbd != null && selectbd.Visibility == Visibility.Visible)
+                {
+                    selectbd.Visibility = Visibility.Hidden;
+                    sfSelectFingerList.Where(w => w.Num != sfSelectDrill).ForEach(o => o.SelectBorder.Visibility = Visibility.Visible);
+                }
+            }
 
-            //MultiBinding dr31DrillMultiBind = new MultiBinding();
-            //dr31DrillMultiBind.Converter = drCurrentFingerBeamCoverter;
-            //dr31DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drSelectDrill"], Mode = BindingMode.OneWay });
-            //dr31DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.drFingerBeamArrow31, Mode = BindingMode.OneWay });
-            //dr31DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
-            //dr31DrillMultiBind.NotifyOnSourceUpdated = true;
-            //this.drFingerBeamArrow31.SetBinding(Border.VisibilityProperty, dr31DrillMultiBind);
 
-            //MultiBinding dr14DrillMultiBind = new MultiBinding();
-            //dr14DrillMultiBind.Converter = drCurrentFingerBeamCoverter;
-            //dr14DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drSelectDrill"], Mode = BindingMode.OneWay });
-            //dr14DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.drFingerBeamArrow14, Mode = BindingMode.OneWay });
-            //dr14DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
-            //dr14DrillMultiBind.NotifyOnSourceUpdated = true;
-            //this.drFingerBeamArrow14.SetBinding(Border.VisibilityProperty, dr14DrillMultiBind);
+            //#region 二层台
+            //AnimationCurrentFingerBeamVisableCoverter CurrentFingerBeamCoverter = new AnimationCurrentFingerBeamVisableCoverter();
+            //MultiBinding sf15DrillMultiBind = new MultiBinding();
+            //sf15DrillMultiBind.Converter = CurrentFingerBeamCoverter;
+            //sf15DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
+            //sf15DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow15, Mode = BindingMode.OneWay });
+            //sf15DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            //sf15DrillMultiBind.NotifyOnSourceUpdated = true;
+            //this.FingerBeamArrow15.SetBinding(Border.VisibilityProperty, sf15DrillMultiBind);
 
-            //MultiBinding dr30DrillMultiBind = new MultiBinding();
-            //dr30DrillMultiBind.Converter = drCurrentFingerBeamCoverter;
-            //dr30DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drSelectDrill"], Mode = BindingMode.OneWay });
-            //dr30DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.drFingerBeamArrow30, Mode = BindingMode.OneWay });
-            //dr30DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
-            //dr30DrillMultiBind.NotifyOnSourceUpdated = true;
-            //this.drFingerBeamArrow30.SetBinding(Border.VisibilityProperty, dr30DrillMultiBind);
+            //MultiBinding sf31DrillMultiBind = new MultiBinding();
+            //sf31DrillMultiBind.Converter = CurrentFingerBeamCoverter;
+            //sf31DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
+            //sf31DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow31, Mode = BindingMode.OneWay });
+            //sf31DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            //sf31DrillMultiBind.NotifyOnSourceUpdated = true;
+            //this.FingerBeamArrow31.SetBinding(Border.VisibilityProperty, sf31DrillMultiBind);
 
-            //MultiBinding dr13DrillMultiBind = new MultiBinding();
-            //dr13DrillMultiBind.Converter = drCurrentFingerBeamCoverter;
-            //dr13DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drSelectDrill"], Mode = BindingMode.OneWay });
-            //dr13DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.drFingerBeamArrow13, Mode = BindingMode.OneWay });
-            //dr13DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
-            //dr13DrillMultiBind.NotifyOnSourceUpdated = true;
-            //this.drFingerBeamArrow13.SetBinding(Border.VisibilityProperty, dr13DrillMultiBind);
+            //MultiBinding sf14DrillMultiBind = new MultiBinding();
+            //sf14DrillMultiBind.Converter = CurrentFingerBeamCoverter;
+            //sf14DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
+            //sf14DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow14, Mode = BindingMode.OneWay });
+            //sf14DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            //sf14DrillMultiBind.NotifyOnSourceUpdated = true;
+            //this.FingerBeamArrow14.SetBinding(Border.VisibilityProperty, sf14DrillMultiBind);
 
-            //MultiBinding dr29DrillMultiBind = new MultiBinding();
-            //dr29DrillMultiBind.Converter = drCurrentFingerBeamCoverter;
-            //dr29DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drSelectDrill"], Mode = BindingMode.OneWay });
-            //dr29DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.drFingerBeamArrow29, Mode = BindingMode.OneWay });
-            //dr29DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
-            //dr29DrillMultiBind.NotifyOnSourceUpdated = true;
-            //this.drFingerBeamArrow29.SetBinding(Border.VisibilityProperty, dr29DrillMultiBind);
+            //MultiBinding sf30DrillMultiBind = new MultiBinding();
+            //sf30DrillMultiBind.Converter = CurrentFingerBeamCoverter;
+            //sf30DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
+            //sf30DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow30, Mode = BindingMode.OneWay });
+            //sf30DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            //sf30DrillMultiBind.NotifyOnSourceUpdated = true;
+            //this.FingerBeamArrow30.SetBinding(Border.VisibilityProperty, sf30DrillMultiBind);
 
-            //MultiBinding dr12DrillMultiBind = new MultiBinding();
-            //dr12DrillMultiBind.Converter = drCurrentFingerBeamCoverter;
-            //dr12DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drSelectDrill"], Mode = BindingMode.OneWay });
-            //dr12DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.drFingerBeamArrow12, Mode = BindingMode.OneWay });
-            //dr12DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
-            //dr12DrillMultiBind.NotifyOnSourceUpdated = true;
-            //this.drFingerBeamArrow12.SetBinding(Border.VisibilityProperty, dr12DrillMultiBind);
+            //MultiBinding sf13DrillMultiBind = new MultiBinding();
+            //sf13DrillMultiBind.Converter = CurrentFingerBeamCoverter;
+            //sf13DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
+            //sf13DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow13, Mode = BindingMode.OneWay });
+            //sf13DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            //sf13DrillMultiBind.NotifyOnSourceUpdated = true;
+            //this.FingerBeamArrow13.SetBinding(Border.VisibilityProperty, sf13DrillMultiBind);
 
-            //MultiBinding dr28DrillMultiBind = new MultiBinding();
-            //dr28DrillMultiBind.Converter = drCurrentFingerBeamCoverter;
-            //dr28DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drSelectDrill"], Mode = BindingMode.OneWay });
-            //dr28DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.drFingerBeamArrow28, Mode = BindingMode.OneWay });
-            //dr28DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
-            //dr28DrillMultiBind.NotifyOnSourceUpdated = true;
-            //this.drFingerBeamArrow28.SetBinding(Border.VisibilityProperty, dr28DrillMultiBind);
+            //MultiBinding sf29DrillMultiBind = new MultiBinding();
+            //sf29DrillMultiBind.Converter = CurrentFingerBeamCoverter;
+            //sf29DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
+            //sf29DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow29, Mode = BindingMode.OneWay });
+            //sf29DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            //sf29DrillMultiBind.NotifyOnSourceUpdated = true;
+            //this.FingerBeamArrow29.SetBinding(Border.VisibilityProperty, sf29DrillMultiBind);
 
-            //MultiBinding dr11DrillMultiBind = new MultiBinding();
-            //dr11DrillMultiBind.Converter = drCurrentFingerBeamCoverter;
-            //dr11DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drSelectDrill"], Mode = BindingMode.OneWay });
-            //dr11DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.drFingerBeamArrow11, Mode = BindingMode.OneWay });
-            //dr11DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
-            //dr11DrillMultiBind.NotifyOnSourceUpdated = true;
-            //this.drFingerBeamArrow11.SetBinding(Border.VisibilityProperty, dr11DrillMultiBind);
+            //MultiBinding sf12DrillMultiBind = new MultiBinding();
+            //sf12DrillMultiBind.Converter = CurrentFingerBeamCoverter;
+            //sf12DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
+            //sf12DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow12, Mode = BindingMode.OneWay });
+            //sf12DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            //sf12DrillMultiBind.NotifyOnSourceUpdated = true;
+            //this.FingerBeamArrow12.SetBinding(Border.VisibilityProperty, sf12DrillMultiBind);
 
-            //MultiBinding dr27DrillMultiBind = new MultiBinding();
-            //dr27DrillMultiBind.Converter = drCurrentFingerBeamCoverter;
-            //dr27DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drSelectDrill"], Mode = BindingMode.OneWay });
-            //dr27DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.drFingerBeamArrow27, Mode = BindingMode.OneWay });
-            //dr27DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
-            //dr27DrillMultiBind.NotifyOnSourceUpdated = true;
-            //this.drFingerBeamArrow27.SetBinding(Border.VisibilityProperty, dr27DrillMultiBind);
+            //MultiBinding sf28DrillMultiBind = new MultiBinding();
+            //sf28DrillMultiBind.Converter = CurrentFingerBeamCoverter;
+            //sf28DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
+            //sf28DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow28, Mode = BindingMode.OneWay });
+            //sf28DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            //sf28DrillMultiBind.NotifyOnSourceUpdated = true;
+            //this.FingerBeamArrow28.SetBinding(Border.VisibilityProperty, sf28DrillMultiBind);
 
-            //MultiBinding dr10DrillMultiBind = new MultiBinding();
-            //dr10DrillMultiBind.Converter = drCurrentFingerBeamCoverter;
-            //dr10DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drSelectDrill"], Mode = BindingMode.OneWay });
-            //dr10DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.drFingerBeamArrow10, Mode = BindingMode.OneWay });
-            //dr10DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
-            //dr10DrillMultiBind.NotifyOnSourceUpdated = true;
-            //this.drFingerBeamArrow10.SetBinding(Border.VisibilityProperty, dr10DrillMultiBind);
+            //MultiBinding sf11DrillMultiBind = new MultiBinding();
+            //sf11DrillMultiBind.Converter = CurrentFingerBeamCoverter;
+            //sf11DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
+            //sf11DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow11, Mode = BindingMode.OneWay });
+            //sf11DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            //sf11DrillMultiBind.NotifyOnSourceUpdated = true;
+            //this.FingerBeamArrow11.SetBinding(Border.VisibilityProperty, sf11DrillMultiBind);
 
-            //MultiBinding dr26DrillMultiBind = new MultiBinding();
-            //dr26DrillMultiBind.Converter = drCurrentFingerBeamCoverter;
-            //dr26DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drSelectDrill"], Mode = BindingMode.OneWay });
-            //dr26DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.drFingerBeamArrow26, Mode = BindingMode.OneWay });
-            //dr26DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
-            //dr26DrillMultiBind.NotifyOnSourceUpdated = true;
-            //this.drFingerBeamArrow26.SetBinding(Border.VisibilityProperty, dr26DrillMultiBind);
+            //MultiBinding sf27DrillMultiBind = new MultiBinding();
+            //sf27DrillMultiBind.Converter = CurrentFingerBeamCoverter;
+            //sf27DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
+            //sf27DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow27, Mode = BindingMode.OneWay });
+            //sf27DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            //sf27DrillMultiBind.NotifyOnSourceUpdated = true;
+            //this.FingerBeamArrow27.SetBinding(Border.VisibilityProperty, sf27DrillMultiBind);
 
-            //MultiBinding dr9DrillMultiBind = new MultiBinding();
-            //dr9DrillMultiBind.Converter = drCurrentFingerBeamCoverter;
-            //dr9DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drSelectDrill"], Mode = BindingMode.OneWay });
-            //dr9DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.drFingerBeamArrow9, Mode = BindingMode.OneWay });
-            //dr9DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
-            //dr9DrillMultiBind.NotifyOnSourceUpdated = true;
-            //this.drFingerBeamArrow9.SetBinding(Border.VisibilityProperty, dr9DrillMultiBind);
+            //MultiBinding sf10DrillMultiBind = new MultiBinding();
+            //sf10DrillMultiBind.Converter = CurrentFingerBeamCoverter;
+            //sf10DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
+            //sf10DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow10, Mode = BindingMode.OneWay });
+            //sf10DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            //sf10DrillMultiBind.NotifyOnSourceUpdated = true;
+            //this.FingerBeamArrow10.SetBinding(Border.VisibilityProperty, sf10DrillMultiBind);
 
-            //MultiBinding dr25DrillMultiBind = new MultiBinding();
-            //dr25DrillMultiBind.Converter = drCurrentFingerBeamCoverter;
-            //dr25DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drSelectDrill"], Mode = BindingMode.OneWay });
-            //dr25DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.drFingerBeamArrow25, Mode = BindingMode.OneWay });
-            //dr25DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
-            //dr25DrillMultiBind.NotifyOnSourceUpdated = true;
-            //this.drFingerBeamArrow25.SetBinding(Border.VisibilityProperty, dr25DrillMultiBind);
+            //MultiBinding sf26DrillMultiBind = new MultiBinding();
+            //sf26DrillMultiBind.Converter = CurrentFingerBeamCoverter;
+            //sf26DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
+            //sf26DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow26, Mode = BindingMode.OneWay });
+            //sf26DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            //sf26DrillMultiBind.NotifyOnSourceUpdated = true;
+            //this.FingerBeamArrow26.SetBinding(Border.VisibilityProperty, sf26DrillMultiBind);
 
-            //MultiBinding dr8DrillMultiBind = new MultiBinding();
-            //dr8DrillMultiBind.Converter = drCurrentFingerBeamCoverter;
-            //dr8DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drSelectDrill"], Mode = BindingMode.OneWay });
-            //dr8DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.drFingerBeamArrow8, Mode = BindingMode.OneWay });
-            //dr8DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
-            //dr8DrillMultiBind.NotifyOnSourceUpdated = true;
-            //this.drFingerBeamArrow8.SetBinding(Border.VisibilityProperty, dr8DrillMultiBind);
+            //MultiBinding sf9DrillMultiBind = new MultiBinding();
+            //sf9DrillMultiBind.Converter = CurrentFingerBeamCoverter;
+            //sf9DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
+            //sf9DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow9, Mode = BindingMode.OneWay });
+            //sf9DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            //sf9DrillMultiBind.NotifyOnSourceUpdated = true;
+            //this.FingerBeamArrow9.SetBinding(Border.VisibilityProperty, sf9DrillMultiBind);
 
-            //MultiBinding dr24DrillMultiBind = new MultiBinding();
-            //dr24DrillMultiBind.Converter = drCurrentFingerBeamCoverter;
-            //dr24DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drSelectDrill"], Mode = BindingMode.OneWay });
-            //dr24DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.drFingerBeamArrow24, Mode = BindingMode.OneWay });
-            //dr24DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
-            //dr24DrillMultiBind.NotifyOnSourceUpdated = true;
-            //this.drFingerBeamArrow24.SetBinding(Border.VisibilityProperty, dr24DrillMultiBind);
+            //MultiBinding sf25DrillMultiBind = new MultiBinding();
+            //sf25DrillMultiBind.Converter = CurrentFingerBeamCoverter;
+            //sf25DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
+            //sf25DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow25, Mode = BindingMode.OneWay });
+            //sf25DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            //sf25DrillMultiBind.NotifyOnSourceUpdated = true;
+            //this.FingerBeamArrow25.SetBinding(Border.VisibilityProperty, sf25DrillMultiBind);
 
-            //MultiBinding dr7DrillMultiBind = new MultiBinding();
-            //dr7DrillMultiBind.Converter = drCurrentFingerBeamCoverter;
-            //dr7DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drSelectDrill"], Mode = BindingMode.OneWay });
-            //dr7DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.drFingerBeamArrow7, Mode = BindingMode.OneWay });
-            //dr7DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
-            //dr7DrillMultiBind.NotifyOnSourceUpdated = true;
-            //this.drFingerBeamArrow7.SetBinding(Border.VisibilityProperty, dr7DrillMultiBind);
+            //MultiBinding sf8DrillMultiBind = new MultiBinding();
+            //sf8DrillMultiBind.Converter = CurrentFingerBeamCoverter;
+            //sf8DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
+            //sf8DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow8, Mode = BindingMode.OneWay });
+            //sf8DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            //sf8DrillMultiBind.NotifyOnSourceUpdated = true;
+            //this.FingerBeamArrow8.SetBinding(Border.VisibilityProperty, sf8DrillMultiBind);
 
-            //MultiBinding dr23DrillMultiBind = new MultiBinding();
-            //dr23DrillMultiBind.Converter = drCurrentFingerBeamCoverter;
-            //dr23DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drSelectDrill"], Mode = BindingMode.OneWay });
-            //dr23DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.drFingerBeamArrow23, Mode = BindingMode.OneWay });
-            //dr23DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
-            //dr23DrillMultiBind.NotifyOnSourceUpdated = true;
-            //this.drFingerBeamArrow23.SetBinding(Border.VisibilityProperty, dr23DrillMultiBind);
+            //MultiBinding sf24DrillMultiBind = new MultiBinding();
+            //sf24DrillMultiBind.Converter = CurrentFingerBeamCoverter;
+            //sf24DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
+            //sf24DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow24, Mode = BindingMode.OneWay });
+            //sf24DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            //sf24DrillMultiBind.NotifyOnSourceUpdated = true;
+            //this.FingerBeamArrow24.SetBinding(Border.VisibilityProperty, sf24DrillMultiBind);
 
-            //MultiBinding dr6DrillMultiBind = new MultiBinding();
-            //dr6DrillMultiBind.Converter = drCurrentFingerBeamCoverter;
-            //dr6DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drSelectDrill"], Mode = BindingMode.OneWay });
-            //dr6DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.drFingerBeamArrow6, Mode = BindingMode.OneWay });
-            //dr6DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
-            //dr6DrillMultiBind.NotifyOnSourceUpdated = true;
-            //this.drFingerBeamArrow6.SetBinding(Border.VisibilityProperty, dr6DrillMultiBind);
+            //MultiBinding sf7DrillMultiBind = new MultiBinding();
+            //sf7DrillMultiBind.Converter = CurrentFingerBeamCoverter;
+            //sf7DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
+            //sf7DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow7, Mode = BindingMode.OneWay });
+            //sf7DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            //sf7DrillMultiBind.NotifyOnSourceUpdated = true;
+            //this.FingerBeamArrow7.SetBinding(Border.VisibilityProperty, sf7DrillMultiBind);
 
-            //MultiBinding dr22DrillMultiBind = new MultiBinding();
-            //dr22DrillMultiBind.Converter = drCurrentFingerBeamCoverter;
-            //dr22DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drSelectDrill"], Mode = BindingMode.OneWay });
-            //dr22DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.drFingerBeamArrow22, Mode = BindingMode.OneWay });
-            //dr22DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
-            //dr22DrillMultiBind.NotifyOnSourceUpdated = true;
-            //this.drFingerBeamArrow22.SetBinding(Border.VisibilityProperty, dr22DrillMultiBind);
+            //MultiBinding sf23DrillMultiBind = new MultiBinding();
+            //sf23DrillMultiBind.Converter = CurrentFingerBeamCoverter;
+            //sf23DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
+            //sf23DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow23, Mode = BindingMode.OneWay });
+            //sf23DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            //sf23DrillMultiBind.NotifyOnSourceUpdated = true;
+            //this.FingerBeamArrow23.SetBinding(Border.VisibilityProperty, sf23DrillMultiBind);
 
-            //MultiBinding dr5DrillMultiBind = new MultiBinding();
-            //dr5DrillMultiBind.Converter = drCurrentFingerBeamCoverter;
-            //dr5DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drSelectDrill"], Mode = BindingMode.OneWay });
-            //dr5DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.drFingerBeamArrow5, Mode = BindingMode.OneWay });
-            //dr5DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
-            //dr5DrillMultiBind.NotifyOnSourceUpdated = true;
-            //this.drFingerBeamArrow5.SetBinding(Border.VisibilityProperty, dr5DrillMultiBind);
+            //MultiBinding sf6DrillMultiBind = new MultiBinding();
+            //sf6DrillMultiBind.Converter = CurrentFingerBeamCoverter;
+            //sf6DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
+            //sf6DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow6, Mode = BindingMode.OneWay });
+            //sf6DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            //sf6DrillMultiBind.NotifyOnSourceUpdated = true;
+            //this.FingerBeamArrow6.SetBinding(Border.VisibilityProperty, sf6DrillMultiBind);
 
-            //MultiBinding dr21DrillMultiBind = new MultiBinding();
-            //dr21DrillMultiBind.Converter = drCurrentFingerBeamCoverter;
-            //dr21DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drSelectDrill"], Mode = BindingMode.OneWay });
-            //dr21DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.drFingerBeamArrow21, Mode = BindingMode.OneWay });
-            //dr21DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
-            //dr21DrillMultiBind.NotifyOnSourceUpdated = true;
-            //this.drFingerBeamArrow21.SetBinding(Border.VisibilityProperty, dr21DrillMultiBind);
+            //MultiBinding sf22DrillMultiBind = new MultiBinding();
+            //sf22DrillMultiBind.Converter = CurrentFingerBeamCoverter;
+            //sf22DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
+            //sf22DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow22, Mode = BindingMode.OneWay });
+            //sf22DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            //sf22DrillMultiBind.NotifyOnSourceUpdated = true;
+            //this.FingerBeamArrow22.SetBinding(Border.VisibilityProperty, sf22DrillMultiBind);
 
-            //MultiBinding dr4DrillMultiBind = new MultiBinding();
-            //dr4DrillMultiBind.Converter = drCurrentFingerBeamCoverter;
-            //dr4DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drSelectDrill"], Mode = BindingMode.OneWay });
-            //dr4DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.drFingerBeamArrow4, Mode = BindingMode.OneWay });
-            //dr4DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
-            //dr4DrillMultiBind.NotifyOnSourceUpdated = true;
-            //this.drFingerBeamArrow4.SetBinding(Border.VisibilityProperty, dr4DrillMultiBind);
+            //MultiBinding sf5DrillMultiBind = new MultiBinding();
+            //sf5DrillMultiBind.Converter = CurrentFingerBeamCoverter;
+            //sf5DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
+            //sf5DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow5, Mode = BindingMode.OneWay });
+            //sf5DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            //sf5DrillMultiBind.NotifyOnSourceUpdated = true;
+            //this.FingerBeamArrow5.SetBinding(Border.VisibilityProperty, sf5DrillMultiBind);
 
-            //MultiBinding dr20DrillMultiBind = new MultiBinding();
-            //dr20DrillMultiBind.Converter = drCurrentFingerBeamCoverter;
-            //dr20DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drSelectDrill"], Mode = BindingMode.OneWay });
-            //dr20DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.drFingerBeamArrow20, Mode = BindingMode.OneWay });
-            //dr20DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
-            //dr20DrillMultiBind.NotifyOnSourceUpdated = true;
-            //this.drFingerBeamArrow20.SetBinding(Border.VisibilityProperty, dr20DrillMultiBind);
+            //MultiBinding sf21DrillMultiBind = new MultiBinding();
+            //sf21DrillMultiBind.Converter = CurrentFingerBeamCoverter;
+            //sf21DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
+            //sf21DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow21, Mode = BindingMode.OneWay });
+            //sf21DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            //sf21DrillMultiBind.NotifyOnSourceUpdated = true;
+            //this.FingerBeamArrow21.SetBinding(Border.VisibilityProperty, sf21DrillMultiBind);
 
-            //MultiBinding dr3DrillMultiBind = new MultiBinding();
-            //dr3DrillMultiBind.Converter = drCurrentFingerBeamCoverter;
-            //dr3DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drSelectDrill"], Mode = BindingMode.OneWay });
-            //dr3DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.drFingerBeamArrow3, Mode = BindingMode.OneWay });
-            //dr3DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
-            //dr3DrillMultiBind.NotifyOnSourceUpdated = true;
-            //this.drFingerBeamArrow3.SetBinding(Border.VisibilityProperty, dr3DrillMultiBind);
+            //MultiBinding sf4DrillMultiBind = new MultiBinding();
+            //sf4DrillMultiBind.Converter = CurrentFingerBeamCoverter;
+            //sf4DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
+            //sf4DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow4, Mode = BindingMode.OneWay });
+            //sf4DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            //sf4DrillMultiBind.NotifyOnSourceUpdated = true;
+            //this.FingerBeamArrow4.SetBinding(Border.VisibilityProperty, sf4DrillMultiBind);
 
-            //MultiBinding dr19DrillMultiBind = new MultiBinding();
-            //dr19DrillMultiBind.Converter = drCurrentFingerBeamCoverter;
-            //dr19DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drSelectDrill"], Mode = BindingMode.OneWay });
-            //dr19DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.drFingerBeamArrow19, Mode = BindingMode.OneWay });
-            //dr19DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
-            //dr19DrillMultiBind.NotifyOnSourceUpdated = true;
-            //this.drFingerBeamArrow19.SetBinding(Border.VisibilityProperty, dr19DrillMultiBind);
+            //MultiBinding sf20DrillMultiBind = new MultiBinding();
+            //sf20DrillMultiBind.Converter = CurrentFingerBeamCoverter;
+            //sf20DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
+            //sf20DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow20, Mode = BindingMode.OneWay });
+            //sf20DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            //sf20DrillMultiBind.NotifyOnSourceUpdated = true;
+            //this.FingerBeamArrow20.SetBinding(Border.VisibilityProperty, sf20DrillMultiBind);
 
-            //MultiBinding dr2DrillMultiBind = new MultiBinding();
-            //dr2DrillMultiBind.Converter = drCurrentFingerBeamCoverter;
-            //dr2DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drSelectDrill"], Mode = BindingMode.OneWay });
-            //dr2DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.drFingerBeamArrow2, Mode = BindingMode.OneWay });
-            //dr2DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
-            //dr2DrillMultiBind.NotifyOnSourceUpdated = true;
-            //this.drFingerBeamArrow2.SetBinding(Border.VisibilityProperty, dr2DrillMultiBind);
+            //MultiBinding sf3DrillMultiBind = new MultiBinding();
+            //sf3DrillMultiBind.Converter = CurrentFingerBeamCoverter;
+            //sf3DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
+            //sf3DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow3, Mode = BindingMode.OneWay });
+            //sf3DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            //sf3DrillMultiBind.NotifyOnSourceUpdated = true;
+            //this.FingerBeamArrow3.SetBinding(Border.VisibilityProperty, sf3DrillMultiBind);
 
-            //MultiBinding dr18DrillMultiBind = new MultiBinding();
-            //dr18DrillMultiBind.Converter = drCurrentFingerBeamCoverter;
-            //dr18DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drSelectDrill"], Mode = BindingMode.OneWay });
-            //dr18DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.drFingerBeamArrow18, Mode = BindingMode.OneWay });
-            //dr18DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
-            //dr18DrillMultiBind.NotifyOnSourceUpdated = true;
-            //this.drFingerBeamArrow18.SetBinding(Border.VisibilityProperty, dr18DrillMultiBind);
+            //MultiBinding sf19DrillMultiBind = new MultiBinding();
+            //sf19DrillMultiBind.Converter = CurrentFingerBeamCoverter;
+            //sf19DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
+            //sf19DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow19, Mode = BindingMode.OneWay });
+            //sf19DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            //sf19DrillMultiBind.NotifyOnSourceUpdated = true;
+            //this.FingerBeamArrow19.SetBinding(Border.VisibilityProperty, sf19DrillMultiBind);
 
-            //MultiBinding dr1DrillMultiBind = new MultiBinding();
-            //dr1DrillMultiBind.Converter = drCurrentFingerBeamCoverter;
-            //dr1DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drSelectDrill"], Mode = BindingMode.OneWay });
-            //dr1DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.drFingerBeamArrow1, Mode = BindingMode.OneWay });
-            //dr1DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
-            //dr1DrillMultiBind.NotifyOnSourceUpdated = true;
-            //this.drFingerBeamArrow1.SetBinding(Border.VisibilityProperty, dr1DrillMultiBind);
+            //MultiBinding sf2DrillMultiBind = new MultiBinding();
+            //sf2DrillMultiBind.Converter = CurrentFingerBeamCoverter;
+            //sf2DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
+            //sf2DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow2, Mode = BindingMode.OneWay });
+            //sf2DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            //sf2DrillMultiBind.NotifyOnSourceUpdated = true;
+            //this.FingerBeamArrow2.SetBinding(Border.VisibilityProperty, sf2DrillMultiBind);
 
-            //MultiBinding dr17DrillMultiBind = new MultiBinding();
-            //dr17DrillMultiBind.Converter = drCurrentFingerBeamCoverter;
-            //dr17DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drSelectDrill"], Mode = BindingMode.OneWay });
-            //dr17DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.drFingerBeamArrow17, Mode = BindingMode.OneWay });
-            //dr17DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
-            //dr17DrillMultiBind.NotifyOnSourceUpdated = true;
-            //this.drFingerBeamArrow17.SetBinding(Border.VisibilityProperty, dr17DrillMultiBind);
+            //MultiBinding sf18DrillMultiBind = new MultiBinding();
+            //sf18DrillMultiBind.Converter = CurrentFingerBeamCoverter;
+            //sf18DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
+            //sf18DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow18, Mode = BindingMode.OneWay });
+            //sf18DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            //sf18DrillMultiBind.NotifyOnSourceUpdated = true;
+            //this.FingerBeamArrow18.SetBinding(Border.VisibilityProperty, sf18DrillMultiBind);
+
+            //MultiBinding sf1DrillMultiBind = new MultiBinding();
+            //sf1DrillMultiBind.Converter = CurrentFingerBeamCoverter;
+            //sf1DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
+            //sf1DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow1, Mode = BindingMode.OneWay });
+            //sf1DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            //sf1DrillMultiBind.NotifyOnSourceUpdated = true;
+            //this.FingerBeamArrow1.SetBinding(Border.VisibilityProperty, sf1DrillMultiBind);
+
+            //MultiBinding sf17DrillMultiBind = new MultiBinding();
+            //sf17DrillMultiBind.Converter = CurrentFingerBeamCoverter;
+            //sf17DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
+            //sf17DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow17, Mode = BindingMode.OneWay });
+            //sf17DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+            //sf17DrillMultiBind.NotifyOnSourceUpdated = true;
+            //this.FingerBeamArrow17.SetBinding(Border.VisibilityProperty, sf17DrillMultiBind);
             //#endregion
+        }
 
-            #region 二层台
-            AnimationCurrentFingerBeamVisableCoverter CurrentFingerBeamCoverter = new AnimationCurrentFingerBeamVisableCoverter();
-            MultiBinding sf15DrillMultiBind = new MultiBinding();
-            sf15DrillMultiBind.Converter = CurrentFingerBeamCoverter;
-            sf15DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
-            sf15DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow15, Mode = BindingMode.OneWay });
-            sf15DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-            sf15DrillMultiBind.NotifyOnSourceUpdated = true;
-            this.FingerBeamArrow15.SetBinding(Border.VisibilityProperty, sf15DrillMultiBind);
-
-            MultiBinding sf31DrillMultiBind = new MultiBinding();
-            sf31DrillMultiBind.Converter = CurrentFingerBeamCoverter;
-            sf31DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
-            sf31DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow31, Mode = BindingMode.OneWay });
-            sf31DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-            sf31DrillMultiBind.NotifyOnSourceUpdated = true;
-            this.FingerBeamArrow31.SetBinding(Border.VisibilityProperty, sf31DrillMultiBind);
-
-            MultiBinding sf14DrillMultiBind = new MultiBinding();
-            sf14DrillMultiBind.Converter = CurrentFingerBeamCoverter;
-            sf14DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
-            sf14DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow14, Mode = BindingMode.OneWay });
-            sf14DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-            sf14DrillMultiBind.NotifyOnSourceUpdated = true;
-            this.FingerBeamArrow14.SetBinding(Border.VisibilityProperty, sf14DrillMultiBind);
-
-            MultiBinding sf30DrillMultiBind = new MultiBinding();
-            sf30DrillMultiBind.Converter = CurrentFingerBeamCoverter;
-            sf30DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
-            sf30DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow30, Mode = BindingMode.OneWay });
-            sf30DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-            sf30DrillMultiBind.NotifyOnSourceUpdated = true;
-            this.FingerBeamArrow30.SetBinding(Border.VisibilityProperty, sf30DrillMultiBind);
-
-            MultiBinding sf13DrillMultiBind = new MultiBinding();
-            sf13DrillMultiBind.Converter = CurrentFingerBeamCoverter;
-            sf13DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
-            sf13DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow13, Mode = BindingMode.OneWay });
-            sf13DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-            sf13DrillMultiBind.NotifyOnSourceUpdated = true;
-            this.FingerBeamArrow13.SetBinding(Border.VisibilityProperty, sf13DrillMultiBind);
-
-            MultiBinding sf29DrillMultiBind = new MultiBinding();
-            sf29DrillMultiBind.Converter = CurrentFingerBeamCoverter;
-            sf29DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
-            sf29DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow29, Mode = BindingMode.OneWay });
-            sf29DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-            sf29DrillMultiBind.NotifyOnSourceUpdated = true;
-            this.FingerBeamArrow29.SetBinding(Border.VisibilityProperty, sf29DrillMultiBind);
-
-            MultiBinding sf12DrillMultiBind = new MultiBinding();
-            sf12DrillMultiBind.Converter = CurrentFingerBeamCoverter;
-            sf12DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
-            sf12DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow12, Mode = BindingMode.OneWay });
-            sf12DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-            sf12DrillMultiBind.NotifyOnSourceUpdated = true;
-            this.FingerBeamArrow12.SetBinding(Border.VisibilityProperty, sf12DrillMultiBind);
-
-            MultiBinding sf28DrillMultiBind = new MultiBinding();
-            sf28DrillMultiBind.Converter = CurrentFingerBeamCoverter;
-            sf28DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
-            sf28DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow28, Mode = BindingMode.OneWay });
-            sf28DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-            sf28DrillMultiBind.NotifyOnSourceUpdated = true;
-            this.FingerBeamArrow28.SetBinding(Border.VisibilityProperty, sf28DrillMultiBind);
-
-            MultiBinding sf11DrillMultiBind = new MultiBinding();
-            sf11DrillMultiBind.Converter = CurrentFingerBeamCoverter;
-            sf11DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
-            sf11DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow11, Mode = BindingMode.OneWay });
-            sf11DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-            sf11DrillMultiBind.NotifyOnSourceUpdated = true;
-            this.FingerBeamArrow11.SetBinding(Border.VisibilityProperty, sf11DrillMultiBind);
-
-            MultiBinding sf27DrillMultiBind = new MultiBinding();
-            sf27DrillMultiBind.Converter = CurrentFingerBeamCoverter;
-            sf27DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
-            sf27DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow27, Mode = BindingMode.OneWay });
-            sf27DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-            sf27DrillMultiBind.NotifyOnSourceUpdated = true;
-            this.FingerBeamArrow27.SetBinding(Border.VisibilityProperty, sf27DrillMultiBind);
-
-            MultiBinding sf10DrillMultiBind = new MultiBinding();
-            sf10DrillMultiBind.Converter = CurrentFingerBeamCoverter;
-            sf10DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
-            sf10DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow10, Mode = BindingMode.OneWay });
-            sf10DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-            sf10DrillMultiBind.NotifyOnSourceUpdated = true;
-            this.FingerBeamArrow10.SetBinding(Border.VisibilityProperty, sf10DrillMultiBind);
-
-            MultiBinding sf26DrillMultiBind = new MultiBinding();
-            sf26DrillMultiBind.Converter = CurrentFingerBeamCoverter;
-            sf26DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
-            sf26DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow26, Mode = BindingMode.OneWay });
-            sf26DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-            sf26DrillMultiBind.NotifyOnSourceUpdated = true;
-            this.FingerBeamArrow26.SetBinding(Border.VisibilityProperty, sf26DrillMultiBind);
-
-            MultiBinding sf9DrillMultiBind = new MultiBinding();
-            sf9DrillMultiBind.Converter = CurrentFingerBeamCoverter;
-            sf9DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
-            sf9DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow9, Mode = BindingMode.OneWay });
-            sf9DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-            sf9DrillMultiBind.NotifyOnSourceUpdated = true;
-            this.FingerBeamArrow9.SetBinding(Border.VisibilityProperty, sf9DrillMultiBind);
-
-            MultiBinding sf25DrillMultiBind = new MultiBinding();
-            sf25DrillMultiBind.Converter = CurrentFingerBeamCoverter;
-            sf25DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
-            sf25DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow25, Mode = BindingMode.OneWay });
-            sf25DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-            sf25DrillMultiBind.NotifyOnSourceUpdated = true;
-            this.FingerBeamArrow25.SetBinding(Border.VisibilityProperty, sf25DrillMultiBind);
-
-            MultiBinding sf8DrillMultiBind = new MultiBinding();
-            sf8DrillMultiBind.Converter = CurrentFingerBeamCoverter;
-            sf8DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
-            sf8DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow8, Mode = BindingMode.OneWay });
-            sf8DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-            sf8DrillMultiBind.NotifyOnSourceUpdated = true;
-            this.FingerBeamArrow8.SetBinding(Border.VisibilityProperty, sf8DrillMultiBind);
-
-            MultiBinding sf24DrillMultiBind = new MultiBinding();
-            sf24DrillMultiBind.Converter = CurrentFingerBeamCoverter;
-            sf24DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
-            sf24DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow24, Mode = BindingMode.OneWay });
-            sf24DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-            sf24DrillMultiBind.NotifyOnSourceUpdated = true;
-            this.FingerBeamArrow24.SetBinding(Border.VisibilityProperty, sf24DrillMultiBind);
-
-            MultiBinding sf7DrillMultiBind = new MultiBinding();
-            sf7DrillMultiBind.Converter = CurrentFingerBeamCoverter;
-            sf7DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
-            sf7DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow7, Mode = BindingMode.OneWay });
-            sf7DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-            sf7DrillMultiBind.NotifyOnSourceUpdated = true;
-            this.FingerBeamArrow7.SetBinding(Border.VisibilityProperty, sf7DrillMultiBind);
-
-            MultiBinding sf23DrillMultiBind = new MultiBinding();
-            sf23DrillMultiBind.Converter = CurrentFingerBeamCoverter;
-            sf23DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
-            sf23DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow23, Mode = BindingMode.OneWay });
-            sf23DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-            sf23DrillMultiBind.NotifyOnSourceUpdated = true;
-            this.FingerBeamArrow23.SetBinding(Border.VisibilityProperty, sf23DrillMultiBind);
-
-            MultiBinding sf6DrillMultiBind = new MultiBinding();
-            sf6DrillMultiBind.Converter = CurrentFingerBeamCoverter;
-            sf6DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
-            sf6DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow6, Mode = BindingMode.OneWay });
-            sf6DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-            sf6DrillMultiBind.NotifyOnSourceUpdated = true;
-            this.FingerBeamArrow6.SetBinding(Border.VisibilityProperty, sf6DrillMultiBind);
-
-            MultiBinding sf22DrillMultiBind = new MultiBinding();
-            sf22DrillMultiBind.Converter = CurrentFingerBeamCoverter;
-            sf22DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
-            sf22DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow22, Mode = BindingMode.OneWay });
-            sf22DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-            sf22DrillMultiBind.NotifyOnSourceUpdated = true;
-            this.FingerBeamArrow22.SetBinding(Border.VisibilityProperty, sf22DrillMultiBind);
-
-            MultiBinding sf5DrillMultiBind = new MultiBinding();
-            sf5DrillMultiBind.Converter = CurrentFingerBeamCoverter;
-            sf5DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
-            sf5DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow5, Mode = BindingMode.OneWay });
-            sf5DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-            sf5DrillMultiBind.NotifyOnSourceUpdated = true;
-            this.FingerBeamArrow5.SetBinding(Border.VisibilityProperty, sf5DrillMultiBind);
-
-            MultiBinding sf21DrillMultiBind = new MultiBinding();
-            sf21DrillMultiBind.Converter = CurrentFingerBeamCoverter;
-            sf21DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
-            sf21DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow21, Mode = BindingMode.OneWay });
-            sf21DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-            sf21DrillMultiBind.NotifyOnSourceUpdated = true;
-            this.FingerBeamArrow21.SetBinding(Border.VisibilityProperty, sf21DrillMultiBind);
-
-            MultiBinding sf4DrillMultiBind = new MultiBinding();
-            sf4DrillMultiBind.Converter = CurrentFingerBeamCoverter;
-            sf4DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
-            sf4DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow4, Mode = BindingMode.OneWay });
-            sf4DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-            sf4DrillMultiBind.NotifyOnSourceUpdated = true;
-            this.FingerBeamArrow4.SetBinding(Border.VisibilityProperty, sf4DrillMultiBind);
-
-            MultiBinding sf20DrillMultiBind = new MultiBinding();
-            sf20DrillMultiBind.Converter = CurrentFingerBeamCoverter;
-            sf20DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
-            sf20DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow20, Mode = BindingMode.OneWay });
-            sf20DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-            sf20DrillMultiBind.NotifyOnSourceUpdated = true;
-            this.FingerBeamArrow20.SetBinding(Border.VisibilityProperty, sf20DrillMultiBind);
-
-            MultiBinding sf3DrillMultiBind = new MultiBinding();
-            sf3DrillMultiBind.Converter = CurrentFingerBeamCoverter;
-            sf3DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
-            sf3DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow3, Mode = BindingMode.OneWay });
-            sf3DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-            sf3DrillMultiBind.NotifyOnSourceUpdated = true;
-            this.FingerBeamArrow3.SetBinding(Border.VisibilityProperty, sf3DrillMultiBind);
-
-            MultiBinding sf19DrillMultiBind = new MultiBinding();
-            sf19DrillMultiBind.Converter = CurrentFingerBeamCoverter;
-            sf19DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
-            sf19DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow19, Mode = BindingMode.OneWay });
-            sf19DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-            sf19DrillMultiBind.NotifyOnSourceUpdated = true;
-            this.FingerBeamArrow19.SetBinding(Border.VisibilityProperty, sf19DrillMultiBind);
-
-            MultiBinding sf2DrillMultiBind = new MultiBinding();
-            sf2DrillMultiBind.Converter = CurrentFingerBeamCoverter;
-            sf2DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
-            sf2DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow2, Mode = BindingMode.OneWay });
-            sf2DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-            sf2DrillMultiBind.NotifyOnSourceUpdated = true;
-            this.FingerBeamArrow2.SetBinding(Border.VisibilityProperty, sf2DrillMultiBind);
-
-            MultiBinding sf18DrillMultiBind = new MultiBinding();
-            sf18DrillMultiBind.Converter = CurrentFingerBeamCoverter;
-            sf18DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
-            sf18DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow18, Mode = BindingMode.OneWay });
-            sf18DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-            sf18DrillMultiBind.NotifyOnSourceUpdated = true;
-            this.FingerBeamArrow18.SetBinding(Border.VisibilityProperty, sf18DrillMultiBind);
-
-            MultiBinding sf1DrillMultiBind = new MultiBinding();
-            sf1DrillMultiBind.Converter = CurrentFingerBeamCoverter;
-            sf1DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
-            sf1DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow1, Mode = BindingMode.OneWay });
-            sf1DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-            sf1DrillMultiBind.NotifyOnSourceUpdated = true;
-            this.FingerBeamArrow1.SetBinding(Border.VisibilityProperty, sf1DrillMultiBind);
-
-            MultiBinding sf17DrillMultiBind = new MultiBinding();
-            sf17DrillMultiBind.Converter = CurrentFingerBeamCoverter;
-            sf17DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });
-            sf17DrillMultiBind.Bindings.Add(new Binding("Name") { Source = this.FingerBeamArrow17, Mode = BindingMode.OneWay });
-            sf17DrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-            sf17DrillMultiBind.NotifyOnSourceUpdated = true;
-            this.FingerBeamArrow17.SetBinding(Border.VisibilityProperty, sf17DrillMultiBind);
-            #endregion
+        /// <summary>
+        /// 切换当前运行设备顶上去
+        /// </summary>
+        /// <param name="obj"></param>
+        private void Timer_Elapsed(object obj)
+        {
+            try
+            {
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    FingerBeamArrowBindByTime();
+                }));
+            }
+            catch (Exception ex)
+            {
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+            }
         }
 
         private void btn_SendFingerBeamNumber(object sender, MouseButtonEventArgs e)
@@ -2223,5 +2100,17 @@ namespace Main
                 }
             }
         }
+    }
+
+    public class BorderNum
+    {
+        /// <summary>
+        /// 指梁号
+        /// </summary>
+        public int Num { get; set; }
+        /// <summary>
+        /// 待显示或者隐藏指梁
+        /// </summary>
+        public Border SelectBorder { get; set; }
     }
 }

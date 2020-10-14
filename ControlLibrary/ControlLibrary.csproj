@@ -144,6 +144,9 @@
     <Compile Include="HalfCircleGauge.xaml.cs">
       <DependentUpon>HalfCircleGauge.xaml</DependentUpon>
     </Compile>
+    <Compile Include="InputControl\TextWithBtnNew.xaml.cs">
+      <DependentUpon>TextWithBtnNew.xaml</DependentUpon>
+    </Compile>
     <Compile Include="InputControl\TextWithCombox.xaml.cs">
       <DependentUpon>TextWithCombox.xaml</DependentUpon>
     </Compile>
@@ -275,6 +278,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="HalfCircleGauge.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InputControl\TextWithBtnNew.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -452,6 +459,8 @@
   <ItemGroup>
     <Resource Include="Images\FullScreen.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="TextWithControl\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

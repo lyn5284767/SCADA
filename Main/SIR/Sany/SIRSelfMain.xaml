@@ -26,8 +26,9 @@
                             <RowDefinition Height="190"/>
                             <RowDefinition Height="220"/>
                             <RowDefinition Height="100"/>
+                            <RowDefinition Height="30"/>
                             <RowDefinition Height="40"/>
-                            <RowDefinition Height="80"/>
+                            <RowDefinition Height="60"/>
                         </Grid.RowDefinitions>
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -111,39 +112,42 @@
                                 </StackPanel>
                             </GroupBox>
                         </Grid>
-                        <TextBlock x:Name="tbOprTips" Text="操作提示" Grid.Row="3" Foreground="#E02740" FontSize="30" TextAlignment="Center" FontWeight="Bold"></TextBlock>
-                        <StackPanel Name="spOneKeyInbutton" Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center" Visibility="Visible">
-                            <TextBlock Text="上&#x0a;扣" Name="txbOneKeyInButton" Grid.Row="1" VerticalAlignment="Center" Foreground="#E02740" FontSize="22" TextAlignment="Center" FontWeight="Bold"></TextBlock>
-                            <hc:StepBar Width="620" FontSize="18" Name="sbInButton">
-                                <hc:StepBarItem Content="上扣&#x0a;启动" />
-                                <hc:StepBarItem Content="目标&#x0a;定位"/>
-                                <hc:StepBarItem Content="钳体&#x0a;伸出"/>
+                        <StackPanel Grid.Row="3" Orientation="Horizontal">
+                            <TextBlock Name="tbTips" Width="720" Text="告警提示" FontSize="24" FontFamily="微软雅黑" FontWeight="Bold" Foreground="#E02740" VerticalAlignment="Center" TextAlignment="Center"/>
+                        </StackPanel>
+                        <TextBlock x:Name="tbOprTips" Text="操作提示" Grid.Row="4" Foreground="#E02740" FontSize="24" TextAlignment="Center" FontWeight="Bold"></TextBlock>
+                        <StackPanel Name="spOneKeyInbutton" Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center" Visibility="Visible">
+                            <TextBlock Text="上&#x0a;扣" Name="txbOneKeyInButton" Grid.Row="1" VerticalAlignment="Center" Foreground="#E02740" FontSize="16" TextAlignment="Center" FontWeight="Bold"></TextBlock>
+                            <hc:StepBar Width="700" FontSize="16" Name="sbInButton">
+                                <hc:StepBarItem Content="上扣启动" Margin="-5,0,0,0"/>
+                                <hc:StepBarItem Content="目标定位" Margin="-5,0,0,0"/>
+                                <hc:StepBarItem Content="钳体伸出" Margin="-5,0,0,0"/>
                                 <hc:StepBarItem Content="抓杆"/>
-                                <hc:StepBarItem Content="上扣&#x0a;确认"/>
-                                <hc:StepBarItem Content="上扣&#x0a;中"/>
-                                <hc:StepBarItem Content="钳口&#x0a;对缺"/>
-                                <hc:StepBarItem Content="钳体&#x0a;回收"/>
-                                <hc:StepBarItem Content="上扣&#x0a;结束"/>
+                                <hc:StepBarItem Content="上扣确认" Margin="-5,0,0,0"/>
+                                <hc:StepBarItem Content="上扣中"/>
+                                <hc:StepBarItem Content="钳口对缺" Margin="-5,0,0,0"/>
+                                <hc:StepBarItem Content="钳体回收" Margin="-5,0,0,0"/>
+                                <hc:StepBarItem Content="上扣结束" Margin="-5,0,0,0"/>
                             </hc:StepBar>
                         </StackPanel>
                         <StackPanel Name="spOneKeyOutButton" Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center" Visibility="Collapsed">
-                            <TextBlock Text="卸&#x0a;扣" Grid.Row="1" Foreground="#E02740" FontSize="22" VerticalAlignment="Center" TextAlignment="Center" FontWeight="Bold"></TextBlock>
-                            <hc:StepBar Width="620" FontSize="18" Name="sbOutButton" Grid.Row="0">
-                                <hc:StepBarItem Content="卸扣&#x0a;启动"/>
-                                <hc:StepBarItem Content="目标&#x0a;定位"/>
-                                <hc:StepBarItem Content="钳体&#x0a;伸出"/>
+                            <TextBlock Text="卸&#x0a;扣" Grid.Row="1" Foreground="#E02740" FontSize="16" VerticalAlignment="Center" TextAlignment="Center" FontWeight="Bold"></TextBlock>
+                            <hc:StepBar Width="700" FontSize="16" Name="sbOutButton" Grid.Row="0">
+                                <hc:StepBarItem Content="卸扣启动" Margin="-5,0,0,0"/>
+                                <hc:StepBarItem Content="目标定位" Margin="-5,0,0,0"/>
+                                <hc:StepBarItem Content="钳体伸出" Margin="-5,0,0,0"/>
                                 <hc:StepBarItem Content="抓杆"/>
-                                <hc:StepBarItem Content="卸扣&#x0a;确认"/>
-                                <hc:StepBarItem Content="卸扣&#x0a;中"/>
-                                <hc:StepBarItem Content="钳口&#x0a;对缺"/>
-                                <hc:StepBarItem Content="钳体&#x0a;回收"/>
-                                <hc:StepBarItem Content="卸扣&#x0a;结束"/>
+                                <hc:StepBarItem Content="卸扣确认" Margin="-5,0,0,0"/>
+                                <hc:StepBarItem Content="卸扣中"/>
+                                <hc:StepBarItem Content="钳口对缺" Margin="-5,0,0,0"/>
+                                <hc:StepBarItem Content="钳体回收" Margin="-5,0,0,0"/>
+                                <hc:StepBarItem Content="卸扣结束" Margin="-5,0,0,0"/>
                             </hc:StepBar>
                         </StackPanel>
                     </Grid>
                 </Border>
             </Border>
-            <Border Style="{StaticResource BorderRegion}" Visibility="Collapsed">
+            <!--<Border Style="{StaticResource BorderRegion}" Visibility="Collapsed">
                 <Border Background="{DynamicResource BorderBrush}">
                     <Grid>
                         <Grid.RowDefinitions>
@@ -153,7 +157,7 @@
                         <StackPanel Grid.Row="0" Orientation="Horizontal">
                             <TextBlock Name="tbTips" Width="720" Text="" FontSize="24" FontFamily="微软雅黑" FontWeight="Bold" Foreground="red" VerticalAlignment="Center" TextAlignment="Center"/>
                         </StackPanel>
-                        <!--<Grid Grid.Row="1">
+                        --><!--<Grid Grid.Row="1">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="100"/>
                                 <RowDefinition/>
@@ -200,10 +204,10 @@
                                 <TextBlock Text="液压钳缺口:" FontSize="18" Margin="15,0,0,0"></TextBlock>
                                 <TextBlock Name="tbTongsGap"  Text="安全设置已关闭" Foreground="#008AFF" FontSize="18" Margin="10,0,0,0"></TextBlock>
                             </StackPanel>
-                        </Grid>-->
+                        </Grid>--><!--
                     </Grid>
                 </Border>
-            </Border>
+            </Border>-->
         </Grid>
         <Grid Grid.Column="1">
             <Border Style="{StaticResource BorderRegion}">

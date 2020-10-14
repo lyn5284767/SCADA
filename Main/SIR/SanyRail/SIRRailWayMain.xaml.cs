@@ -23,5 +23,30 @@ namespace Main.SIR.SanyRail
         {
             InitializeComponent();
         }
+
+        private void btn_oprModel(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_workModel(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_PipeTypeModel(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_locationModel(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_SelectDrillPipe(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
