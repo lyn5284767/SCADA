@@ -15,14 +15,14 @@ using System.Windows.Shapes;
 namespace Main.SIR.SanyRail
 {
     /// <summary>
-    /// SIRRailWayMain.xaml 的交互逻辑
+    /// SIRPosSet.xaml 的交互逻辑
     /// </summary>
-    public partial class SIRRailWayMain : UserControl
+    public partial class SIRRailWayPosSet : UserControl
     {
-        private static SIRRailWayMain _instance = null;
+        private static SIRRailWayPosSet _instance = null;
         private static readonly object syncRoot = new object();
 
-        public static SIRRailWayMain Instance
+        public static SIRRailWayPosSet Instance
         {
             get
             {
@@ -32,41 +32,16 @@ namespace Main.SIR.SanyRail
                     {
                         if (_instance == null)
                         {
-                            _instance = new SIRRailWayMain();
+                            _instance = new SIRRailWayPosSet();
                         }
                     }
                 }
                 return _instance;
             }
         }
-        public SIRRailWayMain()
+        public SIRRailWayPosSet()
         {
             InitializeComponent();
-        }
-
-        private void btn_oprModel(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btn_workModel(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btn_PipeTypeModel(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btn_locationModel(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btn_SelectDrillPipe(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

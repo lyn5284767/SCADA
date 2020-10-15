@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -41,10 +42,13 @@ namespace Main.Integration
                 return _instance;
             }
         }
+        private int iTimeCnt = 0;//用来为时钟计数的变量
+        System.Threading.Timer timerWarning;
         public IngSIR()
         {
             InitializeComponent();
             VariableBinding();
+            timerWarning = new System.Threading.Timer(new TimerCallback(TimerWarning_Elapsed), this, 2000, 50);//改成50ms 的时钟
         }
 
         /// <summary>
@@ -112,6 +116,155 @@ namespace Main.Integration
             {
                 System.Windows.MessageBox.Show(ex.StackTrace);
                 Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+            }
+        }
+
+        private void TimerWarning_Elapsed(object obj)
+        {
+            try
+            {
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    iTimeCnt++;
+                    if (iTimeCnt > 1000) iTimeCnt = 0;
+                    this.Warnning();
+                    this.Communcation();
+                }));
+            }
+            catch (Exception ex)
+            {
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+            }
+        }
+
+        /// <summary>
+        /// 融信数据
+        /// </summary>
+        private void Communcation()
+        {
+            #region 通信
+
+            if (!GlobalData.Instance.ComunciationNormal) this.tbTips.Text = "网络连接失败！";
+            #endregion
+        }
+        Dictionary<string, byte> WarnInfo = new Dictionary<string, byte>();
+        private void Warnning()
+        {
+            try
+            {
+
+                byte alarmTips = GlobalData.Instance.da["SIRSelfAlarm"].Value.Byte;
+                if (iTimeCnt % 10 != 0)
+                {
+                    switch (alarmTips)
+                    {
+                        case 120:
+                            this.tbTips.Text = "工作缸气源气压过低告警";
+                            break;
+                        case 121:
+                            this.tbTips.Text = "制动缸气源气压过低告警";
+                            break;
+                        case 1:
+                            this.tbTips.Text = "背钳复位故障";
+                            break;
+                        case 102:
+                            this.tbTips.Text = "工况选择错误";
+                            break;
+                        case 61:
+                            this.tbTips.Text = "背钳夹紧故障";
+                            break;
+                        case 2:
+                            this.tbTips.Text = "为达到上扣扭矩";
+                            break;
+                        case 3:
+                            this.tbTips.Text = "未达到上扣圈数";
+                            break;
+                        case 4:
+                            this.tbTips.Text = "未达到紧扣扭矩";
+                            break;
+                        case 5:
+                            this.tbTips.Text = "未检测到背钳复位信号";
+                            break;
+                        case 6:
+                            this.tbTips.Text = "未检测到安全门打开信号";
+                            break;
+                        case 12:
+                            this.tbTips.Text = "钻杆未卸开";
+                            break;
+                        case 13:
+                            this.tbTips.Text = "钻杆打滑或空杠卸扣";
+                            break;
+                        case 21:
+                            this.tbTips.Text = "系统压力故障";
+                            break;
+                        case 70:
+                            this.tbTips.Text = "当前手臂伸缩运动停止";
+                            break;
+                        case 71:
+                            this.tbTips.Text = "当前钳体升降运动停止";
+                            break;
+                        case 75:
+                            this.tbTips.Text = "当前钳体旋转运动停止";
+                            break;
+                    }
+                }
+                else
+                {
+                    //tbTips.Visibility = Visibility.Hidden;
+                    tbTips.Text = "";
+                }
+                byte oprTips = GlobalData.Instance.da["SIRSelfOprInfo"].Value.Byte;
+                switch (oprTips)
+                {
+                    case 60:
+                        this.tbOprTips.Text = "工况选择结束后，请执行上扣对缺确认";
+                        break;
+                    case 61:
+                        this.tbOprTips.Text = "工况选择结束后，请执行卸扣对缺确认";
+                        break;
+                    case 50:
+                        this.tbOprTips.Text = "进入井口工位后切换自动模式";
+                        break;
+                    case 51:
+                        this.tbOprTips.Text = "进入井口工位后切换自动模式";
+                        break;
+                    case 20:
+                        this.tbOprTips.Text = "请检测钳头缺口状态";
+                        break;
+                    case 30:
+                        this.tbOprTips.Text = "请确认安全门打开状态";
+                        break;
+                    case 29:
+                        this.tbOprTips.Text = "请确认接箍高度";
+                        break;
+                    case 32:
+                        this.tbOprTips.Text = "请确认井口安全";
+                        break;
+                    case 33:
+                        this.tbOprTips.Text = "请将钳体缺口对正";
+                        break;
+                    case 34:
+                        this.tbOprTips.Text = "请人工确认缺口状态";
+                        break;
+                    case 35:
+                        this.tbOprTips.Text = "请人工确认安全门状态";
+                        break;
+                    case 101:
+                        this.tbOprTips.Text = "请注意紧急停止";
+                        break;
+                    case 99:
+                        this.tbOprTips.Text = "请退出自动模式检测故障";
+                        break;
+                    default:
+                        this.tbOprTips.Text = "";
+                        break;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.StackTrace);
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.DEBUG);
             }
         }
     }

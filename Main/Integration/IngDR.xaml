@@ -36,12 +36,11 @@
             </StackPanel>
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="89*"/>
-                    <ColumnDefinition Width="221*"/>
-                    <ColumnDefinition Width="310*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="1" Name="tbOprTips" Text="操作提示"  FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Foreground="#E0496D"></TextBlock>
-                <TextBlock Grid.Column="2" Name="tbAlarmTips" Text="告警提示"  FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Foreground="#E0496D"></TextBlock>
+                <TextBlock Grid.Column="0" Name="tbOprTips" Text="操作提示"  FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Foreground="#E0496D"></TextBlock>
+                <TextBlock Grid.Column="1" Name="tbAlarmTips" Text="告警提示"  FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Foreground="#E0496D"></TextBlock>
             </Grid>
             <main:AminationNew x:Name="aminationNew" Grid.Row="3"/>
         </Grid>

@@ -308,6 +308,10 @@ namespace COM.Common
         /// <summary>
         /// 江汉
         /// </summary>
-        JH = 4
+        JH = 4,
+        /// <summary>
+        /// 三一轨道式
+        /// </summary>
+        SANYRailway=5
     }
 }

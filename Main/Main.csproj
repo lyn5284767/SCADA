@@ -198,11 +198,20 @@
     <Compile Include="HydraulicStation\Sany\HSSetting.xaml.cs">
       <DependentUpon>HSSetting.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Integration\IngCat.xaml.cs">
+      <DependentUpon>IngCat.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Integration\IngCatSetWindow.xaml.cs">
+      <DependentUpon>IngCatSetWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Integration\IngDR.xaml.cs">
       <DependentUpon>IngDR.xaml</DependentUpon>
     </Compile>
     <Compile Include="Integration\IngDRSetWindow.xaml.cs">
       <DependentUpon>IngDRSetWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Integration\IngHSSetWindow.xaml.cs">
+      <DependentUpon>IngHSSetWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Integration\IngMain.xaml.cs">
       <DependentUpon>IngMain.xaml</DependentUpon>
@@ -339,6 +348,12 @@
     <Compile Include="SIR\BS\SIRBSMain.xaml.cs">
       <DependentUpon>SIRBSMain.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SIR\SanyRail\SIRRailWayParamSet.xaml.cs">
+      <DependentUpon>SIRRailWayParamSet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SIR\SanyRail\SIRRailWayPosSet.xaml.cs">
+      <DependentUpon>SIRRailWayPosSet.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SIR\SanyRail\SIRRailWayMain.xaml.cs">
       <DependentUpon>SIRRailWayMain.xaml</DependentUpon>
     </Compile>
@@ -436,11 +451,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Integration\IngCat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Integration\IngCatSetWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Integration\IngDR.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Integration\IngDRSetWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Integration\IngHSSetWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -625,6 +652,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SIR\BS\SIRBSMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SIR\SanyRail\SIRRailWayParamSet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SIR\SanyRail\SIRRailWayPosSet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

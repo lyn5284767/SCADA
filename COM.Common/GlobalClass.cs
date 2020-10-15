@@ -154,6 +154,10 @@ namespace COM.Common
     public class IngDeviceStatus
     { 
         /// <summary>
+        /// 序号
+        /// </summary>
+        public int IndexID { get; set; }
+        /// <summary>
         /// 当前设备类型
         /// </summary>
         public SystemType NowType { get; set; }

@@ -67,7 +67,9 @@ namespace Main.Integration
             if(GlobalData.Instance.da.GloConfig.SFType !=0) GlobalData.Instance.DeviceLink.Append(new IngDeviceStatus() { NowType = SystemType.SecondFloor, IsLoad = false,DeviceName="二层台" });
             if (GlobalData.Instance.da.GloConfig.DRType != 0) GlobalData.Instance.DeviceLink.Append(new IngDeviceStatus() { NowType = SystemType.DrillFloor, IsLoad = false, DeviceName = "钻台面" });
             if (GlobalData.Instance.da.GloConfig.SIRType != 0) GlobalData.Instance.DeviceLink.Append(new IngDeviceStatus() { NowType = SystemType.SIR, IsLoad = false, DeviceName = "铁钻工" });
+            if (GlobalData.Instance.da.GloConfig.CatType != 0) GlobalData.Instance.DeviceLink.Append(new IngDeviceStatus() { NowType = SystemType.CatRoad, IsLoad = false, DeviceName = "猫道" });
             NowDeviceNode = GlobalData.Instance.DeviceLink.Head;
+            this.bdMid.Child = IngSF.Instance;
         }
 
         private void IngMainNew_Loaded(object sender, RoutedEventArgs e)
@@ -89,6 +91,9 @@ namespace Main.Integration
         {
             try
             {
+                // 联动
+                this.tbLink.SetBinding(TextBlock.TextProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["460b0"], Mode = BindingMode.OneWay, Converter = new LinkOpenOrCloseConverter() });
+
                 #region 排杆
                 // 二层台排杆
                 MultiBinding sbDrillUpMultiBind = new MultiBinding();
@@ -152,7 +157,7 @@ namespace Main.Integration
             }
         }
         /// <summary>
-        /// 切换当前运行设备顶上去
+        /// 切换当前运行设备定时器
         /// </summary>
         /// <param name="obj"></param>
         private void ProcessTimer_Elapsed(object obj)
@@ -161,21 +166,27 @@ namespace Main.Integration
             {
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
-                    if (NowDeviceNode.Data.NowType == SystemType.SecondFloor && !NowDeviceNode.Data.IsLoad)
-                    {
-                        InitPanel(NowDeviceNode);
-                        this.bdMid.Child = IngSF.Instance;
-                    }
-                    else if (NowDeviceNode.Data.NowType == SystemType.DrillFloor && !NowDeviceNode.Data.IsLoad)
-                    {
-                        InitPanel(NowDeviceNode);
-                        this.bdMid.Child = IngDR.Instance;
-                    }
-                    else if (NowDeviceNode.Data.NowType == SystemType.SIR && !NowDeviceNode.Data.IsLoad)
-                    {
-                        InitPanel(NowDeviceNode);
-                        this.bdMid.Child = IngSIR.Instance;
-                    }
+                    //if (NowDeviceNode.Data.NowType == SystemType.SecondFloor && !NowDeviceNode.Data.IsLoad) // 加载二层台
+                    //{
+                    //    InitPanel(NowDeviceNode);
+                    //    this.bdMid.Child = IngSF.Instance;
+                    //}
+                    //else if (NowDeviceNode.Data.NowType == SystemType.DrillFloor && !NowDeviceNode.Data.IsLoad) // 加载钻台面
+                    //{
+                    //    InitPanel(NowDeviceNode);
+                    //    this.bdMid.Child = IngDR.Instance;
+                    //}
+                    //else if (NowDeviceNode.Data.NowType == SystemType.SIR && !NowDeviceNode.Data.IsLoad) // 加载铁钻工
+                    //{
+                    //    InitPanel(NowDeviceNode);
+                    //    this.bdMid.Child = IngSIR.Instance;
+                    //}
+                    //else if (NowDeviceNode.Data.NowType == SystemType.CatRoad && !NowDeviceNode.Data.IsLoad) // 加载猫道
+                    //{
+                    //    InitPanel(NowDeviceNode);
+                    //    this.bdMid.Child = IngCat.Instance;
+                    //}
+                    GetNowDevice();
                 }));
             }
             catch (Exception ex)
@@ -183,7 +194,62 @@ namespace Main.Integration
                 Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
             }
         }
-
+        /// <summary>
+        /// 切换当前设备
+        /// </summary>
+        private void GetNowDevice()
+        {
+            // 联动模式根据操作台数据切换
+            if (GlobalData.Instance.da["460b0"].Value.Boolean)
+            {
+                if (GlobalData.Instance.da["462b0"].Value.Boolean && NowDeviceNode.Data.NowType != SystemType.SecondFloor)
+                {
+                    InitPanel(SystemType.SecondFloor);
+                    this.bdMid.Child = IngSF.Instance;
+                }
+                else if (GlobalData.Instance.da["462b1"].Value.Boolean && NowDeviceNode.Data.NowType != SystemType.DrillFloor)
+                {
+                    InitPanel(SystemType.DrillFloor);
+                    this.bdMid.Child = IngDR.Instance;
+                }
+                else if (GlobalData.Instance.da["462b2"].Value.Boolean && NowDeviceNode.Data.NowType != SystemType.SIR)
+                {
+                    InitPanel(SystemType.SIR);
+                    this.bdMid.Child = IngSIR.Instance;
+                }
+                else if (GlobalData.Instance.da["462b3"].Value.Boolean && NowDeviceNode.Data.NowType != SystemType.CatRoad)
+                {
+                    InitPanel(SystemType.CatRoad);
+                    this.bdMid.Child = IngCat.Instance;
+                }
+            }
+            else// 非联动模式，根据旋转按钮切换
+            {
+                if (GlobalData.Instance.da["459b0"].Value.Boolean && NowDeviceNode.Data.NowType != SystemType.SecondFloor)
+                {
+                    InitPanel(SystemType.SecondFloor);
+                    this.bdMid.Child = IngSF.Instance;
+                }
+                else if (GlobalData.Instance.da["459b1"].Value.Boolean && NowDeviceNode.Data.NowType != SystemType.DrillFloor)
+                {
+                    InitPanel(SystemType.DrillFloor);
+                    this.bdMid.Child = IngDR.Instance;
+                }
+                else if (GlobalData.Instance.da["459b2"].Value.Boolean && NowDeviceNode.Data.NowType != SystemType.SIR)
+                {
+                    InitPanel(SystemType.SIR);
+                    this.bdMid.Child = IngSIR.Instance;
+                }
+                else if (GlobalData.Instance.da["459b3"].Value.Boolean && NowDeviceNode.Data.NowType != SystemType.CatRoad)
+                {
+                    InitPanel(SystemType.CatRoad);
+                    this.bdMid.Child = IngCat.Instance;
+                }
+            }
+        }
+        /// <summary>
+        /// 弃用
+        /// </summary>
         private void InitSetpBar()
         {
             #region 步骤条相关
@@ -229,31 +295,102 @@ namespace Main.Integration
         /// <summary>
         /// 设备切换后重新初始化面板
         /// </summary>
-        private void InitPanel(Node<IngDeviceStatus> node)
+        private void InitPanel(SystemType systemType)
         {
-            NowDeviceNode.Data.IsLoad = true;
-            this.tbNowDevice.Text = NowDeviceNode.Data.DeviceName;
-            if (NowDeviceNode.Next != null)
-                this.tbNextDevice.Text = NowDeviceNode.Next.Data.DeviceName;
-            else
-                this.tbNextDevice.Text = "无";
-            if (NowDeviceNode.Data.NowType == SystemType.SecondFloor)
+            try
             {
-                this.sbSFDrillDownStep.Visibility = Visibility.Visible;
-                this.sbDRDrillDownStep.Visibility = Visibility.Collapsed;
-                this.sbIronInButton.Visibility = Visibility.Collapsed;
+                Node<IngDeviceStatus> node = GlobalData.Instance.DeviceLink.Head;
+                if (node != null)
+                {
+                    do // 遍历链表找到当前设备所处位置
+                    {
+                        if (node.Data.NowType == systemType)
+                        {
+                            NowDeviceNode = node;
+                            NowDeviceNode.Data.IsLoad = true;
+                        }
+                        else
+                        {
+                            node.Data.IsLoad = false;
+                        }
+                        node = node.Next;
+                    } while (node != null);
+                    this.tbNowDevice.Text = NowDeviceNode.Data.DeviceName;
+                    if (NowDeviceNode.Next != null)
+                        this.tbNextDevice.Text = NowDeviceNode.Next.Data.DeviceName;
+                    else
+                        this.tbNextDevice.Text = "无";
+                    if (GlobalData.Instance.da["workModel"].Value.Byte == 1 && GlobalData.Instance.da["drworkModel"].Value.Byte == 1)// 送杆
+                    {
+                        this.spDrillDown.Visibility = Visibility.Visible;
+                        this.spDrillUp.Visibility = Visibility.Collapsed;
+                        if (NowDeviceNode.Data.NowType == SystemType.SecondFloor)
+                        {
+                            this.sbSFDrillDownStep.Visibility = Visibility.Visible;
+                            this.sbDRDrillDownStep.Visibility = Visibility.Collapsed;
+                            this.sbIronInButton.Visibility = Visibility.Collapsed;
+                            this.btnCatConfirm.Visibility = Visibility.Collapsed;
+                        }
+                        else if (NowDeviceNode.Data.NowType == SystemType.DrillFloor)
+                        {
+                            this.sbSFDrillDownStep.Visibility = Visibility.Collapsed;
+                            this.sbDRDrillDownStep.Visibility = Visibility.Visible;
+                            this.sbIronInButton.Visibility = Visibility.Collapsed;
+                            this.btnCatConfirm.Visibility = Visibility.Collapsed;
+                        }
+                        else if (NowDeviceNode.Data.NowType == SystemType.SIR)
+                        {
+                            this.sbSFDrillDownStep.Visibility = Visibility.Collapsed;
+                            this.sbDRDrillDownStep.Visibility = Visibility.Collapsed;
+                            this.sbIronInButton.Visibility = Visibility.Visible;
+                            this.btnCatConfirm.Visibility = Visibility.Collapsed;
+                        }
+                        else if (NowDeviceNode.Data.NowType == SystemType.CatRoad)
+                        {
+                            this.sbSFDrillDownStep.Visibility = Visibility.Collapsed;
+                            this.sbDRDrillDownStep.Visibility = Visibility.Collapsed;
+                            this.sbIronInButton.Visibility = Visibility.Collapsed;
+                            this.btnCatConfirm.Visibility = Visibility.Visible;
+                        }
+                    }
+                    else if (GlobalData.Instance.da["workModel"].Value.Byte == 2 && GlobalData.Instance.da["drworkModel"].Value.Byte == 2)// 排杆
+                    {
+                        this.spDrillDown.Visibility = Visibility.Collapsed;
+                        this.spDrillUp.Visibility = Visibility.Visible;
+                        if (NowDeviceNode.Data.NowType == SystemType.SecondFloor)
+                        {
+                            this.sbSFDrillUpStep.Visibility = Visibility.Visible;
+                            this.sbDRDrillUpStep.Visibility = Visibility.Collapsed;
+                            this.sbIronOutButton.Visibility = Visibility.Collapsed;
+                            this.btnCatConfirm.Visibility = Visibility.Collapsed;
+                        }
+                        else if (NowDeviceNode.Data.NowType == SystemType.DrillFloor)
+                        {
+                            this.sbSFDrillUpStep.Visibility = Visibility.Collapsed;
+                            this.sbDRDrillUpStep.Visibility = Visibility.Visible;
+                            this.sbIronOutButton.Visibility = Visibility.Collapsed;
+                            this.btnCatConfirm.Visibility = Visibility.Collapsed;
+                        }
+                        else if (NowDeviceNode.Data.NowType == SystemType.SIR)
+                        {
+                            this.sbSFDrillUpStep.Visibility = Visibility.Collapsed;
+                            this.sbDRDrillUpStep.Visibility = Visibility.Collapsed;
+                            this.sbIronOutButton.Visibility = Visibility.Visible;
+                            this.btnCatConfirm.Visibility = Visibility.Collapsed;
+                        }
+                        else if (NowDeviceNode.Data.NowType == SystemType.CatRoad)
+                        {
+                            this.sbSFDrillUpStep.Visibility = Visibility.Collapsed;
+                            this.sbDRDrillUpStep.Visibility = Visibility.Collapsed;
+                            this.sbIronOutButton.Visibility = Visibility.Collapsed;
+                            this.btnCatConfirm.Visibility = Visibility.Visible;
+                        }
+                    }
+                }
             }
-            else if (NowDeviceNode.Data.NowType == SystemType.DrillFloor)
+            catch (Exception ex)
             {
-                this.sbSFDrillDownStep.Visibility = Visibility.Collapsed;
-                this.sbDRDrillDownStep.Visibility = Visibility.Visible;
-                this.sbIronInButton.Visibility = Visibility.Collapsed;
-            }
-            if (NowDeviceNode.Data.NowType == SystemType.SIR)
-            {
-                this.sbSFDrillDownStep.Visibility = Visibility.Collapsed;
-                this.sbDRDrillDownStep.Visibility = Visibility.Collapsed;
-                this.sbIronInButton.Visibility = Visibility.Visible;
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
             }
         }
 
@@ -264,57 +401,76 @@ namespace Main.Integration
         /// <param name="e"></param>
         private void tbIng_Click(object sender, RoutedEventArgs e)
         {
-            //UIElementCollection childrens = this.gdMain.Children;
-            //foreach (UIElement ui in childrens)
-            //{
-            //    if (ui is Drawer)
-            //    {
-            //        ((ui as Drawer).Content as Grid).Children.Clear();
-            //        ((ui as Drawer).Content as Grid).Children.Add(IngSet.Instance);
-
-            //    }
-            //}
-            //this.DrawerBottom.IsOpen = true;
-            //this.gdSet.Children.Clear();
-            //this.gdSet.Children.Add(IngSet.Instance);
             IngSetWindow ingSet = new IngSetWindow();
             ingSet.ShowDialog();
         }
-
+        /// <summary>
+        /// 二层台设置
+        /// </summary>
         private void tbSF_Click(object sender, RoutedEventArgs e)
         {
-            //this.gdSet.Children.Clear();
-            //this.gdSet.Children.Add(SFSet.Instance);
-            //UIElementCollection childrens = this.gdMain.Children;
-            //foreach (UIElement ui in childrens)
-            //{
-            //    if (ui is Grid && (ui as Grid).Name == "gdSet")
-            //    {
-            //        (ui as Grid).Children.Clear();
-            //        (ui as Grid).Children.Add(SFSet.Instance);
-            //    }
-            //}
             IngSFSetWindow sfSet = new IngSFSetWindow();
             sfSet.ShowDialog();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            NowDeviceNode.Data.IsLoad = false;
-            NowDeviceNode = NowDeviceNode.Next;
-            if (NowDeviceNode == null) NowDeviceNode = GlobalData.Instance.DeviceLink.Head;
-        }
         /// <summary>
-        /// 根据设备变化改变步骤条
+        /// 钻台面设置
         /// </summary>
-        private void tbNowDevice_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            InitSetpBar();
-        }
-
         private void tbDR_Click(object sender, RoutedEventArgs e)
         {
-
+            IngDRWindow ingDRWindow = new IngDRWindow();
+            ingDRWindow.ShowDialog();
+        }
+        /// <summary>
+        /// 液压站设置
+        /// </summary>
+        private void tbHS_Click(object sender, RoutedEventArgs e)
+        {
+            IngHSSetWindow ingHSSetWindow = new IngHSSetWindow();
+            ingHSSetWindow.ShowDialog();
+        }
+        /// <summary>
+        /// 铁钻工设置
+        /// </summary>
+        private void tbSIR_Click(object sender, RoutedEventArgs e)
+        {
+            IngSIRSetWindow ingSIRSetWindow = new IngSIRSetWindow();
+            ingSIRSetWindow.ShowDialog();
+        }
+        /// <summary>
+        /// 手动切换设备
+        /// </summary>
+        private void CBDevice_Changed(object sender, SelectionChangedEventArgs e)
+        {
+            System.Windows.Controls.ComboBox cb = sender as System.Windows.Controls.ComboBox;
+            if (cb.SelectedIndex == 0) // 二层台
+            {
+                InitPanel(SystemType.SecondFloor);
+                this.bdMid.Child = IngSF.Instance;
+            }
+            else if (cb.SelectedIndex == 1) // 钻台面
+            {
+                InitPanel(SystemType.DrillFloor);
+                this.bdMid.Child = IngDR.Instance;
+            }
+            else if (cb.SelectedIndex == 2) // 铁钻工
+            {
+                InitPanel(SystemType.SIR);
+                this.bdMid.Child = IngSIR.Instance;
+            }
+            else if (cb.SelectedIndex == 3) // 
+            {
+                InitPanel(SystemType.CatRoad);
+                this.bdMid.Child = IngCat.Instance;
+            }
+        }
+        /// <summary>
+        /// 猫道设置
+        /// </summary>
+        private void tbCat_Click(object sender, RoutedEventArgs e)
+        {
+            IngCatSetWindow ingCatSetWindow = new IngCatSetWindow();
+            ingCatSetWindow.ShowDialog();
         }
     }
 }

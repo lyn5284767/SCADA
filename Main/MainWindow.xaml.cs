@@ -10,6 +10,7 @@ using Main.HydraulicStation;
 using Main.Integration;
 using Main.SecondFloor;
 using Main.SIR;
+using Main.SIR.SanyRail;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -262,22 +263,22 @@ namespace Main
             {
                 PingIp("172.16.16.147");
             }
-
-            if (GlobalData.Instance.DRNowPage != "IngMain")
-            {
-                if (!GlobalData.Instance.da["459b0"].Value.Boolean) b459b0 = false;
-                if (!GlobalData.Instance.da["459b1"].Value.Boolean) b459b1 = false;
-                if (GlobalData.Instance.da["459b0"].Value.Boolean && GlobalData.Instance.DRNowPage != "SFMain" && !b459b0)
-                {
-                    MouseDownSF(null, null);
-                    b459b0 = true;
-                }
-                else if (GlobalData.Instance.da["459b1"].Value.Boolean && GlobalData.Instance.DRNowPage != "DRMain" && !b459b1)
-                {
-                    MouseDR(null, null);
-                    b459b1 = true;
-                }
-            }
+            // 启用，改到联动主页面切换
+            //if (GlobalData.Instance.DRNowPage != "IngMain")
+            //{
+            //    if (!GlobalData.Instance.da["459b0"].Value.Boolean) b459b0 = false;
+            //    if (!GlobalData.Instance.da["459b1"].Value.Boolean) b459b1 = false;
+            //    if (GlobalData.Instance.da["459b0"].Value.Boolean && GlobalData.Instance.DRNowPage != "SFMain" && !b459b0)
+            //    {
+            //        MouseDownSF(null, null);
+            //        b459b0 = true;
+            //    }
+            //    else if (GlobalData.Instance.da["459b1"].Value.Boolean && GlobalData.Instance.DRNowPage != "DRMain" && !b459b1)
+            //    {
+            //        MouseDR(null, null);
+            //        b459b1 = true;
+            //    }
+            //}
         }
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
@@ -765,6 +766,13 @@ namespace Main
                         this.BottomColorSetting(this.bdSIR, this.tbSIR, this.bdOther);
                         return;
                     }
+                    else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANYRailway)
+                    {
+                        this.spMain.Children.Clear();
+                        this.spMain.Children.Add(SIRRailWayParamSet.Instance);
+                        this.BottomColorSetting(this.bdSIR, this.tbSIR, this.bdOther);
+                        return;
+                    }
                 }
                 else if (GlobalData.Instance.systemType == SystemType.HydraulicStation)
                 {
@@ -1158,8 +1166,8 @@ namespace Main
             try
             {
                 this.spMain.Children.Clear();
-                this.spMain.Children.Add(IngMain.Instance);
-                //this.spMain.Children.Add(IngMainNew.Instance);
+                //this.spMain.Children.Add(IngMain.Instance);
+                this.spMain.Children.Add(IngMainNew.Instance);
                 GlobalData.Instance.systemType = SystemType.SecondFloor;
                 GlobalData.Instance.Ing = true;
 
@@ -1310,7 +1318,11 @@ namespace Main
                 }
                 else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.JH)
                 {
-                  
+
+                }
+                else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANYRailway)
+                {
+                    this.spMain.Children.Add(SIRRailWayMain.Instance);
                 }
 
                 GlobalData.Instance.systemType = SystemType.SIR;

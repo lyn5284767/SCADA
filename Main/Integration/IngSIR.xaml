@@ -11,11 +11,12 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
-            <RowDefinition Height="220"/>
+            <RowDefinition Height="190"/>
             <RowDefinition Height="100"/>
-            <RowDefinition/>
-            <RowDefinition/>
             <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
@@ -57,20 +58,34 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <Viewbox x:Name="viewboxCameral1" Stretch="Uniform" Height="220" Visibility="Visible">
-                    <Grid x:Name="gridCamera1">
-                        <Image Source="../Images/camera.jpg"/>
-                    </Grid>
-                </Viewbox>
-            </Grid>
-            <Grid Grid.Column="1">
-                <Viewbox x:Name="viewboxCameral2" Stretch="Uniform" Height="220" Visibility="Visible">
-                    <Grid x:Name="gridCamera2">
-                        <Image Source="../Images/camera.jpg"/>
-                    </Grid>
-                </Viewbox>
-            </Grid>
+            <Border BorderThickness="1" BorderBrush="White">
+                <cl:SIRDrillTorque Name="drillTorqueChart"/>
+                <!--<StackPanel Grid.Column="0">
+                                <TextBlock Text="钻杆扭矩" FontSize="18"></TextBlock>
+                                    <lvc:CartesianChart Series="{Binding DrillTorqueSeries}" Height="160" AnimationsSpeed="0:0:0.5" Hoverable="False">
+                                        <lvc:CartesianChart.AxisY>
+                                            <lvc:Axis Name="lvcDrillTorque" Title="扭矩(KN.m)"></lvc:Axis>
+                                        </lvc:CartesianChart.AxisY>
+                                        <lvc:CartesianChart.AxisX>
+                                            <lvc:Axis Name="lvcx" Labels="{Binding DrillTorqueLabels}"></lvc:Axis>
+                                        </lvc:CartesianChart.AxisX>
+                                    </lvc:CartesianChart>
+                                </StackPanel>-->
+            </Border>
+            <Border BorderThickness="1" BorderBrush="White" Grid.Column="1">
+                <cl:SIRCosingTorque Name="cosingTorqueChart"/>
+                <!--<StackPanel>
+                                    <TextBlock Text="套管扭矩" FontSize="18"></TextBlock>
+                                    <lvc:CartesianChart Series="{Binding CasingTorqueSeries}" Height="160">
+                                        <lvc:CartesianChart.AxisY>
+                                            <lvc:Axis Name="lvcCasingTorque" Title="扭矩(KN.m)"></lvc:Axis>
+                                        </lvc:CartesianChart.AxisY>
+                                        <lvc:CartesianChart.AxisX>
+                                            <lvc:Axis Labels="{Binding CasingTorqueLabels}"></lvc:Axis>
+                                        </lvc:CartesianChart.AxisX>
+                                    </lvc:CartesianChart>
+                                </StackPanel>-->
+            </Border>
         </Grid>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
@@ -209,7 +224,8 @@
                 <TextBlock Name="tbOutButtonCircle" Text="??" FontSize="18"></TextBlock>
             </StackPanel>
         </Grid>
-        <TextBlock x:Name="tbOprTips" Text="操作提示" Grid.Row="6" Foreground="#E02740" FontSize="30" TextAlignment="Center" FontWeight="Bold"></TextBlock>
+        <TextBlock x:Name="tbTips" Text="告警提示" Grid.Row="6" Foreground="#E02740" FontSize="24" TextAlignment="Center" FontWeight="Bold"></TextBlock>
+        <TextBlock x:Name="tbOprTips" Text="操作提示" Grid.Row="7" Foreground="#E02740" FontSize="24" TextAlignment="Center" FontWeight="Bold"></TextBlock>
         
     </Grid>
 </UserControl>

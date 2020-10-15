@@ -1,4 +1,5 @@
-﻿using System;
+﻿using COM.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,14 +16,14 @@ using System.Windows.Shapes;
 namespace Main.SIR.SanyRail
 {
     /// <summary>
-    /// SIRRailWayMain.xaml 的交互逻辑
+    /// SIRRailWayParamSet.xaml 的交互逻辑
     /// </summary>
-    public partial class SIRRailWayMain : UserControl
+    public partial class SIRRailWayParamSet : UserControl
     {
-        private static SIRRailWayMain _instance = null;
+        private static SIRRailWayParamSet _instance = null;
         private static readonly object syncRoot = new object();
 
-        public static SIRRailWayMain Instance
+        public static SIRRailWayParamSet Instance
         {
             get
             {
@@ -32,41 +33,27 @@ namespace Main.SIR.SanyRail
                     {
                         if (_instance == null)
                         {
-                            _instance = new SIRRailWayMain();
+                            _instance = new SIRRailWayParamSet();
                         }
                     }
                 }
                 return _instance;
             }
         }
-        public SIRRailWayMain()
+        public SIRRailWayParamSet()
         {
             InitializeComponent();
         }
-
-        private void btn_oprModel(object sender, EventArgs e)
+        /// <summary>
+        /// 确定配置
+        /// </summary>
+        private void Button_Setting(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void btn_workModel(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btn_PipeTypeModel(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btn_locationModel(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btn_SelectDrillPipe(object sender, RoutedEventArgs e)
-        {
-
+            if (GlobalData.Instance.SetParam[0] != 0)
+            {
+                byte[] byteToSend = GlobalData.Instance.SetParam;
+                GlobalData.Instance.da.SendBytes(byteToSend);
+            }
         }
     }
 }

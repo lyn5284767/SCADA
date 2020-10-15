@@ -150,6 +150,7 @@ namespace Main.Cat
             {
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
+                    Warning();
                     if (!GlobalData.Instance.ComunciationNormal) this.tbTips.Text = "网络连接失败！";
                 }));
             }

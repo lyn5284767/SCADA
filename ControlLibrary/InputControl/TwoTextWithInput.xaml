@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="ControlLibrary.InputControl.TwoTextWithInput"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ControlLibrary.InputControl"
+             mc:Ignorable="d" 
+            d:DesignHeight="14" Name="uc" FontFamily="微软雅黑" TextOptions.TextFormattingMode="Display">
+    <Grid>
+        <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="2" Margin="1">
+            <Border.Effect>
+                <DropShadowEffect x:Name="sh" BlurRadius="20" Color="Gray" Direction="20" Opacity="0" RenderingBias="Quality" ShadowDepth="1"/>
+            </Border.Effect>
+        </Border>
+        <StackPanel Orientation="Horizontal" Name="stackPanel">
+            <TextBlock Name="tbk" Text="参数配置" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="14" FontFamily="微软雅黑" FontWeight="Bold"  Width="180" TextAlignment="Center">
+            </TextBlock>
+            <TextBox x:Name="textBoxShowOne" IsReadOnly="True" Text="{Binding Path=TextOneShowText, ElementName=uc}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="10" FontFamily="微软雅黑" FontWeight="Bold" Width="95" TextAlignment="Center"/>
+            <TextBox x:Name="textBoxShowTwo" IsReadOnly="True" Text="{Binding Path=TextTwoShowText, ElementName=uc}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="10" FontFamily="微软雅黑" FontWeight="Bold" Width="95" TextAlignment="Center"/>
+            <TextBox x:Name="textBoxSet" PreviewMouseDown="tb_ParameterConfig_Focus" LostFocus="textBox_ParameterConfig_LostFocus" TabIndex="3" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="10" FontFamily="微软雅黑" FontWeight="Bold" Background="#F49466" Width="95"  TextAlignment="Center"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

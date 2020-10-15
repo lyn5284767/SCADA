@@ -21,7 +21,9 @@
                 <Border Name="bdMid" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,0,5,5" Grid.Column="0">
                 </Border>
                 <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,0,5,5" Grid.Column="1">
-                    <TextBlock Text="设备状态" FontSize="32" FontWeight="Bold" HorizontalAlignment="Center"></TextBlock>
+                    <StackPanel>
+                        <TextBlock Name="tbLink" Text="联动模式" FontSize="32" FontWeight="Bold" HorizontalAlignment="Center"></TextBlock>
+                    </StackPanel>
                 </Border>
             </Grid>
             <Border Name="bdBottom" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,0,5,5" Grid.Row="1">
@@ -34,82 +36,92 @@
                         <TextBlock Text="当前操作:" FontWeight="Bold" FontSize="24" VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
                         <TextBlock Name="tbNowOpr" Text="送杆" FontSize="18" VerticalAlignment="Center"></TextBlock>
                         <TextBlock Text="当前设备:" FontWeight="Bold" FontSize="24" VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
-                        <TextBox Name="tbNowDevice" Text="二层台" FontSize="18" VerticalAlignment="Center" IsReadOnly="True" TextChanged="tbNowDevice_TextChanged"></TextBox>
+                        <TextBlock Name="tbNowDevice" Text="二层台" FontSize="18" VerticalAlignment="Center"></TextBlock>
                         
                         <TextBlock Text="下个设备:" FontWeight="Bold" FontSize="24"  VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
                         <TextBlock Name="tbNextDevice" Text="钻台面" FontSize="18" VerticalAlignment="Center"></TextBlock>
-                        <TextBlock Name="tbTips" Text="操作提示" Foreground="#E02740" FontWeight="Bold" FontSize="24" VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
-                        <Button Click="Button_Click">下个设备</Button>
+                        <TextBlock Name="tbTips" Text="设备切换:" FontWeight="Bold" FontSize="24" VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
+                        <ComboBox SelectionChanged="CBDevice_Changed" SelectedIndex="0" FontSize="18">
+                            <ComboBoxItem>二层台</ComboBoxItem>
+                            <ComboBoxItem>钻台面</ComboBoxItem>
+                            <ComboBoxItem>铁钻工</ComboBoxItem>
+                            <ComboBoxItem>猫道</ComboBoxItem>
+                        </ComboBox>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Grid.Row="1" >
-                        <!--排杆-铁钻工步骤-->
-                        <hc:StepBar Width="760" FontSize="16" Name="sbIronOutButton" HorizontalAlignment="Left" Margin="5,0,0,0" Visibility="Collapsed">
-                            <hc:StepBarItem Content="卸扣启动"/>
-                            <hc:StepBarItem Content="目标定位"/>
-                            <hc:StepBarItem Content="钳体伸出"/>
-                            <hc:StepBarItem Content="抓杆"/>
-                            <hc:StepBarItem Content="卸扣确认"/>
-                            <hc:StepBarItem Content="卸扣中"/>
-                            <hc:StepBarItem Content="钳口对缺"/>
-                            <hc:StepBarItem Content="钳体回收"/>
-                            <hc:StepBarItem Content="卸扣结束"/>
-                        </hc:StepBar>
-                        <!--排杆-钻台面步骤-->
-                        <hc:StepBar Width="760" FontSize="16" Name="sbDRDrillUpStep" HorizontalAlignment="Left" Margin="5,0,0,0"  Visibility="Collapsed">
-                            <hc:StepBarItem Content="排管启动"/>
-                            <hc:StepBarItem Content="井口定位"/>
-                            <hc:StepBarItem Content="井口抓杆"/>
-                            <hc:StepBarItem Content="台面定位"/>
-                            <hc:StepBarItem Content="抓手松开"/>
-                            <hc:StepBarItem Content="手臂回位"/>
-                            <hc:StepBarItem Content="台面完成"/>
-                        </hc:StepBar>
-                        <!--排杆-二层台步骤-->
-                        <hc:StepBar Width="760" FontSize="16" Name="sbSFDrillUpStep" HorizontalAlignment="Left" Margin="5,0,0,0" Visibility="Collapsed">
-                            <hc:StepBarItem Content="排杆启动"/>
-                            <hc:StepBarItem Content="井口定位"/>
-                            <hc:StepBarItem Content="井口抓杆"/>
-                            <hc:StepBarItem Content="吊卡确认"/>
-                            <hc:StepBarItem Content="井口运动"/>
-                            <hc:StepBarItem Content="指梁定位"/>
-                            <hc:StepBarItem Content="指梁锁确认"/>
-                            <hc:StepBarItem Content="指梁排管"/>
-                            <hc:StepBarItem Content="排杆完成"/>
-                        </hc:StepBar>
-                        <!--送杆-二层台步骤-->
-                        <hc:StepBar Width="760" FontSize="16" Name="sbSFDrillDownStep" HorizontalAlignment="Left" Margin="5,0,0,0" Visibility="Visible">
-                            <hc:StepBarItem Content="送杆启动"/>
-                            <hc:StepBarItem Content="指梁定位"/>
-                            <hc:StepBarItem Content="指梁抓杆"/>
-                            <hc:StepBarItem Content="指梁锁确认"/>
-                            <hc:StepBarItem Content="井口等待"/>
-                            <hc:StepBarItem Content="井口送杆"/>
-                            <hc:StepBarItem Content="吊卡确认"/>
-                            <hc:StepBarItem Content="井口位置"/>
-                            <hc:StepBarItem Content="送杆完成"/>
-                        </hc:StepBar>
-                        <!--送杆-钻台面步骤-->
-                        <hc:StepBar Width="760" FontSize="16" Name="sbDRDrillDownStep" HorizontalAlignment="Left" Margin="5,0,0,0" Visibility="Collapsed">
-                            <hc:StepBarItem Content="送杆启动"/>
-                            <hc:StepBarItem Content="台面定位"/>
-                            <hc:StepBarItem Content="抓手夹紧"/>
-                            <hc:StepBarItem Content="井口定位"/>
-                            <hc:StepBarItem Content="井口送杆"/>
-                            <hc:StepBarItem Content="手臂回位"/>
-                            <hc:StepBarItem Content="送杆结束"/>
-                        </hc:StepBar>
-                        <!--送杆-铁钻工步骤-->
-                        <hc:StepBar Width="760" FontSize="16" Name="sbIronInButton" HorizontalAlignment="Left" Margin="5,0,0,0" Visibility="Collapsed">
-                            <hc:StepBarItem Content="上扣启动" />
-                            <hc:StepBarItem Content="目标定位"/>
-                            <hc:StepBarItem Content="钳体伸出"/>
-                            <hc:StepBarItem Content="抓杆"/>
-                            <hc:StepBarItem Content="上扣确认"/>
-                            <hc:StepBarItem Content="上扣中"/>
-                            <hc:StepBarItem Content="钳口对缺"/>
-                            <hc:StepBarItem Content="钳体回收"/>
-                            <hc:StepBarItem Content="上扣结束"/>
-                        </hc:StepBar>
+                        <StackPanel Name="spDrillUp">
+                            <!--排杆-铁钻工步骤-->
+                            <hc:StepBar Width="760" FontSize="16" Name="sbIronOutButton" HorizontalAlignment="Left" Margin="5,0,0,0" Visibility="Collapsed">
+                                <hc:StepBarItem Content="卸扣启动"/>
+                                <hc:StepBarItem Content="目标定位"/>
+                                <hc:StepBarItem Content="钳体伸出"/>
+                                <hc:StepBarItem Content="抓杆"/>
+                                <hc:StepBarItem Content="卸扣确认"/>
+                                <hc:StepBarItem Content="卸扣中"/>
+                                <hc:StepBarItem Content="钳口对缺"/>
+                                <hc:StepBarItem Content="钳体回收"/>
+                                <hc:StepBarItem Content="卸扣结束"/>
+                            </hc:StepBar>
+                            <!--排杆-钻台面步骤-->
+                            <hc:StepBar Width="760" FontSize="16" Name="sbDRDrillUpStep" HorizontalAlignment="Left" Margin="5,0,0,0"  Visibility="Collapsed">
+                                <hc:StepBarItem Content="排管启动"/>
+                                <hc:StepBarItem Content="井口定位"/>
+                                <hc:StepBarItem Content="井口抓杆"/>
+                                <hc:StepBarItem Content="台面定位"/>
+                                <hc:StepBarItem Content="抓手松开"/>
+                                <hc:StepBarItem Content="手臂回位"/>
+                                <hc:StepBarItem Content="台面完成"/>
+                            </hc:StepBar>
+                            <!--排杆-二层台步骤-->
+                            <hc:StepBar Width="760" FontSize="16" Name="sbSFDrillUpStep" HorizontalAlignment="Left" Margin="5,0,0,0" Visibility="Collapsed">
+                                <hc:StepBarItem Content="排杆启动"/>
+                                <hc:StepBarItem Content="井口定位"/>
+                                <hc:StepBarItem Content="井口抓杆"/>
+                                <hc:StepBarItem Content="吊卡确认"/>
+                                <hc:StepBarItem Content="井口运动"/>
+                                <hc:StepBarItem Content="指梁定位"/>
+                                <hc:StepBarItem Content="指梁锁确认"/>
+                                <hc:StepBarItem Content="指梁排管"/>
+                                <hc:StepBarItem Content="排杆完成"/>
+                            </hc:StepBar>
+                        </StackPanel>
+                        <StackPanel Name="spDrillDown">
+                            <!--送杆-二层台步骤-->
+                            <hc:StepBar Width="760" FontSize="16" Name="sbSFDrillDownStep" HorizontalAlignment="Left" Margin="5,0,0,0" Visibility="Collapsed">
+                                <hc:StepBarItem Content="送杆启动"/>
+                                <hc:StepBarItem Content="指梁定位"/>
+                                <hc:StepBarItem Content="指梁抓杆"/>
+                                <hc:StepBarItem Content="指梁锁确认"/>
+                                <hc:StepBarItem Content="井口等待"/>
+                                <hc:StepBarItem Content="井口送杆"/>
+                                <hc:StepBarItem Content="吊卡确认"/>
+                                <hc:StepBarItem Content="井口位置"/>
+                                <hc:StepBarItem Content="送杆完成"/>
+                            </hc:StepBar>
+                            <!--送杆-钻台面步骤-->
+                            <hc:StepBar Width="760" FontSize="16" Name="sbDRDrillDownStep" HorizontalAlignment="Left" Margin="5,0,0,0" Visibility="Collapsed">
+                                <hc:StepBarItem Content="送杆启动"/>
+                                <hc:StepBarItem Content="台面定位"/>
+                                <hc:StepBarItem Content="抓手夹紧"/>
+                                <hc:StepBarItem Content="井口定位"/>
+                                <hc:StepBarItem Content="井口送杆"/>
+                                <hc:StepBarItem Content="手臂回位"/>
+                                <hc:StepBarItem Content="送杆结束"/>
+                            </hc:StepBar>
+                            <!--送杆-铁钻工步骤-->
+                            <hc:StepBar Width="760" FontSize="16" Name="sbIronInButton" HorizontalAlignment="Left" Margin="5,0,0,0" Visibility="Collapsed">
+                                <hc:StepBarItem Content="上扣启动" />
+                                <hc:StepBarItem Content="目标定位"/>
+                                <hc:StepBarItem Content="钳体伸出"/>
+                                <hc:StepBarItem Content="抓杆"/>
+                                <hc:StepBarItem Content="上扣确认"/>
+                                <hc:StepBarItem Content="上扣中"/>
+                                <hc:StepBarItem Content="钳口对缺"/>
+                                <hc:StepBarItem Content="钳体回收"/>
+                                <hc:StepBarItem Content="上扣结束"/>
+                            </hc:StepBar>
+                        </StackPanel>
+                        <Button Name="btnCatConfirm" Content="确认完成" FontSize="16" Height="40" Margin="15,0,0,0" Visibility="Collapsed"/>
                     </StackPanel>
                 </Grid>
             </Border>
@@ -117,9 +129,9 @@
                 <ToggleButton Name="tbIng" DockPanel.Dock="Left" Width="170" Content="联动设置" FontSize="18" Height="50" Click="tbIng_Click"></ToggleButton>
                 <ToggleButton DockPanel.Dock="Left" Width="170" Content="二层台设置" FontSize="18" Height="50" Click="tbSF_Click"></ToggleButton>
                 <ToggleButton DockPanel.Dock="Left" Width="170" Content="钻台面设置" FontSize="18" Height="50" Click="tbDR_Click"></ToggleButton>
-                <ToggleButton DockPanel.Dock="Right" Width="170" Content="液压站设置" FontSize="18" Height="50"></ToggleButton>
-                <ToggleButton DockPanel.Dock="Right" Width="170" Content="猫道设置" FontSize="18" Height="50"></ToggleButton>
-                <ToggleButton DockPanel.Dock="Right" Width="170" Content="铁钻工设置" FontSize="18" Height="50"></ToggleButton>
+                <ToggleButton DockPanel.Dock="Right" Width="170" Content="液压站设置" FontSize="18" Height="50" Click="tbHS_Click"></ToggleButton>
+                <ToggleButton DockPanel.Dock="Right" Width="170" Content="猫道设置" FontSize="18" Height="50" Click="tbCat_Click"></ToggleButton>
+                <ToggleButton DockPanel.Dock="Right" Width="170" Content="铁钻工设置" FontSize="18" Height="50" Click="tbSIR_Click"></ToggleButton>
             </DockPanel>
         </Grid>
     </Grid>
