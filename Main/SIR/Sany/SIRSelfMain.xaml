@@ -232,7 +232,7 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <cl:BasedSwitchButton Name="PipeTypeModel" ContentLeft="钻杆" ContentDown="钻具选择" ContentRight="套管" UserControlClicked="btn_PipeTypeModel" Grid.Column="0" />
+                            <cl:BasedSwitchButton Name="PipeTypeModel" ContentLeft="钻杆/铤" ContentDown="钻具选择" ContentRight="套管" UserControlClicked="btn_PipeTypeModel" Grid.Column="0" />
                             <cl:BasedSwitchButton Name="locationModel" ContentLeft="井口" ContentDown="工位选择" ContentRight="鼠洞" UserControlClicked="btn_locationModel" Grid.Column="1" />
                         </Grid>
                         <Grid Grid.Row="2">

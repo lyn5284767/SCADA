@@ -54,7 +54,7 @@
                             <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
                                 <TextBlock Text="套&#x0a;管&#x0a;类&#x0a;型&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Height="110"/>
                             </Border>
-                            <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
+                            <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3" Name="bdAutoParam">
                                 <TextBlock Text="自&#x0a;动&#x0a;对&#x0a;缺&#x0a;参&#x0a;数&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Height="180"/>
                             </Border>
 
@@ -93,7 +93,7 @@
                         </StackPanel>
                     </Grid>
 
-                    <Grid Grid.Column="0">
+                    <Grid Grid.Column="0" Name="colOne">
                         <StackPanel Orientation="Vertical">
                             <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="5" Padding="3">
                                 <TextBlock Text="气&#x0a;缸&#x0a;参&#x0a;数" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Height="90"/>
@@ -115,7 +115,7 @@
 
 
                     </Grid>
-                    <Grid Grid.Column="1">
+                    <Grid Grid.Column="1" Name="colTwo">
                         <StackPanel Orientation="Vertical">
                             <cl:TextBlockWithTextBox Name="twtR8" TagTwo="5" ControlTag="1"  TbkText="响应周期"/>
                             <cl:TextBlockWithTextBox Name="twtR9" TagTwo="5" ControlTag="2"  TbkText="工作缸低压预警"/>

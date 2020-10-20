@@ -359,41 +359,10 @@ namespace Main.SIR
             {
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
-                    Random rd = new Random();
-                    double d = rd.Next(0, 200) / 10.0;
-                    this.drillTorqueChart.AddPoints(d);
-                    this.cosingTorqueChart.AddPoints(d);
-                    //DrillTorqueLabels.Add(DateTime.Now.ToString("mm:ss"));
-                    //if (DrillTorqueLabels.Count > SaveCount)
-                    //{
-                    //    DrillTorqueLabels.RemoveAt(0);
-                    //}
-                    //DrillTorqueSeries[0].Values.Add(d);
-                    //if (DrillTorqueSeries[0].Values.Count > SaveCount)
-                    //{
-                    //    DrillTorqueSeries[0].Values.RemoveAt(0);
-                    //    data.RemoveAt(0);
-                    //}
-                    //data.Add(d);
-                    //this.lvcDrillTorque.MinValue = data.Min()-1;
-                    //this.lvcDrillTorque.MaxValue = data.Max();
-
-                    //Random rdd = new Random();
-                    //double dd = rdd.Next(0, 200) / 10.0;
-                    //CasingTorqueLabels.Add(DateTime.Now.ToString("mm:ss"));
-                    //if (CasingTorqueLabels.Count > SaveCount)
-                    //{
-                    //    CasingTorqueLabels.RemoveAt(0);
-                    //}
-                    //CasingTorqueSeries[0].Values.Add(dd);
-                    //if (CasingTorqueSeries[0].Values.Count > SaveCount)
-                    //{
-                    //    CasingTorqueSeries[0].Values.RemoveAt(0);
-                    //    datad.RemoveAt(0);
-                    //}
-                    //datad.Add(dd);
-                    //this.lvcCasingTorque.MinValue = datad.Min() - 1;
-                    //this.lvcCasingTorque.MaxValue = datad.Max();
+                    double drillTore = GlobalData.Instance.da["SIRSelfInButtonTorque"].Value.Int32 / 10.0;
+                    double cosingTorque = GlobalData.Instance.da["SIRSelfOutButtonTorque"].Value.Int32 / 10.0;
+                    this.drillTorqueChart.AddPoints(drillTore);
+                    this.cosingTorqueChart.AddPoints(cosingTorque);
                 }));
             }
             catch (Exception ex)

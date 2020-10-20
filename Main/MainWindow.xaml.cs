@@ -714,7 +714,7 @@ namespace Main
         {
             try
             {
-                if (GlobalData.Instance.systemRole != SystemRole.DebugMan)
+                if (GlobalData.Instance.systemRole != SystemRole.DebugMan && GlobalData.Instance.systemType != SystemType.SIR)
                 {
                     MessageBox.Show("您不具备权限！");
                     return;

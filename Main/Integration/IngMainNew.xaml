@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Main.Integration" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:main="clr-namespace:Main"
+             xmlns:cl="http://talonzeng.com/ControlLibrary"
              mc:Ignorable="d" 
              d:DesignHeight="650" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" Name="IngNew" FontFamily="微软雅黑">
     <Grid>
@@ -23,6 +24,54 @@
                 <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,0,5,5" Grid.Column="1">
                     <StackPanel>
                         <TextBlock Name="tbLink" Text="联动模式" FontSize="32" FontWeight="Bold" HorizontalAlignment="Center"></TextBlock>
+                        <TextBlock Text="提示" Name="LinkError" HorizontalAlignment="Center" Foreground="#E02740" FontSize="18"></TextBlock>
+                        <Grid>
+                            <Image Source="../Images/derrick.png" Height="400"></Image>
+                            <StackPanel Orientation="Horizontal" Height="30" Margin="50,-70,0,0">
+                                <TextBlock Text="二层台" VerticalAlignment="Center" FontWeight="Bold"></TextBlock>
+                                <cl:SymbolMapping Name="smSF" StrContent="" LampType="1" Margin="5,2,2,2"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Height="30" Margin="50,140,0,0">
+                                <TextBlock Text="钻台面" VerticalAlignment="Center" FontWeight="Bold"></TextBlock>
+                                <cl:SymbolMapping Name="smDR" LampType="1" StrContent="" Margin="5,2,2,2"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Height="30" Margin="200,140,0,0">
+                                <cl:SymbolMapping Name="smSIR" LampType="1" StrContent="" Margin="0,2,2,2"/>
+                                <TextBlock Text="铁钻工" VerticalAlignment="Center" FontWeight="Bold"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Height="30" Margin="240,220,0,0">
+                                <cl:SymbolMapping Name="smCat" LampType="1" StrContent="" Margin="0,2,2,2"/>
+                                <TextBlock Text="猫道" VerticalAlignment="Center" FontWeight="Bold"></TextBlock>
+                            </StackPanel>
+                            <!--<Image Name="imgSF" Source="../Images/sf.png" Width="50" Height="50">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <TranslateTransform X="-80" Y="-20"></TranslateTransform>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+                            <Image Name="imgDR" Source="../Images/dr.png" Width="50" Height="50">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <TranslateTransform X="-80" Y="70"></TranslateTransform>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+                            <Image Name="imgSIR" Source="../Images/sir.png" Width="50" Height="50">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <TranslateTransform X="30" Y="60"></TranslateTransform>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+                            <Image Name="imgCat" Source="../Images/cat.png" Width="50" Height="50">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <TranslateTransform X="90" Y="110"></TranslateTransform>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>-->
+                        </Grid>
                     </StackPanel>
                 </Border>
             </Grid>

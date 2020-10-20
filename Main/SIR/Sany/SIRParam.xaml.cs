@@ -44,7 +44,26 @@ namespace Main.SIR
         public SIRParam()
         {
             InitializeComponent();
+            InitRole();
             VariableBinding();
+        }
+        /// <summary>
+        /// 权限分级
+        /// </summary>
+        private void InitRole()
+        {
+            if (GlobalData.Instance.systemRole != SystemRole.DebugMan)
+            {
+                this.colOne.Visibility = Visibility.Collapsed;
+                this.colTwo.Visibility = Visibility.Collapsed;
+                this.bdAutoParam.Visibility = Visibility.Collapsed;
+                this.twtL13.Visibility = Visibility.Collapsed;
+                this.twtL14.Visibility = Visibility.Collapsed;
+                this.twtL15.Visibility = Visibility.Collapsed;
+                this.twtL16.Visibility = Visibility.Collapsed; 
+                this.twtL17.Visibility = Visibility.Collapsed;
+                this.twtL18.Visibility = Visibility.Collapsed;
+            }
         }
 
         /// <summary>

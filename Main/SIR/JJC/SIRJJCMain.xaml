@@ -125,7 +125,7 @@
                             <MenuItem.Header>
                                 <StackPanel Orientation="Vertical">
                                     <ContentPresenter Content="管柱选择" />
-                                    <Image Margin="0,2,0,0"  Width="15" Source="..\Images\downTrangle.png" />
+                                    <Image Margin="0,2,0,0"  Width="15" Source="..\..\Images\downTrangle.png" />
                                 </StackPanel>
                             </MenuItem.Header>
                             <MenuItem Header="DP_3_1/2" Click="btn_SelectDrillPipe" TabIndex="1"/>

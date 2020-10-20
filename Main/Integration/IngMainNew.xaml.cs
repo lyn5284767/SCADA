@@ -49,6 +49,7 @@ namespace Main.Integration
         // 流程定时器
         System.Threading.Timer ProcessTimer;
         Node<IngDeviceStatus> NowDeviceNode { get; set; }
+        int Twinkle = 0; // 图片闪烁标志
         public IngMainNew()
         {
             InitializeComponent();
@@ -93,7 +94,16 @@ namespace Main.Integration
             {
                 // 联动
                 this.tbLink.SetBinding(TextBlock.TextProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["460b0"], Mode = BindingMode.OneWay, Converter = new LinkOpenOrCloseConverter() });
-
+                // 6.30新增
+                this.tbLink.SetBinding(TextBlock.TextProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["460b0"], Mode = BindingMode.OneWay, Converter = new LinkOpenOrCloseConverter() });
+                MultiBinding LinkErrorMultiBind = new MultiBinding();
+                LinkErrorMultiBind.Converter = new LinkErrorCoverter();
+                LinkErrorMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drLinkError"], Mode = BindingMode.OneWay });
+                LinkErrorMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["460b0"], Mode = BindingMode.OneWay });
+                LinkErrorMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["460b1"], Mode = BindingMode.OneWay });
+                LinkErrorMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["460b2"], Mode = BindingMode.OneWay });
+                LinkErrorMultiBind.NotifyOnSourceUpdated = true;
+                this.LinkError.SetBinding(TextBlock.TextProperty, LinkErrorMultiBind);
                 #region 排杆
                 // 二层台排杆
                 MultiBinding sbDrillUpMultiBind = new MultiBinding();
@@ -187,6 +197,7 @@ namespace Main.Integration
                     //    this.bdMid.Child = IngCat.Instance;
                     //}
                     GetNowDevice();
+                    DeviceImgTwinkle();
                 }));
             }
             catch (Exception ex)
@@ -322,6 +333,7 @@ namespace Main.Integration
                         this.tbNextDevice.Text = "无";
                     if (GlobalData.Instance.da["workModel"].Value.Byte == 1 && GlobalData.Instance.da["drworkModel"].Value.Byte == 1)// 送杆
                     {
+                        this.tbNowOpr.Text = "送杆";
                         this.spDrillDown.Visibility = Visibility.Visible;
                         this.spDrillUp.Visibility = Visibility.Collapsed;
                         if (NowDeviceNode.Data.NowType == SystemType.SecondFloor)
@@ -355,6 +367,7 @@ namespace Main.Integration
                     }
                     else if (GlobalData.Instance.da["workModel"].Value.Byte == 2 && GlobalData.Instance.da["drworkModel"].Value.Byte == 2)// 排杆
                     {
+                        this.tbNowOpr.Text = "排杆";
                         this.spDrillDown.Visibility = Visibility.Collapsed;
                         this.spDrillUp.Visibility = Visibility.Visible;
                         if (NowDeviceNode.Data.NowType == SystemType.SecondFloor)
@@ -386,11 +399,74 @@ namespace Main.Integration
                             this.btnCatConfirm.Visibility = Visibility.Visible;
                         }
                     }
+                    ChangeUseDeviceImg(NowDeviceNode.Data.NowType);
                 }
             }
             catch (Exception ex)
             {
                 Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+            }
+        }
+        /// <summary>
+        /// 根据设备类型改变使用的设备图片-暂时弃用
+        /// </summary>
+        private void ChangeUseDeviceImg(SystemType systemType)
+        {
+            //if (systemType == SystemType.SecondFloor)
+            //{
+            //    this.imgSF.Source = new BitmapImage(new Uri("../Images/sfUse.png", UriKind.Relative));
+            //    this.imgDR.Source = new BitmapImage(new Uri("../Images/dr.png", UriKind.Relative));
+            //    this.imgSIR.Source = new BitmapImage(new Uri("../Images/sir.png", UriKind.Relative));
+            //    this.imgCat.Source = new BitmapImage(new Uri("../Images/cat.png", UriKind.Relative));
+            //}
+            //else if (systemType == SystemType.DrillFloor)
+            //{
+            //    this.imgSF.Source = new BitmapImage(new Uri("../Images/sf.png", UriKind.Relative));
+            //    this.imgDR.Source = new BitmapImage(new Uri("../Images/drUse.png", UriKind.Relative));
+            //    this.imgSIR.Source = new BitmapImage(new Uri("../Images/sir.png", UriKind.Relative));
+            //    this.imgCat.Source = new BitmapImage(new Uri("../Images/cat.png", UriKind.Relative));
+            //}
+            //else if (systemType == SystemType.SIR)
+            //{
+            //    this.imgSF.Source = new BitmapImage(new Uri("../Images/sf.png", UriKind.Relative));
+            //    this.imgDR.Source = new BitmapImage(new Uri("../Images/dr.png", UriKind.Relative));
+            //    this.imgSIR.Source = new BitmapImage(new Uri("../Images/sirUse.png", UriKind.Relative));
+            //    this.imgCat.Source = new BitmapImage(new Uri("../Images/cat.png", UriKind.Relative));
+            //}
+            //else if (systemType == SystemType.CatRoad)
+            //{
+            //    this.imgSF.Source = new BitmapImage(new Uri("../Images/sf.png", UriKind.Relative));
+            //    this.imgDR.Source = new BitmapImage(new Uri("../Images/dr.png", UriKind.Relative));
+            //    this.imgSIR.Source = new BitmapImage(new Uri("../Images/sir.png", UriKind.Relative));
+            //    this.imgCat.Source = new BitmapImage(new Uri("../Images/catUse.png", UriKind.Relative));
+            //}
+        }
+        /// <summary>
+        /// 使用设备闪烁
+        /// </summary>
+        private void DeviceImgTwinkle()
+        {
+            Twinkle++;
+            if (Twinkle > 1000) Twinkle = 0;
+            if (NowDeviceNode.Data.NowType == SystemType.SecondFloor)
+            {
+                if (Twinkle % 2 == 0) this.smSF.LampType = 0;
+                else this.smSF.LampType = 1;
+            }
+            else if (NowDeviceNode.Data.NowType == SystemType.DrillFloor)
+            {
+                if (Twinkle % 2 == 0) this.smDR.LampType = 0;
+                else this.smDR.LampType = 1;
+            }
+            else if (NowDeviceNode.Data.NowType == SystemType.SIR)
+            {
+                if (Twinkle % 2 == 0) this.smSIR.LampType = 0;
+                else this.smSIR.LampType = 1;
+            }
+            else if (NowDeviceNode.Data.NowType == SystemType.CatRoad)
+            {
+                if (Twinkle % 2 == 0) this.smCat.LampType = 0;
+                else this.smCat.LampType = 1;
             }
         }
 

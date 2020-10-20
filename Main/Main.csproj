@@ -348,6 +348,9 @@
     <Compile Include="SIR\BS\SIRBSMain.xaml.cs">
       <DependentUpon>SIRBSMain.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SIR\SanyRail\SIRRailWayIO.xaml.cs">
+      <DependentUpon>SIRRailWayIO.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SIR\SanyRail\SIRRailWayParamSet.xaml.cs">
       <DependentUpon>SIRRailWayParamSet.xaml</DependentUpon>
     </Compile>
@@ -655,6 +658,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SIR\SanyRail\SIRRailWayIO.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SIR\SanyRail\SIRRailWayParamSet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -936,6 +943,21 @@
     <Resource Include="Images\UnIO.png" />
     <Resource Include="Images\UnSecure.png" />
     <Resource Include="Images\Unsetting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\derrick.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\cat.png" />
+    <Resource Include="Images\dr.png" />
+    <Resource Include="Images\sf.png" />
+    <Resource Include="Images\sir.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\catUse.png" />
+    <Resource Include="Images\drUse.png" />
+    <Resource Include="Images\sfUse.png" />
+    <Resource Include="Images\sirUse.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
