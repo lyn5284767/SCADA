@@ -56,14 +56,45 @@ namespace Main.SIR.SanyRail
         {
             try
             {
+                #region 旋转开关
                 this.oprModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_OprModel"], Mode = BindingMode.OneWay, Converter = new SIRRailWayOperationModelConverter() });
                 this.oprModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_OprModel"], Mode = BindingMode.OneWay, Converter = new SIRRailWayIsCheckConverter() });
                 this.workModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_WorkModel"], Mode = BindingMode.OneWay, Converter = new SIRRailWayWorkModelConverter() });
                 this.workModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_WorkModel"], Mode = BindingMode.OneWay, Converter = new SIRRailWayIsCheckConverter() });
                 this.controlModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_ControlModel"], Mode = BindingMode.OneWay, Converter = new SIRRailWayControlModelConverter() });
                 this.controlModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_ControlModel"], Mode = BindingMode.OneWay, Converter = new SIRRailWayIsCheckConverter() });
+                // 高低档切换
+                MultiBinding highOrLowModelMultiBind = new MultiBinding();
+                highOrLowModelMultiBind.Converter = new SIRRailWayHighOrLowCoverter();
+                highOrLowModelMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["811b0"], Mode = BindingMode.OneWay });
+                highOrLowModelMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["811b1"], Mode = BindingMode.OneWay });
+                highOrLowModelMultiBind.NotifyOnSourceUpdated = true;
+                this.highOrLowModel.SetBinding(BasedSwitchButton.ContentDownProperty, highOrLowModelMultiBind);
+                MultiBinding highOrLowModelCheckMultiBind = new MultiBinding();
+                highOrLowModelCheckMultiBind.Converter = new SIRRailWayHighOrLowCheckCoverter();
+                highOrLowModelCheckMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["811b0"], Mode = BindingMode.OneWay });
+                highOrLowModelCheckMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["811b1"], Mode = BindingMode.OneWay });
+                highOrLowModelCheckMultiBind.NotifyOnSourceUpdated = true;
+                this.highOrLowModel.SetBinding(BasedSwitchButton.IsCheckedProperty, highOrLowModelCheckMultiBind);
+                #endregion
 
+                #region 类型选择
                 this.tbDrillRote.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_Direction"], Mode = BindingMode.OneWay, Converter = new SIRRailWayDirectionConverter() });
+                this.tbLocation.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_Location"], Mode = BindingMode.OneWay, Converter = new SIRRailWayLocationConverter() });
+                this.tbPreventBox.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_Spray"], Mode = BindingMode.OneWay, Converter = new SIRRailWaySprayConverter() });
+
+                #endregion
+
+                #region 主参数
+                this.tbSysPress.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_OilPress"], Mode = BindingMode.OneWay});
+                this.tbInBtnPress.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_InBtnPress"], Mode = BindingMode.OneWay });
+                this.tbHighPress.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_High"], Mode = BindingMode.OneWay });
+                this.tbLowPress.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_Low"], Mode = BindingMode.OneWay });
+                this.tbTorquePress.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_BackTongsPress"], Mode = BindingMode.OneWay });
+                //this.tbInWorkTime.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_BackTongsPress"], Mode = BindingMode.OneWay });
+
+                #endregion
+
                 // 一键上扣
                 MultiBinding sbInbuttonMultiBind = new MultiBinding();
                 sbInbuttonMultiBind.Converter = new SIRRailWayAutoModeStepCoverter();
@@ -100,10 +131,10 @@ namespace Main.SIR.SanyRail
             {
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
-                    double drillTore = GlobalData.Instance.da["SIRSelfInButtonTorque"].Value.Int32 / 10.0;
-                    double cosingTorque = GlobalData.Instance.da["SIRSelfOutButtonTorque"].Value.Int32 / 10.0;
-                    //this.drillTorqueChart.AddPoints(drillTore);
-                    //this.cosingTorqueChart.AddPoints(cosingTorque);
+                    double drillTore = GlobalData.Instance.da["SIE_RailWay_OilPress"].Value.Int16 / 1.0;
+                    double cosingTorque = GlobalData.Instance.da["SIE_RailWay_BackTongsPress"].Value.Int16 / 1.0;
+                    this.PressChart.AddPoints(drillTore);
+                    this.TorqueChart.AddPoints(cosingTorque);
                 }));
             }
             catch (Exception ex)

@@ -232,7 +232,7 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <cl:BasedSwitchButton Name="controlModel" ContentLeft="近控" ContentDown="控制方式" ContentRight="远控" UserControlClicked="btn_PipeTypeModel" Grid.Column="0" />
-                            <cl:BasedSwitchButton Name="locationModel" ContentLeft="高挡" ContentDown="挡位选择" ContentRight="低档" UserControlClicked="btn_locationModel" Grid.Column="1" />
+                            <cl:BasedSwitchButton Name="highOrLowModel" ContentLeft="高挡" ContentDown="挡位选择" ContentRight="低档" UserControlClicked="btn_locationModel" Grid.Column="1" />
                         </Grid>
                         <Grid Grid.Row="2">
                             <StackPanel>
@@ -259,7 +259,7 @@
                                             <MenuItem Header="10-3/4套管" Click="btn_SelectDrillPipe" TabIndex="110"/>
                                         </MenuItem>
                                     </Menu>
-                                    <TextBlock Name="tbDrillType" Text="??" FontSize="18" Width="80"></TextBlock>
+                                    <TextBlock Name="tbDrillType" VerticalAlignment="Center" Text="??" FontSize="18" Width="80"></TextBlock>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,2,0,0">
                                     <Menu Background="Transparent" Height="35" Width="140"  FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Foreground="#008AFF">
@@ -274,7 +274,7 @@
                                             <MenuItem Header="右旋" Click="btn_SelectDrillPipe" TabIndex="65"/>
                                         </MenuItem>
                                     </Menu>
-                                    <TextBlock Name="tbDrillRote" Text="??" FontSize="18" Width="80"></TextBlock>
+                                    <TextBlock Name="tbDrillRote" VerticalAlignment="Center" Text="??" FontSize="18" Width="80"></TextBlock>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,2,0,0">
                                     <Menu Background="Transparent" Height="35" Width="140"  FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Foreground="#008AFF">
@@ -290,7 +290,7 @@
                                             <MenuItem Header="鼠洞" Click="btn_SelectDrillPipe" TabIndex="65"/>
                                         </MenuItem>
                                     </Menu>
-                                    <TextBlock Name="tbLocation" Text="??" FontSize="18" Width="80"></TextBlock>
+                                    <TextBlock Name="tbLocation" VerticalAlignment="Center" Text="??" FontSize="18" Width="80"></TextBlock>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,2,0,0">
                                     <Menu Background="Transparent" Height="35" Width="140"  FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Foreground="#008AFF">
@@ -305,7 +305,7 @@
                                             <MenuItem Header="停用" Click="btn_SelectDrillPipe" TabIndex="65"/>
                                         </MenuItem>
                                     </Menu>
-                                    <TextBlock Name="tbPreventBox" Text="??" FontSize="18" Width="80"></TextBlock>
+                                    <TextBlock Name="tbPreventBox" VerticalAlignment="Center" Text="??" FontSize="18" Width="80"></TextBlock>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,2,0,0">
                                     <Menu Background="Transparent" Height="35" Width="140"  FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Foreground="#008AFF">

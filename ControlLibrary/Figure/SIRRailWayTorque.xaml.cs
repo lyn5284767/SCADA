@@ -19,9 +19,16 @@ namespace ControlLibrary.Figure
     /// </summary>
     public partial class SIRRailWayTorque : UserControl
     {
+        RealtimeViewModel viewModel;
         public SIRRailWayTorque()
         {
             InitializeComponent();
+            viewModel = (RealtimeViewModel)this.DataContext;
+        }
+
+        public void AddPoints(double v1)
+        {
+            viewModel.AddPoints(v1);
         }
     }
 }

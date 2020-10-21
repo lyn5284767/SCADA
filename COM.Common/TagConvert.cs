@@ -4788,5 +4788,121 @@ namespace COM.Common
             throw new NotImplementedException();
         }
     }
+
+    /// <summary>
+    /// 轨道铁钻工-工位选择(1.待机位;2.井口位;3.鼠洞位)
+    /// </summary>
+    public class SIRRailWayLocationConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return "未知";
+            }
+
+            byte bType = (byte)value;
+            switch (bType)
+            {
+                case 1:
+                    return "待机位";
+                case 2:
+                    return "井口位";
+                case 3:
+                    return "鼠洞位";
+            }
+
+            return "未知";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 轨道铁钻工-喷涂标志(0.启用;1.停用)
+    /// </summary>
+    public class SIRRailWaySprayConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return "未知";
+            }
+
+            byte bType = (byte)value;
+            switch (bType)
+            {
+                case 0:
+                    return "启用";
+                case 1:
+                    return "停用";
+            }
+
+            return "未知";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 轨道铁钻工-高低档切换
+    /// </summary>
+    public class SIRRailWayHighOrLowCoverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null)
+                || (values[1] == DependencyProperty.UnsetValue) || (values[1] == null))
+            {
+                return "挡位选择";
+            }
+            bool high = (bool)values[0];
+            bool low = (bool)values[1];
+            if (high) return "高档";
+            if (low) return "低档";
+            if (!high && !low) return "参数错误";
+
+            return "挡位选择"; 
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 轨道铁钻工-高低档切换
+    /// </summary>
+    public class SIRRailWayHighOrLowCheckCoverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null)
+                || (values[1] == DependencyProperty.UnsetValue) || (values[1] == null))
+            {
+                return false;
+            }
+            bool high = (bool)values[0];
+            bool low = (bool)values[1];
+            if (high) return true;
+            if (low) return false;
+            if (!high && !low) return false;
+
+            return false;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     #endregion
 }
