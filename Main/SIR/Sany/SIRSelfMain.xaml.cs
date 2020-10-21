@@ -775,10 +775,13 @@ namespace Main.SIR
                 if (drive.Name == disk[0] + "\\" && drive.TotalFreeSpace / (1024 * 1024) < 1024 * 2)
                 {
                     DirectoryInfo root = new DirectoryInfo(path);
-                    List<FileInfo> fileList = root.GetFiles().OrderBy(s => s.CreationTime).Take(10).ToList();
-                    foreach (FileInfo file in fileList)
+                    if (root.GetFiles().Count() > 10)
                     {
-                        file.Delete();
+                        List<FileInfo> fileList = root.GetFiles().OrderBy(s => s.CreationTime).Take(10).ToList();
+                        foreach (FileInfo file in fileList)
+                        {
+                            file.Delete();
+                        }
                     }
                 }
             }

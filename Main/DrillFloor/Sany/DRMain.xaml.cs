@@ -965,11 +965,17 @@ namespace Main.DrillFloor
             // 硬盘空间小于1G，开始清理录像
             foreach (System.IO.DriveInfo drive in drives)
             {
-                if (drive.Name == disk[0] + "\\" && drive.TotalFreeSpace / (1024 * 1024) < 1024)
+                if (drive.Name == disk[0] + "\\" && drive.TotalFreeSpace / (1024 * 1024) < 1024 * 2)
                 {
                     DirectoryInfo root = new DirectoryInfo(path);
-                    var file = root.GetFiles().OrderBy(s => s.CreationTime).FirstOrDefault();
-                    file.Delete();
+                    if (root.GetFiles().Count() > 10)
+                    {
+                        List<FileInfo> fileList = root.GetFiles().OrderBy(s => s.CreationTime).Take(10).ToList();
+                        foreach (FileInfo file in fileList)
+                        {
+                            file.Delete();
+                        }
+                    }
                 }
             }
         }
