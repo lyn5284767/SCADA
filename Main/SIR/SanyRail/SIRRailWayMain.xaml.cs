@@ -1,7 +1,11 @@
-﻿using System;
+﻿using COM.Common;
+using ControlLibrary;
+using HandyControl.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -39,19 +43,133 @@ namespace Main.SIR.SanyRail
                 return _instance;
             }
         }
+        System.Threading.Timer ReportTimer;
+        System.Threading.Timer timerWarning;
         public SIRRailWayMain()
         {
             InitializeComponent();
+            VariableBinding();
+            ReportTimer = new System.Threading.Timer(new TimerCallback(ReportTimer_Elapse), null, 500, 2000);
+            timerWarning = new System.Threading.Timer(new TimerCallback(TimerWarning_Elapsed), this, 2000, 50);//改成50ms 的时钟
+        }
+        private void VariableBinding()
+        {
+            try
+            {
+                this.oprModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_OprModel"], Mode = BindingMode.OneWay, Converter = new SIRRailWayOperationModelConverter() });
+                this.oprModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_OprModel"], Mode = BindingMode.OneWay, Converter = new SIRRailWayIsCheckConverter() });
+                this.workModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_WorkModel"], Mode = BindingMode.OneWay, Converter = new SIRRailWayWorkModelConverter() });
+                this.workModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_WorkModel"], Mode = BindingMode.OneWay, Converter = new SIRRailWayIsCheckConverter() });
+                this.controlModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_ControlModel"], Mode = BindingMode.OneWay, Converter = new SIRRailWayControlModelConverter() });
+                this.controlModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_ControlModel"], Mode = BindingMode.OneWay, Converter = new SIRRailWayIsCheckConverter() });
+
+                this.tbDrillRote.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_Direction"], Mode = BindingMode.OneWay, Converter = new SIRRailWayDirectionConverter() });
+                // 一键上扣
+                MultiBinding sbInbuttonMultiBind = new MultiBinding();
+                sbInbuttonMultiBind.Converter = new SIRRailWayAutoModeStepCoverter();
+                sbInbuttonMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_OprModel"], Mode = BindingMode.OneWay });
+                sbInbuttonMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_WorkModel"], Mode = BindingMode.OneWay });
+                sbInbuttonMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_Step"], Mode = BindingMode.OneWay });
+                sbInbuttonMultiBind.ConverterParameter = "inButton";
+                sbInbuttonMultiBind.NotifyOnSourceUpdated = true;
+                this.sbInButton.SetBinding(StepBar.StepIndexProperty, sbInbuttonMultiBind);
+                // 一键卸扣
+                MultiBinding sbOutButtonMultiBind = new MultiBinding();
+                sbOutButtonMultiBind.Converter = new SIRRailWayAutoModeStepCoverter();
+                sbOutButtonMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_OprModel"], Mode = BindingMode.OneWay });
+                sbOutButtonMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_WorkModel"], Mode = BindingMode.OneWay });
+                sbOutButtonMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_Step"], Mode = BindingMode.OneWay });
+                sbOutButtonMultiBind.ConverterParameter = "outButton";
+                sbOutButtonMultiBind.NotifyOnSourceUpdated = true;
+                this.sbOutButton.SetBinding(StepBar.StepIndexProperty, sbOutButtonMultiBind);
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.StackTrace);
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+            }
+        }
+
+        /// <summary>
+        /// 图标定时器
+        /// </summary>
+        /// <param name="value"></param>
+        private void ReportTimer_Elapse(object value)
+        {
+            try
+            {
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    double drillTore = GlobalData.Instance.da["SIRSelfInButtonTorque"].Value.Int32 / 10.0;
+                    double cosingTorque = GlobalData.Instance.da["SIRSelfOutButtonTorque"].Value.Int32 / 10.0;
+                    //this.drillTorqueChart.AddPoints(drillTore);
+                    //this.cosingTorqueChart.AddPoints(cosingTorque);
+                }));
+            }
+            catch (Exception ex)
+            {
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+            }
+        }
+
+        private int iTimeCnt = 0;//用来为时钟计数的变量
+        private void TimerWarning_Elapsed(object obj)
+        {
+            try
+            {
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    iTimeCnt++;
+                    if (iTimeCnt > 1000) iTimeCnt = 0;
+                    //this.Warnning();
+                    //this.Communcation();
+                    if (GlobalData.Instance.da["SIR_RailWay_OprModel"].Value.Byte == 1) // 自动模式
+                    {
+                        if (GlobalData.Instance.da["SIR_RailWay_WorkModel"].Value.Byte == 1)//上扣
+                        {
+                            this.spOneKeyInbutton.Visibility = Visibility.Visible;
+                            this.spOneKeyOutButton.Visibility = Visibility.Collapsed;
+                        }
+                        else // 卸扣
+                        {
+                            this.spOneKeyInbutton.Visibility = Visibility.Collapsed;
+                            this.spOneKeyOutButton.Visibility = Visibility.Visible;
+                        }
+                    }
+                }));
+            }
+            catch (Exception ex)
+            {
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+            }
         }
 
         private void btn_oprModel(object sender, EventArgs e)
         {
-
+            byte[] byteToSend;
+            if (this.oprModel.IsChecked) //当前手动状态
+            {
+                byteToSend = new byte[10] { 80, 16, 13, 3, 0, 0, 0, 0, 0, 0 };
+            }
+            else//当前自动状态
+            {
+                byteToSend = new byte[10] { 80, 16, 13, 4, 0, 0, 0, 0, 0, 0 };
+            }
+            GlobalData.Instance.da.SendBytes(byteToSend);
         }
 
         private void btn_workModel(object sender, EventArgs e)
         {
-
+            byte[] byteToSend;
+            if (this.workModel.IsChecked) //当前卸扣
+            {
+                byteToSend = new byte[10] { 23, 16, 13, 5, 0, 0, 0, 0, 0, 0 };
+            }
+            else//当前上扣
+            {
+                byteToSend = new byte[10] { 23, 16, 13, 6, 0, 0, 0, 0, 0, 0 };
+            }
+            GlobalData.Instance.da.SendBytes(byteToSend);
         }
 
         private void btn_PipeTypeModel(object sender, EventArgs e)

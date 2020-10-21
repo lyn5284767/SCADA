@@ -4572,4 +4572,221 @@ namespace COM.Common
         }
     }
     #endregion
+
+    #region 轨道式铁钻工
+    /// <summary>
+    /// 轨道铁钻工-操作模式
+    /// </summary>
+    public class SIRRailWayOperationModelConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return string.Empty;
+            }
+
+            byte bType = (byte)value;
+            switch (bType)
+            {
+                case 0:
+                    return "手动";
+                case 1:
+                    return "自动";
+            }
+
+            return "操作模式";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 轨道铁钻工-操作模式选择
+    /// </summary>
+    public class SIRRailWayIsCheckConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return false;
+            }
+
+            byte bType = (byte)value;
+
+            if (bType == 0)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 轨道铁钻工-操作模式
+    /// </summary>
+    public class SIRRailWayWorkModelConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return string.Empty;
+            }
+
+            byte bType = (byte)value;
+            switch (bType)
+            {
+                case 0:
+                    return "卸扣";
+                case 1:
+                    return "上扣";
+            }
+
+            return "工作模式";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 轨道铁钻工-控制模式
+    /// </summary>
+    public class SIRRailWayControlModelConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return string.Empty;
+            }
+
+            byte bType = (byte)value;
+            switch (bType)
+            {
+                case 0:
+                    return "近控";
+                case 1:
+                    return "远控";
+            }
+
+            return "控制模式";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 铁钻工自动步骤
+    /// </summary>
+    public class SIRRailWayAutoModeStepCoverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            string tb = (string)parameter;
+            bool autoOpr = false;
+            byte workmodel = 0;
+            if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null))
+            {
+                autoOpr = false;
+            }
+            else
+            {
+                if ((byte)values[0] == 1)
+                    autoOpr = true;
+            }
+            if ((values[1] == DependencyProperty.UnsetValue) || (values[1] == null))
+            {
+                workmodel = 0;
+            }
+            else
+            {
+                workmodel = (byte)values[1];
+            }
+            if ((values[2] == DependencyProperty.UnsetValue) || (values[2] == null))
+            {
+                return 0;
+            }
+            int byteAutoModeNowStep = (byte)values[2];
+            if (autoOpr && workmodel == 1)
+            {
+                if (byteAutoModeNowStep == 0) return 0;
+                if ((byteAutoModeNowStep >= 1) && (byteAutoModeNowStep <= 6)) return 1;
+                if ((byteAutoModeNowStep >= 7) && (byteAutoModeNowStep <= 8)) return 2;
+                if ((byteAutoModeNowStep >= 49) && (byteAutoModeNowStep <= 51)) return 3;
+                if ((byteAutoModeNowStep >= 52) && (byteAutoModeNowStep <= 53)) return 4;
+                if ((byteAutoModeNowStep >= 9) && (byteAutoModeNowStep <= 10)) return 5;
+                if ((byteAutoModeNowStep >= 11) && (byteAutoModeNowStep <= 12)) return 6;
+                if ((byteAutoModeNowStep >= 13) && (byteAutoModeNowStep <= 17)) return 7;
+                if (byteAutoModeNowStep == 18) return 8;
+            }
+            else if (autoOpr && workmodel == 0)// 卸扣
+            {
+                if (byteAutoModeNowStep == 0) return 0;
+                if ((byteAutoModeNowStep >= 1) && (byteAutoModeNowStep <= 6)) return 1;
+                if ((byteAutoModeNowStep >= 7) && (byteAutoModeNowStep <= 8)) return 2;
+                if ((byteAutoModeNowStep >= 49) && (byteAutoModeNowStep <= 51)) return 3;
+                if ((byteAutoModeNowStep >= 52) && (byteAutoModeNowStep <= 53)) return 4;
+                if ((byteAutoModeNowStep >= 9) && (byteAutoModeNowStep <= 10)) return 5;
+                if ((byteAutoModeNowStep >= 11) && (byteAutoModeNowStep <= 12)) return 6;
+                if ((byteAutoModeNowStep >= 13) && (byteAutoModeNowStep <= 17)) return 7;
+                if (byteAutoModeNowStep == 18) return 8;
+            }
+
+
+            return 0;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 轨道铁钻工-螺纹方向(0.右旋;1.左旋)
+    /// </summary>
+    public class SIRRailWayDirectionConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return "未知";
+            }
+
+            byte bType = (byte)value;
+            switch (bType)
+            {
+                case 0:
+                    return "右旋";
+                case 1:
+                    return "左旋";
+            }
+
+            return "未知";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    #endregion
 }

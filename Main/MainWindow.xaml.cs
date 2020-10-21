@@ -486,6 +486,11 @@ namespace Main
         {
             try
             {
+                if (GlobalData.Instance.systemRole == SystemRole.OperMan)
+                {
+                    MessageBox.Show("您不具备权限！");
+                    return;
+                }
                 if (GlobalData.Instance.Ing)
                 {
                     this.spMain.Children.Clear();
@@ -579,6 +584,13 @@ namespace Main
                     {
                         this.spMain.Children.Clear();
                         this.spMain.Children.Add(SIRSelfIO.Instance);
+                        this.BottomColorSetting(this.bdSIR, this.tbSIR, this.bdIO);
+                        return;
+                    }
+                    else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANYRailway)
+                    {
+                        this.spMain.Children.Clear();
+                        this.spMain.Children.Add(SIRRailWayIO.Instance);
                         this.BottomColorSetting(this.bdSIR, this.tbSIR, this.bdIO);
                         return;
                     }
@@ -844,6 +856,13 @@ namespace Main
                     {
                         this.spMain.Children.Clear();
                         this.spMain.Children.Add(SIRPosSetting.Instance);
+                        this.BottomColorSetting(this.bdSIR, this.tbSIR, this.bdOther);
+                        return;
+                    }
+                    else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANYRailway)
+                    {
+                        this.spMain.Children.Clear();
+                        this.spMain.Children.Add(SIRRailWayPosSet.Instance);
                         this.BottomColorSetting(this.bdSIR, this.tbSIR, this.bdOther);
                         return;
                     }

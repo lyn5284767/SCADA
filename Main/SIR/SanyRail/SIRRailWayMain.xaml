@@ -36,10 +36,10 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <Border BorderThickness="1" BorderBrush="White">
-                                <figure:SIRRailWayPress/>
+                                <figure:SIRRailWayPress Name="PressChart"/>
                             </Border>
                             <Border BorderThickness="1" BorderBrush="White" Grid.Column="1">
-                                <figure:SIRRailWayTorque/>
+                                <figure:SIRRailWayTorque Name="TorqueChart"/>
                             </Border>
                         </Grid>
                         <!--<Grid Grid.Row="1">
@@ -224,14 +224,14 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <cl:BasedSwitchButton Name="oprModel" ContentLeft="手动" ContentDown="操作模式" ContentRight="自动" UserControlClicked="btn_oprModel" Grid.Column="0" />
-                            <cl:BasedSwitchButton Name="workModel" ContentLeft="上扣" ContentDown="工作模式" ContentRight="卸扣" UserControlClicked="btn_workModel" Grid.Column="1"/>
+                            <cl:BasedSwitchButton Name="workModel" ContentLeft="卸扣" ContentDown="工作模式" ContentRight="上扣" UserControlClicked="btn_workModel" Grid.Column="1"/>
                         </Grid>
                         <Grid Grid.Row="1">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <cl:BasedSwitchButton Name="PipeTypeModel" ContentLeft="远控" ContentDown="控制方式" ContentRight="近控" UserControlClicked="btn_PipeTypeModel" Grid.Column="0" />
+                            <cl:BasedSwitchButton Name="controlModel" ContentLeft="近控" ContentDown="控制方式" ContentRight="远控" UserControlClicked="btn_PipeTypeModel" Grid.Column="0" />
                             <cl:BasedSwitchButton Name="locationModel" ContentLeft="高挡" ContentDown="挡位选择" ContentRight="低档" UserControlClicked="btn_locationModel" Grid.Column="1" />
                         </Grid>
                         <Grid Grid.Row="2">
