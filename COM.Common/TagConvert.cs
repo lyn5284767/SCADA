@@ -4693,7 +4693,7 @@ namespace COM.Common
     }
 
     /// <summary>
-    /// 铁钻工自动步骤
+    /// 轨道铁钻工-自动步骤
     /// </summary>
     public class SIRRailWayAutoModeStepCoverter : IMultiValueConverter
     {
@@ -4727,26 +4727,28 @@ namespace COM.Common
             if (autoOpr && workmodel == 1)
             {
                 if (byteAutoModeNowStep == 0) return 0;
-                if ((byteAutoModeNowStep >= 1) && (byteAutoModeNowStep <= 6)) return 1;
-                if ((byteAutoModeNowStep >= 7) && (byteAutoModeNowStep <= 8)) return 2;
-                if ((byteAutoModeNowStep >= 49) && (byteAutoModeNowStep <= 51)) return 3;
-                if ((byteAutoModeNowStep >= 52) && (byteAutoModeNowStep <= 53)) return 4;
-                if ((byteAutoModeNowStep >= 9) && (byteAutoModeNowStep <= 10)) return 5;
-                if ((byteAutoModeNowStep >= 11) && (byteAutoModeNowStep <= 12)) return 6;
-                if ((byteAutoModeNowStep >= 13) && (byteAutoModeNowStep <= 17)) return 7;
-                if (byteAutoModeNowStep == 18) return 8;
+                else if (byteAutoModeNowStep == 1) return 1;
+                else if (byteAutoModeNowStep == 2)  return 2;
+                else if (byteAutoModeNowStep == 3) return 3;
+                else if (byteAutoModeNowStep ==4) return 4;
+                else if (byteAutoModeNowStep ==5) return 5;
+                else if (byteAutoModeNowStep ==6) return 6;
+                else if (byteAutoModeNowStep ==7) return 7;
+                else if (byteAutoModeNowStep == 8) return 8;
+                else if (byteAutoModeNowStep == 9) return 9;
             }
             else if (autoOpr && workmodel == 0)// 卸扣
             {
                 if (byteAutoModeNowStep == 0) return 0;
-                if ((byteAutoModeNowStep >= 1) && (byteAutoModeNowStep <= 6)) return 1;
-                if ((byteAutoModeNowStep >= 7) && (byteAutoModeNowStep <= 8)) return 2;
-                if ((byteAutoModeNowStep >= 49) && (byteAutoModeNowStep <= 51)) return 3;
-                if ((byteAutoModeNowStep >= 52) && (byteAutoModeNowStep <= 53)) return 4;
-                if ((byteAutoModeNowStep >= 9) && (byteAutoModeNowStep <= 10)) return 5;
-                if ((byteAutoModeNowStep >= 11) && (byteAutoModeNowStep <= 12)) return 6;
-                if ((byteAutoModeNowStep >= 13) && (byteAutoModeNowStep <= 17)) return 7;
-                if (byteAutoModeNowStep == 18) return 8;
+                else if (byteAutoModeNowStep == 1) return 1;
+                else if (byteAutoModeNowStep == 2) return 2;
+                else if (byteAutoModeNowStep == 3) return 3;
+                else if (byteAutoModeNowStep == 4) return 4;
+                else if (byteAutoModeNowStep == 5) return 5;
+                else if (byteAutoModeNowStep == 6) return 6;
+                else if (byteAutoModeNowStep == 7) return 7;
+                else if (byteAutoModeNowStep == 8) return 8;
+                else if (byteAutoModeNowStep == 9) return 9;
             }
 
 
