@@ -1524,10 +1524,21 @@ namespace Main
             }
             else if (GlobalData.Instance.systemType == SystemType.SIR)
             {
-                this.imgDeviceStatus.Source = new BitmapImage(new Uri("Images/UndeviceStatus.png", UriKind.Relative));
-                this.imgDrillSetting.Source = new BitmapImage(new Uri("Images/Unsetting.png", UriKind.Relative));
-                this.imgSecureSetting.Source = new BitmapImage(new Uri("Images/Secure.png", UriKind.Relative));
-                this.imgIO.Source = new BitmapImage(new Uri("Images/IO.png", UriKind.Relative));
+                if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANY)
+                {
+                    this.imgDeviceStatus.Source = new BitmapImage(new Uri("Images/UndeviceStatus.png", UriKind.Relative));
+                    this.imgDrillSetting.Source = new BitmapImage(new Uri("Images/Unsetting.png", UriKind.Relative));
+                    this.imgSecureSetting.Source = new BitmapImage(new Uri("Images/Secure.png", UriKind.Relative));
+                    this.imgIO.Source = new BitmapImage(new Uri("Images/IO.png", UriKind.Relative));
+                }
+                else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANYRailway)
+                {
+                    this.imgDeviceStatus.Source = new BitmapImage(new Uri("Images/UndeviceStatus.png", UriKind.Relative));
+                    this.imgDrillSetting.Source = new BitmapImage(new Uri("Images/Unsetting.png", UriKind.Relative));
+                    this.imgSecureSetting.Source = new BitmapImage(new Uri("Images/UnSecure.png", UriKind.Relative));
+                    this.imgIO.Source = new BitmapImage(new Uri("Images/IO.png", UriKind.Relative));
+
+                }
             }
             else if (GlobalData.Instance.systemType == SystemType.CIMS)
             {
