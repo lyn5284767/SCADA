@@ -231,7 +231,7 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <cl:BasedSwitchButton Name="controlModel" ContentLeft="近控" ContentDown="控制方式" ContentRight="远控" UserControlClicked="btn_PipeTypeModel" Grid.Column="0" />
+                            <cl:BasedSwitchButton Name="controlModel" ContentLeft="近控" ContentDown="控制方式" ContentRight="远控" UserControlClicked="btn_controlModel" Grid.Column="0" />
                             <cl:BasedSwitchButton Name="highOrLowModel" ContentLeft="高挡" ContentDown="挡位选择" ContentRight="低档" UserControlClicked="btn_locationModel" Grid.Column="1" />
                         </Grid>
                         <Grid Grid.Row="2">
@@ -270,8 +270,8 @@
                                                     <Image Margin="0,2,0,0"  Width="15" Source="..\..\Images\downTrangle.png" />
                                                 </StackPanel>
                                             </MenuItem.Header>
-                                            <MenuItem Header="左旋" Click="btn_SelectDrillPipe" TabIndex="60"/>
-                                            <MenuItem Header="右旋" Click="btn_SelectDrillPipe" TabIndex="65"/>
+                                            <MenuItem Header="左旋" Click="btn_TurnLeft" TabIndex="60"/>
+                                            <MenuItem Header="右旋" Click="btn_TurnRight" TabIndex="65"/>
                                         </MenuItem>
                                     </Menu>
                                     <TextBlock Name="tbDrillRote" VerticalAlignment="Center" Text="??" FontSize="18" Width="80"></TextBlock>
