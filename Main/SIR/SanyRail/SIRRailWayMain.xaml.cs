@@ -60,7 +60,7 @@ namespace Main.SIR.SanyRail
                 this.oprModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_OprModel"], Mode = BindingMode.OneWay, Converter = new SIRRailWayOperationModelConverter() });
                 this.oprModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_OprModel"], Mode = BindingMode.OneWay, Converter = new SIRRailWayIsCheckConverter() });
                 this.workModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_WorkModel"], Mode = BindingMode.OneWay, Converter = new SIRRailWayWorkModelConverter() });
-                this.workModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_WorkModel"], Mode = BindingMode.OneWay, Converter = new SIRRailWayIsCheckConverter() });
+                this.workModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_WorkModel"], Mode = BindingMode.OneWay, Converter = new SIRRailWayIsCheckedConverter() });
                 this.controlModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_ControlModel"], Mode = BindingMode.OneWay, Converter = new SIRRailWayControlModelConverter() });
                 this.controlModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_ControlModel"], Mode = BindingMode.OneWay, Converter = new SIRRailWayIsCheckConverter() });
                 // 高低档切换
@@ -174,7 +174,9 @@ namespace Main.SIR.SanyRail
                 Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
             }
         }
-
+        /// <summary>
+        /// 操作模式
+        /// </summary>
         private void btn_oprModel(object sender, EventArgs e)
         {
             byte[] byteToSend;
@@ -188,24 +190,37 @@ namespace Main.SIR.SanyRail
             }
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
-
+        /// <summary>
+        /// 工作模式
+        /// </summary>
         private void btn_workModel(object sender, EventArgs e)
         {
             byte[] byteToSend;
             if (this.workModel.IsChecked) //当前卸扣
             {
-                byteToSend = new byte[10] { 23, 16, 13, 5, 0, 0, 0, 0, 0, 0 };
+                byteToSend = new byte[10] { 80, 16, 13, 5, 0, 0, 0, 0, 0, 0 };
             }
             else//当前上扣
             {
-                byteToSend = new byte[10] { 23, 16, 13, 6, 0, 0, 0, 0, 0, 0 };
+                byteToSend = new byte[10] { 80, 16, 13, 6, 0, 0, 0, 0, 0, 0 };
             }
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
-
-        private void btn_PipeTypeModel(object sender, EventArgs e)
+        /// <summary>
+        /// 控制模式
+        /// </summary>
+        private void btn_controlModel(object sender, EventArgs e)
         {
-
+            byte[] byteToSend;
+            if (this.controlModel.IsChecked) //当前近控
+            {
+                byteToSend = new byte[10] { 80, 16, 13, 7, 0, 0, 0, 0, 0, 0 };
+            }
+            else//当前远控
+            {
+                byteToSend = new byte[10] { 80, 16, 13, 8, 0, 0, 0, 0, 0, 0 };
+            }
+            GlobalData.Instance.da.SendBytes(byteToSend);
         }
 
         private void btn_locationModel(object sender, EventArgs e)
@@ -216,6 +231,24 @@ namespace Main.SIR.SanyRail
         private void btn_SelectDrillPipe(object sender, RoutedEventArgs e)
         {
 
+        }
+        /// <summary>
+        /// 左旋
+        /// </summary>
+        private void btn_TurnLeft(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 80, 16, 13, 1, 0, 0, 0, 0, 0, 0 };
+
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 右旋
+        /// </summary>
+        private void btn_TurnRight(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 80, 16, 13, 2, 0, 0, 0, 0, 0, 0 };
+
+            GlobalData.Instance.da.SendBytes(byteToSend);
         }
     }
 }

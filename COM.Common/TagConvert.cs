@@ -4633,6 +4633,34 @@ namespace COM.Common
     }
 
     /// <summary>
+    /// 轨道铁钻工-操作模式选择
+    /// </summary>
+    public class SIRRailWayIsCheckedConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return false;
+            }
+
+            byte bType = (byte)value;
+
+            if (bType == 2)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
     /// 轨道铁钻工-操作模式
     /// </summary>
     public class SIRRailWayWorkModelConverter : IValueConverter
@@ -4647,7 +4675,7 @@ namespace COM.Common
             byte bType = (byte)value;
             switch (bType)
             {
-                case 0:
+                case 2:
                     return "卸扣";
                 case 1:
                     return "上扣";
@@ -4737,7 +4765,7 @@ namespace COM.Common
                 else if (byteAutoModeNowStep == 8) return 8;
                 else if (byteAutoModeNowStep == 9) return 9;
             }
-            else if (autoOpr && workmodel == 0)// 卸扣
+            else if (autoOpr && workmodel == 2)// 卸扣
             {
                 if (byteAutoModeNowStep == 0) return 0;
                 else if (byteAutoModeNowStep == 1) return 1;
