@@ -3609,6 +3609,48 @@ namespace COM.Common
             throw new NotImplementedException();
         }
     }
+
+    /// <summary>
+    /// 高档-Mpa转换为KN.m
+    /// </summary>
+    public class HighMpaToKNmConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null || value == DependencyProperty.UnsetValue)
+            {
+                return "0";
+            }
+            int val = (byte)value;
+            return (6 * val / 1000000 + 4757 * val / 10000 - 1).ToString();
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 紧扣-Mpa转换为KN.m
+    /// </summary>
+    public class CloseMpaToKNmConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null || value == DependencyProperty.UnsetValue)
+            {
+                return "0";
+            }
+            int val = (byte)value;
+            return (69 * val / 10).ToString();
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     #endregion
 
     #region 液压站
@@ -4784,6 +4826,38 @@ namespace COM.Common
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 轨道铁钻工-管柱类型(1.钻杆;2.钻铤;3.套管)
+    /// </summary>
+    public class SIRRailWayDrillTypeConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return "未知";
+            }
+
+            byte bType = (byte)value;
+            switch (bType)
+            {
+                case 1:
+                    return "钻杆";
+                case 2:
+                    return "钻铤";
+                case 3:
+                    return "套管";
+            }
+
+            return "未知";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

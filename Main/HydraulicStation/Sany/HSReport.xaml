@@ -146,7 +146,7 @@
                                 <ColumnDefinition Width="1*"/>
                                 <ColumnDefinition Width="80"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="液压"  FontSize="18" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Text="液位"  FontSize="18" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             <lvc:CartesianChart Series="{Binding OilLevelSeries}" Grid.Column="1" Grid.ColumnSpan="4">
                                 <lvc:CartesianChart.AxisY>
                                     <lvc:Axis Name="lvcOilLevel" Title="升"></lvc:Axis>

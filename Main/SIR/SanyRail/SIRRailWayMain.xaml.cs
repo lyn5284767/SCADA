@@ -79,9 +79,10 @@ namespace Main.SIR.SanyRail
                 #endregion
 
                 #region 类型选择
+                this.tbDrillType.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_DrillType"], Mode = BindingMode.OneWay, Converter = new SIRRailWayDrillTypeConverter() });
                 this.tbDrillRote.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_Direction"], Mode = BindingMode.OneWay, Converter = new SIRRailWayDirectionConverter() });
                 this.tbLocation.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_Location"], Mode = BindingMode.OneWay, Converter = new SIRRailWayLocationConverter() });
-                this.tbPreventBox.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_Spray"], Mode = BindingMode.OneWay, Converter = new SIRRailWaySprayConverter() });
+                this.tbSpraySet.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_Spray"], Mode = BindingMode.OneWay, Converter = new SIRRailWaySprayConverter() });
 
                 #endregion
 
@@ -92,7 +93,7 @@ namespace Main.SIR.SanyRail
                 this.tbLowPress.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_Low"], Mode = BindingMode.OneWay });
                 this.tbTorquePress.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_BackTongsPress"], Mode = BindingMode.OneWay });
                 //this.tbInWorkTime.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_BackTongsPress"], Mode = BindingMode.OneWay });
-
+                this.tbUpDownMove.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_TongsHeight"], Mode = BindingMode.OneWay });
                 #endregion
 
                 // 一键上扣

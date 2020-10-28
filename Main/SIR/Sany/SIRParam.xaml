@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Main.SIR" xmlns:cl="http://talonzeng.com/ControlLibrary"
+             xmlns:local="clr-namespace:Main.SIR" xmlns:cl="http://talonzeng.com/ControlLibrary" xmlns:inputcontrol="clr-namespace:ControlLibrary.InputControl;assembly=ControlLibrary"
              mc:Ignorable="d" 
-              d:DesignHeight="650" d:DesignWidth="800" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="sfParamOne">
+              d:DesignHeight="650" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="sfParamOne">
     <UserControl.Resources>
         <Style TargetType="Button" x:Key="btnGreen">
             <Setter Property="Background" Value="#fff"/>
@@ -33,153 +33,223 @@
         </Style>
     </UserControl.Resources>
     <Grid>
-        <ScrollViewer  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-            <Grid>
-                <!--<Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="60"/>
-                </Grid.RowDefinitions>-->
-                <Grid Grid.Row="0" Name="gridParameterConfiguration">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
+            <Border Background="White" BorderBrush="White" BorderThickness="1" Margin="2,5,2,5" CornerRadius="5" >
+                <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="40"/>
-                        <ColumnDefinition Width="360"/>
-                        <ColumnDefinition Width="40"/>
-                        <ColumnDefinition Width="360"/>
+                        <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="2">
-                        <StackPanel Orientation="Vertical">
-                            <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                                <TextBlock Text="钻&#x0a;杆&#x0a;类&#x0a;型"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Height="240" />
-                            </Border>
-                            <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                                <TextBlock Text="套&#x0a;管&#x0a;类&#x0a;型&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Height="110"/>
-                            </Border>
-                            <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3" Name="bdAutoParam">
-                                <TextBlock Text="自&#x0a;动&#x0a;对&#x0a;缺&#x0a;参&#x0a;数&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Height="180"/>
-                            </Border>
-
-
-                        </StackPanel>
-                    </Grid>
-                    <Grid Grid.Column="3">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="160*"/>
-                            <RowDefinition Height="47*"/>
-                            <RowDefinition Height="159*"/>
-                            <RowDefinition Height="224*"/>
-                        </Grid.RowDefinitions>
-                        <StackPanel Orientation="Vertical" Grid.RowSpan="4">
-                            <cl:TextBlockWithTextBox Name="twtL9" TagTwo="3" ControlTag="1"  TbkText="上扣圈数设置"/>
-                            <cl:TextBlockWithTextBox Name="twtL10" TagTwo="3" ControlTag="2"  TbkText="卸扣圈数设置"/>
-                            <cl:TextBlockWithTextBox Name="twtL1" TagTwo="1" ControlTag="1"  TbkText="高速上扣设置"/>
-                            <cl:TextBlockWithTextBox Name="twtL2" TagTwo="1" ControlTag="2"  TbkText="上扣安全保护"/>
-                            <cl:TextBlockWithTextBox Name="twtL11" TagTwo="3" ControlTag="3"  TbkText="紧扣动作设置"/>
-                            <cl:TextBlockWithTextBox Name="twtL12" TagTwo="3" ControlTag="4"  TbkText="紧扣安全保护"/>
-                            <cl:TextBlockWithTextBox Name="twtL3" TagTwo="1" ControlTag="3"  TbkText="冲扣动作周期"/>
-                            <cl:TextBlockWithTextBox Name="twtL4" TagTwo="1" ControlTag="4"  TbkText="卸扣安全保护"/>
-                            
-                            <cl:TextBlockWithTextBox Name="twtL5" TagTwo="2" ControlTag="1"  TbkText="上扣动作设置"/>
-                            <cl:TextBlockWithTextBox Name="twtL6" TagTwo="2" ControlTag="2"  TbkText="上扣安全保护"/>
-                            <cl:TextBlockWithTextBox Name="twtL7" TagTwo="2" ControlTag="3"  TbkText="卸扣动作设置"/>
-                            <cl:TextBlockWithTextBox Name="twtL8" TagTwo="2" ControlTag="4"  TbkText="卸扣安全保护"/>
-
-                            <cl:TextBlockWithTextBox Name="twtL13" TagTwo="3" ControlTag="5"  TbkText="上扣对缺启动速度"/>
-                            <cl:TextBlockWithTextBox Name="twtL14" TagTwo="3" ControlTag="6"  TbkText="上扣对缺平稳速度"/>
-                            <cl:TextBlockWithTextBox Name="twtL15" TagTwo="3" ControlTag="7"  TbkText="上扣对缺缓冲速度"/>
-                            <cl:TextBlockWithTextBox Name="twtL16" TagTwo="3" ControlTag="8"  TbkText="卸扣对缺启动速度"/>
-                            <cl:TextBlockWithTextBox Name="twtL17" TagTwo="3" ControlTag="9"  TbkText="卸扣对缺平稳速度"/>
-                            <cl:TextBlockWithTextBox Name="twtL18" TagTwo="3" ControlTag="10"  TbkText="卸扣对缺缓冲速度"/>
-                            <Button Content="确 定 配 置"  Click="Button_Setting"  Style="{StaticResource btnGreen}" FontWeight="Bold" FontFamily="微软雅黑" FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="40" IsDefault="False"/>
-                        </StackPanel>
-                    </Grid>
-
                     <Grid Grid.Column="0" Name="colOne">
                         <StackPanel Orientation="Vertical">
-                            <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="5" Padding="3">
-                                <TextBlock Text="气&#x0a;缸&#x0a;参&#x0a;数" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Height="90"/>
+                            <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="2" Padding="3">
+                                <TextBlock Text="气&#x0a;缸&#x0a;参&#x0a;数" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold"/>
                             </Border>
-                            <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="5" Padding="3">
-                                <TextBlock Text="悬&#x0a;臂&#x0a;参&#x0a;数" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Height="190"/>
-                            </Border>
-                            <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="5" Padding="3">
-                                <TextBlock Text="回&#x0a;转&#x0a;运&#x0a;动&#x0a;参&#x0a;数" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold"  Height="170" />
-                            </Border>   
-                            <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="5" Padding="3" Height="120">
-                                <TextBlock Text="立&#x0a;柱&#x0a;参&#x0a;数&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold"  Height="85" />
-                            </Border>
-                            <!--<Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="5" Padding="3" Height="Auto">
-                                <TextBlock Text="配&#x0a;置&#x0a;信&#x0a;息&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="宋体" FontWeight="Bold"  Height="90" />
-                            </Border>-->
-
                         </StackPanel>
-
-
                     </Grid>
                     <Grid Grid.Column="1" Name="colTwo">
                         <StackPanel Orientation="Vertical">
-                            <cl:TextBlockWithTextBox Name="twtR8" TagTwo="5" ControlTag="1"  TbkText="响应周期"/>
+                            <inputcontrol:TextWithTips Name="twtR8" Head="24,17,5,1" UnitOne="S" HidenTwo="True" UnitThree="S"  TbkText="响应周期" MaxVal="255"/>
+                            <inputcontrol:TextWithTips Name="twtR9" Head="24,17,5,2" UnitOne="Mpa" HidenTwo="True" UnitThree="Mpa"  TbkText="工作缸低压预警" MaxVal="9.9"/>
+                            <inputcontrol:TextWithTips Name="twtR10" Head="24,17,5,3" UnitOne="Mpa" HidenTwo="True" UnitThree="Mpa"  TbkText="制动缸低压预警" MaxVal="9.9"/>
+                            <!--<cl:TextBlockWithTextBox Name="twtR8" TagTwo="5" ControlTag="1"  TbkText="响应周期"/>
                             <cl:TextBlockWithTextBox Name="twtR9" TagTwo="5" ControlTag="2"  TbkText="工作缸低压预警"/>
-                            <cl:TextBlockWithTextBox Name="twtR10" TagTwo="5" ControlTag="3"  TbkText="制动缸低压预警"/>
-
-                            <cl:TextBlockWithTextBox Name="twtR1" TagTwo="4" ControlTag="1"  TbkText="伸出速度" />
+                            <cl:TextBlockWithTextBox Name="twtR10" TagTwo="5" ControlTag="3"  TbkText="制动缸低压预警"/>-->
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </Border>
+            <Border Background="White" BorderBrush="White" BorderThickness="1" Margin="2,5,2,5" CornerRadius="5" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <StackPanel Orientation="Vertical">
+                            <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="2" Padding="3">
+                                <TextBlock Text="悬&#x0a;臂&#x0a;参&#x0a;数" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Height="160"/>
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <StackPanel Orientation="Vertical">
+                            <inputcontrol:TextWithTips Name="twtR1" Head="24,17,4,1" UnitOne="%" HidenTwo="True" UnitThree="%"  TbkText="伸出速度" MaxVal="99"/>
+                            <inputcontrol:TextWithTips Name="twtR2" Head="24,17,4,2" UnitOne="%" HidenTwo="True" UnitThree="%"  TbkText="缩回速度" MaxVal="99"/>
+                            <inputcontrol:TextWithTips Name="twtR3" Head="24,17,4,3" UnitOne="%" HidenTwo="True" UnitThree="%"  TbkText="爬坡速度" MaxVal="255"/>
+                            <inputcontrol:TextWithTips Name="twtR4" Head="24,17,4,4" UnitOne="S" HidenTwo="True" UnitThree="S"  TbkText="爬坡周期" MaxVal="99"/>
+                            <inputcontrol:TextWithTips Name="twtR5" Head="24,17,4,5" UnitOne="%" HidenTwo="True" UnitThree="%"  TbkText="平稳伸出速度" MaxVal="99"/>
+                            <inputcontrol:TextWithTips Name="twtR6" Head="24,17,4,6" UnitOne="%" HidenTwo="True" UnitThree="%"  TbkText="平稳缩回速度" MaxVal="99"/>
+                            <inputcontrol:TextWithTips Name="twtR7" Head="24,17,4,7" UnitOne="%" HidenTwo="True" UnitThree="%"  TbkText="缓冲速度" MaxVal="99"/>
+                            <!--<cl:TextBlockWithTextBox Name="twtR1" TagTwo="4" ControlTag="1"  TbkText="伸出速度" />
                             <cl:TextBlockWithTextBox Name="twtR2" TagTwo="4" ControlTag="2"  TbkText="缩回速度"/>
                             <cl:TextBlockWithTextBox Name="twtR3" TagTwo="4" ControlTag="3"  TbkText="爬坡速度" />
                             <cl:TextBlockWithTextBox Name="twtR4" TagTwo="4" ControlTag="4"  TbkText="爬坡周期" />
                             <cl:TextBlockWithTextBox Name="twtR5" TagTwo="4" ControlTag="5"  TbkText="平稳伸出速度" />
                             <cl:TextBlockWithTextBox Name="twtR6" TagTwo="4" ControlTag="6"  TbkText="平稳缩回速度" />
-                            <cl:TextBlockWithTextBox Name="twtR7" TagTwo="4" ControlTag="7"  TbkText="缓冲速度" />
-
-                            <cl:TextBlockWithTextBox Name="twtR11" TagTwo="6" ControlTag="1"  TbkText="工位左向回转速度"/>
+                            <cl:TextBlockWithTextBox Name="twtR7" TagTwo="4" ControlTag="7"  TbkText="缓冲速度" />-->
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </Border>
+            <Border Background="White" BorderBrush="White" BorderThickness="1" Margin="2,5,2,5" CornerRadius="5" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <StackPanel Orientation="Vertical">
+                            <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="2" Padding="3">
+                                <TextBlock Text="回&#x0a;转&#x0a;运&#x0a;动&#x0a;参&#x0a;数" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold"/>
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <StackPanel Orientation="Vertical">
+                            <inputcontrol:TextWithTips Name="twtR11" Head="24,17,6,1" UnitOne="%" HidenTwo="True" UnitThree="%"  TbkText="工位左向回转速度" MaxVal="99"/>
+                            <inputcontrol:TextWithTips Name="twtR12" Head="24,17,6,2" UnitOne="%" HidenTwo="True" UnitThree="%"  TbkText="工位右向回转速度" MaxVal="99"/>
+                            <inputcontrol:TextWithTips Name="twtR13" Head="24,17,6,3" UnitOne="%" HidenTwo="True" UnitThree="%"  TbkText="非工位左向回转速度" MaxVal="99"/>
+                            <inputcontrol:TextWithTips Name="twtR14" Head="24,17,6,4" UnitOne="%" HidenTwo="True" UnitThree="%"  TbkText="非工位右向回转速度" MaxVal="99"/>
+                            <inputcontrol:TextWithTips Name="twtR15" Head="24,17,6,5" UnitOne="度" HidenTwo="True" UnitThree="度"  TbkText="左极限回转限位" MaxVal="99"/>
+                            <inputcontrol:TextWithTips Name="twtR16" Head="24,17,6,6" UnitOne="度" HidenTwo="True" UnitThree="度"  TbkText="右极限极回转限位" MaxVal="99"/>
+                            <!--<cl:TextBlockWithTextBox Name="twtR11" TagTwo="6" ControlTag="1"  TbkText="工位左向回转速度"/>
                             <cl:TextBlockWithTextBox Name="twtR12" TagTwo="6" ControlTag="2"  TbkText="工位右向回转速度"/>
                             <cl:TextBlockWithTextBox Name="twtR13" TagTwo="6" ControlTag="3"  TbkText="非工位左向回转速度"/>
                             <cl:TextBlockWithTextBox Name="twtR14" TagTwo="6" ControlTag="4"  TbkText="非工位右向回转速度"/>
                             <cl:TextBlockWithTextBox Name="twtR15" TagTwo="6" ControlTag="5"  TbkText="左极限回转限位"/>
-                            <cl:TextBlockWithTextBox Name="twtR16" TagTwo="6" ControlTag="6" TbkText="右极限极回转限位"/>
-
-                            <cl:TextBlockWithTextBox Name="twtR17" TagTwo="7" ControlTag="1" TbkText="立柱上升速度"/>
-                            <cl:TextBlockWithTextBox Name="twtR18" TagTwo="7" ControlTag="2" TbkText="立柱下降速度" />
-                            <cl:TextBlockWithTextBox Name="twtR19" TagTwo="7" ControlTag="3" TbkText="立柱上限高度" />
-                            <cl:TextBlockWithTextBox Name="twtR20" TagTwo="7" ControlTag="4" TbkText="立柱下限高度" />
-         
-                            <!--<cl:TextBlockWithTextBox Name="twtR17" ControlTag="51"  TbkText="左手柄"/>
-                            <cl:TextBlockWithTextBox Name="twtR18" ControlTag="52"  TbkText="右手柄"/>
-                            <cl:TextBlockWithTextBox Name="twtR19" ControlTag="53"  TbkText="按键面板"/>
-                            <cl:TextBlockWithTextBox Name="twtR20" ControlTag="54"  TbkText="操作面板"/>
-                            <cl:TextBlockWithTextBox Name="twtR21" ControlTag="71"  TbkText="钻台面遥控器"/>-->
-                            <!--6.15新增-->
+                            <cl:TextBlockWithTextBox Name="twtR16" TagTwo="6" ControlTag="6" TbkText="右极限极回转限位"/>-->
                         </StackPanel>
                     </Grid>
-
                 </Grid>
-                <Grid Grid.Row="1">
+            </Border>
+            <Border Background="White" BorderBrush="White" BorderThickness="1" Margin="2" CornerRadius="5" >
+                <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="110"/>
-                        <ColumnDefinition Width="110"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="110"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <!--<Grid Grid.Column="0">
-                        <StackPanel Orientation="Horizontal" Visibility="Collapsed">
-                            <Button Content="返 回 主 页" Click="Button_tabItemParameterConfiguration_ReturnHomePage_Click" Style="{StaticResource btnGreen}" FontWeight="Bold" FontFamily="宋体" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" IsDefault="False"/>
+                    <Grid Grid.Column="0">
+                        <StackPanel Orientation="Vertical">
+                            <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="2" Padding="3">
+                                <TextBlock Text="立&#x0a;柱&#x0a;参&#x0a;数&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold"  Height="90" />
+                            </Border>
                         </StackPanel>
                     </Grid>
                     <Grid Grid.Column="1">
-                        <StackPanel Orientation="Horizontal" Visibility="Collapsed">
-                            <Button Content="状 态 刷 新"  Style="{StaticResource btnGreen}" FontWeight="Bold" FontFamily="宋体" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" IsDefault="False"/>
+                        <StackPanel Orientation="Vertical">
+                            <inputcontrol:TextWithTips Name="twtR17" Head="24,17,7,1" UnitOne="%" HidenTwo="True" UnitThree="%"  TbkText="立柱上升速度" MaxVal="99"/>
+                            <inputcontrol:TextWithTips Name="twtR18" Head="24,17,7,2" UnitOne="%" HidenTwo="True" UnitThree="%"  TbkText="立柱下降速度" MaxVal="99"/>
+                            <inputcontrol:TextWithTips Name="twtR19" Head="24,17,7,3" UnitOne="mm" HidenTwo="True" UnitThree="mm"  TbkText="立柱上限高度" MaxVal="999"/>
+                            <inputcontrol:TextWithTips Name="twtR20" Head="24,17,7,4" UnitOne="mm" HidenTwo="True" UnitThree="mm"  TbkText="立柱下限高度" MaxVal="999"/>
+                            <!--<cl:TextBlockWithTextBox Name="twtR17" TagTwo="7" ControlTag="1" TbkText="立柱上升速度"/>
+                            <cl:TextBlockWithTextBox Name="twtR18" TagTwo="7" ControlTag="2" TbkText="立柱下降速度" />
+                            <cl:TextBlockWithTextBox Name="twtR19" TagTwo="7" ControlTag="3" TbkText="立柱上限高度" />
+                            <cl:TextBlockWithTextBox Name="twtR20" TagTwo="7" ControlTag="4" TbkText="立柱下限高度" />-->
                         </StackPanel>
-                    </Grid>-->
-                    <!--<Grid Grid.Column="2">
-                        <StackPanel Orientation="Horizontal">
-                            <Button Content="确 认 配 置" Click="Button_tabItemParameterConfiguration_Confirm" Style="{StaticResource btnGreen}" FontWeight="Bold" FontFamily="宋体" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" IsDefault="False" Visibility="Collapsed"/>
-                        </StackPanel>
-                    </Grid>-->
-                    <!--<Grid Grid.Column="3">
-                        <StackPanel Orientation="Horizontal">
-                            <Button Content="确 定 配 置"  Click="Button_tabItemParameterConfiguration_Confirm"  Style="{StaticResource btnGreen}" FontWeight="Bold" FontFamily="宋体" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" IsDefault="False"/>
-                        </StackPanel>
-                    </Grid>-->
+                    </Grid>
                 </Grid>
-            </Grid>
-        </ScrollViewer>
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <Border Background="White" BorderBrush="White" BorderThickness="1" Margin="2,5,2,5" CornerRadius="5" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <StackPanel Orientation="Vertical">
+                            <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="2" Padding="3">
+                                <TextBlock Text="钻&#x0a;杆&#x0a;类&#x0a;型"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Height="180" />
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <StackPanel Orientation="Vertical">
+                            <inputcontrol:TextWithTips Name="twtL9" Head="24,17,3,1" UnitOne="RP" UnitTwo="/" UnitThree="RP" TbkText="上扣圈数设置" MaxVal="19"/>
+                            <inputcontrol:TextWithTips Name="twtL10" Head="24,17,3,2" UnitOne="RP" UnitTwo="/" UnitThree="RP"  TbkText="卸扣圈数设置" MaxVal="19"/>
+                            <inputcontrol:TextWithTips Name="twtL1" Head="24,17,1,1" UnitOne="Mpa" UnitTwo="KN.m" UnitThree="Mpa"  TbkText="高挡上扣设置" MaxVal="21.5"/>
+                            <inputcontrol:TextWithTips Name="twtL2" Head="24,17,1,2" UnitOne="Mpa" UnitTwo="KN.m" UnitThree="Mpa"  TbkText="上扣安全保护" MaxVal="21.5"/>
+                            <inputcontrol:TextWithTips Name="twtL11" Head="24,17,3,3" UnitOne="Mpa" UnitTwo="KN.m" UnitThree="Mpa"  TbkText="紧扣动作设置" MaxVal="21.5"/>
+                            <inputcontrol:TextWithTips Name="twtL12" Head="24,17,3,4" UnitOne="Mpa" UnitTwo="KN.m" UnitThree="Mpa"  TbkText="紧扣安全保护" MaxVal="21.5"/>
+                            <inputcontrol:TextWithTips Name="twtL3" Head="24,17,1,3" UnitOne="S" UnitTwo="/" UnitThree="S"  TbkText="冲扣动作周期" MaxVal="255"/>
+                            <inputcontrol:TextWithTips Name="twtL4" Head="24,17,1,4" UnitOne="Mpa" UnitTwo="KN.m" UnitThree="Mpa"  TbkText="卸扣安全保护" MaxVal="21.5"/>
+                            <!--<cl:TextBlockWithTextBox Name="twtL9" TagTwo="3" ControlTag="1"  TbkText="上扣圈数设置"/>-->
+                            <!--<cl:TextBlockWithTextBox Name="twtL10" TagTwo="3" ControlTag="2"  TbkText="卸扣圈数设置"/>
+                            <cl:TextBlockWithTextBox Name="twtL1" TagTwo="1" ControlTag="1"  TbkText="高速上扣设置"/>
+                            <cl:TextBlockWithTextBox Name="twtL2" TagTwo="1" ControlTag="2"  TbkText="上扣安全保护"/>
+                            <cl:TextBlockWithTextBox Name="twtL11" TagTwo="3" ControlTag="3"  TbkText="紧扣动作设置"/>
+                            <cl:TextBlockWithTextBox Name="twtL12" TagTwo="3" ControlTag="4"  TbkText="紧扣安全保护"/>
+                            <cl:TextBlockWithTextBox Name="twtL3" TagTwo="1" ControlTag="3"  TbkText="冲扣动作周期"/>
+                            <cl:TextBlockWithTextBox Name="twtL4" TagTwo="1" ControlTag="4"  TbkText="卸扣安全保护"/>-->
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </Border>
+            <Border Background="White" BorderBrush="White" BorderThickness="1" Margin="2,5,2,5" CornerRadius="5" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <StackPanel Orientation="Vertical">
+                            <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="2" Padding="3">
+                                <TextBlock Text="套&#x0a;管&#x0a;类&#x0a;型&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Height="90"/>
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <StackPanel Orientation="Vertical">
+                            <inputcontrol:TextWithTips Name="twtL5" Head="24,17,2,1" UnitOne="Mpa" UnitTwo="KN.m" UnitThree="Mpa"  TbkText="高档上扣设置" MaxVal="21.5"/>
+                            <inputcontrol:TextWithTips Name="twtL6" Head="24,17,2,2" UnitOne="Mpa" UnitTwo="KN.m" UnitThree="Mpa"  TbkText="上扣安全保护" MaxVal="21.5"/>
+                            <inputcontrol:TextWithTips Name="twtL7" Head="24,17,2,3" UnitOne="Mpa" UnitTwo="KN.m" UnitThree="Mpa"  TbkText="卸扣设置" MaxVal="21.5"/>
+                            <inputcontrol:TextWithTips Name="twtL8" Head="24,17,2,4" UnitOne="Mpa" UnitTwo="KN.m" UnitThree="Mpa"  TbkText="卸扣安全保护" MaxVal="21.5"/>
+                            <!--<cl:TextBlockWithTextBox Name="twtL5" TagTwo="2" ControlTag="1"  TbkText="上扣动作设置"/>-->
+                            <!--<cl:TextBlockWithTextBox Name="twtL6" TagTwo="2" ControlTag="2"  TbkText="上扣安全保护"/>-->
+                            <!--<cl:TextBlockWithTextBox Name="twtL7" TagTwo="2" ControlTag="3"  TbkText="卸扣动作设置"/>
+                            <cl:TextBlockWithTextBox Name="twtL8" TagTwo="2" ControlTag="4"  TbkText="卸扣安全保护"/>-->
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </Border>
+            <Border Background="White" BorderBrush="White" BorderThickness="1" Margin="2,5,2,5" CornerRadius="5" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <StackPanel Orientation="Vertical">
+                            <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="2" Padding="3">
+                                <TextBlock Text="自&#x0a;动&#x0a;对&#x0a;缺&#x0a;参&#x0a;数&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Height="140"/>
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <StackPanel Orientation="Vertical">
+                            <inputcontrol:TextWithTips Name="twtL13" Head="24,17,3,5" UnitOne="%" HidenTwo="True" UnitThree="%"  TbkText="上扣对缺启动速度" MaxVal="99"/>
+                            <inputcontrol:TextWithTips Name="twtL14" Head="24,17,3,6" UnitOne="%" HidenTwo="True" UnitThree="%"  TbkText="上扣对缺平稳速度" MaxVal="99"/>
+                            <inputcontrol:TextWithTips Name="twtL15" Head="24,17,3,7" UnitOne="%" HidenTwo="True" UnitThree="%"  TbkText="上扣对缺缓冲速度" MaxVal="99"/>
+                            <inputcontrol:TextWithTips Name="twtL16" Head="24,17,3,8" UnitOne="%" HidenTwo="True" UnitThree="%"  TbkText="卸扣对缺启动速度" MaxVal="99"/>
+                            <inputcontrol:TextWithTips Name="twtL17" Head="24,17,3,9" UnitOne="%" HidenTwo="True" UnitThree="%"  TbkText="卸扣对缺平稳速度" MaxVal="99"/>
+                            <inputcontrol:TextWithTips Name="twtL18" Head="24,17,3,10" UnitOne="%" HidenTwo="True" UnitThree="%"  TbkText="卸扣对缺缓冲速度" MaxVal="99"/>
+                            <!--<cl:TextBlockWithTextBox Name="twtL13" TagTwo="3" ControlTag="5"  TbkText="上扣对缺启动速度"/>
+                            <cl:TextBlockWithTextBox Name="twtL14" TagTwo="3" ControlTag="6"  TbkText="上扣对缺平稳速度"/>
+                            <cl:TextBlockWithTextBox Name="twtL15" TagTwo="3" ControlTag="7"  TbkText="上扣对缺缓冲速度"/>
+                            <cl:TextBlockWithTextBox Name="twtL16" TagTwo="3" ControlTag="8"  TbkText="卸扣对缺启动速度"/>
+                            <cl:TextBlockWithTextBox Name="twtL17" TagTwo="3" ControlTag="9"  TbkText="卸扣对缺平稳速度"/>
+                            <cl:TextBlockWithTextBox Name="twtL18" TagTwo="3" ControlTag="10"  TbkText="卸扣对缺缓冲速度"/>-->
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </Border>
+            <Button Content="确 认 配 置" Click="Button_tabItemParameterConfiguration_Confirm" Style="{StaticResource btnGreen}" FontWeight="Bold" FontFamily="宋体" FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="30" IsDefault="False"/>
+        </StackPanel>
     </Grid>
 </UserControl>

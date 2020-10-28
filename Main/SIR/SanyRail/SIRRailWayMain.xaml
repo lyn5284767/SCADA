@@ -245,18 +245,9 @@
                                                     <Image Margin="0,2,0,0"  Width="15" Source="..\..\Images\downTrangle.png" />
                                                 </StackPanel>
                                             </MenuItem.Header>
-                                            <MenuItem Header="2-7/8钻杆" Click="btn_SelectDrillPipe" TabIndex="60"/>
-                                            <MenuItem Header="4''钻杆" Click="btn_SelectDrillPipe" TabIndex="65"/>
-                                            <MenuItem Header="5''钻杆" Click="btn_SelectDrillPipe" TabIndex="70"/>
-                                            <MenuItem Header="6''钻铤" Click="btn_SelectDrillPipe" TabIndex="70"/>
-                                            <MenuItem Header="7''钻铤" Click="btn_SelectDrillPipe" TabIndex="75"/>
-                                            <MenuItem Header="8''钻铤" Click="btn_SelectDrillPipe" TabIndex="80"/>
-                                            <MenuItem Header="9''钻铤" Click="btn_SelectDrillPipe" TabIndex="90"/>
-                                            <MenuItem Header="4-1/2套管" Click="btn_SelectDrillPipe" TabIndex="100"/>
-                                            <MenuItem Header="5-1/2套管" Click="btn_SelectDrillPipe" TabIndex="110"/>
-                                            <MenuItem Header="7''套管" Click="btn_SelectDrillPipe" TabIndex="110"/>
-                                            <MenuItem Header="9-5/8套管" Click="btn_SelectDrillPipe" TabIndex="110"/>
-                                            <MenuItem Header="10-3/4套管" Click="btn_SelectDrillPipe" TabIndex="110"/>
+                                            <MenuItem Header="钻杆" Click="btn_SelectDrillPipe" TabIndex="60"/>
+                                            <MenuItem Header="钻铤" Click="btn_SelectDrillPipe" TabIndex="65"/>
+                                            <MenuItem Header="套管" Click="btn_SelectDrillPipe" TabIndex="70"/>
                                         </MenuItem>
                                     </Menu>
                                     <TextBlock Name="tbDrillType" VerticalAlignment="Center" Text="??" FontSize="18" Width="80"></TextBlock>
@@ -297,7 +288,7 @@
                                         <MenuItem>
                                             <MenuItem.Header>
                                                 <StackPanel Orientation="Horizontal">
-                                                    <ContentPresenter Content="防喷设置" />
+                                                    <ContentPresenter Content="涂喷设置" />
                                                     <Image Margin="0,2,0,0"  Width="15" Source="..\..\Images\downTrangle.png" />
                                                 </StackPanel>
                                             </MenuItem.Header>
@@ -305,22 +296,7 @@
                                             <MenuItem Header="停用" Click="btn_SelectDrillPipe" TabIndex="65"/>
                                         </MenuItem>
                                     </Menu>
-                                    <TextBlock Name="tbPreventBox" VerticalAlignment="Center" Text="??" FontSize="18" Width="80"></TextBlock>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,2,0,0">
-                                    <Menu Background="Transparent" Height="35" Width="140"  FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Foreground="#008AFF">
-                                        <MenuItem>
-                                            <MenuItem.Header>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <ContentPresenter Content="丝扣油设置" />
-                                                    <Image Margin="0,2,0,0"  Width="15" Source="..\..\Images\downTrangle.png" />
-                                                </StackPanel>
-                                            </MenuItem.Header>
-                                            <MenuItem Header="启用" Click="btn_SelectDrillPipe" TabIndex="60"/>
-                                            <MenuItem Header="停用" Click="btn_SelectDrillPipe" TabIndex="65"/>
-                                        </MenuItem>
-                                    </Menu>
-                                    <TextBlock Name="tbBtnOil" Text="??" FontSize="18" Width="80"></TextBlock>
+                                    <TextBlock Name="tbSpraySet" VerticalAlignment="Center" Text="??" FontSize="18" Width="80"></TextBlock>
                                 </StackPanel>
                             </StackPanel>
                         </Grid>

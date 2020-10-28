@@ -1147,7 +1147,7 @@ namespace Main
             {
                 GlobalData.Instance.Ing = false;
                 // 自研
-                if (GlobalData.Instance.da.GloConfig.DRType == 0)
+                if (GlobalData.Instance.da.GloConfig.DRType == (int)DRType.SANY)
                 {
                     this.spMain.Children.Clear();
                     DRMain.Instance.DRFullScreenEvent -= Instance_DRFullScreenEvent;
@@ -1166,9 +1166,14 @@ namespace Main
                         GlobalData.Instance.da.SendBytes(byteToSend);
                     }
                 }// 杰瑞
+                else if (GlobalData.Instance.da.GloConfig.DRType == (int)DRType.JR)
+                {
+
+                }
                 else
                 {
-                    
+                    MessageBox.Show("未配置钻台面");
+                    return;
                 }
                 SetBorderBackGround();
             }
@@ -1425,18 +1430,23 @@ namespace Main
                     MessageBox.Show("未配置液压站");
                     return;
                 }// 自研
-                if (GlobalData.Instance.da.GloConfig.HydType == 1)
+                if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.SANY)
                 {
                     this.spMain.Children.Clear();
                     this.spMain.Children.Add(HSMain.Instance);
                 }// 宝石
-                else if (GlobalData.Instance.da.GloConfig.HydType == 2)
-                {
-                   
-                }// JJC
-                else if (GlobalData.Instance.da.GloConfig.HydType == 3)
+                else if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.BS)
                 {
 
+                }// JJC
+                else if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.JJC)
+                {
+
+                }
+                else
+                {
+                    MessageBox.Show("未配置液压站");
+                    return;
                 }
 
                 GlobalData.Instance.systemType = SystemType.HydraulicStation;
@@ -1464,18 +1474,18 @@ namespace Main
                     return;
                 }
                 // 自研
-                else if (GlobalData.Instance.da.GloConfig.CatType == 1)
+                else if (GlobalData.Instance.da.GloConfig.CatType == (int)CatType.SANY)
                 {
          
                 }
                 // 宝石
-                else if (GlobalData.Instance.da.GloConfig.CatType == 2)
+                else if (GlobalData.Instance.da.GloConfig.CatType == (int)CatType.BS)
                 {
                     this.spMain.Children.Clear();
                     this.spMain.Children.Add(BSCatMain.Instance);
                 }
                 // 宏达
-                else if (GlobalData.Instance.da.GloConfig.CatType == 3)
+                else if (GlobalData.Instance.da.GloConfig.CatType == (int)CatType.HD)
                 {
                     
                 }

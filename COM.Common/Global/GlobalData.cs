@@ -290,7 +290,9 @@ namespace COM.Common
         /// </summary>
         OperMan = 3,
     }
-
+    /// <summary>
+    /// 铁钻工类型
+    /// </summary>
     public enum SIRType
     {
         /// <summary>
@@ -313,5 +315,49 @@ namespace COM.Common
         /// 三一轨道式
         /// </summary>
         SANYRailway=5
+    }
+
+    public enum DRType
+    {
+        /// <summary>
+        /// 三一
+        /// </summary>
+        SANY=1,
+        /// <summary>
+        /// 杰瑞
+        /// </summary>
+        JR=2
+    }
+
+    public enum HSType
+    {
+        /// <summary>
+        /// 三一
+        /// </summary>
+        SANY=1,
+        /// <summary>
+        /// 宝石
+        /// </summary>
+        BS=2,
+        /// <summary>
+        /// JJC
+        /// </summary>
+        JJC=3
+    }
+
+    public enum CatType
+    {
+        /// <summary>
+        /// 三一
+        /// </summary>
+        SANY=1,
+        /// <summary>
+        /// 宝石
+        /// </summary>
+        BS=2,
+        /// <summary>
+        /// 宏达
+        /// </summary>
+        HD=3
     }
 }

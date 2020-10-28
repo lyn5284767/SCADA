@@ -55,12 +55,12 @@
                             <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5" Padding="3">
                                 <TextBlock Text="位置标定"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" FontFamily="微软雅黑" FontWeight="Bold"/>
                             </Border>
-                            <inputcontrol:TextWithBtnNew TbkText="待机位置" Head="17,17,1"/>
-                            <inputcontrol:TextWithBtnNew TbkText="井口位置" Head="17,17,1"/>
-                            <inputcontrol:TextWithBtnNew TbkText="鼠洞位置" Head="17,17,1"/>
-                            <inputcontrol:TextWithBtnNew TbkText="轨道前极限位置" Head="17,17,1"/>
-                            <inputcontrol:TextWithBtnNew TbkText="轨道后极限位置" Head="17,17,1"/>
-                            <inputcontrol:TextWithBtnNew TbkText="钳体高度工作位置" Head="17,17,1"/>
+                            <inputcontrol:TextWithBtnNew Name="twt1" TbkText="待机位置" Head="17,17,1"/>
+                            <inputcontrol:TextWithBtnNew Name="twt2" TbkText="井口位置" Head="17,17,1"/>
+                            <inputcontrol:TextWithBtnNew Name="twt3" TbkText="鼠洞位置" Head="17,17,1"/>
+                            <inputcontrol:TextWithBtnNew Name="twt4" TbkText="轨道前极限位置" Head="17,17,1"/>
+                            <inputcontrol:TextWithBtnNew Name="twt5" TbkText="轨道后极限位置" Head="17,17,1"/>
+                            <inputcontrol:TextWithBtnNew Name="twt6" TbkText="钳体高度工作位置" Head="17,17,1"/>
                         </StackPanel>
                     </StackPanel>
                 </Border>
