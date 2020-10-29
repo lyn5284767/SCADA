@@ -32,7 +32,7 @@ namespace ControlLibrary.InputControl
         /// 协议
         /// </summary>
         public int TagOne { get; set; }
-        public static readonly DependencyProperty ShowTxtWithBtnTxtProperty = DependencyProperty.Register("ShowTxtWithBtnTxt", typeof(string), typeof(TextBlockWithBtn), new PropertyMetadata("0"));
+        public static readonly DependencyProperty ShowTxtWithBtnTxtProperty = DependencyProperty.Register("ShowTxtWithBtnTxt", typeof(string), typeof(TextWithBtnNew), new PropertyMetadata("0"));
         /// <summary>
         /// 控件显示
         /// </summary>

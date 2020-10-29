@@ -56,6 +56,22 @@ namespace Main.HydraulicStation
         /// </summary>
         public List<string> SystemPressLabels { get; set; }
         /// <summary>
+        /// 主泵1流量
+        /// </summary>
+        public SeriesCollection MainFlowSeries { get; set; }
+        /// <summary>
+        /// 主泵1流量时间
+        /// </summary>
+        public List<string> MainFlowLabels { get; set; }
+        /// <summary>
+        /// 主泵2流量
+        /// </summary>
+        public SeriesCollection MainTwoFlowSeries { get; set; }
+        /// <summary>
+        /// 主泵2流量时间
+        /// </summary>
+        public List<string> MainTwoFlowLabels { get; set; }
+        /// <summary>
         /// 油温
         /// </summary>
         public SeriesCollection OilTemSeries { get; set; }
@@ -85,7 +101,7 @@ namespace Main.HydraulicStation
         {
             IsExist = false;
             this.tbReportTime.Text = "报表生成时间:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm");
-            BtnDay_Click(null, null);
+            //BtnDay_Click(null, null);
         }
 
         private void VariableBinding()
@@ -159,6 +175,8 @@ namespace Main.HydraulicStation
                 DrawSystemPress(DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd HH:mm"));
                 DrawOilTem(DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd HH:mm"));
                 DrawOilLevel(DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd HH:mm"));
+                DrawMainFlow(DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd HH:mm"));
+                DrawMainTwoFlow(DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd HH:mm"));
                 DataContext = null;
                 DataContext = this;
             }
@@ -190,6 +208,55 @@ namespace Main.HydraulicStation
             }
             this.lvcSystemPress.MinValue = vList.Min()-1;
             this.lvcSystemPress.MaxValue = vList.Max();
+        }
+        /// <summary>
+        /// 绘制主泵1流量曲线
+        /// </summary>
+        private void DrawMainFlow(string Date)
+        {
+            LineSeries mainFlowLine = new LineSeries();
+            mainFlowLine.LineSmoothness = 0;
+            mainFlowLine.PointGeometry = null;
+            MainFlowLabels = new List<string>();
+            mainFlowLine.Values = new ChartValues<double>();
+            MainFlowSeries = new SeriesCollection { };
+            MainFlowSeries.Add(mainFlowLine);
+            string sql = string.Format("Select * from DateBaseReport Where Type = '{0}' and CreateTime>'{1}'", (int)SaveType.HS_Self_MainFlow, Date);
+            List<DateBaseReport> mainFlowList = DataHelper.Instance.ExecuteList<DateBaseReport>(sql);
+            List<double> vList = new List<double>();
+            foreach (DateBaseReport dateBaseReport in mainFlowList)
+            {
+                MainFlowLabels.Add(dateBaseReport.CreateTime.ToString());
+                MainFlowSeries[0].Values.Add(double.Parse(dateBaseReport.Value));
+                vList.Add(double.Parse(dateBaseReport.Value));
+            }
+            this.lvcMainFlow.MinValue = vList.Min() - 1;
+            this.lvcMainFlow.MaxValue = vList.Max();
+        }
+
+        /// <summary>
+        /// 绘制主泵2流量曲线
+        /// </summary>
+        private void DrawMainTwoFlow(string Date)
+        {
+            LineSeries mainTwoFlowLine = new LineSeries();
+            mainTwoFlowLine.LineSmoothness = 0;
+            mainTwoFlowLine.PointGeometry = null;
+            MainTwoFlowLabels = new List<string>();
+            mainTwoFlowLine.Values = new ChartValues<double>();
+            MainTwoFlowSeries = new SeriesCollection { };
+            MainTwoFlowSeries.Add(mainTwoFlowLine);
+            string sql = string.Format("Select * from DateBaseReport Where Type = '{0}' and CreateTime>'{1}'", (int)SaveType.HS_Self_MainTwoFlow, Date);
+            List<DateBaseReport> mainFlowList = DataHelper.Instance.ExecuteList<DateBaseReport>(sql);
+            List<double> vList = new List<double>();
+            foreach (DateBaseReport dateBaseReport in mainFlowList)
+            {
+                MainTwoFlowLabels.Add(dateBaseReport.CreateTime.ToString());
+                MainTwoFlowSeries[0].Values.Add(double.Parse(dateBaseReport.Value));
+                vList.Add(double.Parse(dateBaseReport.Value));
+            }
+            this.lvcMainTwoFlow.MinValue = vList.Min() - 1;
+            this.lvcMainTwoFlow.MaxValue = vList.Max();
         }
         /// <summary>
         /// 绘制油温曲线
@@ -252,6 +319,8 @@ namespace Main.HydraulicStation
             DrawSystemPress(DateTime.Now.AddDays(-30).ToString("yyyy-MM-dd HH:mm"));
             DrawOilTem(DateTime.Now.AddDays(-30).ToString("yyyy-MM-dd HH:mm"));
             DrawOilLevel(DateTime.Now.AddDays(-30).ToString("yyyy-MM-dd HH:mm"));
+            DrawMainFlow(DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd HH:mm"));
+            DrawMainTwoFlow(DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd HH:mm"));
             DataContext = null;
             DataContext = this;
         }

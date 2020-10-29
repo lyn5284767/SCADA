@@ -79,20 +79,21 @@ namespace Main.SIR.SanyRail
                 #endregion
 
                 #region 类型选择
+                this.tbDrillType.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_DrillType"], Mode = BindingMode.OneWay, Converter = new SIRRailWayDrillTypeConverter() });
                 this.tbDrillRote.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_Direction"], Mode = BindingMode.OneWay, Converter = new SIRRailWayDirectionConverter() });
                 this.tbLocation.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_Location"], Mode = BindingMode.OneWay, Converter = new SIRRailWayLocationConverter() });
-                this.tbPreventBox.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_Spray"], Mode = BindingMode.OneWay, Converter = new SIRRailWaySprayConverter() });
+                this.tbSpraySet.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_Spray"], Mode = BindingMode.OneWay, Converter = new SIRRailWaySprayConverter() });
 
                 #endregion
 
                 #region 主参数
-                this.tbSysPress.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_OilPress"], Mode = BindingMode.OneWay});
+                this.tbSysPress.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_OilPress"], Mode = BindingMode.OneWay });
                 this.tbInBtnPress.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_InBtnPress"], Mode = BindingMode.OneWay });
                 this.tbHighPress.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_High"], Mode = BindingMode.OneWay });
                 this.tbLowPress.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_Low"], Mode = BindingMode.OneWay });
                 this.tbTorquePress.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_BackTongsPress"], Mode = BindingMode.OneWay });
                 //this.tbInWorkTime.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_BackTongsPress"], Mode = BindingMode.OneWay });
-
+                this.tbUpDownMove.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_TongsHeight"], Mode = BindingMode.OneWay });
                 #endregion
 
                 // 一键上扣
@@ -222,15 +223,30 @@ namespace Main.SIR.SanyRail
             }
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
-
-        private void btn_locationModel(object sender, EventArgs e)
+        /// <summary>
+        /// 高低档切换
+        /// </summary>
+        private void btn_highOrLowModel(object sender, EventArgs e)
         {
-
+            //byte[] byteToSend;
+            //if (this.controlModel.IsChecked) //当前高档
+            //{
+            //    byteToSend = new byte[10] { 80, 16, 13, 7, 0, 0, 0, 0, 0, 0 };
+            //}
+            //else//当前低档
+            //{
+            //    byteToSend = new byte[10] { 80, 16, 13, 8, 0, 0, 0, 0, 0, 0 };
+            //}
+            //GlobalData.Instance.da.SendBytes(byteToSend);
         }
-
+        /// <summary>
+        /// 钻杆类型选择
+        /// </summary>
         private void btn_SelectDrillPipe(object sender, RoutedEventArgs e)
         {
-
+            int tag = (sender as MenuItem).TabIndex;
+            byte[] byteToSend = new byte[10] { 80, 16, 13, (byte)tag, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
         /// 左旋
@@ -248,6 +264,24 @@ namespace Main.SIR.SanyRail
         {
             byte[] byteToSend = new byte[10] { 80, 16, 13, 2, 0, 0, 0, 0, 0, 0 };
 
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 工位选择
+        /// </summary>
+        private void btn_SelectLocation(object sender, RoutedEventArgs e)
+        {
+            int tag = (sender as MenuItem).TabIndex;
+            byte[] byteToSend = new byte[10] { 80, 16, 13, (byte)tag, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 喷涂启停
+        /// </summary>
+        private void btn_SelectSpray(object sender, RoutedEventArgs e)
+        {
+            int tag = (sender as MenuItem).TabIndex;
+            byte[] byteToSend = new byte[10] { 80, 16, 13, (byte)tag, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
     }

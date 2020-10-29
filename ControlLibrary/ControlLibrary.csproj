@@ -150,6 +150,9 @@
     <Compile Include="InputControl\TextWithCombox.xaml.cs">
       <DependentUpon>TextWithCombox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="InputControl\TextWithTips.xaml.cs">
+      <DependentUpon>TextWithTips.xaml</DependentUpon>
+    </Compile>
     <Compile Include="InputControl\TwoTextWithInput.xaml.cs">
       <DependentUpon>TwoTextWithInput.xaml</DependentUpon>
     </Compile>
@@ -289,6 +292,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="InputControl\TextWithCombox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InputControl\TextWithTips.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -17,64 +17,107 @@ using System.Windows.Shapes;
 namespace ControlLibrary.InputControl
 {
     /// <summary>
-    /// TwoTextWitnInput.xaml 的交互逻辑
+    /// TextWithTips.xaml 的交互逻辑
     /// </summary>
-    public partial class TwoTextWithInput : UserControl
+    public partial class TextWithTips : UserControl
     {
         /// <summary>
         /// 名称
         /// </summary>
         public string TbkText { get; set; }
         /// <summary>
-        /// 控件标志
+        /// 协议头
         /// </summary>
         public string Head { get; set; }
         /// <summary>
-        /// 控件输入值
+        /// 最大值
         /// </summary>
-        public int ControlText { get; set; }
+        public double MaxVal { get; set; } = 100;
+        /// <summary>
+        /// 最小值
+        /// </summary>
+        public double MinVal { get; set; } = 0;
+        /// <summary>
+        /// 第一列单位
+        /// </summary>
+        public string UnitOne { get; set;}
+        /// <summary>
+        /// 第二列单位
+        /// </summary>
+        public string UnitTwo { get; set; }
+        /// <summary>
+        /// 第三列单位
+        /// </summary>
+        public string UnitThree { get; set; }
 
-        public Visibility TextTwoVisible { get; set; }
+        public bool HidenTwo { get; set; }
 
-
-        public static readonly DependencyProperty TextOneShowTextProperty = DependencyProperty.Register("TextOneShowText", typeof(object), typeof(TwoTextWithInput), new PropertyMetadata(0));
-        public static readonly DependencyProperty TextTwoShowTextProperty = DependencyProperty.Register("TextTwoShowText", typeof(object), typeof(TwoTextWithInput), new PropertyMetadata(0));
+        public static readonly DependencyProperty ShowTextWithTipsProperty = DependencyProperty.Register("ShowTextTips", typeof(object), typeof(TextWithTips), new PropertyMetadata(0));
         /// <summary>
         /// 控件显示
         /// </summary>
-        public object TextOneShowText
+        public object ShowTextTips
         {
-            get { return GetValue(TextOneShowTextProperty); }
-            set { SetValue(TextOneShowTextProperty, value); }
+            get { return GetValue(ShowTextWithTipsProperty); }
+            set { SetValue(ShowTextWithTipsProperty, value); }
         }
+
+        public static readonly DependencyProperty TransTextWithTipsProperty = DependencyProperty.Register("TransTextWithTips", typeof(object), typeof(TextWithTips), new PropertyMetadata(0));
         /// <summary>
         /// 控件显示
         /// </summary>
-        public object TextTwoShowText
+        public object TransTextWithTips
         {
-            get { return GetValue(TextTwoShowTextProperty); }
-            set { SetValue(TextTwoShowTextProperty, value); }
+            get { return GetValue(TransTextWithTipsProperty); }
+            set { SetValue(TransTextWithTipsProperty, value); }
         }
-        public TwoTextWithInput()
+        public TextWithTips()
         {
             InitializeComponent();
-            this.Loaded += TwoTextWitnInput_Loaded;
+            this.Loaded += TextBlockWithTextBox_Loaded;
         }
 
-        private void TwoTextWitnInput_Loaded(object sender, RoutedEventArgs e)
+        private void TextBlockWithTextBox_Loaded(object sender, RoutedEventArgs e)
         {
             this.tbk.Text = TbkText;
-            this.textBoxShowTwo.Visibility = this.TextTwoVisible;
+            this.tbInputUnit.Text = UnitThree;
+            this.tbTwoUnit.Text = UnitTwo;
+            this.tbOneUnit.Text = UnitOne;
+            if (this.HidenTwo)
+            {
+                this.tbTwoUnit.Visibility = Visibility.Collapsed;
+                this.textBoxTrans.Visibility = Visibility.Collapsed;
+            }
         }
 
+        /// <summary>
+        /// 获取焦点，设为绿色
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tb_ParameterConfig_Focus(object sender, RoutedEventArgs e)
+        {
+            this.sh.Opacity = 0.5;
+
+            GlobalData.Instance.GetKeyBoard();
+        }
+        /// <summary>
+        /// 失去焦点，赋值通信协议，设为白色
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void textBox_ParameterConfig_LostFocus(object sender, RoutedEventArgs e)
         {
-            //this.stackPanel.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#E0E1E3"));
             this.sh.Opacity = 0;
             Regex regexParameterConfigurationConfirm = new Regex(@"^[0-9]+$");
             string strText = this.textBoxSet.Text;
             if (strText.Length == 0) strText = "0";
             short i16Text = Convert.ToInt16(strText);
+            if (i16Text > MaxVal || i16Text < MinVal)
+            {
+                MessageBox.Show(string.Format("参数应在{0}到{1}之间,超出范围", MaxVal, MinVal));
+                return;
+            }
             byte[] tempByte = BitConverter.GetBytes(i16Text);
             if ((regexParameterConfigurationConfirm.Match(strText)).Success)
             {

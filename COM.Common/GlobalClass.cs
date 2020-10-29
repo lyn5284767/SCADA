@@ -146,7 +146,9 @@ namespace COM.Common
     {
         HS_Self_SystemPress = 1,
         HS_Self_OilTmp = 2,
-        HS_Self_OilLevel = 3
+        HS_Self_OilLevel = 3,
+        HS_Self_MainFlow = 4,
+        HS_Self_MainTwoFlow = 5
     }
     /// <summary>
     /// 标准集成界面设备加载状态

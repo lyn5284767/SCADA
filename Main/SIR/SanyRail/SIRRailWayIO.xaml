@@ -23,295 +23,307 @@
         </Style>
     </UserControl.Resources>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0">
-            <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                <TextBlock Text="输入信号"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" FontFamily="微软雅黑" FontWeight="Bold"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="350"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <Border Style="{StaticResource BorderRegion}">
+                    <Border Background="{DynamicResource BorderBrush}">
+                        <StackPanel Height="325">
+                            <TextBlock Text="输入信号" FontSize="24"></TextBlock>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Border Grid.Row="0" Grid.Column="0" BorderBrush="Gray" BorderThickness="1">
+                                    <TextBlock Text="挡位开门到位"></TextBlock>
+                                </Border>
+                                <Border Grid.Row="1" Grid.Column="0" BorderBrush="Gray" BorderThickness="1">
+                                    <TextBlock Text="背钳上扣"></TextBlock>
+                                </Border>
+                                <Border Grid.Row="2" Grid.Column="0" BorderBrush="Gray" BorderThickness="1">
+                                    <TextBlock Text="主钳上扣"></TextBlock>
+                                </Border>
+                                <Border Grid.Row="3" Grid.Column="0" BorderBrush="Gray" BorderThickness="1">
+                                    <TextBlock Text="主钳减速"></TextBlock>
+                                </Border>
+                                <Border Grid.Row="4" Grid.Column="0" BorderBrush="Gray" BorderThickness="1">
+                                    <TextBlock Text="背钳对正"></TextBlock>
+                                </Border>
+                                <Border Grid.Row="0" Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
+                                    <cl:SymbolMapping Name="smOpenRight" StrContent="" LampType="3" Width="40" Height="40"/>
+                                </Border>
+                                <Border Grid.Row="1" Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
+                                    <cl:SymbolMapping Name="smBackTongsInBtn" StrContent="" LampType="3" Width="40" Height="40"/>
+                                </Border>
+                                <Border Grid.Row="2" Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
+                                    <cl:SymbolMapping Name="smMainTongsInBtn" StrContent="" LampType="3" Width="40" Height="40"/>
+                                </Border>
+                                <Border Grid.Row="3" Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
+                                    <cl:SymbolMapping Name="smMainTongsSlowDown" StrContent="" LampType="3" Width="40" Height="40"/>
+                                </Border>
+                                <Border Grid.Row="4" Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
+                                    <cl:SymbolMapping Name="smTongsAlignment" StrContent="" LampType="3" Width="40" Height="40"/>
+                                </Border>
+                                <Border Grid.Row="0" Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
+                                    <TextBlock Text="挡位关门到位"></TextBlock>
+                                </Border>
+                                <Border Grid.Row="1" Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
+                                    <TextBlock Text="背钳卸扣"></TextBlock>
+                                </Border>
+                                <Border Grid.Row="2" Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
+                                    <TextBlock Text="主钳卸扣"></TextBlock>
+                                </Border>
+                                <Border Grid.Row="3" Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
+                                    <TextBlock Text="主钳停止"></TextBlock>
+                                </Border>
+                                <Border Grid.Row="4" Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
+                                    <TextBlock Text="紧急停止"></TextBlock>
+                                </Border>
+                                <Border Grid.Row="0" Grid.Column="3" BorderBrush="Gray" BorderThickness="1">
+                                    <cl:SymbolMapping Name="smCloseRight" StrContent="" LampType="3" Width="40" Height="40"/>
+                                </Border>
+                                <Border Grid.Row="1" Grid.Column="3" BorderBrush="Gray" BorderThickness="1">
+                                    <cl:SymbolMapping Name="smBackTongsOutBtn" StrContent="" LampType="3" Width="40" Height="40"/>
+                                </Border>
+                                <Border Grid.Row="2" Grid.Column="3" BorderBrush="Gray" BorderThickness="1">
+                                    <cl:SymbolMapping Name="smMainTongsOutBtn" StrContent="" LampType="3" Width="40" Height="40"/>
+                                </Border>
+                                <Border Grid.Row="3" Grid.Column="3" BorderBrush="Gray" BorderThickness="1">
+                                    <cl:SymbolMapping Name="smMainTongsStop" StrContent="" LampType="3" Width="40" Height="40"/>
+                                </Border>
+                                <Border Grid.Row="4" Grid.Column="3" BorderBrush="Gray" BorderThickness="1">
+                                    <cl:SymbolMapping Name="smStop" StrContent="" LampType="3" Width="40" Height="40"/>
+                                </Border>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                </Border>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <Border Style="{StaticResource BorderRegion}">
+                    <Border Background="{DynamicResource BorderBrush}">
+                        <StackPanel>
+                            <TextBlock Text="输出信号" FontSize="24"></TextBlock>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Border Grid.Row="0" Grid.Column="0" BorderBrush="Gray" BorderThickness="1">
+                                    <TextBlock Text="主钳上扣模式"></TextBlock>
+                                </Border>
+                                <Border Grid.Row="1" Grid.Column="0" BorderBrush="Gray" BorderThickness="1">
+                                    <TextBlock Text="背钳上扣模式"></TextBlock>
+                                </Border>
+                                <Border Grid.Row="2" Grid.Column="0" BorderBrush="Gray" BorderThickness="1">
+                                    <TextBlock Text="钳体上升"></TextBlock>
+                                </Border>
+                                <Border Grid.Row="3" Grid.Column="0" BorderBrush="Gray" BorderThickness="1">
+                                    <TextBlock Text="气缸下降"></TextBlock>
+                                </Border>
+                                <Border Grid.Row="4" Grid.Column="0" BorderBrush="Gray" BorderThickness="1">
+                                    <TextBlock Text="低档"></TextBlock>
+                                </Border>
+                                <Border Grid.Row="5" Grid.Column="0" BorderBrush="Gray" BorderThickness="1">
+                                    <TextBlock Text="喷漆清洗"></TextBlock>
+                                </Border>
+                                <Border Grid.Row="6" Grid.Column="0" BorderBrush="Gray" BorderThickness="1">
+                                    <TextBlock Text="电机启动"></TextBlock>
+                                </Border>
+                                <Border Grid.Row="0" Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
+                                    <cl:SymbolMapping Name="smMainTongsInBtnModel" StrContent="" LampType="3" Width="40" Height="40"/>
+                                </Border>
+                                <Border Grid.Row="1" Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
+                                    <cl:SymbolMapping Name="smBackTongsInBtnModel" StrContent="" LampType="3" Width="40" Height="40"/>
+                                </Border>
+                                <Border Grid.Row="2" Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
+                                    <cl:SymbolMapping Name="smTongsUp" StrContent="" LampType="3" Width="40" Height="40"/>
+                                </Border>
+                                <Border Grid.Row="3" Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
+                                    <cl:SymbolMapping Name="smCylinderDown" StrContent="" LampType="3" Width="40" Height="40"/>
+                                </Border>
+                                <Border Grid.Row="4" Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
+                                    <cl:SymbolMapping Name="smLow" StrContent="" LampType="3" Width="40" Height="40"/>
+                                </Border>
+                                <Border Grid.Row="5" Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
+                                    <cl:SymbolMapping Name="smClear" StrContent="" LampType="3" Width="40" Height="40"/>
+                                </Border>
+                                <Border Grid.Row="6" Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
+                                    <cl:SymbolMapping Name="smMotorStart" StrContent="" LampType="3" Width="40" Height="40"/>
+                                </Border>
+                                <Border Grid.Row="0" Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
+                                    <TextBlock Text="主钳卸扣模式"></TextBlock>
+                                </Border>
+                                <Border Grid.Row="1" Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
+                                    <TextBlock Text="背钳卸扣模式"></TextBlock>
+                                </Border>
+                                <Border Grid.Row="2" Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
+                                    <TextBlock Text="钳体下降"></TextBlock>
+                                </Border>
+                                <Border Grid.Row="3" Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
+                                    <TextBlock Text="高档"></TextBlock>
+                                </Border>
+                                <Border Grid.Row="4" Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
+                                    <TextBlock Text="丝扣油关闭"></TextBlock>
+                                </Border>
+                                <Border Grid.Row="5" Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
+                                    <TextBlock Text="喷油涂抹"></TextBlock>
+                                </Border>
+                                <Border Grid.Row="6" Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
+                                    <TextBlock Text="运行指示"></TextBlock>
+                                </Border>
+                                <Border Grid.Row="0" Grid.Column="3" BorderBrush="Gray" BorderThickness="1">
+                                    <cl:SymbolMapping Name="smMainTongsOutBtnModel" StrContent="" LampType="3" Width="40" Height="40"/>
+                                </Border>
+                                <Border Grid.Row="1" Grid.Column="3" BorderBrush="Gray" BorderThickness="1">
+                                    <cl:SymbolMapping Name="smBackTongsOutBtnModel" StrContent="" LampType="3" Width="40" Height="40"/>
+                                </Border>
+                                <Border Grid.Row="2" Grid.Column="3" BorderBrush="Gray" BorderThickness="1">
+                                    <cl:SymbolMapping Name="smTongsDown" StrContent="" LampType="3" Width="40" Height="40"/>
+                                </Border>
+                                <Border Grid.Row="3" Grid.Column="3" BorderBrush="Gray" BorderThickness="1">
+                                    <cl:SymbolMapping Name="smHigh" StrContent="" LampType="3" Width="40" Height="40"/>
+                                </Border>
+                                <Border Grid.Row="4" Grid.Column="3" BorderBrush="Gray" BorderThickness="1">
+                                    <cl:SymbolMapping Name="smOilClose" StrContent="" LampType="3" Width="40" Height="40"/>
+                                </Border>
+                                <Border Grid.Row="5" Grid.Column="3" BorderBrush="Gray" BorderThickness="1">
+                                    <cl:SymbolMapping Name="smOilApply" StrContent="" LampType="3" Width="40" Height="40"/>
+                                </Border>
+                                <Border Grid.Row="6" Grid.Column="3" BorderBrush="Gray" BorderThickness="1">
+                                    <cl:SymbolMapping Name="smWork" StrContent="" LampType="3" Width="40" Height="40"/>
+                                </Border>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                </Border>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Border Style="{StaticResource BorderRegion}">
+                <Border Background="{DynamicResource BorderBrush}">
+                    <StackPanel>
+                        <TextBlock Text="模拟量" FontSize="24"></TextBlock>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="40"/>
+                            </Grid.RowDefinitions>
+                            <Border Grid.Row="0" Grid.Column="0" BorderBrush="Gray" BorderThickness="1" Height="40">
+                                <TextBlock Text="系统主压力"></TextBlock>
+                            </Border>
+                            <Border Grid.Row="1" Grid.Column="0" BorderBrush="Gray" BorderThickness="1" Height="40">
+                                <TextBlock Text="扭矩压力"></TextBlock>
+                            </Border>
+                            <Border Grid.Row="2" Grid.Column="0" BorderBrush="Gray" BorderThickness="1" Height="40">
+                                <TextBlock Text="高档压力检测"></TextBlock>
+                            </Border>
+                            <Border Grid.Row="0" Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
+                                <TextBlock Name="tbSysPress" Text="0"></TextBlock>
+                            </Border>
+                            <Border Grid.Row="1" Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
+                                <TextBlock Name="tbTorquePress" Text="0"></TextBlock>
+                            </Border>
+                            <Border Grid.Row="2" Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
+                                <TextBlock Name="tbHighSpeedPress" Text="0"></TextBlock>
+                            </Border>
+                            <Border Grid.Row="0" Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
+                                <TextBlock Text="上扣压力"></TextBlock>
+                            </Border>
+                            <Border Grid.Row="1" Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
+                                <TextBlock Text="钳体升降位移"></TextBlock>
+                            </Border>
+                            <Border Grid.Row="2" Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
+                                <TextBlock Text="低档压力检测"></TextBlock>
+                            </Border>
+                            <Border Grid.Row="0" Grid.Column="3" BorderBrush="Gray" BorderThickness="1">
+                                <TextBlock Name="tbInBtnPress" Text="0"></TextBlock>
+                            </Border>
+                            <Border Grid.Row="1" Grid.Column="3" BorderBrush="Gray" BorderThickness="1">
+                                <TextBlock Name="tbUpDownMove" Text="0"></TextBlock>
+                            </Border>
+                            <Border Grid.Row="2" Grid.Column="3" BorderBrush="Gray" BorderThickness="1">
+                                <TextBlock Name="tbLowSpeedPress" Text="0"></TextBlock>
+                            </Border>
+                            <Border Grid.Row="0" Grid.Column="4" BorderBrush="Gray" BorderThickness="1" Height="40">
+                                <TextBlock Text="主钳上扣电流"></TextBlock>
+                            </Border>
+                            <Border Grid.Row="1" Grid.Column="4" BorderBrush="Gray" BorderThickness="1" Height="40">
+                                <TextBlock Text="背钳夹紧电流"></TextBlock>
+                            </Border>
+                            <Border Grid.Row="2" Grid.Column="4" BorderBrush="Gray" BorderThickness="1" Height="40">
+                                <TextBlock Text="钳体前进电流"></TextBlock>
+                            </Border>
+                            <Border Grid.Row="0" Grid.Column="5" BorderBrush="Gray" BorderThickness="1">
+                                <TextBlock Name="tbMainTongsInBtnElec" Text="0"></TextBlock>
+                            </Border>
+                            <Border Grid.Row="1" Grid.Column="5" BorderBrush="Gray" BorderThickness="1">
+                                <TextBlock Name="tbBackTongsCloseElec" Text="0"></TextBlock>
+                            </Border>
+                            <Border Grid.Row="2" Grid.Column="5" BorderBrush="Gray" BorderThickness="1">
+                                <TextBlock Name="tbTongForwardElec" Text="0"></TextBlock>
+                            </Border>
+                            <Border Grid.Row="0" Grid.Column="6" BorderBrush="Gray" BorderThickness="1">
+                                <TextBlock Text="主钳卸扣电流"></TextBlock>
+                            </Border>
+                            <Border Grid.Row="1" Grid.Column="6" BorderBrush="Gray" BorderThickness="1">
+                                <TextBlock Text="背钳松开电流"></TextBlock>
+                            </Border>
+                            <Border Grid.Row="2" Grid.Column="6" BorderBrush="Gray" BorderThickness="1">
+                                <TextBlock Text="钳体后退电流"></TextBlock>
+                            </Border>
+                            <Border Grid.Row="0" Grid.Column="7" BorderBrush="Gray" BorderThickness="1">
+                                <TextBlock Name="tbMainTongsOutBtnElec" Text="0"></TextBlock>
+                            </Border>
+                            <Border Grid.Row="1" Grid.Column="7" BorderBrush="Gray" BorderThickness="1">
+                                <TextBlock Name="tbBackTongsOpenElec" Text="0"></TextBlock>
+                            </Border>
+                            <Border Grid.Row="2" Grid.Column="7" BorderBrush="Gray" BorderThickness="1">
+                                <TextBlock Name="tbTongsBackElec" Text="0"></TextBlock>
+                            </Border>
+                        </Grid>
+                    </StackPanel>
+                </Border>
             </Border>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Border Grid.Row="0" Grid.Column="0" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="挡位开门到位"></TextBlock>
-                </Border>
-                <Border Grid.Row="1" Grid.Column="0" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="背钳上扣"></TextBlock>
-                </Border>
-                <Border Grid.Row="2" Grid.Column="0" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="主钳上扣"></TextBlock>
-                </Border>
-                <Border Grid.Row="3" Grid.Column="0" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="钳背减速"></TextBlock>
-                </Border>
-                <Border Grid.Row="4" Grid.Column="0" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="背钳对正"></TextBlock>
-                </Border>
-                <Border Grid.Row="0" Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
-                    <cl:SymbolMapping Name="smOpenRight" StrContent="" LampType="3" Width="40" Height="40"/>
-                </Border>
-                <Border Grid.Row="1" Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
-                    <cl:SymbolMapping Name="smBackTongsInBtn" StrContent="" LampType="3" Width="40" Height="40"/>
-                </Border>
-                <Border Grid.Row="2" Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
-                    <cl:SymbolMapping Name="smMainTongsInBtn" StrContent="" LampType="3" Width="40" Height="40"/>
-                </Border>
-                <Border Grid.Row="3" Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
-                    <cl:SymbolMapping Name="smTongsSlowDown" StrContent="" LampType="3" Width="40" Height="40"/>
-                </Border>
-                <Border Grid.Row="4" Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
-                    <cl:SymbolMapping Name="smTongsAlignment" StrContent="" LampType="3" Width="40" Height="40"/>
-                </Border>
-                <Border Grid.Row="0" Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="挡位关门到位"></TextBlock>
-                </Border>
-                <Border Grid.Row="1" Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="背钳卸扣"></TextBlock>
-                </Border>
-                <Border Grid.Row="2" Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="主钳卸扣"></TextBlock>
-                </Border>
-                <Border Grid.Row="3" Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="钳头停止"></TextBlock>
-                </Border>
-                <Border Grid.Row="4" Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="备用"></TextBlock>
-                </Border>
-                <Border Grid.Row="0" Grid.Column="3" BorderBrush="Gray" BorderThickness="1">
-                    <cl:SymbolMapping Name="smCloseRight" StrContent="" LampType="3" Width="40" Height="40"/>
-                </Border>
-                <Border Grid.Row="1" Grid.Column="3" BorderBrush="Gray" BorderThickness="1">
-                    <cl:SymbolMapping Name="smBackTongsOutBtn" StrContent="" LampType="3" Width="40" Height="40"/>
-                </Border>
-                <Border Grid.Row="2" Grid.Column="3" BorderBrush="Gray" BorderThickness="1">
-                    <cl:SymbolMapping Name="smMainTongsOutBtn" StrContent="" LampType="3" Width="40" Height="40"/>
-                </Border>
-                <Border Grid.Row="3" Grid.Column="3" BorderBrush="Gray" BorderThickness="1">
-                    <cl:SymbolMapping Name="smTongsStop" StrContent="" LampType="3" Width="40" Height="40"/>
-                </Border>
-                <Border Grid.Row="4" Grid.Column="3" BorderBrush="Gray" BorderThickness="1">
-                    <cl:SymbolMapping Name="smTongsSpare" StrContent="" LampType="3" Width="40" Height="40"/>
-                </Border>
-            </Grid>
-            <Grid Height="124"></Grid>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Border Grid.Row="0" Grid.Column="0" BorderBrush="Gray" BorderThickness="1" Height="40">
-                    <TextBlock Text="系统主压力"></TextBlock>
-                </Border>
-                <Border Grid.Row="1" Grid.Column="0" BorderBrush="Gray" BorderThickness="1" Height="40">
-                    <TextBlock Text="扭矩压力"></TextBlock>
-                </Border>
-                <Border Grid.Row="2" Grid.Column="0" BorderBrush="Gray" BorderThickness="1" Height="40">
-                    <TextBlock Text="高档压力检测"></TextBlock>
-                </Border>
-                <Border Grid.Row="0" Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="0"></TextBlock>
-                </Border>
-                <Border Grid.Row="1" Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="0"></TextBlock>
-                </Border>
-                <Border Grid.Row="2" Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="0"></TextBlock>
-                </Border>
-                <Border Grid.Row="0" Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="上扣压力"></TextBlock>
-                </Border>
-                <Border Grid.Row="1" Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="钳体升降位移"></TextBlock>
-                </Border>
-                <Border Grid.Row="2" Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="低档压力检测"></TextBlock>
-                </Border>
-                <Border Grid.Row="0" Grid.Column="3" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="0"></TextBlock>
-                </Border>
-                <Border Grid.Row="1" Grid.Column="3" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="0"></TextBlock>
-                </Border>
-                <Border Grid.Row="2" Grid.Column="3" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="0"></TextBlock>
-                </Border>
-            </Grid>
-        </StackPanel>
-        <StackPanel Grid.Column="1">
-            <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                <TextBlock Text="输出信号"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" FontFamily="微软雅黑" FontWeight="Bold"/>
-            </Border>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Border Grid.Row="0" Grid.Column="0" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="主钳上扣模式"></TextBlock>
-                </Border>
-                <Border Grid.Row="1" Grid.Column="0" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="背钳上扣模式"></TextBlock>
-                </Border>
-                <Border Grid.Row="2" Grid.Column="0" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="钳体上升"></TextBlock>
-                </Border>
-                <Border Grid.Row="3" Grid.Column="0" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="换向马达下降"></TextBlock>
-                </Border>
-                <Border Grid.Row="4" Grid.Column="0" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="低档"></TextBlock>
-                </Border>
-                <Border Grid.Row="5" Grid.Column="0" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="喷漆清洗"></TextBlock>
-                </Border>
-                <Border Grid.Row="6" Grid.Column="0" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="电机启动"></TextBlock>
-                </Border>
-                <Border Grid.Row="0" Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
-                    <cl:SymbolMapping Name="smMainTongsInBtnModel" StrContent="" LampType="3" Width="40" Height="40"/>
-                </Border>
-                <Border Grid.Row="1" Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
-                    <cl:SymbolMapping Name="smBackTongInBtn" StrContent="" LampType="3" Width="40" Height="40"/>
-                </Border>
-                <Border Grid.Row="2" Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
-                    <cl:SymbolMapping Name="smTongsUp" StrContent="" LampType="3" Width="40" Height="40"/>
-                </Border>
-                <Border Grid.Row="3" Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
-                    <cl:SymbolMapping Name="smMotorDown" StrContent="" LampType="3" Width="40" Height="40"/>
-                </Border>
-                <Border Grid.Row="4" Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
-                    <cl:SymbolMapping Name="smLow" StrContent="" LampType="3" Width="40" Height="40"/>
-                </Border>
-                <Border Grid.Row="5" Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
-                    <cl:SymbolMapping Name="smClear" StrContent="" LampType="3" Width="40" Height="40"/>
-                </Border>
-                <Border Grid.Row="6" Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
-                    <cl:SymbolMapping Name="smMotorStart" StrContent="" LampType="3" Width="40" Height="40"/>
-                </Border>
-                <Border Grid.Row="0" Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="主钳卸扣模式"></TextBlock>
-                </Border>
-                <Border Grid.Row="1" Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="背钳卸扣模式"></TextBlock>
-                </Border>
-                <Border Grid.Row="2" Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="钳体下降"></TextBlock>
-                </Border>
-                <Border Grid.Row="3" Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="高档"></TextBlock>
-                </Border>
-                <Border Grid.Row="4" Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="丝扣油关闭"></TextBlock>
-                </Border>
-                <Border Grid.Row="5" Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="喷油涂抹"></TextBlock>
-                </Border>
-                <Border Grid.Row="6" Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="运行指示"></TextBlock>
-                </Border>
-                <Border Grid.Row="0" Grid.Column="3" BorderBrush="Gray" BorderThickness="1">
-                    <cl:SymbolMapping Name="smMainTongsOutBtnModel" StrContent="" LampType="3" Width="40" Height="40"/>
-                </Border>
-                <Border Grid.Row="1" Grid.Column="3" BorderBrush="Gray" BorderThickness="1">
-                    <cl:SymbolMapping Name="smBackTongsOutBtnModel" StrContent="" LampType="3" Width="40" Height="40"/>
-                </Border>
-                <Border Grid.Row="2" Grid.Column="3" BorderBrush="Gray" BorderThickness="1">
-                    <cl:SymbolMapping Name="smTongsDown" StrContent="" LampType="3" Width="40" Height="40"/>
-                </Border>
-                <Border Grid.Row="3" Grid.Column="3" BorderBrush="Gray" BorderThickness="1">
-                    <cl:SymbolMapping Name="smHigh" StrContent="" LampType="3" Width="40" Height="40"/>
-                </Border>
-                <Border Grid.Row="4" Grid.Column="3" BorderBrush="Gray" BorderThickness="1">
-                    <cl:SymbolMapping Name="smOilClose" StrContent="" LampType="3" Width="40" Height="40"/>
-                </Border>
-                <Border Grid.Row="5" Grid.Column="3" BorderBrush="Gray" BorderThickness="1">
-                    <cl:SymbolMapping Name="smOilApply" StrContent="" LampType="3" Width="40" Height="40"/>
-                </Border>
-                <Border Grid.Row="6" Grid.Column="3" BorderBrush="Gray" BorderThickness="1">
-                    <cl:SymbolMapping Name="smWork" StrContent="" LampType="3" Width="40" Height="40"/>
-                </Border>
-            </Grid>
-            <Grid Height="40"></Grid>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Border Grid.Row="0" Grid.Column="0" BorderBrush="Gray" BorderThickness="1" Height="40">
-                    <TextBlock Text="主钳上扣电流"></TextBlock>
-                </Border>
-                <Border Grid.Row="1" Grid.Column="0" BorderBrush="Gray" BorderThickness="1" Height="40">
-                    <TextBlock Text="背钳夹紧电流"></TextBlock>
-                </Border>
-                <Border Grid.Row="2" Grid.Column="0" BorderBrush="Gray" BorderThickness="1" Height="40">
-                    <TextBlock Text="钳体前进电流"></TextBlock>
-                </Border>
-                <Border Grid.Row="0" Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="0"></TextBlock>
-                </Border>
-                <Border Grid.Row="1" Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="0"></TextBlock>
-                </Border>
-                <Border Grid.Row="2" Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="0"></TextBlock>
-                </Border>
-                <Border Grid.Row="0" Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="主钳卸扣电流"></TextBlock>
-                </Border>
-                <Border Grid.Row="1" Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="背钳松开电流"></TextBlock>
-                </Border>
-                <Border Grid.Row="2" Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="钳体后退电流"></TextBlock>
-                </Border>
-                <Border Grid.Row="0" Grid.Column="3" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="0"></TextBlock>
-                </Border>
-                <Border Grid.Row="1" Grid.Column="3" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="0"></TextBlock>
-                </Border>
-                <Border Grid.Row="2" Grid.Column="3" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock Text="0"></TextBlock>
-                </Border>
-            </Grid>
-        </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

@@ -1,6 +1,7 @@
 ﻿using COM.Common;
 using ControlLibrary;
 using ControlLibrary.InputControl;
+using DatabaseLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -98,9 +99,13 @@ namespace Main.Integration
                 this.twt3.dicNumToValue.Add(1, "8按键");
                 this.twt3.dicNumToValue.Add(2, "20按键");
                 this.twt3.SetBinding(TextWithCombox.ShowTxtWithCBProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["KeyPanelSetting"], Mode = BindingMode.OneWay, ConverterParameter = this.twt3.dicNumToValue, Converter = new NumToTextConverter() });
-                // 操作面板
+                // 操作台
                 this.twt4.dicNumToValue = new Dictionary<int, string>();
-                this.twt4.dicNumToValue.Add(0, "无");
+                this.twt4.dicNumToValue.Add(0, "单机");
+                this.twt4.dicNumToValue.Add(1, "SDCH 230F/230H");
+                this.twt4.dicNumToValue.Add(2, "SDCH230E");
+                this.twt4.dicNumToValue.Add(3, "SDCH280C");
+                this.twt4.dicNumToValue.Add(4, "PX2230C.11");
                 this.twt4.SetBinding(TextWithCombox.ShowTxtWithCBProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["OperPanelSetting"], Mode = BindingMode.OneWay, ConverterParameter = this.twt4.dicNumToValue, Converter = new NumToTextConverter() });
                 // 钻台面遥控器
                 this.twt5.dicNumToValue = new Dictionary<int, string>();
@@ -208,6 +213,41 @@ namespace Main.Integration
             {
                 byte[] byteToSend = GlobalData.Instance.SetParam;
                 GlobalData.Instance.da.SendBytes(byteToSend);
+            }
+            if (GlobalData.Instance.SetParam[3] == 81)// 铁钻工配置
+            {
+                int sirType = GlobalData.Instance.SetParam[4];
+                string sql = string.Format("update GloConfig Set SIRType='{0}'", sirType);
+                DataHelper.Instance.ExecuteNonQuery(sql);
+                GlobalData.Instance.da.GloConfig.SIRType = sirType;
+            }
+            else if (GlobalData.Instance.SetParam[3] == 82)// 猫道配置
+            {
+                int catType = GlobalData.Instance.SetParam[4];
+                string sql = string.Format("update GloConfig Set CatType='{0}'", catType);
+                DataHelper.Instance.ExecuteNonQuery(sql);
+                GlobalData.Instance.da.GloConfig.CatType = catType;
+            }
+            else if (GlobalData.Instance.SetParam[3] == 83)// 液压站配置
+            {
+                int hydType = GlobalData.Instance.SetParam[4];
+                string sql = string.Format("update GloConfig Set HydType='{0}'", hydType);
+                DataHelper.Instance.ExecuteNonQuery(sql);
+                GlobalData.Instance.da.GloConfig.HydType = hydType;
+            }
+            else if (GlobalData.Instance.SetParam[3] == 84)// 钻台面配置
+            {
+                int drType = GlobalData.Instance.SetParam[4];
+                string sql = string.Format("update GloConfig Set DRType='{0}'", drType);
+                DataHelper.Instance.ExecuteNonQuery(sql);
+                GlobalData.Instance.da.GloConfig.DRType = drType;
+            }
+            else if (GlobalData.Instance.SetParam[3] == 85)// 二层台配置
+            {
+                int sfType = GlobalData.Instance.SetParam[4];
+                string sql = string.Format("update GloConfig Set DRType='{0}'", sfType);
+                DataHelper.Instance.ExecuteNonQuery(sql);
+                GlobalData.Instance.da.GloConfig.SFType = sfType;
             }
         }
     }

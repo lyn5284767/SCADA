@@ -50,10 +50,10 @@
                                 <TextBlock Text="P&#x0a;W&#x0a;M&#x0a;参&#x0a;数" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Height="180"/>
                             </Border>
                             <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="5" Padding="3">
-                                <TextBlock Text="上&#x0a;扣&#x0a;参&#x0a;数" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Height="120"/>
+                                <TextBlock Text="上&#x0a;卸&#x0a;扣&#x0a;参&#x0a;数" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Height="120"/>
                             </Border>
                             <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="5" Padding="3">
-                                <TextBlock Text="丝&#x0a;扣&#x0a;油&#x0a;动&#x0a;参&#x0a;数" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold"  Height="130" />
+                                <TextBlock Text="丝&#x0a;扣&#x0a;油&#x0a;参&#x0a;数" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold"  Height="130" />
                             </Border>
                         </StackPanel>
 
@@ -61,20 +61,19 @@
                     </Grid>
                     <Grid Grid.Column="1">
                         <StackPanel Orientation="Vertical">
-                            <inputcontrol:TwoTextWithInput TbkText="主钳上卸扣" Head="2,17"/>
-                            <inputcontrol:TwoTextWithInput TbkText="主钳微动" Head="2,17"/>
-                            <inputcontrol:TwoTextWithInput TbkText="背钳夹紧" Head="2,17"/>
-                            <inputcontrol:TwoTextWithInput TbkText="背钳松开" Head="2,17"/>
-                            <inputcontrol:TwoTextWithInput TbkText="钳体前进" Head="2,17"/>
-                            <inputcontrol:TwoTextWithInput TbkText="钳体后退" Head="2,17"/>
+                            <inputcontrol:TwoTextWithInput Name="twt1" TbkText="主钳上卸扣" Head="80,16,1"/>
+                            <inputcontrol:TwoTextWithInput Name="twt2" TbkText="主钳微动" Head="80,16,2"/>
+                            <inputcontrol:TwoTextWithInput Name="twt3" TbkText="背钳夹紧" Head="80,16,3"/>
+                            <inputcontrol:TwoTextWithInput Name="twt4" TbkText="背钳松开" Head="80,16,4"/>
+                            <inputcontrol:TwoTextWithInput Name="twt5" TbkText="钳体前进" Head="80,16,5"/>
+                            <inputcontrol:TwoTextWithInput Name="twt6" TbkText="钳体后退" Head="80,16,6"/>
                             <Grid Height="10"></Grid>
-                            <inputcontrol:TwoTextWithInput TbkText="主钳上扣高档圈数" TextTwoVisible="Collapsed" Head="2,17"/>
-                            <inputcontrol:TwoTextWithInput TbkText="主钳上扣低档切换压力阈值" TextTwoVisible="Collapsed" Head="2,17"/>
-                            <inputcontrol:TwoTextWithInput TbkText="主钳上扣完成压力阈值" TextTwoVisible="Collapsed" Head="2,17"/>
-                            <inputcontrol:TwoTextWithInput TbkText="主钳上扣完成扭矩阈值(套管)" TextTwoVisible="Collapsed" Head="2,17"/>
+                            <inputcontrol:TwoTextWithInput Name="twt7" TbkText="主钳上扣高档圈数" TextTwoVisible="Collapsed" Head="80,16,8"/>
+                            <inputcontrol:TwoTextWithInput Name="twt8" TbkText="主钳上扣低档切换压力阈值" TextTwoVisible="Collapsed" Head="80,16,9"/>
+                            <inputcontrol:TwoTextWithInput Name="twt9" TbkText="主钳上卸扣扭矩" TextTwoVisible="Collapsed" Head="80,16,7"/>
                             <Grid Height="10"></Grid>
-                            <inputcontrol:TwoTextWithInput TbkText="清洗时间设置" TextTwoVisible="Collapsed" Head="2,17"/>
-                            <inputcontrol:TwoTextWithInput TbkText="喷油时间设置" TextTwoVisible="Collapsed" Head="2,17"/>
+                            <inputcontrol:TwoTextWithInput Name="twt10" TbkText="清洗时间设置" TextTwoVisible="Collapsed" Head="80,16,10"/>
+                            <inputcontrol:TwoTextWithInput Name="twt11" TbkText="喷油时间设置" TextTwoVisible="Collapsed" Head="80,16,11"/>
                             <Button Content="确 定 配 置"  Click="Button_Setting"  Style="{StaticResource btnGreen}" FontWeight="Bold" FontFamily="微软雅黑" FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="40" IsDefault="False"/>
 
                         </StackPanel>

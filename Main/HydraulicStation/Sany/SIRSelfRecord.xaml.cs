@@ -64,7 +64,7 @@ namespace Main.SIR
 
         private void SIRSelfRecord_Loaded(object sender, RoutedEventArgs e)
         {
-            QueryRecord();
+            //QueryRecord();
             this.beginTime.SelectedDate = DateTime.Now.AddDays(-1);
             this.endTime.SelectedDate = DateTime.Now.AddDays(1);
         }

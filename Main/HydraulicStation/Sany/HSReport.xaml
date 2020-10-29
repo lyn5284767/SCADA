@@ -5,167 +5,204 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Main.HydraulicStation" xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              mc:Ignorable="d" 
-            d:DesignHeight="650" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="hsAlarm">
+            d:DesignHeight="650" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#E0E0E0" Margin="1" Name="hsAlarm">
     <Grid>
-        <Border Style="{StaticResource BorderRegion}" Grid.Row="0">
-            <Border Background="{DynamicResource BorderBrush}">
-                <Grid Name="gdMain">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="60"/>
-                        <RowDefinition Height="150"/>
-                        <RowDefinition Height="150"/>
-                        <RowDefinition Height="150"/>
-                        <RowDefinition Height="50"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="液压站报表" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="0,10,0,0" HorizontalAlignment="Center"/>
-                    <StackPanel Grid.Row="1" Orientation="Horizontal">
-                        <TextBlock  Name="tbReportTime" Text="报表生成时间：2019年12月4日"  FontSize="18" FontFamily="微软雅黑" Margin="10,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                        <Button Name="btnDay" Content="日" Margin="5,0,0,0" Click="BtnDay_Click"></Button>
-                        <Button Name="btnMonth" Content="月" Margin="5,0,0,0" Click="BtnMounth_Click"></Button>
-                    </StackPanel>
-                    <Border  Grid.Row="2" BorderBrush="DarkBlue" BorderThickness="1">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="80"/>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="80"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="运行时间"  FontSize="18" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <Grid Grid.Column="1">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <Border BorderBrush="DarkBlue" BorderThickness="1"  Grid.Row="0">
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="1#主泵：" FontSize="18"/>
-                                        <TextBlock x:Name="tbMainOneTime" Text="??" FontSize="18"/>
-                                    </StackPanel>
-                                </Border>
-                                <Border BorderBrush="DarkBlue" BorderThickness="1" Grid.Row="1">
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="2#主泵：" FontSize="18" />
-                                        <TextBlock x:Name="tbMainTwoTime" Text="??" FontSize="18"/>
-                                    </StackPanel>
-                                </Border>
-                            </Grid>
-                            <Grid Grid.Column="2">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <Border BorderBrush="DarkBlue" BorderThickness="1"  Grid.Row="0">
-                                    <TextBlock Text="小时" FontSize="18" />
-                                </Border>
-                                <Border BorderBrush="DarkBlue" BorderThickness="1" Grid.Row="1">
-                                    <TextBlock Text="小时" FontSize="18" />
-                                </Border>
-                            </Grid>
-                            <Grid Grid.Column="3">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <Border BorderBrush="DarkBlue" BorderThickness="1" Grid.Row="0">
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="恒压泵：" FontSize="18" />
-                                        <TextBlock x:Name="tbConstantVoltage" Text="??" FontSize="18"/>
-                                    </StackPanel>
-                                </Border>
-                                <Border BorderBrush="DarkBlue" BorderThickness="1"  Grid.Row="1">
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="散热泵：" FontSize="18"/>
-                                        <TextBlock x:Name="tbDissipateHeat" Text="??" FontSize="18"/>
-                                    </StackPanel>
-                                </Border>
-                            </Grid>
-                            <Grid Grid.Column="4">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <Border BorderBrush="DarkBlue" BorderThickness="1"  Grid.Row="0">
-                                    <TextBlock Text="小时" FontSize="18" />
-                                </Border>
-                                <Border BorderBrush="DarkBlue" BorderThickness="1" Grid.Row="1">
-                                    <TextBlock Text="小时" FontSize="18" />
-                                </Border>
-                            </Grid>
-                        </Grid>
-                    </Border>
-                    <Border  Grid.Row="3" BorderBrush="DarkBlue" BorderThickness="1">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="80"/>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="80"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="系统压力"  FontSize="18" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <lvc:CartesianChart Series="{Binding SystemPressSeries}" Grid.Column="1" Grid.ColumnSpan="4">
-                                <lvc:CartesianChart.AxisY>
-                                    <lvc:Axis Name="lvcSystemPress" Title="压力(Mpa)"></lvc:Axis>
-                                </lvc:CartesianChart.AxisY>
-                                <lvc:CartesianChart.AxisX>
-                                    <lvc:Axis Title="时间" Labels="{Binding SystemPressLabels}"></lvc:Axis>
-                                </lvc:CartesianChart.AxisX>
-                            </lvc:CartesianChart>
-                        </Grid>
-                    </Border>
-                    <Border  Grid.Row="4" BorderBrush="DarkBlue" BorderThickness="1">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="80"/>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="80"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="油温"  FontSize="18" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <lvc:CartesianChart Series="{Binding OilTemSeries}" Grid.Column="1" Grid.ColumnSpan="4">
-                                <lvc:CartesianChart.AxisY>
-                                    <lvc:Axis Name="lvcOilTem" Title="温度(°)"></lvc:Axis>
-                                </lvc:CartesianChart.AxisY>
-                                <lvc:CartesianChart.AxisX>
-                                    <lvc:Axis Title="时间" Labels="{Binding OilTemLabels}"></lvc:Axis>
-                                </lvc:CartesianChart.AxisX>
-                            </lvc:CartesianChart>
-                        </Grid>
-                    </Border>
-                    <Border  Grid.Row="5" BorderBrush="DarkBlue" BorderThickness="1">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="80"/>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="80"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="液压"  FontSize="18" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <lvc:CartesianChart Series="{Binding OilLevelSeries}" Grid.Column="1" Grid.ColumnSpan="4">
-                                <lvc:CartesianChart.AxisY>
-                                    <lvc:Axis Name="lvcOilLevel" Title="升"></lvc:Axis>
-                                </lvc:CartesianChart.AxisY>
-                                <lvc:CartesianChart.AxisX>
-                                    <lvc:Axis Title="时间" Labels="{Binding OilLevelLabels}"></lvc:Axis>
-                                </lvc:CartesianChart.AxisX>
-                            </lvc:CartesianChart>
-                        </Grid>
-                    </Border>
-                    <Grid Grid.Row="6">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Button Content="预览报告" Click="btn_PreviewReport" Width="80"/>
-                            <Button  Content="生成报告" Margin="10,0,0,0" Click="btn_GenerateReport" Width="80"/>
-                        </StackPanel>
+        <Grid Name="gdMain">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="液压站报表" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="0,0,0,0" HorizontalAlignment="Center"/>
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <TextBlock  Name="tbReportTime" Text="报表生成时间：2019年12月4日"  FontSize="18" FontFamily="微软雅黑" Margin="10,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <Button Name="btnDay" Content="日" Margin="5,0,0,0" Click="BtnDay_Click"></Button>
+                <Button Name="btnMonth" Content="周" Margin="5,0,0,0" Click="BtnMounth_Click"></Button>
+            </StackPanel>
+            <Border  Grid.Row="2" BorderBrush="DarkBlue" BorderThickness="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="80"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="运行时间"  FontSize="18" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Border BorderBrush="DarkBlue" BorderThickness="1"  Grid.Row="0">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="1#主泵：" FontSize="18"/>
+                                <TextBlock x:Name="tbMainOneTime" Text="??" FontSize="18"/>
+                            </StackPanel>
+                        </Border>
+                        <Border BorderBrush="DarkBlue" BorderThickness="1" Grid.Row="1">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="2#主泵：" FontSize="18" />
+                                <TextBlock x:Name="tbMainTwoTime" Text="??" FontSize="18"/>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Border BorderBrush="DarkBlue" BorderThickness="1"  Grid.Row="0">
+                            <TextBlock Text="小时" FontSize="18" />
+                        </Border>
+                        <Border BorderBrush="DarkBlue" BorderThickness="1" Grid.Row="1">
+                            <TextBlock Text="小时" FontSize="18" />
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Column="3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Border BorderBrush="DarkBlue" BorderThickness="1" Grid.Row="0">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="恒压泵：" FontSize="18" />
+                                <TextBlock x:Name="tbConstantVoltage" Text="??" FontSize="18"/>
+                            </StackPanel>
+                        </Border>
+                        <Border BorderBrush="DarkBlue" BorderThickness="1"  Grid.Row="1">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="散热泵：" FontSize="18"/>
+                                <TextBlock x:Name="tbDissipateHeat" Text="??" FontSize="18"/>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Column="4">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Border BorderBrush="DarkBlue" BorderThickness="1"  Grid.Row="0">
+                            <TextBlock Text="小时" FontSize="18" />
+                        </Border>
+                        <Border BorderBrush="DarkBlue" BorderThickness="1" Grid.Row="1">
+                            <TextBlock Text="小时" FontSize="18" />
+                        </Border>
                     </Grid>
                 </Grid>
-
             </Border>
-        </Border>
+            <Border  Grid.Row="3" BorderBrush="DarkBlue" BorderThickness="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="80"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="系统压力"  FontSize="18" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <lvc:CartesianChart Series="{Binding SystemPressSeries}" Grid.Column="1" Grid.ColumnSpan="4">
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis Name="lvcSystemPress" Title="压力(Mpa)"></lvc:Axis>
+                        </lvc:CartesianChart.AxisY>
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis Labels="{Binding SystemPressLabels}"></lvc:Axis>
+                        </lvc:CartesianChart.AxisX>
+                    </lvc:CartesianChart>
+                </Grid>
+            </Border>
+            <Border  Grid.Row="4" BorderBrush="DarkBlue" BorderThickness="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="80"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="主泵#1流量"  FontSize="18" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <lvc:CartesianChart Series="{Binding MainFlowSeries}" Grid.Column="1" Grid.ColumnSpan="4">
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis Name="lvcMainFlow" Title="流量(L/Min)"></lvc:Axis>
+                        </lvc:CartesianChart.AxisY>
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis Labels="{Binding MainFlowLabels}"></lvc:Axis>
+                        </lvc:CartesianChart.AxisX>
+                    </lvc:CartesianChart>
+                </Grid>
+            </Border>
+            <Border  Grid.Row="5" BorderBrush="DarkBlue" BorderThickness="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="80"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="主泵#2流量"  FontSize="18" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <lvc:CartesianChart Series="{Binding MainTwoFlowSeries}" Grid.Column="1" Grid.ColumnSpan="4">
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis Name="lvcMainTwoFlow" Title="流量(L/Min)"></lvc:Axis>
+                        </lvc:CartesianChart.AxisY>
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis Labels="{Binding MainTwoFlowLabels}"></lvc:Axis>
+                        </lvc:CartesianChart.AxisX>
+                    </lvc:CartesianChart>
+                </Grid>
+            </Border>
+            <Border  Grid.Row="6" BorderBrush="DarkBlue" BorderThickness="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="80"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="油温"  FontSize="18" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <lvc:CartesianChart Series="{Binding OilTemSeries}" Grid.Column="1" Grid.ColumnSpan="4">
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis Name="lvcOilTem" Title="温度(°)"></lvc:Axis>
+                        </lvc:CartesianChart.AxisY>
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis Labels="{Binding OilTemLabels}"></lvc:Axis>
+                        </lvc:CartesianChart.AxisX>
+                    </lvc:CartesianChart>
+                </Grid>
+            </Border>
+            <Border  Grid.Row="7" BorderBrush="DarkBlue" BorderThickness="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="80"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="液位"  FontSize="18" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <lvc:CartesianChart Series="{Binding OilLevelSeries}" Grid.Column="1" Grid.ColumnSpan="4">
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis Name="lvcOilLevel" Title="升"></lvc:Axis>
+                        </lvc:CartesianChart.AxisY>
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis Labels="{Binding OilLevelLabels}"></lvc:Axis>
+                        </lvc:CartesianChart.AxisX>
+                    </lvc:CartesianChart>
+                </Grid>
+            </Border>
+            <Grid Grid.Row="8">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Content="预览报告" Click="btn_PreviewReport" Width="80"/>
+                    <Button  Content="生成报告" Margin="10,0,0,0" Click="btn_GenerateReport" Width="80"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
     </Grid>
 </UserControl>
