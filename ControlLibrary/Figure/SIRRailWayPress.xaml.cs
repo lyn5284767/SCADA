@@ -29,6 +29,7 @@ namespace ControlLibrary.Figure
         public void AddPoints(double v1)
         {
             viewModel.AddPoints(v1);
+            this.txtTitle.Content = "压力曲线(" + v1 + ")";
         }
     }
 }

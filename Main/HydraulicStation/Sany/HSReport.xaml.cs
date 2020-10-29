@@ -199,12 +199,56 @@ namespace Main.HydraulicStation
             SystemPressSeries.Add(systemPressLine);
             string sql = string.Format("Select * from DateBaseReport Where Type = '{0}' and CreateTime>'{1}'", (int)SaveType.HS_Self_SystemPress, Date);
             List<DateBaseReport> systemPressList = DataHelper.Instance.ExecuteList<DateBaseReport>(sql);
+            int sample = systemPressList.Count() / 200;
+            double tmpMax = 0.0;
+            double tmpMin = 0.0;
+            string tmpMaxTime = string.Empty;
+            string tmpMinTime = string.Empty;
+            int i = 1;
             List<double> vList = new List<double>();
-            foreach (DateBaseReport dateBaseReport in systemPressList)
+            if (sample != 0)
             {
-                SystemPressLabels.Add(dateBaseReport.CreateTime.ToString());
-                SystemPressSeries[0].Values.Add(double.Parse(dateBaseReport.Value));
-                vList.Add(double.Parse(dateBaseReport.Value));
+                foreach (DateBaseReport dateBaseReport in systemPressList)
+                {
+                    double nowVal = double.Parse(dateBaseReport.Value);
+                    string nowTime = dateBaseReport.CreateTime.ToString();
+                    if (i % sample == 0) // 取余为零，标志一个周期结束
+                    {
+                        SystemPressLabels.Add(tmpMaxTime);
+                        SystemPressSeries[0].Values.Add(tmpMax);
+                        vList.Add(tmpMax);
+                        SystemPressLabels.Add(tmpMinTime);
+                        SystemPressSeries[0].Values.Add(tmpMin);
+                        vList.Add(tmpMin);
+                        tmpMax = 0.0;
+                        tmpMin = 0.0;
+                    }
+                    else // 周期内取最大最小值
+                    {
+                        if (tmpMax <= nowVal)
+                        {
+                            tmpMax = nowVal;
+                            tmpMaxTime = nowTime;
+                        }
+                        if (tmpMin >= nowVal)
+                        {
+                            tmpMin = nowVal;
+                            tmpMinTime = nowTime;
+                        }
+                    }
+                    i++;
+                }
+            }
+            else
+            {
+                foreach (DateBaseReport dateBaseReport in systemPressList)
+                {
+                    double nowVal = double.Parse(dateBaseReport.Value);
+                    string nowTime = dateBaseReport.CreateTime.ToString();
+                    SystemPressLabels.Add(nowTime);
+                    SystemPressSeries[0].Values.Add(nowVal);
+                    vList.Add(tmpMax);
+                }
             }
             this.lvcSystemPress.MinValue = vList.Min()-1;
             this.lvcSystemPress.MaxValue = vList.Max();
@@ -223,12 +267,56 @@ namespace Main.HydraulicStation
             MainFlowSeries.Add(mainFlowLine);
             string sql = string.Format("Select * from DateBaseReport Where Type = '{0}' and CreateTime>'{1}'", (int)SaveType.HS_Self_MainFlow, Date);
             List<DateBaseReport> mainFlowList = DataHelper.Instance.ExecuteList<DateBaseReport>(sql);
+            int sample = mainFlowList.Count() / 200;
+            double tmpMax = 0.0;
+            double tmpMin = 0.0;
+            string tmpMaxTime = string.Empty;
+            string tmpMinTime = string.Empty;
+            int i = 1;
             List<double> vList = new List<double>();
-            foreach (DateBaseReport dateBaseReport in mainFlowList)
+            if (sample != 0)
             {
-                MainFlowLabels.Add(dateBaseReport.CreateTime.ToString());
-                MainFlowSeries[0].Values.Add(double.Parse(dateBaseReport.Value));
-                vList.Add(double.Parse(dateBaseReport.Value));
+                foreach (DateBaseReport dateBaseReport in mainFlowList)
+                {
+                    double nowVal = double.Parse(dateBaseReport.Value);
+                    string nowTime = dateBaseReport.CreateTime.ToString();
+                    if (i % sample == 0) // 取余为零，标志一个周期结束
+                    {
+                        MainFlowLabels.Add(tmpMaxTime);
+                        MainFlowSeries[0].Values.Add(tmpMax);
+                        vList.Add(tmpMax);
+                        MainFlowLabels.Add(tmpMinTime);
+                        MainFlowSeries[0].Values.Add(tmpMin);
+                        vList.Add(tmpMin);
+                        tmpMax = 0.0;
+                        tmpMin = 0.0;
+                    }
+                    else // 周期内取最大最小值
+                    {
+                        if (tmpMax <= nowVal)
+                        {
+                            tmpMax = nowVal;
+                            tmpMaxTime = nowTime;
+                        }
+                        if (tmpMin >= nowVal)
+                        {
+                            tmpMin = nowVal;
+                            tmpMinTime = nowTime;
+                        }
+                    }
+                    i++;
+                }
+            }
+            else
+            {
+                foreach (DateBaseReport dateBaseReport in mainFlowList)
+                {
+                    double nowVal = double.Parse(dateBaseReport.Value);
+                    string nowTime = dateBaseReport.CreateTime.ToString();
+                    MainFlowLabels.Add(nowTime);
+                    MainFlowSeries[0].Values.Add(nowVal);
+                    vList.Add(nowVal);
+                }
             }
             this.lvcMainFlow.MinValue = vList.Min() - 1;
             this.lvcMainFlow.MaxValue = vList.Max();
@@ -248,12 +336,56 @@ namespace Main.HydraulicStation
             MainTwoFlowSeries.Add(mainTwoFlowLine);
             string sql = string.Format("Select * from DateBaseReport Where Type = '{0}' and CreateTime>'{1}'", (int)SaveType.HS_Self_MainTwoFlow, Date);
             List<DateBaseReport> mainFlowList = DataHelper.Instance.ExecuteList<DateBaseReport>(sql);
+            int sample = mainFlowList.Count() / 200;
+            double tmpMax = 0.0;
+            double tmpMin = 0.0;
+            string tmpMaxTime = string.Empty;
+            string tmpMinTime = string.Empty;
+            int i = 1;
             List<double> vList = new List<double>();
-            foreach (DateBaseReport dateBaseReport in mainFlowList)
+            if (sample != 0)
             {
-                MainTwoFlowLabels.Add(dateBaseReport.CreateTime.ToString());
-                MainTwoFlowSeries[0].Values.Add(double.Parse(dateBaseReport.Value));
-                vList.Add(double.Parse(dateBaseReport.Value));
+                foreach (DateBaseReport dateBaseReport in mainFlowList)
+                {
+                    double nowVal = double.Parse(dateBaseReport.Value);
+                    string nowTime = dateBaseReport.CreateTime.ToString();
+                    if (i % sample == 0) // 取余为零，标志一个周期结束
+                    {
+                        MainTwoFlowLabels.Add(tmpMaxTime);
+                        MainTwoFlowSeries[0].Values.Add(tmpMax);
+                        vList.Add(tmpMax);
+                        MainTwoFlowLabels.Add(tmpMinTime);
+                        MainTwoFlowSeries[0].Values.Add(tmpMin);
+                        vList.Add(tmpMin);
+                        tmpMax = 0.0;
+                        tmpMin = 0.0;
+                    }
+                    else // 周期内取最大最小值
+                    {
+                        if (tmpMax <= nowVal)
+                        {
+                            tmpMax = nowVal;
+                            tmpMaxTime = nowTime;
+                        }
+                        if (tmpMin >= nowVal)
+                        {
+                            tmpMin = nowVal;
+                            tmpMinTime = nowTime;
+                        }
+                    }
+                    i++;
+                }
+            }
+            else
+            {
+                foreach (DateBaseReport dateBaseReport in mainFlowList)
+                {
+                    double nowVal = double.Parse(dateBaseReport.Value);
+                    string nowTime = dateBaseReport.CreateTime.ToString();
+                    SystemPressLabels.Add(nowTime);
+                    SystemPressSeries[0].Values.Add(nowVal);
+                    vList.Add(nowVal);
+                }
             }
             this.lvcMainTwoFlow.MinValue = vList.Min() - 1;
             this.lvcMainTwoFlow.MaxValue = vList.Max();
@@ -272,12 +404,56 @@ namespace Main.HydraulicStation
             OilTemSeries.Add(oilTemLine);
             string sql = string.Format("Select * from DateBaseReport Where Type = '{0}' and CreateTime>'{1}'", (int)SaveType.HS_Self_OilTmp, Date);
             List<DateBaseReport> OilTemList = DataHelper.Instance.ExecuteList<DateBaseReport>(sql);
+            int sample = OilTemList.Count() / 200;
+            double tmpMax = 0.0;
+            double tmpMin = 0.0;
+            string tmpMaxTime = string.Empty;
+            string tmpMinTime = string.Empty;
+            int i = 1;
             List<double> vList = new List<double>();
-            foreach (DateBaseReport dateBaseReport in OilTemList)
+            if (sample != 0)
             {
-                OilTemLabels.Add(dateBaseReport.CreateTime.ToString());
-                OilTemSeries[0].Values.Add(double.Parse(dateBaseReport.Value));
-                vList.Add(double.Parse(dateBaseReport.Value));
+                foreach (DateBaseReport dateBaseReport in OilTemList)
+                {
+                    double nowVal = double.Parse(dateBaseReport.Value);
+                    string nowTime = dateBaseReport.CreateTime.ToString();
+                    if (i % sample == 0) // 取余为零，标志一个周期结束
+                    {
+                        OilTemLabels.Add(tmpMaxTime);
+                        OilTemSeries[0].Values.Add(tmpMax);
+                        vList.Add(tmpMax);
+                        OilTemLabels.Add(tmpMinTime);
+                        OilTemSeries[0].Values.Add(tmpMin);
+                        vList.Add(tmpMin);
+                        tmpMax = 0.0;
+                        tmpMin = 0.0;
+                    }
+                    else // 周期内取最大最小值
+                    {
+                        if (tmpMax <= nowVal)
+                        {
+                            tmpMax = nowVal;
+                            tmpMaxTime = nowTime;
+                        }
+                        if (tmpMin >= nowVal)
+                        {
+                            tmpMin = nowVal;
+                            tmpMinTime = nowTime;
+                        }
+                    }
+                    i++;
+                }
+            }
+            else
+            {
+                foreach (DateBaseReport dateBaseReport in OilTemList)
+                {
+                    double nowVal = double.Parse(dateBaseReport.Value);
+                    string nowTime = dateBaseReport.CreateTime.ToString();
+                    OilTemLabels.Add(nowTime);
+                    OilTemSeries[0].Values.Add(nowVal);
+                    vList.Add(nowVal);
+                }
             }
             this.lvcOilTem.MinValue = vList.Min()-1;
             this.lvcOilTem.MaxValue = vList.Max();
@@ -296,12 +472,56 @@ namespace Main.HydraulicStation
             OilLevelSeries.Add(oilLevelLine);
             string sql = string.Format("Select * from DateBaseReport Where Type = '{0}' and CreateTime>'{1}'", (int)SaveType.HS_Self_OilLevel, Date);
             List<DateBaseReport> OilLevelList = DataHelper.Instance.ExecuteList<DateBaseReport>(sql);
+            int sample = OilLevelList.Count() / 200;
+            double tmpMax = 0.0;
+            double tmpMin = 0.0;
+            string tmpMaxTime = string.Empty;
+            string tmpMinTime = string.Empty;
+            int i = 1;
             List<double> vList = new List<double>();
-            foreach (DateBaseReport dateBaseReport in OilLevelList)
+            if (sample != 0)
             {
-                OilLevelLabels.Add(dateBaseReport.CreateTime.ToString());
-                OilLevelSeries[0].Values.Add(double.Parse(dateBaseReport.Value));
-                vList.Add(double.Parse(dateBaseReport.Value));
+                foreach (DateBaseReport dateBaseReport in OilLevelList)
+                {
+                    double nowVal = double.Parse(dateBaseReport.Value);
+                    string nowTime = dateBaseReport.CreateTime.ToString();
+                    if (i % sample == 0) // 取余为零，标志一个周期结束
+                    {
+                        OilLevelLabels.Add(tmpMaxTime);
+                        OilLevelSeries[0].Values.Add(tmpMax);
+                        vList.Add(tmpMax);
+                        OilLevelLabels.Add(tmpMinTime);
+                        OilLevelSeries[0].Values.Add(tmpMin);
+                        vList.Add(tmpMin);
+                        tmpMax = 0.0;
+                        tmpMin = 0.0;
+                    }
+                    else // 周期内取最大最小值
+                    {
+                        if (tmpMax <= nowVal)
+                        {
+                            tmpMax = nowVal;
+                            tmpMaxTime = nowTime;
+                        }
+                        if (tmpMin >= nowVal)
+                        {
+                            tmpMin = nowVal;
+                            tmpMinTime = nowTime;
+                        }
+                    }
+                    i++;
+                }
+            }
+            else
+            {
+                foreach (DateBaseReport dateBaseReport in OilLevelList)
+                {
+                    double nowVal = double.Parse(dateBaseReport.Value);
+                    string nowTime = dateBaseReport.CreateTime.ToString();
+                    OilLevelLabels.Add(nowTime);
+                    OilLevelSeries[0].Values.Add(nowVal);
+                    vList.Add(nowVal);
+                }
             }
             this.lvcOilLevel.MinValue = vList.Min()-1;
             this.lvcOilLevel.MaxValue = vList.Max();
