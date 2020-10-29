@@ -29,6 +29,7 @@ namespace ControlLibrary.Figure
         public void AddPoints(double v1)
         {
             viewModel.AddPoints(v1);
+            this.txtTitile.Content = "扭矩曲线(" + v1 + ")";
         }
     }
 }
