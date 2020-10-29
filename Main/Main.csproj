@@ -945,19 +945,10 @@
     <Resource Include="Images\Unsetting.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\derrick.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\cat.png" />
-    <Resource Include="Images\dr.png" />
-    <Resource Include="Images\sf.png" />
-    <Resource Include="Images\sir.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\catUse.png" />
-    <Resource Include="Images\drUse.png" />
-    <Resource Include="Images\sfUse.png" />
-    <Resource Include="Images\sirUse.png" />
+    <Resource Include="Images\derrick.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
