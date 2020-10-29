@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ControlLibrary.InputControl"
              mc:Ignorable="d" 
-             d:DesignHeight="14" d:DesignWidth="450" Name="uc" FontFamily="微软雅黑" TextOptions.TextFormattingMode="Display">
+             d:DesignHeight="14" d:DesignWidth="500" Name="uc" FontFamily="微软雅黑" TextOptions.TextFormattingMode="Display">
     <Grid>
         <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="2" Margin="1">
             <Border.Effect>
@@ -13,12 +13,12 @@
             </Border.Effect>
         </Border>
         <StackPanel Orientation="Horizontal" Name="stackPanel">
-            <TextBlock Name="tbk" Text="参数配置" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="14" FontFamily="微软雅黑" FontWeight="Bold"  Width="120" TextAlignment="Center">
+            <TextBlock Name="tbk" Text="参数配置" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="14" FontFamily="微软雅黑" FontWeight="Bold"  Width="140" TextAlignment="Center">
             </TextBlock>
             <TextBlock x:Name="textBoxShow" Text="{Binding Path=ShowTextTips, ElementName=uc}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="10" FontFamily="微软雅黑" FontWeight="Bold" Width="70" TextAlignment="Center" Background="#D2DEEF"/>
-            <TextBlock Name="tbOneUnit" Text="Mpa" Width="35"></TextBlock>
+            <TextBlock Name="tbOneUnit" Text="Mpa" Width="40"></TextBlock>
             <TextBlock x:Name="textBoxTrans" Text="{Binding Path=ShowTextTips, ElementName=uc}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="10" FontFamily="微软雅黑" FontWeight="Bold" Width="70" TextAlignment="Center" Background="#EAEFF7"/>
-            <TextBlock Name="tbTwoUnit" Text="Mpa" Width="35"></TextBlock>
+            <TextBlock Name="tbTwoUnit" Text="Mpa" Width="40"></TextBlock>
             <TextBox x:Name="textBoxSet" PreviewMouseDown="tb_ParameterConfig_Focus" LostFocus="textBox_ParameterConfig_LostFocus" TabIndex="3" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="10" FontFamily="微软雅黑" FontWeight="Bold" Width="70"  TextAlignment="Center">
                 <TextBox.Resources>
                     <VisualBrush x:Key="HintText" TileMode="None" Opacity="0.5" Stretch="None" AlignmentX="Left">
@@ -40,7 +40,7 @@
                     </Style>
                 </TextBox.Style>
             </TextBox>
-            <TextBlock Name="tbInputUnit" Text="Mpa" Width="35"></TextBlock>
+            <TextBlock Name="tbInputUnit" Text="Mpa" Width="40"></TextBlock>
         </StackPanel>
     </Grid>
 </UserControl>

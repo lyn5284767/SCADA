@@ -223,15 +223,30 @@ namespace Main.SIR.SanyRail
             }
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
-
-        private void btn_locationModel(object sender, EventArgs e)
+        /// <summary>
+        /// 高低档切换
+        /// </summary>
+        private void btn_highOrLowModel(object sender, EventArgs e)
         {
-
+            //byte[] byteToSend;
+            //if (this.controlModel.IsChecked) //当前高档
+            //{
+            //    byteToSend = new byte[10] { 80, 16, 13, 7, 0, 0, 0, 0, 0, 0 };
+            //}
+            //else//当前低档
+            //{
+            //    byteToSend = new byte[10] { 80, 16, 13, 8, 0, 0, 0, 0, 0, 0 };
+            //}
+            //GlobalData.Instance.da.SendBytes(byteToSend);
         }
-
+        /// <summary>
+        /// 钻杆类型选择
+        /// </summary>
         private void btn_SelectDrillPipe(object sender, RoutedEventArgs e)
         {
-
+            int tag = (sender as MenuItem).TabIndex;
+            byte[] byteToSend = new byte[10] { 80, 16, 13, (byte)tag, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
         /// 左旋
@@ -249,6 +264,24 @@ namespace Main.SIR.SanyRail
         {
             byte[] byteToSend = new byte[10] { 80, 16, 13, 2, 0, 0, 0, 0, 0, 0 };
 
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 工位选择
+        /// </summary>
+        private void btn_SelectLocation(object sender, RoutedEventArgs e)
+        {
+            int tag = (sender as MenuItem).TabIndex;
+            byte[] byteToSend = new byte[10] { 80, 16, 13, (byte)tag, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 喷涂启停
+        /// </summary>
+        private void btn_SelectSpray(object sender, RoutedEventArgs e)
+        {
+            int tag = (sender as MenuItem).TabIndex;
+            byte[] byteToSend = new byte[10] { 80, 16, 13, (byte)tag, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
     }

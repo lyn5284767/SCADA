@@ -3377,8 +3377,10 @@ namespace COM.Common
             byte bType = (byte)values[0];
             bool IsSpecial = (bool)values[1];
             if(bType == 35) return "3.5寸钻杆";
+            else if (bType == 28) return "2寸7/8钻杆";
             else if(bType == 40) return "4寸钻杆";
             else if (bType == 45 && !IsSpecial) return "4.5寸钻杆";
+            else if (bType == 35 && IsSpecial) return "3.5寸钻铤";
             else if (bType == 45 && IsSpecial) return "4.5寸钻铤";
             else if (bType == 50) return "5寸钻杆";
             else if (bType == 55) return "5.5寸钻杆";
@@ -3875,12 +3877,12 @@ namespace COM.Common
         {
             if (value == null || value == DependencyProperty.UnsetValue)
             {
-                return "../Images/pump1.png";
+                return "../../Images/pump1.png";
             }
 
             bool val = (bool)value;
-            if(val) return "../Images/pump2.png";
-            else return "../Images/pump1.png";
+            if(val) return "../../Images/pump2.png";
+            else return "../../Images/pump1.png";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -3895,12 +3897,12 @@ namespace COM.Common
         {
             if (value == null || value == DependencyProperty.UnsetValue)
             {
-                return "../Images/hot1.png";
+                return "../../Images/hot1.png";
             }
 
             bool val = (bool)value;
-            if (val) return "../Images/hot2.png";
-            else return "../Images/hot1.png";
+            if (val) return "../../Images/hot2.png";
+            else return "../../Images/hot1.png";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -4631,7 +4633,7 @@ namespace COM.Common
             byte bType = (byte)value;
             switch (bType)
             {
-                case 0:
+                case 2:
                     return "手动";
                 case 1:
                     return "自动";
@@ -4660,7 +4662,7 @@ namespace COM.Common
 
             byte bType = (byte)value;
 
-            if (bType == 0)
+            if (bType == 2)
             {
                 return true;
             }
@@ -4747,7 +4749,7 @@ namespace COM.Common
             byte bType = (byte)value;
             switch (bType)
             {
-                case 0:
+                case 2:
                     return "近控";
                 case 1:
                     return "远控";

@@ -232,7 +232,7 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <cl:BasedSwitchButton Name="controlModel" ContentLeft="近控" ContentDown="控制方式" ContentRight="远控" UserControlClicked="btn_controlModel" Grid.Column="0" />
-                            <cl:BasedSwitchButton Name="highOrLowModel" ContentLeft="高挡" ContentDown="挡位选择" ContentRight="低档" UserControlClicked="btn_locationModel" Grid.Column="1" />
+                            <cl:BasedSwitchButton Name="highOrLowModel" ContentLeft="高挡" ContentDown="挡位选择" ContentRight="低档" UserControlClicked="btn_highOrLowModel" Grid.Column="1" />
                         </Grid>
                         <Grid Grid.Row="2">
                             <StackPanel>
@@ -245,9 +245,9 @@
                                                     <Image Margin="0,2,0,0"  Width="15" Source="..\..\Images\downTrangle.png" />
                                                 </StackPanel>
                                             </MenuItem.Header>
-                                            <MenuItem Header="钻杆" Click="btn_SelectDrillPipe" TabIndex="60"/>
-                                            <MenuItem Header="钻铤" Click="btn_SelectDrillPipe" TabIndex="65"/>
-                                            <MenuItem Header="套管" Click="btn_SelectDrillPipe" TabIndex="70"/>
+                                            <MenuItem Header="钻杆" Click="btn_SelectDrillPipe" TabIndex="12"/>
+                                            <MenuItem Header="钻铤" Click="btn_SelectDrillPipe" TabIndex="13"/>
+                                            <MenuItem Header="套管" Click="btn_SelectDrillPipe" TabIndex="14"/>
                                         </MenuItem>
                                     </Menu>
                                     <TextBlock Name="tbDrillType" VerticalAlignment="Center" Text="??" FontSize="18" Width="80"></TextBlock>
@@ -261,8 +261,8 @@
                                                     <Image Margin="0,2,0,0"  Width="15" Source="..\..\Images\downTrangle.png" />
                                                 </StackPanel>
                                             </MenuItem.Header>
-                                            <MenuItem Header="左旋" Click="btn_TurnLeft" TabIndex="60"/>
-                                            <MenuItem Header="右旋" Click="btn_TurnRight" TabIndex="65"/>
+                                            <MenuItem Header="左旋" Click="btn_TurnLeft" />
+                                            <MenuItem Header="右旋" Click="btn_TurnRight" />
                                         </MenuItem>
                                     </Menu>
                                     <TextBlock Name="tbDrillRote" VerticalAlignment="Center" Text="??" FontSize="18" Width="80"></TextBlock>
@@ -276,9 +276,9 @@
                                                     <Image Margin="0,2,0,0"  Width="15" Source="..\..\Images\downTrangle.png" />
                                                 </StackPanel>
                                             </MenuItem.Header>
-                                            <MenuItem Header="井口" Click="btn_SelectDrillPipe" TabIndex="60"/>
-                                            <MenuItem Header="待机" Click="btn_SelectDrillPipe" TabIndex="65"/>
-                                            <MenuItem Header="鼠洞" Click="btn_SelectDrillPipe" TabIndex="65"/>
+                                            <MenuItem Header="待机" Click="btn_SelectLocation" TabIndex="9"/>
+                                            <MenuItem Header="井口" Click="btn_SelectLocation" TabIndex="10"/>
+                                            <MenuItem Header="鼠洞" Click="btn_SelectLocation" TabIndex="11"/>
                                         </MenuItem>
                                     </Menu>
                                     <TextBlock Name="tbLocation" VerticalAlignment="Center" Text="??" FontSize="18" Width="80"></TextBlock>
@@ -292,8 +292,8 @@
                                                     <Image Margin="0,2,0,0"  Width="15" Source="..\..\Images\downTrangle.png" />
                                                 </StackPanel>
                                             </MenuItem.Header>
-                                            <MenuItem Header="启用" Click="btn_SelectDrillPipe" TabIndex="60"/>
-                                            <MenuItem Header="停用" Click="btn_SelectDrillPipe" TabIndex="65"/>
+                                            <MenuItem Header="启用" Click="btn_SelectSpray" TabIndex="15"/>
+                                            <MenuItem Header="停用" Click="btn_SelectSpray" TabIndex="16"/>
                                         </MenuItem>
                                     </Menu>
                                     <TextBlock Name="tbSpraySet" VerticalAlignment="Center" Text="??" FontSize="18" Width="80"></TextBlock>

@@ -10,6 +10,7 @@ using Main.HydraulicStation;
 using Main.Integration;
 using Main.SecondFloor;
 using Main.SIR;
+using Main.SIR.Sany;
 using Main.SIR.SanyRail;
 using System;
 using System.Collections.Generic;
@@ -216,6 +217,7 @@ namespace Main
             }
         }
 
+        int timeTick = 0;
         /// <summary>
         /// 报表数据记录
         /// </summary>
@@ -223,29 +225,46 @@ namespace Main
         {
             try
             {
-                if ((sender as System.Timers.Timer).Interval == 1000)
-                {
-                    (sender as System.Timers.Timer).Interval = 60 * 10 * 1000;
-                }
                 if (GlobalData.Instance.da.GloConfig.ReportRecord == 1)
                 {
+                    Random random = new Random();
+                    double now = random.Next(0, 100) / 10.0;
+                    double now2 = now * random.Next(0, 5);
+                    double now3 = now * random.Next(0, 10);
+                    double now4 = now * random.Next(0, 15);
+                    double now5 = now * random.Next(0, 20);
                     List<string> sqlList = new List<string>();
                     // 系统压力
                     double systemPress = GlobalData.Instance.da["MPressAI"].Value.Int16 / 10.0;
                     string sql = string.Format("Insert Into DateBaseReport (Name,Value,CreateTime,Type,Cycle) Values('{0}','{1}','{2}','{3}','{4}')", "自研液压站-系统压力",
-                        systemPress, DateTime.Now.ToString("yyyy-MM-dd HH:mm"), (int)SaveType.HS_Self_SystemPress, 10 * 60 * 1000);
+                        now, DateTime.Now.ToString("yyyy-MM-dd HH:mm"), (int)SaveType.HS_Self_SystemPress, 10 * 60 * 1000);
                     sqlList.Add(sql);
-                    // 油温
-                    double oilTem = GlobalData.Instance.da["OilTemAI"].Value.Int16 / 10.0;
-                    sql = string.Format("Insert Into DateBaseReport (Name,Value,CreateTime,Type,Cycle) Values('{0}','{1}','{2}','{3}','{4}')", "自研液压站-油温",
-                        oilTem, DateTime.Now.ToString("yyyy-MM-dd HH:mm"), (int)SaveType.HS_Self_OilTmp, 10 * 60 * 1000);
+                    // 主泵1流量
+                    double mainFlow = GlobalData.Instance.da["M1ValuePWMR"].Value.Int32 / 10.0;
+                    sql = string.Format("Insert Into DateBaseReport (Name,Value,CreateTime,Type,Cycle) Values('{0}','{1}','{2}','{3}','{4}')", "自研液压站-主泵#1流量",
+                        now2, DateTime.Now.ToString("yyyy-MM-dd HH:mm"), (int)SaveType.HS_Self_MainFlow, 10 * 60 * 1000);
                     sqlList.Add(sql);
-                    // 液压
-                    double oilLevel = GlobalData.Instance.da["OilLevelAI"].Value.Int16 / 10.0;
-                    sql = string.Format("Insert Into DateBaseReport (Name,Value,CreateTime,Type,Cycle) Values('{0}','{1}','{2}','{3}','{4}')", "自研液压站-液位",
-                        oilLevel, DateTime.Now.ToString("yyyy-MM-dd HH:mm"), (int)SaveType.HS_Self_OilLevel, 10 * 60 * 1000);
+                    // 主泵2流量
+                    double mainTwoFlow = GlobalData.Instance.da["M2ValuePWMR"].Value.Int32 / 10.0;
+                    sql = string.Format("Insert Into DateBaseReport (Name,Value,CreateTime,Type,Cycle) Values('{0}','{1}','{2}','{3}','{4}')", "自研液压站-主泵#2流量",
+                        now3, DateTime.Now.ToString("yyyy-MM-dd HH:mm"), (int)SaveType.HS_Self_MainTwoFlow, 10 * 60 * 1000);
                     sqlList.Add(sql);
+                    if (timeTick == 60)
+                    {
+                        // 油温
+                        double oilTem = GlobalData.Instance.da["OilTemAI"].Value.Int16 / 10.0;
+                        sql = string.Format("Insert Into DateBaseReport (Name,Value,CreateTime,Type,Cycle) Values('{0}','{1}','{2}','{3}','{4}')", "自研液压站-油温",
+                            now4, DateTime.Now.ToString("yyyy-MM-dd HH:mm"), (int)SaveType.HS_Self_OilTmp, 10 * 60 * 1000);
+                        sqlList.Add(sql);
+                        // 液压
+                        double oilLevel = GlobalData.Instance.da["OilLevelAI"].Value.Int16 / 10.0;
+                        sql = string.Format("Insert Into DateBaseReport (Name,Value,CreateTime,Type,Cycle) Values('{0}','{1}','{2}','{3}','{4}')", "自研液压站-液位",
+                            now5, DateTime.Now.ToString("yyyy-MM-dd HH:mm"), (int)SaveType.HS_Self_OilLevel, 10 * 60 * 1000);
+                        sqlList.Add(sql);
+                    }
                     DataHelper.Instance.ExecuteNonQuery(sqlList.ToArray());
+                    timeTick++;
+                    if (timeTick > 60) timeTick = 0;
                 }
             }
             catch (Exception ex)
@@ -774,7 +793,7 @@ namespace Main
                     if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANY)
                     {
                         this.spMain.Children.Clear();
-                        this.spMain.Children.Add(SIRParam.Instance);
+                        this.spMain.Children.Add(SIRParamMain.Instance);
                         this.BottomColorSetting(this.bdSIR, this.tbSIR, this.bdOther);
                         return;
                     }

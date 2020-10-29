@@ -369,6 +369,15 @@
     <Compile Include="SIR\Sany\SIRParam.xaml.cs">
       <DependentUpon>SIRParam.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SIR\Sany\SIRParamMain.xaml.cs">
+      <DependentUpon>SIRParamMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SIR\Sany\SIRParamOne.xaml.cs">
+      <DependentUpon>SIRParamOne.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SIR\Sany\SIRParamTwo.xaml.cs">
+      <DependentUpon>SIRParamTwo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SIR\Sany\SIRPosSetting.xaml.cs">
       <DependentUpon>SIRPosSetting.xaml</DependentUpon>
     </Compile>
@@ -683,6 +692,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SIR\Sany\SIRParam.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SIR\Sany\SIRParamMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SIR\Sany\SIRParamOne.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SIR\Sany\SIRParamTwo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

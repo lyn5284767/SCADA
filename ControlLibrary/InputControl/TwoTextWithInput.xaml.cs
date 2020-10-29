@@ -69,12 +69,6 @@ namespace ControlLibrary.InputControl
 
         private void textBox_ParameterConfig_LostFocus(object sender, RoutedEventArgs e)
         {
-            this.sh.Opacity = 0.5;
-            GlobalData.Instance.GetKeyBoard();
-        }
-
-        private void tb_ParameterConfig_Focus(object sender, MouseButtonEventArgs e)
-        {
             //this.stackPanel.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#E0E1E3"));
             this.sh.Opacity = 0;
             Regex regexParameterConfigurationConfirm = new Regex(@"^[0-9]+$");
@@ -112,6 +106,12 @@ namespace ControlLibrary.InputControl
                 MessageBox.Show("参数为非数字");
                 this.textBoxSet.Text = "0";
             }
+        }
+
+        private void tb_ParameterConfig_Focus(object sender, MouseButtonEventArgs e)
+        {
+            this.sh.Opacity = 0.5;
+            GlobalData.Instance.GetKeyBoard();
         }
     }
 }

@@ -355,7 +355,7 @@
                                         </MenuItem.Header>
                                         <MenuItem Header="钻铤" FontSize="24">
                                             <!--10.28新增-->
-                                            <MenuItem Header="3.5''钻铤" Click="btn_SelectDrillPipe45"/>
+                                            <MenuItem Header="3.5''钻铤" Click="btn_SelectDrillPipe35"/>
                                             <MenuItem Header="4.5''钻铤" Click="btn_SelectDrillPipe45"/>
                                             <!--6.15新增 第四位1-->
                                             <MenuItem Header="6''钻铤" Click="btn_SelectDrillPipe6"/>
@@ -369,7 +369,7 @@
                                         </MenuItem>
                                         <MenuItem Header="钻杆" FontSize="24">
                                             <!--10.28新增-->
-                                            <MenuItem Header="2 7/8''钻杆" Click="btn_SelectDrillPipe312"/>
+                                            <MenuItem Header="2 7/8''钻杆" Click="btn_SelectDrillPipe28"/>
                                             <MenuItem Header="3.5''钻杆" Click="btn_SelectDrillPipe312"/>
                                             <MenuItem Header="4''钻杆" Click="btn_SelectDrillPipe4"/>
                                             <MenuItem Header="4 1/2''钻杆" Click="btn_SelectDrillPipe412"/>

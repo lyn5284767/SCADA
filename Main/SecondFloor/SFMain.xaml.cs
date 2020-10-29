@@ -1636,6 +1636,14 @@ namespace Main.SecondFloor
 
         #region 管柱类型选择
         /// <summary>
+        ///  2寸7/8钻杆
+        /// </summary>
+        private void btn_SelectDrillPipe28(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = SendByte(new List<byte> { 3, 28 });
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
         /// 3.5寸钻杆
         /// </summary>
         private void btn_SelectDrillPipe312(object sender, RoutedEventArgs e)
@@ -1693,6 +1701,14 @@ namespace Main.SecondFloor
         private void btn_SelectDrillPipe658(object sender, RoutedEventArgs e)
         {
             byte[] byteToSend = SendByte(new List<byte> { 3, 68 });
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 3.5寸钻铤
+        /// </summary>
+        private void btn_SelectDrillPipe35(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = SendByte(new List<byte> { 3, 35 });
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>

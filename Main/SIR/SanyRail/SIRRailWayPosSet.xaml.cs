@@ -57,6 +57,9 @@ namespace Main.SIR.SanyRail
                 this.twt4.SetBinding(TextWithBtnNew.ShowTxtWithBtnTxtProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["SIE_RailWay_RailWayFrontLocation"], Mode = BindingMode.OneWay });
                 this.twt5.SetBinding(TextWithBtnNew.ShowTxtWithBtnTxtProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["SIE_RailWay_RailWayBackLocation"], Mode = BindingMode.OneWay });
                 this.twt6.SetBinding(TextWithBtnNew.ShowTxtWithBtnTxtProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_TongsHeightSet"], Mode = BindingMode.OneWay });
+                this.twt7.SetBinding(TextWithBtnNew.ShowTxtWithBtnTxtProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_TongsHeightSet"], Mode = BindingMode.OneWay });
+                this.twt8.SetBinding(TextWithBtnNew.ShowTxtWithBtnTxtProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_TongsHeightSet"], Mode = BindingMode.OneWay });
+
 
             }
             catch (Exception ex)
