@@ -85,7 +85,7 @@ namespace Main.SIR.SanyRail
                 #endregion
 
                 #region 模拟量
-                this.tbSysPress.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_OilPress"], Mode = BindingMode.OneWay });
+                this.tbSysPress.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIR_RailWay_SystemPress"], Mode = BindingMode.OneWay });
                 this.tbInBtnPress.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_InBtnPress"], Mode = BindingMode.OneWay });
                 this.tbTorquePress.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_BackTongsPress"], Mode = BindingMode.OneWay });
                 this.tbMainTongsInBtnElec.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_MainTongsMotorInBtnElecOutput"], Mode = BindingMode.OneWay });

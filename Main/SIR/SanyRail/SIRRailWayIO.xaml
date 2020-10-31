@@ -61,10 +61,10 @@
                                     <TextBlock Text="主钳上扣"></TextBlock>
                                 </Border>
                                 <Border Grid.Row="3" Grid.Column="0" BorderBrush="Gray" BorderThickness="1">
-                                    <TextBlock Text="主钳减速"></TextBlock>
+                                    <TextBlock Text="主钳对缺减速"></TextBlock>
                                 </Border>
                                 <Border Grid.Row="4" Grid.Column="0" BorderBrush="Gray" BorderThickness="1">
-                                    <TextBlock Text="背钳对正"></TextBlock>
+                                    <TextBlock Text="背钳对缺"></TextBlock>
                                 </Border>
                                 <Border Grid.Row="0" Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
                                     <cl:SymbolMapping Name="smOpenRight" StrContent="" LampType="3" Width="40" Height="40"/>
@@ -91,7 +91,7 @@
                                     <TextBlock Text="主钳卸扣"></TextBlock>
                                 </Border>
                                 <Border Grid.Row="3" Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
-                                    <TextBlock Text="主钳停止"></TextBlock>
+                                    <TextBlock Text="主钳对缺停止"></TextBlock>
                                 </Border>
                                 <Border Grid.Row="4" Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
                                     <TextBlock Text="紧急停止"></TextBlock>

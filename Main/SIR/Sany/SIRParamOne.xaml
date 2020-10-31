@@ -59,7 +59,7 @@
                             <inputcontrol:TextWithTips Name="twtL10" Head="24,17,3,2" UnitOne="R" UnitTwo="/" UnitThree="R"  TbkText="卸扣圈数设置" MaxVal="19"/>
                             <inputcontrol:TextWithTips Name="twtL1" Head="24,17,1,1" UnitOne="Mpa" UnitTwo="KN.m" UnitThree="Mpa"  TbkText="高挡上扣设置" MaxVal="21.5"/>
                             <inputcontrol:TextWithTips Name="twtL2" Head="24,17,1,2" UnitOne="Mpa" UnitTwo="KN.m" UnitThree="Mpa"  TbkText="上扣安全保护" MaxVal="21.5"/>
-                            <inputcontrol:TextWithTips Name="twtL11" Head="24,17,3,3" UnitOne="Mpa" UnitTwo="KN.m" UnitThree="Mpa"  TbkText="紧扣动作设置" MaxVal="21.5"/>
+                            <inputcontrol:TextWithTips Name="twtL11" Head="24,17,3,3" UnitOne="Mpa" UnitTwo="KN.m" UnitThree="Mpa"  TbkText="紧扣扭矩设置" MaxVal="21.5"/>
                             <inputcontrol:TextWithTips Name="twtL12" Head="24,17,3,4" UnitOne="Mpa" UnitTwo="KN.m" UnitThree="Mpa"  TbkText="紧扣安全保护" MaxVal="21.5"/>
                             <inputcontrol:TextWithTips Name="twtL3" Head="24,17,1,3" UnitOne="S" UnitTwo="/" UnitThree="S"  TbkText="冲扣动作周期" MaxVal="255"/>
                             <inputcontrol:TextWithTips Name="twtL4" Head="24,17,1,4" UnitOne="Mpa" UnitTwo="KN.m" UnitThree="Mpa"  TbkText="卸扣安全保护" MaxVal="21.5"/>

@@ -87,13 +87,15 @@ namespace Main.SIR.SanyRail
                 #endregion
 
                 #region 主参数
-                this.tbSysPress.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_OilPress"], Mode = BindingMode.OneWay });
+                this.tbSysPress.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIR_RailWay_SystemPress"], Mode = BindingMode.OneWay });
                 this.tbInBtnPress.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_InBtnPress"], Mode = BindingMode.OneWay });
                 this.tbHighPress.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_High"], Mode = BindingMode.OneWay });
                 this.tbLowPress.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_Low"], Mode = BindingMode.OneWay });
-                this.tbTorquePress.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_BackTongsPress"], Mode = BindingMode.OneWay });
+                this.tbTorquePress.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIR_RailWay_InBtnTorque"], Mode = BindingMode.OneWay });
                 //this.tbInWorkTime.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_BackTongsPress"], Mode = BindingMode.OneWay });
                 this.tbUpDownMove.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_TongsHeight"], Mode = BindingMode.OneWay });
+                this.tbBackTongsPress.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_BackTongsPress"], Mode = BindingMode.OneWay });
+                this.tbBackTongsTorque.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIR_RailWay_BackTongsTorque"], Mode = BindingMode.OneWay });
                 #endregion
 
                 // 一键上扣
@@ -132,8 +134,8 @@ namespace Main.SIR.SanyRail
             {
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
-                    double drillTore = GlobalData.Instance.da["SIE_RailWay_OilPress"].Value.Int16 / 1.0;
-                    double cosingTorque = GlobalData.Instance.da["SIE_RailWay_BackTongsPress"].Value.Int16 / 1.0;
+                    double drillTore = GlobalData.Instance.da["SIR_RailWay_SystemPress"].Value.Int16 / 1.0;
+                    double cosingTorque = GlobalData.Instance.da["SIR_RailWay_InBtnTorque"].Value.Int16 / 1.0;
                     this.PressChart.AddPoints(drillTore);
                     this.TorqueChart.AddPoints(cosingTorque);
                 }));
