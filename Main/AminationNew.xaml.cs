@@ -1217,6 +1217,10 @@ namespace Main
                     drSelectFingerList.Where(w => w.Num != drSelectDrill).ForEach(o => o.SelectBorder.Visibility = Visibility.Visible);
                 }
             }
+            else
+            {
+                drSelectFingerList.ForEach(o => o.SelectBorder.Visibility = Visibility.Visible);
+            }
             // 二层台指梁绑定
             byte sfSelectDrill = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"].Value.Byte;
             byte sfoperationModel = GlobalData.Instance.da["operationModel"].Value.Byte;
@@ -1228,6 +1232,10 @@ namespace Main
                     selectbd.Visibility = Visibility.Hidden;
                     sfSelectFingerList.Where(w => w.Num != sfSelectDrill).ForEach(o => o.SelectBorder.Visibility = Visibility.Visible);
                 }
+            }
+            else
+            {
+                sfSelectFingerList.ForEach(o => o.SelectBorder.Visibility = Visibility.Visible);
             }
 
 

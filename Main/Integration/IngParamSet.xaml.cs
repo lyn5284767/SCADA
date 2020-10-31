@@ -78,17 +78,17 @@ namespace Main.Integration
                 // 左手柄
                 this.twt1.dicNumToValue = new Dictionary<int, string>();
                 this.twt1.dicNumToValue.Add(0, "无");
-                this.twt1.dicNumToValue.Add(1, "2按键CAN0总线手柄");
-                this.twt1.dicNumToValue.Add(2, "2按键CAN1总线手柄");
-                this.twt1.dicNumToValue.Add(3, "4按键CAN0总线手柄");
-                this.twt1.dicNumToValue.Add(4, "4按键CAN1总线手柄");
+                this.twt1.dicNumToValue.Add(1, "4按键CAN0总线手柄");
+                this.twt1.dicNumToValue.Add(2, "4按键CAN1总线手柄");
+                this.twt1.dicNumToValue.Add(3, "2按键CAN0总线手柄");
+                this.twt1.dicNumToValue.Add(4, "2按键CAN1总线手柄");
                 this.twt1.dicNumToValue.Add(7, "模拟手柄");
                 this.twt1.SetBinding(TextWithCombox.ShowTxtWithCBProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["171LeftHandleConfigurationInformation"], Mode = BindingMode.OneWay,ConverterParameter= this.twt1.dicNumToValue,Converter=new NumToTextConverter() });
                 // 右手柄
                 this.twt2.dicNumToValue = new Dictionary<int, string>();
                 this.twt2.dicNumToValue.Add(0, "无");
-                this.twt2.dicNumToValue.Add(1, "2按键CAN0总线手柄");
-                this.twt2.dicNumToValue.Add(2, "2按键CAN1总线手柄");
+                this.twt2.dicNumToValue.Add(3, "2按键CAN0总线手柄");
+                this.twt2.dicNumToValue.Add(4, "2按键CAN1总线手柄");
                 this.twt2.dicNumToValue.Add(5, "4按键CAN0总线手柄");
                 this.twt2.dicNumToValue.Add(6, "4按键CAN1总线手柄");
                 this.twt2.dicNumToValue.Add(7, "模拟手柄");
