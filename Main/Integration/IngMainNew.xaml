@@ -7,181 +7,308 @@
              xmlns:cl="http://talonzeng.com/ControlLibrary"
              mc:Ignorable="d" 
              d:DesignHeight="650" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" Name="IngNew" FontFamily="微软雅黑">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <Style x:Key="ShadowBorder" TargetType="Border">
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="20" Color="Gray" Direction="20" Opacity="0.1" RenderingBias="Quality" ShadowDepth="1"/>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect BlurRadius="20" Color="Gray" Direction="20" Opacity="0.5" RenderingBias="Quality" ShadowDepth="1"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
     <Grid>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="500"/>
-                <RowDefinition Height="100"/>
-                <RowDefinition Height="50"/>
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="650"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Border Name="bdMid" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,0,5,5" Grid.Column="0">
-                </Border>
-                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,0,5,5" Grid.Column="1">
-                    <StackPanel>
-                        <TextBlock Name="tbLink" Text="联动模式" FontSize="32" FontWeight="Bold" HorizontalAlignment="Center"></TextBlock>
-                        <TextBlock Text="提示" Name="LinkError" HorizontalAlignment="Center" Foreground="#E02740" FontSize="18"></TextBlock>
-                        <Grid>
-                            <Image Source="../Images/derrick.png" Height="400"></Image>
-                            <StackPanel Orientation="Horizontal" Height="30" Margin="50,-70,0,0">
-                                <TextBlock Text="二层台" VerticalAlignment="Center" FontWeight="Bold"></TextBlock>
-                                <cl:SymbolMapping Name="smSF" StrContent="" LampType="1" Margin="5,2,2,2"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Height="30" Margin="50,140,0,0">
-                                <TextBlock Text="钻台面" VerticalAlignment="Center" FontWeight="Bold"></TextBlock>
-                                <cl:SymbolMapping Name="smDR" LampType="1" StrContent="" Margin="5,2,2,2"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Height="30" Margin="200,140,0,0">
-                                <cl:SymbolMapping Name="smSIR" LampType="1" StrContent="" Margin="0,2,2,2"/>
-                                <TextBlock Text="铁钻工" VerticalAlignment="Center" FontWeight="Bold"></TextBlock>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Height="30" Margin="240,220,0,0">
-                                <cl:SymbolMapping Name="smCat" LampType="1" StrContent="" Margin="0,2,2,2"/>
-                                <TextBlock Text="猫道" VerticalAlignment="Center" FontWeight="Bold"></TextBlock>
-                            </StackPanel>
-                            <!--<Image Name="imgSF" Source="../Images/sf.png" Width="50" Height="50">
-                                <Image.RenderTransform>
-                                    <TransformGroup>
-                                        <TranslateTransform X="-80" Y="-20"></TranslateTransform>
-                                    </TransformGroup>
-                                </Image.RenderTransform>
-                            </Image>
-                            <Image Name="imgDR" Source="../Images/dr.png" Width="50" Height="50">
-                                <Image.RenderTransform>
-                                    <TransformGroup>
-                                        <TranslateTransform X="-80" Y="70"></TranslateTransform>
-                                    </TransformGroup>
-                                </Image.RenderTransform>
-                            </Image>
-                            <Image Name="imgSIR" Source="../Images/sir.png" Width="50" Height="50">
-                                <Image.RenderTransform>
-                                    <TransformGroup>
-                                        <TranslateTransform X="30" Y="60"></TranslateTransform>
-                                    </TransformGroup>
-                                </Image.RenderTransform>
-                            </Image>
-                            <Image Name="imgCat" Source="../Images/cat.png" Width="50" Height="50">
-                                <Image.RenderTransform>
-                                    <TransformGroup>
-                                        <TranslateTransform X="90" Y="110"></TranslateTransform>
-                                    </TransformGroup>
-                                </Image.RenderTransform>
-                            </Image>-->
-                        </Grid>
-                    </StackPanel>
-                </Border>
-            </Grid>
-            <Border Name="bdBottom" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,0,5,5" Grid.Row="1">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0" Orientation="Horizontal">
-                        <TextBlock Text="当前操作:" FontWeight="Bold" FontSize="24" VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
-                        <TextBlock Name="tbNowOpr" Text="送杆" FontSize="18" VerticalAlignment="Center"></TextBlock>
-                        <TextBlock Text="当前设备:" FontWeight="Bold" FontSize="24" VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
-                        <TextBlock Name="tbNowDevice" Text="二层台" FontSize="18" VerticalAlignment="Center"></TextBlock>
-                        
-                        <TextBlock Text="下个设备:" FontWeight="Bold" FontSize="24"  VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
-                        <TextBlock Name="tbNextDevice" Text="钻台面" FontSize="18" VerticalAlignment="Center"></TextBlock>
-                        <TextBlock Name="tbTips" Text="设备切换:" FontWeight="Bold" FontSize="24" VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
-                        <ComboBox SelectionChanged="CBDevice_Changed" SelectedIndex="0" FontSize="18">
-                            <ComboBoxItem>二层台</ComboBoxItem>
-                            <ComboBoxItem>钻台面</ComboBoxItem>
-                            <ComboBoxItem>铁钻工</ComboBoxItem>
-                            <ComboBoxItem>猫道</ComboBoxItem>
-                        </ComboBox>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Grid.Row="1" >
-                        <StackPanel Name="spDrillUp">
-                            <!--排杆-铁钻工步骤-->
-                            <hc:StepBar Width="760" FontSize="16" Name="sbIronOutButton" HorizontalAlignment="Left" Margin="5,0,0,0" Visibility="Collapsed">
-                                <hc:StepBarItem Content="卸扣启动"/>
-                                <hc:StepBarItem Content="目标定位"/>
-                                <hc:StepBarItem Content="钳体伸出"/>
-                                <hc:StepBarItem Content="抓杆"/>
-                                <hc:StepBarItem Content="卸扣确认"/>
-                                <hc:StepBarItem Content="卸扣中"/>
-                                <hc:StepBarItem Content="钳口对缺"/>
-                                <hc:StepBarItem Content="钳体回收"/>
-                                <hc:StepBarItem Content="卸扣结束"/>
-                            </hc:StepBar>
-                            <!--排杆-钻台面步骤-->
-                            <hc:StepBar Width="760" FontSize="16" Name="sbDRDrillUpStep" HorizontalAlignment="Left" Margin="5,0,0,0"  Visibility="Collapsed">
-                                <hc:StepBarItem Content="排管启动"/>
-                                <hc:StepBarItem Content="井口定位"/>
-                                <hc:StepBarItem Content="井口抓杆"/>
-                                <hc:StepBarItem Content="台面定位"/>
-                                <hc:StepBarItem Content="抓手松开"/>
-                                <hc:StepBarItem Content="手臂回位"/>
-                                <hc:StepBarItem Content="台面完成"/>
-                            </hc:StepBar>
-                            <!--排杆-二层台步骤-->
-                            <hc:StepBar Width="760" FontSize="16" Name="sbSFDrillUpStep" HorizontalAlignment="Left" Margin="5,0,0,0" Visibility="Collapsed">
-                                <hc:StepBarItem Content="排杆启动"/>
-                                <hc:StepBarItem Content="井口定位"/>
-                                <hc:StepBarItem Content="井口抓杆"/>
-                                <hc:StepBarItem Content="吊卡确认"/>
-                                <hc:StepBarItem Content="井口运动"/>
-                                <hc:StepBarItem Content="指梁定位"/>
-                                <hc:StepBarItem Content="指梁锁确认"/>
-                                <hc:StepBarItem Content="指梁排管"/>
-                                <hc:StepBarItem Content="排杆完成"/>
-                            </hc:StepBar>
-                        </StackPanel>
-                        <StackPanel Name="spDrillDown">
-                            <!--送杆-二层台步骤-->
-                            <hc:StepBar Width="760" FontSize="16" Name="sbSFDrillDownStep" HorizontalAlignment="Left" Margin="5,0,0,0" Visibility="Collapsed">
-                                <hc:StepBarItem Content="送杆启动"/>
-                                <hc:StepBarItem Content="指梁定位"/>
-                                <hc:StepBarItem Content="指梁抓杆"/>
-                                <hc:StepBarItem Content="指梁锁确认"/>
-                                <hc:StepBarItem Content="井口等待"/>
-                                <hc:StepBarItem Content="井口送杆"/>
-                                <hc:StepBarItem Content="吊卡确认"/>
-                                <hc:StepBarItem Content="井口位置"/>
-                                <hc:StepBarItem Content="送杆完成"/>
-                            </hc:StepBar>
-                            <!--送杆-钻台面步骤-->
-                            <hc:StepBar Width="760" FontSize="16" Name="sbDRDrillDownStep" HorizontalAlignment="Left" Margin="5,0,0,0" Visibility="Collapsed">
-                                <hc:StepBarItem Content="送杆启动"/>
-                                <hc:StepBarItem Content="台面定位"/>
-                                <hc:StepBarItem Content="抓手夹紧"/>
-                                <hc:StepBarItem Content="井口定位"/>
-                                <hc:StepBarItem Content="井口送杆"/>
-                                <hc:StepBarItem Content="手臂回位"/>
-                                <hc:StepBarItem Content="送杆结束"/>
-                            </hc:StepBar>
-                            <!--送杆-铁钻工步骤-->
-                            <hc:StepBar Width="760" FontSize="16" Name="sbIronInButton" HorizontalAlignment="Left" Margin="5,0,0,0" Visibility="Collapsed">
-                                <hc:StepBarItem Content="上扣启动" />
-                                <hc:StepBarItem Content="目标定位"/>
-                                <hc:StepBarItem Content="钳体伸出"/>
-                                <hc:StepBarItem Content="抓杆"/>
-                                <hc:StepBarItem Content="上扣确认"/>
-                                <hc:StepBarItem Content="上扣中"/>
-                                <hc:StepBarItem Content="钳口对缺"/>
-                                <hc:StepBarItem Content="钳体回收"/>
-                                <hc:StepBarItem Content="上扣结束"/>
-                            </hc:StepBar>
-                        </StackPanel>
-                        <Button Name="btnCatConfirm" Content="确认完成" FontSize="16" Height="40" Margin="15,0,0,0" Visibility="Collapsed"/>
-                    </StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5" Grid.Row="0" Grid.Column="0">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+            </Border.Effect>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="联动设置" FontSize="24"></TextBlock>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <cl:BasedSwitchButton Grid.Column="0" Name="operateMode" ContentLeft="手动" ContentDown="操作模式" ContentRight="自动" UserControlClicked="btn_OpState"/>
+                    <cl:BasedSwitchButton Grid.Column="1" Name="workMode" ContentLeft="排杆" ContentDown="工作模式" ContentRight="送杆" UserControlClicked="btn_WorkModel"/>
                 </Grid>
-            </Border>
-            <DockPanel Grid.Row="2">
-                <ToggleButton Name="tbIng" DockPanel.Dock="Left" Width="170" Content="联动设置" FontSize="18" Height="50" Click="tbIng_Click"></ToggleButton>
-                <ToggleButton DockPanel.Dock="Left" Width="170" Content="二层台设置" FontSize="18" Height="50" Click="tbSF_Click"></ToggleButton>
-                <ToggleButton DockPanel.Dock="Left" Width="170" Content="钻台面设置" FontSize="18" Height="50" Click="tbDR_Click"></ToggleButton>
-                <ToggleButton DockPanel.Dock="Right" Width="170" Content="液压站设置" FontSize="18" Height="50" Click="tbHS_Click"></ToggleButton>
-                <ToggleButton DockPanel.Dock="Right" Width="170" Content="猫道设置" FontSize="18" Height="50" Click="tbCat_Click"></ToggleButton>
-                <ToggleButton DockPanel.Dock="Right" Width="170" Content="铁钻工设置" FontSize="18" Height="50" Click="tbSIR_Click"></ToggleButton>
-            </DockPanel>
-        </Grid>
+                <StackPanel Orientation="Horizontal" Grid.Row="2">
+                    <TextBlock Text="联动设置:" Margin="10,0,0,0"></TextBlock>
+                    <cl:OnOffButton Name="oobLink" Margin="10,0,0,0" CBCheckedEvent="OnOffButton_CBCheckedEvent"/>
+                    <TextBlock x:Name="tbLink"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="3">
+                    <TextBlock Text="管柱选择:" Margin="10,0,0,0"></TextBlock>
+                    <Menu Background="Transparent" Height="35" Width="100"  FontSize="16" FontWeight="Bold" Foreground="#008AFF">
+                        <MenuItem>
+                            <MenuItem.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <ContentPresenter Content="管柱选择" />
+                                    <Image Margin="0,2,0,0"  Width="15" Source="..\Images\downTrangle.png" />
+                                </StackPanel>
+                            </MenuItem.Header>
+                            <MenuItem Header="钻铤">
+                                <MenuItem Header="6''钻铤" Click="btn_SelectDrillPipe" TabIndex="60"/>
+                                <MenuItem Header="6.5''钻铤" Click="btn_SelectDrillPipe" TabIndex="65"/>
+                                <MenuItem Header="7''钻铤" Click="btn_SelectDrillPipe" TabIndex="70"/>
+                                <MenuItem Header="7.5''钻铤" Click="btn_SelectDrillPipe" TabIndex="75"/>
+                                <MenuItem Header="8''钻铤" Click="btn_SelectDrillPipe" TabIndex="80"/>
+                                <MenuItem Header="9''钻铤" Click="btn_SelectDrillPipe" TabIndex="90"/>
+                                <MenuItem Header="10''钻铤" Click="btn_SelectDrillPipe" TabIndex="100"/>
+                                <MenuItem Header="11''钻铤" Click="btn_SelectDrillPipe" TabIndex="110"/>
+                            </MenuItem>
+                            <MenuItem Header="钻杆">
+                                <MenuItem Header="3 1/2''钻杆" Click="btn_SelectDrillPipe" TabIndex="35"/>
+                                <MenuItem Header="4''钻杆" Click="btn_SelectDrillPipe" TabIndex="40"/>
+                                <MenuItem Header="4 1/2''钻杆" Click="btn_SelectDrillPipe" TabIndex="45"/>
+                                <MenuItem Header="5''钻杆" Click="btn_SelectDrillPipe" TabIndex="50"/>
+                                <MenuItem Header="5.5''钻杆" Click="btn_SelectDrillPipe" TabIndex="55"/>
+                                <MenuItem Header="5 7/8''钻杆" Click="btn_SelectDrillPipe" TabIndex="57"/>
+                                <MenuItem Header="6 5/8''钻杆" Click="btn_SelectDrillPipe" TabIndex="68"/>
+                            </MenuItem>
+                        </MenuItem>
+                    </Menu>
+                    <TextBlock Text="未选择管柱类型" Name="tubeType" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="4">
+                    <TextBlock Text="目的地选择:" Margin="10,0,0,0"></TextBlock>
+                    <Menu Background="Transparent" Height="35" Width="120"  FontSize="16" FontWeight="Bold" Foreground="#008AFF">
+                        <MenuItem>
+                            <MenuItem.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <ContentPresenter Content="目的地选择" />
+                                    <Image Margin="0,2,0,0"  Width="15" Source="..\Images\downTrangle.png" />
+                                </StackPanel>
+                            </MenuItem.Header>
+                            <MenuItem Header="立根盒" Click="btn_SelectDes" TabIndex="1"/>
+                            <MenuItem Header="猫道-井口" Click="btn_SelectDes" TabIndex="2"/>
+                            <MenuItem Header="猫道-鼠洞" Click="btn_SelectDes" TabIndex="3"/>
+                        </MenuItem>
+                    </Menu>
+                    <Grid Height="5"></Grid>
+                    <TextBlock Text="未选择目的地" Name="drDestination" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5" Grid.Row="0" Grid.Column="1">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+            </Border.Effect>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="60"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="二层台" FontSize="24"></TextBlock>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <cl:BasedSwitchButton Grid.Column="0" Name="sfoperateMode" ContentLeft="手动" ContentDown="操作模式" ContentRight="自动" UserControlClicked="btn_SFOpState"/>
+                    <cl:BasedSwitchButton Grid.Column="1" Name="sfworkMode" ContentLeft="排杆" ContentDown="工作模式" ContentRight="送杆" UserControlClicked="btn_SFWorkModel"/>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="5,2,5,2" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btn_SFAllMotorRetZero">
+                        <StackPanel Orientation="Vertical">
+                            <!--<Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Margin="10,5,10,0" Height="45" Width="45">-->
+                            <TextBlock FontSize="28" Foreground="#008AFF" FontWeight="Bold" Text="  0  "></TextBlock>
+                            <!--</Border>-->
+                            <TextBlock>一键回零</TextBlock>
+                        </StackPanel>
+                    </Border>
+                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="5,2,5,2" Grid.Column="1" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btn_SFMotorEnable">
+                        <StackPanel Grid.Column="1" Orientation="Vertical">
+                            <!--<Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Margin="10,5,10,0" Height="45" Width="45">-->
+                            <Image Source="../Images/enable.png" Margin="1" Width="35" Height="35"></Image>
+                            <!--</Border>-->
+                            <TextBlock>电机使能</TextBlock>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Grid>
+        </Border>
+        <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5" Grid.Row="0" Grid.Column="2">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+            </Border.Effect>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="60"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="钻台面" FontSize="24"></TextBlock>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <cl:BasedSwitchButton Grid.Column="0" Name="droperateMode" ContentLeft="手动" ContentDown="操作模式" ContentRight="自动" UserControlClicked="btn_DROpState"/>
+                    <cl:BasedSwitchButton Grid.Column="1" Name="drworkMode" ContentLeft="排杆" ContentDown="工作模式" ContentRight="送杆" UserControlClicked="btn_DRWorkModel"/>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="5,2,5,2" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btn_DRAllMotorRetZero">
+                        <StackPanel Orientation="Vertical">
+                            <!--<Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Margin="10,5,10,0" Height="45" Width="45">-->
+                            <TextBlock FontSize="28" Foreground="#008AFF" FontWeight="Bold" Text="  0  "></TextBlock>
+                            <!--</Border>-->
+                            <TextBlock>一键回零</TextBlock>
+                        </StackPanel>
+                    </Border>
+                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="5,2,5,2" Grid.Column="1" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btn_DRMotorEnable">
+                        <StackPanel Grid.Column="1" Orientation="Vertical">
+                            <!--<Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Margin="10,5,10,0" Height="45" Width="45">-->
+                            <Image Source="../Images/enable.png" Margin="1" Width="35" Height="35"></Image>
+                            <!--</Border>-->
+                            <TextBlock>电机使能</TextBlock>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Grid>
+        </Border>
+        <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5" Grid.Row="1" Grid.Column="0">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+            </Border.Effect>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="铁钻工" FontSize="24"></TextBlock>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <cl:BasedSwitchButton Name="siroprModel" ContentLeft="手动" ContentDown="操作模式" ContentRight="自动" UserControlClicked="btn_SIRoprModel" Grid.Column="0" />
+                    <cl:BasedSwitchButton Name="sirworkModel" ContentLeft="上扣" ContentDown="工作模式" ContentRight="卸扣" UserControlClicked="btn_SIRworkModel" Grid.Column="1"/>
+                    <cl:BasedSwitchButton Name="sirPipeTypeModel" ContentLeft="钻杆" ContentDown="钻具选择" ContentRight="套管" UserControlClicked="btn_SIRPipeTypeModel" Grid.Column="3" />
+                </Grid>
+            </Grid>
+        </Border>
+        <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5" Grid.Row="1" Grid.Column="1">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+            </Border.Effect>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="液压站" FontSize="24"></TextBlock>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <cl:BasedSwitchButton Name="controlModel" ContentLeft="本地" ContentDown="控制模式" ContentRight="司钻" UserControlClicked="btn_controlModel" Grid.Column="0" />
+                    <cl:BasedSwitchButton Name="MainPumpOne" ContentLeft="停止" ContentDown="1#主泵" ContentRight="启动" UserControlClicked="btn_MainPumpOne" Grid.Column="1" />
+                    <cl:BasedSwitchButton Name="MainPumpTwo" ContentLeft="停止" ContentDown="2#主泵" ContentRight="启动" UserControlClicked="btn_MainPumpTwo" Grid.Column="2" />
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <cl:BasedSwitchButton Name="HSConstantVoltagePump" ContentLeft="停止" ContentDown="恒压泵" ContentRight="启动" UserControlClicked="btn_HSConstantVoltagePump" Grid.Column="0" />
+                    <cl:BasedSwitchButton Name="HSDissipateHeat" ContentLeft="停止" ContentDown="散热泵" ContentRight="启动" UserControlClicked="btn_HSDissipateHeat" Grid.Column="1" />
+                    <cl:BasedSwitchButton Name="HSHot" ContentLeft="停止" ContentDown="加热器" ContentRight="启动" UserControlClicked="btn_HSHot" Grid.Column="2" />
+
+                </Grid>
+            </Grid>
+        </Border>
+        <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5" Grid.Row="1" Grid.Column="2">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+            </Border.Effect>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="猫道" FontSize="24"></TextBlock>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <cl:BasedSwitchButton Name="CatControlModel" ContentLeft="本地" ContentDown="控制模式" ContentRight="司钻" UserControlClicked="btn_CatcontrolModel" Grid.Column="0" />
+                    <cl:BasedSwitchButton Name="CatMainPumpOne" ContentLeft="停止" ContentDown="1#泵" ContentRight="启动" UserControlClicked="btn_CatMainPumpOne" Grid.Column="1" />
+                    <cl:BasedSwitchButton Name="CatMainPumpTwo" ContentLeft="停止" ContentDown="2#泵" ContentRight="启动" UserControlClicked="btn_CatMainPumpTwo" Grid.Column="2" />
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <cl:BasedSwitchButton Name="CatLeftOrRight" ContentLeft="左" ContentDown="左右选择" ContentRight="右" UserControlClicked="btn_CatLeftOrRight" Grid.Column="0" />
+                    <cl:BasedSwitchButton Name="CatInOrOut" ContentLeft="内" ContentDown="内外选择" ContentRight="外" UserControlClicked="btn_CatInOrLeft" Grid.Column="1" />
+                    <Grid Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <CheckBox Name="cbIgnoreLimit" Grid.Row="0" FontSize="20" Checked="cbIgnoreLimit_Checked">忽略限制</CheckBox>
+                        <CheckBox Name="cbSelectPipe" Grid.Row="1" FontSize="20" Checked="cbSelectPipe_Checked">选择套管</CheckBox>
+                    </Grid>
+                </Grid>
+                <CheckBox Name="cbDRSafeLimit" Grid.Row="3" FontSize="20" Checked="cbDRSafeLimit_Checked">钻台面安全限制解除</CheckBox>
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>

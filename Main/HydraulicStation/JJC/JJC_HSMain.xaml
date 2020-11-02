@@ -1,0 +1,242 @@
+﻿<UserControl x:Class="Main.HydraulicStation.JJC.JJC_HSMain"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Main.HydraulicStation.JJC" xmlns:cl="http://talonzeng.com/ControlLibrary" xmlns:inputcontrol="clr-namespace:ControlLibrary.InputControl;assembly=ControlLibrary"
+             mc:Ignorable="d" 
+             d:DesignHeight="650" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="JJC_hsSetting">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <Style x:Key="ShadowBorder" TargetType="Border">
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="20" Color="Gray" Direction="20" Opacity="0.1" RenderingBias="Quality" ShadowDepth="1"/>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect BlurRadius="20" Color="Gray" Direction="20" Opacity="0.5" RenderingBias="Quality" ShadowDepth="1"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="220"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5" Grid.Row="0">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+            </Border.Effect>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="JJC液压站" FontSize="24" Grid.Row="0"></TextBlock>
+                <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+                    <TextBlock Text="告警信息:" FontSize="24" Foreground="#E02740"></TextBlock>
+                    <TextBlock Text="无" FontSize="24" Foreground="#E02740"></TextBlock>
+                </StackPanel>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <cl:BasedSwitchButton Name="MainPumpOne" ContentLeft="启动" ContentDown="1#主泵" ContentRight="停止" UserControlClicked="btn_MainPumpOne" Grid.Column="0" />
+                    <cl:BasedSwitchButton Name="MainPumpTwo" ContentLeft="启动" ContentDown="2#主泵" ContentRight="停止" UserControlClicked="btn_MainPumpTwo" Grid.Column="1" />
+                    <cl:BasedSwitchButton Name="ColdFan" ContentLeft="启动" ContentDown="冷却风机" ContentRight="停止" UserControlClicked="btn_ColdFan" Grid.Column="2" />
+                    <cl:BasedSwitchButton Name="Hot" ContentLeft="启动" ContentDown="加热器" ContentRight="停止" UserControlClicked="btn_Hot" Grid.Column="3" />
+                    <cl:BasedSwitchButton Name="LeftCat" ContentLeft="上升" ContentDown="左猫头" ContentRight="下降" UserControlClicked="btn_LeftCat" Grid.Column="4" />
+                    <cl:BasedSwitchButton Name="RightCat" ContentLeft="上升" ContentDown="右猫头" ContentRight="下降" UserControlClicked="btn_RightCat" Grid.Column="5" />
+                    <cl:BasedSwitchButton Name="RotateCat" ContentLeft="正转" ContentDown="旋转猫头" ContentRight="反转" UserControlClicked="btn_RotateCat" Grid.Column="6" />
+                </Grid>
+            </Grid>
+        </Border>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5" Grid.Column="0">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+                </Border.Effect>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Border BorderBrush="Gray" Background="White" BorderThickness="0,0,1,1" Grid.Column="0" Grid.Row="0">
+                        <StackPanel Orientation="Horizontal"  Margin="20,0,0,0">
+                            <TextBlock Text="系统压力:"></TextBlock>
+                            <TextBlock Text="XX" Foreground="#008AFF"></TextBlock>
+                            <TextBlock Text="（Mpa）"></TextBlock>
+                        </StackPanel>
+                    </Border>
+                    <Border  BorderBrush="Gray" Background="White" BorderThickness="1,0,0,1" Grid.Column="1" Grid.Row="0">
+                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                            <TextBlock Text="猫头压力:"></TextBlock>
+                            <TextBlock Text="XX" Foreground="#008AFF"></TextBlock>
+                            <TextBlock Text="（Mpa）"></TextBlock>
+                        </StackPanel>
+                    </Border>
+                    <Border BorderBrush="Gray" Background="White" BorderThickness="0,1,1,1" Grid.Column="0" Grid.Row="1">
+                        <StackPanel Orientation="Horizontal"  Margin="20,0,0,0">
+                            <TextBlock Text="1#主泵总运行时间:"></TextBlock>
+                            <TextBlock Text="XX" Foreground="#008AFF"></TextBlock>
+                            <TextBlock Text="（天）"></TextBlock>
+                        </StackPanel>
+                    </Border>
+                    <Border  BorderBrush="Gray" Background="White" BorderThickness="1,1,0,1" Grid.Column="1" Grid.Row="1">
+                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                            <TextBlock Text="1#主泵当次运行时间:"></TextBlock>
+                            <TextBlock Text="XX" Foreground="#008AFF"></TextBlock>
+                            <TextBlock Text="（小时）"></TextBlock>
+                        </StackPanel>
+                    </Border>
+                    <Border BorderBrush="Gray" Background="White" BorderThickness="0,1,1,1" Grid.Column="0" Grid.Row="2">
+                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                            <TextBlock Text="2#主泵总运行时间:"></TextBlock>
+                            <TextBlock Text="XX" Foreground="#008AFF"></TextBlock>
+                            <TextBlock Text="（天）"></TextBlock>
+                        </StackPanel>
+                    </Border>
+                    <Border  BorderBrush="Gray" Background="White" BorderThickness="1,1,0,1" Grid.Column="1" Grid.Row="2">
+                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                            <TextBlock Text="2#主泵当次运行时间:"></TextBlock>
+                            <TextBlock Text="XX" Foreground="#008AFF"></TextBlock>
+                            <TextBlock Text="（小时）"></TextBlock>
+                        </StackPanel>
+                    </Border>
+                    <Border BorderBrush="Gray" Background="White" BorderThickness="0,1,1,1" Grid.Column="0" Grid.Row="3">
+                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                            <TextBlock Text="加热启动温度:"></TextBlock>
+                            <TextBlock Text="XX" Foreground="#008AFF"></TextBlock>
+                            <TextBlock Text="（度）"></TextBlock>
+                        </StackPanel>
+                    </Border>
+                    <Border  BorderBrush="Gray" Background="White" BorderThickness="1,1,0,1" Grid.Column="1" Grid.Row="3">
+                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                            <TextBlock Text="加热停止温度:"></TextBlock>
+                            <TextBlock Text="XX" Foreground="#008AFF"></TextBlock>
+                            <TextBlock Text="（度）"></TextBlock>
+                        </StackPanel>
+                    </Border>
+                    <Border BorderBrush="Gray" Background="White" BorderThickness="0,1,1,1" Grid.Column="0" Grid.Row="4">
+                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                            <TextBlock Text="当前液位:"></TextBlock>
+                            <TextBlock Text="XX" Foreground="#008AFF"></TextBlock>
+                            <TextBlock Text="（L）"></TextBlock>
+                        </StackPanel>
+                    </Border>
+                    <Border  BorderBrush="Gray" Background="White" BorderThickness="1,1,0,1" Grid.Column="1" Grid.Row="4">
+                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                            <TextBlock Text="过低报警液位:"></TextBlock>
+                            <TextBlock Text="XX" Foreground="#008AFF"></TextBlock>
+                            <TextBlock Text="（L）"></TextBlock>
+                        </StackPanel>
+                    </Border>
+                    <Border BorderBrush="Gray" Background="White" BorderThickness="0,1,1,0" Grid.Column="0" Grid.Row="5">
+                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                            <TextBlock Text="最低停泵液位:"></TextBlock>
+                            <TextBlock Text="XX" Foreground="#008AFF"></TextBlock>
+                            <TextBlock Text="（L）"></TextBlock>
+                        </StackPanel>
+                    </Border>
+                    <Border  BorderBrush="Gray" Background="White" BorderThickness="1,1,0,0" Grid.Column="1" Grid.Row="5">
+                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                            <TextBlock Text="当前猫头比例阀电流:"></TextBlock>
+                            <TextBlock Text="XX" Foreground="#008AFF"></TextBlock>
+                            <TextBlock Text="（A）"></TextBlock>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Border>
+            <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5" Grid.Column="1">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+                </Border.Effect>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Border BorderBrush="Gray" Background="White" BorderThickness="0,0,0,1"  Grid.Row="0">
+                        <StackPanel Orientation="Horizontal"  Margin="20,0,0,0">
+                            <Menu Background="Transparent" Height="35" Width="140"  FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Foreground="#008AFF">
+                                <MenuItem>
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <ContentPresenter Content="待机模式" />
+                                            <Image Margin="0,2,0,0"  Width="15" Source="..\..\Images\downTrangle.png" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                    <MenuItem Header="工作" Click="btn_SelectWorkModel" TabIndex="12"/>
+                                    <MenuItem Header="待机" Click="btn_SelectWorkModel" TabIndex="13"/>
+                                </MenuItem>
+                            </Menu>
+                            <TextBlock Name="tbDrillType" VerticalAlignment="Center" Text="XX" FontSize="18" Width="80" Foreground="#008AFF"></TextBlock>
+                        </StackPanel>
+                    </Border>
+                    <Border  BorderBrush="Gray" Background="White" BorderThickness="0,1,0,1" Grid.Row="1">
+                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                            <Menu Background="Transparent" Height="35" Width="140"  FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Foreground="#008AFF">
+                                <MenuItem>
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <ContentPresenter Content="猫头供油模式" />
+                                            <Image Margin="0,2,0,0"  Width="15" Source="..\..\Images\downTrangle.png" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                    <MenuItem Header="其他" Click="btn_SelectCatOilModel" TabIndex="12"/>
+                                    <MenuItem Header="猫头" Click="btn_SelectCatOilModel" TabIndex="13"/>
+                                </MenuItem>
+                            </Menu>
+                            <TextBlock Name="tbOilType" VerticalAlignment="Center" Text="XX" FontSize="18" Width="80" Foreground="#008AFF"></TextBlock>
+                        </StackPanel>
+                    </Border>
+                    <Border  BorderBrush="Gray" Background="White" BorderThickness="0,1,0,1" Grid.Row="2">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
+                            <inputcontrol:TextWithBtnNew Name="twt1" TbkText="猫头压力百分比" Head="80,16,12,1"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

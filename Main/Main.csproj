@@ -183,6 +183,9 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="HydraulicStation\JJC\JJC_HSMain.xaml.cs">
+      <DependentUpon>JJC_HSMain.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HydraulicStation\Sany\HSAlarm.xaml.cs">
       <DependentUpon>HSAlarm.xaml</DependentUpon>
     </Compile>
@@ -440,6 +443,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DrillFloor\Sany\DRSecureSetting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HydraulicStation\JJC\JJC_HSMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -971,5 +978,6 @@
   <ItemGroup>
     <Resource Include="Images\derrick.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

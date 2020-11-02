@@ -46,38 +46,19 @@ namespace Main.Integration
                 return _instance;
             }
         }
-        // 流程定时器
-        System.Threading.Timer ProcessTimer;
-        Node<IngDeviceStatus> NowDeviceNode { get; set; }
-        int Twinkle = 0; // 图片闪烁标志
         public IngMainNew()
         {
             InitializeComponent();
-            Init();
             VariableBinding();
-            this.Loaded += IngMainNew_Loaded;
+            SIRVariableReBinding = new System.Threading.Timer(new TimerCallback(SIRVariableTimer), null, Timeout.Infinite, 500);
+            SIRVariableReBinding.Change(0, 500);
+            HSVariableReBinding = new System.Threading.Timer(new TimerCallback(HSVariableTimer), null, Timeout.Infinite, 500);
+            HSVariableReBinding.Change(0, 500);
+            this.Loaded += IngMain_Loaded;
         }
 
-        private void Init()
+        private void IngMain_Loaded(object sender, RoutedEventArgs e)
         {
-            GlobalData.Instance.Rows = GlobalData.Instance.da["DrillNums"].Value.Byte;
-            GlobalData.Instance.DrillNum = GlobalData.Instance.da["103E23B5"].Value.Byte;
-            ProcessTimer = new System.Threading.Timer(new TimerCallback(ProcessTimer_Elapsed), this, 2000, 50);//改成50ms 的时钟
-            ProcessTimer.Change(0, 500);
-            GlobalData.Instance.DeviceLink.Clear();
-            if(GlobalData.Instance.da.GloConfig.SFType !=0) GlobalData.Instance.DeviceLink.Append(new IngDeviceStatus() { NowType = SystemType.SecondFloor, IsLoad = false,DeviceName="二层台" });
-            if (GlobalData.Instance.da.GloConfig.DRType != 0) GlobalData.Instance.DeviceLink.Append(new IngDeviceStatus() { NowType = SystemType.DrillFloor, IsLoad = false, DeviceName = "钻台面" });
-            if (GlobalData.Instance.da.GloConfig.SIRType != 0) GlobalData.Instance.DeviceLink.Append(new IngDeviceStatus() { NowType = SystemType.SIR, IsLoad = false, DeviceName = "铁钻工" });
-            if (GlobalData.Instance.da.GloConfig.CatType != 0) GlobalData.Instance.DeviceLink.Append(new IngDeviceStatus() { NowType = SystemType.CatRoad, IsLoad = false, DeviceName = "猫道" });
-            NowDeviceNode = GlobalData.Instance.DeviceLink.Head;
-            this.bdMid.Child = IngSF.Instance;
-        }
-
-        private void IngMainNew_Loaded(object sender, RoutedEventArgs e)
-        {
-            byte[] data = new byte[10] { 80, 33, 0, 0, 0, 0, 0, 0, 30, 30 };
-            GlobalData.Instance.da.SendBytes(data);
-
             string configPath = System.Environment.CurrentDirectory + "\\KeyBoard.exe";
             System.Diagnostics.Process[] processList = System.Diagnostics.Process.GetProcesses();
             foreach (System.Diagnostics.Process process in processList)
@@ -88,78 +69,87 @@ namespace Main.Integration
                 }
             }
         }
+        /// <summary>
+        /// 绑定变量
+        /// </summary>
         private void VariableBinding()
         {
             try
             {
-                // 联动
-                this.tbLink.SetBinding(TextBlock.TextProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["460b0"], Mode = BindingMode.OneWay, Converter = new LinkOpenOrCloseConverter() });
+                IngVariableBinding();
+                SFVariableBinding();
+                DRVariableBinding();
+                SIRVariableBinding();
+                HSVariableBinding();
+                CatVariableBinding();
+            }
+            catch (Exception ex)
+            {
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+            }
+        }
+
+        #region 联动设置
+        /// <summary>
+        /// 联动变量绑定
+        /// </summary>
+        private void IngVariableBinding()
+        {
+            try
+            {
                 // 6.30新增
+                this.oobLink.SetBinding(OnOffButton.OnOffButtonCheckProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["460b0"], Mode = BindingMode.OneWay });
                 this.tbLink.SetBinding(TextBlock.TextProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["460b0"], Mode = BindingMode.OneWay, Converter = new LinkOpenOrCloseConverter() });
-                MultiBinding LinkErrorMultiBind = new MultiBinding();
-                LinkErrorMultiBind.Converter = new LinkErrorCoverter();
-                LinkErrorMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drLinkError"], Mode = BindingMode.OneWay });
-                LinkErrorMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["460b0"], Mode = BindingMode.OneWay });
-                LinkErrorMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["460b1"], Mode = BindingMode.OneWay });
-                LinkErrorMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["460b2"], Mode = BindingMode.OneWay });
-                LinkErrorMultiBind.NotifyOnSourceUpdated = true;
-                this.LinkError.SetBinding(TextBlock.TextProperty, LinkErrorMultiBind);
-                #region 排杆
-                // 二层台排杆
-                MultiBinding sbDrillUpMultiBind = new MultiBinding();
-                sbDrillUpMultiBind.Converter = new AutoModeStepCoverter();
-                sbDrillUpMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-                sbDrillUpMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["workModel"], Mode = BindingMode.OneWay });
-                sbDrillUpMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E5AutoModelCurrentStep"], Mode = BindingMode.OneWay });
-                sbDrillUpMultiBind.ConverterParameter = "one";
-                sbDrillUpMultiBind.NotifyOnSourceUpdated = true;
-                this.sbSFDrillUpStep.SetBinding(StepBar.StepIndexProperty, sbDrillUpMultiBind);
-                // 钻台面排杆
-                MultiBinding sbDRDrillDownMultiBind = new MultiBinding();
-                sbDRDrillDownMultiBind.Converter = new DRStepCoverter();
-                sbDRDrillDownMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
-                sbDRDrillDownMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drworkModel"], Mode = BindingMode.OneWay });
-                sbDRDrillDownMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drAutoStep"], Mode = BindingMode.OneWay });
-                sbDRDrillDownMultiBind.NotifyOnSourceUpdated = true;
-                this.sbDRDrillUpStep.SetBinding(StepBar.StepIndexProperty, sbDRDrillDownMultiBind);
-                // 一键卸扣
-                MultiBinding sbOutButtonMultiBind = new MultiBinding();
-                sbOutButtonMultiBind.Converter = new SIRSelfAutoModeStepCoverter();
-                sbOutButtonMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOperModel"], Mode = BindingMode.OneWay });
-                sbOutButtonMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfWorkModel"], Mode = BindingMode.OneWay });
-                sbOutButtonMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfAutoStep"], Mode = BindingMode.OneWay });
-                sbOutButtonMultiBind.ConverterParameter = "outButton";
-                sbOutButtonMultiBind.NotifyOnSourceUpdated = true;
-                this.sbIronOutButton.SetBinding(StepBar.StepIndexProperty, sbOutButtonMultiBind);
-                #endregion
-                #region 送杆
-                // 二层台送杆
-                MultiBinding sbDrillDownMultiBind = new MultiBinding();
-                sbDrillDownMultiBind.Converter = new AutoModeStepCoverter();
-                sbDrillDownMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
-                sbDrillDownMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["workModel"], Mode = BindingMode.OneWay });
-                sbDrillDownMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["116E5AutoModelCurrentStep"], Mode = BindingMode.OneWay });
-                sbDrillDownMultiBind.ConverterParameter = "one";
-                sbDrillDownMultiBind.NotifyOnSourceUpdated = true;
-                this.sbSFDrillDownStep.SetBinding(StepBar.StepIndexProperty, sbDrillDownMultiBind);
-                //钻台面送杆
-                MultiBinding sbDRDrillUpMultiBind = new MultiBinding();
-                sbDRDrillUpMultiBind.Converter = new DRStepCoverter();
-                sbDRDrillUpMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
-                sbDRDrillUpMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drworkModel"], Mode = BindingMode.OneWay });
-                sbDRDrillUpMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drAutoStep"], Mode = BindingMode.OneWay });
-                sbDRDrillUpMultiBind.NotifyOnSourceUpdated = true;
-                this.sbDRDrillDownStep.SetBinding(StepBar.StepIndexProperty, sbDRDrillUpMultiBind);
-                // 一键上扣
-                MultiBinding sbInbuttonMultiBind = new MultiBinding();
-                sbInbuttonMultiBind.Converter = new SIRSelfAutoModeStepCoverter();
-                sbInbuttonMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOperModel"], Mode = BindingMode.OneWay });
-                sbInbuttonMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfWorkModel"], Mode = BindingMode.OneWay });
-                sbInbuttonMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfAutoStep"], Mode = BindingMode.OneWay });
-                sbInbuttonMultiBind.ConverterParameter = "inButton";
-                sbInbuttonMultiBind.NotifyOnSourceUpdated = true;
-                this.sbIronInButton.SetBinding(StepBar.StepIndexProperty, sbInbuttonMultiBind);
-                #endregion
+                //MultiBinding LinkErrorMultiBind = new MultiBinding();
+                //LinkErrorMultiBind.Converter = new LinkErrorCoverter();
+                //LinkErrorMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drLinkError"], Mode = BindingMode.OneWay });
+                //LinkErrorMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["460b0"], Mode = BindingMode.OneWay });
+                //LinkErrorMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["460b1"], Mode = BindingMode.OneWay });
+                //LinkErrorMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["460b2"], Mode = BindingMode.OneWay });
+                //LinkErrorMultiBind.NotifyOnSourceUpdated = true;
+                //this.LinkError.SetBinding(TextBlock.TextProperty, LinkErrorMultiBind);
+                // 操作模式-描述
+                MultiBinding IngOprMultiBind = new MultiBinding();
+                IngOprMultiBind.Converter = new IngOprCoverter();
+                IngOprMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+                IngOprMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
+                IngOprMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOperModel"], Mode = BindingMode.OneWay });
+                IngOprMultiBind.NotifyOnSourceUpdated = true;
+                this.operateMode.SetBinding(BasedSwitchButton.ContentDownProperty, IngOprMultiBind);
+                // 操作模式-选择
+                MultiBinding IngOprCheckMultiBind = new MultiBinding();
+                IngOprCheckMultiBind.Converter = new IngOprCheckCoverter();
+                IngOprCheckMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+                IngOprCheckMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
+                IngOprCheckMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOperModel"], Mode = BindingMode.OneWay });
+                IngOprCheckMultiBind.NotifyOnSourceUpdated = true;
+                this.operateMode.SetBinding(BasedSwitchButton.IsCheckedProperty, IngOprCheckMultiBind);
+                // 工作模式-描述
+                MultiBinding IngWorkMultiBind = new MultiBinding();
+                IngWorkMultiBind.Converter = new IngWorkCoverter();
+                IngWorkMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["workModel"], Mode = BindingMode.OneWay });
+                IngWorkMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drworkModel"], Mode = BindingMode.OneWay });
+                IngWorkMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOperModel"], Mode = BindingMode.OneWay });
+                IngWorkMultiBind.NotifyOnSourceUpdated = true;
+                this.workMode.SetBinding(BasedSwitchButton.ContentDownProperty, IngWorkMultiBind);
+                // 工作模式-选择
+                MultiBinding IngWorkCheckMultiBind = new MultiBinding();
+                IngWorkCheckMultiBind.Converter = new IngWorkCheckCoverter();
+                IngWorkCheckMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
+                IngWorkCheckMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
+                IngWorkCheckMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfWorkModel"], Mode = BindingMode.OneWay });
+                IngWorkCheckMultiBind.NotifyOnSourceUpdated = true;
+                this.workMode.SetBinding(BasedSwitchButton.IsCheckedProperty, IngWorkCheckMultiBind);
+                // 管柱选择
+                IngDrillPipeTypeConverter ingDrillPipeTypeConverter = new IngDrillPipeTypeConverter();
+                MultiBinding ingDrillPipeTypeMultiBind = new MultiBinding();
+                ingDrillPipeTypeMultiBind.Converter = ingDrillPipeTypeConverter;
+                ingDrillPipeTypeMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drillPipeType"], Mode = BindingMode.OneWay });
+                ingDrillPipeTypeMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drdrillPipeType"], Mode = BindingMode.OneWay });
+                ingDrillPipeTypeMultiBind.NotifyOnSourceUpdated = true;
+                this.tubeType.SetBinding(TextBlock.TextProperty, ingDrillPipeTypeMultiBind);
+
+                this.drDestination.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drDes"], Mode = BindingMode.OneWay, Converter = new DesTypeConverter() });
             }
             catch (Exception ex)
             {
@@ -167,38 +157,111 @@ namespace Main.Integration
             }
         }
         /// <summary>
-        /// 切换当前运行设备定时器
+        /// 联动打开关闭
         /// </summary>
-        /// <param name="obj"></param>
-        private void ProcessTimer_Elapsed(object obj)
+        /// <param name="isChecked"></param>
+        private void OnOffButton_CBCheckedEvent(bool isChecked)
+        {
+            if (isChecked)
+            {
+                byte[] byteToSend = new byte[10] { 1, 32, 10, 1, 0, 0, 0, 0, 0, 0 };
+                GlobalData.Instance.da.SendBytes(byteToSend);
+            }
+            else
+            {
+                byte[] byteToSend = new byte[10] { 1, 32, 10, 0, 0, 0, 0, 0, 0, 0 };
+                GlobalData.Instance.da.SendBytes(byteToSend);
+            }
+        }
+        /// <summary>
+        /// 操作模式
+        /// </summary>
+        private void btn_OpState(object sender, EventArgs e)
+        {
+            byte[] sfbyteToSend;// 二层台
+            byte[] drbyteToSend;// 钻台面
+            byte[] sirbyteToSend;// 铁钻工
+            if (this.operateMode.IsChecked)
+            {
+                sfbyteToSend = GlobalData.Instance.SendByte(new List<byte> { 1, 5 });
+                drbyteToSend = new byte[10] { 1, 32, 3, 31, 0, 0, 0, 0, 0, 0 };
+                sirbyteToSend = new byte[10] { 23, 17, 1, 2, 0, 0, 0, 0, 0, 0 };
+            }
+            else
+            {
+                sfbyteToSend = GlobalData.Instance.SendByte(new List<byte> { 1, 4 });
+                drbyteToSend = new byte[10] { 1, 32, 3, 30, 0, 0, 0, 0, 0, 0 };
+                sirbyteToSend = new byte[10] { 23, 17, 1, 1, 0, 0, 0, 0, 0, 0 };
+            }
+
+            GlobalData.Instance.da.SendBytes(sfbyteToSend);
+            Thread.Sleep(50);
+            GlobalData.Instance.da.SendBytes(drbyteToSend);
+            Thread.Sleep(50);
+            GlobalData.Instance.da.SendBytes(sirbyteToSend);
+        }
+        /// <summary>
+        /// 工作模式
+        /// </summary>
+        private void btn_WorkModel(object sender, EventArgs e)
+        {
+            byte[] sfbyteToSend;// 二层台
+            byte[] drbyteToSend;// 钻台面
+            byte[] sirbyteToSend;// 铁钻工
+            if (workMode.IsChecked)
+            {
+                sfbyteToSend = GlobalData.Instance.SendByte(new List<byte> { 2, 1 });
+                drbyteToSend = new byte[10] { 1, 32, 4, 41, 0, 0, 0, 0, 0, 0 };
+                sirbyteToSend = new byte[10] { 23, 17, 1, 1, 0, 0, 0, 0, 0, 0 };
+            }
+            else
+            {
+                sfbyteToSend = GlobalData.Instance.SendByte(new List<byte> { 2, 2 });
+                drbyteToSend = new byte[10] { 1, 32, 4, 40, 0, 0, 0, 0, 0, 0 };
+                sirbyteToSend = new byte[10] { 23, 17, 1, 2, 0, 0, 0, 0, 0, 0 };
+            }
+            GlobalData.Instance.da.SendBytes(sfbyteToSend);
+            Thread.Sleep(50);
+            GlobalData.Instance.da.SendBytes(drbyteToSend);
+            Thread.Sleep(50);
+            GlobalData.Instance.da.SendBytes(sirbyteToSend);
+        }
+        /// <summary>
+        /// 管柱选择协议
+        /// </summary>
+        private void btn_SelectDrillPipe(object sender, RoutedEventArgs e)
+        {
+            int tag = (sender as MenuItem).TabIndex;
+            byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 3, (byte)tag });
+            GlobalData.Instance.da.SendBytes(byteToSend);
+            Thread.Sleep(50);
+            byteToSend = GlobalData.Instance.SendToDR(new List<byte>() { 3, (byte)tag });
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 目的地选择
+        /// </summary>
+        private void btn_SelectDes(object sender, RoutedEventArgs e)
+        {
+            int tag = (sender as MenuItem).TabIndex;
+            byte[] byteToSend = new byte[10] { 80, 33, 11, (byte)tag, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        #endregion
+
+        #region 二层台
+        /// <summary>
+        /// 二层台变量
+        /// </summary>
+        private void SFVariableBinding()
         {
             try
             {
-                Dispatcher.BeginInvoke(new Action(() =>
-                {
-                    //if (NowDeviceNode.Data.NowType == SystemType.SecondFloor && !NowDeviceNode.Data.IsLoad) // 加载二层台
-                    //{
-                    //    InitPanel(NowDeviceNode);
-                    //    this.bdMid.Child = IngSF.Instance;
-                    //}
-                    //else if (NowDeviceNode.Data.NowType == SystemType.DrillFloor && !NowDeviceNode.Data.IsLoad) // 加载钻台面
-                    //{
-                    //    InitPanel(NowDeviceNode);
-                    //    this.bdMid.Child = IngDR.Instance;
-                    //}
-                    //else if (NowDeviceNode.Data.NowType == SystemType.SIR && !NowDeviceNode.Data.IsLoad) // 加载铁钻工
-                    //{
-                    //    InitPanel(NowDeviceNode);
-                    //    this.bdMid.Child = IngSIR.Instance;
-                    //}
-                    //else if (NowDeviceNode.Data.NowType == SystemType.CatRoad && !NowDeviceNode.Data.IsLoad) // 加载猫道
-                    //{
-                    //    InitPanel(NowDeviceNode);
-                    //    this.bdMid.Child = IngCat.Instance;
-                    //}
-                    GetNowDevice();
-                    DeviceImgTwinkle();
-                }));
+                this.sfoperateMode.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay, Converter = new OperationModelConverter() });
+                this.sfoperateMode.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay, Converter = new OperationModelIsCheckConverter() });
+                this.sfworkMode.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["workModel"], Mode = BindingMode.OneWay, Converter = new WorkModelConverter() });
+                this.sfworkMode.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["workModel"], Mode = BindingMode.OneWay, Converter = new WorkModelIsCheckConverter() });
+
             }
             catch (Exception ex)
             {
@@ -206,347 +269,489 @@ namespace Main.Integration
             }
         }
         /// <summary>
-        /// 切换当前设备
+        /// 一键回零
         /// </summary>
-        private void GetNowDevice()
+        private void btn_SFAllMotorRetZero(object sender, MouseButtonEventArgs e)
         {
-            // 联动模式根据操作台数据切换
-            if (GlobalData.Instance.da["460b0"].Value.Boolean)
-            {
-                if (GlobalData.Instance.da["462b0"].Value.Boolean && NowDeviceNode.Data.NowType != SystemType.SecondFloor)
-                {
-                    InitPanel(SystemType.SecondFloor);
-                    this.bdMid.Child = IngSF.Instance;
-                }
-                else if (GlobalData.Instance.da["462b1"].Value.Boolean && NowDeviceNode.Data.NowType != SystemType.DrillFloor)
-                {
-                    InitPanel(SystemType.DrillFloor);
-                    this.bdMid.Child = IngDR.Instance;
-                }
-                else if (GlobalData.Instance.da["462b2"].Value.Boolean && NowDeviceNode.Data.NowType != SystemType.SIR)
-                {
-                    InitPanel(SystemType.SIR);
-                    this.bdMid.Child = IngSIR.Instance;
-                }
-                else if (GlobalData.Instance.da["462b3"].Value.Boolean && NowDeviceNode.Data.NowType != SystemType.CatRoad)
-                {
-                    InitPanel(SystemType.CatRoad);
-                    this.bdMid.Child = IngCat.Instance;
-                }
-            }
-            else// 非联动模式，根据旋转按钮切换
-            {
-                if (GlobalData.Instance.da["459b0"].Value.Boolean && NowDeviceNode.Data.NowType != SystemType.SecondFloor)
-                {
-                    InitPanel(SystemType.SecondFloor);
-                    this.bdMid.Child = IngSF.Instance;
-                }
-                else if (GlobalData.Instance.da["459b1"].Value.Boolean && NowDeviceNode.Data.NowType != SystemType.DrillFloor)
-                {
-                    InitPanel(SystemType.DrillFloor);
-                    this.bdMid.Child = IngDR.Instance;
-                }
-                else if (GlobalData.Instance.da["459b2"].Value.Boolean && NowDeviceNode.Data.NowType != SystemType.SIR)
-                {
-                    InitPanel(SystemType.SIR);
-                    this.bdMid.Child = IngSIR.Instance;
-                }
-                else if (GlobalData.Instance.da["459b3"].Value.Boolean && NowDeviceNode.Data.NowType != SystemType.CatRoad)
-                {
-                    InitPanel(SystemType.CatRoad);
-                    this.bdMid.Child = IngCat.Instance;
-                }
-            }
+            byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 13, 4 });
+            GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
-        /// 弃用
+        /// 点击使能
         /// </summary>
-        private void InitSetpBar()
+        private void btn_SFMotorEnable(object sender, MouseButtonEventArgs e)
         {
-            #region 步骤条相关
-            if (GlobalData.Instance.da["operationModel"].Value.Byte == 5 && GlobalData.Instance.da["droperationModel"].Value.Byte == 5) // 自动模式
-            {
-                if (GlobalData.Instance.da["workModel"].Value.Byte == 2 && GlobalData.Instance.da["drworkModel"].Value.Byte == 2) // 排管
-                {
-                    this.tbNowOpr.Text = "排杆";
-                    if (NowDeviceNode.Data.NowType == SystemType.SecondFloor)
-                    {
-                    }
-                    else if (NowDeviceNode.Data.NowType == SystemType.DrillFloor)
-                    {
-                    }
-                    else if (NowDeviceNode.Data.NowType == SystemType.SIR)
-                    {
-                        
-                    }
-                }
-                else if (GlobalData.Instance.da["workModel"].Value.Byte == 1 && GlobalData.Instance.da["drworkModel"].Value.Byte == 1)// 送杆
-                {
-                    this.tbNowOpr.Text = "送杆"; 
-                    if (NowDeviceNode.Data.NowType == SystemType.SecondFloor)
-                    {
-                        this.sbSFDrillDownStep.Visibility = Visibility.Visible;
-                        this.sbDRDrillDownStep.Visibility = Visibility.Collapsed;
-                        this.sbIronInButton.Visibility = Visibility.Collapsed;
-                        this.sbIronOutButton.Visibility = Visibility.Collapsed;
-                        this.sbDRDrillUpStep.Visibility = Visibility.Collapsed;
-                        this.sbSFDrillUpStep.Visibility = Visibility.Collapsed;
-                    }
-                    else if (NowDeviceNode.Data.NowType == SystemType.DrillFloor)
-                    {
-                    }
-                    else if (NowDeviceNode.Data.NowType == SystemType.SIR)
-                    {
-
-                    }
-                }
-            }
-            #endregion
+            byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 6, 2 });
+            GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
-        /// 设备切换后重新初始化面板
-        /// </summary>
-        private void InitPanel(SystemType systemType)
-        {
-            try
-            {
-                Node<IngDeviceStatus> node = GlobalData.Instance.DeviceLink.Head;
-                if (node != null)
-                {
-                    do // 遍历链表找到当前设备所处位置
-                    {
-                        if (node.Data.NowType == systemType)
-                        {
-                            NowDeviceNode = node;
-                            NowDeviceNode.Data.IsLoad = true;
-                        }
-                        else
-                        {
-                            node.Data.IsLoad = false;
-                        }
-                        node = node.Next;
-                    } while (node != null);
-                    this.tbNowDevice.Text = NowDeviceNode.Data.DeviceName;
-                    if (NowDeviceNode.Next != null)
-                        this.tbNextDevice.Text = NowDeviceNode.Next.Data.DeviceName;
-                    else
-                        this.tbNextDevice.Text = "无";
-                    if (GlobalData.Instance.da["workModel"].Value.Byte == 1 && GlobalData.Instance.da["drworkModel"].Value.Byte == 1)// 送杆
-                    {
-                        this.tbNowOpr.Text = "送杆";
-                        this.spDrillDown.Visibility = Visibility.Visible;
-                        this.spDrillUp.Visibility = Visibility.Collapsed;
-                        if (NowDeviceNode.Data.NowType == SystemType.SecondFloor)
-                        {
-                            this.sbSFDrillDownStep.Visibility = Visibility.Visible;
-                            this.sbDRDrillDownStep.Visibility = Visibility.Collapsed;
-                            this.sbIronInButton.Visibility = Visibility.Collapsed;
-                            this.btnCatConfirm.Visibility = Visibility.Collapsed;
-                        }
-                        else if (NowDeviceNode.Data.NowType == SystemType.DrillFloor)
-                        {
-                            this.sbSFDrillDownStep.Visibility = Visibility.Collapsed;
-                            this.sbDRDrillDownStep.Visibility = Visibility.Visible;
-                            this.sbIronInButton.Visibility = Visibility.Collapsed;
-                            this.btnCatConfirm.Visibility = Visibility.Collapsed;
-                        }
-                        else if (NowDeviceNode.Data.NowType == SystemType.SIR)
-                        {
-                            this.sbSFDrillDownStep.Visibility = Visibility.Collapsed;
-                            this.sbDRDrillDownStep.Visibility = Visibility.Collapsed;
-                            this.sbIronInButton.Visibility = Visibility.Visible;
-                            this.btnCatConfirm.Visibility = Visibility.Collapsed;
-                        }
-                        else if (NowDeviceNode.Data.NowType == SystemType.CatRoad)
-                        {
-                            this.sbSFDrillDownStep.Visibility = Visibility.Collapsed;
-                            this.sbDRDrillDownStep.Visibility = Visibility.Collapsed;
-                            this.sbIronInButton.Visibility = Visibility.Collapsed;
-                            this.btnCatConfirm.Visibility = Visibility.Visible;
-                        }
-                    }
-                    else if (GlobalData.Instance.da["workModel"].Value.Byte == 2 && GlobalData.Instance.da["drworkModel"].Value.Byte == 2)// 排杆
-                    {
-                        this.tbNowOpr.Text = "排杆";
-                        this.spDrillDown.Visibility = Visibility.Collapsed;
-                        this.spDrillUp.Visibility = Visibility.Visible;
-                        if (NowDeviceNode.Data.NowType == SystemType.SecondFloor)
-                        {
-                            this.sbSFDrillUpStep.Visibility = Visibility.Visible;
-                            this.sbDRDrillUpStep.Visibility = Visibility.Collapsed;
-                            this.sbIronOutButton.Visibility = Visibility.Collapsed;
-                            this.btnCatConfirm.Visibility = Visibility.Collapsed;
-                        }
-                        else if (NowDeviceNode.Data.NowType == SystemType.DrillFloor)
-                        {
-                            this.sbSFDrillUpStep.Visibility = Visibility.Collapsed;
-                            this.sbDRDrillUpStep.Visibility = Visibility.Visible;
-                            this.sbIronOutButton.Visibility = Visibility.Collapsed;
-                            this.btnCatConfirm.Visibility = Visibility.Collapsed;
-                        }
-                        else if (NowDeviceNode.Data.NowType == SystemType.SIR)
-                        {
-                            this.sbSFDrillUpStep.Visibility = Visibility.Collapsed;
-                            this.sbDRDrillUpStep.Visibility = Visibility.Collapsed;
-                            this.sbIronOutButton.Visibility = Visibility.Visible;
-                            this.btnCatConfirm.Visibility = Visibility.Collapsed;
-                        }
-                        else if (NowDeviceNode.Data.NowType == SystemType.CatRoad)
-                        {
-                            this.sbSFDrillUpStep.Visibility = Visibility.Collapsed;
-                            this.sbDRDrillUpStep.Visibility = Visibility.Collapsed;
-                            this.sbIronOutButton.Visibility = Visibility.Collapsed;
-                            this.btnCatConfirm.Visibility = Visibility.Visible;
-                        }
-                    }
-                    ChangeUseDeviceImg(NowDeviceNode.Data.NowType);
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
-            }
-        }
-        /// <summary>
-        /// 根据设备类型改变使用的设备图片-暂时弃用
-        /// </summary>
-        private void ChangeUseDeviceImg(SystemType systemType)
-        {
-            //if (systemType == SystemType.SecondFloor)
-            //{
-            //    this.imgSF.Source = new BitmapImage(new Uri("../Images/sfUse.png", UriKind.Relative));
-            //    this.imgDR.Source = new BitmapImage(new Uri("../Images/dr.png", UriKind.Relative));
-            //    this.imgSIR.Source = new BitmapImage(new Uri("../Images/sir.png", UriKind.Relative));
-            //    this.imgCat.Source = new BitmapImage(new Uri("../Images/cat.png", UriKind.Relative));
-            //}
-            //else if (systemType == SystemType.DrillFloor)
-            //{
-            //    this.imgSF.Source = new BitmapImage(new Uri("../Images/sf.png", UriKind.Relative));
-            //    this.imgDR.Source = new BitmapImage(new Uri("../Images/drUse.png", UriKind.Relative));
-            //    this.imgSIR.Source = new BitmapImage(new Uri("../Images/sir.png", UriKind.Relative));
-            //    this.imgCat.Source = new BitmapImage(new Uri("../Images/cat.png", UriKind.Relative));
-            //}
-            //else if (systemType == SystemType.SIR)
-            //{
-            //    this.imgSF.Source = new BitmapImage(new Uri("../Images/sf.png", UriKind.Relative));
-            //    this.imgDR.Source = new BitmapImage(new Uri("../Images/dr.png", UriKind.Relative));
-            //    this.imgSIR.Source = new BitmapImage(new Uri("../Images/sirUse.png", UriKind.Relative));
-            //    this.imgCat.Source = new BitmapImage(new Uri("../Images/cat.png", UriKind.Relative));
-            //}
-            //else if (systemType == SystemType.CatRoad)
-            //{
-            //    this.imgSF.Source = new BitmapImage(new Uri("../Images/sf.png", UriKind.Relative));
-            //    this.imgDR.Source = new BitmapImage(new Uri("../Images/dr.png", UriKind.Relative));
-            //    this.imgSIR.Source = new BitmapImage(new Uri("../Images/sir.png", UriKind.Relative));
-            //    this.imgCat.Source = new BitmapImage(new Uri("../Images/catUse.png", UriKind.Relative));
-            //}
-        }
-        /// <summary>
-        /// 使用设备闪烁
-        /// </summary>
-        private void DeviceImgTwinkle()
-        {
-            Twinkle++;
-            if (Twinkle > 1000) Twinkle = 0;
-            if (NowDeviceNode.Data.NowType == SystemType.SecondFloor)
-            {
-                if (Twinkle % 2 == 0) this.smSF.LampType = 0;
-                else this.smSF.LampType = 1;
-            }
-            else if (NowDeviceNode.Data.NowType == SystemType.DrillFloor)
-            {
-                if (Twinkle % 2 == 0) this.smDR.LampType = 0;
-                else this.smDR.LampType = 1;
-            }
-            else if (NowDeviceNode.Data.NowType == SystemType.SIR)
-            {
-                if (Twinkle % 2 == 0) this.smSIR.LampType = 0;
-                else this.smSIR.LampType = 1;
-            }
-            else if (NowDeviceNode.Data.NowType == SystemType.CatRoad)
-            {
-                if (Twinkle % 2 == 0) this.smCat.LampType = 0;
-                else this.smCat.LampType = 1;
-            }
-        }
-
-        /// <summary>
-        /// 联动设置
+        /// 操作模式
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tbIng_Click(object sender, RoutedEventArgs e)
+        private void btn_SFOpState(object sender, EventArgs e)
         {
-            IngSetWindow ingSet = new IngSetWindow();
-            ingSet.ShowDialog();
+            byte[] byteToSend;
+            if (this.sfoperateMode.IsChecked)
+            {
+                byteToSend = GlobalData.Instance.SendByte(new List<byte> { 1, 5 });
+            }
+            else
+            {
+                byteToSend = GlobalData.Instance.SendByte(new List<byte> { 1, 4 });
+            }
+
+            GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
-        /// 二层台设置
+        /// 工作模式
         /// </summary>
-        private void tbSF_Click(object sender, RoutedEventArgs e)
+        private void btn_SFWorkModel(object sender, EventArgs e)
         {
-            IngSFSetWindow sfSet = new IngSFSetWindow();
-            sfSet.ShowDialog();
+            byte[] byteToSend;
+            if (sfworkMode.IsChecked)
+            {
+                byteToSend = GlobalData.Instance.SendByte(new List<byte> { 2, 1 });
+            }
+            else
+            {
+                byteToSend = GlobalData.Instance.SendByte(new List<byte> { 2, 2 });
+            }
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        #endregion
+
+        #region 钻台面
+        private void DRVariableBinding()
+        {
+            try
+            {
+                this.droperateMode.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay, Converter = new OperationModelConverter() });
+                this.droperateMode.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay, Converter = new OperationModelIsCheckConverter() });
+                this.drworkMode.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drworkModel"], Mode = BindingMode.OneWay, Converter = new WorkModelConverter() });
+                this.drworkMode.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drworkModel"], Mode = BindingMode.OneWay, Converter = new WorkModelIsCheckConverter() });
+            }
+            catch (Exception ex)
+            {
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+            }
+        }
+        /// <summary>
+        /// 一键回零
+        /// </summary>
+        private void btn_DRAllMotorRetZero(object sender, MouseButtonEventArgs e)
+        {
+            byte[] byteToSend = GlobalData.Instance.SendToDR(new List<byte> { 13, 4 });
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 一键使能
+        /// </summary>
+        private void btn_DRMotorEnable(object sender, MouseButtonEventArgs e)
+        {
+            byte[] byteToSend = GlobalData.Instance.SendToDR(new List<byte> { 6, 2 });
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 操作模式
+        /// </summary>
+        private void btn_DROpState(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+            if (this.droperateMode.IsChecked)
+            {
+                byteToSend = new byte[10] { 1, 32, 3, 31, 0, 0, 0, 0, 0, 0 };
+            }
+            else
+            {
+                byteToSend = new byte[10] { 1, 32, 3, 30, 0, 0, 0, 0, 0, 0 };
+            }
+
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 工作模式
+        /// </summary>
+        private void btn_DRWorkModel(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+            if (this.drworkMode.IsChecked)
+            {
+                byteToSend = new byte[10] { 1, 32, 4, 41, 0, 0, 0, 0, 0, 0 };
+            }
+            else
+            {
+                byteToSend = new byte[10] { 1, 32, 4, 40, 0, 0, 0, 0, 0, 0 };
+            }
+
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        #endregion
+
+        #region 铁钻工
+        bool workModelCheck = false;
+        byte bworkModel = 0;
+        System.Threading.Timer SIRVariableReBinding;
+
+        /// <summary>
+        /// 绑定变量
+        /// </summary>
+        private void SIRVariableBinding()
+        {
+            try
+            {
+                this.siroprModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOperModel"], Mode = BindingMode.OneWay, Converter = new SIRSelfOperationModelConverter() });
+                this.siroprModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOperModel"], Mode = BindingMode.OneWay, Converter = new SIRSelfIsCheckConverter() });
+                this.sirworkModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfWorkModel"], Mode = BindingMode.OneWay, Converter = new SIRSelfWorkModelConverter() });
+                this.sirworkModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfWorkModel"], Mode = BindingMode.OneWay, Converter = new SIRSelfIsCheckConverter() });
+                this.sirPipeTypeModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfPipeType"], Mode = BindingMode.OneWay, Converter = new SIRSelfPipeTypeModelConverter() });
+                this.sirPipeTypeModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfPipeType"], Mode = BindingMode.OneWay, Converter = new SIRSelfPipeTypeIsCheckConverter() });
+             }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.StackTrace);
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+            }
+        }
+        /// <summary>
+        /// 操作模式
+        /// </summary>
+        private void btn_SIRoprModel(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+            if (this.siroprModel.IsChecked) //当前手动状态
+            {
+                byteToSend = new byte[10] { 23, 17, 1, 2, 0, 0, 0, 0, 0, 0 };
+            }
+            else//当前自动状态
+            {
+                byteToSend = new byte[10] { 23, 17, 1, 1, 0, 0, 0, 0, 0, 0 };
+            }
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 工作模式
+        /// </summary>
+        private void btn_SIRworkModel(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+            if (this.sirworkModel.IsChecked) //当前上扣模式
+            {
+                byteToSend = new byte[10] { 23, 17, 2, 2, 0, 0, 0, 0, 0, 0 };
+            }
+            else//当前卸扣模式
+            {
+                byteToSend = new byte[10] { 23, 17, 2, 1, 0, 0, 0, 0, 0, 0 };
+            }
+            GlobalData.Instance.da.SendBytes(byteToSend);
+            this.sirworkModel.ContentDown = "切换中";
+            workModelCheck = true;
+        }
+        /// <summary>
+        /// 管柱选择
+        /// </summary>
+        private void btn_SIRPipeTypeModel(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+            if (this.sirPipeTypeModel.IsChecked) //当前钻杠
+            {
+                byteToSend = new byte[10] { 23, 17, 3, 2, 0, 0, 0, 0, 0, 0 };
+            }
+            else//当前套管
+            {
+                byteToSend = new byte[10] { 23, 17, 3, 1, 0, 0, 0, 0, 0, 0 };
+            }
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+
+        private void SIRVariableTimer(object value)
+        {
+            if (bworkModel != GlobalData.Instance.da["SIRSelfWorkModel"].Value.Byte && workModelCheck)
+            {
+                this.sirworkModel.Dispatcher.Invoke(new Action(() =>
+                {
+                    this.sirworkModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfWorkModel"], Mode = BindingMode.OneWay, Converter = new SIRSelfWorkModelConverter() });
+                }));
+                workModelCheck = false;
+            }
+            bworkModel = GlobalData.Instance.da["SIRSelfWorkModel"].Value.Byte;
+        }
+        #endregion
+
+        #region 液压站
+        bool bMainPumpOne = false;
+        bool MainPumpOneCheck = false;
+        bool bMainPumpTwo = false;
+        bool MainPumpTwoCheck = false;
+        System.Threading.Timer HSVariableReBinding;
+        private void HSVariableBinding()
+        {
+            try
+            {
+                this.controlModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["771b5"], Mode = BindingMode.OneWay });
+                HyControlModelMuilCoverter hyControlModelMultiConverter = new HyControlModelMuilCoverter();
+                MultiBinding hyControlModelMultiBind = new MultiBinding();
+                hyControlModelMultiBind.Converter = hyControlModelMultiConverter;
+                hyControlModelMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["771b5"], Mode = BindingMode.OneWay });
+                hyControlModelMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["771b6"], Mode = BindingMode.OneWay });
+                hyControlModelMultiBind.NotifyOnSourceUpdated = true;
+                this.controlModel.SetBinding(BasedSwitchButton.IsCheckedProperty, hyControlModelMultiBind);
+                HyControlModelTxtMuilCoverter hyControlModelTxtMultiConverter = new HyControlModelTxtMuilCoverter();
+                MultiBinding hyControlModelTxtlMultiBind = new MultiBinding();
+                hyControlModelTxtlMultiBind.Converter = hyControlModelTxtMultiConverter;
+                hyControlModelTxtlMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["771b5"], Mode = BindingMode.OneWay });
+                hyControlModelTxtlMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["771b6"], Mode = BindingMode.OneWay });
+                hyControlModelTxtlMultiBind.NotifyOnSourceUpdated = true;
+                this.controlModel.SetBinding(BasedSwitchButton.ContentDownProperty, hyControlModelTxtlMultiBind);
+
+                this.MainPumpOne.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["770b3"], Mode = BindingMode.OneWay });
+                this.MainPumpTwo.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["770b5"], Mode = BindingMode.OneWay });
+                this.HSConstantVoltagePump.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["770b7"], Mode = BindingMode.OneWay });
+                this.HSDissipateHeat.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["771b1"], Mode = BindingMode.OneWay });
+                this.HSHot.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["771b3"], Mode = BindingMode.OneWay });
+            }
+            catch (Exception ex)
+            {
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+            }
+        }
+
+        //司钻/本地控制
+        private void btn_controlModel(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+            byteToSend = new byte[10] { 0, 19, 1, 9, 0, 0, 0, 0, 0, 0 };// 疑问，所有切换都是这个协议？
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 主泵1启动/停止
+        /// </summary>
+        private void btn_MainPumpOne(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+            if (this.MainPumpOne.IsChecked) //当前停止状态
+            {
+                byteToSend = new byte[10] { 0, 19, 3, 1, 0, 0, 0, 0, 0, 0 };
+            }
+            else//当前启动状态
+            {
+                byteToSend = new byte[10] { 0, 19, 3, 2, 0, 0, 0, 0, 0, 0 };
+            }
+            GlobalData.Instance.da.SendBytes(byteToSend);
+            this.MainPumpOne.ContentDown = "切换中";
+            this.MainPumpOneCheck = true;
+        }
+        /// <summary>
+        /// 主泵2启动/停止
+        /// </summary>
+        private void btn_MainPumpTwo(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+            if (this.MainPumpTwo.IsChecked) //当前停止状态
+            {
+                byteToSend = new byte[10] { 0, 19, 3, 3, 0, 0, 0, 0, 0, 0 };
+            }
+            else//当前启动状态
+            {
+                byteToSend = new byte[10] { 0, 19, 3, 4, 0, 0, 0, 0, 0, 0 };
+            }
+            GlobalData.Instance.da.SendBytes(byteToSend);
+            this.MainPumpTwo.ContentDown = "切换中";
+            this.MainPumpTwoCheck = true;
+        }
+        /// <summary>
+        /// 恒压泵启动/停止
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_HSConstantVoltagePump(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+            if (this.HSConstantVoltagePump.IsChecked) //当前停止状态
+            {
+                byteToSend = new byte[10] { 0, 19, 3, 5, 0, 0, 0, 0, 0, 0 };
+            }
+            else//当前启动状态
+            {
+                byteToSend = new byte[10] { 0, 19, 3, 6, 0, 0, 0, 0, 0, 0 };
+            }
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 散热泵启动/停止
+        /// </summary>
+        private void btn_HSDissipateHeat(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+            if (this.HSDissipateHeat.IsChecked) //当前停止状态
+            {
+                byteToSend = new byte[10] { 0, 19, 3, 7, 0, 0, 0, 0, 0, 0 };
+            }
+            else//当前启动状态
+            {
+                byteToSend = new byte[10] { 0, 19, 3, 8, 0, 0, 0, 0, 0, 0 };
+            }
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 加热器启动/停止
+        /// </summary>
+        private void btn_HSHot(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+            if (this.HSHot.IsChecked) //当前停止状态
+            {
+                byteToSend = new byte[10] { 0, 19, 3, 9, 0, 0, 0, 0, 0, 0 };
+            }
+            else//当前启动状态
+            {
+                byteToSend = new byte[10] { 0, 19, 3, 10, 0, 0, 0, 0, 0, 0 };
+            }
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+
+        private void HSVariableTimer(object value)
+        {
+            if (this.bMainPumpOne != GlobalData.Instance.da["770b3"].Value.Boolean && this.MainPumpOneCheck)
+            {
+                this.MainPumpOne.Dispatcher.Invoke(new Action(() =>
+                {
+                    this.MainPumpOne.ContentDown = "1#主泵";
+                }));
+                MainPumpOneCheck = false;
+            }
+            bMainPumpOne = GlobalData.Instance.da["770b3"].Value.Boolean;
+            if (this.bMainPumpTwo != GlobalData.Instance.da["770b5"].Value.Boolean && this.MainPumpTwoCheck)
+            {
+                this.MainPumpOne.Dispatcher.Invoke(new Action(() =>
+                {
+                    this.MainPumpTwo.ContentDown = "2#主泵";
+                }));
+                MainPumpTwoCheck = false;
+            }
+            bMainPumpTwo = GlobalData.Instance.da["770b5"].Value.Boolean;
+        }
+        #endregion
+
+        #region 猫道
+        private void CatVariableBinding()
+        {
+            try
+            {
+                this.CatControlModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["701b0"], Mode = BindingMode.OneWay });
+                this.CatMainPumpOne.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["705b1"], Mode = BindingMode.OneWay, Converter = new CheckedIsFalseConverter() });
+                this.CatMainPumpTwo.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["705b3"], Mode = BindingMode.OneWay, Converter = new CheckedIsFalseConverter() });
+                this.CatLeftOrRight.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["706b1"], Mode = BindingMode.OneWay });
+                this.CatInOrOut.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["706b3"], Mode = BindingMode.OneWay });
+
+                this.cbDRSafeLimit.SetBinding(CheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["505b7"], Mode = BindingMode.OneWay });
+                this.cbIgnoreLimit.SetBinding(CheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["705b6"], Mode = BindingMode.OneWay });
+                this.cbSelectPipe.SetBinding(CheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["705b7"], Mode = BindingMode.OneWay });
+
+            }
+            catch (Exception ex)
+            {
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+            }
         }
 
         /// <summary>
-        /// 钻台面设置
+        /// 控制模式本地/司钻
         /// </summary>
-        private void tbDR_Click(object sender, RoutedEventArgs e)
+        private void btn_CatcontrolModel(object sender, EventArgs e)
         {
-            IngDRWindow ingDRWindow = new IngDRWindow();
-            ingDRWindow.ShowDialog();
+            byte[] byteToSend = new byte[10] { 80, 48, 8, 1, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
-        /// 液压站设置
+        /// 1#泵启动/停止
         /// </summary>
-        private void tbHS_Click(object sender, RoutedEventArgs e)
+        private void btn_CatMainPumpOne(object sender, EventArgs e)
         {
-            IngHSSetWindow ingHSSetWindow = new IngHSSetWindow();
-            ingHSSetWindow.ShowDialog();
+            byte[] byteToSend = new byte[10] { 80, 48, 5, 1, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
-        /// 铁钻工设置
+        /// 2#泵启动/停止
         /// </summary>
-        private void tbSIR_Click(object sender, RoutedEventArgs e)
+        private void btn_CatMainPumpTwo(object sender, EventArgs e)
         {
-            IngSIRSetWindow ingSIRSetWindow = new IngSIRSetWindow();
-            ingSIRSetWindow.ShowDialog();
+            byte[] byteToSend = new byte[10] { 80, 48, 5, 2, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
-        /// 手动切换设备
+        /// 左右选择
         /// </summary>
-        private void CBDevice_Changed(object sender, SelectionChangedEventArgs e)
+        private void btn_CatLeftOrRight(object sender, EventArgs e)
         {
-            System.Windows.Controls.ComboBox cb = sender as System.Windows.Controls.ComboBox;
-            if (cb.SelectedIndex == 0) // 二层台
+            byte[] byteToSend;
+            if (this.CatLeftOrRight.IsChecked) //当前左
             {
-                InitPanel(SystemType.SecondFloor);
-                this.bdMid.Child = IngSF.Instance;
+                byteToSend = new byte[10] { 80, 48, 6, 2, 0, 0, 0, 0, 0, 0 };
             }
-            else if (cb.SelectedIndex == 1) // 钻台面
+            else//当前右
             {
-                InitPanel(SystemType.DrillFloor);
-                this.bdMid.Child = IngDR.Instance;
+                byteToSend = new byte[10] { 80, 48, 6, 1, 0, 0, 0, 0, 0, 0 };
             }
-            else if (cb.SelectedIndex == 2) // 铁钻工
-            {
-                InitPanel(SystemType.SIR);
-                this.bdMid.Child = IngSIR.Instance;
-            }
-            else if (cb.SelectedIndex == 3) // 
-            {
-                InitPanel(SystemType.CatRoad);
-                this.bdMid.Child = IngCat.Instance;
-            }
+            GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
-        /// 猫道设置
+        /// 内外选择
         /// </summary>
-        private void tbCat_Click(object sender, RoutedEventArgs e)
+        private void btn_CatInOrLeft(object sender, EventArgs e)
         {
-            IngCatSetWindow ingCatSetWindow = new IngCatSetWindow();
-            ingCatSetWindow.ShowDialog();
+            byte[] byteToSend;
+            if (this.CatLeftOrRight.IsChecked) //当前内
+            {
+                byteToSend = new byte[10] { 80, 48, 7, 2, 0, 0, 0, 0, 0, 0 };
+            }
+            else//当前外
+            {
+                byteToSend = new byte[10] { 80, 48, 7, 1, 0, 0, 0, 0, 0, 0 };
+            }
+            GlobalData.Instance.da.SendBytes(byteToSend);
         }
+
+        /// <summary>
+        /// 钻台面安全限制解除
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cbDRSafeLimit_Checked(object sender, RoutedEventArgs e)
+        {
+            CheckBox cb = sender as CheckBox;
+            if (cb.IsChecked.Value)
+            {
+                byte[] byteToSend = new byte[10] { 80, 48, 9, 0, 2, 0, 0, 0, 0, 0 };
+                GlobalData.Instance.da.SendBytes(byteToSend);
+            }
+            else
+            {
+                MessageBoxResult result = System.Windows.MessageBox.Show("确认解除钻台面对猫道得安全设置?", "提示", MessageBoxButton.OKCancel);
+                if (result == MessageBoxResult.OK)
+                {
+                    byte[] byteToSend = new byte[10] { 80, 48, 9, 0, 1, 0, 0, 0, 0, 0 };
+                    GlobalData.Instance.da.SendBytes(byteToSend);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 忽略限制
+        /// </summary>
+        private void cbIgnoreLimit_Checked(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 80, 48, 2, 1, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 选择套管
+        /// </summary>
+        private void cbSelectPipe_Checked(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 80, 48, 3, 1, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        #endregion
     }
 }
