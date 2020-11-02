@@ -52,19 +52,25 @@ namespace Main.SIR.SanyRail
             try
             {
                 #region PWM参数
-                this.twt1.SetBinding(TwoTextWithInput.TextOneShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_MainTongsMotorInBtnElecOutput"], Mode = BindingMode.OneWay});
-                this.twt1.SetBinding(TwoTextWithInput.TextTwoShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_MianTongsInOutBtnElec"], Mode = BindingMode.OneWay });
-                this.twt2.SetBinding(TwoTextWithInput.TextOneShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_MainTongsMotorInBtnElecOutput"], Mode = BindingMode.OneWay });
-                this.twt2.SetBinding(TwoTextWithInput.TextTwoShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_MianTongsMoveElec"], Mode = BindingMode.OneWay});
-                this.twt3.SetBinding(TwoTextWithInput.TextOneShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_BackTongsCloseElecOutput"], Mode = BindingMode.OneWay});
-                this.twt3.SetBinding(TwoTextWithInput.TextTwoShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_BackTongsCloseElec"], Mode = BindingMode.OneWay });
-                this.twt4.SetBinding(TwoTextWithInput.TextOneShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_BackTongsOpenElecOutput"], Mode = BindingMode.OneWay });
-                this.twt4.SetBinding(TwoTextWithInput.TextTwoShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_BackTongsCloseElec"], Mode = BindingMode.OneWay });
-                this.twt5.SetBinding(TwoTextWithInput.TextOneShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_TongsForwardElecOutput"], Mode = BindingMode.OneWay });
-                this.twt5.SetBinding(TwoTextWithInput.TextTwoShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_TongsForwardElec"], Mode = BindingMode.OneWay });
-                this.twt6.SetBinding(TwoTextWithInput.TextOneShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_TongsBackElecOutput"], Mode = BindingMode.OneWay });
-                this.twt6.SetBinding(TwoTextWithInput.TextTwoShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_TongsBackElec"], Mode = BindingMode.OneWay });
-
+                //this.twt1.SetBinding(TwoTextWithInput.TextOneShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_MainTongsMotorInBtnElecOutput"], Mode = BindingMode.OneWay});
+                //this.twt1.SetBinding(TwoTextWithInput.TextTwoShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_MianTongsInOutBtnElec"], Mode = BindingMode.OneWay });
+                //this.twt2.SetBinding(TwoTextWithInput.TextOneShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_MainTongsMotorOutBtnElecOutput"], Mode = BindingMode.OneWay });
+                //this.twt2.SetBinding(TwoTextWithInput.TextTwoShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_MianTongsMoveElec"], Mode = BindingMode.OneWay});
+                //this.twt3.SetBinding(TwoTextWithInput.TextOneShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_BackTongsCloseElecOutput"], Mode = BindingMode.OneWay});
+                //this.twt3.SetBinding(TwoTextWithInput.TextTwoShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_BackTongsCloseElec"], Mode = BindingMode.OneWay });
+                //this.twt4.SetBinding(TwoTextWithInput.TextOneShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_BackTongsOpenElecOutput"], Mode = BindingMode.OneWay });
+                //this.twt4.SetBinding(TwoTextWithInput.TextTwoShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_BackTongsOpenElec"], Mode = BindingMode.OneWay });
+                //this.twt5.SetBinding(TwoTextWithInput.TextOneShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_TongsForwardElecOutput"], Mode = BindingMode.OneWay });
+                //this.twt5.SetBinding(TwoTextWithInput.TextTwoShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_TongsForwardElec"], Mode = BindingMode.OneWay });
+                //this.twt6.SetBinding(TwoTextWithInput.TextOneShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_TongsBackElecOutput"], Mode = BindingMode.OneWay });
+                //this.twt6.SetBinding(TwoTextWithInput.TextTwoShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_TongsBackElec"], Mode = BindingMode.OneWay });
+                this.twt1.SetBinding(TwoTextWithInput.TextOneShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_MianTongsInOutBtnElec"], Mode = BindingMode.OneWay });
+                this.twt2.SetBinding(TwoTextWithInput.TextOneShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_MianTongsMoveElec"], Mode = BindingMode.OneWay });
+                this.twt3.SetBinding(TwoTextWithInput.TextOneShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_BackTongsCloseElec"], Mode = BindingMode.OneWay });
+                this.twt4.SetBinding(TwoTextWithInput.TextOneShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_BackTongsOpenElec"], Mode = BindingMode.OneWay });
+                this.twt5.SetBinding(TwoTextWithInput.TextOneShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_TongsForwardElec"], Mode = BindingMode.OneWay });
+                this.twt6.SetBinding(TwoTextWithInput.TextOneShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_TongsBackElec"], Mode = BindingMode.OneWay });
+                
                 #endregion
 
                 #region 上卸扣参数

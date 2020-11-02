@@ -51,14 +51,16 @@ namespace Main.SIR.SanyRail
         {
             try
             {
-                this.twt1.SetBinding(TextWithBtnNew.ShowTxtWithBtnTxtProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_StaySet"], Mode = BindingMode.OneWay });
-                this.twt2.SetBinding(TextWithBtnNew.ShowTxtWithBtnTxtProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_WellSet"], Mode = BindingMode.OneWay });
-                this.twt3.SetBinding(TextWithBtnNew.ShowTxtWithBtnTxtProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_MouseSet"], Mode = BindingMode.OneWay });
+                this.tbTongsHeight.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_TongsHeight"], Mode = BindingMode.OneWay });
+                this.tbEncoder.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["SIE_RailWay_MainTongsRun"], Mode = BindingMode.OneWay });
+                this.twt1.SetBinding(TextWithBtnNew.ShowTxtWithBtnTxtProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["SIE_RailWay_StaySet"], Mode = BindingMode.OneWay });
+                this.twt2.SetBinding(TextWithBtnNew.ShowTxtWithBtnTxtProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["SIE_RailWay_WellSet"], Mode = BindingMode.OneWay });
+                this.twt3.SetBinding(TextWithBtnNew.ShowTxtWithBtnTxtProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["SIE_RailWay_MouseSet"], Mode = BindingMode.OneWay });
                 this.twt4.SetBinding(TextWithBtnNew.ShowTxtWithBtnTxtProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["SIE_RailWay_RailWayFrontLocation"], Mode = BindingMode.OneWay });
                 this.twt5.SetBinding(TextWithBtnNew.ShowTxtWithBtnTxtProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["SIE_RailWay_RailWayBackLocation"], Mode = BindingMode.OneWay });
-                this.twt6.SetBinding(TextWithBtnNew.ShowTxtWithBtnTxtProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_TongsHeightSet"], Mode = BindingMode.OneWay });
-                this.twt7.SetBinding(TextWithBtnNew.ShowTxtWithBtnTxtProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_TongsHeightSet"], Mode = BindingMode.OneWay });
-                this.twt8.SetBinding(TextWithBtnNew.ShowTxtWithBtnTxtProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_TongsHeightSet"], Mode = BindingMode.OneWay });
+                this.twt6.SetBinding(TextWithBtnNew.ShowTxtWithBtnTxtProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIR_RailWay_StayHeight"], Mode = BindingMode.OneWay });
+                this.twt7.SetBinding(TextWithBtnNew.ShowTxtWithBtnTxtProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIR_RailWay_WellHeight"], Mode = BindingMode.OneWay });
+                this.twt8.SetBinding(TextWithBtnNew.ShowTxtWithBtnTxtProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIR_RailWay_MouseHeight"], Mode = BindingMode.OneWay });
 
 
             }

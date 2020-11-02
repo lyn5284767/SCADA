@@ -238,7 +238,7 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <cl:BasedSwitchButton Name="controlModel" ContentLeft="近控" ContentDown="控制方式" ContentRight="远控" UserControlClicked="btn_controlModel" Grid.Column="0" />
-                            <cl:BasedSwitchButton Name="highOrLowModel" ContentLeft="高挡" ContentDown="挡位选择" ContentRight="低档" UserControlClicked="btn_highOrLowModel" Grid.Column="1" />
+                            <!--<cl:BasedSwitchButton Name="highOrLowModel" ContentLeft="高挡" ContentDown="挡位选择" ContentRight="低档" UserControlClicked="btn_highOrLowModel" Grid.Column="1" />-->
                         </Grid>
                         <Grid Grid.Row="2">
                             <StackPanel>
@@ -304,6 +304,23 @@
                                     </Menu>
                                     <TextBlock Name="tbSpraySet" VerticalAlignment="Center" Text="??" FontSize="18" Width="80"></TextBlock>
                                 </StackPanel>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,2,0,0">
+                                    <Menu Background="Transparent" Height="35" Width="140"  FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Foreground="#008AFF">
+                                        <MenuItem>
+                                            <MenuItem.Header>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <ContentPresenter Content="挡位切换" />
+                                                    <Image Margin="0,2,0,0"  Width="15" Source="..\..\Images\downTrangle.png" />
+                                                </StackPanel>
+                                            </MenuItem.Header>
+                                            <MenuItem Header="高档" Click="btn_SelectSpeed" TabIndex="18"/>
+                                            <MenuItem Header="低档" Click="btn_SelectSpeed" TabIndex="19"/>
+                                            <MenuItem Header="空档" Click="btn_SelectSpeed" TabIndex="17"/>
+                                        </MenuItem>
+                                    </Menu>
+                                    <TextBlock Name="tbSpeedSet" VerticalAlignment="Center" Text="??" FontSize="18" Width="80"></TextBlock>
+                                </StackPanel>
+
                             </StackPanel>
                         </Grid>
                     </Grid>

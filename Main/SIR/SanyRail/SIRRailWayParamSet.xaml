@@ -61,16 +61,16 @@
                     </Grid>
                     <Grid Grid.Column="1">
                         <StackPanel Orientation="Vertical">
-                            <inputcontrol:TwoTextWithInput Name="twt1" TbkText="主钳上卸扣" Head="80,16,1"/>
-                            <inputcontrol:TwoTextWithInput Name="twt2" TbkText="主钳微动" Head="80,16,2"/>
-                            <inputcontrol:TwoTextWithInput Name="twt3" TbkText="背钳夹紧" Head="80,16,3"/>
-                            <inputcontrol:TwoTextWithInput Name="twt4" TbkText="背钳松开" Head="80,16,4"/>
-                            <inputcontrol:TwoTextWithInput Name="twt5" TbkText="钳体前进" Head="80,16,5"/>
-                            <inputcontrol:TwoTextWithInput Name="twt6" TbkText="钳体后退" Head="80,16,6"/>
+                            <inputcontrol:TwoTextWithInput Name="twt1" TbkText="主钳上卸扣" TextTwoVisible="Collapsed" Head="80,16,1"/>
+                            <inputcontrol:TwoTextWithInput Name="twt2" TbkText="主钳微动" TextTwoVisible="Collapsed" Head="80,16,2"/>
+                            <inputcontrol:TwoTextWithInput Name="twt3" TbkText="背钳夹紧" TextTwoVisible="Collapsed" Head="80,16,3"/>
+                            <inputcontrol:TwoTextWithInput Name="twt4" TbkText="背钳松开" TextTwoVisible="Collapsed" Head="80,16,4"/>
+                            <inputcontrol:TwoTextWithInput Name="twt5" TbkText="钳体前进" TextTwoVisible="Collapsed" Head="80,16,5"/>
+                            <inputcontrol:TwoTextWithInput Name="twt6" TbkText="钳体后退" TextTwoVisible="Collapsed" Head="80,16,6"/>
                             <Grid Height="10"></Grid>
                             <inputcontrol:TwoTextWithInput Name="twt7" TbkText="主钳上扣高档圈数" TextTwoVisible="Collapsed" Head="80,16,8"/>
                             <inputcontrol:TwoTextWithInput Name="twt8" TbkText="主钳上扣高低档切换扭矩"  Head="80,16,9"/>
-                            <inputcontrol:TwoTextWithInput Name="twt12" TbkText="主钳卸扣高低档切换扭矩" Head="80,16,13"/>
+                            <inputcontrol:TwoTextWithInput Name="twt12" TbkText="主钳卸扣高低档切换扭矩" Head="80,16,14"/>
                             <inputcontrol:TwoTextWithInput Name="twt9" TbkText="主钳上卸扣扭矩" Head="80,16,7"/>
                             <Grid Height="10"></Grid>
                             <inputcontrol:TwoTextWithInput Name="twt10" TbkText="清洗时间设置" TextTwoVisible="Collapsed" Head="80,16,10"/>

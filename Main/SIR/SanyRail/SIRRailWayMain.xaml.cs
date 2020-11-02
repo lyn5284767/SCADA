@@ -64,18 +64,18 @@ namespace Main.SIR.SanyRail
                 this.controlModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_ControlModel"], Mode = BindingMode.OneWay, Converter = new SIRRailWayControlModelConverter() });
                 this.controlModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_ControlModel"], Mode = BindingMode.OneWay, Converter = new SIRRailWayIsCheckConverter() });
                 // 高低档切换
-                MultiBinding highOrLowModelMultiBind = new MultiBinding();
-                highOrLowModelMultiBind.Converter = new SIRRailWayHighOrLowCoverter();
-                highOrLowModelMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["811b0"], Mode = BindingMode.OneWay });
-                highOrLowModelMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["811b1"], Mode = BindingMode.OneWay });
-                highOrLowModelMultiBind.NotifyOnSourceUpdated = true;
-                this.highOrLowModel.SetBinding(BasedSwitchButton.ContentDownProperty, highOrLowModelMultiBind);
-                MultiBinding highOrLowModelCheckMultiBind = new MultiBinding();
-                highOrLowModelCheckMultiBind.Converter = new SIRRailWayHighOrLowCheckCoverter();
-                highOrLowModelCheckMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["811b0"], Mode = BindingMode.OneWay });
-                highOrLowModelCheckMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["811b1"], Mode = BindingMode.OneWay });
-                highOrLowModelCheckMultiBind.NotifyOnSourceUpdated = true;
-                this.highOrLowModel.SetBinding(BasedSwitchButton.IsCheckedProperty, highOrLowModelCheckMultiBind);
+                //MultiBinding highOrLowModelMultiBind = new MultiBinding();
+                //highOrLowModelMultiBind.Converter = new SIRRailWayHighOrLowCoverter();
+                //highOrLowModelMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["811b0"], Mode = BindingMode.OneWay });
+                //highOrLowModelMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["811b1"], Mode = BindingMode.OneWay });
+                //highOrLowModelMultiBind.NotifyOnSourceUpdated = true;
+                //this.highOrLowModel.SetBinding(BasedSwitchButton.ContentDownProperty, highOrLowModelMultiBind);
+                //MultiBinding highOrLowModelCheckMultiBind = new MultiBinding();
+                //highOrLowModelCheckMultiBind.Converter = new SIRRailWayHighOrLowCheckCoverter();
+                //highOrLowModelCheckMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["811b0"], Mode = BindingMode.OneWay });
+                //highOrLowModelCheckMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["811b1"], Mode = BindingMode.OneWay });
+                //highOrLowModelCheckMultiBind.NotifyOnSourceUpdated = true;
+                //this.highOrLowModel.SetBinding(BasedSwitchButton.IsCheckedProperty, highOrLowModelCheckMultiBind);
                 #endregion
 
                 #region 类型选择
@@ -83,7 +83,13 @@ namespace Main.SIR.SanyRail
                 this.tbDrillRote.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_Direction"], Mode = BindingMode.OneWay, Converter = new SIRRailWayDirectionConverter() });
                 this.tbLocation.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_Location"], Mode = BindingMode.OneWay, Converter = new SIRRailWayLocationConverter() });
                 this.tbSpraySet.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIR_RailWay_Spray"], Mode = BindingMode.OneWay, Converter = new SIRRailWaySprayConverter() });
-
+                MultiBinding highOrLowModelMultiBind = new MultiBinding();
+                MultiBinding highOrLowModelCheckMultiBind = new MultiBinding();
+                highOrLowModelCheckMultiBind.Converter = new SIRRailWayHighOrLowCoverter();
+                highOrLowModelCheckMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["811b0"], Mode = BindingMode.OneWay });
+                highOrLowModelCheckMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["811b1"], Mode = BindingMode.OneWay });
+                highOrLowModelCheckMultiBind.NotifyOnSourceUpdated = true;
+                this.tbSpeedSet.SetBinding(TextBlock.TextProperty, highOrLowModelCheckMultiBind);
                 #endregion
 
                 #region 主参数
@@ -281,6 +287,17 @@ namespace Main.SIR.SanyRail
         /// 喷涂启停
         /// </summary>
         private void btn_SelectSpray(object sender, RoutedEventArgs e)
+        {
+            int tag = (sender as MenuItem).TabIndex;
+            byte[] byteToSend = new byte[10] { 80, 16, 13, (byte)tag, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 高低档
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_SelectSpeed(object sender, RoutedEventArgs e)
         {
             int tag = (sender as MenuItem).TabIndex;
             byte[] byteToSend = new byte[10] { 80, 16, 13, (byte)tag, 0, 0, 0, 0, 0, 0 };

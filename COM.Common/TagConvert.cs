@@ -4880,7 +4880,7 @@ namespace COM.Common
             byte bType = (byte)value;
             switch (bType)
             {
-                case 0:
+                case 2:
                     return "右旋";
                 case 1:
                     return "左旋";
@@ -4942,9 +4942,9 @@ namespace COM.Common
             byte bType = (byte)value;
             switch (bType)
             {
-                case 0:
-                    return "启用";
                 case 1:
+                    return "启用";
+                case 2:
                     return "停用";
             }
 
@@ -4957,6 +4957,8 @@ namespace COM.Common
         }
     }
 
+    
+
     /// <summary>
     /// 轨道铁钻工-高低档切换
     /// </summary>
@@ -4967,15 +4969,15 @@ namespace COM.Common
             if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null)
                 || (values[1] == DependencyProperty.UnsetValue) || (values[1] == null))
             {
-                return "挡位选择";
+                return "未知";
             }
             bool high = (bool)values[0];
             bool low = (bool)values[1];
             if (high) return "高档";
             if (low) return "低档";
-            if (!high && !low) return "参数错误";
+            if (!high && !low) return "空挡";
 
-            return "挡位选择"; 
+            return "未知"; 
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
