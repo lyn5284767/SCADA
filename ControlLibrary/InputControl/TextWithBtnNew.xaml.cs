@@ -82,5 +82,10 @@ namespace ControlLibrary.InputControl
         {
             this.sh.Opacity = 0;
         }
+
+        private void tb_ParameterConfig_Focus(object sender, MouseButtonEventArgs e)
+        {
+            GlobalData.Instance.GetKeyBoard();
+        }
     }
 }

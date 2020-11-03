@@ -15,7 +15,7 @@
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Name="stackPanel" >
             <TextBlock Name="tbk" Text="参数配置" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold"  Width="150" TextAlignment="Center">
             </TextBlock>
-            <TextBox x:Name="textBoxShow" IsReadOnly="True" Text="{Binding Path=ShowTxtWithBtnTxt, ElementName=uc}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1,0,1,0" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Width="95" TextAlignment="Center"/>
+            <TextBox x:Name="textBoxShow" IsReadOnly="True" Text="{Binding Path=ShowTxtWithBtnTxt, ElementName=uc}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1,0,1,0" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Width="95" TextAlignment="Center" PreviewMouseDown="tb_ParameterConfig_Focus"/>
             <Grid Background="#F49466"  Width="65">
                 <TextBlock x:Name="textBoxSet"  MouseLeftButtonDown="TextBoxSet_MouseDown" Text="设置" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" TextAlignment="Center"/>
             </Grid>

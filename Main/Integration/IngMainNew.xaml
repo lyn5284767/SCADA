@@ -38,19 +38,47 @@
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
             <RowDefinition/>
             <RowDefinition/>
-            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5" Grid.Row="0" Grid.Column="0">
-            <Border.Effect>
-                <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
-            </Border.Effect>
+        <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5" Grid.Row="0" Grid.ColumnSpan="3">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal" Grid.Row="0">
+                    <TextBlock Text="总览:" FontSize="24"></TextBlock>
+                    <TextBlock Text="联动状态:" Margin="10,0,0,0"></TextBlock>
+                    <TextBlock Name="tbLinkStatus" Text="xx" Foreground="#008AFF"></TextBlock>
+                    <TextBlock Text="当前工序:" Margin="10,0,0,0"></TextBlock>
+                    <TextBlock Name="tbCurWork" Text="xx" Foreground="#008AFF"></TextBlock>
+                    <TextBlock Text="当前操作模式:" Margin="10,0,0,0"></TextBlock>
+                    <TextBlock Name="tbCurOpr" Text="xx" Foreground="#008AFF"></TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="1">
+                    <TextBlock Text="二层台:" Margin="65,0,0,0"></TextBlock>
+                    <cl:SymbolMapping Name="sfStatus" StrContent="" LampType="3" Margin="2,5,2,5"/>
+                    <TextBlock Text="钻台面:" Margin="10,0,0,0"></TextBlock>
+                    <cl:SymbolMapping Name="drStatus" StrContent="" LampType="3" Margin="2,5,2,5"/>
+                    <TextBlock Text="铁钻工:" Margin="10,0,0,0"></TextBlock>
+                    <cl:SymbolMapping Name="sirStatus" StrContent="" LampType="3" Margin="2,5,2,5"/>
+                    <TextBlock Text="液压站:" Margin="10,0,0,0"></TextBlock>
+                    <cl:SymbolMapping Name="hsStatus" StrContent="" LampType="3" Margin="2,5,2,5"/>
+                    <TextBlock Text="猫道:" Margin="10,0,0,0"></TextBlock>
+                    <cl:SymbolMapping Name="catStatus" StrContent="" LampType="3" Margin="2,5,2,5"/>
+                    <TextBlock Text="告警信息:" Margin="10,0,0,0" Foreground="#E0496D"></TextBlock>
+                    <TextBlock Text="xx" Foreground="#E0496D"></TextBlock>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5" Grid.Row="1" Grid.Column="0">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
@@ -126,53 +154,10 @@
                 </StackPanel>
             </Grid>
         </Border>
-        <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5" Grid.Row="0" Grid.Column="1">
-            <Border.Effect>
-                <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
-            </Border.Effect>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="60"/>
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="二层台" FontSize="24"></TextBlock>
-                <Grid Grid.Row="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <cl:BasedSwitchButton Grid.Column="0" Name="sfoperateMode" ContentLeft="手动" ContentDown="操作模式" ContentRight="自动" UserControlClicked="btn_SFOpState"/>
-                    <cl:BasedSwitchButton Grid.Column="1" Name="sfworkMode" ContentLeft="排杆" ContentDown="工作模式" ContentRight="送杆" UserControlClicked="btn_SFWorkModel"/>
-                </Grid>
-                <Grid Grid.Row="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="5,2,5,2" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btn_SFAllMotorRetZero">
-                        <StackPanel Orientation="Vertical">
-                            <!--<Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Margin="10,5,10,0" Height="45" Width="45">-->
-                            <TextBlock FontSize="28" Foreground="#008AFF" FontWeight="Bold" Text="  0  "></TextBlock>
-                            <!--</Border>-->
-                            <TextBlock>一键回零</TextBlock>
-                        </StackPanel>
-                    </Border>
-                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="5,2,5,2" Grid.Column="1" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btn_SFMotorEnable">
-                        <StackPanel Grid.Column="1" Orientation="Vertical">
-                            <!--<Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Margin="10,5,10,0" Height="45" Width="45">-->
-                            <Image Source="../Images/enable.png" Margin="1" Width="35" Height="35"></Image>
-                            <!--</Border>-->
-                            <TextBlock>电机使能</TextBlock>
-                        </StackPanel>
-                    </Border>
-                </Grid>
-            </Grid>
+        <Border Name="bdSF" BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5" Grid.Row="1" Grid.Column="1">
+            
         </Border>
-        <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5" Grid.Row="0" Grid.Column="2">
-            <Border.Effect>
-                <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
-            </Border.Effect>
+        <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5" Grid.Row="1" Grid.Column="2">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
@@ -212,10 +197,7 @@
                 </Grid>
             </Grid>
         </Border>
-        <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5" Grid.Row="1" Grid.Column="0">
-            <Border.Effect>
-                <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
-            </Border.Effect>
+        <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5" Grid.Row="2" Grid.Column="0">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
@@ -234,10 +216,7 @@
                 </Grid>
             </Grid>
         </Border>
-        <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5" Grid.Row="1" Grid.Column="1">
-            <Border.Effect>
-                <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
-            </Border.Effect>
+        <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5" Grid.Row="2" Grid.Column="1">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
@@ -268,10 +247,7 @@
                 </Grid>
             </Grid>
         </Border>
-        <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5" Grid.Row="1" Grid.Column="2">
-            <Border.Effect>
-                <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
-            </Border.Effect>
+        <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5" Grid.Row="2" Grid.Column="2">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>

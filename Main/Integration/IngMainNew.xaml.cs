@@ -54,11 +54,14 @@ namespace Main.Integration
             SIRVariableReBinding.Change(0, 500);
             HSVariableReBinding = new System.Threading.Timer(new TimerCallback(HSVariableTimer), null, Timeout.Infinite, 500);
             HSVariableReBinding.Change(0, 500);
+            TotalVariableReBinding = new System.Threading.Timer(new TimerCallback(TotalVariableTimer), null, Timeout.Infinite, 500);
+            TotalVariableReBinding.Change(0, 500);
             this.Loaded += IngMain_Loaded;
         }
 
         private void IngMain_Loaded(object sender, RoutedEventArgs e)
         {
+            InitPanel();
             string configPath = System.Environment.CurrentDirectory + "\\KeyBoard.exe";
             System.Diagnostics.Process[] processList = System.Diagnostics.Process.GetProcesses();
             foreach (System.Diagnostics.Process process in processList)
@@ -69,6 +72,14 @@ namespace Main.Integration
                 }
             }
         }
+
+        private void InitPanel()
+        {
+            if (GlobalData.Instance.da.GloConfig.SFType == 1)
+            {
+                this.bdSF.Child = Ing_SF_Self.Instance;
+            }
+        }
         /// <summary>
         /// 绑定变量
         /// </summary>
@@ -76,8 +87,8 @@ namespace Main.Integration
         {
             try
             {
+                TotalVariableBinding();
                 IngVariableBinding();
-                SFVariableBinding();
                 DRVariableBinding();
                 SIRVariableBinding();
                 HSVariableBinding();
@@ -88,6 +99,29 @@ namespace Main.Integration
                 Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
             }
         }
+
+        #region 总览
+        System.Threading.Timer TotalVariableReBinding;
+        private void TotalVariableBinding()
+        {
+            try
+            { 
+                this.tbLinkStatus.SetBinding(TextBlock.TextProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["460b0"], Mode = BindingMode.OneWay, Converter = new LinkOpenOrCloseConverter() });
+            }
+            catch (Exception ex)
+            {
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+            }
+        }
+        /// <summary>
+        /// 总览页变量绑定计时器
+        /// </summary>
+        /// <param name="value"></param>
+        private void TotalVariableTimer(object value)
+        {
+          
+        }
+        #endregion
 
         #region 联动设置
         /// <summary>
@@ -249,77 +283,6 @@ namespace Main.Integration
         }
         #endregion
 
-        #region 二层台
-        /// <summary>
-        /// 二层台变量
-        /// </summary>
-        private void SFVariableBinding()
-        {
-            try
-            {
-                this.sfoperateMode.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay, Converter = new OperationModelConverter() });
-                this.sfoperateMode.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay, Converter = new OperationModelIsCheckConverter() });
-                this.sfworkMode.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["workModel"], Mode = BindingMode.OneWay, Converter = new WorkModelConverter() });
-                this.sfworkMode.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["workModel"], Mode = BindingMode.OneWay, Converter = new WorkModelIsCheckConverter() });
-
-            }
-            catch (Exception ex)
-            {
-                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
-            }
-        }
-        /// <summary>
-        /// 一键回零
-        /// </summary>
-        private void btn_SFAllMotorRetZero(object sender, MouseButtonEventArgs e)
-        {
-            byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 13, 4 });
-            GlobalData.Instance.da.SendBytes(byteToSend);
-        }
-        /// <summary>
-        /// 点击使能
-        /// </summary>
-        private void btn_SFMotorEnable(object sender, MouseButtonEventArgs e)
-        {
-            byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 6, 2 });
-            GlobalData.Instance.da.SendBytes(byteToSend);
-        }
-        /// <summary>
-        /// 操作模式
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btn_SFOpState(object sender, EventArgs e)
-        {
-            byte[] byteToSend;
-            if (this.sfoperateMode.IsChecked)
-            {
-                byteToSend = GlobalData.Instance.SendByte(new List<byte> { 1, 5 });
-            }
-            else
-            {
-                byteToSend = GlobalData.Instance.SendByte(new List<byte> { 1, 4 });
-            }
-
-            GlobalData.Instance.da.SendBytes(byteToSend);
-        }
-        /// <summary>
-        /// 工作模式
-        /// </summary>
-        private void btn_SFWorkModel(object sender, EventArgs e)
-        {
-            byte[] byteToSend;
-            if (sfworkMode.IsChecked)
-            {
-                byteToSend = GlobalData.Instance.SendByte(new List<byte> { 2, 1 });
-            }
-            else
-            {
-                byteToSend = GlobalData.Instance.SendByte(new List<byte> { 2, 2 });
-            }
-            GlobalData.Instance.da.SendBytes(byteToSend);
-        }
-        #endregion
 
         #region 钻台面
         private void DRVariableBinding()

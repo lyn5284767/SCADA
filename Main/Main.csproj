@@ -201,21 +201,6 @@
     <Compile Include="HydraulicStation\Sany\HSSetting.xaml.cs">
       <DependentUpon>HSSetting.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Integration\IngCat.xaml.cs">
-      <DependentUpon>IngCat.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Integration\IngCatSetWindow.xaml.cs">
-      <DependentUpon>IngCatSetWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Integration\IngDR.xaml.cs">
-      <DependentUpon>IngDR.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Integration\IngDRSetWindow.xaml.cs">
-      <DependentUpon>IngDRSetWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Integration\IngHSSetWindow.xaml.cs">
-      <DependentUpon>IngHSSetWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Integration\IngMain.xaml.cs">
       <DependentUpon>IngMain.xaml</DependentUpon>
     </Compile>
@@ -240,20 +225,8 @@
     <Compile Include="Integration\IngSecureTwo.xaml.cs">
       <DependentUpon>IngSecureTwo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Integration\IngSetWindow.xaml.cs">
-      <DependentUpon>IngSetWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Integration\IngSF.xaml.cs">
-      <DependentUpon>IngSF.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Integration\IngSFSetWindow.xaml.cs">
-      <DependentUpon>IngSFSetWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Integration\IngSIR.xaml.cs">
-      <DependentUpon>IngSIR.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Integration\IngSIRSetWindow.xaml.cs">
-      <DependentUpon>IngSIRSetWindow.xaml</DependentUpon>
+    <Compile Include="Integration\Ing_SF_Self.xaml.cs">
+      <DependentUpon>Ing_SF_Self.xaml</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -470,26 +443,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Integration\IngCat.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Integration\IngCatSetWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Integration\IngDR.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Integration\IngDRSetWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Integration\IngHSSetWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Integration\IngMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -522,23 +475,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Integration\IngSetWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Integration\IngSF.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Integration\IngSFSetWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Integration\IngSIR.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Integration\IngSIRSetWindow.xaml">
+    <Page Include="Integration\Ing_SF_Self.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

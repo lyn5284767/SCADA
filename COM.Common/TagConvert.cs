@@ -5013,4 +5013,80 @@ namespace COM.Common
         }
     }
     #endregion
+
+    #region JJC液压站
+    /// <summary>
+    /// 从下位机获取回转角度值 da["callAngle"]--15，16位
+    /// </summary>
+    public class HS_JJC_SystemStatusConverter : IValueConverter
+    {
+        
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null || value == DependencyProperty.UnsetValue)
+            {
+                return "未知";
+            }
+
+            bool val = (bool)value;
+            if (val) return "正常";
+            else return "急停";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    /// <summary>
+    /// 软启动器状态
+    /// </summary>
+    public class HS_JJC_SoftConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+
+            if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null) || (values[1] == DependencyProperty.UnsetValue) || (values[1] == null))
+            {
+                return "未知";
+            }
+            bool valOne = (bool)values[0];
+            bool valTwo = (bool)values[1];
+            if (valOne) return "运行";
+            if (valTwo) return "故障";
+            return "未知";
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 工作模式选择
+    /// </summary>
+    public class HS_JJC_WorkModelConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+
+            if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null) || (values[1] == DependencyProperty.UnsetValue) || (values[1] == null))
+            {
+                return "未知";
+            }
+            bool valOne = (bool)values[0];
+            bool valTwo = (bool)values[1];
+            if (valOne) return "猫头模式";
+            if (valTwo) return "待机模式";
+            return "未使用";
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    #endregion
 }

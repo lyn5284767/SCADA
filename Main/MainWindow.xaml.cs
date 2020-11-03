@@ -7,6 +7,7 @@ using HBGKTest.YiTongCamera;
 using Main.Cat;
 using Main.DrillFloor;
 using Main.HydraulicStation;
+using Main.HydraulicStation.JJC;
 using Main.Integration;
 using Main.SecondFloor;
 using Main.SIR;
@@ -1461,7 +1462,8 @@ namespace Main
                 }// JJC
                 else if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.JJC)
                 {
-
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(JJC_HSMain.Instance);
                 }
                 else
                 {
