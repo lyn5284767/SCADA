@@ -44,6 +44,7 @@ namespace Main.SIR.Sany
         public SIRParamOne()
         {
             InitializeComponent();
+            
             VariableBinding();
         }
 
@@ -54,30 +55,40 @@ namespace Main.SIR.Sany
         {
             try
             {
+                if (GlobalData.Instance.da["SIRSelfPipeType"].Value.Byte == 99)
+                {
+                    this.bdTubes.Visibility = Visibility.Visible;
+                    this.bdDrill.Visibility = Visibility.Collapsed;
+                }
+                else if (GlobalData.Instance.da["SIRSelfPipeType"].Value.Byte == 109)
+                {
+                    this.bdTubes.Visibility = Visibility.Collapsed;
+                    this.bdDrill.Visibility = Visibility.Visible;
+                }
                 #region 套管参数
-                this.twtL5.SetBinding(TextWithTips.TransTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfBrushingInButtonPressSetValue"], Mode = BindingMode.OneWay });
-                this.twtL6.SetBinding(TextWithTips.TransTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfBrushingInButtonProtect"], Mode = BindingMode.OneWay });
-                this.twtL7.SetBinding(TextWithTips.TransTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfBrushingOutButtonPressSetValue"], Mode = BindingMode.OneWay });
-                this.twtL8.SetBinding(TextWithTips.TransTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfBrushingOutButtonProtect"], Mode = BindingMode.OneWay });
-                this.twtL5.SetBinding(TextWithTips.ShowTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfBrushingInButtonPressSetValue"], Mode = BindingMode.OneWay, Converter = new HighMpaToKNmConverter() });
-                this.twtL6.SetBinding(TextWithTips.ShowTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfBrushingInButtonProtect"], Mode = BindingMode.OneWay, Converter = new HighMpaToKNmConverter() });
-                this.twtL7.SetBinding(TextWithTips.ShowTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfBrushingOutButtonPressSetValue"], Mode = BindingMode.OneWay, Converter = new HighMpaToKNmConverter() });
-                this.twtL8.SetBinding(TextWithTips.ShowTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfBrushingOutButtonProtect"], Mode = BindingMode.OneWay, Converter = new HighMpaToKNmConverter() });
+                this.twtL5.SetBinding(TextWithTips.ShowTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfBrushingInButtonPressSetValue"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                this.twtL6.SetBinding(TextWithTips.ShowTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfBrushingInButtonProtect"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                this.twtL7.SetBinding(TextWithTips.ShowTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfBrushingOutButtonPressSetValue"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                this.twtL8.SetBinding(TextWithTips.ShowTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfBrushingOutButtonProtect"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                this.twtL5.SetBinding(TextWithTips.TransTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfBrushingInButtonPressSetValue"], Mode = BindingMode.OneWay, Converter = new HighMpaToKNmConverter() });
+                this.twtL6.SetBinding(TextWithTips.TransTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfBrushingInButtonProtect"], Mode = BindingMode.OneWay, Converter = new HighMpaToKNmConverter() });
+                this.twtL7.SetBinding(TextWithTips.TransTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfBrushingOutButtonPressSetValue"], Mode = BindingMode.OneWay, Converter = new CloseMpaToKNmConverter() });
+                this.twtL8.SetBinding(TextWithTips.TransTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfBrushingOutButtonProtect"], Mode = BindingMode.OneWay, Converter = new CloseMpaToKNmConverter() });
                 #endregion
                 #region 钻杆类型
                 this.twtL9.SetBinding(TextWithTips.ShowTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfInButtonCircleSet"], Mode = BindingMode.OneWay });
                 this.twtL10.SetBinding(TextWithTips.ShowTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOutButtonCircleSet"], Mode = BindingMode.OneWay });
-                this.twtL1.SetBinding(TextWithTips.ShowTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfPipeInButtonPressSetValue"], Mode = BindingMode.OneWay });
+                this.twtL1.SetBinding(TextWithTips.ShowTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfPipeInButtonPressSetValue"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() }); ;
                 this.twtL1.SetBinding(TextWithTips.TransTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfPipeInButtonPressSetValue"], Mode = BindingMode.OneWay, Converter = new HighMpaToKNmConverter() });
-                this.twtL2.SetBinding(TextWithTips.ShowTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfPipeInButtonProtect"], Mode = BindingMode.OneWay });
+                this.twtL2.SetBinding(TextWithTips.ShowTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfPipeInButtonProtect"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
                 this.twtL2.SetBinding(TextWithTips.TransTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfPipeInButtonProtect"], Mode = BindingMode.OneWay, Converter = new HighMpaToKNmConverter() });
-                this.twtL11.SetBinding(TextWithTips.ShowTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfInButtonSpeedSet"], Mode = BindingMode.OneWay });
+                this.twtL11.SetBinding(TextWithTips.ShowTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfInButtonSpeedSet"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
                 this.twtL11.SetBinding(TextWithTips.TransTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfInButtonSpeedSet"], Mode = BindingMode.OneWay, Converter = new CloseMpaToKNmConverter() });
-                this.twtL12.SetBinding(TextWithTips.ShowTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOutButtonSpeedSet"], Mode = BindingMode.OneWay });
+                this.twtL12.SetBinding(TextWithTips.ShowTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOutButtonSpeedSet"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
                 this.twtL12.SetBinding(TextWithTips.TransTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOutButtonSpeedSet"], Mode = BindingMode.OneWay, Converter = new CloseMpaToKNmConverter() });
                 this.twtL3.SetBinding(TextWithTips.ShowTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfPipeOutButtonPressSetValue"], Mode = BindingMode.OneWay });
-                this.twtL4.SetBinding(TextWithTips.ShowTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfPipeOutButtonProtect"], Mode = BindingMode.OneWay });
-                this.twtL4.SetBinding(TextWithTips.TransTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfPipeOutButtonProtect"], Mode = BindingMode.OneWay, Converter = new HighMpaToKNmConverter() });
+                this.twtL4.SetBinding(TextWithTips.ShowTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfPipeOutButtonProtect"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                this.twtL4.SetBinding(TextWithTips.TransTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfPipeOutButtonProtect"], Mode = BindingMode.OneWay, Converter = new CloseMpaToKNmConverter() });
                 #endregion
 
             }

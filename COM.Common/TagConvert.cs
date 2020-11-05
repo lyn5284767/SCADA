@@ -3623,8 +3623,9 @@ namespace COM.Common
             {
                 return "0";
             }
-            int val = (byte)value;
-            return (6 * val / 1000000 + 4757 * val / 10000 - 1).ToString();
+            double val = (byte)value / 10.0;// 操作台发过来数据/10
+            double ret = 6 * val * val / 100000 + 0.4757 * val - 1;
+            return (Math.Round(ret, 1)).ToString();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -3644,8 +3645,9 @@ namespace COM.Common
             {
                 return "0";
             }
-            int val = (byte)value;
-            return (69 * val / 10).ToString();
+            double val = (byte)value / 10.0; // 操作台发过来数据/10
+            double ret = 6.9 * val;
+            return (Math.Round(ret, 1)).ToString();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -5084,6 +5086,39 @@ namespace COM.Common
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    #endregion
+
+    #region JJC铁钻工
+    public class SIR_JJC_DrillTypeConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return "未知";
+            }
+
+            byte val = (byte)value;
+            if (val == 1) return "DP_3_1/2";
+            if (val == 2) return "DP_4";
+            if (val == 3) return "DP_4_1/2";
+            if (val == 4) return "DP_5";
+            if (val == 5) return "DP_5_1/2";
+            if (val == 6) return "DC_4_3/4";
+            if (val == 7) return "DC_6_1/4";
+            if (val == 8) return "DC_7";
+            if (val == 9) return "DC_8";
+            if (val == 10) return "DC_9";
+            if (val == 11) return "DP_2_7/8";
+
+            return "未知";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

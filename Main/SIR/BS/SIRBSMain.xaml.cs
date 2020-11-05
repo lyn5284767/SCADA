@@ -79,8 +79,8 @@ namespace Main.SIR
                 this.tbRotateAngle.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["BSSIRRotateAngle"], Mode = BindingMode.OneWay });
                 //this.tbInButtonTime.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["BSSIRInButtonTime"], Mode = BindingMode.OneWay });
                 //this.tbOutButtonTime.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["BSSIROutButtonTime"], Mode = BindingMode.OneWay });
-                this.tbInButtonTimeSetValue.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["BSSIRInButtonTime"], Mode = BindingMode.OneWay });
-                this.tbOutButtonTimeSetValue.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["BSSIROutButtonTime"], Mode = BindingMode.OneWay });
+                this.tbInButtonTimeShowValue.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["BSSIRInButtonTime"], Mode = BindingMode.OneWay });
+                this.tbOutButtonTimeShowValue.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["BSSIROutButtonTime"], Mode = BindingMode.OneWay });
                 this.tbInButtonTimesShow.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["BSSIROutButtonTimes"], Mode = BindingMode.OneWay });
 
                 this.cbDRSafeLimit.SetBinding(CheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["505b6"], Mode = BindingMode.OneWay });
@@ -244,7 +244,7 @@ namespace Main.SIR
         private void BtnInButtonTimes_Click(object sender, RoutedEventArgs e)
         {
             int val = 0;
-            int.TryParse(this.tbInButtonTimesShow.Text, out val);
+            int.TryParse(this.tbInButtonTimesSet.Text, out val);
             if (val > 0)
             {
                 int paramOne = val % 256;

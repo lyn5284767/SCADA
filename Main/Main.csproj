@@ -225,8 +225,29 @@
     <Compile Include="Integration\IngSecureTwo.xaml.cs">
       <DependentUpon>IngSecureTwo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Integration\Ing_Cat_BS.xaml.cs">
+      <DependentUpon>Ing_Cat_BS.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Integration\Ing_DR_Self.xaml.cs">
+      <DependentUpon>Ing_DR_Self.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Integration\Ing_HS_JJC.xaml.cs">
+      <DependentUpon>Ing_HS_JJC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Integration\Ing_HS_Self.xaml.cs">
+      <DependentUpon>Ing_HS_Self.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Integration\Ing_SF_Self.xaml.cs">
       <DependentUpon>Ing_SF_Self.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Integration\Ing_SIR_BS.xaml.cs">
+      <DependentUpon>Ing_SIR_BS.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Integration\Ing_SIR_JJC.xaml.cs">
+      <DependentUpon>Ing_SIR_JJC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Integration\Ing_SIR_Self.xaml.cs">
+      <DependentUpon>Ing_SIR_Self.xaml</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -475,7 +496,35 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Integration\Ing_Cat_BS.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Integration\Ing_DR_Self.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Integration\Ing_HS_JJC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Integration\Ing_HS_Self.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Integration\Ing_SF_Self.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Integration\Ing_SIR_BS.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Integration\Ing_SIR_JJC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Integration\Ing_SIR_Self.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

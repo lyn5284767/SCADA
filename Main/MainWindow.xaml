@@ -129,17 +129,17 @@ KeyboardNavigation.DirectionalNavigation="Cycle" Width="100"/>
                                 <Image Source="Images/changepage.png" Margin="-6,0,0,0"></Image>
                             </Border>
                         </MenuItem.Header>
-                        <MenuItem Header="参数配置" Click="ParamSetting_Click" Template="{StaticResource MenuItemControlTemplate1}"></MenuItem>
+                        <MenuItem Name="menuParam" Header="参数配置" Click="ParamSetting_Click" Template="{StaticResource MenuItemControlTemplate1}"></MenuItem>
                         <MenuItem Header="" Height="3" Background="Transparent"></MenuItem>
-                        <MenuItem Header="位置标定" Click="PositionSetting_Click" Template="{StaticResource MenuItemControlTemplate1}"/>
+                        <MenuItem Name="menuPosition" Header="位置标定" Click="PositionSetting_Click" Template="{StaticResource MenuItemControlTemplate1}"/>
                         <MenuItem Header="" Height="3" Background="Transparent"></MenuItem>
-                        <MenuItem Header="位置补偿" Click="PositionCompensate_Click" Template="{StaticResource MenuItemControlTemplate1}"/>
+                        <MenuItem Name="menuCompensate" Header="位置补偿" Click="PositionCompensate_Click" Template="{StaticResource MenuItemControlTemplate1}"/>
                         <MenuItem Header="" Height="3" Background="Transparent"></MenuItem>
-                        <MenuItem Header="记录查询" Click="Record_Click" Template="{StaticResource MenuItemControlTemplate1}"/>
+                        <MenuItem Name="menuRecord" Header="记录查询" Click="Record_Click" Template="{StaticResource MenuItemControlTemplate1}"/>
                         <MenuItem Header="" Height="3" Background="Transparent"></MenuItem>
-                        <MenuItem Header="图表" Click="Chart_Clict" Template="{StaticResource MenuItemControlTemplate1}"/>
+                        <MenuItem Name="menuChart" Header="图表" Click="Chart_Clict" Template="{StaticResource MenuItemControlTemplate1}"/>
                         <MenuItem Header="" Height="3" Background="Transparent"></MenuItem>
-                        <MenuItem Header="报表" Click="Report_Click" Template="{StaticResource MenuItemControlTemplate1}"/>
+                        <MenuItem Name="menuReport" Header="报表" Click="Report_Click" Template="{StaticResource MenuItemControlTemplate1}"/>
                         <MenuItem Header="" Height="3" Background="Transparent"></MenuItem>
                         <MenuItem Header="版本信息" Click="LowInfo_Click" Template="{StaticResource MenuItemControlTemplate1}"/>
                     </MenuItem>

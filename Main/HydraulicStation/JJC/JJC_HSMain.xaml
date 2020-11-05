@@ -222,14 +222,14 @@
                     <Border BorderBrush="Gray" Background="White" BorderThickness="0,0,0,1"  Grid.Row="1">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="旋转猫头:" Margin="10,0,0,0"></TextBlock>
-                            <Button Name="btnRotateCatHeadRetract" FontSize="18" Width="60" Height="50" Margin="10,0,0,0">正转</Button>
+                            <Button Name="btnRotateCatHeadRetract" FontSize="18" Width="60" Height="50" Margin="10,0,0,0">反转</Button>
                             <Button Name="btnRotateCatHeadClose"  FontSize="18" Width="50" Height="50" Click="BtnRotateCatClose_Click">关</Button>
-                            <Button Name="btnRotateCatHeadReach" FontSize="18" Width="60" Height="50">反转</Button>
+                            <Button Name="btnRotateCatHeadReach" FontSize="18" Width="60" Height="50">正转</Button>
                         </StackPanel>
                     </Border>
                     <Border BorderBrush="Gray" Background="White" BorderThickness="0,0,0,1"  Grid.Row="2">
                         <StackPanel Orientation="Horizontal"  Margin="0,0,0,0">
-                            <Menu Background="Transparent" Height="35" Width="100"  FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Foreground="#008AFF">
+                            <Menu Background="Transparent" Height="35" Width="100"  FontSize="14" FontFamily="微软雅黑" FontWeight="Bold" Foreground="#BDBDBD">
                                 <MenuItem>
                                     <MenuItem.Header>
                                         <StackPanel Orientation="Horizontal">
@@ -241,7 +241,7 @@
                                     <MenuItem Header="猫头供油模式" Click="btn_SelectCatWorkModel"/>
                                 </MenuItem>
                             </Menu>
-                            <TextBlock Name="tbSelectModel" VerticalAlignment="Center" Text="XX" FontSize="18" Width="80" Foreground="#008AFF"></TextBlock>
+                            <TextBlock Name="tbSelectModel" VerticalAlignment="Center" Text="XX" Width="80" Foreground="#008AFF"></TextBlock>
                         </StackPanel>
                     </Border>
                     <Border  BorderBrush="Gray" Background="White" BorderThickness="0,1,0,1" Grid.Row="3">

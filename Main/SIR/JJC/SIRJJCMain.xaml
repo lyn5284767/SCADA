@@ -156,6 +156,11 @@
                         <TextBlock FontSize="28" Text="旋 转 标 定 请 求" MouseDown="spRotateSetMouseDown"></TextBlock>
                         <Grid Height="20"></Grid>
                         <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                            <Label>旋转标定</Label>
+                            <cl:SymbolMapping Name="smRotate" StrContent="" LampType="3" Height="25" Margin="20,0,0,0"/>
+                        </StackPanel>
+                        <Grid Height="10"></Grid>
+                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
                             <TextBlock Width="80" TextAlignment="Center" Foreground="#919191">标定状态：</TextBlock>
                             <TextBlock Name="tbCalibrationStatus" Foreground="#919191" Text="未知" Width="50" TextAlignment="Center"/>
                         </StackPanel>
@@ -208,6 +213,11 @@
                 <StackPanel>
                     <TextBlock FontSize="28" Text="伸 缩 标 定 请 求" MouseDown="InOutSetMouseDown"></TextBlock>
                     <Grid Height="20"></Grid>
+                    <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                        <Label>伸缩标定</Label>
+                        <cl:SymbolMapping Name="smInOut" StrContent="" LampType="3" Height="25" Margin="20,0,0,0"/>
+                    </StackPanel>
+                    <Grid Height="10"></Grid>
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
                         <TextBlock Width="80" TextAlignment="Center" Foreground="#919191">标定状态：</TextBlock>
                         <TextBlock Name="tbInOutStatus" Foreground="#919191" Text="未知" Width="50" TextAlignment="Center"/>

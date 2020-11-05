@@ -426,13 +426,39 @@ namespace Main.HydraulicStation
                 GlobalData.Instance.da.SendBytes(byteToSend);
             }
         }
+        bool leftCatReach = false;
+        bool leftCatRetract = false;
+        bool rightCatReach = false;
+        bool rightCatRetract = false;
+        private void SendByCycle()
+        {
+            if (leftCatReach)
+            {
+                byte[] byteToSend = new byte[10] { 0, 19, 4, 4, 0, 0, 0, 0, 0, 0 };
+                GlobalData.Instance.da.SendBytes(byteToSend);
+            }
+            if (leftCatRetract)
+            {
+                byte[] byteToSend = new byte[10] { 0, 19, 4, 5, 0, 0, 0, 0, 0, 0 };
+                GlobalData.Instance.da.SendBytes(byteToSend);
+            }
+            if (rightCatReach)
+            {
+                byte[] byteToSend = new byte[10] { 0, 19, 4, 7, 0, 0, 0, 0, 0, 0 };
+                GlobalData.Instance.da.SendBytes(byteToSend);
+            }
+            if (rightCatRetract)
+            {
+                byte[] byteToSend = new byte[10] { 0, 19, 4, 8, 0, 0, 0, 0, 0, 0 };
+                GlobalData.Instance.da.SendBytes(byteToSend);
+            }
+        }
         /// <summary>
         /// 左猫头伸
         /// </summary>
         private void BtnLeftCatReach_Click(object sender, RoutedEventArgs e)
         {
-            byte[] byteToSend = new byte[10] { 0, 19, 4, 4, 0, 0, 0, 0, 0, 0 };
-            GlobalData.Instance.da.SendBytes(byteToSend);
+            leftCatReach = true;
         }
 
         //private void BtnLeftCatReach_Click(object sender, MouseButtonEventArgs e)
@@ -445,6 +471,7 @@ namespace Main.HydraulicStation
         /// </summary>
         private void btnLeftCatHeadReach_MouseUp(object sender, RoutedEventArgs e)
         {
+            leftCatReach = false;
             byte[] byteToSend = new byte[10] { 0, 19, 4, 6, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
@@ -453,14 +480,14 @@ namespace Main.HydraulicStation
         /// </summary>
         private void BtnLeftCatRetract_Click(object sender, RoutedEventArgs e)
         {
-            byte[] byteToSend = new byte[10] { 0, 19, 4, 5, 0, 0, 0, 0, 0, 0 };
-            GlobalData.Instance.da.SendBytes(byteToSend);
+            leftCatRetract = true;
         }
         /// <summary>
         /// 左猫头缩-按键抬起关闭
         /// </summary>
         private void btnLeftCatHeadRetract_MouseUp(object sender, RoutedEventArgs e)
         {
+            leftCatRetract = false;
             byte[] byteToSend = new byte[10] { 0, 19, 4, 6, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
@@ -477,14 +504,14 @@ namespace Main.HydraulicStation
         /// </summary>
         private void BtnRightCatReach_Click(object sender, RoutedEventArgs e)
         {
-            byte[] byteToSend = new byte[10] { 0, 19, 4, 7, 0, 0, 0, 0, 0, 0 };
-            GlobalData.Instance.da.SendBytes(byteToSend);
+            rightCatReach = true;
         }
         /// <summary>
         /// 右猫头伸-抬起关闭
         /// </summary>
         private void btnRightCatHeadReach_MouseUp(object sender, RoutedEventArgs e)
         {
+            rightCatReach = false;
             byte[] byteToSend = new byte[10] { 0, 19, 4, 9, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
@@ -493,14 +520,14 @@ namespace Main.HydraulicStation
         /// </summary>
         private void BtnRightCatRetract_Click(object sender, RoutedEventArgs e)
         {
-            byte[] byteToSend = new byte[10] { 0, 19, 4, 8, 0, 0, 0, 0, 0, 0 };
-            GlobalData.Instance.da.SendBytes(byteToSend);
+            rightCatRetract = true;
         }
         /// <summary>
         /// 右猫头缩-按键抬起关闭
         /// </summary>
         private void btnRightCatHeadRetract_MouseUp(object sender, RoutedEventArgs e)
         {
+            rightCatRetract = false;
             byte[] byteToSend = new byte[10] { 0, 19, 4, 9, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
@@ -619,6 +646,7 @@ namespace Main.HydraulicStation
             {
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
+                    SendByCycle();
                     colorTag = !colorTag;
                     var bc = new BrushConverter();
                     if (GlobalData.Instance.da["775b1"].Value.Boolean)

@@ -131,6 +131,7 @@ namespace Main.HydraulicStation.JJC
                     if (iTimeCnt > 1000) iTimeCnt = 0;
                     this.Warnning();
                     this.Communcation();
+                    SendByCycle();
                 }));
             }
             catch (Exception ex)
@@ -294,11 +295,11 @@ namespace Main.HydraulicStation.JJC
             byte[] byteToSend;
             if (this.MainPumpOne.IsChecked) //当前启动状态
             {
-                byteToSend = new byte[10] { 20, 5, 1, 2, 0, 0, 0, 0, 0, 0 };
+                byteToSend = new byte[10] { 0, 19, 1, 2, 0, 0, 0, 0, 0, 0 };
             }
             else//当前停止状态
             {
-                byteToSend = new byte[10] { 20, 5, 1, 1, 0, 0, 0, 0, 0, 0 };
+                byteToSend = new byte[10] { 0, 19, 1, 1, 0, 0, 0, 0, 0, 0 };
             }
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
@@ -311,11 +312,11 @@ namespace Main.HydraulicStation.JJC
             byte[] byteToSend;
             if (this.MainPumpTwo.IsChecked) //当前启动状态
             {
-                byteToSend = new byte[10] { 20, 5, 2, 2, 0, 0, 0, 0, 0, 0 };
+                byteToSend = new byte[10] { 0, 19, 2, 2, 0, 0, 0, 0, 0, 0 };
             }
             else//当前停止状态
             {
-                byteToSend = new byte[10] { 20, 5, 2, 1, 0, 0, 0, 0, 0, 0 };
+                byteToSend = new byte[10] { 0, 19, 2, 1, 0, 0, 0, 0, 0, 0 };
             }
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
@@ -328,11 +329,11 @@ namespace Main.HydraulicStation.JJC
             byte[] byteToSend;
             if (this.ColdFan.IsChecked) //当前启动状态
             {
-                byteToSend = new byte[10] { 20, 5, 6, 2, 0, 0, 0, 0, 0, 0 };
+                byteToSend = new byte[10] { 0, 19, 6, 2, 0, 0, 0, 0, 0, 0 };
             }
             else//当前停止状态
             {
-                byteToSend = new byte[10] { 20, 5, 6, 1, 0, 0, 0, 0, 0, 0 };
+                byteToSend = new byte[10] { 0, 19, 6, 1, 0, 0, 0, 0, 0, 0 };
             }
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
@@ -345,11 +346,11 @@ namespace Main.HydraulicStation.JJC
             byte[] byteToSend;
             if (this.Hot.IsChecked) //当前启动状态
             {
-                byteToSend = new byte[10] { 20, 5, 7, 2, 0, 0, 0, 0, 0, 0 };
+                byteToSend = new byte[10] { 0, 19, 7, 2, 0, 0, 0, 0, 0, 0 };
             }
             else//当前停止状态
             {
-                byteToSend = new byte[10] { 20, 5, 7, 1, 0, 0, 0, 0, 0, 0 };
+                byteToSend = new byte[10] { 0, 19, 7, 1, 0, 0, 0, 0, 0, 0 };
             }
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
@@ -362,11 +363,11 @@ namespace Main.HydraulicStation.JJC
             byte[] byteToSend;
             if (this.CyclePump.IsChecked) //当前启动状态
             {
-                byteToSend = new byte[10] { 20, 5, 5, 2, 0, 0, 0, 0, 0, 0 };
+                byteToSend = new byte[10] { 0, 19, 5, 2, 0, 0, 0, 0, 0, 0 };
             }
             else//当前停止状态
             {
-                byteToSend = new byte[10] { 20, 5, 5, 1, 0, 0, 0, 0, 0, 0 };
+                byteToSend = new byte[10] { 0, 19, 5, 1, 0, 0, 0, 0, 0, 0 };
             }
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
@@ -384,7 +385,7 @@ namespace Main.HydraulicStation.JJC
                 short i16Text = (short)(double.Parse(strText) * 10);
                 byte[] tempByte = BitConverter.GetBytes(i16Text);
 
-                byte[] byteToSend = new byte[10] { 20, 5, 4, 1, tempByte[0], tempByte[1], 0, 0, 0, 0 };
+                byte[] byteToSend = new byte[10] { 0, 19, 4, 1, tempByte[0], tempByte[1], 0, 0, 0, 0 };
                 GlobalData.Instance.da.SendBytes(byteToSend);
             }
             catch (Exception ex)
@@ -404,26 +405,69 @@ namespace Main.HydraulicStation.JJC
         /// <param name="e"></param>
         private void btn_ControlModel(object sender, EventArgs e)
         {
-            byte[] byteToSend = new byte[10] { 20, 5, 8, 0, 0, 0, 0, 0, 0, 0 };
+            byte[] byteToSend = new byte[10] { 0, 19, 8, 0, 0, 0, 0, 0, 0, 0 };
 
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
 
         #region 猫头控制
+
+        private void SendByCycle()
+        {
+            if (leftCatReach)
+            {
+                byte[] byteToSend = new byte[10] { 0, 19, 3, 1, 1, 0, 0, 0, 0, 0 };
+                GlobalData.Instance.da.SendBytes(byteToSend);
+
+            }
+            if (leftCatRetract)
+            {
+                byte[] byteToSend = new byte[10] { 0, 19, 3, 2, 1, 0, 0, 0, 0, 0 };
+                GlobalData.Instance.da.SendBytes(byteToSend);
+            }
+            if (rightCatReach)
+            {
+                byte[] byteToSend = new byte[10] { 0, 19, 3, 1, 2, 0, 0, 0, 0, 0 };
+                GlobalData.Instance.da.SendBytes(byteToSend);
+                Thread.Sleep(50);
+            }
+            if (rightCatRetract)
+            {
+                byte[] byteToSend = new byte[10] { 0, 19, 3, 2, 2, 0, 0, 0, 0, 0 };
+                GlobalData.Instance.da.SendBytes(byteToSend);
+            }
+            if (rotateCatReach)
+            {
+                byte[] byteToSend = new byte[10] { 0, 19, 3, 1, 3, 0, 0, 0, 0, 0 };
+                GlobalData.Instance.da.SendBytes(byteToSend);
+            }
+
+            if (rotateCatRetract)
+            {
+                byte[] byteToSend = new byte[10] { 0, 19, 3, 2, 3, 0, 0, 0, 0, 0 };
+                GlobalData.Instance.da.SendBytes(byteToSend);
+            }
+        }
+        bool leftCatReach = false;
+        bool leftCatRetract = false;
+        bool rightCatReach = false;
+        bool rightCatRetract = false;
+        bool rotateCatReach = false;
+        bool rotateCatRetract = false;
         /// <summary>
         /// 左猫头上升
         /// </summary>
         private void BtnLeftCatReach_Click(object sender, RoutedEventArgs e)
         {
-            byte[] byteToSend = new byte[10] { 20, 5, 3, 1, 1, 0, 0, 0, 0, 0 };
-            GlobalData.Instance.da.SendBytes(byteToSend);
+            leftCatReach = true;
         }
         /// <summary>
         /// 左猫头上升-按键抬起关闭
         /// </summary>
         private void BtnLeftCatHeadReach_MouseUp(object sender, RoutedEventArgs e)
         {
-            byte[] byteToSend = new byte[10] { 20, 5, 3, 0, 1, 0, 0, 0, 0, 0 };
+            leftCatReach = false;
+            byte[] byteToSend = new byte[10] { 0, 19, 3, 0, 1, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
@@ -431,15 +475,15 @@ namespace Main.HydraulicStation.JJC
         /// </summary>
         private void BtnLeftCatRetract_Click(object sender, RoutedEventArgs e)
         {
-            byte[] byteToSend = new byte[10] { 20, 5, 3, 2, 1, 0, 0, 0, 0, 0 };
-            GlobalData.Instance.da.SendBytes(byteToSend);
+            leftCatRetract = true;
         }
         /// <summary>
         /// 左猫头下降-按键抬起关闭
         /// </summary>
         private void BtnLeftCatHeadRetract_MouseUp(object sender, RoutedEventArgs e)
         {
-            byte[] byteToSend = new byte[10] { 20, 5, 3, 0, 1, 0, 0, 0, 0, 0 };
+            leftCatRetract = false;
+            byte[] byteToSend = new byte[10] { 0, 19, 3, 0, 1, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
 
@@ -448,7 +492,7 @@ namespace Main.HydraulicStation.JJC
         /// </summary>
         private void BtnLeftCatClose_Click(object sender, RoutedEventArgs e)
         {
-            byte[] byteToSend = new byte[10] { 20, 5, 3, 0, 1, 0, 0, 0, 0, 0 };
+            byte[] byteToSend = new byte[10] { 0, 19, 3, 0, 1, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
@@ -456,15 +500,15 @@ namespace Main.HydraulicStation.JJC
         /// </summary>
         private void BtnRightCatReach_Click(object sender, RoutedEventArgs e)
         {
-            byte[] byteToSend = new byte[10] { 20, 5, 3, 1, 2, 0, 0, 0, 0, 0 };
-            GlobalData.Instance.da.SendBytes(byteToSend);
+            rightCatReach = true;
         }
         /// <summary>
         /// 右猫头上升-按键抬起关闭
         /// </summary>
         private void BtnRightCatHeadReach_MouseUp(object sender, RoutedEventArgs e)
         {
-            byte[] byteToSend = new byte[10] { 20, 5, 3, 0, 2, 0, 0, 0, 0, 0 };
+            rightCatReach = false;
+            byte[] byteToSend = new byte[10] { 0, 19, 3, 0, 2, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
@@ -472,15 +516,15 @@ namespace Main.HydraulicStation.JJC
         /// </summary>
         private void BtnRightCatRetract_Click(object sender, RoutedEventArgs e)
         {
-            byte[] byteToSend = new byte[10] { 20, 5, 3, 2, 2, 0, 0, 0, 0, 0 };
-            GlobalData.Instance.da.SendBytes(byteToSend);
+            rightCatRetract = true;
         }
         /// <summary>
         /// 右猫头下降-按键抬起关闭
         /// </summary>
         private void BtnRightCatHeadRetract_MouseUp(object sender, RoutedEventArgs e)
         {
-            byte[] byteToSend = new byte[10] { 20, 5, 3, 0, 2, 0, 0, 0, 0, 0 };
+            rightCatRetract = false;
+            byte[] byteToSend = new byte[10] { 0, 19, 3, 0, 2, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
 
@@ -489,7 +533,7 @@ namespace Main.HydraulicStation.JJC
         /// </summary>
         private void BtnRightCatClose_Click(object sender, RoutedEventArgs e)
         {
-            byte[] byteToSend = new byte[10] { 20, 5, 3, 0, 2, 0, 0, 0, 0, 0 };
+            byte[] byteToSend = new byte[10] { 0, 19, 3, 0, 2, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
 
@@ -498,15 +542,15 @@ namespace Main.HydraulicStation.JJC
         /// </summary>
         private void BtnRotateCatReach_Click(object sender, RoutedEventArgs e)
         {
-            byte[] byteToSend = new byte[10] { 20, 5, 3, 1, 3, 0, 0, 0, 0, 0 };
-            GlobalData.Instance.da.SendBytes(byteToSend);
+            rotateCatReach = true;
         }
         /// <summary>
         /// 旋转猫头正转-按键抬起关闭
         /// </summary>
         private void BtnRotateCatHeadReach_MouseUp(object sender, RoutedEventArgs e)
         {
-            byte[] byteToSend = new byte[10] { 20, 5, 3, 0, 3, 0, 0, 0, 0, 0 };
+            rotateCatReach = false;
+            byte[] byteToSend = new byte[10] { 0, 19, 3, 0, 3, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
@@ -514,15 +558,15 @@ namespace Main.HydraulicStation.JJC
         /// </summary>
         private void BtnRotateCatRetract_Click(object sender, RoutedEventArgs e)
         {
-            byte[] byteToSend = new byte[10] { 20, 5, 3, 2, 3, 0, 0, 0, 0, 0 };
-            GlobalData.Instance.da.SendBytes(byteToSend);
+            rotateCatRetract = true;
         }
         /// <summary>
         /// 旋转猫头反转-按键抬起关闭
         /// </summary>
         private void BtnRotateCatHeadRetract_MouseUp(object sender, RoutedEventArgs e)
         {
-            byte[] byteToSend = new byte[10] { 20, 5, 3, 0, 3, 0, 0, 0, 0, 0 };
+            rotateCatRetract = false;
+            byte[] byteToSend = new byte[10] { 0, 19, 3, 0, 3, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
 
@@ -531,7 +575,7 @@ namespace Main.HydraulicStation.JJC
         /// </summary>
         private void BtnRotateCatClose_Click(object sender, RoutedEventArgs e)
         {
-            byte[] byteToSend = new byte[10] { 20, 5, 3, 0, 3, 0, 0, 0, 0, 0 };
+            byte[] byteToSend = new byte[10] { 0, 19, 3, 0, 3, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         #endregion
@@ -540,7 +584,7 @@ namespace Main.HydraulicStation.JJC
         /// </summary>
         private void btn_SelectStayWorkModel(object sender, RoutedEventArgs e)
         {
-            byte[] byteToSend = new byte[10] { 20, 5, 3, 1, 4, 0, 0, 0, 0, 0 };
+            byte[] byteToSend = new byte[10] { 0, 19, 3, 1, 4, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
@@ -548,7 +592,7 @@ namespace Main.HydraulicStation.JJC
         /// </summary>
         private void btn_SelectCatWorkModel(object sender, RoutedEventArgs e)
         {
-            byte[] byteToSend = new byte[10] { 20, 5, 3, 2, 4, 0, 0, 0, 0, 0 };
+            byte[] byteToSend = new byte[10] { 0, 19, 3, 2, 4, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
     }

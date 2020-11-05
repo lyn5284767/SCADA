@@ -52,6 +52,8 @@ namespace ControlLibrary.InputControl
 
         public bool HidenTwo { get; set; }
 
+        public bool Multiply { get; set; } = false;
+
         public static readonly DependencyProperty ShowTextWithTipsProperty = DependencyProperty.Register("ShowTextTips", typeof(object), typeof(TextWithTips), new PropertyMetadata(0));
         /// <summary>
         /// 控件显示
@@ -108,52 +110,76 @@ namespace ControlLibrary.InputControl
         /// <param name="e"></param>
         private void textBox_ParameterConfig_LostFocus(object sender, RoutedEventArgs e)
         {
+            BrushConverter bc = new BrushConverter();
+            this.bd.Background = (Brush)bc.ConvertFrom("#FFFFFF");
             this.sh.Opacity = 0;
-            Regex regexParameterConfigurationConfirm = new Regex(@"^[0-9]+$");
             string strText = this.textBoxSet.Text;
             if (strText.Length == 0) strText = "0";
-            short i16Text = Convert.ToInt16(strText);
+            short i16Text = (short)(double.Parse(strText));
             if (i16Text > MaxVal || i16Text < MinVal)
             {
                 MessageBox.Show(string.Format("参数应在{0}到{1}之间,超出范围", MaxVal, MinVal));
                 return;
             }
-            byte[] tempByte = BitConverter.GetBytes(i16Text);
-            if ((regexParameterConfigurationConfirm.Match(strText)).Success)
+            if (Multiply)
             {
-                try
-                {
-                    string[] strs = this.Head.Split(',');
-                    for (int i = 0; i < strs.Length; i++) // 协议头
-                    {
-                        GlobalData.Instance.SetParam[i] = byte.Parse(strs[i]);
-                    }
-                    // 协议内容
-                    GlobalData.Instance.SetParam[strs.Length] = tempByte[0];
-                    GlobalData.Instance.SetParam[strs.Length + 1] = tempByte[1];
-                    // 补零
-                    for (int i = strs.Length + 2; i < 10; i++)
-                    {
-                        GlobalData.Instance.SetParam[i] = 0;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("参数数值范围异常:" + ex.Message);
-                    this.textBoxSet.Text = "0";
-                }
-
+                i16Text = (short)(double.Parse(strText) * 10);
             }
-            else
+            byte[] tempByte = BitConverter.GetBytes(i16Text);
+            try
             {
-                MessageBox.Show("参数为非数字");
+                string[] strs = this.Head.Split(',');
+                for (int i = 0; i < strs.Length; i++) // 协议头
+                {
+                    GlobalData.Instance.SetParam[i] = byte.Parse(strs[i]);
+                }
+                if (this.Head == "24,17,1,1" || this.Head == "24,17,2,1")
+                {
+                    double input = double.Parse(strText);
+                    short data = (short)(((-6 * input * input) / 100000 + 2.1019 * input + 2.1023) * 10);// 发操作台最后*10
+                    tempByte = BitConverter.GetBytes(data);
+                }
+                if (this.Head == "24,17,3,3")
+                {
+                    double input = double.Parse(strText);
+                    short data = (short)(0.14449 * input * 10);// 发操作台最后*10
+                    tempByte = BitConverter.GetBytes(data);
+                }
+                if (this.Head == "24,17,2,3")
+                {
+                    double input = double.Parse(strText);
+                    if (input >= 8.5)
+                    {
+                        short data = (short)(0.14449 * input * 10);// 发操作台最后*10
+                        tempByte = BitConverter.GetBytes(data);
+                    }
+                    else
+                    {
+                        short data = (short)(((-6 * input * input) / 100000 + 2.1019 * input + 2.1023) * 10);// 发操作台最后*10
+                        tempByte = BitConverter.GetBytes(data);
+                    }
+                }
+                // 协议内容
+                GlobalData.Instance.SetParam[strs.Length] = tempByte[0];
+                GlobalData.Instance.SetParam[strs.Length + 1] = tempByte[1];
+                // 补零
+                for (int i = strs.Length + 2; i < 10; i++)
+                {
+                    GlobalData.Instance.SetParam[i] = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("参数数值范围异常:" + ex.Message);
                 this.textBoxSet.Text = "0";
             }
         }
 
         private void tb_ParameterConfig_Focus(object sender, MouseButtonEventArgs e)
         {
+            BrushConverter bc = new BrushConverter();
             this.sh.Opacity = 0.5;
+            this.bd.Background = (Brush)bc.ConvertFrom("#4E80C8");
             GlobalData.Instance.GetKeyBoard();
         }
     }

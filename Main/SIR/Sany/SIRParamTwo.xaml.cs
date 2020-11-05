@@ -72,8 +72,8 @@ namespace Main.SIR.Sany
                 this.twtR6.SetBinding(TextWithTips.ShowTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfStableRetractSpeedSet"], Mode = BindingMode.OneWay });
                 this.twtR7.SetBinding(TextWithTips.ShowTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfBufferSpeedSet"], Mode = BindingMode.OneWay });
                 this.twtR8.SetBinding(TextWithTips.ShowTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfResponseCircleSet"], Mode = BindingMode.OneWay });
-                this.twtR9.SetBinding(TextWithTips.ShowTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfWorkCylinderLowAlarmSet"], Mode = BindingMode.OneWay });
-                this.twtR10.SetBinding(TextWithTips.ShowTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfBrakingCylinderLowAlarmSet"], Mode = BindingMode.OneWay });
+                this.twtR9.SetBinding(TextWithTips.ShowTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfWorkCylinderLowAlarmSet"], Mode = BindingMode.OneWay,Converter = new DivideTenConverter() });
+                this.twtR10.SetBinding(TextWithTips.ShowTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfBrakingCylinderLowAlarmSet"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
                 #endregion
 
                 #region 回转运动参数

@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="Main.Integration.Ing_SIR_JJC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Main.Integration" xmlns:cl="http://talonzeng.com/ControlLibrary"
+             mc:Ignorable="d" 
+             d:DesignHeight="280" d:DesignWidth="335">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <Style x:Key="ShadowBorder" TargetType="Border">
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="20" Color="Gray" Direction="20" Opacity="0.1" RenderingBias="Quality" ShadowDepth="1"/>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect BlurRadius="20" Color="Gray" Direction="20" Opacity="0.5" RenderingBias="Quality" ShadowDepth="1"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="铁钻工(JJC)" FontSize="24"></TextBlock>
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <TextBlock FontSize="18">上扣扭矩实时压力</TextBlock>
+            <cl:SymbolMapping Name="smUpButtonPressure" StrContent="" LampType="3" Height="35" HorizontalAlignment="Center" Margin="5,0,5,0"/>
+            <TextBlock Name="tbRealTimePressure" Width="50" FontSize="18" Text="0" TextAlignment="Right"/>
+            <TextBlock Name="tbUnitOne" Text="KN.M" FontSize="14"/>
+            <Button Content ="切换" Margin="5,0,0,0" x:Name="sdswitch" MouseLeftButtonDown="SwichUnit_MouseLeftButtonDown"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="2">
+            <TextBlock FontSize="18">上扣扭矩设定压力</TextBlock>
+            <Button Content ="-" x:Name="PressureDown" Margin="5,0,5,0" FontSize="18" Width="35" MouseLeftButtonDown="PressureDown_MouseLeftButtonDown"/>
+            <TextBlock Name="tbPressureSet" Width="50" FontSize="18" Text="0" TextAlignment="Right"/>
+            <TextBlock Name="tbUnitTwo" Text="KN.M" FontSize="14"/>
+            <Button Content ="+" x:Name="PressureUp" Margin="5,0,0,0" Width="35" MouseLeftButtonDown="PressureUp_MouseLeftButtonDown"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -55,7 +55,7 @@ namespace Main.SIR
             this.tbRightHandleSelect.SetBinding(TextBlock.TextProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["504b2"], Mode = BindingMode.OneWay, Converter = new SIRRightHandleSelectCoverter() });
             this.tbWorkStatus.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["IDWorkModel"], Mode = BindingMode.OneWay, Converter = new SIRWorkModelCoverter() });
             this.tbOprModel.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["IDOperModel"], Mode = BindingMode.OneWay, Converter = new SIROprModelCoverter() });
-            this.tbOprModel.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["IDWorkLocation"], Mode = BindingMode.OneWay, Converter = new SIRWorkLocationCoverter() });
+            this.tbWorkLocation.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["IDWorkLocation"], Mode = BindingMode.OneWay, Converter = new SIRWorkLocationCoverter() });
             this.smHeart.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["504b1"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
 
             this.operateMode.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["IDOperModel"], Mode = BindingMode.OneWay, Converter = new SIROprModelCoverter() });
@@ -82,12 +82,12 @@ namespace Main.SIR
             this.tbZeroAngleOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDRotateZero"], Mode = BindingMode.OneWay });
             this.tbRotateWaitOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDRotateWait"], Mode = BindingMode.OneWay });
             this.tbWellLocationOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDWellLocation"], Mode = BindingMode.OneWay });
-            this.tbMouseLocationOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDMouseLocation"], Mode = BindingMode.OneWay });
+            this.tbMouseLocationOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDMouseLocatio"], Mode = BindingMode.OneWay });
 
             this.tbInOutStatus.SetBinding(TextBlock.TextProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b4"], Mode = BindingMode.OneWay, Converter = new SIRCalibrationStatusCoverter() });
-            this.tbInOutCylinderTrip.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDInOutCylinderTrip"], Mode = BindingMode.OneWay });
-            this.tbFlowRateValve.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDFlowRateValve"], Mode = BindingMode.OneWay });
-            this.tbPressureRateValve.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDPressureRateValve"], Mode = BindingMode.OneWay });
+            this.tbInOutCylinderTrip.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDInOutCylinderTrip"], Mode = BindingMode.OneWay });
+            this.tbFlowRateValve.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDFlowRateValve"], Mode = BindingMode.OneWay });
+            this.tbPressureRateValve.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDPressureRateValve"], Mode = BindingMode.OneWay });
             this.tbInOutMaxSpeedOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDInOutMaxSpeed"], Mode = BindingMode.OneWay });
             this.tbInOutCrawlSpeedOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDInOutCrawlSpeed"], Mode = BindingMode.OneWay });
             this.tbWellRetractLengthOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDWellRetractLength"], Mode = BindingMode.OneWay });
@@ -156,6 +156,10 @@ namespace Main.SIR
             this.smButtonImple.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b6"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
             this.smButtonCancel.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b7"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
             this.smLockHook.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b5"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.smRotate.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b7"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.smInOut.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b6"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+
+            this.tubeType.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["IDDrillType"], Mode = BindingMode.OneWay, Converter = new SIR_JJC_DrillTypeConverter() });
 
         }
 
@@ -191,10 +195,14 @@ namespace Main.SIR
             byte[] data = new byte[10] { 80, 16, 23, 3, 0, 0, 1, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(data);
         }
-
+        /// <summary>
+        /// 管柱选择
+        /// </summary>
         private void btn_SelectDrillPipe(object sender, RoutedEventArgs e)
         {
-
+            int tag = (sender as MenuItem).TabIndex;
+            byte[] byteToSend = new byte[10] { 80, 16, 3, (byte)tag, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
         /// 旋转设定请求

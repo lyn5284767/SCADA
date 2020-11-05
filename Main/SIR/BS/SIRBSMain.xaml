@@ -25,8 +25,8 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition Width="280"/>
-            <ColumnDefinition Width="330"/>
+            <ColumnDefinition Width="340"/>
+            <ColumnDefinition Width="300"/>
         </Grid.ColumnDefinitions>
         <StackPanel  Grid.Column="0">
             <Border Style="{StaticResource BorderRegion}">
@@ -220,17 +220,20 @@
                             </Grid.RowDefinitions>
                             <StackPanel Orientation="Horizontal" Grid.Row="0">
                                 <TextBlock Text="上扣旋扣时间" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
+                                <TextBox Width="50" Margin="10,0,0,0" Name="tbInButtonTimeShowValue" IsReadOnly="True"></TextBox>
                                 <TextBox Width="50" Margin="10,0,0,0" Name="tbInButtonTimeSetValue"></TextBox>
                                 <Button Height="36" FontSize="18" Margin="10,0,0,0" Click="BtnInButtonTime_Click">设定</Button>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="1">
                                 <TextBlock Text="卸扣旋扣时间" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
+                                <TextBox Width="50" Margin="10,0,0,0" Name="tbOutButtonTimeShowValue" IsReadOnly="True"></TextBox>
                                 <TextBox Width="50" Margin="10,0,0,0" Name="tbOutButtonTimeSetValue"></TextBox>
                                 <Button Height="36" FontSize="18" Margin="10,0,0,0" Click="BtnOutButtonTime_Click">设定</Button>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="2">
                                 <TextBlock Text="冲扣次数" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" Margin="56,0,0,0"></TextBlock>
-                                <TextBox Width="50" Margin="10,0,0,0" Name="tbInButtonTimesShow"></TextBox>
+                                <TextBox Width="50" Margin="10,0,0,0" Name="tbInButtonTimesShow" IsReadOnly="True"></TextBox>
+                                <TextBox Width="50" Margin="10,0,0,0" Name="tbInButtonTimesSet"></TextBox>
                                 <Button Height="36" FontSize="18" Margin="10,0,0,0" Click="BtnInButtonTimes_Click">设定</Button>
                             </StackPanel>
                             <CheckBox Name="cbDRSafeLimit" Grid.Row="3"  FontSize="18" FontWeight="Bold" Checked="cbDRSafeLimit_Checked">钻台面安全限制解除</CheckBox>
