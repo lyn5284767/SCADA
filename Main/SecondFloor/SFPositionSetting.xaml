@@ -114,7 +114,7 @@
                             <TextBox Text="未选择参数" TabIndex="0" Name="selectParaName"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Width="160" Margin="5,2,5,2" FontSize="16" FontWeight="Bold"/>
 
                             <TextBox Text="反馈参数名称" Name="returnSelectParaName" IsReadOnly="True"  VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Width="160" Margin="5,2,5,2" FontSize="16" FontWeight="Bold"/>
-                            <TextBox Text="0" VerticalAlignment="Center" Name="returnSelectParaValue"  IsReadOnly="True" HorizontalAlignment="Center" TextAlignment="Center" Width="160" Margin="5,2,5,2" FontSize="6" FontWeight="Bold"/>
+                            <TextBox Text="0" VerticalAlignment="Center" Name="returnSelectParaValue"  IsReadOnly="True" HorizontalAlignment="Center" TextAlignment="Center" Width="160" Margin="5,2,5,2" FontSize="16" FontWeight="Bold"/>
                         </StackPanel>
 
                         <StackPanel>

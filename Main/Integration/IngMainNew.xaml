@@ -60,6 +60,14 @@
                     <TextBlock Name="tbCurWork" Text="xx" Foreground="#008AFF"></TextBlock>
                     <TextBlock Text="当前操作模式:" Margin="10,0,0,0"></TextBlock>
                     <TextBlock Name="tbCurOpr" Text="xx" Foreground="#008AFF"></TextBlock>
+                    <TextBlock Text="当前管柱类型:" Margin="10,0,0,0"></TextBlock>
+                    <TextBlock Name="tbCurTubesType" Text="xx" Foreground="#008AFF"></TextBlock>
+                    <TextBlock Text="当前目的地:" Margin="10,0,0,0"></TextBlock>
+                    <TextBlock Name="tbCurDes" Text="xx" Foreground="#008AFF"></TextBlock>
+                    <TextBlock Text="选择指梁:" Margin="10,0,0,0"></TextBlock>
+                    <TextBlock Name="tbCurSelectDrill" Text="xx" Foreground="#008AFF"></TextBlock>
+                    <TextBlock Text="联动状态:" Margin="10,0,0,0" Foreground="#E0496D"></TextBlock>
+                    <TextBlock Name="LinkError" Text="xx" Foreground="#E0496D"></TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="1">
                     <TextBlock Text="二层台:" Margin="65,0,0,0"></TextBlock>
@@ -82,9 +90,10 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="100"/>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
                 <TextBlock Text="联动设置" FontSize="24"></TextBlock>
                 <Grid Grid.Row="1">
@@ -151,6 +160,7 @@
                     <Grid Height="5"></Grid>
                     <TextBlock Text="未选择目的地" Name="drDestination" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 </StackPanel>
+                <Button Grid.Row="5" FontSize="14" FontWeight="Bold" Click="btn_SetDrillNum">指梁设置</Button>
             </Grid>
         </Border>
         <Border Name="bdSF" BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5" Grid.Row="1" Grid.Column="1">

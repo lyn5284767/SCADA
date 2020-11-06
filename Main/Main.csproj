@@ -201,6 +201,9 @@
     <Compile Include="HydraulicStation\Sany\HSSetting.xaml.cs">
       <DependentUpon>HSSetting.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Integration\DrillSetWindow.xaml.cs">
+      <DependentUpon>DrillSetWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Integration\IngMain.xaml.cs">
       <DependentUpon>IngMain.xaml</DependentUpon>
     </Compile>
@@ -461,6 +464,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="HydraulicStation\Sany\HSSetting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Integration\DrillSetWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -3112,7 +3112,7 @@ namespace COM.Common
                 else if (b1) return "联动已开启，二层台使能";
                 else if (b2) return "联动已开启，钻台面使能";
             }
-            return "";
+            return "未知";
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

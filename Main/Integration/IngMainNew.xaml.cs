@@ -79,6 +79,18 @@ namespace Main.Integration
         /// 钻台面钻杆类型
         /// </summary>
         public int drTubesType { get; set; }
+        /// <summary>
+        /// 钻台面目的地
+        /// </summary>
+        public int drDes { get; set; }
+        /// <summary>
+        /// 二层台当前选择指梁
+        /// </summary>
+        public int sfSelectDrill { get; set; }
+        /// <summary>
+        /// 钻台面当前选择指梁
+        /// </summary>
+        public int drSelectDrill { get; set; }
 
         Dictionary<string, byte> alarmKey = new Dictionary<string, byte>();
         private bool tmpStatus = false; // 控制台心跳临时存储状态
@@ -89,6 +101,9 @@ namespace Main.Integration
         public IngMainNew()
         {
             InitializeComponent();
+            GlobalData.Instance.Rows = GlobalData.Instance.da["DrillNums"].Value.Byte;
+            GlobalData.Instance.DrillNum = GlobalData.Instance.da["103E23B5"].Value.Byte;
+
             VariableBinding();
             TotalVariableReBinding = new System.Threading.Timer(new TimerCallback(TotalVariableTimer), null, Timeout.Infinite, 50);
             TotalVariableReBinding.Change(0, 50);
@@ -177,6 +192,14 @@ namespace Main.Integration
             try
             {
                 this.tbLinkStatus.SetBinding(TextBlock.TextProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["460b0"], Mode = BindingMode.OneWay, Converter = new LinkOpenOrCloseConverter() });
+                MultiBinding LinkErrorMultiBind = new MultiBinding();
+                LinkErrorMultiBind.Converter = new LinkErrorCoverter();
+                LinkErrorMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drLinkError"], Mode = BindingMode.OneWay });
+                LinkErrorMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["460b0"], Mode = BindingMode.OneWay });
+                LinkErrorMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["460b1"], Mode = BindingMode.OneWay });
+                LinkErrorMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["460b2"], Mode = BindingMode.OneWay });
+                LinkErrorMultiBind.NotifyOnSourceUpdated = true;
+                this.LinkError.SetBinding(TextBlock.TextProperty, LinkErrorMultiBind);
             }
             catch (Exception ex)
             {
@@ -205,24 +228,30 @@ namespace Main.Integration
                     this.sfWorkModel = GlobalData.Instance.da["workModel"].Value.Byte;
                     this.sfOprModel = GlobalData.Instance.da["operationModel"].Value.Byte;
                     this.sfTubesType = GlobalData.Instance.da["drillPipeType"].Value.Byte;
+                    this.sfSelectDrill = GlobalData.Instance.da["pcFingerBeamNumberFeedback"].Value.Byte;
                 }
                 else // 没有二层台
                 {
                     this.sfWorkModel = -1;
                     this.sfOprModel = -1;
                     this.sfTubesType = -1;
+                    this.sfSelectDrill = -1;
                 }
                 if (GlobalData.Instance.da.GloConfig.DRType == (int)DRType.SANY) // 钻台面选择
                 {
                     this.drWorkModel = GlobalData.Instance.da["drworkModel"].Value.Byte;
                     this.drOprModel = GlobalData.Instance.da["droperationModel"].Value.Byte;
                     this.drTubesType = GlobalData.Instance.da["drdrillPipeType"].Value.Byte;
+                    this.drDes = GlobalData.Instance.da["drDes"].Value.Byte;
+                    this.drSelectDrill = GlobalData.Instance.da["drSelectDrill"].Value.Byte;
                 }
                 else // 没有钻台面
                 {
                     this.drWorkModel = -1;
                     this.drOprModel = -1;
                     this.drTubesType = -1;
+                    this.drDes = -1;
+                    this.drSelectDrill = -1;
                 }
                 if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANY) // 铁钻工选择
                 {
@@ -390,13 +419,74 @@ namespace Main.Integration
                         case 110:
                             this.tubeType.Text = "11寸钻铤";
                             break;
+                        default:
+                            this.tubeType.Text = "未选择管柱类型";
+                            break;
                     }
+                    this.tbCurTubesType.Text = this.tubeType.Text;
                     alarmKey["管柱类型不一致"] = 0;
                 }
                 else
                 {
                     this.tubeType.Text = "钻杆类型不一致";
                     if (alarmKey["管柱类型不一致"] == 0) alarmKey["管柱类型不一致"] = 1;
+                    this.tbCurTubesType.Text = this.tubeType.Text;
+                }
+                // 目的地
+                if (this.drDes == 1) this.tbCurDes.Text = "立根区";
+                else if(drDes == 2) this.tbCurDes.Text = "猫道-井口";
+                else if (drDes == 3) this.tbCurDes.Text = "猫道-鼠道";
+                else if(drDes ==-1) this.tbCurDes.Text = "未配置钻台面";
+                else this.tbCurDes.Text = "未知";
+                // 选择指梁
+                if (sfSelectDrill == drSelectDrill) // 二层台钻台面都配置且选择同一指梁
+                {
+                    if (sfSelectDrill <= 16 && sfSelectDrill >= 1)
+                    {
+                        this.tbCurSelectDrill.Text = "左" + sfSelectDrill;
+                    }
+                    else if (sfSelectDrill <= 32 && sfSelectDrill > 16)
+                    {
+                        this.tbCurSelectDrill.Text = "右" + (sfSelectDrill - 16);
+                    }
+                    else
+                    {
+                        this.tbCurSelectDrill.Text = "未知";
+                    }
+                }
+                else if (sfSelectDrill == -1)// 二层台未配置
+                {
+                    if (drSelectDrill <= 16 && drSelectDrill >= 1)
+                    {
+                        this.tbCurSelectDrill.Text = "左" + drSelectDrill;
+                    }
+                    else if (drSelectDrill <= 32 && drSelectDrill > 16)
+                    {
+                        this.tbCurSelectDrill.Text = "右" + (drSelectDrill - 16);
+                    }
+                    else
+                    {
+                        this.tbCurSelectDrill.Text = "未知";
+                    }
+                }
+                else if (drSelectDrill == -1)// 钻台面未配置
+                {
+                    if (sfSelectDrill <= 16 && sfSelectDrill >= 1)
+                    {
+                        this.tbCurSelectDrill.Text = "左" + sfSelectDrill;
+                    }
+                    else if (sfSelectDrill <= 32 && sfSelectDrill > 16)
+                    {
+                        this.tbCurSelectDrill.Text = "右" + (sfSelectDrill - 16);
+                    }
+                    else
+                    {
+                        this.tbCurSelectDrill.Text = "未知";
+                    }
+                }
+                else
+                {
+                    this.tbCurSelectDrill.Text = "指梁选择不一致";
                 }
 
                 if (iTimeCnt % 10 == 0)
@@ -628,5 +718,13 @@ namespace Main.Integration
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         #endregion
+        /// <summary>
+        /// 设置所选指梁
+        /// </summary>
+        private void btn_SetDrillNum(object sender, RoutedEventArgs e)
+        {
+            DrillSetWindow window = new DrillSetWindow();
+            window.ShowDialog();
+        }
     }
 }
