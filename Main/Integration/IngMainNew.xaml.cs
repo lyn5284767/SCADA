@@ -96,6 +96,11 @@ namespace Main.Integration
         private bool tmpStatus = false; // 控制台心跳临时存储状态
         private int controlHeartTimes = 0; // 控制台心跳次数
         private bool bCheckTwo = false;
+
+        public delegate void SetNowTechnique(Technique technique);
+        public event SetNowTechnique SetNowTechniqueEvent;
+        Technique tmpTechnique;
+        Technique nowTechnique;
         #endregion
 
         public IngMainNew()
@@ -274,8 +279,11 @@ namespace Main.Integration
 
                 this.Warnning();
                 this.Communcation();
+                this.MonitorSysStatus();
+               
             }));
         }
+
 
         /// <summary>
         /// 通信数据
@@ -314,9 +322,58 @@ namespace Main.Integration
         {
             try
             {
+                if (iTimeCnt % 10 == 0)
+                {
+                    if (alarmKey.Count > 0)
+                    {
+                        this.tbAlarm.FontSize = 14;
+                        this.tbAlarm.Visibility = Visibility.Visible;
+
+                        if (!alarmKey.ContainsValue(1) && alarmKey.ContainsValue(2)) // 如果没有显示为1的值，但是有显示为2的值，表示有告警且，显示循环完成，重置为1继续循环
+                        {
+                            foreach (var key in alarmKey.Keys.ToList())
+                            {
+                                if (alarmKey[key] == 2)
+                                {
+                                    alarmKey[key] = 1;
+                                }
+                            }
+                        }
+
+                        foreach (var key in alarmKey.Keys.ToList())
+                        {
+                            if (alarmKey[key] == 1)
+                            {
+                                this.tbAlarm.Text = key;
+                                alarmKey[key] = 2;
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        this.tbAlarm.Visibility = Visibility.Hidden;
+                        this.tbAlarm.Text = "";
+                    }
+                }
+                else
+                {
+                    this.tbAlarm.FontSize = 20;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+            }
+        }
+
+        private void MonitorSysStatus()
+        {
+            try
+            {
                 // 存在的设备全为1，设备不存在为-1，则为送杆
-                if ((this.sfWorkModel == 1 || this.sfWorkModel == -1) 
-                    && (this.drWorkModel == 1 || this.drWorkModel == -1) 
+                if ((this.sfWorkModel == 1 || this.sfWorkModel == -1)
+                    && (this.drWorkModel == 1 || this.drWorkModel == -1)
                     && (this.sirWorkModel == 1 || this.sirWorkModel == -1))
                 {
 
@@ -324,6 +381,7 @@ namespace Main.Integration
                     this.workMode.ContentDown = "送杆";
                     this.workMode.IsChecked = false;
                     alarmKey["设备工作模式不一致"] = 0;
+                    nowTechnique = Technique.DrillDown;
                 }// 存在的设备全为2，设备不存在为-1，则为排杆
                 else if ((this.sfWorkModel == 2 || this.sfWorkModel == -1)
                     && (this.drWorkModel == 2 || this.drWorkModel == -1)
@@ -333,6 +391,7 @@ namespace Main.Integration
                     this.workMode.ContentDown = "排杆";
                     this.workMode.IsChecked = true;
                     alarmKey["设备工作模式不一致"] = 0;
+                    nowTechnique = Technique.DrillUp;
                 }
                 else
                 {
@@ -434,9 +493,9 @@ namespace Main.Integration
                 }
                 // 目的地
                 if (this.drDes == 1) this.tbCurDes.Text = "立根区";
-                else if(drDes == 2) this.tbCurDes.Text = "猫道-井口";
+                else if (drDes == 2) this.tbCurDes.Text = "猫道-井口";
                 else if (drDes == 3) this.tbCurDes.Text = "猫道-鼠道";
-                else if(drDes ==-1) this.tbCurDes.Text = "未配置钻台面";
+                else if (drDes == -1) this.tbCurDes.Text = "未配置钻台面";
                 else this.tbCurDes.Text = "未知";
                 // 选择指梁
                 if (sfSelectDrill == drSelectDrill) // 二层台钻台面都配置且选择同一指梁
@@ -488,45 +547,15 @@ namespace Main.Integration
                 {
                     this.tbCurSelectDrill.Text = "指梁选择不一致";
                 }
-
-                if (iTimeCnt % 10 == 0)
+                // 460b0=true联动开启
+                if (GlobalData.Instance.da["460b0"].Value.Boolean && nowTechnique != tmpTechnique)
                 {
-                    if (alarmKey.Count > 0)
+                    if (SetNowTechniqueEvent != null)
                     {
-                        this.tbAlarm.FontSize = 14;
-                        this.tbAlarm.Visibility = Visibility.Visible;
-
-                        if (!alarmKey.ContainsValue(1) && alarmKey.ContainsValue(2)) // 如果没有显示为1的值，但是有显示为2的值，表示有告警且，显示循环完成，重置为1继续循环
-                        {
-                            foreach (var key in alarmKey.Keys.ToList())
-                            {
-                                if (alarmKey[key] == 2)
-                                {
-                                    alarmKey[key] = 1;
-                                }
-                            }
-                        }
-
-                        foreach (var key in alarmKey.Keys.ToList())
-                        {
-                            if (alarmKey[key] == 1)
-                            {
-                                this.tbAlarm.Text = key;
-                                alarmKey[key] = 2;
-                                break;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        this.tbAlarm.Visibility = Visibility.Hidden;
-                        this.tbAlarm.Text = "";
+                        SetNowTechniqueEvent(nowTechnique);
                     }
                 }
-                else
-                {
-                    this.tbAlarm.FontSize = 20;
-                }
+                tmpTechnique = nowTechnique;
             }
             catch (Exception ex)
             {

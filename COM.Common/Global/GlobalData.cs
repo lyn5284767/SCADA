@@ -268,7 +268,11 @@ namespace COM.Common
         /// <summary>
         /// 液压站
         /// </summary>
-        HydraulicStation = 5
+        HydraulicStation = 5,
+        /// <summary>
+        /// 未知类型
+        /// </summary>
+        Unknow = 99
     }
 
     public enum SystemRole
@@ -359,5 +363,17 @@ namespace COM.Common
         /// 宏达
         /// </summary>
         HD=3
+    }
+
+    public enum Technique
+    {
+        /// <summary>
+        /// 下钻
+        /// </summary>
+        DrillDown = 1,
+        /// <summary>
+        /// 上钻
+        /// </summary>
+        DrillUp=2
     }
 }

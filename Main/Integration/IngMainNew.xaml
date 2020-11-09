@@ -160,7 +160,7 @@
                     <Grid Height="5"></Grid>
                     <TextBlock Text="未选择目的地" Name="drDestination" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 </StackPanel>
-                <Button Grid.Row="5" FontSize="14" FontWeight="Bold" Click="btn_SetDrillNum">指梁设置</Button>
+                <Button Grid.Row="5" FontSize="14" FontWeight="Bold" Click="btn_SetDrillNum">指梁选择</Button>
             </Grid>
         </Border>
         <Border Name="bdSF" BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5" Grid.Row="1" Grid.Column="1">

@@ -5,20 +5,19 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ControlLibrary"
              mc:Ignorable="d" 
-             d:DesignHeight="200" d:DesignWidth="200">
-    <Grid>
+             d:DesignHeight="400" d:DesignWidth="400">
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
-        <Label Height="36" Grid.Column="1" HorizontalAlignment="Left" Margin="20 0" Name="message" VerticalAlignment="Center" FontSize="20" />
-        <Grid Width="35" Height="35">
+        <Grid Width="100" Height="100">
             <Grid.Resources>
                 <DrawingBrush x:Key="brush" Stretch="None" AlignmentX="Center" AlignmentY="Top">
                     <DrawingBrush.Drawing>
                         <GeometryDrawing Brush="Black">
                             <GeometryDrawing.Geometry>
-                                <EllipseGeometry RadiusX="2" RadiusY="5"/>
+                                <EllipseGeometry RadiusX="2" RadiusY="15"/>
                             </GeometryDrawing.Geometry>
                         </GeometryDrawing>
                     </DrawingBrush.Drawing>
@@ -80,7 +79,7 @@
                     <RotateTransform Angle="300"/>
                 </Rectangle.RenderTransform>
             </Rectangle>
-            <Rectangle x:Name="r12" Fill="{StaticResource brush}" Opacity="0.2" RenderTransformOrigin="0.5,0.5">
+            <Rectangle x:Name="r12" Fill="{StaticResource brush}" Opacity="0.2" RenderTransformOrigin="0.5,0.5" >
                 <Rectangle.RenderTransform>
                     <RotateTransform Angle="330"/>
                 </Rectangle.RenderTransform>
