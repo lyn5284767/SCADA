@@ -228,6 +228,9 @@
     <Compile Include="Integration\IngSecureTwo.xaml.cs">
       <DependentUpon>IngSecureTwo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Integration\Ing_Bank.xaml.cs">
+      <DependentUpon>Ing_Bank.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Integration\Ing_Cat_BS.xaml.cs">
       <DependentUpon>Ing_Cat_BS.xaml</DependentUpon>
     </Compile>
@@ -500,6 +503,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Integration\IngSecureTwo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Integration\Ing_Bank.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

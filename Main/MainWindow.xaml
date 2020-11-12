@@ -85,8 +85,7 @@ KeyboardNavigation.DirectionalNavigation="Cycle" Width="100"/>
                         系统</TextBlock>
             </Border>
             <Border Name="bdTechnique" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="1">
-                <TextBlock Name="tbTechnique" FontSize="16" Foreground="#1F7AFF" FontWeight="Bold">工艺:<LineBreak/>
-                        下钻</TextBlock>
+                <TextBlock Name="tbTechnique" FontSize="16" Foreground="#1F7AFF" FontWeight="Bold" Text="工艺:&#x0a;未联动"></TextBlock>
             </Border>
             <Border Name="bdSIR" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="2" MouseLeftButtonDown="SIR_MouseLeftButtonDown">
                 <TextBlock FontSize="16" Foreground="#1F7AFF" FontWeight="Bold" Name="tbSIR">铁钻工</TextBlock>

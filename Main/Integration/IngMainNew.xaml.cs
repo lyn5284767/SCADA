@@ -106,8 +106,10 @@ namespace Main.Integration
         public IngMainNew()
         {
             InitializeComponent();
-            GlobalData.Instance.Rows = GlobalData.Instance.da["DrillNums"].Value.Byte;
-            GlobalData.Instance.DrillNum = GlobalData.Instance.da["103E23B5"].Value.Byte;
+            if (GlobalData.Instance.da["DrillNums"] != null)
+                GlobalData.Instance.Rows = GlobalData.Instance.da["DrillNums"].Value.Byte;
+            if (GlobalData.Instance.da["103E23B5"] != null)
+                GlobalData.Instance.DrillNum = GlobalData.Instance.da["103E23B5"].Value.Byte;
 
             VariableBinding();
             TotalVariableReBinding = new System.Threading.Timer(new TimerCallback(TotalVariableTimer), null, Timeout.Infinite, 50);
@@ -140,10 +142,22 @@ namespace Main.Integration
                     this.gdSF.Children.Clear();
                     this.gdSF.Children.Add(Ing_SF_Self.Instance);
                 }
+                else
+                {
+                    Ing_Bank ing_Bank = new Ing_Bank("二层台(未配置)");
+                    this.gdSF.Children.Clear();
+                    this.gdSF.Children.Add(ing_Bank);
+                }
                 if (GlobalData.Instance.da.GloConfig.DRType == (int)DRType.SANY) // 钻台面选择
                 {
                     this.gdDR.Children.Clear();
                     this.gdDR.Children.Add(Ing_DR_Self.Instance);
+                }
+                else
+                {
+                    Ing_Bank ing_Bank = new Ing_Bank("钻台面(未配置)");
+                    this.gdDR.Children.Clear();
+                    this.gdDR.Children.Add(ing_Bank);
                 }
                 if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANY) // 铁钻工选择
                 {
@@ -160,6 +174,12 @@ namespace Main.Integration
                     this.gdSIR.Children.Clear();
                     this.gdSIR.Children.Add(Ing_SIR_JJC.Instance);
                 }
+                else
+                {
+                    Ing_Bank ing_Bank = new Ing_Bank("铁钻工(未配置)");
+                    this.gdSIR.Children.Clear();
+                    this.gdSIR.Children.Add(ing_Bank);
+                }
                 if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.SANY)// 液压站选择
                 {
                     this.gdHS.Children.Clear();
@@ -170,10 +190,22 @@ namespace Main.Integration
                     this.gdHS.Children.Clear();
                     this.gdHS.Children.Add(Ing_HS_JJC.Instance);
                 }
+                else
+                {
+                    Ing_Bank ing_Bank = new Ing_Bank("液压站(未配置)");
+                    this.gdHS.Children.Clear();
+                    this.gdHS.Children.Add(ing_Bank);
+                }
                 if (GlobalData.Instance.da.GloConfig.CatType == (int)CatType.BS) // 猫道选择
                 {
                     this.gdCat.Children.Clear();
                     this.gdCat.Children.Add(Ing_Cat_BS.Instance);
+                }
+                else
+                {
+                    Ing_Bank ing_Bank = new Ing_Bank("猫道(未配置)");
+                    this.gdCat.Children.Clear();
+                    this.gdCat.Children.Add(ing_Bank);
                 }
             }
             catch (Exception ex)
@@ -240,10 +272,14 @@ namespace Main.Integration
                 if (iTimeCnt > 1000) iTimeCnt = 0;
                 if (GlobalData.Instance.da.GloConfig.SFType == 1) // 二层台选择
                 {
-                    this.sfWorkModel = GlobalData.Instance.da["workModel"].Value.Byte;
-                    this.sfOprModel = GlobalData.Instance.da["operationModel"].Value.Byte;
-                    this.sfTubesType = GlobalData.Instance.da["drillPipeType"].Value.Byte;
-                    this.sfSelectDrill = GlobalData.Instance.da["pcFingerBeamNumberFeedback"].Value.Byte;
+                    if (GlobalData.Instance.da["workModel"] != null)
+                        this.sfWorkModel = GlobalData.Instance.da["workModel"].Value.Byte;
+                    if (GlobalData.Instance.da["operationModel"] != null)
+                        this.sfOprModel = GlobalData.Instance.da["operationModel"].Value.Byte;
+                    if (GlobalData.Instance.da["drillPipeType"] != null)
+                        this.sfTubesType = GlobalData.Instance.da["drillPipeType"].Value.Byte;
+                    if (GlobalData.Instance.da["pcFingerBeamNumberFeedback"] != null)
+                        this.sfSelectDrill = GlobalData.Instance.da["pcFingerBeamNumberFeedback"].Value.Byte;
                 }
                 else // 没有二层台
                 {
@@ -254,11 +290,16 @@ namespace Main.Integration
                 }
                 if (GlobalData.Instance.da.GloConfig.DRType == (int)DRType.SANY) // 钻台面选择
                 {
-                    this.drWorkModel = GlobalData.Instance.da["drworkModel"].Value.Byte;
-                    this.drOprModel = GlobalData.Instance.da["droperationModel"].Value.Byte;
-                    this.drTubesType = GlobalData.Instance.da["drdrillPipeType"].Value.Byte;
-                    this.drDes = GlobalData.Instance.da["drDes"].Value.Byte;
-                    this.drSelectDrill = GlobalData.Instance.da["drSelectDrill"].Value.Byte;
+                    if (GlobalData.Instance.da["drworkModel"] != null)
+                        this.drWorkModel = GlobalData.Instance.da["drworkModel"].Value.Byte;
+                    if (GlobalData.Instance.da["droperationModel"] != null)
+                        this.drOprModel = GlobalData.Instance.da["droperationModel"].Value.Byte;
+                    if (GlobalData.Instance.da["drdrillPipeType"] != null)
+                        this.drTubesType = GlobalData.Instance.da["drdrillPipeType"].Value.Byte;
+                    if (GlobalData.Instance.da["drDes"] != null)
+                        this.drDes = GlobalData.Instance.da["drDes"].Value.Byte;
+                    if (GlobalData.Instance.da["drSelectDrill"] != null)
+                        this.drSelectDrill = GlobalData.Instance.da["drSelectDrill"].Value.Byte;
                 }
                 else // 没有钻台面
                 {
@@ -270,8 +311,10 @@ namespace Main.Integration
                 }
                 if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANY) // 铁钻工选择
                 {
-                    this.sirWorkModel = GlobalData.Instance.da["SIRSelfWorkModel"].Value.Byte;
-                    this.sirOprModel = GlobalData.Instance.da["SIRSelfOperModel"].Value.Byte;
+                    if (GlobalData.Instance.da["SIRSelfWorkModel"] != null)
+                        this.sirWorkModel = GlobalData.Instance.da["SIRSelfWorkModel"].Value.Byte;
+                    if (GlobalData.Instance.da["SIRSelfOperModel"] != null)
+                        this.sirOprModel = GlobalData.Instance.da["SIRSelfOperModel"].Value.Byte;
                 }
                 else // 没有铁钻工
                 {
@@ -303,7 +346,7 @@ namespace Main.Integration
             #region 通信
 
             //操作台控制器心跳
-            if (GlobalData.Instance.da["508b5"].Value.Boolean == this.tmpStatus)
+            if (GlobalData.Instance.da["508b5"] != null && GlobalData.Instance.da["508b5"].Value.Boolean == this.tmpStatus)
             {
                 this.controlHeartTimes += 1;
                 if (this.controlHeartTimes > 600)
@@ -322,7 +365,8 @@ namespace Main.Integration
                 this.controlHeartTimes = 0;
                 bCheckTwo = false;
             }
-            this.tmpStatus = GlobalData.Instance.da["508b6"].Value.Boolean;
+            if(GlobalData.Instance.da["508b5"] != null)
+                this.tmpStatus = GlobalData.Instance.da["508b6"].Value.Boolean;
 
             if (!GlobalData.Instance.ComunciationNormal) this.tbAlarm.Text = "网络连接失败！";
             #endregion
@@ -558,7 +602,7 @@ namespace Main.Integration
                     this.tbCurSelectDrill.Text = "指梁选择不一致";
                 }
                 // 460b0=true联动开启
-                if (GlobalData.Instance.da["460b0"].Value.Boolean && nowTechnique != tmpTechnique)
+                if (GlobalData.Instance.da["460b0"] != null && GlobalData.Instance.da["460b0"].Value.Boolean && nowTechnique != tmpTechnique)
                 {
                     if (SetNowTechniqueEvent != null)
                     {
@@ -588,7 +632,7 @@ namespace Main.Integration
                 else
                 {
                     this.drStatus.LampType = 3;
-                    if (alarmKey["钻台面电机未使能或回零"] == 0) alarmKey["二层台电机未使能或回零"] = 1;
+                    if (alarmKey["钻台面电机未使能或回零"] == 0) alarmKey["钻台面电机未使能或回零"] = 1;
                 }
             }
             catch (Exception ex)

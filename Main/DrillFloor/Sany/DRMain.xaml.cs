@@ -574,11 +574,11 @@ namespace Main.DrillFloor
             byte[] byteToSend;
             if (this.droperateMode.IsChecked) //自动
             {
-                byteToSend = new byte[10] { 1, 32, 3, 31, 0, 0, 0, 0, 0, 0 };
+                byteToSend = new byte[10] { 1, 32, 3, 30, 0, 0, 0, 0, 0, 0 };
             }
             else// 手动
             {
-                byteToSend = new byte[10] { 1, 32, 3, 30, 0, 0, 0, 0, 0, 0 };
+                byteToSend = new byte[10] { 1, 32, 3, 31, 0, 0, 0, 0, 0, 0 };
             }
 
             GlobalData.Instance.da.SendBytes(byteToSend);

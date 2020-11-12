@@ -86,11 +86,11 @@ namespace Main.Integration
             byte[] byteToSend;
             if (this.droperateMode.IsChecked)
             {
-                byteToSend = new byte[10] { 1, 32, 3, 31, 0, 0, 0, 0, 0, 0 };
+                byteToSend = new byte[10] { 1, 32, 3, 30, 0, 0, 0, 0, 0, 0 };
             }
             else
             {
-                byteToSend = new byte[10] { 1, 32, 3, 30, 0, 0, 0, 0, 0, 0 };
+                byteToSend = new byte[10] { 1, 32, 3, 31, 0, 0, 0, 0, 0, 0 };
             }
 
             GlobalData.Instance.da.SendBytes(byteToSend);
