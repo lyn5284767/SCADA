@@ -36,32 +36,42 @@
         </Style>
     </UserControl.Resources>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="100"/>
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="液压站(三一)" FontSize="24"></TextBlock>
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <cl:BasedSwitchButton Name="controlModel" ContentLeft="本地" ContentDown="控制模式" ContentRight="司钻" UserControlClicked="btn_controlModel" Grid.Column="0" />
-            <cl:BasedSwitchButton Name="MainPumpOne" ContentLeft="停止" ContentDown="1#主泵" ContentRight="启动" UserControlClicked="btn_MainPumpOne" Grid.Column="1" />
-            <cl:BasedSwitchButton Name="MainPumpTwo" ContentLeft="停止" ContentDown="2#主泵" ContentRight="启动" UserControlClicked="btn_MainPumpTwo" Grid.Column="2" />
-        </Grid>
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <cl:BasedSwitchButton Name="HSConstantVoltagePump" ContentLeft="停止" ContentDown="恒压泵" ContentRight="启动" UserControlClicked="btn_HSConstantVoltagePump" Grid.Column="0" />
-            <cl:BasedSwitchButton Name="HSDissipateHeat" ContentLeft="停止" ContentDown="散热泵" ContentRight="启动" UserControlClicked="btn_HSDissipateHeat" Grid.Column="1" />
-            <cl:BasedSwitchButton Name="HSHot" ContentLeft="停止" ContentDown="加热器" ContentRight="启动" UserControlClicked="btn_HSHot" Grid.Column="2" />
+        <Border Background="White" CornerRadius="10" Margin="10" Grid.Row="2" Grid.Column="0">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+            </Border.Effect>
+        </Border>
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+            <Button Width="325" Height="40" Panel.ZIndex="1" HorizontalAlignment="Center"  
+                                 Background="#2B71CA" BorderBrush="#92C202" Grid.ColumnSpan="2">
+                <TextBlock Text="液压站(三一)" Foreground="White" FontSize="24"/>
+            </Button>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <cl:BasedSwitchButton Name="controlModel" ContentLeft="本地" ContentDown="控制模式" ContentRight="司钻" UserControlClicked="btn_controlModel" Grid.Column="0" />
+                <cl:BasedSwitchButton Name="MainPumpOne" ContentLeft="停止" ContentDown="1#主泵" ContentRight="启动" UserControlClicked="btn_MainPumpOne" Grid.Column="1" />
+                <cl:BasedSwitchButton Name="MainPumpTwo" ContentLeft="停止" ContentDown="2#主泵" ContentRight="启动" UserControlClicked="btn_MainPumpTwo" Grid.Column="2" />
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <cl:BasedSwitchButton Name="HSConstantVoltagePump" ContentLeft="停止" ContentDown="恒压泵" ContentRight="启动" UserControlClicked="btn_HSConstantVoltagePump" Grid.Column="0" />
+                <cl:BasedSwitchButton Name="HSDissipateHeat" ContentLeft="停止" ContentDown="散热泵" ContentRight="启动" UserControlClicked="btn_HSDissipateHeat" Grid.Column="1" />
+                <cl:BasedSwitchButton Name="HSHot" ContentLeft="停止" ContentDown="加热器" ContentRight="启动" UserControlClicked="btn_HSHot" Grid.Column="2" />
 
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

@@ -3655,6 +3655,32 @@ namespace COM.Common
             throw new NotImplementedException();
         }
     }
+
+    /// <summary>
+    /// 紧扣-Mpa转换为KN.m
+    /// </summary>
+    public class HighOrCloseMpaToKNmConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null || value == DependencyProperty.UnsetValue)
+            {
+                return "0";
+            }
+            double val = (byte)value / 10.0; // 操作台发过来数据/10
+            double ret = 0.0;
+            if(GlobalData.Instance.SIRHigh)
+                ret= 6.9 * val;
+            else
+                ret = 6 * val * val / 100000 + 0.4757 * val - 1;
+            return (Math.Round(ret, 1)).ToString();
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     #endregion
 
     #region 液压站
@@ -4188,6 +4214,109 @@ namespace COM.Common
             throw new NotImplementedException();
         }
     }
+    /// <summary>
+    /// 自研铁钻工-安全捕获
+    /// </summary>
+    public class SIRSelfLockIsCheckConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return false;
+            }
+
+            byte bType = (byte)value;
+
+            if (bType == 1)
+            {
+                return false;
+            }
+            else if (bType == 2)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 自研铁钻工-井口状态
+    /// </summary>
+    public class SIRSelfWellStatusConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return "未知";
+            }
+
+            byte bType = (byte)value;
+
+            if (bType == 0)
+            {
+                return "禁止向井口移动";
+            }
+            else if (bType == 1)
+            {
+                return "允许向井口移动";
+            }
+
+            return "未知";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 自研铁钻工-铁钻工状态
+    /// </summary>
+    public class SIRSelfSIRStatusConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return "未知";
+            }
+
+            byte bType = (byte)value;
+
+            if (bType == 0)
+            {
+                return "当前位于井口";
+            }
+            else if (bType == 1)
+            {
+                return "正在进行上卸扣";
+            }
+            else if (bType == 2)
+            {
+                return "不在井口";
+            }
+            else if (bType == 3)
+            {
+                return "退至安全位置";
+            }
+
+            return "未知";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 
     /// <summary>
     /// 自研铁钻工-液压钳缺口
@@ -4212,6 +4341,36 @@ namespace COM.Common
                     return "复位状态正常";
                 case 20:
                     return "安全设置关闭";
+            }
+
+            return "未知";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 自研铁钻工-控制模式
+    /// </summary>
+    public class SIRSelfLocalOrRemoreConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return "未知";
+            }
+
+            byte bType = (byte)value;
+            switch (bType)
+            {
+                case 1:
+                    return "司钻";
+                case 2:
+                    return "遥控";
             }
 
             return "未知";
@@ -4406,27 +4565,27 @@ namespace COM.Common
             int byteAutoModeNowStep = (byte)values[2];
             if (autoOpr && workmodel == 1)
             {
-                if (byteAutoModeNowStep == 0) return 0;
-                if ((byteAutoModeNowStep >= 1) && (byteAutoModeNowStep <= 6)) return 1;
-                if ((byteAutoModeNowStep >= 7) && (byteAutoModeNowStep <= 8)) return 2;
-                if ((byteAutoModeNowStep >= 49) && (byteAutoModeNowStep <= 51)) return 3;
-                if ((byteAutoModeNowStep >= 52) && (byteAutoModeNowStep <= 53)) return 4;
-                if ((byteAutoModeNowStep >= 9) && (byteAutoModeNowStep <= 10)) return 5;
-                if ((byteAutoModeNowStep >= 11) && (byteAutoModeNowStep <= 12)) return 6;
-                if ((byteAutoModeNowStep >= 13) && (byteAutoModeNowStep <= 17)) return 7;
-                if (byteAutoModeNowStep == 18) return 8;
+                if (byteAutoModeNowStep == 24) return 0;
+                if (byteAutoModeNowStep == 25) return 1;
+                if (byteAutoModeNowStep == 26) return 2;
+                if (byteAutoModeNowStep == 27) return 3;
+                if (byteAutoModeNowStep == 28) return 4;
+                if (byteAutoModeNowStep == 29) return 5;
+                if (byteAutoModeNowStep == 30) return 6;
+                if (byteAutoModeNowStep == 31) return 7;
+                if (byteAutoModeNowStep == 32) return 8;
             }
             else if (autoOpr && workmodel == 2)// 卸扣
             {
-                if (byteAutoModeNowStep == 0) return 0;
-                if ((byteAutoModeNowStep >= 1) && (byteAutoModeNowStep <= 6)) return 1;
-                if ((byteAutoModeNowStep >= 7) && (byteAutoModeNowStep <= 8)) return 2;
-                if ((byteAutoModeNowStep >= 49) && (byteAutoModeNowStep <= 51)) return 3;
-                if ((byteAutoModeNowStep >= 52) && (byteAutoModeNowStep <= 53)) return 4;
-                if ((byteAutoModeNowStep >= 9) && (byteAutoModeNowStep <= 10)) return 5;
-                if ((byteAutoModeNowStep >= 11) && (byteAutoModeNowStep <= 12)) return 6;
-                if ((byteAutoModeNowStep >= 13) && (byteAutoModeNowStep <= 17)) return 7;
-                if (byteAutoModeNowStep == 18) return 8;
+                if (byteAutoModeNowStep == 33) return 0;
+                if (byteAutoModeNowStep == 25) return 1;
+                if (byteAutoModeNowStep == 26) return 2;
+                if (byteAutoModeNowStep == 27) return 3;
+                if (byteAutoModeNowStep == 34) return 4;
+                if (byteAutoModeNowStep == 35) return 5;
+                if (byteAutoModeNowStep == 30) return 6;
+                if (byteAutoModeNowStep == 31) return 7;
+                if (byteAutoModeNowStep == 36) return 8;
             }
             
 

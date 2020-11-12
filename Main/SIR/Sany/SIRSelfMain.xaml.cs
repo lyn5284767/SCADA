@@ -67,7 +67,7 @@ namespace Main.SIR
             timerWarning = new System.Threading.Timer(new TimerCallback(TimerWarning_Elapsed), this, 2000, 50);//改成50ms 的时钟
             VariableReBinding = new System.Threading.Timer(new TimerCallback(VariableTimer), null, Timeout.Infinite, 500);
             VariableReBinding.Change(0, 500);
-            ReportTimer = new System.Threading.Timer(new TimerCallback(ReportTimer_Elapse), null, 500, 2000);
+            ReportTimer = new System.Threading.Timer(new TimerCallback(ReportTimer_Elapse), null, 500, 200);
             this.Loaded += SIRSelfMain_Loaded;
         }
 
@@ -151,6 +151,7 @@ namespace Main.SIR
                 //cpbOutButtonClampingForceMultiBind.Bindings.Add(new Binding("Maximum") { Source = this.cpbOutButtonClampingForce, Mode = BindingMode.OneWay });
                 //cpbOutButtonClampingForceMultiBind.NotifyOnSourceUpdated = true;
                 //this.cpbOutButtonClampingForce.SetBinding(CircleProgressBar.ForegroundProperty, cpbOutButtonClampingForceMultiBind);
+                this.tbLocalOrRemote.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfLocalOrRemote"], Mode = BindingMode.OneWay, Converter = new SIRSelfLocalOrRemoreConverter() });
 
                 this.tbInButtonPress.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfInButtonPress"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
                 this.tbOutButtonPress.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfOutButtonPress"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
@@ -349,6 +350,7 @@ namespace Main.SIR
         }
         List<double> data = new List<double>();
         List<double> datad = new List<double>();
+        int tmpCount = 0;
         /// <summary>
         /// 扭矩定时器
         /// </summary>
@@ -361,7 +363,21 @@ namespace Main.SIR
                 {
                     double drillTore = GlobalData.Instance.da["SIRSelfInButtonTorque"].Value.Int32 / 10.0;
                     double cosingTorque = GlobalData.Instance.da["SIRSelfOutButtonTorque"].Value.Int32 / 10.0;
-                    this.drillTorqueChart.AddPoints(drillTore);
+                    if (GlobalData.Instance.da["SIRSelfPlierInButtonElectric"].Value.Int32 > 0)
+                    {
+                        Random rd = new Random();
+                        double tmp = rd.Next(0, 1000) / 10.0;
+                        this.drillTorqueChart.AddPoints(tmp);
+                    }
+                    else // 无动作10秒后清除数据
+                    {
+                        tmpCount++;
+                        if (tmpCount > 50)
+                        {
+                            this.drillTorqueChart.ClearPoint();
+                            tmpCount = 0;
+                        }
+                    }
                     this.cosingTorqueChart.AddPoints(cosingTorque);
                 }));
             }
@@ -424,53 +440,56 @@ namespace Main.SIR
                 {
                     switch (alarmTips)
                     {
-                        case 120:
-                            this.tbTips.Text = "工作缸气源气压过低告警";
-                            break;
-                        case 121:
-                            this.tbTips.Text = "制动缸气源气压过低告警";
-                            break;
-                        case 1:
+                        case 15:
                             this.tbTips.Text = "背钳复位故障";
                             break;
-                        case 102:
-                            this.tbTips.Text = "工况选择错误";
+                        case 16:
+                            this.tbTips.Text = "工况选择故障";
                             break;
-                        case 61:
-                            this.tbTips.Text = "背钳夹紧故障";
+                        case 17:
+                            this.tbTips.Text = "背钳夹紧压力过低";
                             break;
-                        case 2:
-                            this.tbTips.Text = "为达到上扣扭矩";
+                        case 18:
+                            this.tbTips.Text = "关门传感器故障";
                             break;
-                        case 3:
-                            this.tbTips.Text = "未达到上扣圈数";
+                        case 19:
+                            this.tbTips.Text = "未到上扣扭矩";
                             break;
-                        case 4:
-                            this.tbTips.Text = "未达到紧扣扭矩";
-                            break;
-                        case 5:
-                            this.tbTips.Text = "未检测到背钳复位信号";
-                            break;
-                        case 6:
-                            this.tbTips.Text = "未检测到安全门打开信号";
-                            break;
-                        case 12:
-                            this.tbTips.Text = "钻杆未卸开";
-                            break;
-                        case 13:
-                            this.tbTips.Text = "钻杆打滑或空杠卸扣";
+                        case 20:
+                            this.tbTips.Text = "未到上扣圈数";
                             break;
                         case 21:
-                            this.tbTips.Text = "系统压力故障";
+                            this.tbTips.Text = "未到紧扣扭矩";
                             break;
-                        case 70:
-                            this.tbTips.Text = "当前手臂伸缩运动停止";
+                        case 22:
+                            this.tbTips.Text = "背钳传感器故障";
                             break;
-                        case 71:
-                            this.tbTips.Text = "当前钳体升降运动停止";
+                        case 23:
+                            this.tbTips.Text = "开门传感器故障";
                             break;
-                        case 75:
-                            this.tbTips.Text = "当前钳体旋转运动停止";
+                        case 24:
+                            this.tbTips.Text = "钻杆未卸开";
+                            break;
+                        case 25:
+                            this.tbTips.Text = "卸扣打滑";
+                            break;
+                        case 26:
+                            this.tbTips.Text = "液压系统压力过低";
+                            break;
+                        case 27:
+                            this.tbTips.Text = "手臂伸缩卡滞";
+                            break;
+                        case 28:
+                            this.tbTips.Text = "钳体升降卡滞";
+                            break;
+                        case 29:
+                            this.tbTips.Text = "钳体回转卡滞";
+                            break;
+                        case 30:
+                            this.tbTips.Text = "工作缸气压过低警告";
+                            break;
+                        case 31:
+                            this.tbTips.Text = "制动缸气压过低警告";
                             break;
                     }
                 }
@@ -482,44 +501,50 @@ namespace Main.SIR
                 byte oprTips = GlobalData.Instance.da["SIRSelfOprInfo"].Value.Byte;
                 switch (oprTips)
                 {
-                    case 60:
-                        this.tbOprTips.Text = "工况选择结束后，请执行上扣对缺确认";
-                        break;
-                    case 61:
-                        this.tbOprTips.Text = "工况选择结束后，请执行卸扣对缺确认";
-                        break;
-                    case 50:
-                        this.tbOprTips.Text = "进入井口工位后切换自动模式";
-                        break;
-                    case 51:
-                        this.tbOprTips.Text = "进入井口工位后切换自动模式";
-                        break;
                     case 20:
-                        this.tbOprTips.Text = "请检测钳头缺口状态";
+                        this.tbOprTips.Text = "上扣工况选择后请执行自动对缺确认";
                         break;
-                    case 30:
-                        this.tbOprTips.Text = "请确认安全门打开状态";
+                    case 21:
+                        this.tbOprTips.Text = "卸扣工况选择后请执行自动对缺确认";
+                        break;
+                    case 22:
+                        this.tbOprTips.Text = "请确认缺口复位状态";
+                        break;
+                    case 23:
+                        this.tbOprTips.Text = "在井口工位请确认接箍高度";
+                        break;
+                    case 24:
+                        this.tbOprTips.Text = "当前工况请使用手动上扣";
+                        break;
+                    case 25:
+                        this.tbOprTips.Text = "传感器异常请重新复位缺口";
+                        break;
+                    case 26:
+                        this.tbOprTips.Text = "请人工确认缺口复位状态";
+                        break;
+                    case 27:
+                        this.tbOprTips.Text = "当前工况请使用手动卸扣";
+                        break;
+                    case 28:
+                        this.tbOprTips.Text = "注意:当前系统状态为紧急停止!";
                         break;
                     case 29:
-                        this.tbOprTips.Text = "请确认接箍高度";
+                        this.tbOprTips.Text = "模式切换了!";
+                        break;
+                    case 30:
+                        this.tbOprTips.Text = "请退出检查故障!";
+                        break;
+                    case 31:
+                        this.tbOprTips.Text = "铁钻工不在上扣工位";
                         break;
                     case 32:
-                        this.tbOprTips.Text = "请确认井口安全";
+                        this.tbOprTips.Text = "铁钻工不在卸扣工位";
                         break;
                     case 33:
-                        this.tbOprTips.Text = "请将钳体缺口对正";
+                        this.tbOprTips.Text = "安全互锁已启动";
                         break;
                     case 34:
-                        this.tbOprTips.Text = "请人工确认缺口状态";
-                        break;
-                    case 35:
-                        this.tbOprTips.Text = "请人工确认安全门状态";
-                        break;
-                    case 101:
-                        this.tbOprTips.Text = "请注意紧急停止";
-                        break;
-                    case 99:
-                        this.tbOprTips.Text = "请退出自动模式检测故障";
+                        this.tbOprTips.Text = "安全互锁已解除";
                         break;
                     default:
                         this.tbOprTips.Text = "";

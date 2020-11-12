@@ -93,7 +93,7 @@
                             <inputcontrol:TextWithTips Name="twtL5" Margin="0,5,0,5" Head="24,17,2,1" UnitOne="Mpa" UnitTwo="KN.m" UnitThree="KN.m"  TbkText="高档上扣设置" MaxVal="21.5" Multiply="True"/>
                             <inputcontrol:TextWithTips Name="twtL6" Margin="0,5,0,5" Head="24,17,2,2" UnitOne="Mpa" UnitTwo="KN.m" UnitThree="Mpa"  TbkText="上扣安全保护" MaxVal="21.5" Multiply="True"/>
                             <inputcontrol:TextWithTips Name="twtL7" Margin="0,5,0,5" Head="24,17,2,3" UnitOne="Mpa" UnitTwo="KN.m" UnitThree="KN.m"  TbkText="卸扣扭矩设置" MaxVal="21.5" Multiply="True"/>
-                            <inputcontrol:TextWithTips Name="twtL8" Margin="0,5,0,5" Head="24,17,2,4" UnitOne="Mpa" UnitTwo="KN.m" UnitThree="Mpa"  TbkText="卸扣安全保护" MaxVal="21.5" Multiply="True"/>
+                            <inputcontrol:TextWithTips Name="twtL8" Margin="0,5,0,5" Head="24,17,2,4" UnitOne="Mpa" UnitTwo="KN.m" UnitThree="KN.m"  TbkText="卸扣安全保护" MaxVal="21.5" Multiply="True"/>
                             <!--<cl:TextBlockWithTextBox Name="twtL5" TagTwo="2" ControlTag="1"  TbkText="上扣动作设置"/>-->
                             <!--<cl:TextBlockWithTextBox Name="twtL6" TagTwo="2" ControlTag="2"  TbkText="上扣安全保护"/>-->
                             <!--<cl:TextBlockWithTextBox Name="twtL7" TagTwo="2" ControlTag="3"  TbkText="卸扣动作设置"/>

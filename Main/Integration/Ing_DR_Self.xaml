@@ -35,42 +35,56 @@
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="60"/>
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="钻台面(三一)" FontSize="24"></TextBlock>
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <cl:BasedSwitchButton Grid.Column="0" Name="droperateMode" ContentLeft="手动" ContentDown="操作模式" ContentRight="自动" UserControlClicked="btn_DROpState"/>
-            <cl:BasedSwitchButton Grid.Column="1" Name="drworkMode" ContentLeft="排杆" ContentDown="工作模式" ContentRight="送杆" UserControlClicked="btn_DRWorkModel"/>
-        </Grid>
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="5,2,5,2" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btn_DRAllMotorRetZero">
-                <StackPanel Orientation="Vertical">
-                    <!--<Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Margin="10,5,10,0" Height="45" Width="45">-->
-                    <TextBlock FontSize="28" Foreground="#008AFF" FontWeight="Bold" Text="  0  "></TextBlock>
-                    <!--</Border>-->
-                    <TextBlock>一键回零</TextBlock>
-                </StackPanel>
-            </Border>
-            <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="5,2,5,2" Grid.Column="1" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btn_DRMotorEnable">
-                <StackPanel Grid.Column="1" Orientation="Vertical">
-                    <!--<Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Margin="10,5,10,0" Height="45" Width="45">-->
-                    <Image Source="../Images/enable.png" Margin="1" Width="35" Height="35"></Image>
-                    <!--</Border>-->
-                    <TextBlock>电机使能</TextBlock>
-                </StackPanel>
-            </Border>
+    <Grid Margin="10,10,10,10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="124*"/>
+            <ColumnDefinition Width="211*"/>
+        </Grid.ColumnDefinitions>
+        <Border Name="bdDR" Background="White" CornerRadius="10" Grid.ColumnSpan="2">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+            </Border.Effect>
+        </Border>
+        <Grid  Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+            <Button Width="325" Height="40" Panel.ZIndex="1" HorizontalAlignment="Center"  
+                                 Background="#2B71CA" BorderBrush="#92C202" Grid.ColumnSpan="2">
+                <TextBlock Text="钻台面(三一)" Foreground="White" FontSize="24"/>
+            </Button>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <cl:BasedSwitchButton Grid.Column="0" Name="droperateMode" ContentLeft="手动" ContentDown="操作模式" ContentRight="自动" UserControlClicked="btn_DROpState"/>
+                <cl:BasedSwitchButton Grid.Column="1" Name="drworkMode" ContentLeft="排杆" ContentDown="工作模式" ContentRight="送杆" UserControlClicked="btn_DRWorkModel"/>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="5,2,5,2" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btn_DRAllMotorRetZero">
+                    <StackPanel Orientation="Vertical">
+                        <!--<Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Margin="10,5,10,0" Height="45" Width="45">-->
+                        <TextBlock FontSize="28" Foreground="#008AFF" FontWeight="Bold" Text="  0  "></TextBlock>
+                        <!--</Border>-->
+                        <TextBlock Foreground="#212121">一键回零</TextBlock>
+                    </StackPanel>
+                </Border>
+                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="5,2,5,2" Grid.Column="1" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btn_DRMotorEnable">
+                    <StackPanel Grid.Column="1" Orientation="Vertical">
+                        <!--<Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Margin="10,5,10,0" Height="45" Width="45">-->
+                        <Image Source="../Images/enable.png" Margin="1" Width="35" Height="35"></Image>
+                        <!--</Border>-->
+                        <TextBlock Foreground="#212121">电机使能</TextBlock>
+                    </StackPanel>
+                </Border>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

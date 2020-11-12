@@ -36,27 +36,37 @@
         </Style>
     </UserControl.Resources>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="铁钻工(JJC)" FontSize="24"></TextBlock>
-        <StackPanel Orientation="Horizontal" Grid.Row="1">
-            <TextBlock FontSize="18">上扣扭矩实时压力</TextBlock>
-            <cl:SymbolMapping Name="smUpButtonPressure" StrContent="" LampType="3" Height="35" HorizontalAlignment="Center" Margin="5,0,5,0"/>
-            <TextBlock Name="tbRealTimePressure" Width="50" FontSize="18" Text="0" TextAlignment="Right"/>
-            <TextBlock Name="tbUnitOne" Text="KN.M" FontSize="14"/>
-            <Button Content ="切换" Margin="5,0,0,0" x:Name="sdswitch" MouseLeftButtonDown="SwichUnit_MouseLeftButtonDown"/>
-        </StackPanel>
+        <Border Name="bdSIR" Background="White" CornerRadius="10" Margin="10" Grid.Row="2" Grid.Column="0">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+            </Border.Effect>
+        </Border>
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <Button Width="325" Height="40" Panel.ZIndex="1" HorizontalAlignment="Center"  
+                                 Background="#2B71CA" BorderBrush="#92C202" Grid.ColumnSpan="2">
+                <TextBlock Text="铁钻工(JJC)" Foreground="White" FontSize="24"/>
+            </Button>
+            <StackPanel Orientation="Horizontal" Grid.Row="1">
+                <TextBlock FontSize="18">扭矩实时压力</TextBlock>
+                <cl:SymbolMapping Name="smUpButtonPressure" StrContent="" LampType="3" Height="35" HorizontalAlignment="Center" Margin="5,0,5,0"/>
+                <TextBlock Name="tbRealTimePressure" Width="50" FontSize="18" Text="0" TextAlignment="Right"/>
+                <TextBlock Name="tbUnitOne" Text="KN.M" FontSize="14"/>
+                <Button Content ="切换" Margin="5,0,0,0" x:Name="sdswitch" MouseLeftButtonDown="SwichUnit_MouseLeftButtonDown"/>
+            </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="2">
-            <TextBlock FontSize="18">上扣扭矩设定压力</TextBlock>
-            <Button Content ="-" x:Name="PressureDown" Margin="5,0,5,0" FontSize="18" Width="35" MouseLeftButtonDown="PressureDown_MouseLeftButtonDown"/>
-            <TextBlock Name="tbPressureSet" Width="50" FontSize="18" Text="0" TextAlignment="Right"/>
-            <TextBlock Name="tbUnitTwo" Text="KN.M" FontSize="14"/>
-            <Button Content ="+" x:Name="PressureUp" Margin="5,0,0,0" Width="35" MouseLeftButtonDown="PressureUp_MouseLeftButtonDown"/>
-        </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="2">
+                <TextBlock FontSize="18">扭矩设定压力</TextBlock>
+                <Button Content ="-" x:Name="PressureDown" Margin="5,0,5,0" FontSize="18" Width="35" MouseLeftButtonDown="PressureDown_MouseLeftButtonDown"/>
+                <TextBlock Name="tbPressureSet" Width="50" FontSize="18" Text="0" TextAlignment="Right"/>
+                <TextBlock Name="tbUnitTwo" Text="KN.M" FontSize="14"/>
+                <Button Content ="+" x:Name="PressureUp" Margin="5,0,0,0" Width="35" MouseLeftButtonDown="PressureUp_MouseLeftButtonDown"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

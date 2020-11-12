@@ -87,9 +87,13 @@
             </Grid.ColumnDefinitions>
             <Border Grid.Column="0" BorderBrush="Gray" Padding="20" BorderThickness="0 1 1 0">
                 <StackPanel>
-                    <cl:CustomCheckBox ContentString="缺口互锁" Margin="15" Name="cbGapLock" UserControlClicked="cbGapLock_Clicked" IsChecked="True"/>
-                    <cl:CustomCheckBox ContentString="安全门互锁" Margin="15" Name="cbSafeDoorLock" UserControlClicked="cbSafeDoorLock_Clicked" IsChecked="True"/>
-                    <cl:CustomCheckBox ContentString="井口防碰互锁"  Margin="15" Name="cbWellFendersLock" UserControlClicked="cbWellFendersLock_Clicked" IsChecked="True"/>
+                    <cl:CustomCheckBox ContentString="缺口互锁" Margin="15" Name="cbGapLock" UserControlClicked="cbGapLock_Clicked" />
+                    <cl:CustomCheckBox ContentString="安全门互锁" Margin="15" Name="cbSafeDoorLock" UserControlClicked="cbSafeDoorLock_Clicked" />
+                    <TextBlock Text="井口防喷状态:" FontSize="20" FontWeight="Bold" Margin="15"></TextBlock>
+                    <TextBlock Text="未知" FontSize="20" FontWeight="Bold" Margin="15,0,0,0" Name="tbWellStatus" Foreground="#4C80FF"></TextBlock>
+                    <TextBlock Text="铁钻工互锁状态:" FontSize="20" FontWeight="Bold" Margin="15"></TextBlock>
+                    <TextBlock Text="未知" FontSize="20" FontWeight="Bold" Margin="15,0,0,0" Name="tbSIRStatus" Foreground="#4C80FF"></TextBlock>
+                    <!--<cl:CustomCheckBox ContentString="井口防碰互"  Margin="15" Name="cbWellFendersLock" UserControlClicked="cbWellFendersLock_Clicked"/>-->
                     
                 </StackPanel>
             </Border>

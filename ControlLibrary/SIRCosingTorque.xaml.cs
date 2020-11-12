@@ -28,6 +28,7 @@ namespace ControlLibrary
         public void AddPoints(double v1)
         {
             viewModel.AddPoints(v1);
+            this.txtTitle.Content = "套管扭矩(" + v1 + ")";
         }
     }
 }

@@ -29,6 +29,13 @@ namespace ControlLibrary
         public void AddPoints(double v1)
         {
             viewModel.AddPoints(v1);
+            this.txtTitle.Content = "钻杆扭矩(" + v1 + ")";
+        }
+
+        public void ClearPoint()
+        {
+            viewModel.ClearPoint();
+            this.txtTitle.Content = "钻杆扭矩(0)";
         }
     }
 }

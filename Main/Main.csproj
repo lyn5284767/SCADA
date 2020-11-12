@@ -754,6 +754,7 @@
     </EmbeddedResource>
     <None Include="app.config" />
     <Fakes Include="Fakes\HandyControl.fakes" />
+    <Resource Include="Font\iconfont.ttf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

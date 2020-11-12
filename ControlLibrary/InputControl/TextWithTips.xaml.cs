@@ -118,7 +118,7 @@ namespace ControlLibrary.InputControl
             short i16Text = (short)(double.Parse(strText));
             if (i16Text > MaxVal || i16Text < MinVal)
             {
-                MessageBox.Show(string.Format("参数应在{0}到{1}之间,超出范围", MaxVal, MinVal));
+                MessageBox.Show(string.Format("参数应在{0}到{1}之间,超出范围", MinVal, MaxVal));
                 return;
             }
             if (Multiply)
@@ -145,16 +145,18 @@ namespace ControlLibrary.InputControl
                     short data = (short)(0.14449 * input * 10);// 发操作台最后*10
                     tempByte = BitConverter.GetBytes(data);
                 }
-                if (this.Head == "24,17,2,3")
+                if (this.Head == "24,17,2,3" || this.Head == "24,17,2,4")
                 {
                     double input = double.Parse(strText);
                     if (input >= 8.5)
-                    {
+                    { 
+                        GlobalData.Instance.SIRHigh = true;
                         short data = (short)(0.14449 * input * 10);// 发操作台最后*10
                         tempByte = BitConverter.GetBytes(data);
                     }
                     else
                     {
+                        GlobalData.Instance.SIRHigh = false;
                         short data = (short)(((-6 * input * input) / 100000 + 2.1019 * input + 2.1023) * 10);// 发操作台最后*10
                         tempByte = BitConverter.GetBytes(data);
                     }

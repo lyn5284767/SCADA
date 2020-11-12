@@ -136,6 +136,8 @@ namespace COM.Common
 
         public SystemType systemType;
 
+        public bool SIRHigh;
+
         public bool Ing { get; set; }
 
         /// <summary>

@@ -42,6 +42,13 @@ namespace ControlLibrary
             MinTime = minDate;
             MaxTime = argument;
         }
+        /// <summary>
+        /// Çå³ýµã
+        /// </summary>
+        public void ClearPoint()
+        {
+            dataSource.Clear();
+        }
     }
 
     public struct ProcessItem {

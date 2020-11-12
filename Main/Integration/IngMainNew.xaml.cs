@@ -137,35 +137,43 @@ namespace Main.Integration
             {
                 if (GlobalData.Instance.da.GloConfig.SFType == 1) // 二层台选择
                 {
-                    this.bdSF.Child = Ing_SF_Self.Instance;
+                    this.gdSF.Children.Clear();
+                    this.gdSF.Children.Add(Ing_SF_Self.Instance);
                 }
                 if (GlobalData.Instance.da.GloConfig.DRType == (int)DRType.SANY) // 钻台面选择
                 {
-                    this.bdDR.Child = Ing_DR_Self.Instance;
+                    this.gdDR.Children.Clear();
+                    this.gdDR.Children.Add(Ing_DR_Self.Instance);
                 }
                 if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANY) // 铁钻工选择
                 {
-                    this.bdSIR.Child = Ing_SIR_Self.Instance;
+                    this.gdSIR.Children.Clear();
+                    this.gdSIR.Children.Add(Ing_SIR_Self.Instance);
                 }
                 else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.BS)
                 {
-                    this.bdSIR.Child = Ing_SIR_BS.Instance;
+                    this.gdSIR.Children.Clear();
+                    this.gdSIR.Children.Add(Ing_SIR_BS.Instance);
                 }
                 else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.JJC)
                 {
-                    this.bdSIR.Child = Ing_SIR_JJC.Instance;
+                    this.gdSIR.Children.Clear();
+                    this.gdSIR.Children.Add(Ing_SIR_JJC.Instance);
                 }
                 if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.SANY)// 液压站选择
                 {
-                    this.bdHS.Child = Ing_HS_Self.Instance;
+                    this.gdHS.Children.Clear();
+                    this.gdHS.Children.Add(Ing_HS_Self.Instance);
                 }
                 else if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.JJC)
                 {
-                    this.bdHS.Child = Ing_HS_JJC.Instance;
+                    this.gdHS.Children.Clear();
+                    this.gdHS.Children.Add(Ing_HS_JJC.Instance);
                 }
                 if (GlobalData.Instance.da.GloConfig.CatType == (int)CatType.BS) // 猫道选择
                 {
-                    this.bdCat.Child = Ing_Cat_BS.Instance;
+                    this.gdCat.Children.Clear();
+                    this.gdCat.Children.Add(Ing_Cat_BS.Instance);
                 }
             }
             catch (Exception ex)
@@ -216,6 +224,8 @@ namespace Main.Integration
             alarmKey.Add("设备工作模式不一致", 0);
             alarmKey.Add("设备操作模式不一致", 0);
             alarmKey.Add("管柱类型不一致", 0);
+            alarmKey.Add("二层台电机未使能或回零", 0);
+            alarmKey.Add("钻台面电机未使能或回零", 0);
         }
         private int iTimeCnt = 0;//用来为时钟计数的变量
         /// <summary>
@@ -479,7 +489,7 @@ namespace Main.Integration
                             this.tubeType.Text = "11寸钻铤";
                             break;
                         default:
-                            this.tubeType.Text = "未选择管柱类型";
+                            this.tubeType.Text = "未选择";
                             break;
                     }
                     this.tbCurTubesType.Text = this.tubeType.Text;
@@ -556,6 +566,30 @@ namespace Main.Integration
                     }
                 }
                 tmpTechnique = nowTechnique;
+                // 二层台电机回零使能状态
+                if (GlobalData.Instance.da["carMotorRetZeroStatus"].Value.Boolean && GlobalData.Instance.da["armMotorRetZeroStatus"].Value.Boolean
+                    && GlobalData.Instance.da["rotateMotorRetZeroStatus"].Value.Boolean && !GlobalData.Instance.da["carMotorWorkStatus"].Value.Boolean
+                    && !GlobalData.Instance.da["armMotorWorkStatus"].Value.Boolean && !GlobalData.Instance.da["rotateMotorWorkStatus"].Value.Boolean)
+                {
+                    this.sfStatus.LampType = 1;
+                    alarmKey["二层台电机未使能或回零"] = 0;
+                }
+                else
+                {
+                    this.sfStatus.LampType = 3;
+                    if (alarmKey["二层台电机未使能或回零"] == 0) alarmKey["二层台电机未使能或回零"] = 1;
+                }
+                if(GlobalData.Instance.da["324b1"].Value.Boolean && GlobalData.Instance.da["324b5"].Value.Boolean
+                    && GlobalData.Instance.da["324b0"].Value.Boolean && GlobalData.Instance.da["324b4"].Value.Boolean)
+                {
+                    this.drStatus.LampType = 1;
+                    alarmKey["钻台面电机未使能或回零"] = 0;
+                }
+                else
+                {
+                    this.drStatus.LampType = 3;
+                    if (alarmKey["钻台面电机未使能或回零"] == 0) alarmKey["二层台电机未使能或回零"] = 1;
+                }
             }
             catch (Exception ex)
             {

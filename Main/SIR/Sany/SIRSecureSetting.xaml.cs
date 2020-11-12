@@ -45,9 +45,6 @@ namespace Main.SIR
         {
             InitializeComponent();
             VariableBinding();
-            this.cbGapLock.IsChecked = true;
-            this.cbSafeDoorLock.IsChecked = true;
-            this.cbWellFendersLock.IsChecked = true;
         }
         /// <summary>
         /// 绑定变量
@@ -56,9 +53,11 @@ namespace Main.SIR
         {
             try
             {
-                this.cbGapLock.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfGapLock"], Mode = BindingMode.OneWay, Converter = new SIRSelfIsCheckConverter() });
-                this.cbSafeDoorLock.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfSafeDoorLock"], Mode = BindingMode.OneWay, Converter = new SIRSelfIsCheckConverter() });
-                this.cbWellFendersLock.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfWellFendersLock"], Mode = BindingMode.OneWay, Converter = new SIRSelfIsCheckConverter() });
+                this.cbGapLock.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfGapLock"], Mode = BindingMode.OneWay, Converter = new SIRSelfLockIsCheckConverter() });
+                this.cbSafeDoorLock.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfSafeDoorLock"], Mode = BindingMode.OneWay, Converter = new SIRSelfLockIsCheckConverter() });
+                //this.cbWellFendersLock.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfWellFendersLock"], Mode = BindingMode.OneWay, Converter = new SIRSelfLockIsCheckConverter() });
+                this.tbWellStatus.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfWellFendersLock"], Mode = BindingMode.OneWay, Converter = new SIRSelfWellStatusConverter() });
+                this.tbSIRStatus.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfLockStatusShow"], Mode = BindingMode.OneWay, Converter = new SIRSelfSIRStatusConverter() });
 
             }
             catch (Exception ex)
@@ -132,30 +131,30 @@ namespace Main.SIR
         /// </summary>
         private void cbWellFendersLock_Clicked(object sender, EventArgs e)
         {
-            byte[] byteToSend;
+            //byte[] byteToSend;
 
-            if (this.cbWellFendersLock.IsChecked)
-            {
-                if (GlobalData.Instance.systemRole == SystemRole.OperMan)
-                {
-                    MessageBox.Show("您不具备取消权限！", "提示信息", MessageBoxButton.OK);
-                    return;
-                }
-                MessageBoxResult result = MessageBox.Show("确认关闭井口防碰互锁？", "提示信息", MessageBoxButton.YesNo);
-                if (result == MessageBoxResult.Yes)
-                {
-                    byteToSend = new byte[] { 23, 17, 9, 2, 0, 0, 0, 0, 0, 0 };
-                }
-                else
-                {
-                    return;
-                }
-            }
-            else
-            {
-                byteToSend = new byte[] { 23, 17, 9, 1, 0, 0, 0, 0, 0, 0 };
-            }
-            GlobalData.Instance.da.SendBytes(byteToSend);
+            //if (this.cbWellFendersLock.IsChecked)
+            //{
+            //    if (GlobalData.Instance.systemRole == SystemRole.OperMan)
+            //    {
+            //        MessageBox.Show("您不具备取消权限！", "提示信息", MessageBoxButton.OK);
+            //        return;
+            //    }
+            //    MessageBoxResult result = MessageBox.Show("确认关闭井口防碰互锁？", "提示信息", MessageBoxButton.YesNo);
+            //    if (result == MessageBoxResult.Yes)
+            //    {
+            //        byteToSend = new byte[] { 23, 17, 9, 2, 0, 0, 0, 0, 0, 0 };
+            //    }
+            //    else
+            //    {
+            //        return;
+            //    }
+            //}
+            //else
+            //{
+            //    byteToSend = new byte[] { 23, 17, 9, 1, 0, 0, 0, 0, 0, 0 };
+            //}
+            //GlobalData.Instance.da.SendBytes(byteToSend);
         }
     }
 }

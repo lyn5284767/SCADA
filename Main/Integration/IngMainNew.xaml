@@ -46,57 +46,126 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5" Grid.Row="0" Grid.ColumnSpan="3">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <StackPanel Orientation="Horizontal" Grid.Row="0">
-                    <TextBlock Text="总览:" FontSize="24"></TextBlock>
-                    <TextBlock Text="联动状态:" Margin="10,0,0,0"></TextBlock>
-                    <TextBlock Name="tbLinkStatus" Text="xx" Foreground="#008AFF"></TextBlock>
-                    <TextBlock Text="当前工序:" Margin="10,0,0,0"></TextBlock>
-                    <TextBlock Name="tbCurWork" Text="xx" Foreground="#008AFF"></TextBlock>
-                    <TextBlock Text="当前操作模式:" Margin="10,0,0,0"></TextBlock>
-                    <TextBlock Name="tbCurOpr" Text="xx" Foreground="#008AFF"></TextBlock>
-                    <TextBlock Text="当前管柱类型:" Margin="10,0,0,0"></TextBlock>
-                    <TextBlock Name="tbCurTubesType" Text="xx" Foreground="#008AFF"></TextBlock>
-                    <TextBlock Text="当前目的地:" Margin="10,0,0,0"></TextBlock>
-                    <TextBlock Name="tbCurDes" Text="xx" Foreground="#008AFF"></TextBlock>
-                    <TextBlock Text="选择指梁:" Margin="10,0,0,0"></TextBlock>
-                    <TextBlock Name="tbCurSelectDrill" Text="xx" Foreground="#008AFF"></TextBlock>
-                    <TextBlock Text="联动状态:" Margin="10,0,0,0" Foreground="#E0496D"></TextBlock>
-                    <TextBlock Name="LinkError" Text="xx" Foreground="#E0496D"></TextBlock>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Row="1">
-                    <TextBlock Text="二层台:" Margin="65,0,0,0"></TextBlock>
-                    <cl:SymbolMapping Name="sfStatus" StrContent="" LampType="3" Margin="2,5,2,5"/>
-                    <TextBlock Text="钻台面:" Margin="10,0,0,0"></TextBlock>
-                    <cl:SymbolMapping Name="drStatus" StrContent="" LampType="3" Margin="2,5,2,5"/>
-                    <TextBlock Text="铁钻工:" Margin="10,0,0,0"></TextBlock>
-                    <cl:SymbolMapping Name="sirStatus" StrContent="" LampType="3" Margin="2,5,2,5"/>
-                    <TextBlock Text="液压站:" Margin="10,0,0,0"></TextBlock>
-                    <cl:SymbolMapping Name="hsStatus" StrContent="" LampType="3" Margin="2,5,2,5"/>
-                    <TextBlock Text="猫道:" Margin="10,0,0,0"></TextBlock>
-                    <cl:SymbolMapping Name="catStatus" StrContent="" LampType="3" Margin="2,5,2,5"/>
-                    <TextBlock Text="告警信息:" Margin="10,0,0,0" Foreground="#E0496D"></TextBlock>
-                    <TextBlock Name="tbAlarm" Text="xx" Foreground="#E0496D"></TextBlock>
-                </StackPanel>
+        <Grid Grid.Row="0" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="420"/>
+                <ColumnDefinition Width="290"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Border Background="#FF7000" Margin="50 20 50 20">
+                    <Border.Effect>
+                        <DropShadowEffect Color="#FF7000" ShadowDepth="30" BlurRadius="50" Opacity="0.8" Direction="270"/>
+                    </Border.Effect>
+                </Border>
+
+                <Border CornerRadius="10" Margin="10 5 5 10" Background="#FF7000">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Border BorderThickness="1" Height="1" BorderBrush="#EBEBEB" VerticalAlignment="Center" Grid.RowSpan="2"/>
+                        <StackPanel Orientation="Horizontal" Grid.Row="0">
+                            <TextBlock Text="联动状态:" Margin="10,0,0,0" Foreground="White" FontSize="16" Width="70"></TextBlock>
+                            <TextBlock Name="tbLinkStatus" Text="未知" Foreground="#EDEBEB" Width="60"></TextBlock>
+                            <TextBlock Text="当前工序:" Margin="10,0,0,0" Foreground="White" FontSize="16" Width="70"></TextBlock>
+                            <TextBlock Name="tbCurWork" Text="未知" Foreground="#EDEBEB" Width="50"></TextBlock>
+                            <TextBlock Text="操作模式:" Margin="10,0,0,0" Foreground="White" FontSize="16" Width="70"></TextBlock>
+                            <TextBlock Name="tbCurOpr" Text="未知" Foreground="#EDEBEB" Width="50"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="1">
+                            <TextBlock Text="管柱类型:" Margin="10,0,0,0" Foreground="White" FontSize="16" Width="70"></TextBlock>
+                            <TextBlock Name="tbCurTubesType" Text="未选择" Foreground="#EDEBEB" Width="60"></TextBlock>
+                            <TextBlock Text="目  的 地:" Margin="10,0,0,0" Foreground="White" FontSize="16" Width="70"></TextBlock>
+                            <TextBlock Name="tbCurDes" Text="未选择" Foreground="#EDEBEB" Width="50"></TextBlock>
+                            <TextBlock Text="选择指梁:" Margin="10,0,0,0" Foreground="White" FontSize="16" Width="70"></TextBlock>
+                            <TextBlock Name="tbCurSelectDrill" Text="未知" Foreground="#EDEBEB" Width="50"></TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </Border>
             </Grid>
-        </Border>
-        <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5" Grid.Row="1" Grid.Column="0">
+            <Grid Grid.Column="1">
+                <Border Background="#59E6B5" Margin="50 20 50 20">
+                    <Border.Effect>
+                        <DropShadowEffect Color="#59E6B5" ShadowDepth="30" BlurRadius="50" Opacity="0.8" Direction="270"/>
+                    </Border.Effect>
+                </Border>
+
+                <Border CornerRadius="10" Margin="5 5 5 10" Background="#59E6B5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Border BorderThickness="1" Height="1" BorderBrush="#EBEBEB" VerticalAlignment="Center" Grid.RowSpan="2"/>
+                        <StackPanel Orientation="Horizontal" Grid.Row="0">
+                            <TextBlock Text="二层台" Margin="10,0,0,0" Foreground="White" FontSize="16"></TextBlock>
+                            <cl:SymbolMapping Name="sfStatus" StrContent="" LampType="3" Margin="2,5,2,5"/>
+                            <TextBlock Text="钻台面" Margin="10,0,0,0" Foreground="White" FontSize="16"></TextBlock>
+                            <cl:SymbolMapping Name="drStatus" StrContent="" LampType="3" Margin="2,5,2,5"/>
+                            <TextBlock Text="铁钻工" Margin="10,0,0,0" Foreground="White" FontSize="16"></TextBlock>
+                            <cl:SymbolMapping Name="sirStatus" StrContent="" LampType="3" Margin="2,5,2,5"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="1">
+                            <TextBlock Text="液压站" Margin="10,0,0,0" Foreground="White" FontSize="16"></TextBlock>
+                            <cl:SymbolMapping Name="hsStatus" StrContent="" LampType="3" Margin="2,5,2,5"/>
+                            <TextBlock Text="猫   道" Margin="10,0,0,0" Foreground="White" FontSize="16"></TextBlock>
+                            <cl:SymbolMapping Name="catStatus" StrContent="" LampType="3" Margin="4,5,2,5"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
+            <Grid Grid.Column="2">
+                <Border Background="#FFC100" Margin="50 20 50 20">
+                    <Border.Effect>
+                        <DropShadowEffect Color="#FFC100" ShadowDepth="30" BlurRadius="50" Opacity="0.8" Direction="270"/>
+                    </Border.Effect>
+                </Border>
+
+                <Border CornerRadius="10" Margin="5 5 10 10" Background="#FFC100">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Border BorderThickness="1" Height="1" BorderBrush="#EBEBEB" VerticalAlignment="Center" Grid.RowSpan="2"/>
+                        <StackPanel Orientation="Horizontal" Grid.Row="1">
+                            <Border Background="#ffffff" Opacity="0.2" Width="30" Height="30" CornerRadius="30" Margin="10,0,0,0"/>
+                            <TextBlock Text="&#xe685;" Margin="-30,0,0,0" FontFamily="../Font/#iconfont" FontSize="24" Foreground="White"></TextBlock>
+                            <TextBlock Name="LinkError" Text="无联动告警" Foreground="White" Margin="5,0,0,0"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="0">
+                            <Border Background="#ffffff" Opacity="0.2" Width="30" Height="30" CornerRadius="30" Margin="10,0,0,0"/>
+                            <TextBlock Text="&#xe603;" Margin="-30,0,0,0" FontFamily="../Font/#iconfont" FontSize="24" Foreground="White"></TextBlock>
+                            <TextBlock Name="tbAlarm" Text="暂无" Foreground="White" Margin="5,0,0,0"></TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+        <Border Background="White" Margin="10,10,10,10" CornerRadius="10" Grid.Column="0" Grid.Row="1">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+            </Border.Effect>
             <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="46*"/>
+                    <ColumnDefinition Width="61*"/>
+                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="100"/>
-                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="联动设置" FontSize="24"></TextBlock>
-                <Grid Grid.Row="1">
+                <Button Width="325" Height="40" Panel.ZIndex="1" HorizontalAlignment="Center"
+                                 Background="#2B71CA" BorderBrush="#92C202" Grid.ColumnSpan="2">
+                    <TextBlock Text="联动设置" Foreground="White" FontSize="24"/>
+                </Button>
+                <Grid Grid.Row="1" Grid.ColumnSpan="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
@@ -104,18 +173,17 @@
                     <cl:BasedSwitchButton Grid.Column="0" Name="operateMode" ContentLeft="手动" ContentDown="操作模式" ContentRight="自动" UserControlClicked="btn_OpState"/>
                     <cl:BasedSwitchButton Grid.Column="1" Name="workMode" ContentLeft="排杆" ContentDown="工作模式" ContentRight="送杆" UserControlClicked="btn_WorkModel"/>
                 </Grid>
-                <StackPanel Orientation="Horizontal" Grid.Row="2">
-                    <TextBlock Text="联动设置:" Margin="10,0,0,0"></TextBlock>
+                <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2">
+                    <TextBlock Text="联 动 开 关:" Width="100" Margin="12,0,0,0" FontSize="16" FontWeight="Bold" Foreground="#212121" TextAlignment="Justify"></TextBlock>
                     <cl:OnOffButton Name="oobLink" Margin="10,0,0,0" CBCheckedEvent="OnOffButton_CBCheckedEvent"/>
                     <TextBlock x:Name="tbLink"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Row="3">
-                    <TextBlock Text="管柱选择:" Margin="10,0,0,0"></TextBlock>
-                    <Menu Background="Transparent" Height="35" Width="100"  FontSize="16" FontWeight="Bold" Foreground="#008AFF">
+                <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="2">
+                    <Menu Background="Transparent" Height="35" Width="120"  FontSize="16" FontWeight="Bold" Foreground="#008AFF">
                         <MenuItem>
                             <MenuItem.Header>
                                 <StackPanel Orientation="Horizontal">
-                                    <ContentPresenter Content="管柱选择" />
+                                    <ContentPresenter Content="管 柱 选 择" Width="80"/>
                                     <Image Margin="0,2,0,0"  Width="15" Source="..\Images\downTrangle.png" />
                                 </StackPanel>
                             </MenuItem.Header>
@@ -142,8 +210,7 @@
                     </Menu>
                     <TextBlock Text="未选择管柱类型" Name="tubeType" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Row="4">
-                    <TextBlock Text="目的地选择:" Margin="10,0,0,0"></TextBlock>
+                <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.ColumnSpan="2">
                     <Menu Background="Transparent" Height="35" Width="120"  FontSize="16" FontWeight="Bold" Foreground="#008AFF">
                         <MenuItem>
                             <MenuItem.Header>
@@ -160,23 +227,14 @@
                     <Grid Height="5"></Grid>
                     <TextBlock Text="未选择目的地" Name="drDestination" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 </StackPanel>
-                <Button Grid.Row="5" FontSize="14" FontWeight="Bold" Click="btn_SetDrillNum">指梁选择</Button>
+                <Button Grid.Row="5" FontSize="14" FontWeight="Bold" Click="btn_SetDrillNum" Width="300" Grid.ColumnSpan="2" Margin="10,1,11,0">指梁选择</Button>
             </Grid>
         </Border>
-        <Border Name="bdSF" BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5" Grid.Row="1" Grid.Column="1">
-            
-        </Border>
-        <Border Name="bdDR" BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5" Grid.Row="1" Grid.Column="2">
-            
-        </Border>
-        <Border Name="bdSIR" BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5" Grid.Row="2" Grid.Column="0">
-            
-        </Border>
-        <Border Name="bdHS" BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5" Grid.Row="2" Grid.Column="1">
-            
-        </Border>
-        <Border Name="bdCat" BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5" Grid.Row="2" Grid.Column="2">
-            
-        </Border>
+        <Grid Name="gdSF" Grid.Row="1" Grid.Column="1"></Grid>
+        <Grid Name="gdDR" Grid.Row="1" Grid.Column="2"></Grid>
+        <Grid Name="gdSIR" Grid.Row="2" Grid.Column="0"></Grid>
+        <Grid Name="gdHS" Grid.Row="2" Grid.Column="1"></Grid>
+        <Grid Name="gdCat" Grid.Row="2" Grid.Column="2"></Grid>
+
     </Grid>
 </UserControl>

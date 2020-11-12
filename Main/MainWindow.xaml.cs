@@ -404,6 +404,7 @@ namespace Main
             this.spMain.Children.Add(projectLoad);
             this.projectLoad.Visibility = System.Windows.Visibility.Visible;
             nowSystemType = SystemType.SecondFloor;
+            this.mainTitle.Content = "SYAPS-二层台:主页";
         }
         /// <summary>
         /// 主页
@@ -1206,6 +1207,7 @@ namespace Main
             this.spMain.Children.Add(projectLoad);
             this.projectLoad.Visibility = System.Windows.Visibility.Visible;
             nowSystemType = SystemType.DrillFloor;
+            this.mainTitle.Content = "SYAPS-钻台面:主页";
         }
         /// <summary>
         /// 集成系统
@@ -1223,6 +1225,7 @@ namespace Main
 
                 this.BottomColorSetting(this.bdIng, this.tbIng, this.gdbottom);
                 SetBorderBackGround();
+                this.mainTitle.Content = "SYAPS-集成系统:主页";
             }
             catch (Exception ex)
             {
@@ -1350,6 +1353,7 @@ namespace Main
             this.spMain.Children.Add(projectLoad);
             this.projectLoad.Visibility = System.Windows.Visibility.Visible;
             nowSystemType = SystemType.SIR;
+            this.mainTitle.Content = "SYAPS-铁钻工:主页";
         }
         /// <summary>
         /// 二层台-切换到手动模式
@@ -1444,6 +1448,7 @@ namespace Main
                 GlobalData.Instance.systemType = SystemType.HydraulicStation;
                 this.BottomColorSetting(this.bdHS, this.tbHS, this.gdbottom);
                 SetBorderBackGround();
+                this.mainTitle.Content = "SYAPS-液压站:主页";
             }
             catch (Exception ex)
             {
@@ -1486,6 +1491,7 @@ namespace Main
                 GlobalData.Instance.systemType = SystemType.CatRoad;
                 this.BottomColorSetting(this.bdCat, this.tbCat, this.gdbottom);
                 SetBorderBackGround();
+                this.mainTitle.Content = "SYAPS-猫道:主页";
             }
             catch (Exception ex)
             {
