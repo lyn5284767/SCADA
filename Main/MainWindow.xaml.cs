@@ -1241,7 +1241,7 @@ namespace Main
         {
             if (technique == Technique.DrillDown)
             {
-                this.tbTechnique.Text = "工艺:&#x0a;下钻";
+                this.tbTechnique.Text = "工艺:" + Environment.NewLine + "下钻";
                 this.tbMidDeviceOne.Text = "防喷筒";
                 Grid.SetColumn(this.bdSIR, 2);
                 Grid.SetColumn(this.bdMidDeviceOne, 3);
@@ -1250,8 +1250,8 @@ namespace Main
             }
             else if (technique == Technique.DrillUp)
             {
-                this.tbTechnique.Text = "工艺:&#x0a;起钻";
-                this.tbMidDeviceOne.Text = "清扣和&#x0a;丝扣油";
+                this.tbTechnique.Text = "工艺:" + Environment.NewLine + "起钻";
+                this.tbMidDeviceOne.Text = "清扣和" + Environment.NewLine + "丝扣油";
                 Grid.SetColumn(this.bdSIR, 5);
                 Grid.SetColumn(this.bdMidDeviceOne, 4);
                 Grid.SetColumn(this.bdDR, 3);

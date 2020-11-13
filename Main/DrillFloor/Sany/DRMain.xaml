@@ -119,13 +119,13 @@
                                         <ColumnDefinition/>
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
-                                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="5,5,5,2" Style="{StaticResource ShadowBorder}">
+                                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,5,5,5" Style="{StaticResource ShadowBorder}">
                                         <StackPanel Orientation="Vertical" MouseDown="btn_drAllMotorRetZero">
                                             <TextBlock FontSize="32" Foreground="#008AFF" FontWeight="Bold" Text="  0  "></TextBlock>
                                             <TextBlock>一键回零</TextBlock>
                                         </StackPanel>
                                     </Border>
-                                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="5,5,5,2" Grid.Column="1" Style="{StaticResource ShadowBorder}">
+                                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,5,5,5" Grid.Column="1" Style="{StaticResource ShadowBorder}">
                                         <StackPanel Orientation="Vertical" MouseDown="btn_drMotorEnable">
                                             <TextBlock Text="&#xe61e;" FontFamily="../../Font/#iconfont" FontSize="36" Foreground="#008AFF" TextAlignment="Center" Height="42"></TextBlock>
                                             <TextBlock>电机使能</TextBlock>

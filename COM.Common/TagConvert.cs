@@ -3949,7 +3949,7 @@ namespace COM.Common
                 return (Brush)bc.ConvertFrom("#FFFFFF");
             }
             bool val = (bool)value;
-            if(val) return (Brush)bc.ConvertFrom("#326CF3");
+            if(val) return (Brush)bc.ConvertFrom("#72C9F6");
             else return (Brush)bc.ConvertFrom("#FFFFFF");
         }
 

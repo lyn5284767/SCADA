@@ -179,6 +179,7 @@ namespace Main.Integration
                     Ing_Bank ing_Bank = new Ing_Bank("铁钻工(未配置)");
                     this.gdSIR.Children.Clear();
                     this.gdSIR.Children.Add(ing_Bank);
+                    this.sirStatus.LampType = 0;
                 }
                 if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.SANY)// 液压站选择
                 {
@@ -195,6 +196,7 @@ namespace Main.Integration
                     Ing_Bank ing_Bank = new Ing_Bank("液压站(未配置)");
                     this.gdHS.Children.Clear();
                     this.gdHS.Children.Add(ing_Bank);
+                    this.hsStatus.LampType = 0;
                 }
                 if (GlobalData.Instance.da.GloConfig.CatType == (int)CatType.BS) // 猫道选择
                 {
@@ -206,6 +208,7 @@ namespace Main.Integration
                     Ing_Bank ing_Bank = new Ing_Bank("猫道(未配置)");
                     this.gdCat.Children.Clear();
                     this.gdCat.Children.Add(ing_Bank);
+                    this.catStatus.LampType = 0;
                 }
             }
             catch (Exception ex)

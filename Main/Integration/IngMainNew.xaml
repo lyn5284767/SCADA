@@ -105,13 +105,13 @@
                             <TextBlock Text="钻台面" Margin="10,0,0,0" Foreground="White" FontSize="16"></TextBlock>
                             <cl:SymbolMapping Name="drStatus" StrContent="" LampType="3" Margin="2,5,2,5"/>
                             <TextBlock Text="铁钻工" Margin="10,0,0,0" Foreground="White" FontSize="16"></TextBlock>
-                            <cl:SymbolMapping Name="sirStatus" StrContent="" LampType="3" Margin="2,5,2,5"/>
+                            <cl:SymbolMapping Name="sirStatus" StrContent="" LampType="1" Margin="2,5,2,5"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Grid.Row="1">
                             <TextBlock Text="液压站" Margin="10,0,0,0" Foreground="White" FontSize="16"></TextBlock>
-                            <cl:SymbolMapping Name="hsStatus" StrContent="" LampType="3" Margin="2,5,2,5"/>
+                            <cl:SymbolMapping Name="hsStatus" StrContent="" LampType="1" Margin="2,5,2,5"/>
                             <TextBlock Text="猫   道" Margin="10,0,0,0" Foreground="White" FontSize="16"></TextBlock>
-                            <cl:SymbolMapping Name="catStatus" StrContent="" LampType="3" Margin="4,5,2,5"/>
+                            <cl:SymbolMapping Name="catStatus" StrContent="" LampType="1" Margin="4,5,2,5"/>
                         </StackPanel>
                     </Grid>
                 </Border>

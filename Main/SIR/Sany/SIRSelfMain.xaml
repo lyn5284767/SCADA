@@ -67,21 +67,21 @@
                         <Grid Grid.Row="1" Grid.Column="3" Background="Black"></Grid>
                         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
                             <TextBlock Text="&#xe51e;" FontFamily="../../Font/#iconfont" FontSize="36" Foreground="#008AFF" TextAlignment="Center" Margin="5,10,5,10" Width="45" Height="45"></TextBlock>
-                            <StackPanel Margin="0,15,10,0">
+                            <StackPanel Margin="0,25,10,0">
                                 <TextBlock>钳体升降</TextBlock>
                                 <TextBlock Name="tbClampHeight" Text="   0 "  Foreground="#4C80FF"></TextBlock>
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal">
                             <TextBlock Text="&#xe649;" FontFamily="../../Font/#iconfont" FontSize="36" Foreground="#008AFF" TextAlignment="Center" Margin="5,10,5,10" Width="45" Height="45"></TextBlock>
-                            <StackPanel Margin="0,15,10,0">
+                            <StackPanel Margin="0,25,10,0">
                                 <TextBlock>工作缸</TextBlock>
                                 <TextBlock Name="tbWorkCylinderPress" Text="   0 "  Foreground="#4C80FF"></TextBlock>
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Grid.Row="2" Grid.Column="3" Orientation="Horizontal">
                             <TextBlock Text="&#xe649;" FontFamily="../../Font/#iconfont" FontSize="36" Foreground="#008AFF" TextAlignment="Center" Margin="5,10,5,10" Width="45" Height="45"></TextBlock>
-                            <StackPanel Margin="0,15,10,0">
+                            <StackPanel Margin="0,25,10,0">
                                 <TextBlock>制动缸</TextBlock>
                                 <TextBlock Name="tbBrakingCylinderPress" Text="   0 "  Foreground="#4C80FF"></TextBlock>
                             </StackPanel>
@@ -94,7 +94,7 @@
                             <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
                         </Border.Effect>
                     </Border>
-                    <Grid>
+                    <Grid Margin="5" >
                         <Grid.RowDefinitions>
                             <RowDefinition/>
                             <RowDefinition/>

@@ -21,331 +21,377 @@
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontFamily" Value="微软雅黑"/>
         </Style>
+        <Style x:Key="ShadowBorder" TargetType="Border">
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="20" Color="Gray" Direction="20" Opacity="0.1" RenderingBias="Quality" ShadowDepth="1"/>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect BlurRadius="20" Color="Gray" Direction="20" Opacity="0.5" RenderingBias="Quality" ShadowDepth="1"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="200"/>
             <RowDefinition Height="450"/>
         </Grid.RowDefinitions>
-        <Border Style="{StaticResource BorderRegion}" Grid.Row="0">
-            <Border Background="{DynamicResource BorderBrush}">
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <Grid Width="200">
+                <Border Background="White" CornerRadius="10" Margin="5,10,5,5">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+                    </Border.Effect>
+                </Border>
                 <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
+                        <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0" Orientation="Horizontal">
-                        <TextBlock Text="设置" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,0,0,0" VerticalAlignment="Center"/>
-                        <TextBlock Name="tbTips" Width="780" Text="" FontSize="24" FontFamily="微软雅黑" FontWeight="Bold" Foreground="red" VerticalAlignment="Center" TextAlignment="Center"/>
-                    </StackPanel>
-                    <Grid Grid.Row="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="150"/>
-                            <ColumnDefinition Width="150" />
-                            <ColumnDefinition Width="150" />
-                            <ColumnDefinition Width="150" />
-                            <ColumnDefinition Width="120" />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <cl:BasedSwitchButton Name="controlModel" ContentLeft="本地" ContentDown="控制模式" ContentRight="司钻" UserControlClicked="btn_controlModel" Grid.Column="0" />
-                        <cl:BasedSwitchButton Name="MainPumpOne" ContentLeft="停止" ContentDown="1#泵" ContentRight="启动" UserControlClicked="btn_MainPumpOne" Grid.Column="1" />
-                        <cl:BasedSwitchButton Name="MainPumpTwo" ContentLeft="停止" ContentDown="2#泵" ContentRight="启动" UserControlClicked="btn_MainPumpTwo" Grid.Column="2" />
-                        <cl:BasedSwitchButton Name="LeftOrRight" ContentLeft="左" ContentDown="左右选择" ContentRight="右" UserControlClicked="btn_LeftOrRight" Grid.Column="3" />
-                        <cl:BasedSwitchButton Name="InOrOut" ContentLeft="内" ContentDown="内外选择" ContentRight="外" UserControlClicked="btn_InOrLeft" Grid.Column="4" />
-                        <Grid Grid.Column="5">
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                            <CheckBox Name="cbDRSafeLimit" Grid.Row="0" FontSize="20" Checked="cbDRSafeLimit_Checked">钻台面安全限制解除</CheckBox>
-                            <CheckBox Name="cbIgnoreLimit" Grid.Row="1" FontSize="20" Checked="cbIgnoreLimit_Checked">忽略限制</CheckBox>
-                            <CheckBox Name="cbSelectPipe" Grid.Row="2" FontSize="20" Checked="cbSelectPipe_Checked">选择套管</CheckBox>
-                        </Grid>
-                    </Grid>
+                    <Button Name="btnStart" Height="80" Width="80" Margin="5,10,0,0" Grid.Row="0" Grid.Column="0" Click="btnStart_Click">
+                        <StackPanel>
+                            <TextBlock Text="&#xe65f;" FontFamily="../Font/#iconfont" FontSize="36" Foreground="#008AFF" TextAlignment="Center" Height="42"></TextBlock>
+                            <TextBlock Text="启动" FontSize="14"></TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Name="btnUp" Height="80" Width="80" Margin="0,10,0,0" Grid.Row="0" Grid.Column="1" Click="btnUp_Click">
+                        <StackPanel>
+                            <TextBlock Text="&#xe65d;" FontFamily="../Font/#iconfont" FontSize="36" Foreground="#008AFF" TextAlignment="Center" Height="42"></TextBlock>
+                            <TextBlock Text="辅助上升" FontSize="14"></TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Name="btnDown" Height="80" Width="80" Margin="5,0,0,0" Grid.Row="1" Grid.Column="0" Click="btnKickOut_Click">
+                        <StackPanel>
+                            <TextBlock Text="&#xe60c;" FontFamily="../Font/#iconfont" FontSize="36" Foreground="#008AFF" TextAlignment="Center" Height="42"></TextBlock>
+                            <TextBlock Text="多根踢出" FontSize="14"></TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Name="btnKickOut" Height="80" Width="80" Margin="0,0,0,0" Grid.Row="1" Grid.Column="1" Click="btnDown_Click">
+                        <StackPanel>
+                            <TextBlock Text="&#xf01c1;" FontFamily="../Font/#iconfont" FontSize="36" Foreground="#008AFF" TextAlignment="Center" Height="42"></TextBlock>
+                            <TextBlock Text="辅助下降" FontSize="14"></TextBlock>
+                        </StackPanel>
+                    </Button>
                 </Grid>
-            </Border>
-        </Border>
+            </Grid>
+            <Grid Height="200" Width="230">
+                <Border Background="White" CornerRadius="10" Margin="5,10,5,5" >
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+                    </Border.Effect>
+                </Border>
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <CheckBox Name="cbDRSafeLimit" Grid.Row="0" FontSize="20" Checked="cbDRSafeLimit_Checked">钻台面安全限制解除</CheckBox>
+                    <CheckBox Name="cbIgnoreLimit" Grid.Row="1" FontSize="20" Checked="cbIgnoreLimit_Checked">忽略限制</CheckBox>
+                    <CheckBox Name="cbSelectPipe" Grid.Row="2" FontSize="20" Checked="cbSelectPipe_Checked">选择套管</CheckBox>
+                </Grid>
+            </Grid>
+            <Grid Height="200" Width="590">
+                <Border Background="White" CornerRadius="10" Margin="5,10,5,5" >
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+                    </Border.Effect>
+                </Border>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="150"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="110" />
+                        <ColumnDefinition Width="120" />
+                        <ColumnDefinition Width="120" />
+                        <ColumnDefinition Width="120" />
+                    </Grid.ColumnDefinitions>
+                    <cl:BasedSwitchButton Name="controlModel" ContentLeft="本地" ContentDown="控制模式" ContentRight="司钻" UserControlClicked="btn_controlModel" Grid.Column="0" />
+                    <cl:BasedSwitchButton Name="MainPumpOne" ContentLeft="停止" ContentDown="1#泵" ContentRight="启动" UserControlClicked="btn_MainPumpOne" Grid.Column="1" />
+                    <cl:BasedSwitchButton Name="MainPumpTwo" ContentLeft="停止" ContentDown="2#泵" ContentRight="启动" UserControlClicked="btn_MainPumpTwo" Grid.Column="2" />
+                    <cl:BasedSwitchButton Name="LeftOrRight" ContentLeft="左" ContentDown="左右选择" ContentRight="右" UserControlClicked="btn_LeftOrRight" Grid.Column="3" />
+                    <cl:BasedSwitchButton Name="InOrOut" ContentLeft="内" ContentDown="内外选择" ContentRight="外" UserControlClicked="btn_InOrLeft" Grid.Column="4" />
+                    <TextBlock Name="tbTips" Grid.Row="1" Grid.ColumnSpan="5" Text="XXXX" FontSize="24" FontFamily="微软雅黑" FontWeight="Bold" Foreground="red" VerticalAlignment="Center" TextAlignment="Center"/>
+                </Grid>
+            </Grid>
+        </StackPanel>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="430"/>
-                <ColumnDefinition Width="430"/>
                 <ColumnDefinition/>
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Border Style="{StaticResource BorderRegion}" Grid.Row="0">
-                    <Border Background="{DynamicResource BorderBrush}">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="50"/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                            <StackPanel Grid.Row="0" Orientation="Horizontal">
-                                <TextBlock Text="右手柄信号" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,0,0,0" VerticalAlignment="Center"/>
-                            </StackPanel>
-                            <Grid Grid.Row="1">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="250"/>
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-                                <Grid Grid.Column="0">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition/>
-                                        <RowDefinition/>
-                                        <RowDefinition/>
-                                        <RowDefinition/>
-                                    </Grid.RowDefinitions>
-                                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
-                                        <TextBlock Text="左 右" Margin="10,0,0,0"></TextBlock>
-                                        <TextBox Name="tbLeftOrRight" Width="140" Margin="20,0,0,0"  Text="0" TextAlignment="Center"/>
-                                    </StackPanel>
-                                    <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-                                        <TextBlock Text="前 后" Margin="10,0,0,0"></TextBlock>
-                                        <TextBox Name="tbFrontOrBehind" Width="140" Margin="20,0,0,0" Text="0" TextAlignment="Center"/>
-                                    </StackPanel>
-                                    <Border Grid.Row="2"  BorderBrush="White" BorderThickness="0,0,0,1">
-                                        <StackPanel Orientation="Horizontal">
-                                            <cl:SymbolMapping Name="smL" StrContent="" LampType="3" Height="32" Width="32" Margin="20,2,2,2"/>
-                                            <cl:SymbolMapping Name="smR" StrContent="" LampType="3" Height="32" Width="32" Margin="12,2,2,2"/>
-                                            <cl:SymbolMapping Name="smEnable" StrContent="" LampType="3" Height="32" Width="32" Margin="12,2,2,2"/>
-                                            <cl:SymbolMapping Name="smQ" StrContent="" LampType="3" Height="32" Width="32" Margin="12,2,2,2"/>
-                                            <cl:SymbolMapping Name="smB" StrContent="" LampType="3" Height="32" Width="32" Margin="12,2,2,2"/>
-                                        </StackPanel>
-                                    </Border>
-                                    <StackPanel Orientation="Horizontal" Grid.Row="3">
-                                        <TextBlock Text="L" Margin="30,0,0,0"/>
-                                        <TextBlock Text="R" Margin="35,0,0,0"/>
-                                        <TextBlock Text="E" Margin="30,0,0,0"/>
-                                        <TextBlock Text="Q" Margin="35,0,0,0"/>
-                                        <TextBlock Text="B" Margin="30,0,0,0"/>
-                                    </StackPanel>
-                                </Grid>
-                                <Grid Grid.Column="1">
-                                    <Image Source="/Images/arrow.png" Name="Arrow_EquiptStatus"  Width="160" Height="160"/>
-                                    <!--<Grid.ColumnDefinitions>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition Width="30"/>
-                                        <ColumnDefinition/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition/>
-                                        <RowDefinition Height="30"/>
-                                        <RowDefinition/>
-                                    </Grid.RowDefinitions>-->
-                                    <!--<Image Source="..\Images\A_B_4.png" Name="downArrow_EquiptStatus"  Width="30" Height="30" Grid.Column="1" Grid.Row="2"/>
-                                    <Image Source="..\Images\A_B_1.png" Name="leftArrow_EquiptStatus"  Width="30" Height="30" Grid.Column="0" Grid.Row="1"/>
-                                    <Image Source="..\Images\A_B_3.png" Name="rightArrow_EquiptStatus"  Width="30" Height="30" Grid.Column="2" Grid.Row="1"/>
-                                    <Image Source="..\Images\A_B_2.png" Name="upArrow_EquiptStatus"  Width="30" Height="30" Grid.Column="1" Grid.Row="0"/>-->
-                                </Grid>
-                            </Grid>
-                        </Grid>
+                <Grid Grid.Row="0">
+                    <Border Background="White" CornerRadius="10" Margin="5,10,5,5">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+                        </Border.Effect>
                     </Border>
-                </Border>
-                <Border Style="{StaticResource BorderRegion}" Grid.Row="1">
-                    <Border Background="{DynamicResource BorderBrush}">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="50"/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                            <StackPanel Grid.Row="0" Orientation="Horizontal">
-                                <TextBlock Text="状态反馈" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,0,0,0" VerticalAlignment="Center"/>
-                            </StackPanel>
-                            <Grid Grid.Row="1">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="150"/>
-                                    <ColumnDefinition Width="53"/>
-                                    <ColumnDefinition Width="150"/>
-                                    <ColumnDefinition Width="53"/>
-                                </Grid.ColumnDefinitions>
-                                <Border Grid.Row="0" Grid.Column="0" BorderBrush="White" BorderThickness="1">
-                                    <TextBlock Text="右手柄激活"></TextBlock>
-                                </Border>
-                                <Border Grid.Row="1" Grid.Column="0" BorderBrush="White" BorderThickness="1">
-                                    <TextBlock Text="大车编码器"></TextBlock>
-                                </Border>
-                                <Border Grid.Row="2" Grid.Column="0" BorderBrush="White" BorderThickness="1">
-                                    <TextBlock Text="进入防碰区"></TextBlock>
-                                </Border>
-                                <Border Grid.Row="0" Grid.Column="1" BorderBrush="White" BorderThickness="1">
-                                    <cl:SymbolMapping Name="smRight" StrContent="" LampType="3" Width="40" Height="40"/>
-                                </Border>
-                                <Border Grid.Row="1" Grid.Column="1" BorderBrush="White" BorderThickness="1">
-                                    <cl:SymbolMapping Name="smBigCarEncode" StrContent="" LampType="3" Width="40" Height="40"/>
-                                </Border>
-                                <Border Grid.Row="2" Grid.Column="1" BorderBrush="White" BorderThickness="1">
-                                    <cl:SymbolMapping Name="smInDangerArea" StrContent="" LampType="3" Width="40" Height="40"/>
-                                </Border>
-                                <Border Grid.Row="0" Grid.Column="2" BorderBrush="White" BorderThickness="1">
-                                    <TextBlock Text="急停"></TextBlock>
-                                </Border>
-                                <Border Grid.Row="1" Grid.Column="2" BorderBrush="White" BorderThickness="1">
-                                    <TextBlock Text="小车编码器"></TextBlock>
-                                </Border>
-                                <Border Grid.Row="2" Grid.Column="2" BorderBrush="White" BorderThickness="1">
-                                    <TextBlock Text="备用"></TextBlock>
-                                </Border>
-                                <Border Grid.Row="0" Grid.Column="3" BorderBrush="White" BorderThickness="1">
-                                    <cl:SymbolMapping Name="smStop" StrContent="" LampType="3" Width="40" Height="40"/>
-                                </Border>
-                                <Border Grid.Row="1" Grid.Column="3" BorderBrush="White" BorderThickness="1">
-                                    <cl:SymbolMapping Name="smSmallCarEncode" StrContent="" LampType="3" Width="40" Height="40"/>
-                                </Border>
-                                <Border Grid.Row="2" Grid.Column="3" BorderBrush="White" BorderThickness="1">
-                                    <cl:SymbolMapping Name="smSpare" StrContent="" LampType="3" Width="40" Height="40"/>
-                                </Border>
-                            </Grid>
-                        </Grid>
-                    </Border>
-                </Border>
-            </Grid>
-            <Border Style="{StaticResource BorderRegion}" Grid.Column="1">
-                <Border Background="{DynamicResource BorderBrush}">
-                    <Grid>
+                    <Grid Margin="5,10,5,5">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50"/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0" Orientation="Horizontal">
-                            <TextBlock Text="IO反馈" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,0,0,0" VerticalAlignment="Center"/>
+                            <TextBlock Text="右手柄信号" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,0,0,0" VerticalAlignment="Center"/>
                         </StackPanel>
                         <Grid Grid.Row="1">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="150"/>
-                                <ColumnDefinition Width="50"/>
-                                <ColumnDefinition Width="150"/>
-                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="250"/>
+                                <ColumnDefinition />
                             </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <TextBlock Text="左 右" Margin="10,0,0,0"></TextBlock>
+                                    <TextBox Name="tbLeftOrRight" Width="140" Margin="20,0,0,0"  Text="0" TextAlignment="Center"/>
+                                </StackPanel>
+                                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <TextBlock Text="前 后" Margin="10,0,0,0"></TextBlock>
+                                    <TextBox Name="tbFrontOrBehind" Width="140" Margin="20,0,0,0" Text="0" TextAlignment="Center"/>
+                                </StackPanel>
+                                <Border Grid.Row="2"  BorderBrush="White" BorderThickness="0,0,0,1">
+                                    <StackPanel Orientation="Horizontal">
+                                        <cl:SymbolMapping Name="smL" StrContent="" LampType="3" Height="32" Width="32" Margin="20,2,2,2"/>
+                                        <cl:SymbolMapping Name="smR" StrContent="" LampType="3" Height="32" Width="32" Margin="12,2,2,2"/>
+                                        <cl:SymbolMapping Name="smEnable" StrContent="" LampType="3" Height="32" Width="32" Margin="12,2,2,2"/>
+                                        <cl:SymbolMapping Name="smQ" StrContent="" LampType="3" Height="32" Width="32" Margin="12,2,2,2"/>
+                                        <cl:SymbolMapping Name="smB" StrContent="" LampType="3" Height="32" Width="32" Margin="12,2,2,2"/>
+                                    </StackPanel>
+                                </Border>
+                                <StackPanel Orientation="Horizontal" Grid.Row="3">
+                                    <TextBlock Text="L" Margin="30,0,0,0"/>
+                                    <TextBlock Text="R" Margin="35,0,0,0"/>
+                                    <TextBlock Text="E" Margin="30,0,0,0"/>
+                                    <TextBlock Text="Q" Margin="35,0,0,0"/>
+                                    <TextBlock Text="B" Margin="30,0,0,0"/>
+                                </StackPanel>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Image Source="/Images/arrow.png" Name="Arrow_EquiptStatus"  Width="160" Height="160"/>
+                              </Grid>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Border Background="White" CornerRadius="10" Margin="5,10,5,5">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+                        </Border.Effect>
+                    </Border>
+                    <Grid Margin="5,10,5,5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Orientation="Horizontal">
+                            <TextBlock Text="状态反馈" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,0,0,0" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <Grid Grid.Row="1">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
                                 <RowDefinition/>
                                 <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
                             </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="53"/>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="53"/>
+                            </Grid.ColumnDefinitions>
                             <Border Grid.Row="0" Grid.Column="0" BorderBrush="White" BorderThickness="1">
-                                <TextBlock Text="左右选择"></TextBlock>
+                                <TextBlock Text="右手柄激活"></TextBlock>
                             </Border>
                             <Border Grid.Row="1" Grid.Column="0" BorderBrush="White" BorderThickness="1">
-                                <TextBlock Text="内外选择"></TextBlock>
+                                <TextBlock Text="大车编码器"></TextBlock>
                             </Border>
                             <Border Grid.Row="2" Grid.Column="0" BorderBrush="White" BorderThickness="1">
-                                <TextBlock Text="自动上行"></TextBlock>
-                            </Border>
-                            <Border Grid.Row="3" Grid.Column="0" BorderBrush="White" BorderThickness="1">
-                                <TextBlock Text="自动下行"></TextBlock>
-                            </Border>
-                            <Border Grid.Row="4" Grid.Column="0" BorderBrush="White" BorderThickness="1">
-                                <TextBlock Text="自动进入"></TextBlock>
-                            </Border>
-                            <Border Grid.Row="5" Grid.Column="0" BorderBrush="White" BorderThickness="1">
-                                <TextBlock Text="自动退出"></TextBlock>
-                            </Border>
-                            <Border Grid.Row="6" Grid.Column="0" BorderBrush="White" BorderThickness="1">
-                                <TextBlock Text="一键上钻"></TextBlock>
-                            </Border>
-                            <Border Grid.Row="7" Grid.Column="0" BorderBrush="White" BorderThickness="1">
-                                <TextBlock Text="一键甩钻"></TextBlock>
+                                <TextBlock Text="进入防碰区"></TextBlock>
                             </Border>
                             <Border Grid.Row="0" Grid.Column="1" BorderBrush="White" BorderThickness="1">
-                                <cl:SymbolMapping Name="smLeftOrRight" StrContent="" LampType="3" Width="40" Height="40"/>
+                                <cl:SymbolMapping Name="smRight" StrContent="" LampType="3" Width="40" Height="40"/>
                             </Border>
                             <Border Grid.Row="1" Grid.Column="1" BorderBrush="White" BorderThickness="1">
-                                <cl:SymbolMapping Name="smInOrOut" StrContent="" LampType="3" Width="40" Height="40"/>
+                                <cl:SymbolMapping Name="smBigCarEncode" StrContent="" LampType="3" Width="40" Height="40"/>
                             </Border>
                             <Border Grid.Row="2" Grid.Column="1" BorderBrush="White" BorderThickness="1">
-                                <cl:SymbolMapping Name="smAutoUp" StrContent="" LampType="3" Width="40" Height="40"/>
-                            </Border>
-                            <Border Grid.Row="3" Grid.Column="1" BorderBrush="White" BorderThickness="1">
-                                <cl:SymbolMapping Name="smAutoDown" StrContent="" LampType="3" Width="40" Height="40"/>
-                            </Border>
-                            <Border Grid.Row="4" Grid.Column="1" BorderBrush="White" BorderThickness="1">
-                                <cl:SymbolMapping Name="smAutoIn" StrContent="" LampType="3" Width="40" Height="40"/>
-                            </Border>
-                            <Border Grid.Row="5" Grid.Column="1" BorderBrush="White" BorderThickness="1">
-                                <cl:SymbolMapping Name="smAutoOut" StrContent="" LampType="3" Width="40" Height="40"/>
-                            </Border>
-                            <Border Grid.Row="6" Grid.Column="1" BorderBrush="White" BorderThickness="1">
-                                <cl:SymbolMapping Name="smOnkeyUseDrill" StrContent="" LampType="3" Width="40" Height="40"/>
-                            </Border>
-                            <Border Grid.Row="7" Grid.Column="1" BorderBrush="White" BorderThickness="1">
-                                <cl:SymbolMapping Name="smOnKeyUnuserDrill" StrContent="" LampType="3" Width="40" Height="40"/>
+                                <cl:SymbolMapping Name="smInDangerArea" StrContent="" LampType="3" Width="40" Height="40"/>
                             </Border>
                             <Border Grid.Row="0" Grid.Column="2" BorderBrush="White" BorderThickness="1">
-                                <TextBlock Text="排架上升"></TextBlock>
+                                <TextBlock Text="急停"></TextBlock>
                             </Border>
                             <Border Grid.Row="1" Grid.Column="2" BorderBrush="White" BorderThickness="1">
-                                <TextBlock Text="排架下降"></TextBlock>
+                                <TextBlock Text="小车编码器"></TextBlock>
                             </Border>
                             <Border Grid.Row="2" Grid.Column="2" BorderBrush="White" BorderThickness="1">
-                                <TextBlock Text="倾斜上升"></TextBlock>
-                            </Border>
-                            <Border Grid.Row="3" Grid.Column="2" BorderBrush="White" BorderThickness="1">
-                                <TextBlock Text="倾斜下降"></TextBlock>
-                            </Border>
-                            <Border Grid.Row="4" Grid.Column="2" BorderBrush="White" BorderThickness="1">
-                                <TextBlock Text="机构踢出"></TextBlock>
-                            </Border>
-                            <Border Grid.Row="5" Grid.Column="2" BorderBrush="White" BorderThickness="1">
-                                <TextBlock Text="机构缩回"></TextBlock>
-                            </Border>
-                            <Border Grid.Row="6" Grid.Column="2" BorderBrush="White" BorderThickness="1">
-                                <TextBlock Text="备用"></TextBlock>
-                            </Border>
-                            <Border Grid.Row="7" Grid.Column="2" BorderBrush="White" BorderThickness="1">
                                 <TextBlock Text="备用"></TextBlock>
                             </Border>
                             <Border Grid.Row="0" Grid.Column="3" BorderBrush="White" BorderThickness="1">
-                                <cl:SymbolMapping Name="smBentUp" StrContent="" LampType="3" Width="40" Height="40"/>
+                                <cl:SymbolMapping Name="smStop" StrContent="" LampType="3" Width="40" Height="40"/>
                             </Border>
                             <Border Grid.Row="1" Grid.Column="3" BorderBrush="White" BorderThickness="1">
-                                <cl:SymbolMapping Name="smBentDown" StrContent="" LampType="3" Width="40" Height="40"/>
+                                <cl:SymbolMapping Name="smSmallCarEncode" StrContent="" LampType="3" Width="40" Height="40"/>
                             </Border>
                             <Border Grid.Row="2" Grid.Column="3" BorderBrush="White" BorderThickness="1">
-                                <cl:SymbolMapping Name="smTiltUp" StrContent="" LampType="3" Width="40" Height="40"/>
-                            </Border>
-                            <Border Grid.Row="3" Grid.Column="3" BorderBrush="White" BorderThickness="1">
-                                <cl:SymbolMapping Name="smTiltDown" StrContent="" LampType="3" Width="40" Height="40"/>
-                            </Border>
-                            <Border Grid.Row="4" Grid.Column="3" BorderBrush="White" BorderThickness="1">
-                                <cl:SymbolMapping Name="smOrganKickOut" StrContent="" LampType="3" Width="40" Height="40"/>
-                            </Border>
-                            <Border Grid.Row="5" Grid.Column="3" BorderBrush="White" BorderThickness="1">
-                                <cl:SymbolMapping Name="smOrganRetract" StrContent="" LampType="3" Width="40" Height="40"/>
-                            </Border>
-                            <Border Grid.Row="6" Grid.Column="3" BorderBrush="White" BorderThickness="1">
-                                <cl:SymbolMapping StrContent="" LampType="3" Width="40" Height="40"/>
-                            </Border>
-                            <Border Grid.Row="7" Grid.Column="3" BorderBrush="White" BorderThickness="1">
-                                <cl:SymbolMapping StrContent="" LampType="3" Width="40" Height="40"/>
+                                <cl:SymbolMapping Name="smSpare" StrContent="" LampType="3" Width="40" Height="40"/>
                             </Border>
                         </Grid>
                     </Grid>
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Border Background="White" CornerRadius="10" Margin="5,10,5,5">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+                    </Border.Effect>
                 </Border>
-            </Border>
-            <Border Style="{StaticResource BorderRegion}" Grid.Column="2">
-                <Border Background="{DynamicResource BorderBrush}">
-                    <StackPanel>
-                        <Button Name="btnStart" FontFamily="微软雅黑" FontSize="20" FontWeight="Bold" Width="120" Height="40" Margin="0,50,0,0" Click="btnStart_Click">启动</Button>
-                        <Button Name="btnUp" FontFamily="微软雅黑" FontSize="20" FontWeight="Bold" Width="120" Height="40" Margin="0,50,0,0" Click="btnUp_Click">辅助上升</Button>
-                        <Button Name="btnDown" FontFamily="微软雅黑" FontSize="20" FontWeight="Bold" Width="120" Height="40" Margin="0,50,0,0" Click="btnDown_Click">辅助下降</Button>
-                        <Button Name="btnKickOut" FontFamily="微软雅黑" FontSize="20" FontWeight="Bold" Width="120" Height="40" Margin="0,50,0,0" Click="btnKickOut_Click">多根踢出</Button>
+                <Grid Margin="5,10,5,5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <TextBlock Text="IO反馈" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,0,0,0" VerticalAlignment="Center"/>
                     </StackPanel>
-                </Border>
-            </Border>
-
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0" Grid.Column="0" BorderBrush="White" BorderThickness="1">
+                            <TextBlock Text="左右选择"></TextBlock>
+                        </Border>
+                        <Border Grid.Row="1" Grid.Column="0" BorderBrush="White" BorderThickness="1">
+                            <TextBlock Text="内外选择"></TextBlock>
+                        </Border>
+                        <Border Grid.Row="2" Grid.Column="0" BorderBrush="White" BorderThickness="1">
+                            <TextBlock Text="自动上行"></TextBlock>
+                        </Border>
+                        <Border Grid.Row="3" Grid.Column="0" BorderBrush="White" BorderThickness="1">
+                            <TextBlock Text="自动下行"></TextBlock>
+                        </Border>
+                        <Border Grid.Row="4" Grid.Column="0" BorderBrush="White" BorderThickness="1">
+                            <TextBlock Text="自动进入"></TextBlock>
+                        </Border>
+                        <Border Grid.Row="5" Grid.Column="0" BorderBrush="White" BorderThickness="1">
+                            <TextBlock Text="自动退出"></TextBlock>
+                        </Border>
+                        <Border Grid.Row="6" Grid.Column="0" BorderBrush="White" BorderThickness="1">
+                            <TextBlock Text="一键上钻"></TextBlock>
+                        </Border>
+                        <Border Grid.Row="7" Grid.Column="0" BorderBrush="White" BorderThickness="1">
+                            <TextBlock Text="一键甩钻"></TextBlock>
+                        </Border>
+                        <Border Grid.Row="0" Grid.Column="1" BorderBrush="White" BorderThickness="1">
+                            <cl:SymbolMapping Name="smLeftOrRight" StrContent="" LampType="3" Width="40" Height="40"/>
+                        </Border>
+                        <Border Grid.Row="1" Grid.Column="1" BorderBrush="White" BorderThickness="1">
+                            <cl:SymbolMapping Name="smInOrOut" StrContent="" LampType="3" Width="40" Height="40"/>
+                        </Border>
+                        <Border Grid.Row="2" Grid.Column="1" BorderBrush="White" BorderThickness="1">
+                            <cl:SymbolMapping Name="smAutoUp" StrContent="" LampType="3" Width="40" Height="40"/>
+                        </Border>
+                        <Border Grid.Row="3" Grid.Column="1" BorderBrush="White" BorderThickness="1">
+                            <cl:SymbolMapping Name="smAutoDown" StrContent="" LampType="3" Width="40" Height="40"/>
+                        </Border>
+                        <Border Grid.Row="4" Grid.Column="1" BorderBrush="White" BorderThickness="1">
+                            <cl:SymbolMapping Name="smAutoIn" StrContent="" LampType="3" Width="40" Height="40"/>
+                        </Border>
+                        <Border Grid.Row="5" Grid.Column="1" BorderBrush="White" BorderThickness="1">
+                            <cl:SymbolMapping Name="smAutoOut" StrContent="" LampType="3" Width="40" Height="40"/>
+                        </Border>
+                        <Border Grid.Row="6" Grid.Column="1" BorderBrush="White" BorderThickness="1">
+                            <cl:SymbolMapping Name="smOnkeyUseDrill" StrContent="" LampType="3" Width="40" Height="40"/>
+                        </Border>
+                        <Border Grid.Row="7" Grid.Column="1" BorderBrush="White" BorderThickness="1">
+                            <cl:SymbolMapping Name="smOnKeyUnuserDrill" StrContent="" LampType="3" Width="40" Height="40"/>
+                        </Border>
+                        <Border Grid.Row="0" Grid.Column="2" BorderBrush="White" BorderThickness="1">
+                            <TextBlock Text="排架上升"></TextBlock>
+                        </Border>
+                        <Border Grid.Row="1" Grid.Column="2" BorderBrush="White" BorderThickness="1">
+                            <TextBlock Text="排架下降"></TextBlock>
+                        </Border>
+                        <Border Grid.Row="2" Grid.Column="2" BorderBrush="White" BorderThickness="1">
+                            <TextBlock Text="倾斜上升"></TextBlock>
+                        </Border>
+                        <Border Grid.Row="3" Grid.Column="2" BorderBrush="White" BorderThickness="1">
+                            <TextBlock Text="倾斜下降"></TextBlock>
+                        </Border>
+                        <Border Grid.Row="4" Grid.Column="2" BorderBrush="White" BorderThickness="1">
+                            <TextBlock Text="机构踢出"></TextBlock>
+                        </Border>
+                        <Border Grid.Row="5" Grid.Column="2" BorderBrush="White" BorderThickness="1">
+                            <TextBlock Text="机构缩回"></TextBlock>
+                        </Border>
+                        <Border Grid.Row="6" Grid.Column="2" BorderBrush="White" BorderThickness="1">
+                            <TextBlock Text="备用"></TextBlock>
+                        </Border>
+                        <Border Grid.Row="7" Grid.Column="2" BorderBrush="White" BorderThickness="1">
+                            <TextBlock Text="备用"></TextBlock>
+                        </Border>
+                        <Border Grid.Row="0" Grid.Column="3" BorderBrush="White" BorderThickness="1">
+                            <cl:SymbolMapping Name="smBentUp" StrContent="" LampType="3" Width="40" Height="40"/>
+                        </Border>
+                        <Border Grid.Row="1" Grid.Column="3" BorderBrush="White" BorderThickness="1">
+                            <cl:SymbolMapping Name="smBentDown" StrContent="" LampType="3" Width="40" Height="40"/>
+                        </Border>
+                        <Border Grid.Row="2" Grid.Column="3" BorderBrush="White" BorderThickness="1">
+                            <cl:SymbolMapping Name="smTiltUp" StrContent="" LampType="3" Width="40" Height="40"/>
+                        </Border>
+                        <Border Grid.Row="3" Grid.Column="3" BorderBrush="White" BorderThickness="1">
+                            <cl:SymbolMapping Name="smTiltDown" StrContent="" LampType="3" Width="40" Height="40"/>
+                        </Border>
+                        <Border Grid.Row="4" Grid.Column="3" BorderBrush="White" BorderThickness="1">
+                            <cl:SymbolMapping Name="smOrganKickOut" StrContent="" LampType="3" Width="40" Height="40"/>
+                        </Border>
+                        <Border Grid.Row="5" Grid.Column="3" BorderBrush="White" BorderThickness="1">
+                            <cl:SymbolMapping Name="smOrganRetract" StrContent="" LampType="3" Width="40" Height="40"/>
+                        </Border>
+                        <Border Grid.Row="6" Grid.Column="3" BorderBrush="White" BorderThickness="1">
+                            <cl:SymbolMapping StrContent="" LampType="3" Width="40" Height="40"/>
+                        </Border>
+                        <Border Grid.Row="7" Grid.Column="3" BorderBrush="White" BorderThickness="1">
+                            <cl:SymbolMapping StrContent="" LampType="3" Width="40" Height="40"/>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>
