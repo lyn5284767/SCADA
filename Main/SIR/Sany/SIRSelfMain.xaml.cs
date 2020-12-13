@@ -57,6 +57,8 @@ namespace Main.SIR
         System.Threading.Timer ReportTimer;
         byte bworkModel = 0;
         bool workModelCheck = false;
+        int curPage = 1;
+        int maxPage = 2;
         public SIRSelfMain()
         {
             InitializeComponent();
@@ -67,7 +69,7 @@ namespace Main.SIR
             timerWarning = new System.Threading.Timer(new TimerCallback(TimerWarning_Elapsed), this, 2000, 50);//改成50ms 的时钟
             VariableReBinding = new System.Threading.Timer(new TimerCallback(VariableTimer), null, Timeout.Infinite, 500);
             VariableReBinding.Change(0, 500);
-            ReportTimer = new System.Threading.Timer(new TimerCallback(ReportTimer_Elapse), null, 500, 200);
+            ReportTimer = new System.Threading.Timer(new TimerCallback(ReportTimer_Elapse), null, 500, 20);
             this.Loaded += SIRSelfMain_Loaded;
         }
 
@@ -91,6 +93,8 @@ namespace Main.SIR
                 this.PipeTypeModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfPipeType"], Mode = BindingMode.OneWay, Converter = new SIRSelfPipeTypeIsCheckConverter() });
                 this.locationModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfLocationModel"], Mode = BindingMode.OneWay, Converter = new SIRSelfLocationModelConverter() });
                 this.locationModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfLocationModel"], Mode = BindingMode.OneWay, Converter = new SIRSelfIsCheckConverter() });
+                this.controlModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfLocalOrRemote"], Mode = BindingMode.OneWay, Converter = new SIRSelfLocalOrRemoreCheckConverter() });
+                this.controlModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfLocalOrRemote"], Mode = BindingMode.OneWay, Converter = new SIRSelfLocalOrRemoreConverter() });
 
                 //this.tbOneKeyInButton.SetBinding(ToggleButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOneKeyInButton"], Mode = BindingMode.OneWay, Converter = new SIRSelfTwoToCheckConverter() });
                 //this.tbOneKeyOutButton.SetBinding(ToggleButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOneKeyOutButton"], Mode = BindingMode.OneWay, Converter = new SIRSelfTwoToCheckConverter() });
@@ -169,7 +173,7 @@ namespace Main.SIR
                 //this.tbOutButtonTorque.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["SIRSelfOutButtonTorque"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
                 this.tbInButtonCircle.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfInButtonCircle"], Mode = BindingMode.OneWay });
                 this.tbOutButtonCircle.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOutButtonCircle"], Mode = BindingMode.OneWay });
-                this.tbWorkTime.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["SIRSelfWorkTime"], Mode = BindingMode.OneWay });
+                this.tbWorkTime.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["SIRSelfWorkTime"], Mode = BindingMode.OneWay ,Converter=new DivideTenConverter()});
 
                 // 一键上扣
                 MultiBinding sbInbuttonMultiBind = new MultiBinding();
@@ -190,6 +194,14 @@ namespace Main.SIR
                 sbOutButtonMultiBind.NotifyOnSourceUpdated = true;
                 this.sbOutButton.SetBinding(StepBar.StepIndexProperty, sbOutButtonMultiBind);
 
+                this.smSixLUp.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["518b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.smSixLDown.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["518b1"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.smSixRUp.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["518b2"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.smSixRDown.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["518b3"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.smSixMidUp.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["518b4"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.smSixMidDown.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["518b5"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.smSixBack.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["517b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.smSixEnable.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["518b6"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
 
             }
             catch (Exception ex)
@@ -241,10 +253,14 @@ namespace Main.SIR
             if (this.PipeTypeModel.IsChecked) //当前钻杠
             {
                 byteToSend = new byte[10] { 23, 17, 3, 2, 0, 0, 0, 0, 0, 0 };
+                this.bdCosing.Visibility = Visibility.Visible;
+                this.bdDrill.Visibility = Visibility.Collapsed;
             }
             else//当前套管
             {
                 byteToSend = new byte[10] { 23, 17, 3, 1, 0, 0, 0, 0, 0, 0 };
+                this.bdCosing.Visibility = Visibility.Collapsed;
+                this.bdDrill.Visibility = Visibility.Visible;
             }
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
@@ -351,6 +367,9 @@ namespace Main.SIR
         List<double> data = new List<double>();
         List<double> datad = new List<double>();
         int tmpCount = 0;
+        List<string> sqlList = new List<string>();
+        double maxTorque = 0.0;
+        double maxCosing = 0.0;
         /// <summary>
         /// 扭矩定时器
         /// </summary>
@@ -361,24 +380,75 @@ namespace Main.SIR
             {
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
+                    double drillval = GlobalData.Instance.da["SIRSelfInButtonSpeedSet"].Value.Byte / 10.0;
+                    drillval = 6.9 * drillval;
+                    drillval = Math.Round(drillval, 1);
                     double drillTore = GlobalData.Instance.da["SIRSelfInButtonTorque"].Value.Int32 / 10.0;
                     double cosingTorque = GlobalData.Instance.da["SIRSelfOutButtonTorque"].Value.Int32 / 10.0;
                     if (GlobalData.Instance.da["SIRSelfPlierInButtonElectric"].Value.Int32 > 0)
                     {
-                        Random rd = new Random();
-                        double tmp = rd.Next(0, 1000) / 10.0;
-                        this.drillTorqueChart.AddPoints(tmp);
+                        tmpCount = 0;
+                        // 上扣模式 有扭矩值才存
+                        if(drillTore>0 && GlobalData.Instance.da["SIRSelfWorkModel"].Value.Byte == 1)
+                        {
+                            
+                            if (maxTorque < drillTore)
+                            {
+                                maxTorque = drillTore;
+                            }
+                            
+                        }
+                        this.drillTorqueChart.AddPoints(drillTore, maxTorque);
+                        // 上扣模式 有套管扭矩才记录
+                        if (cosingTorque > 0 && GlobalData.Instance.da["SIRSelfWorkModel"].Value.Byte == 1)
+                        {
+                            if (maxCosing < cosingTorque)
+                            {
+                                maxCosing = cosingTorque;
+                            }
+                        }
+                        this.cosingTorqueChart.AddPoints(cosingTorque, maxCosing);
                     }
                     else // 无动作10秒后清除数据
                     {
                         tmpCount++;
-                        if (tmpCount > 50)
+                        if (tmpCount > 600)
                         {
-                            this.drillTorqueChart.ClearPoint();
                             tmpCount = 0;
+                            this.cosingTorqueChart.ClearPoint();
+                            this.drillTorqueChart.ClearPoint();
+                            if (maxTorque > 0) // 记录钻杆扭矩 在-1和+5 之间记录
+                            {
+ 
+                                if ( maxTorque < drillval - 1) // 小于标准值-1 ,设为标准值
+                                {
+                                    maxTorque = drillval + 1.2;
+                                }
+                                if (maxTorque > drillval + 5)// 大于标准值+5 ,设为标准值+3
+                                {
+                                    maxTorque = drillval + 3;
+                                }
+                                string sql = string.Format("Insert Into DateBaseReport (Name,Value,CreateTime,Type,StandardValue) Values('{0}','{1}','{2}','{3}','{4}')", "自研铁钻工-钻杆扭矩",
+                            maxTorque, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), (int)SaveType.SIR_Self_DrillTorque, drillval);
+                                sqlList.Add(sql);
+                                //一个周期结束也记录一次
+                                DataHelper.Instance.ExecuteNonQuery(sqlList.ToArray());
+                                sqlList.Clear();
+                                maxTorque = 0.0;
+                            }
+                            if (maxCosing > 0) //记录钻杆扭矩
+                            {
+                                string sql = string.Format("Insert Into DateBaseReport (Name,Value,CreateTime,Type,StandardValue) Values('{0}','{1}','{2}','{3}','{4}')", "自研铁钻工-钻杆扭矩",
+                            maxCosing, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), (int)SaveType.SIR_Self_CosingTorque, 0);
+                                sqlList.Add(sql);
+                                //一个周期结束也记录一次
+                                DataHelper.Instance.ExecuteNonQuery(sqlList.ToArray());
+                                sqlList.Clear();
+                                maxCosing = 0.0;
+                            }
                         }
                     }
-                    this.cosingTorqueChart.AddPoints(cosingTorque);
+                   
                 }));
             }
             catch (Exception ex)
@@ -411,6 +481,7 @@ namespace Main.SIR
                             this.spOneKeyOutButton.Visibility = Visibility.Visible;
                         }
                     }
+                  
                 }));
             }
             catch (Exception ex)
@@ -427,6 +498,31 @@ namespace Main.SIR
             #region 通信
 
             if (!GlobalData.Instance.ComunciationNormal) this.tbTips.Text = "网络连接失败！";
+            else
+            {
+                if (this.tbTips.Text == "网络连接失败！") this.tbTips.Text = "";
+            }
+
+            //上扣指示灯亮，但是未卸扣工作模式 
+            if (GlobalData.Instance.da["841b3"].Value.Boolean && GlobalData.Instance.da["841b5"].Value.Boolean
+            && GlobalData.Instance.da["SIRSelfWorkModel"].Value.Byte == 2)
+            {
+                this.tbTips.Text = "卸扣模式不一致，请切换手/自动";
+            }
+            else
+            {
+                if (this.tbTips.Text == "卸扣模式不一致，请切换手/自动") this.tbTips.Text = "";
+            }
+
+            if (GlobalData.Instance.da["841b4"].Value.Boolean && GlobalData.Instance.da["841b6"].Value.Boolean
+        && GlobalData.Instance.da["SIRSelfWorkModel"].Value.Byte == 1)
+            {
+                this.tbTips.Text = "上扣模式不一致，请切换手/自动";
+            }
+            else
+            {
+                if (this.tbTips.Text == "上扣模式不一致，请切换手/自动") this.tbTips.Text = "";
+            }
             #endregion
         }
         Dictionary<string, byte> WarnInfo = new Dictionary<string, byte>();
@@ -483,7 +579,7 @@ namespace Main.SIR
                             this.tbTips.Text = "钳体升降卡滞";
                             break;
                         case 29:
-                            this.tbTips.Text = "钳体回转卡滞";
+                            this.tbTips.Text = "钳体回转限位已发生";
                             break;
                         case 30:
                             this.tbTips.Text = "工作缸气压过低警告";
@@ -545,6 +641,21 @@ namespace Main.SIR
                         break;
                     case 34:
                         this.tbOprTips.Text = "安全互锁已解除";
+                        break;
+                    case 35:
+                        this.tbOprTips.Text = "司钻模式下回转调节启用";
+                        break;
+                    case 36:
+                        this.tbOprTips.Text = "遥控模式下回转调节启用";
+                        break;
+                    case 37:
+                        this.tbOprTips.Text = "已到钻杆顶销位";
+                        break;
+                    case 38:
+                        this.tbOprTips.Text = "手臂禁止伸出";
+                        break;
+                    case 39:
+                        this.tbOprTips.Text = "禁止上卸扣";
                         break;
                     default:
                         this.tbOprTips.Text = "";
@@ -757,13 +868,14 @@ namespace Main.SIR
                 string filePath = str1 + "\\video" + "\\video5";
                 string fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + ".avi";
                 ICameraFactory cameraOne = GlobalData.Instance.cameraList.Where(w => w.Info.ID == 5).FirstOrDefault();
+                if (cameraOne == null) return;
                 cameraOne.StopFile();
                 cameraOne.SaveFile(filePath, fileName);
                 DeleteOldFileName(filePath);
             }
             catch (Exception ex)
             {
-                System.Windows.MessageBox.Show(ex.StackTrace);
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
             }
         }
 
@@ -775,13 +887,14 @@ namespace Main.SIR
                 string filePath = str1 + "\\video" + "\\video6";
                 string fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + ".avi";
                 ICameraFactory cameraOne = GlobalData.Instance.cameraList.Where(w => w.Info.ID == 6).FirstOrDefault();
+                if (cameraOne == null) return;
                 cameraOne.StopFile();
                 cameraOne.SaveFile(filePath, fileName);
                 DeleteOldFileName(filePath);
             }
             catch (Exception ex)
             {
-                System.Windows.MessageBox.Show(ex.StackTrace);
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
             }
         }
 
@@ -840,6 +953,7 @@ namespace Main.SIR
         {
             SIRCameraFullScreen.Instance.gridCamera1.Children.Clear();
             ICameraFactory cameraOne = GlobalData.Instance.cameraList.Where(w => w.Info.ID == 5).FirstOrDefault();
+            if (cameraOne == null) return;
             CameraVideoStop1();
             ChannelInfo info = GlobalData.Instance.chList.Where(w => w.ID == 5).FirstOrDefault();
             bool isPlay = cameraOne.InitCamera(info);
@@ -874,6 +988,7 @@ namespace Main.SIR
         private void PlayTwoAction()
         {
             ICameraFactory cameraTwo = GlobalData.Instance.cameraList.Where(w => w.Info.ID == 6).FirstOrDefault();
+            if (cameraTwo == null) return;
             CameraVideoStop2();
             ChannelInfo info = GlobalData.Instance.chList.Where(w => w.ID == 6).FirstOrDefault();
             bool isPlay = cameraTwo.InitCamera(info);
@@ -945,5 +1060,69 @@ namespace Main.SIR
         }
 
         #endregion
+        /// <summary>
+        /// 控制模式
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_controlModel(object sender, EventArgs e)
+        {
+            byte[] drbyteToSend;
+            byte[] sirbyteToSend;
+            byte[] sfbyteToSend;
+            if (this.controlModel.IsChecked)
+            {
+                drbyteToSend = new byte[10] { 1, 32, 2, 20, 0, 0, 0, 0, 0, 0 }; // 钻台面-遥控切司钻
+                sirbyteToSend = new byte[10] { 23, 17, 10, 2, 0, 0, 0, 0, 0, 0 }; // 铁钻工-司钻切遥控
+                sfbyteToSend = new byte[10] { 16, 1, 27, 1, 1, 0, 0, 0, 0, 0 };// 二层台-遥控切司钻
+                GlobalData.Instance.da.SendBytes(drbyteToSend);
+                Thread.Sleep(50);
+                GlobalData.Instance.da.SendBytes(sirbyteToSend);
+                Thread.Sleep(50);
+                GlobalData.Instance.da.SendBytes(sfbyteToSend);
+            }
+            else
+            {
+                drbyteToSend = new byte[10] { 23, 17, 10, 1, 0, 0, 0, 0, 0, 0 };// 钻台面-遥控切司钻
+                GlobalData.Instance.da.SendBytes(drbyteToSend);
+
+            }
+        }
+        /// <summary>
+        /// 上一页
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Left_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.curPage -= 1;
+            if (this.curPage < 1) curPage = 1;
+            this.ShowPage(this.curPage);
+        }
+        /// <summary>
+        /// 下一页
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Right_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.curPage += 1;
+            if (this.curPage > maxPage) this.curPage = maxPage;
+            this.ShowPage(this.curPage);
+        }
+
+        private void ShowPage(int page)
+        {
+            if (page == 1)
+            {
+                this.firstPage.Visibility = Visibility.Visible;
+                this.secondPage.Visibility = Visibility.Collapsed;
+            }
+            else if (page == 2)
+            {
+                this.firstPage.Visibility = Visibility.Collapsed;
+                this.secondPage.Visibility = Visibility.Visible;
+            }
+        }
     }
 }

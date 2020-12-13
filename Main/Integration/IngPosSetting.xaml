@@ -40,41 +40,48 @@
         </Style>
     </UserControl.Resources>
     <Grid>
-        <Grid>
+        <Grid Margin="0,0,0,10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="380"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0">
-                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="380">
+            <StackPanel Grid.Column="0" Margin="0,0,0,-10">
+                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="580">
                     <StackPanel Orientation="Horizontal">
                         <!--<Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
                             <TextBlock Text="小&#x0a;车&#x0a;参&#x0a;数&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
                         </Border>-->
                         <StackPanel>
                             <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                                <TextBlock Text="游车位置(cm)"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" FontFamily="微软雅黑" FontWeight="Bold"/>
+                                <TextBlock Text="大钩高度(米)"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" FontFamily="微软雅黑" FontWeight="Bold"/>
                             </Border>
                             <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="大钩高度" Margin="40,0,0,0" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="Black"></TextBlock>
+                                <TextBox Margin="50,0,0,0" Width="100" Name="tbHookLocation" Text="0" IsReadOnly="True" FontWeight="Bold" Foreground="Black"></TextBox>
+                             </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
                                 <!--<CheckBox Name="cbZeroSet" Content="零位标定" FontSize="18" Margin="40,0,0,0" Click="cbZeroSet_Checked"></CheckBox>-->
                                 <TextBox Margin="40,0,0,0" Width="100" Name="tbZeroVal" Text="0" IsReadOnly="True"></TextBox>
-                                <Button Name="tbZeroSet" Content="零位标定" FontSize="14" Margin="15,0,0,0" Width="90" Click="tbZeroSet_Checked"></Button>
-                                <Button Name="tbZeroUnSet" Content="取消标定" FontSize="14" Margin="5,0,0,0" Width="90"  Click="tbZeroUnSet_Checked"></Button>
+                                <Button Name="tbZeroSet" Content="零位标定" FontSize="18" Margin="15,0,0,0" Width="100" Click="tbZeroSet_Checked" Height="50"></Button>
+                                <Button Name="tbZeroUnSet" Content="取消标定" FontSize="18" Margin="5,0,0,0" Width="100"  Click="tbZeroUnSet_Checked" Height="50"></Button>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBox Margin="40,0,0,0" Width="100" Name="tbHighVal"></TextBox>
-                                <Button Name="tbHighSet" Content="高位标定" FontSize="14" Margin="15,0,0,0" Width="90" Click="tbHighSet_Checked"></Button>
-                                <Button Name="tbHighUnSet" Content="取消标定" FontSize="14" Margin="5,0,0,0" Width="90"  Click="tbHighUnSet_Checked"></Button>
+                            <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                                <TextBox Margin="40,0,0,0" Width="100" Name="tbHighVal" GotFocus="tbHighVal_GotFocus"></TextBox>
+                                <Button Name="tbHighSet" Content="高位标定" FontSize="18" Margin="15,0,0,0" Width="100" Height="50" Click="tbHighSet_Checked"></Button>
+                                <Button Name="tbHighUnSet" Content="取消标定" FontSize="18" Margin="5,0,0,0" Width="100" Height="50"  Click="tbHighUnSet_Checked"></Button>
                             </StackPanel>
-                            <cl:TextBlockWithTextBox Name="twtL3" TagTwo="25" ControlTag="1"  TbkText="低位刹车区"/>
-                            <cl:TextBlockWithTextBox Name="twtL4" TagTwo="25" ControlTag="2"  TbkText="低位报警区"/>
-                            <cl:TextBlockWithTextBox Name="twtL5" TagTwo="25" ControlTag="3"  TbkText="低位区"/>
-                            <cl:TextBlockWithTextBox Name="twtL6" TagTwo="25" ControlTag="4"  TbkText="中位区"/>
-                            <cl:TextBlockWithTextBox Name="twtL7" TagTwo="25" ControlTag="5"  TbkText="高位区"/>
-                            <cl:TextBlockWithTextBox Name="twtL8" TagTwo="25" ControlTag="6"  TbkText="高位报警区"/>
-                            <cl:TextBlockWithTextBox Name="twtL9" TagTwo="25" ControlTag="7"  TbkText="高位刹车区"/>
+                            <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5" Padding="3">
+                                <TextBlock Text="游车位置(cm)"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" FontFamily="微软雅黑" FontWeight="Bold"/>
+                            </Border>
+                          <cl:TextBlockWithTextBox Name="twtL9" TagTwo="25" ControlTag="7" Margin="0,5,0,5"  TbkText="高位刹车区"/>
+                            <cl:TextBlockWithTextBox Name="twtL8" TagTwo="25" ControlTag="6" Margin="0,5,0,5"  TbkText="高位报警区"/>
+                            <cl:TextBlockWithTextBox Name="twtL7" TagTwo="25" ControlTag="5" Margin="0,5,0,5" TbkText="高位区"/>
+                            <cl:TextBlockWithTextBox Name="twtL6" TagTwo="25" ControlTag="4" Margin="0,5,0,5"  TbkText="中位区"/>
+                            <cl:TextBlockWithTextBox Name="twtL5" TagTwo="25" ControlTag="3" Margin="0,5,0,5"  TbkText="低位区"/>
+                            <cl:TextBlockWithTextBox Name="twtL4" TagTwo="25" ControlTag="2" Margin="0,5,0,5"  TbkText="低位报警区"/>
+                            <cl:TextBlockWithTextBox Name="twtL3" TagTwo="25" ControlTag="1" Margin="0,5,0,5" TbkText="低位刹车区"/>
                             <Button Content="确 定 配 置"  Click="Button_Setting"  Style="{StaticResource btnGreen}" FontWeight="Bold" FontFamily="微软雅黑" FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="40" IsDefault="False"/>
-                            </StackPanel>
+                        </StackPanel>
                     </StackPanel>
                 </Border>
             </StackPanel>

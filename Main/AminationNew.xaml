@@ -1738,7 +1738,7 @@
                         </local1:AnimationButton.RenderTransform>
                     </local1:AnimationButton>
 
-                    <Image  Width="20" Name="RobotArm" Visibility="{Binding Path=SFType,ElementName=uc,Converter={StaticResource SecondFloorVisCVT}}">
+                    <Image Panel.ZIndex="99" Width="20" Name="RobotArm" Visibility="{Binding Path=SFType,ElementName=uc,Converter={StaticResource SecondFloorVisCVT}}">
                         <Image.Source>
                             <Binding Path="RobotGripStatus" ElementName="uc" Converter="{StaticResource AnimationArmImageCvt}"/>
                         </Image.Source>
@@ -1755,7 +1755,7 @@
                                         <Binding Path="ActualHeight" ElementName="RobotArm" Converter="{StaticResource AnimationArmRotateCvt}"/>
                                     </RotateTransform.CenterY>
                                 </RotateTransform>
-                                <TranslateTransform>
+                                <TranslateTransform >
                                     <TranslateTransform.X>
                                         <MultiBinding Converter="{StaticResource AnimationArmTransformXCvt}">
                                             <Binding Path="WorkAnimationWidth" ElementName="uc"/>
@@ -3210,10 +3210,10 @@
                         </local1:AnimationButton.RenderTransform>
                     </local1:AnimationButton>
 
-                    <Image  Width="20" Name="DRRobotArm" Visibility="{Binding Path=SFType,ElementName=uc,Converter={StaticResource DRVisCvt}}">
+                    <Image Width="20" Name="DRRobotArm" Visibility="{Binding Path=SFType,ElementName=uc,Converter={StaticResource DRVisCvt}}">
                         <Image.Source>
                             <Binding Path="DRRobotGripStatus" ElementName="uc" Converter="{StaticResource AnimationArmImageCvt}"/>
-                            <!--疑问-->
+                          
                         </Image.Source>
                         <Image.RenderTransform>
                             <TransformGroup>
@@ -3255,7 +3255,7 @@
                     </Image>
 
                 </Grid>
-                <StackPanel Height="60">
+                <StackPanel Height="60" Panel.ZIndex="-1">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="180"/>

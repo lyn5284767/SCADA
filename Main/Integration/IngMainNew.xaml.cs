@@ -239,6 +239,9 @@ namespace Main.Integration
         {
             try
             {
+                this.bigHookRealTimeValue.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["156To159BigHookEncoderRealTimeValue"], Mode = BindingMode.OneWay, Converter = new DivideHundredConverter() });
+                this.tbKava.SetBinding(TextBlock.TextProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["575b6"], Mode = BindingMode.OneWay, Converter = new KavaConverter() });
+
                 this.tbLinkStatus.SetBinding(TextBlock.TextProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["460b0"], Mode = BindingMode.OneWay, Converter = new LinkOpenOrCloseConverter() });
                 MultiBinding LinkErrorMultiBind = new MultiBinding();
                 LinkErrorMultiBind.Converter = new LinkErrorCoverter();
@@ -248,6 +251,10 @@ namespace Main.Integration
                 LinkErrorMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["460b2"], Mode = BindingMode.OneWay });
                 LinkErrorMultiBind.NotifyOnSourceUpdated = true;
                 this.LinkError.SetBinding(TextBlock.TextProperty, LinkErrorMultiBind);
+
+                this.tbZeroSet.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["575b0"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.cbLink.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["460b0"], Mode = BindingMode.OneWay, Converter = new InterLockingOppConverter() });
+
             }
             catch (Exception ex)
             {
@@ -336,7 +343,7 @@ namespace Main.Integration
                 this.Warnning();
                 this.Communcation();
                 this.MonitorSysStatus();
-               
+
             }));
         }
 
@@ -372,6 +379,10 @@ namespace Main.Integration
                 this.tmpStatus = GlobalData.Instance.da["508b6"].Value.Boolean;
 
             if (!GlobalData.Instance.ComunciationNormal) this.tbAlarm.Text = "网络连接失败！";
+            else
+            {
+                if (this.tbAlarm.Text == "网络连接失败！") this.tbAlarm.Text = "";
+            }
             #endregion
         }
 
@@ -381,7 +392,7 @@ namespace Main.Integration
             {
                 if (iTimeCnt % 10 == 0)
                 {
-                    if (alarmKey.Count > 0)
+                    if (alarmKey.ContainsValue(1)|| alarmKey.ContainsValue(2))
                     {
                         this.tbAlarm.FontSize = 14;
                         this.tbAlarm.Visibility = Visibility.Visible;
@@ -410,7 +421,7 @@ namespace Main.Integration
                     else
                     {
                         this.tbAlarm.Visibility = Visibility.Hidden;
-                        this.tbAlarm.Text = "";
+                        this.tbAlarm.Text = "暂无";
                     }
                 }
                 else
@@ -457,7 +468,6 @@ namespace Main.Integration
                     this.workMode.IsChecked = false;
                     if (alarmKey["设备工作模式不一致"] == 0) alarmKey["设备工作模式不一致"] = 1;
                 }
-
                 // 存在的设备全为4，设备不存在为-1，则为手动
                 if ((this.sfOprModel == 4 || this.sfOprModel == -1)
                     && (this.drOprModel == 4 || this.drOprModel == -1)
@@ -555,22 +565,8 @@ namespace Main.Integration
                 else if (drDes == -1) this.tbCurDes.Text = "未配置钻台面";
                 else this.tbCurDes.Text = "未知";
                 // 选择指梁
-                if (sfSelectDrill == drSelectDrill) // 二层台钻台面都配置且选择同一指梁
-                {
-                    if (sfSelectDrill <= 16 && sfSelectDrill >= 1)
-                    {
-                        this.tbCurSelectDrill.Text = "左" + sfSelectDrill;
-                    }
-                    else if (sfSelectDrill <= 32 && sfSelectDrill > 16)
-                    {
-                        this.tbCurSelectDrill.Text = "右" + (sfSelectDrill - 16);
-                    }
-                    else
-                    {
-                        this.tbCurSelectDrill.Text = "未知";
-                    }
-                }
-                else if (sfSelectDrill == -1)// 二层台未配置
+               
+                if (sfSelectDrill == -1)// 二层台未配置
                 {
                     if (drSelectDrill <= 16 && drSelectDrill >= 1)
                     {
@@ -585,7 +581,7 @@ namespace Main.Integration
                         this.tbCurSelectDrill.Text = "未知";
                     }
                 }
-                else if (drSelectDrill == -1)// 钻台面未配置
+                else
                 {
                     if (sfSelectDrill <= 16 && sfSelectDrill >= 1)
                     {
@@ -600,19 +596,16 @@ namespace Main.Integration
                         this.tbCurSelectDrill.Text = "未知";
                     }
                 }
-                else
-                {
-                    this.tbCurSelectDrill.Text = "指梁选择不一致";
-                }
                 // 460b0=true联动开启
-                if (GlobalData.Instance.da["460b0"] != null && GlobalData.Instance.da["460b0"].Value.Boolean && nowTechnique != tmpTechnique)
+                if (nowTechnique != tmpTechnique)
                 {
                     if (SetNowTechniqueEvent != null)
                     {
                         SetNowTechniqueEvent(nowTechnique);
                     }
+                    tmpTechnique = nowTechnique;
                 }
-                tmpTechnique = nowTechnique;
+           
                 // 二层台电机回零使能状态
                 if (GlobalData.Instance.da["carMotorRetZeroStatus"].Value.Boolean && GlobalData.Instance.da["armMotorRetZeroStatus"].Value.Boolean
                     && GlobalData.Instance.da["rotateMotorRetZeroStatus"].Value.Boolean && !GlobalData.Instance.da["carMotorWorkStatus"].Value.Boolean
@@ -654,7 +647,7 @@ namespace Main.Integration
             try
             {
                 // 6.30新增
-                this.oobLink.SetBinding(OnOffButton.OnOffButtonCheckProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["460b0"], Mode = BindingMode.OneWay });
+                //this.oobLink.SetBinding(OnOffButton.OnOffButtonCheckProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["460b0"], Mode = BindingMode.OneWay });
                 this.tbLink.SetBinding(TextBlock.TextProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["460b0"], Mode = BindingMode.OneWay, Converter = new LinkOpenOrCloseConverter() });
                 //MultiBinding LinkErrorMultiBind = new MultiBinding();
                 //LinkErrorMultiBind.Converter = new LinkErrorCoverter();
@@ -718,22 +711,29 @@ namespace Main.Integration
         /// <param name="isChecked"></param>
         private void OnOffButton_CBCheckedEvent(bool isChecked)
         {
-            if (isChecked)
+            if (!GlobalData.Instance.da["460b0"].Value.Boolean)// 联动开启
             {
                 byte[] byteToSend = new byte[10] { 1, 32, 10, 1, 0, 0, 0, 0, 0, 0 };
                 GlobalData.Instance.da.SendBytes(byteToSend);
             }
-            else
+            else// 联动关闭
             {
                 byte[] byteToSend = new byte[10] { 1, 32, 10, 0, 0, 0, 0, 0, 0, 0 };
                 GlobalData.Instance.da.SendBytes(byteToSend);
             }
+           
+           
         }
         /// <summary>
         /// 操作模式
         /// </summary>
         private void btn_OpState(object sender, EventArgs e)
         {
+            //if (!GlobalData.Instance.da["460b0"].Value.Boolean)
+            //{
+            //    System.Windows.MessageBox.Show("联动未开启，不允许设置");
+            //    return;
+            //}
             byte[] sfbyteToSend;// 二层台
             byte[] drbyteToSend;// 钻台面
             byte[] sirbyteToSend;// 铁钻工
@@ -769,6 +769,11 @@ namespace Main.Integration
         /// </summary>
         private void btn_WorkModel(object sender, EventArgs e)
         {
+            //if (!GlobalData.Instance.da["460b0"].Value.Boolean)
+            //{
+            //    System.Windows.MessageBox.Show("联动未开启，不允许设置");
+            //    return;
+            //}
             byte[] sfbyteToSend;// 二层台
             byte[] drbyteToSend;// 钻台面
             byte[] sirbyteToSend;// 铁钻工
@@ -776,13 +781,13 @@ namespace Main.Integration
             {
                 sfbyteToSend = GlobalData.Instance.SendByte(new List<byte> { 2, 1 });
                 drbyteToSend = new byte[10] { 1, 32, 4, 41, 0, 0, 0, 0, 0, 0 };
-                sirbyteToSend = new byte[10] { 23, 17, 1, 1, 0, 0, 0, 0, 0, 0 };
+                sirbyteToSend = new byte[10] { 23, 17, 2, 1, 0, 0, 0, 0, 0, 0 };
             }
             else
             {
                 sfbyteToSend = GlobalData.Instance.SendByte(new List<byte> { 2, 2 });
                 drbyteToSend = new byte[10] { 1, 32, 4, 40, 0, 0, 0, 0, 0, 0 };
-                sirbyteToSend = new byte[10] { 23, 17, 1, 2, 0, 0, 0, 0, 0, 0 };
+                sirbyteToSend = new byte[10] { 23, 17, 2, 2, 0, 0, 0, 0, 0, 0 };
             }
             if (GlobalData.Instance.da.GloConfig.SFType == 1) // 二层台选择
             {
@@ -835,6 +840,55 @@ namespace Main.Integration
         {
             DrillSetWindow window = new DrillSetWindow();
             window.ShowDialog();
+        }
+        /// <summary>
+        /// 零位标定
+        /// </summary>
+        private void tbZeroSet_Checked(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[] { 16, 1, 24, 1, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+            ShowTips();
+        }
+        /// <summary>
+        /// 取消零位标定
+        /// </summary>
+        private void tbZeroUnSet_Checked(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[] { 16, 1, 24, 11, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+            ShowTips();
+        }
+
+        private void ShowTips()
+        {
+            Thread.Sleep(500);
+            string msg = GetMsg(GlobalData.Instance.da["155InterlockPromptMessageCode"].Value.Byte);
+            if (msg != string.Empty)
+            {
+                System.Windows.MessageBox.Show(msg);
+            }
+        }
+
+        private string GetMsg(int val)
+        {
+            if (val == 1) return "零位标定不合理";
+
+            else return string.Empty;
+        }
+
+        private void cbLink_Clicked(object sender, EventArgs e)
+        {
+            if(!this.cbLink.IsChecked)
+            {
+                byte[] byteToSend = new byte[10] { 1, 32, 10, 1, 0, 0, 0, 0, 0, 0 };
+                GlobalData.Instance.da.SendBytes(byteToSend);
+            }
+            else// 联动关闭
+            {
+                byte[] byteToSend = new byte[10] { 1, 32, 10, 0, 0, 0, 0, 0, 0, 0 };
+                GlobalData.Instance.da.SendBytes(byteToSend);
+            }
         }
     }
 }

@@ -46,7 +46,9 @@
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="100"/>
                     <RowDefinition Height="60"/>
-                </Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
             <Button Width="325" Height="40" Panel.ZIndex="1" HorizontalAlignment="Center"  
                                  Background="#2B71CA" BorderBrush="#92C202" Grid.ColumnSpan="2">
                 <TextBlock Text="二层台(三一)" Foreground="White" FontSize="24"/>
@@ -56,10 +58,13 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
                     <cl:BasedSwitchButton Grid.Column="0" Name="sfoperateMode" ContentLeft="手动" ContentDown="操作模式" ContentRight="自动" UserControlClicked="btn_SFOpState"/>
                     <cl:BasedSwitchButton Grid.Column="1" Name="sfworkMode" ContentLeft="排杆" ContentDown="工作模式" ContentRight="送杆" UserControlClicked="btn_SFWorkModel"/>
-                </Grid>
+                <cl:BasedSwitchButton Name="controlModel" Grid.Column="2" Margin="5,0,0,0" ContentLeft="司钻" ContentDown="控制模式" ContentRight="遥控" UserControlClicked="btn_controlModel"/>
+
+            </Grid>
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -82,6 +87,8 @@
                     </StackPanel>
                 </Border>
             </Grid>
+            <TextBlock x:Name="tbSFAlarm" Grid.Row="3" Text="" FontSize=" 18" Foreground="#E0496D"></TextBlock>
+            <TextBlock x:Name="tbSFOpr" Grid.Row="4" Text="" FontSize=" 18" Foreground="#E0496D"></TextBlock>
         </Grid>
     </Grid>
 </UserControl>

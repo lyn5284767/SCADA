@@ -344,7 +344,7 @@
                         <cl:SymbolMapping StrContent="" Name="DrillFloorOrSecondFloor" LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                     <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
-                        <cl:SymbolMapping StrContent="" Name="Reserve503b6" LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <cl:SymbolMapping StrContent="" Name="smKAVA" LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                     <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
                         <cl:SymbolMapping StrContent="" Name="Reserve503b7" LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -400,7 +400,7 @@
                         <TextBlock Text="503.5" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
                     </Border>
                     <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
-                        <TextBlock Text="503.6" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
+                        <TextBlock Text="575.6" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
                     </Border>
                     <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
                         <TextBlock Text="503.7" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
@@ -471,7 +471,7 @@
                         <TextBlock Text="钻台面/二层台" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontWeight="Bold"/>
                     </Border>
                     <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
-                        <TextBlock Text="预留" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontWeight="Bold"/>
+                        <TextBlock Text="卡瓦关门" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontWeight="Bold"/>
                     </Border>
                     <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
                         <TextBlock Text="预留" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontWeight="Bold"/>

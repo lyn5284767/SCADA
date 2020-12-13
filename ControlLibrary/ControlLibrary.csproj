@@ -144,6 +144,9 @@
     <Compile Include="HalfCircleGauge.xaml.cs">
       <DependentUpon>HalfCircleGauge.xaml</DependentUpon>
     </Compile>
+    <Compile Include="InputControl\SetControl.xaml.cs">
+      <DependentUpon>SetControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="InputControl\TextWithBtnNew.xaml.cs">
       <DependentUpon>TextWithBtnNew.xaml</DependentUpon>
     </Compile>
@@ -284,6 +287,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="HalfCircleGauge.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InputControl\SetControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

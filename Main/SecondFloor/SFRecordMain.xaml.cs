@@ -532,5 +532,9 @@ namespace Main.SecondFloor
         /// 时间
         /// </summary>
         public string TimeStamp { get; set; }
+        /// <summary>
+        /// 标准值
+        /// </summary>
+        public string StandardValue { get; set; }
     }
 }

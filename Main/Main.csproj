@@ -162,6 +162,12 @@
     <Compile Include="DrillFloor\Sany\DRParamOne.xaml.cs">
       <DependentUpon>DRParamOne.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DrillFloor\Sany\DRPosSetMain.xaml.cs">
+      <DependentUpon>DRPosSetMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DrillFloor\Sany\DRPosSetOne.xaml.cs">
+      <DependentUpon>DRPosSetOne.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DrillFloor\Sany\DRPosSetting.xaml.cs">
       <DependentUpon>DRPosSetting.xaml</DependentUpon>
     </Compile>
@@ -174,6 +180,12 @@
     <Compile Include="DrillFloor\Sany\DRParamThree.xaml.cs">
       <DependentUpon>DRParamThree.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DrillFloor\Sany\DRPosSetTwo.xaml.cs">
+      <DependentUpon>DRPosSetTwo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DrillFloor\Sany\DRPosThree.xaml.cs">
+      <DependentUpon>DRPosThree.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DrillFloor\Sany\DRSecureSetting.xaml.cs">
       <DependentUpon>DRSecureSetting.xaml</DependentUpon>
     </Compile>
@@ -182,6 +194,9 @@
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalAlarm.xaml.cs">
+      <DependentUpon>GlobalAlarm.xaml</DependentUpon>
     </Compile>
     <Compile Include="HydraulicStation\JJC\JJC_HSMain.xaml.cs">
       <DependentUpon>JJC_HSMain.xaml</DependentUpon>
@@ -203,6 +218,9 @@
     </Compile>
     <Compile Include="Integration\DrillSetWindow.xaml.cs">
       <DependentUpon>DrillSetWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Integration\IngLockList.xaml.cs">
+      <DependentUpon>IngLockList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Integration\IngMain.xaml.cs">
       <DependentUpon>IngMain.xaml</DependentUpon>
@@ -279,6 +297,24 @@
     <Compile Include="SecondFloor\SFParamTwo.xaml.cs">
       <DependentUpon>SFParamTwo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SecondFloor\SFPosSetFive.xaml.cs">
+      <DependentUpon>SFPosSetFive.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SecondFloor\SFPosSetFour.xaml.cs">
+      <DependentUpon>SFPosSetFour.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SecondFloor\SFPosSetOne.xaml.cs">
+      <DependentUpon>SFPosSetOne.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SecondFloor\SFPosSetSix.xaml.cs">
+      <DependentUpon>SFPosSetSix.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SecondFloor\SFPosSetThree.xaml.cs">
+      <DependentUpon>SFPosSetThree.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SecondFloor\SFPosSetTwo.xaml.cs">
+      <DependentUpon>SFPosSetTwo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SecondFloor\SFRecordThree.xaml.cs">
       <DependentUpon>SFRecordThree.xaml</DependentUpon>
     </Compile>
@@ -348,6 +384,9 @@
     <Compile Include="SecondFloor\SFDrillCollarSample.xaml.cs">
       <DependentUpon>SFDrillCollarSample.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SecondFloor\SFStop.xaml.cs">
+      <DependentUpon>SFStop.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SIR\BS\SIRBSMain.xaml.cs">
       <DependentUpon>SIRBSMain.xaml</DependentUpon>
     </Compile>
@@ -362,6 +401,9 @@
     </Compile>
     <Compile Include="SIR\SanyRail\SIRRailWayMain.xaml.cs">
       <DependentUpon>SIRRailWayMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SecondFloor\SFPosSetMain.xaml.cs">
+      <DependentUpon>SFPosSetMain.xaml</DependentUpon>
     </Compile>
     <Compile Include="SIR\Sany\SIRCameraFullScreen.xaml.cs">
       <DependentUpon>SIRCameraFullScreen.xaml</DependentUpon>
@@ -383,6 +425,9 @@
     </Compile>
     <Compile Include="SIR\Sany\SIRPosSetting.xaml.cs">
       <DependentUpon>SIRPosSetting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SIR\Sany\SIRRecord.xaml.cs">
+      <DependentUpon>SIRRecord.xaml</DependentUpon>
     </Compile>
     <Compile Include="SIR\Sany\SIRSecureSetting.xaml.cs">
       <DependentUpon>SIRSecureSetting.xaml</DependentUpon>
@@ -426,6 +471,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DrillFloor\Sany\DRPosSetMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DrillFloor\Sany\DRPosSetOne.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DrillFloor\Sany\DRPosSetting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -442,7 +495,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DrillFloor\Sany\DRPosSetTwo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DrillFloor\Sany\DRPosThree.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DrillFloor\Sany\DRSecureSetting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GlobalAlarm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -471,6 +536,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Integration\DrillSetWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Integration\IngLockList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -578,6 +647,30 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SecondFloor\SFPosSetFive.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SecondFloor\SFPosSetFour.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SecondFloor\SFPosSetOne.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SecondFloor\SFPosSetSix.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SecondFloor\SFPosSetThree.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SecondFloor\SFPosSetTwo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SecondFloor\SFRecordThree.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -670,6 +763,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SecondFloor\SFStop.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SIR\BS\SIRBSMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -687,6 +784,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SIR\SanyRail\SIRRailWayMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SecondFloor\SFPosSetMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -715,6 +816,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SIR\Sany\SIRPosSetting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SIR\Sany\SIRRecord.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -979,6 +1084,8 @@
   <ItemGroup>
     <Resource Include="Images\derrick.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\hand.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

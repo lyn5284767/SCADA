@@ -112,6 +112,9 @@ namespace Main.SecondFloor
                 this.lampType_BackButton_EquiptStatus.SetBinding(SymbolMappingV.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["LeftHandleBackBtn"], Mode = BindingMode.OneWay, Converter = boolTagConverter });
                 this.lampType_UpButton_EquiptStatus.SetBinding(SymbolMappingV.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["LeftHandleUpBtn"], Mode = BindingMode.OneWay, Converter = boolTagConverter });
                 this.lampType_DownButton_EquiptStatus.SetBinding(SymbolMappingV.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["LeftHandleDownBtn"], Mode = BindingMode.OneWay, Converter = boolTagConverter });
+                this.lampType_MidUpButton_EquiptStatus.SetBinding(SymbolMappingV.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["514b4"], Mode = BindingMode.OneWay, Converter = boolTagConverter });
+                this.lampType_MidDownButton_EquiptStatus.SetBinding(SymbolMappingV.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["514b5"], Mode = BindingMode.OneWay, Converter = boolTagConverter });
+
                 this.lampType_UpSeesawButton_EquiptStatus.SetBinding(SymbolMappingV.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["LeftHandleUpSeesawBtn"], Mode = BindingMode.OneWay, Converter = boolTagConverter });
                 this.lampType_DownSeesawButton_EquiptStatus.SetBinding(SymbolMappingV.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["LeftHandleDownSeesawBtn"], Mode = BindingMode.OneWay, Converter = boolTagConverter });
 
@@ -191,6 +194,9 @@ namespace Main.SecondFloor
                 secondVersionDateMultiBind.NotifyOnSourceUpdated = true;
                 this.tbSecondVersionDate.SetBinding(TextBlock.TextProperty, secondVersionDateMultiBind);
                 #endregion
+
+                this.cbDrillDwon.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["103b4"], Mode = BindingMode.OneWay });
+
             }
             catch (Exception ex)
             {
@@ -280,6 +286,14 @@ namespace Main.SecondFloor
         private void btn_ClearDrillUpCnt(object sender, RoutedEventArgs e)
         {
             byte[] byteToSend = SendByte(new List<byte> { 22, 13 });
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 送杆提效模式
+        /// </summary>
+        private void cbDrillDwon_Clicked(object sender, EventArgs e)
+        {
+            byte[] byteToSend = SendByte(new List<byte> { 24, 4 });
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
     }

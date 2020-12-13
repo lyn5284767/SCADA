@@ -14,7 +14,7 @@
             <dxc:ChartControl.Legend>
                 <dxc:Legend HorizontalPosition="Left" VerticalPosition="TopOutside" Orientation="Horizontal" />
             </dxc:ChartControl.Legend>
-            <dxc:XYDiagram2D Margin="0,0,0,-10">
+            <dxc:XYDiagram2D Margin="-10,0,-10,-10">
                 <dxc:XYDiagram2D.AxisX>
                     <dxc:AxisX2D x:Name="axisX">
                         <dxc:AxisX2D.DateTimeScaleOptions>
@@ -39,9 +39,11 @@
                                   DataSource="{Binding DataSource}"
                                   ArgumentDataMember="DateAndTime"
                                   ValueDataMember="Process1"
-                                  ArgumentScaleType="DateTime">
+                                  ArgumentScaleType="DateTime"
+                                  
+                                  >
                     <dxc:LineSeries2D.LineStyle>
-                        <dxc:LineStyle Thickness="1" />
+                        <dxc:LineStyle Thickness="2" />
                     </dxc:LineSeries2D.LineStyle>
                 </dxc:LineSeries2D>
             </dxc:XYDiagram2D>

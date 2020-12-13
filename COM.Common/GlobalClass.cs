@@ -107,6 +107,8 @@ namespace COM.Common
         public string Content { get; set; }
     }
 
+
+
     public enum UdpType
     {
         PlayCamera = 0
@@ -138,6 +140,8 @@ namespace COM.Common
         /// 存储周期
         /// </summary>
         public int Cycle { get; set; }
+
+        public string StandardValue { get; set; }
     }
     /// <summary>
     /// 自研液压站存储类型
@@ -148,7 +152,9 @@ namespace COM.Common
         HS_Self_OilTmp = 2,
         HS_Self_OilLevel = 3,
         HS_Self_MainFlow = 4,
-        HS_Self_MainTwoFlow = 5
+        HS_Self_MainTwoFlow = 5,
+        SIR_Self_DrillTorque = 6,
+        SIR_Self_CosingTorque=7
     }
     /// <summary>
     /// 标准集成界面设备加载状态
@@ -377,4 +383,21 @@ namespace COM.Common
         }
     }
     #endregion
+
+    public class AlarmInfo
+    {
+        /// <summary>
+        /// 告警对应的数据库TagName
+        /// </summary>
+        public string TagName { get; set; }
+        /// <summary>
+        /// 告警描述
+        /// </summary>
+        public string Description { get; set; }
+
+        /// <summary>
+        /// 当前告警类型 0-无告警；1-告警且未显示；2-告警且已经显示
+        /// </summary>
+        public int NowType { get; set; }
+    }
 }

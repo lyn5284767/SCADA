@@ -142,6 +142,8 @@ namespace Main.DrillFloor
                 this.WellLocation.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["334b1"], Mode = BindingMode.OneWay, Converter = new OppositeBoolTagConverter() });
                 this.ForbidToCat.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["333b3"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
                 this.CatLocked.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["334b4"], Mode = BindingMode.OneWay, Converter = new OppositeBoolTagConverter() });
+                this.smLink.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["334b7"], Mode = BindingMode.OneWay, Converter = new OppositeBoolTagConverter() });
+
                 #endregion
                 this.handleX.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drX"], Mode = BindingMode.OneWay });
                 this.handleY.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drY"], Mode = BindingMode.OneWay });

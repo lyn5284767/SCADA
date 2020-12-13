@@ -23,7 +23,7 @@
                 <Button.Template>
                     <ControlTemplate>
                         <Grid>
-                            <Image Margin="2" Source="..\Images\CancelFullScreen.png"/>
+                            <Image Margin="2" Source="..\..\Images\CancelFullScreen.png"/>
                         </Grid>
                     </ControlTemplate>
                 </Button.Template>

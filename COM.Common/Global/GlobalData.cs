@@ -139,6 +139,10 @@ namespace COM.Common
         public bool SIRHigh;
 
         public bool Ing { get; set; }
+        /// <summary>
+        /// 全局告警
+        /// </summary>
+        public bool HS_OilHigh { get; set; } = false;
 
         /// <summary>
         /// 组协议

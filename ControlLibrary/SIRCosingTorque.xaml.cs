@@ -30,5 +30,22 @@ namespace ControlLibrary
             viewModel.AddPoints(v1);
             this.txtTitle.Content = "套管扭矩(" + v1 + ")";
         }
+
+        public void AddPoints(double v1,double v2)
+        {
+            viewModel.AddPoints(v1);
+            this.txtTitle.Content = "套管扭矩(" + v1 + ")" + "  最大值:(" + v2 + ")";
+        }
+
+        public void ShowMax(double v)
+        {
+            this.txtTitle.Content = "套管扭矩(0)" + "  最大值:(" + v + ")";
+        }
+
+        public void ClearPoint()
+        {
+            viewModel.ClearPoint();
+            this.txtTitle.Content = "套管扭矩(0)";
+        }
     }
 }

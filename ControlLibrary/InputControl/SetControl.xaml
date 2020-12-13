@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="ControlLibrary.InputControl.SetControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ControlLibrary.InputControl"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="450" Name="uc">
+    <Grid >
+        <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="2" Margin="1">
+            <Border.Effect>
+                <DropShadowEffect x:Name="sh" BlurRadius="20" Color="Gray" Direction="20" Opacity="0" RenderingBias="Quality" ShadowDepth="1"/>
+            </Border.Effect>
+        </Border>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Name="stackPanel" >
+            <TextBlock Name="tbk" Text="参数配置" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="24" FontFamily="微软雅黑" FontWeight="Bold"  Width="160" TextAlignment="Center" Foreground="Black">
+            </TextBlock>
+            <TextBox x:Name="textBoxShow" IsReadOnly="True" Text="{Binding Path=SetControlShow, ElementName=uc}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1,0,1,0" FontSize="24" FontFamily="微软雅黑" FontWeight="Bold" Width="130" TextAlignment="Center" Foreground="Black"/>
+
+            <Button x:Name="textBoxSet" Background="#F49466" Click="TextBoxSet_MouseDown" Content="标定" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,0,0" FontSize="24" FontFamily="微软雅黑" FontWeight="Bold" Height="50"/>
+
+
+            <Button x:Name="textBoxcanel" Background="LightBlue" Click="TextBoxCancel_MouseDown" Content="取消" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="5,0,0,0"  FontSize="24" FontFamily="微软雅黑" FontWeight="Bold" Height="50"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -31,6 +31,9 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
     </UserControl.Resources>
     <Grid>
         <StackPanel Grid.Column="1">
@@ -103,7 +106,7 @@
                 </Grid>
             </Border>
             
-            <Button Content="确 认 配 置" Click="Button_tabItemParameterConfiguration_Confirm" Style="{StaticResource btnGreen}" FontWeight="Bold" FontFamily="宋体" FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="30" IsDefault="False"/>
+            <Button Content="确 认 配 置" Click="Button_tabItemParameterConfiguration_Confirm" Style="{StaticResource btnGreen}" FontWeight="Bold" FontFamily="宋体" FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="35" IsDefault="False"/>
         </StackPanel>
     </Grid>
 </UserControl>

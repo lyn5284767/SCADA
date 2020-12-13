@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace ControlLibrary.InputControl
 {
@@ -71,6 +72,17 @@ namespace ControlLibrary.InputControl
             {
                 GlobalData.Instance.SetParam[i] = 0;
             }
+            BrushConverter bc = new BrushConverter();
+
+            this.stackPanel.Background = (Brush)bc.ConvertFrom("#FFFFFF");
+        }
+
+
+        private void cbSet_GotFocus(object sender, RoutedEventArgs e)
+        {
+            BrushConverter bc = new BrushConverter();
+
+            this.stackPanel.Background = (Brush)bc.ConvertFrom("#4E80C8");
         }
     }
 }

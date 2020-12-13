@@ -89,6 +89,8 @@
                 <StackPanel>
                     <cl:CustomCheckBox ContentString="缺口互锁" Margin="15" Name="cbGapLock" UserControlClicked="cbGapLock_Clicked" />
                     <cl:CustomCheckBox ContentString="安全门互锁" Margin="15" Name="cbSafeDoorLock" UserControlClicked="cbSafeDoorLock_Clicked" />
+                    <cl:CustomCheckBox ContentString="井口/鼠洞安全限位" Margin="15" Name="cbWellSafeLock" UserControlClicked="cbWellSafeLock_Clicked" />
+
                     <TextBlock Text="井口防喷状态:" FontSize="20" FontWeight="Bold" Margin="15"></TextBlock>
                     <TextBlock Text="未知" FontSize="20" FontWeight="Bold" Margin="15,0,0,0" Name="tbWellStatus" Foreground="#4C80FF"></TextBlock>
                     <TextBlock Text="铁钻工互锁状态:" FontSize="20" FontWeight="Bold" Margin="15"></TextBlock>

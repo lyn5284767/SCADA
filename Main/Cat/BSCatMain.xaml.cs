@@ -56,7 +56,16 @@ namespace Main.Cat
         {
             try
             {
-                this.controlModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["701b0"], Mode = BindingMode.OneWay });
+                this.controlModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["701b1"], Mode = BindingMode.OneWay });
+                BSCatControlMultiConverter bsCatControlMultiConverter = new BSCatControlMultiConverter();
+                MultiBinding bsCatControlMultiBind = new MultiBinding();
+                bsCatControlMultiBind.Converter = bsCatControlMultiConverter;
+                bsCatControlMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["701b0"], Mode = BindingMode.OneWay });
+                bsCatControlMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["701b1"], Mode = BindingMode.OneWay });
+                bsCatControlMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["701b2"], Mode = BindingMode.OneWay });
+                bsCatControlMultiBind.NotifyOnSourceUpdated = true;
+                this.controlModel.SetBinding(BasedSwitchButton.ContentDownProperty, bsCatControlMultiBind);
+
                 this.MainPumpOne.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["705b1"], Mode = BindingMode.OneWay,Converter= new CheckedIsFalseConverter() });
                 this.MainPumpTwo.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["705b3"], Mode = BindingMode.OneWay, Converter = new CheckedIsFalseConverter() });
                 this.LeftOrRight.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["706b1"], Mode = BindingMode.OneWay});
@@ -137,6 +146,40 @@ namespace Main.Cat
                 this.smTiltDown.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["510b5"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
                 this.smOrganKickOut.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["510b6"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
                 this.smOrganRetract.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["510b7"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+
+                #region 6键右手柄
+                this.tbSixLeftOrRight.SetBinding(TextBox.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["RgihtHandLeftOrRight"], Mode = BindingMode.OneWay });
+                this.tbSixFrontOrBehind.SetBinding(TextBox.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["RgihtHandFrontOrBehind"], Mode = BindingMode.OneWay });
+
+                ArrowDirectionMultiConverter sixarrowDirectionMultiConverter = new ArrowDirectionMultiConverter();
+                MultiBinding SixArrowMultiBind = new MultiBinding();
+                SixArrowMultiBind.Converter = sixarrowDirectionMultiConverter;
+                SixArrowMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["517b4"], Mode = BindingMode.OneWay });
+                SixArrowMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["517b5"], Mode = BindingMode.OneWay });
+                SixArrowMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["517b2"], Mode = BindingMode.OneWay });
+                SixArrowMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["517b3"], Mode = BindingMode.OneWay });
+                SixArrowMultiBind.NotifyOnSourceUpdated = true;
+                this.SixArrow_EquiptStatus.SetBinding(Image.SourceProperty, SixArrowMultiBind);
+                this.smSixLUp.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["518b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.smSixLDown.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["518b1"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.smSixRUp.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["518b2"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.smSixRDown.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["518b3"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.smSixMidUp.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["518b4"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.smSixMidDown.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["518b5"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.smSixBack.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["517b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.smSixEnable.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["518b6"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+
+                if (GlobalData.Instance.da["172RightHandleConfigurationInformation"].Value.Byte == 9)
+                {
+                    this.gdSixHand.Visibility = Visibility.Visible;
+                    this.gdOldHand.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    this.gdOldHand.Visibility = Visibility.Visible;
+                    this.gdSixHand.Visibility = Visibility.Collapsed;
+                }
+                #endregion
             }
             catch (Exception ex)
             {
@@ -152,6 +195,10 @@ namespace Main.Cat
                 {
                     Warning();
                     if (!GlobalData.Instance.ComunciationNormal) this.tbTips.Text = "网络连接失败！";
+                    else
+                    {
+                        if (this.tbTips.Text == "网络连接失败！") this.tbTips.Text = "";
+                    }
                 }));
             }
             catch (Exception ex)
@@ -161,11 +208,15 @@ namespace Main.Cat
         }
         private void Warning()
         {
-            if (GlobalData.Instance.da["504b2"].Value.Boolean)
+            if (GlobalData.Instance.da["504b2"].Value.Boolean) // true为选择猫道
             {
                 if (!GlobalData.Instance.da["334b4"].Value.Boolean && !GlobalData.Instance.da["505b7"].Value.Boolean)
                 {
                     this.tbTips.Text = "禁止猫道前进，请先将钻台面回收至安全位置！";
+                }
+                else
+                {
+                    this.tbTips.Text = "";
                 }
             }
             else
@@ -219,7 +270,7 @@ namespace Main.Cat
         private void btn_InOrLeft(object sender, EventArgs e)
         {
             byte[] byteToSend;
-            if (this.LeftOrRight.IsChecked) //当前内
+            if (this.InOrOut.IsChecked) //当前内
             {
                 byteToSend = new byte[10] { 80, 48, 7, 2, 0, 0, 0, 0, 0, 0 };
             }

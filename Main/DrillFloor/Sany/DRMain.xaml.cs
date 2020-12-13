@@ -79,7 +79,13 @@ namespace Main.DrillFloor
             //byte[] data = new byte[10] { 80, 33, 0, 0, 0, 0, 0, 0, 0, 30 };
             byte[] data = new byte[10] { 80, 33, 0, 0, 0, 0, 0, 0, 30, 30 };
             GlobalData.Instance.da.SendBytes(data);
-
+            Thread.Sleep(50);
+            // 不为自动或手动则切换为手动
+            if (!(GlobalData.Instance.da["droperationModel"].Value.Byte == 4 || GlobalData.Instance.da["droperationModel"].Value.Byte == 5))
+            {//切换到手动命令
+                data = new byte[10] { 1, 32, 3, 30, 0, 0, 0, 0, 0, 0 };
+                GlobalData.Instance.da.SendBytes(data);
+            }
             count = 0;
             GlobalData.Instance.DRNowPage = "DRMain";
             pageChange = new System.Timers.Timer(500);
@@ -242,6 +248,18 @@ namespace Main.DrillFloor
                             this.sbDrillDown.Visibility = Visibility.Visible;
                         }
                     }
+
+                    if (GlobalData.Instance.da["droperationModel"].Value.Byte == 1)
+                    {
+                        this.warnTwo.Text = "当前系统为紧急停止状态";
+                    }
+                    else
+                    {
+                        if (this.warnTwo.Text == "当前系统为紧急停止状态")
+                            this.warnTwo.Text = "";
+                    }
+
+                  
                 }));
             }
             catch (Exception ex)
@@ -306,7 +324,7 @@ namespace Main.DrillFloor
             }
             else if (warnOne == 31)
             {
-                this.warnOne.Text = "抓手中右钻杆，请切换手动处理";
+                this.warnOne.Text = "抓手中有钻杆，请切换手动处理";
             }
             else if (warnOne == 32)
             {
@@ -547,6 +565,10 @@ namespace Main.DrillFloor
             this.tmpStatus = GlobalData.Instance.da["508b6"].Value.Boolean;
 
             if (!GlobalData.Instance.ComunciationNormal) this.warnOne.Text = "网络连接失败！";
+            else
+            {
+                if (this.warnOne.Text == "网络连接失败！") this.warnOne.Text = "";
+            }
         }
 
         /// <summary>
@@ -572,13 +594,13 @@ namespace Main.DrillFloor
         private void btn_drOpState(object sender, EventArgs e)
         {
             byte[] byteToSend;
-            if (this.droperateMode.IsChecked) //自动
-            {
-                byteToSend = new byte[10] { 1, 32, 3, 30, 0, 0, 0, 0, 0, 0 };
-            }
-            else// 手动
+            if (this.droperateMode.IsChecked) //当前手动切换自动
             {
                 byteToSend = new byte[10] { 1, 32, 3, 31, 0, 0, 0, 0, 0, 0 };
+            }
+            else// 当前自动切换手动
+            {
+                byteToSend = new byte[10] { 1, 32, 3, 30, 0, 0, 0, 0, 0, 0 };
             }
 
             GlobalData.Instance.da.SendBytes(byteToSend);
@@ -643,17 +665,28 @@ namespace Main.DrillFloor
         /// </summary>
         private void btn_drTelecontrolModel(object sender, EventArgs e)
         {
-            byte[] byteToSend;
-            if (this.drTelecontrolModel.IsChecked) // 遥控
+            byte[] drbyteToSend;
+            byte[] sirbyteToSend;
+            byte[] sfbyteToSend;
+            if (this.drTelecontrolModel.IsChecked) // 司钻切遥控
             {
-                byteToSend = new byte[10] { 1, 32, 2, 21, 0, 0, 0, 0, 0, 0 };
+               
+                drbyteToSend = new byte[10] { 1, 32, 2, 21, 0, 0, 0, 0, 0, 0 }; // 钻台面-司钻切遥控
+                sirbyteToSend = new byte[10] { 23, 17, 10, 1, 0, 0, 0, 0, 0, 0 }; // 铁钻工-遥控切司钻
+                sfbyteToSend = new byte[10] { 16, 1, 27, 1, 1, 0, 0, 0, 0, 0 };// 二层台-遥控切司钻
+                GlobalData.Instance.da.SendBytes(drbyteToSend);
+                Thread.Sleep(50);
+                GlobalData.Instance.da.SendBytes(sirbyteToSend);
+                Thread.Sleep(50);
+                GlobalData.Instance.da.SendBytes(sfbyteToSend);
             }
-            else // 近控
+            else // 遥控切司钻
             {
-                byteToSend = new byte[10] { 1, 32, 2, 20, 0, 0, 0, 0, 0, 0 };
+                drbyteToSend = new byte[10] { 1, 32, 2, 20, 0, 0, 0, 0, 0, 0 };
+                GlobalData.Instance.da.SendBytes(drbyteToSend);
             }
 
-            GlobalData.Instance.da.SendBytes(byteToSend);
+         
         }
 
         /// <summary>
@@ -927,6 +960,7 @@ namespace Main.DrillFloor
                 string filePath = str1 + "\\video" + "\\video3";
                 string fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + ".avi";
                 ICameraFactory cameraOne = GlobalData.Instance.cameraList.Where(w => w.Info.ID == 3).FirstOrDefault();
+                if (cameraOne == null) return;
                 cameraOne.StopFile();
                 cameraOne.SaveFile(filePath, fileName);
                 DeleteOldFileName(filePath);
@@ -944,6 +978,7 @@ namespace Main.DrillFloor
                 string filePath = str1 + "\\video" + "\\video4";
                 string fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + ".avi";
                 ICameraFactory cameraTwo = GlobalData.Instance.cameraList.Where(w => w.Info.ID == 4).FirstOrDefault();
+                if (cameraTwo == null) return;
                 cameraTwo.StopFile();
                 cameraTwo.SaveFile(filePath, fileName);
                 DeleteOldFileName(filePath);
@@ -1071,6 +1106,7 @@ namespace Main.DrillFloor
             {
                 DRCameraFullScreen.Instance.gridCamera1.Children.Clear();
                 ICameraFactory cameraOne = GlobalData.Instance.cameraList.Where(w => w.Info.ID == 3).FirstOrDefault();
+                if (cameraOne == null) return;
                 CameraVideoStop1();
                 ChannelInfo info = GlobalData.Instance.chList.Where(w => w.ID == 3).FirstOrDefault();
 
@@ -1125,6 +1161,7 @@ namespace Main.DrillFloor
             try
             {
                 ICameraFactory cameraTwo = GlobalData.Instance.cameraList.Where(w => w.Info.ID == 4).FirstOrDefault();
+                if (cameraTwo == null) return;
                 CameraVideoStop2();
                 ChannelInfo info = GlobalData.Instance.chList.Where(w => w.ID == 4).FirstOrDefault();
                 //cameraTwo.SetSize(130, 200);
@@ -1230,6 +1267,20 @@ namespace Main.DrillFloor
         {
             byte[] byteToSend = GlobalData.Instance.SendToDR(new List<byte> { 13, 3 });
             GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 清除钻杆
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnClearDrill(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = System.Windows.MessageBox.Show("确认抓手已无钻杆，并清除此状态?", "提示信息", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                byte[] byteToSend = GlobalData.Instance.SendToDR(new List<byte> { 10, 1 });
+                GlobalData.Instance.da.SendBytes(byteToSend);
+            }
         }
     }
 }

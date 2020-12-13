@@ -88,8 +88,8 @@ namespace Main.SIR.Sany
                 #region 立柱参数
                 this.twtR17.SetBinding(TextWithTips.ShowTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfPipeUpSpeedSet"], Mode = BindingMode.OneWay });
                 this.twtR18.SetBinding(TextWithTips.ShowTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfPipeDownSpeedSet"], Mode = BindingMode.OneWay });
-                this.twtR19.SetBinding(TextWithTips.ShowTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfPipeUpHeightSet"], Mode = BindingMode.OneWay });
-                this.twtR20.SetBinding(TextWithTips.ShowTextWithTipsProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfPipeDownHeightSet"], Mode = BindingMode.OneWay });
+                this.twtR19.SetBinding(TextWithTips.ShowTextWithTipsProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfPipeUpHeightSet"], Mode = BindingMode.OneWay });
+                this.twtR20.SetBinding(TextWithTips.ShowTextWithTipsProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfPipeDownHeightSet"], Mode = BindingMode.OneWay });
                 #endregion
 
             }

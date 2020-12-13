@@ -91,14 +91,14 @@ namespace Main.DrillFloor
                         this.twtL51.ShowText = GlobalData.Instance.da["drReachMaxElectric"].ToString();// 伸出最大电流
                         this.twtL52.ShowText = GlobalData.Instance.da["drReachMinElectric"].ToString(); // 伸出最小电流
                         this.twtL53.ShowText = GlobalData.Instance.da["drReachSpeedRaise"].ToString(); // 伸出加速度
-                        this.twtL54.ShowText = GlobalData.Instance.da["drReachSpeedDown"].ToString(); // 伸出减速度
+                        this.twtL54.ShowText = GlobalData.Instance.da["drReachSpeedDow"].ToString(); // 伸出减速度
                         this.twtL55.ShowText = GlobalData.Instance.da["drReachSpeedCircle"].ToString(); // 伸出加减速周期
                         this.twtL56.ShowText = GlobalData.Instance.da["drReachSpeedReducePoint"].ToString(); // 伸出缓冲距离
 
                         this.twtL57.ShowText = GlobalData.Instance.da["drRetractMaxElectric"].ToString(); // 缩回最大电流
                         this.twtL58.ShowText = GlobalData.Instance.da["drRetractMinElectric"].ToString(); // 缩回最小电流
                         this.twtL59.ShowText = GlobalData.Instance.da["drRetractSpeedRaise"].ToString(); // 缩回加速度
-                        this.twtL60.ShowText = GlobalData.Instance.da["drRetractSpeedDown"].ToString(); // 缩回减速度
+                        this.twtL60.ShowText = GlobalData.Instance.da["drRetractSpeedDow"].ToString(); // 缩回减速度
                         this.twtL61.ShowText = GlobalData.Instance.da["drRetractSpeedCircle"].ToString(); // 缩回加减速周期
                         this.twtL62.ShowText = GlobalData.Instance.da["drRetractReducePoint"].ToString(); // 缩回缓冲距离
                         this.twtL63.ShowText = GlobalData.Instance.da["drSideMoveTime"].ToString(); // 侧移工作时间

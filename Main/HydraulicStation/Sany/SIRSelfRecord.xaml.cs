@@ -148,7 +148,7 @@ namespace Main.SIR
             this.projectLoad.Visibility = System.Windows.Visibility.Collapsed;
         }
 
-        string cond = "";
+        string cond = "Where  Type in (1,2,3,4,5)";
 
         private void Button_MouseDown(object sender, RoutedEventArgs e)
         {
@@ -157,7 +157,7 @@ namespace Main.SIR
             string eTime = this.endTime.SelectedDate.Value.ToString("yyyy-MM-dd HH:mm:ss");
             string condition = string.Empty;
             if (tagID != "0") condition = string.Format("Where Type = '{0}' and CreateTime>'{1}' and CreateTime<'{2}'", tagID, bTime, eTime);
-            else condition = string.Format("Where CreateTime>'{0}' and CreateTime<'{1}'", bTime, eTime);
+            else condition = string.Format("Where Type in (1,2,3,4,5) and CreateTime>'{0}' and CreateTime<'{1}'", bTime, eTime);
             cond = condition;
             QueryRecord();
         }

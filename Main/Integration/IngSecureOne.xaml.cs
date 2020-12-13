@@ -538,5 +538,19 @@ namespace Main.Integration
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         #endregion
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            IngLockList ingLock = new IngLockList();
+            ingLock.ShowDialog();
+        }
+        /// <summary>
+        /// 一键解除互锁
+        /// </summary>
+        private void Unlock_Click(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[] { 16, 1, 21, 31, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
     }
 }

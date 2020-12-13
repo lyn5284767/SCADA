@@ -1,5 +1,6 @@
 ﻿using COM.Common;
 using ControlLibrary;
+using ControlLibrary.InputControl;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,13 +55,13 @@ namespace Main.SIR
         {
             try
             {
-                this.twtL1.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["SIRSelfWellPosSet"], Mode = BindingMode.OneWay });
-                this.twtL2.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["SIRSelfMousePosSet"], Mode = BindingMode.OneWay });
-                this.twtL3.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfTopPosSet"], Mode = BindingMode.OneWay });
-                this.twtL4.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfStayPosSet"], Mode = BindingMode.OneWay });
-                this.twtL5.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfRecoveryPosSet"], Mode = BindingMode.OneWay });
-                this.twtL6.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfPipePosSet"], Mode = BindingMode.OneWay });
-                this.twtL7.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfAntiInterferePosSet"], Mode = BindingMode.OneWay });
+                this.twt1.SetBinding(SetControl.SetControlShowProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["SIRSelfWellPosSet"], Mode = BindingMode.OneWay });
+                this.twt2.SetBinding(SetControl.SetControlShowProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["SIRSelfMousePosSet"], Mode = BindingMode.OneWay});
+                this.twt3.SetBinding(SetControl.SetControlShowProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfTopPosSet"], Mode = BindingMode.OneWay, Converter = new TakeTenConverter() });
+                this.twt4.SetBinding(SetControl.SetControlShowProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfStayPosSet"], Mode = BindingMode.OneWay, Converter = new TakeTenConverter() });
+                this.twt5.SetBinding(SetControl.SetControlShowProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfRecoveryPosSet"], Mode = BindingMode.OneWay, Converter = new TakeTenConverter() });
+                this.twt6.SetBinding(SetControl.SetControlShowProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfPipePosSet"], Mode = BindingMode.OneWay, Converter = new TakeTenConverter() });
+                this.twt7.SetBinding(SetControl.SetControlShowProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfAntiInterferePosSet"], Mode = BindingMode.OneWay, Converter = new TakeTenConverter() });
             }
             catch (Exception ex)
             {

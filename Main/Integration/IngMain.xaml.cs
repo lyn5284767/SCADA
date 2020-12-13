@@ -633,6 +633,10 @@ namespace Main.Integration
             this.tmpStatus = GlobalData.Instance.da["508b6"].Value.Boolean;
 
             if (!GlobalData.Instance.ComunciationNormal) this.warningTwo.Text = "网络连接失败！";
+            else
+            {
+                if (this.warningTwo.Text == "网络连接失败！") this.warningTwo.Text = "";
+            }
         }
         /// <summary>
         /// 集成系统自动步骤切换页面

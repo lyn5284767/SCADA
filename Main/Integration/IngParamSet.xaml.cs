@@ -83,6 +83,8 @@ namespace Main.Integration
                 this.twt1.dicNumToValue.Add(3, "2按键CAN0总线手柄");
                 this.twt1.dicNumToValue.Add(4, "2按键CAN1总线手柄");
                 this.twt1.dicNumToValue.Add(7, "模拟手柄");
+                this.twt1.dicNumToValue.Add(8, "6按键CAN0总线手柄");
+                this.twt1.dicNumToValue.Add(9, "6按键CAN1总线手柄");
                 this.twt1.SetBinding(TextWithCombox.ShowTxtWithCBProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["171LeftHandleConfigurationInformation"], Mode = BindingMode.OneWay,ConverterParameter= this.twt1.dicNumToValue,Converter=new NumToTextConverter() });
                 // 右手柄
                 this.twt2.dicNumToValue = new Dictionary<int, string>();
@@ -92,6 +94,8 @@ namespace Main.Integration
                 this.twt2.dicNumToValue.Add(5, "4按键CAN0总线手柄");
                 this.twt2.dicNumToValue.Add(6, "4按键CAN1总线手柄");
                 this.twt2.dicNumToValue.Add(7, "模拟手柄");
+                this.twt2.dicNumToValue.Add(8, "6按键CAN0总线手柄");
+                this.twt2.dicNumToValue.Add(9, "6按键CAN1总线手柄");
                 this.twt2.SetBinding(TextWithCombox.ShowTxtWithCBProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["172RightHandleConfigurationInformation"], Mode = BindingMode.OneWay, ConverterParameter = this.twt2.dicNumToValue, Converter = new NumToTextConverter() });
                 // 按键面板
                 this.twt3.dicNumToValue = new Dictionary<int, string>();
@@ -170,7 +174,10 @@ namespace Main.Integration
                 // 大钩厂家
                 this.twt15.dicNumToValue = new Dictionary<int, string>();
                 this.twt15.dicNumToValue.Add(0, "无");
-                this.twt15.dicNumToValue.Add(1, "有");
+                this.twt15.dicNumToValue.Add(1, "单控制编码器");
+                this.twt15.dicNumToValue.Add(2, "双控制编码器");
+                this.twt15.dicNumToValue.Add(3, "外部信号");
+                this.twt15.dicNumToValue.Add(4, "盛特模拟器");
                 this.twt15.SetBinding(TextWithCombox.ShowTxtWithCBProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["HookType"], Mode = BindingMode.OneWay, ConverterParameter = this.twt15.dicNumToValue, Converter = new NumToTextConverter() });
                 // 顶驱厂家
                 this.twt16.dicNumToValue = new Dictionary<int, string>();
@@ -192,7 +199,11 @@ namespace Main.Integration
                 this.twt19.dicNumToValue.Add(1, "关闭");
                 this.twt19.dicNumToValue.Add(2, "开启");
                 this.twt19.SetBinding(TextWithCombox.ShowTxtWithCBProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["589b2"], Mode = BindingMode.OneWay, ConverterParameter = this.twt16.dicNumToValue, Converter = new BoolToTextConverter() });
-
+                // 对接厂家配置
+                this.twt20.dicNumToValue = new Dictionary<int, string>();
+                this.twt20.dicNumToValue.Add(0, "宝石");
+                this.twt20.dicNumToValue.Add(1, "宏华/胜利");
+                this.twt20.SetBinding(TextWithCombox.ShowTxtWithCBProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["IngSetting"], Mode = BindingMode.OneWay, ConverterParameter = this.twt16.dicNumToValue, Converter = new BoolToTextConverter() });
                 #endregion
             }
             catch (Exception ex)

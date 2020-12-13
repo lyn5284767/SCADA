@@ -82,6 +82,7 @@ namespace Main.Integration
 
         private void QueryRecord()
         {
+            this.lvRecord.ItemsSource = null;
             bgMeet = new BackgroundWorker();
             //能否报告进度更新
             bgMeet.WorkerReportsProgress = true;

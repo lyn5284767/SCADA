@@ -207,7 +207,7 @@ namespace Main.SecondFloor
         private bool bPre123b7 = false;
         #endregion
         private int iTimeCnt = 0;//用来为时钟计数的变量
-
+ 
         private void TimerWarning_Elapsed(object obj)
         {
             try
@@ -238,7 +238,18 @@ namespace Main.SecondFloor
                             this.tbDrillDown.Visibility = Visibility.Visible;
                         }
                     }
+                   
+                    if (GlobalData.Instance.da["operationModel"].Value.Byte == 1)
+                    {
+                        this.warnTwo.Text = "当前系统为紧急停止状态";
+                    }
+                    else
+                    {
+                        if (this.warnTwo.Text == "当前系统为紧急停止状态")
+                            this.warnTwo.Text = "";
+                    }
                 }));
+                
             }
             catch (Exception ex)
             {
@@ -294,10 +305,15 @@ namespace Main.SecondFloor
             }
             else
             {
+                if (this.warnOne.Text == "二层台信号中断") this.warnOne.Text = "";
                 bCommunicationCheck = false;
             }
 
             if (!GlobalData.Instance.ComunciationNormal) this.warnOne.Text = "网络连接失败！";
+            else
+            {
+                if (this.warnOne.Text == "网络连接失败！") this.warnOne.Text = "";
+            }
             #endregion
         }
         /// <summary>
@@ -1182,7 +1198,7 @@ namespace Main.SecondFloor
         private void VariableBinding()
         {
             this.rotateAngle.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["callAngle"], Mode = BindingMode.OneWay, Converter = new CallAngleConverter() });
-            this.bigHookRealTimeValue.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["156To159BigHookEncoderRealTimeValue"], Mode = BindingMode.OneWay });
+            this.bigHookRealTimeValue.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["156To159BigHookEncoderRealTimeValue"], Mode = BindingMode.OneWay ,Converter = new DivideHundredConverter()});
             this.bigHookCalibrationValue.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["160To163BigHookEncoderCalibrationValue"], Mode = BindingMode.OneWay });
             //this.leftFinger.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["103N23LeftFingerMotorSampleValue"], Mode = BindingMode.OneWay });
             //this.rightFinger.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["103N23RightFingerMotorSampleValue"], Mode = BindingMode.OneWay });
@@ -1214,6 +1230,8 @@ namespace Main.SecondFloor
             this.operateMode.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay, Converter = new OperationModelIsCheckConverter() });
             this.workMode.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["workModel"], Mode = BindingMode.OneWay, Converter = new WorkModelConverter() });
             this.workMode.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["workModel"], Mode = BindingMode.OneWay, Converter = new WorkModelIsCheckConverter() });
+            this.controlModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SF_Self_Control"], Mode = BindingMode.OneWay, Converter = new SIRSelfLocalOrRemoreCheckConverter() });
+            this.controlModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SF_Self_Control"], Mode = BindingMode.OneWay, Converter = new SIRSelfLocalOrRemoreConverter() });
 
             this.bigHookCalibrationStatus.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["506b4"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
             //this.tubeType.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drillPipeType"], Mode = BindingMode.OneWay, Converter = new DrillPipeTypeConverter() });
@@ -1462,7 +1480,7 @@ namespace Main.SecondFloor
         private void btn_WorkModel(object sender, EventArgs e)
         {
             byte[] byteToSend;
-            if (workMode.IsChecked)
+            if (this.workMode.IsChecked)
             {
                 byteToSend = SendByte(new List<byte> { 2, 1 });
             }
@@ -2038,13 +2056,14 @@ namespace Main.SecondFloor
                 string filePath = str1 + "\\video" + "\\video1";
                 string fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + ".avi";
                 ICameraFactory cameraOne = GlobalData.Instance.cameraList.Where(w => w.Info.ID == 1).FirstOrDefault();
+                if (cameraOne == null) return;
                 cameraOne.StopFile();
                 cameraOne.SaveFile(filePath, fileName);
                 DeleteOldFileName(filePath);
             }
             catch (Exception ex)
             {
-                System.Windows.MessageBox.Show(ex.StackTrace);
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
             }
         }
         private void CameraVideoSave2(object value)
@@ -2055,13 +2074,14 @@ namespace Main.SecondFloor
                 string filePath = str1 + "\\video" + "\\video2";
                 string fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + ".avi";
                 ICameraFactory cameraTwo = GlobalData.Instance.cameraList.Where(w => w.Info.ID == 2).FirstOrDefault();
+                if (cameraTwo == null) return;
                 cameraTwo.StopFile();
                 cameraTwo.SaveFile(filePath, fileName);
                 DeleteOldFileName(filePath);
             }
             catch (Exception ex)
             {
-                System.Windows.MessageBox.Show(ex.StackTrace);
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
             }
         }
 
@@ -2173,6 +2193,7 @@ namespace Main.SecondFloor
         {
             SFCameraFullScreen.Instance.gridCamera1.Children.Clear();
             ICameraFactory cameraOne = GlobalData.Instance.cameraList.Where(w => w.Info.ID == 1).FirstOrDefault();
+            if (cameraOne == null) return;
             CameraVideoStop1();
             ChannelInfo info = GlobalData.Instance.chList.Where(w => w.ID == 1).FirstOrDefault();
             bool isPlay = cameraOne.InitCamera(info);
@@ -2218,6 +2239,7 @@ namespace Main.SecondFloor
         private void PlayTwoAction()
         {
             ICameraFactory cameraTwo = GlobalData.Instance.cameraList.Where(w => w.Info.ID == 2).FirstOrDefault();
+            if (cameraTwo == null) return;
             CameraVideoStop2();
             ChannelInfo info = GlobalData.Instance.chList.Where(w => w.ID == 2).FirstOrDefault();
             cameraTwo.SetSize(220, 380);
@@ -2335,6 +2357,30 @@ namespace Main.SecondFloor
         {
             byte[] byteToSend = SendByte(new List<byte> { 13, 4 });
             GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+
+        private void btn_ControlModel(object sender, EventArgs e)
+        {
+            byte[] drbyteToSend;
+            byte[] sirbyteToSend;
+            byte[] sfbyteToSend;
+            if (this.controlModel.IsChecked)
+            {
+                drbyteToSend = new byte[10] { 1, 32, 2, 20, 0, 0, 0, 0, 0, 0 }; // 钻台面-遥控切司钻
+                sirbyteToSend = new byte[10] { 23, 17, 10, 1, 0, 0, 0, 0, 0, 0 }; // 铁钻工-遥控切司钻
+                sfbyteToSend = new byte[10] { 16, 1, 27, 1, 2, 0, 0, 0, 0, 0 };// 二层台-司钻切遥控
+                GlobalData.Instance.da.SendBytes(drbyteToSend);
+                Thread.Sleep(50);
+                GlobalData.Instance.da.SendBytes(sirbyteToSend);
+                Thread.Sleep(50);
+                GlobalData.Instance.da.SendBytes(sfbyteToSend);
+            }
+            else
+            {
+                sfbyteToSend = new byte[10] { 16, 1, 27, 1, 1, 0, 0, 0, 0, 0 };// 二层台-遥控切司钻
+                GlobalData.Instance.da.SendBytes(sfbyteToSend);
+
+            }
         }
     }
 }

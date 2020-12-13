@@ -214,8 +214,8 @@
 
             </Grid>
 
-            <Grid Grid.Column="1" >
-                <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Width="350" Margin="5">
+            <Grid Grid.Column="1" Margin="0,0,0,10" >
+                <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Width="440" Margin="40,5,41,-5">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30"/>
@@ -261,10 +261,13 @@
                                 <StackPanel Height="60" Orientation="Horizontal" Margin="5">
                                     <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">
                                         <!--左手柄，控制二层台和钻台面-->
-                                        <StackPanel Height="60" Width="140" Orientation="Horizontal">
+                                        <StackPanel Height="60" Width="180" Orientation="Horizontal">
                                             <cl:SymbolMappingV StrContent="背" LampType="3" Width="25" Name="lampType_BackButton_EquiptStatus"/>
                                             <cl:SymbolMappingV StrContent="上" LampType="3" Width="25" Name="lampType_UpButton_EquiptStatus"/>
                                             <cl:SymbolMappingV StrContent="下" LampType="3" Width="25" Name="lampType_DownButton_EquiptStatus"/>
+                                            <cl:SymbolMappingV StrContent="中上" LampType="3" Width="25" Name="lampType_MidUpButton_EquiptStatus"/>
+                                            <cl:SymbolMappingV StrContent="中下" LampType="3" Width="25" Name="lampType_MidDownButton_EquiptStatus"/>
+
                                             <cl:SymbolMappingV StrContent="上开" LampType="3" Width="25" Name="lampType_UpSeesawButton_EquiptStatus"/>
                                             <cl:SymbolMappingV StrContent="下开" LampType="3" Width="25" Name="lampType_DownSeesawButton_EquiptStatus"/>
                                         </StackPanel>
@@ -323,6 +326,7 @@
                 <ColumnDefinition Width="160"/>
                 <ColumnDefinition Width="150"/>
                 <ColumnDefinition Width="140"/>
+                <ColumnDefinition Width="140"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
                 <Menu Height="40" Width="150"  FontSize="16" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
@@ -364,6 +368,8 @@
                     </MenuItem>
                 </Menu>
             </Grid>
+            <cl:CustomCheckBox ContentString="送杆提效" Margin="10" Name="cbDrillDwon" Grid.Column="2" UserControlClicked="cbDrillDwon_Clicked"/>
+
             <!--<Button Grid.Column="2" Click="btn_testES" Visibility="Collapsed"/>-->
         </Grid>
     </Grid>

@@ -7,6 +7,7 @@ using HBGKTest;
 using HBGKTest.YiTongCamera;
 using Main.Cat;
 using Main.DrillFloor;
+using Main.DrillFloor.Sany;
 using Main.HydraulicStation;
 using Main.HydraulicStation.JJC;
 using Main.Integration;
@@ -42,6 +43,8 @@ namespace Main
         private DispatcherTimer timer;
         System.Timers.Timer serviceTimer;
         System.Timers.Timer reportTimer;
+        System.Timers.Timer deviceTimer;
+
         LoadControl projectLoad = new LoadControl();
 
         public MainWindow()
@@ -56,7 +59,9 @@ namespace Main
             serviceTimer = new System.Timers.Timer(60 * 60 * 1000);
             serviceTimer.Elapsed += ServiceTimer_Elapsed;
             serviceTimer.Enabled = true;
+           
             InitCameraInfo();
+         
         }
 
         /// <summary>
@@ -114,6 +119,7 @@ namespace Main
                             GlobalData.Instance.cameraList.Add(new YiTongCameraControl(info));
                             break;
                         }
+                        
                 }
             }
         }
@@ -218,6 +224,45 @@ namespace Main
                     f.Delete();
                 }
             }
+            string sql = string.Format("delete from DateBaseReport where CreateTime<'{0}'", DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd HH:mm:ss"));
+            DataHelper.Instance.ExecuteNonQuery(sql);
+        }
+
+        private void DeviceTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                this.GetNowDevice();
+                GloAlarm();
+            }));
+          
+        }
+        int inter = 0;
+        /// <summary>
+        /// 全局告警
+        /// </summary>
+        private void GloAlarm()
+        {
+            // 液压站油温过高
+            if (GlobalData.Instance.da["774b1"].Value.Boolean)
+            {
+                //if (inter == 0)
+                //{
+                //    HandyControl.Controls.Growl.Info("液压油高温预警，请及时降温！");
+                //}
+                // 未显示告警，且定时器到点
+                if (!GlobalData.Instance.HS_OilHigh && inter == 0)
+                {
+                    GlobalData.Instance.HS_OilHigh = true;
+                    GlobalAlarm globalAlarm = new GlobalAlarm();
+                    globalAlarm.info("液压油高温预警，请及时降温");
+                    globalAlarm.ShowDialog();
+                }
+
+            }
+            if (!GlobalData.Instance.HS_OilHigh) inter++;
+
+            if (inter > 500) inter = 0;
         }
 
         int timeTick = 0;
@@ -238,33 +283,50 @@ namespace Main
                     //double now4 = now * random.Next(0, 15);
                     //double now5 = now * random.Next(0, 20);
                     List<string> sqlList = new List<string>();
+                    string sql = string.Empty;
                     // 系统压力
                     double systemPress = GlobalData.Instance.da["MPressAI"].Value.Int16 / 10.0;
-                    string sql = string.Format("Insert Into DateBaseReport (Name,Value,CreateTime,Type,Cycle) Values('{0}','{1}','{2}','{3}','{4}')", "自研液压站-系统压力",
-                        systemPress, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), (int)SaveType.HS_Self_SystemPress, 10 * 60 * 1000);
-                    sqlList.Add(sql);
+                    if (systemPress > 0)
+                    {
+                        sql = string.Format("Insert Into DateBaseReport (Name,Value,CreateTime,Type,Cycle) Values('{0}','{1}','{2}','{3}','{4}')", "自研液压站-系统压力",
+                            systemPress, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), (int)SaveType.HS_Self_SystemPress, 10 * 60 * 1000);
+                        sqlList.Add(sql);
+                    }
                     // 主泵1流量
                     double mainFlow = GlobalData.Instance.da["M1ValuePWMR"].Value.Int32 / 10.0;
-                    sql = string.Format("Insert Into DateBaseReport (Name,Value,CreateTime,Type,Cycle) Values('{0}','{1}','{2}','{3}','{4}')", "自研液压站-主泵#1流量",
-                        mainFlow, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), (int)SaveType.HS_Self_MainFlow, 10 * 60 * 1000);
-                    sqlList.Add(sql);
+                    if (mainFlow > 0)
+                    {
+                        sql = string.Format("Insert Into DateBaseReport (Name,Value,CreateTime,Type,Cycle) Values('{0}','{1}','{2}','{3}','{4}')", "自研液压站-主泵#1流量",
+                            mainFlow, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), (int)SaveType.HS_Self_MainFlow, 10 * 60 * 1000);
+                        sqlList.Add(sql);
+                    }
+                    
                     // 主泵2流量
                     double mainTwoFlow = GlobalData.Instance.da["M2ValuePWMR"].Value.Int32 / 10.0;
-                    sql = string.Format("Insert Into DateBaseReport (Name,Value,CreateTime,Type,Cycle) Values('{0}','{1}','{2}','{3}','{4}')", "自研液压站-主泵#2流量",
-                        mainTwoFlow, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), (int)SaveType.HS_Self_MainTwoFlow, 10 * 60 * 1000);
-                    sqlList.Add(sql);
+                    if (mainTwoFlow > 0)
+                    {
+                        sql = string.Format("Insert Into DateBaseReport (Name,Value,CreateTime,Type,Cycle) Values('{0}','{1}','{2}','{3}','{4}')", "自研液压站-主泵#2流量",
+                            mainTwoFlow, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), (int)SaveType.HS_Self_MainTwoFlow, 10 * 60 * 1000);
+                        sqlList.Add(sql);
+                    }
                     if (timeTick == 60)
                     {
                         // 油温
                         double oilTem = GlobalData.Instance.da["OilTemAI"].Value.Int16 / 10.0;
-                        sql = string.Format("Insert Into DateBaseReport (Name,Value,CreateTime,Type,Cycle) Values('{0}','{1}','{2}','{3}','{4}')", "自研液压站-油温",
-                            oilTem, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), (int)SaveType.HS_Self_OilTmp, 10 * 60 * 1000);
-                        sqlList.Add(sql);
+                        if (oilTem > 0)
+                        {
+                            sql = string.Format("Insert Into DateBaseReport (Name,Value,CreateTime,Type,Cycle) Values('{0}','{1}','{2}','{3}','{4}')", "自研液压站-油温",
+                                oilTem, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), (int)SaveType.HS_Self_OilTmp, 10 * 60 * 1000);
+                            sqlList.Add(sql);
+                        }
                         // 液压
                         double oilLevel = GlobalData.Instance.da["OilLevelAI"].Value.Int16 / 10.0;
-                        sql = string.Format("Insert Into DateBaseReport (Name,Value,CreateTime,Type,Cycle) Values('{0}','{1}','{2}','{3}','{4}')", "自研液压站-液位",
-                            oilLevel, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), (int)SaveType.HS_Self_OilLevel, 10 * 60 * 1000);
-                        sqlList.Add(sql);
+                        if (oilLevel > 0)
+                        {
+                            sql = string.Format("Insert Into DateBaseReport (Name,Value,CreateTime,Type,Cycle) Values('{0}','{1}','{2}','{3}','{4}')", "自研液压站-液位",
+                                oilLevel, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), (int)SaveType.HS_Self_OilLevel, 10 * 60 * 1000);
+                            sqlList.Add(sql);
+                        }
                     }
                     DataHelper.Instance.ExecuteNonQuery(sqlList.ToArray());
                     timeTick++;
@@ -276,9 +338,8 @@ namespace Main
                 Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
             }
         }
+       
         int heat = 0;
-        bool b459b0 = false;
-        bool b459b1 = false;
         void timer_Tick(object sender, EventArgs e)
         {
             this.timeLable.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") +"  ";
@@ -290,7 +351,7 @@ namespace Main
             {
                 LoadDevice(nowSystemType);
             }
-            this.GetNowDevice();
+           
             // 启用，改到联动主页面切换
             //if (GlobalData.Instance.DRNowPage != "IngMain")
             //{
@@ -308,6 +369,20 @@ namespace Main
             //    }
             //}
         }
+
+        //void alarmtimer_Tick(object sender, EventArgs e)
+        //{
+        //    if (!GlobalData.Instance.da["575b0"].Value.Boolean && SFStop.Instance.Visibility != Visibility.Visible)
+        //    {
+        //        SFStop.Instance.info("请先标定大钩零位");
+        //        SFStop.Instance.ShowDialog();
+        //    }
+        //    else
+        //    {
+        //        SFStop.Instance.Dispose();
+        //    }
+         
+        //}
 
         /// <summary>
         /// 切换当前设备
@@ -367,6 +442,15 @@ namespace Main
                 reportTimer.Interval = 1000;
                 reportTimer.Elapsed += ReportTimer_Elapsed;
                 reportTimer.Enabled = true;
+
+                deviceTimer = new System.Timers.Timer(200);
+                deviceTimer.Elapsed += DeviceTimer_Elapsed;
+                deviceTimer.Enabled = true;
+                if (!GlobalData.Instance.da["575b0"].Value.Boolean)
+                {
+                    SFStop.Instance.info("请先标定大钩零位");
+                    SFStop.Instance.ShowDialog();
+                }
             }
             catch (Exception ex)
             {
@@ -400,6 +484,11 @@ namespace Main
         /// </summary>
         private void MouseDownSF(object sender, MouseButtonEventArgs e)
         {
+            if (GlobalData.Instance.da.GloConfig.SFType == 0)
+            {
+                MessageBox.Show("未配置二层台");
+                return;
+            }
             this.spMain.Children.Clear();
             this.spMain.Children.Add(projectLoad);
             this.projectLoad.Visibility = System.Windows.Visibility.Visible;
@@ -677,6 +766,10 @@ namespace Main
                 if (GlobalData.Instance.Ing)
                 {
                     this.mainTitle.Content = "SYAPS-集成系统:钻杆设置";
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(SFDrillSetting.Instance);
+                    SFDrillSetting.Instance.SysTypeSelect(0);
+                    RefreshPipeCount();
                 }
                 if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
                 {
@@ -892,6 +985,7 @@ namespace Main
 
                         this.spMain.Children.Clear();
                         this.spMain.Children.Add(SFPositionSetting.Instance);
+                        //this.spMain.Children.Add(SFPosSetMain.Instance);
                         this.mainTitle.Content = "SYAPS-二层台:位置标定";
                     }
                     else
@@ -905,7 +999,8 @@ namespace Main
                     if (GlobalData.Instance.da["droperationModel"].Value.Byte !=5)
                     {
                         this.spMain.Children.Clear();
-                        this.spMain.Children.Add(DRPosSetting.Instance);
+                        //this.spMain.Children.Add(DRPosSetting.Instance);
+                        this.spMain.Children.Add(DRPosSetMain.Instance);
                         this.mainTitle.Content = "SYAPS-钻台面:位置标定";
                     }
                     else
@@ -1027,13 +1122,13 @@ namespace Main
                 }
                 else if (GlobalData.Instance.systemType == SystemType.SIR)
                 {
-                    //if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANY)
-                    //{
-                    //    this.spMain.Children.Clear();
-                    //    this.spMain.Children.Add(SIRSelfRecord.Instance);
-                    //    this.BottomColorSetting(this.bdSIR, this.tbSIR, this.bdOther);
-                    //    return;
-                    //}
+                    if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANY)
+                    {
+                        this.spMain.Children.Clear();
+                        this.spMain.Children.Add(SIRRecord.Instance);
+                        this.mainTitle.Content = "SYAPS-铁钻工:记录查询";
+                        return;
+                    }
                     MessageBox.Show("功能未开放!");
                     return;
                 }
@@ -1131,28 +1226,28 @@ namespace Main
         {
             try
             {
-                if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
-                {
-                    this.spMain.Children.Clear();
+                //    if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
+                //    {
+                this.spMain.Children.Clear();
                     this.spMain.Children.Add(SFLowInfo.Instance);
-                }
-                else if (GlobalData.Instance.systemType == SystemType.DrillFloor)
-                {
-                    this.spMain.Children.Clear();
-                    this.spMain.Children.Add(SFLowInfo.Instance);
-                }
-                else if (GlobalData.Instance.systemType == SystemType.SIR)
-                {
-                    this.spMain.Children.Clear();
-                    this.spMain.Children.Add(SFLowInfo.Instance);
-                    return;
-                }
-                else if (GlobalData.Instance.systemType == SystemType.HydraulicStation)
-                {
-                    this.spMain.Children.Clear();
-                    this.spMain.Children.Add(SFLowInfo.Instance);
-                    return;
-                }
+                //}
+                //else if (GlobalData.Instance.systemType == SystemType.DrillFloor)
+                //{
+                //    this.spMain.Children.Clear();
+                //    this.spMain.Children.Add(SFLowInfo.Instance);
+                //}
+                //else if (GlobalData.Instance.systemType == SystemType.SIR)
+                //{
+                //    this.spMain.Children.Clear();
+                //    this.spMain.Children.Add(SFLowInfo.Instance);
+                //    return;
+                //}
+                //else if (GlobalData.Instance.systemType == SystemType.HydraulicStation)
+                //{
+                //    this.spMain.Children.Clear();
+                //    this.spMain.Children.Add(SFLowInfo.Instance);
+                //    return;
+                //}
                 this.mainTitle.Content = "SYAPS-下位机信息";
             }
             catch (Exception ex)
@@ -1203,6 +1298,11 @@ namespace Main
         /// </summary>
         private void MouseDR(object sender, MouseButtonEventArgs e)
         {
+            if (GlobalData.Instance.da.GloConfig.DRType == 0)
+            {
+                MessageBox.Show("未配置钻台面");
+                return;
+            }
             this.spMain.Children.Clear();
             this.spMain.Children.Add(projectLoad);
             this.projectLoad.Visibility = System.Windows.Visibility.Visible;
@@ -1219,9 +1319,9 @@ namespace Main
                 this.spMain.Children.Clear();
                 //this.spMain.Children.Add(IngMain.Instance);
                 this.spMain.Children.Add(IngMainNew.Instance);
-                IngMainNew.Instance.SetNowTechniqueEvent += Instance_SetNowTechniqueEvent;
-                GlobalData.Instance.systemType = SystemType.SecondFloor;
                 GlobalData.Instance.Ing = true;
+                IngMainNew.Instance.SetNowTechniqueEvent += Instance_SetNowTechniqueEvent;
+                GlobalData.Instance.systemType = SystemType.CIMS;
 
                 this.BottomColorSetting(this.bdIng, this.tbIng, this.gdbottom);
                 SetBorderBackGround();
@@ -1243,19 +1343,20 @@ namespace Main
             {
                 this.tbTechnique.Text = "工艺:" + Environment.NewLine + "下钻";
                 this.tbMidDeviceOne.Text = "防喷筒";
-                Grid.SetColumn(this.bdSIR, 2);
-                Grid.SetColumn(this.bdMidDeviceOne, 3);
-                Grid.SetColumn(this.bdDR, 4);
-                Grid.SetColumn(this.bdSf, 5);
+                
+                Grid.SetColumn(this.bdSIR, 5);
+                Grid.SetColumn(this.bdMidDeviceOne, 4);
+                Grid.SetColumn(this.bdDR, 3);
+                Grid.SetColumn(this.bdSf, 2);
             }
             else if (technique == Technique.DrillUp)
             {
                 this.tbTechnique.Text = "工艺:" + Environment.NewLine + "起钻";
                 this.tbMidDeviceOne.Text = "清扣和" + Environment.NewLine + "丝扣油";
-                Grid.SetColumn(this.bdSIR, 5);
-                Grid.SetColumn(this.bdMidDeviceOne, 4);
-                Grid.SetColumn(this.bdDR, 3);
-                Grid.SetColumn(this.bdSf, 2);
+                Grid.SetColumn(this.bdSIR, 2);
+                Grid.SetColumn(this.bdMidDeviceOne, 3);
+                Grid.SetColumn(this.bdDR, 4);
+                Grid.SetColumn(this.bdSf, 5);
             }
             else
             {
@@ -1516,10 +1617,11 @@ namespace Main
             this.menuReport.Visibility = Visibility.Visible;
             if (GlobalData.Instance.Ing)
             {
+                this.menuDrillSetting.Header = "钻杆设置";
                 this.menuIO.Visibility = Visibility.Collapsed;
                 this.menuDownDeviceStatus.Visibility = Visibility.Collapsed;
                 this.menuCompensate.Visibility = Visibility.Collapsed;
-                this.menuRecord.Visibility = Visibility.Collapsed;
+             
                 this.menuChart.Visibility = Visibility.Collapsed;
                 this.menuReport.Visibility = Visibility.Collapsed;
                 return;
@@ -1583,7 +1685,6 @@ namespace Main
                     this.menuDrillSetting.Visibility = Visibility.Collapsed;
                     this.menuDownDeviceStatus.Visibility = Visibility.Collapsed;
                     this.menuCompensate.Visibility = Visibility.Collapsed;
-                    this.menuRecord.Visibility = Visibility.Collapsed;
                     this.menuChart.Visibility = Visibility.Collapsed;
                     this.menuReport.Visibility = Visibility.Collapsed;
 
@@ -1669,11 +1770,11 @@ namespace Main
             {
                 try
                 {
-                    GlobalData.Instance.Ing = false;
                     // 无
                     if (GlobalData.Instance.da.GloConfig.SIRType == 0)
                     {
                         MessageBox.Show("未配置铁钻工");
+                        this.projectLoad.Visibility = Visibility.Collapsed;
                         return;
                     }
                     else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANY)
@@ -1681,14 +1782,17 @@ namespace Main
                         SIRSelfMain.Instance.FullScreenEvent -= Instance_SIRFullScreenEvent;
                         SIRSelfMain.Instance.FullScreenEvent += Instance_SIRFullScreenEvent;
                         this.spMain.Children.Add(SIRSelfMain.Instance);
+                        GlobalData.Instance.Ing = false;
                     }
                     else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.JJC)
                     {
                         this.spMain.Children.Add(SIRJJCMain.Instance);
+                        GlobalData.Instance.Ing = false;
                     }
                     else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.BS)
                     {
                         this.spMain.Children.Add(SIRBSMain.Instance);
+                        GlobalData.Instance.Ing = false;
                     }
                     else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.JH)
                     {
@@ -1697,6 +1801,7 @@ namespace Main
                     else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANYRailway)
                     {
                         this.spMain.Children.Add(SIRRailWayMain.Instance);
+                        GlobalData.Instance.Ing = false;
                     }
 
                     GlobalData.Instance.systemType = SystemType.SIR;
@@ -1735,10 +1840,11 @@ namespace Main
             {
                 try
                 {
-                    GlobalData.Instance.Ing = false;
+                    
                     // 自研
                     if (GlobalData.Instance.da.GloConfig.DRType == (int)DRType.SANY)
                     {
+                        GlobalData.Instance.Ing = false;
                         this.spMain.Children.Clear();
                         DRMain.Instance.DRFullScreenEvent -= Instance_DRFullScreenEvent;
                         DRMain.Instance.DRFullScreenEvent += Instance_DRFullScreenEvent;
@@ -1751,7 +1857,7 @@ namespace Main
                         if (!(GlobalData.Instance.da["droperationModel"].Value.Byte == 5 || GlobalData.Instance.da["droperationModel"].Value.Byte == 4))
                         {
                             byte[] byteToSend;
-                            byteToSend = new byte[10] { 1, 32, 3, 31, 0, 0, 0, 0, 0, 0 };
+                            byteToSend = new byte[10] { 1, 32, 3, 30, 0, 0, 0, 0, 0, 0 };
 
                             GlobalData.Instance.da.SendBytes(byteToSend);
                         }
@@ -1763,6 +1869,7 @@ namespace Main
                     else
                     {
                         MessageBox.Show("未配置钻台面");
+                        this.projectLoad.Visibility = Visibility.Collapsed;
                     }
                     SetBorderBackGround();
                 }
@@ -1772,6 +1879,15 @@ namespace Main
                 }
             }
             this.projectLoad.Visibility = Visibility.Collapsed;
+        }
+
+        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ClickCount == 2)
+            {
+                if (this.WindowState == WindowState.Maximized) this.WindowState = WindowState.Normal;
+                if (this.WindowState == WindowState.Normal) this.WindowState = WindowState.Maximized;
+            }
         }
     }
 }

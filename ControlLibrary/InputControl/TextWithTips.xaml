@@ -6,6 +6,11 @@
              xmlns:local="clr-namespace:ControlLibrary.InputControl"
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="500" Name="uc" FontFamily="微软雅黑" TextOptions.TextFormattingMode="Display">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Black"></Setter>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Border Name="bd" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="2" Margin="1">
             <Border.Effect>

@@ -1,0 +1,22 @@
+﻿<Window x:Class="Main.SecondFloor.SFStop"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Main.SecondFloor"
+        mc:Ignorable="d"
+        Title="SFStop" Height="400" Width="450" WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="&#xe603;" TextAlignment="Center" FontFamily="../Font/#iconfont" FontSize="100" Foreground="Red"></TextBlock>
+            <TextBlock Text="告警" FontSize="100" Foreground="Red"></TextBlock>
+        </StackPanel>
+        <TextBlock x:Name="tbinfo" Grid.Row="1" Text="二层台急停" FontSize="40" Foreground="Red" HorizontalAlignment="Center"></TextBlock>
+        <Button Grid.Row="2" FontSize="36" Height="70" FontWeight="Bold" Click="Button_Click">关闭</Button>
+    </Grid>
+</Window>

@@ -56,7 +56,7 @@
                                 <TextBlock Text="部&#x0a;件&#x0a;配&#x0a;置&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontWeight="Bold"  Height="90" />
                             </Border>
                             <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="5" Padding="3" Height="100">
-                                <TextBlock Text="操&#x0a;做&#x0a;配&#x0a;置&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontWeight="Bold"  Height="90" />
+                                <TextBlock Text="操&#x0a;作&#x0a;配&#x0a;置&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontWeight="Bold"  Height="90" />
                             </Border>
                         </StackPanel>
                         <StackPanel>
@@ -95,13 +95,18 @@
                             <inputcontrol:TextWithCombox Name="twt17" TbkText="吊卡自动打开" Head="16,1,21,20"/>
                             <inputcontrol:TextWithCombox Name="twt18" TbkText="吊卡自动关闭" Head="16,1,21,21"/>
                             <inputcontrol:TextWithCombox Name="twt19" TbkText="防喷盒自动打开" Head="16,1,21,30"/>
+                            <inputcontrol:TextWithCombox Name="twt20" TbkText="对接产家配置" Head="16,1,23,91"/>
+
                         </StackPanel>
                     </StackPanel>
                 </Border>
             </StackPanel>
             <Grid Grid.Column="1">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
                     <Button Content="确 定 配 置"  Click="ParamThreeSet"  Style="{StaticResource btnGreen}" FontWeight="Bold" FontFamily="宋体" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" IsDefault="False"/>
+                </StackPanel>
                 </StackPanel>
             </Grid>
         </Grid>

@@ -15,6 +15,7 @@
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FontFamily" Value="微软雅黑"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="Black"/>
         </Style>
         <Style TargetType="Label">
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -57,15 +58,15 @@
                                 <StackPanel Orientation="Horizontal" Width="100">
                                 <TextBlock Text="&#xe6af;" FontFamily="../../Font/#iconfont" FontSize="36" Foreground="#008AFF" TextAlignment="Center" Margin="5,10,5,10" Width="45" Height="45"></TextBlock>
                                 <StackPanel Margin="0,15,10,0">
-                                        <TextBlock>小车</TextBlock>
-                                        <TextBlock Name="carPos" Text="9999" Foreground="#4C80FF"></TextBlock>
+                                        <TextBlock FontSize="18">小车</TextBlock>
+                                    <TextBlock FontSize="18" Name="carPos" Text="9999" Foreground="#4C80FF"></TextBlock>
                                     </StackPanel>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Width="100">
                                 <TextBlock Text="&#xe6ae;" FontFamily="../../Font/#iconfont" FontSize="36" Foreground="#008AFF" TextAlignment="Center" Margin="5,10,5,10" Width="45" Height="45"></TextBlock>
                                 <StackPanel Margin="0,15,10,0">
-                                        <TextBlock>手臂</TextBlock>
-                                        <TextBlock Text="9999" Name="armPos" Foreground="#4C80FF"></TextBlock>
+                                    <TextBlock FontSize="18">手臂</TextBlock>
+                                    <TextBlock FontSize="18" Text="9999" Name="armPos" Foreground="#4C80FF"></TextBlock>
                                     </StackPanel>
                                 </StackPanel>
                             </StackPanel>
@@ -75,8 +76,8 @@
                                         <Image Source="../../Images/roate.png" Margin="2"></Image>
                                     </Border>
                                     <StackPanel Margin="0,15,10,0">
-                                        <TextBlock>回转</TextBlock>
-                                        <TextBlock Name="rotatePos" Text="9999" Foreground="#4C80FF"></TextBlock>
+                                    <TextBlock FontSize="18">回转</TextBlock>
+                                    <TextBlock Name="rotatePos" FontSize="18" Text="9999" Foreground="#4C80FF"></TextBlock>
                                     </StackPanel>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Width="100">
@@ -84,15 +85,15 @@
                                         <Image Source="../../Images/finger.png" Margin="2"></Image>
                                     </Border>
                                     <StackPanel Margin="0,15,10,0">
-                                        <TextBlock>抓手</TextBlock>
-                                        <TextBlock Text="未知" Name="gripMotor" Foreground="#4C80FF"></TextBlock>
+                                    <TextBlock FontSize="18">抓手</TextBlock>
+                                    <TextBlock Text="未知" Name="gripMotor" FontSize="18" Foreground="#4C80FF"></TextBlock>
                                     </StackPanel>
                                 </StackPanel>
                             </StackPanel>
                         </Grid>
                 </Grid>
                 <Grid>
-                    <Border Background="White" CornerRadius="10" Margin="5,10,5,5" Width="150">
+                    <Border Background="White" CornerRadius="10" Margin="5,10,5,5" Width="160">
                         <Border.Effect>
                             <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
                         </Border.Effect>
@@ -105,43 +106,31 @@
                                     <RowDefinition></RowDefinition>
                                 </Grid.RowDefinitions>
                                 <StackPanel Grid.Row="0" Orientation="Horizontal">
-                                    <Label Margin="10,0,0,0">电机</Label>
+                                <Label Margin="10,0,0,0" FontSize="18">电机</Label>
                                     <cl:SymbolMapping Name="drcarMotorWorkStatus"  Grid.Row="0" Grid.Column="2" StrContent="" Margin="20,2,2,2"/>
                                     <cl:SymbolMapping Name="drRotateMotorWorkStatus" Grid.Row="0" Grid.Column="3" StrContent="" Margin="20,2,2,2"/>
                                 </StackPanel>
                                 <StackPanel Grid.Row="1" Orientation="Horizontal">
-                                    <Label Margin="10,0,0,0">回零</Label>
+                                <Label Margin="10,0,0,0" FontSize="18">回零</Label>
                                     <cl:SymbolMapping Name="drcarMotorRetZero" Grid.Row="2" Grid.Column="2" StrContent="" Margin="20,2,2,2"/>
                                     <cl:SymbolMapping Name="drRotateMotorRetZero" Grid.Row="2" Grid.Column="3" StrContent="" Margin="20,2,2,2"/>
                                 </StackPanel>
-                                <Grid Grid.Row="2" HorizontalAlignment="Right" Width="142">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                    </Grid.ColumnDefinitions>
-                                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,5,5,5" Style="{StaticResource ShadowBorder}">
-                                        <StackPanel Orientation="Vertical" MouseDown="btn_drAllMotorRetZero">
-                                            <TextBlock FontSize="32" Foreground="#008AFF" FontWeight="Bold" Text="  0  "></TextBlock>
-                                            <TextBlock>一键回零</TextBlock>
-                                        </StackPanel>
-                                    </Border>
-                                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,5,5,5" Grid.Column="1" Style="{StaticResource ShadowBorder}">
-                                        <StackPanel Orientation="Vertical" MouseDown="btn_drMotorEnable">
-                                            <TextBlock Text="&#xe61e;" FontFamily="../../Font/#iconfont" FontSize="36" Foreground="#008AFF" TextAlignment="Center" Height="42"></TextBlock>
-                                            <TextBlock>电机使能</TextBlock>
-                                        </StackPanel>
-                                    </Border>
-                                </Grid>
+                                
                             </Grid>
                         </Grid>
                 </Grid>
                 <Grid>
-                    <Border Background="White" CornerRadius="10" Margin="5,10,5,5" Width="470">
+                    <Border Background="White" CornerRadius="10" Margin="5,10,5,5" Width="500">
                         <Border.Effect>
                             <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
                         </Border.Effect>
                     </Border>
+                    
                     <Grid Margin="5,10,5,5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height=" 100"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
@@ -153,12 +142,63 @@
                         <cl:BasedSwitchButton Name="droperateMode" ContentLeft="手动" ContentDown="操作模式" ContentRight="自动" UserControlClicked="btn_drOpState" Grid.Column="0"/>
                         <cl:BasedSwitchButton Name="drworkMode" ContentLeft="排杆" ContentDown="工作模式" ContentRight="送杆" UserControlClicked="btn_drWorkModel" Grid.Column="1"/>
                         <cl:BasedSwitchButton Name="drCarMoveModel" ContentLeft="左移" ContentDown="行车右移" ContentRight="右移" IsChecked="False" UserControlClicked="btn_drCarMoveModel" Grid.Column="2"/>
-                        <cl:BasedSwitchButton Name="drTelecontrolModel" ContentLeft="近控" ContentDown="操作" ContentRight="遥控" UserControlClicked="btn_drTelecontrolModel" Grid.Column="3"/>
+                        <cl:BasedSwitchButton Name="drTelecontrolModel" ContentLeft="司钻" ContentDown="操作" ContentRight="遥控" UserControlClicked="btn_drTelecontrolModel" Grid.Column="3" Height="100" Margin="0.333,0,0,0" VerticalAlignment="Top"/>
+                        <Menu Grid.Row="1" Grid.Column="0" Background="Transparent" Height="40" Width="100"  FontSize="16" FontWeight="Bold" Foreground="#008AFF">
+                            <MenuItem>
+                                <MenuItem.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <ContentPresenter Content="附属功能"/>
+                                        <Image Margin="0,2,0,0"  Width="15" Source="..\..\Images\downTrangle.png" />
+                                    </StackPanel>
+                                </MenuItem.Header>
+                                <MenuItem Header="目的地选择"  FontSize="24">
+                                    <MenuItem Header="立根盒" Click="btn_SelectDes" TabIndex="1"/>
+                                    <MenuItem Header="猫道-井口" Click="btn_SelectDes" TabIndex="2"/>
+                                    <MenuItem Header="猫道-鼠洞" Click="btn_SelectDes" TabIndex="3"/>
+                                </MenuItem>
+                                <MenuItem Header="回零"  FontSize="24">
+                                    <MenuItem Header="小车回零" Click="btn_CarToZero"/>
+                                    <MenuItem Header="旋转回零" Click="btn_RotateToZero"/>
+                                </MenuItem>
+                                <MenuItem Header="清除钻杆" FontSize="24" Click="btnClearDrill" />
+                            </MenuItem>
+                        </Menu>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="未选择目的地" Name="drDestination" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <TextBlock Grid.Row="1" Grid.Column="3" Text="未选择管柱类型" Name="tubeType" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+                        <Menu Grid.Row="1" Grid.Column="2" Background="Transparent" Height="40" Width="100"  FontSize="16" FontWeight="Bold" Foreground="#008AFF">
+                            <MenuItem >
+                                <MenuItem.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <ContentPresenter Content="管柱选择" />
+                                        <Image Margin="0,2,0,0"  Width="15" Source="..\..\Images\downTrangle.png" />
+                                    </StackPanel>
+                                </MenuItem.Header>
+                                <MenuItem Header="钻铤"  FontSize="24">
+                                    <MenuItem Header="6''钻铤" Click="btn_SelectDrillPipe"  TabIndex="60"/>
+                                    <MenuItem Header="6.5''钻铤" Click="btn_SelectDrillPipe"  TabIndex="65"/>
+                                    <MenuItem Header="7''钻铤" Click="btn_SelectDrillPipe"  TabIndex="70"/>
+                                    <MenuItem Header="8''钻铤" Click="btn_SelectDrillPipe"  TabIndex="80"/>
+                                    <MenuItem Header="9''钻铤" Click="btn_SelectDrillPipe"  TabIndex="90"/>
+                                    <MenuItem Header="10''钻铤" Click="btn_SelectDrillPipe"  TabIndex="100"/>
+                                    <MenuItem Header="11''钻铤" Click="btn_SelectDrillPipe"  TabIndex="110"/>
+                                </MenuItem>
+                                <MenuItem Header="钻杆"  FontSize="24">
+                                    <MenuItem Header="3''钻杆" Click="btn_SelectDrillPipe" TabIndex="30"/>
+                                    <MenuItem Header="3.5''钻杆" Click="btn_SelectDrillPipe" TabIndex="35"/>
+                                    <MenuItem Header="4''钻杆" Click="btn_SelectDrillPipe" TabIndex="40"/>
+                                    <MenuItem Header="4.5''钻杆" Click="btn_SelectDrillPipe" TabIndex="45"/>
+                                    <MenuItem Header="5''钻杆" Click="btn_SelectDrillPipe" TabIndex="50"/>
+                                    <MenuItem Header="5.5''钻杆" Click="btn_SelectDrillPipe" TabIndex="55"/>
+                                </MenuItem>
+                            </MenuItem>
+                        </Menu>
+
                     </Grid>
                 
                 </Grid>
-                <Grid>
-                    <Border Background="White" CornerRadius="10" Margin="5,10,5,5" Width="140">
+                <Grid >
+                    <Border Background="White" CornerRadius="10" Margin="5,10,5,5" Width="90">
                         <Border.Effect>
                             <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
                         </Border.Effect>
@@ -168,61 +208,26 @@
                                 <RowDefinition/>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
-                            <StackPanel Grid.Row="0">
-                                <Menu Background="Transparent" Height="40" Width="100"  FontSize="16" FontWeight="Bold" Foreground="#008AFF">
-                                    <MenuItem>
-                                        <MenuItem.Header>
-                                            <StackPanel Orientation="Horizontal">
-                                                <ContentPresenter Content="附属功能"/>
-                                                <Image Margin="0,2,0,0"  Width="15" Source="..\..\Images\downTrangle.png" />
-                                            </StackPanel>
-                                        </MenuItem.Header>
-                                        <MenuItem Header="目的地选择"  FontSize="24">
-                                            <MenuItem Header="立根盒" Click="btn_SelectDes" TabIndex="1"/>
-                                            <MenuItem Header="猫道-井口" Click="btn_SelectDes" TabIndex="2"/>
-                                            <MenuItem Header="猫道-鼠洞" Click="btn_SelectDes" TabIndex="3"/>
-                                        </MenuItem>
-                                        <MenuItem Header="回零"  FontSize="24">
-                                            <MenuItem Header="小车回零" Click="btn_CarToZero"/>
-                                            <MenuItem Header="旋转回零" Click="btn_RotateToZero"/>
-                                        </MenuItem>
-                                    </MenuItem>
-                                </Menu>
-                                <Grid Height="5"></Grid>
-                                <TextBlock Text="未选择目的地" Name="drDestination" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                            </StackPanel>
-                            <StackPanel Grid.Row="1">
-                                <Menu Background="Transparent" Height="40" Width="100"  FontSize="16" FontWeight="Bold" Foreground="#008AFF">
-                                    <MenuItem >
-                                        <MenuItem.Header>
-                                            <StackPanel Orientation="Horizontal">
-                                                <ContentPresenter Content="管柱选择" />
-                                                <Image Margin="0,2,0,0"  Width="15" Source="..\..\Images\downTrangle.png" />
-                                            </StackPanel>
-                                        </MenuItem.Header>
-                                        <MenuItem Header="钻铤"  FontSize="24">
-                                            <MenuItem Header="6''钻铤" Click="btn_SelectDrillPipe"  TabIndex="60"/>
-                                            <MenuItem Header="6.5''钻铤" Click="btn_SelectDrillPipe"  TabIndex="65"/>
-                                            <MenuItem Header="7''钻铤" Click="btn_SelectDrillPipe"  TabIndex="70"/>
-                                            <MenuItem Header="8''钻铤" Click="btn_SelectDrillPipe"  TabIndex="80"/>
-                                            <MenuItem Header="9''钻铤" Click="btn_SelectDrillPipe"  TabIndex="90"/>
-                                            <MenuItem Header="10''钻铤" Click="btn_SelectDrillPipe"  TabIndex="100"/>
-                                            <MenuItem Header="11''钻铤" Click="btn_SelectDrillPipe"  TabIndex="110"/>
-                                        </MenuItem>
-                                        <MenuItem Header="钻杆"  FontSize="24">
-                                            <MenuItem Header="3''钻杆" Click="btn_SelectDrillPipe" TabIndex="30"/>
-                                            <MenuItem Header="3.5''钻杆" Click="btn_SelectDrillPipe" TabIndex="35"/>
-                                            <MenuItem Header="4''钻杆" Click="btn_SelectDrillPipe" TabIndex="40"/>
-                                            <MenuItem Header="4.5''钻杆" Click="btn_SelectDrillPipe" TabIndex="45"/>
-                                            <MenuItem Header="5''钻杆" Click="btn_SelectDrillPipe" TabIndex="50"/>
-                                            <MenuItem Header="5.5''钻杆" Click="btn_SelectDrillPipe" TabIndex="55"/>
-                                        </MenuItem>
-                                    </MenuItem>
-                                </Menu>
-                                <Grid Height="5"></Grid>
-                                <TextBlock Text="未选择管柱类型" Name="tubeType" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                            </StackPanel>
+                        <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>  
+                            </Grid.RowDefinitions>
+                           
                         </Grid>
+                        <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,5,5,5" Style="{StaticResource ShadowBorder}">
+                            <StackPanel Orientation="Vertical" MouseDown="btn_drAllMotorRetZero" HorizontalAlignment="Center">
+                                <TextBlock FontSize="32" Foreground="#008AFF" FontWeight="Bold" Text="  0  "></TextBlock>
+                                <TextBlock>一键回零</TextBlock>
+                            </StackPanel>
+                        </Border>
+                        <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,5,5,5" Grid.Row="1" Style="{StaticResource ShadowBorder}">
+                            <StackPanel Orientation="Vertical" MouseDown="btn_drMotorEnable" HorizontalAlignment="Center">
+                                <TextBlock Text="&#xe61e;" FontFamily="../../Font/#iconfont" FontSize="36" Foreground="#008AFF" TextAlignment="Center" Height="42"></TextBlock>
+                                <TextBlock>电机使能</TextBlock>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
                 </Grid>
             </StackPanel>
         </Grid>

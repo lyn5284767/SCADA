@@ -67,6 +67,10 @@ namespace Main
 
         public event SendFingerBeamNumber SendFingerBeamNumberEvent;
 
+        public delegate void SetDrillNum(byte number);
+
+        public event SetDrillNum SetDrillNumEvent;
+
         // 二层台指梁
         List<StackPanel> spSF = new List<StackPanel>();
         // 钻台面指梁
@@ -483,7 +487,7 @@ namespace Main
                 leftDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["112N2N22N9FingerBeamDrillPipeCount14"], Mode = BindingMode.OneWay });
                 leftDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["112N2N22N9FingerBeamDrillPipeCount15"], Mode = BindingMode.OneWay });
                 leftDrillMultiBind.NotifyOnSourceUpdated = true;
-                leftDrillMultiBind.ConverterParameter = "RP L:";
+                leftDrillMultiBind.ConverterParameter = "二层台 左:";
                 this.tbRPLeft.SetBinding(TextBlock.TextProperty, leftDrillMultiBind);
 
                 RightDrillCoverter rightDrillCoverter = new RightDrillCoverter();
@@ -646,7 +650,7 @@ namespace Main
                 leftFPDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drDrillNum14"], Mode = BindingMode.OneWay });
                 leftFPDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drDrillNum15"], Mode = BindingMode.OneWay });
                 leftFPDrillMultiBind.NotifyOnSourceUpdated = true;
-                leftFPDrillMultiBind.ConverterParameter = "FP L:";
+                leftFPDrillMultiBind.ConverterParameter = "钻台面 左:";
                 this.tbFPLeft.SetBinding(TextBlock.TextProperty, leftFPDrillMultiBind);
 
                 this.tbrow1RightFP.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drDrillNum17"], Mode = BindingMode.OneWay });
@@ -681,7 +685,7 @@ namespace Main
                 RightFPDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drDrillNum30"], Mode = BindingMode.OneWay });
                 RightFPDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drDrillNum31"], Mode = BindingMode.OneWay });
                 RightFPDrillMultiBind.NotifyOnSourceUpdated = true;
-                RightFPDrillMultiBind.ConverterParameter = "R:";
+                RightFPDrillMultiBind.ConverterParameter = "右:";
                 this.tbFPRight.SetBinding(TextBlock.TextProperty, RightFPDrillMultiBind);
                 #endregion
                 spSF.Clear();
@@ -1205,39 +1209,53 @@ namespace Main
         /// </summary>
         private void FingerBeamArrowBindByTime()
         {
-            // 钻台面指梁绑定
-            byte drSelectDrill = GlobalData.Instance.da["drSelectDrill"].Value.Byte;
-            byte droperationModel = GlobalData.Instance.da["droperationModel"].Value.Byte;
-            if (droperationModel == 4 || droperationModel == 9)
+            try
             {
-                Border selectbd = drSelectFingerList.Where(w => w.Num == drSelectDrill).Select(s => s.SelectBorder).FirstOrDefault();
-                if (selectbd != null && selectbd.Visibility == Visibility.Visible)
+                // 钻台面指梁绑定
+                byte drSelectDrill = GlobalData.Instance.da["drSelectDrill"].Value.Byte;
+                byte droperationModel = GlobalData.Instance.da["droperationModel"].Value.Byte;
+                if (droperationModel == 4 || droperationModel == 9)
                 {
-                    selectbd.Visibility = Visibility.Hidden;
-                    drSelectFingerList.Where(w => w.Num != drSelectDrill).ForEach(o => o.SelectBorder.Visibility = Visibility.Visible);
+                    Border selectbd = drSelectFingerList.Where(w => w.Num == drSelectDrill).Select(s => s.SelectBorder).FirstOrDefault();
+                    if (selectbd != null && selectbd.Visibility == Visibility.Visible)
+                    {
+                        selectbd.Visibility = Visibility.Hidden;
+                        drSelectFingerList.Where(w => w.Num != drSelectDrill).ForEach(o => o.SelectBorder.Visibility = Visibility.Visible);
+                    }
+                    else
+                    {
+                        drSelectFingerList.ForEach(o => o.SelectBorder.Visibility = Visibility.Visible);
+                    }
+                }
+                else
+                {
+                    drSelectFingerList.ForEach(o => o.SelectBorder.Visibility = Visibility.Visible);
+                }
+                // 二层台指梁绑定
+                byte sfSelectDrill = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"].Value.Byte;
+                byte sfoperationModel = GlobalData.Instance.da["operationModel"].Value.Byte;
+                if (sfoperationModel == 4 || sfoperationModel == 9)
+                {
+                    Border selectbd = sfSelectFingerList.Where(w => w.Num == sfSelectDrill).Select(s => s.SelectBorder).FirstOrDefault();
+                    if (selectbd != null && selectbd.Visibility == Visibility.Visible)
+                    {
+                        selectbd.Visibility = Visibility.Hidden;
+                        sfSelectFingerList.Where(w => w.Num != sfSelectDrill).ForEach(o => o.SelectBorder.Visibility = Visibility.Visible);
+                    }
+                    else
+                    {
+                        sfSelectFingerList.ForEach(o => o.SelectBorder.Visibility = Visibility.Visible);
+                    }
+                }
+                else
+                {
+                    sfSelectFingerList.ForEach(o => o.SelectBorder.Visibility = Visibility.Visible);
                 }
             }
-            else
+            catch(Exception ex)
             {
-                drSelectFingerList.ForEach(o => o.SelectBorder.Visibility = Visibility.Visible);
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
             }
-            // 二层台指梁绑定
-            byte sfSelectDrill = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"].Value.Byte;
-            byte sfoperationModel = GlobalData.Instance.da["operationModel"].Value.Byte;
-            if (sfoperationModel == 4 || sfoperationModel == 9)
-            {
-                Border selectbd = sfSelectFingerList.Where(w => w.Num == sfSelectDrill).Select(s => s.SelectBorder).FirstOrDefault();
-                if (selectbd != null && selectbd.Visibility == Visibility.Visible)
-                {
-                    selectbd.Visibility = Visibility.Hidden;
-                    sfSelectFingerList.Where(w => w.Num != sfSelectDrill).ForEach(o => o.SelectBorder.Visibility = Visibility.Visible);
-                }
-            }
-            else
-            {
-                sfSelectFingerList.ForEach(o => o.SelectBorder.Visibility = Visibility.Visible);
-            }
-
 
             //#region 二层台
             //AnimationCurrentFingerBeamVisableCoverter CurrentFingerBeamCoverter = new AnimationCurrentFingerBeamVisableCoverter();
@@ -1515,6 +1533,11 @@ namespace Main
                 if (SendFingerBeamNumberEvent != null)
                 {
                     SendFingerBeamNumberEvent(fingerBeamNumber);
+                }
+
+                if (SetDrillNumEvent != null)
+                {
+                    SetDrillNumEvent(fingerBeamNumber);
                 }
             }
         }

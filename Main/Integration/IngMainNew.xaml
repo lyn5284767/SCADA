@@ -132,13 +132,13 @@
                         <Border BorderThickness="1" Height="1" BorderBrush="#EBEBEB" VerticalAlignment="Center" Grid.RowSpan="2"/>
                         <StackPanel Orientation="Horizontal" Grid.Row="1">
                             <Border Background="#ffffff" Opacity="0.2" Width="30" Height="30" CornerRadius="30" Margin="10,0,0,0"/>
-                            <TextBlock Text="&#xe685;" Margin="-30,0,0,0" FontFamily="../Font/#iconfont" FontSize="24" Foreground="White"></TextBlock>
-                            <TextBlock Name="LinkError" Text="无联动告警" Foreground="White" Margin="5,0,0,0"></TextBlock>
+                            <TextBlock Text="&#xe685;" Margin="-30,0,0,0" FontFamily="../Font/#iconfont" FontSize="24" Foreground="Red"></TextBlock>
+                            <TextBlock Name="LinkError" Text="无联动告警" Foreground="Red" Margin="5,0,0,0"></TextBlock>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Grid.Row="0">
                             <Border Background="#ffffff" Opacity="0.2" Width="30" Height="30" CornerRadius="30" Margin="10,0,0,0"/>
-                            <TextBlock Text="&#xe603;" Margin="-30,0,0,0" FontFamily="../Font/#iconfont" FontSize="24" Foreground="White"></TextBlock>
-                            <TextBlock Name="tbAlarm" Text="暂无" Foreground="White" Margin="5,0,0,0"></TextBlock>
+                            <TextBlock Text="&#xe603;" Margin="-30,0,0,0" FontFamily="../Font/#iconfont" FontSize="24" Foreground="Red"></TextBlock>
+                            <TextBlock Name="tbAlarm" Text="暂无" Foreground="Red" Margin="5,0,0,0"></TextBlock>
                         </StackPanel>
                     </Grid>
                 </Border>
@@ -155,11 +155,11 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
-                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="120"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
                     <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
+                  
                 </Grid.RowDefinitions>
                 <Button Width="325" Height="40" Panel.ZIndex="1" HorizontalAlignment="Center"
                                  Background="#2B71CA" BorderBrush="#92C202" Grid.ColumnSpan="2">
@@ -169,65 +169,93 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
+                        <ColumnDefinition/>
+
                     </Grid.ColumnDefinitions>
                     <cl:BasedSwitchButton Grid.Column="0" Name="operateMode" ContentLeft="手动" ContentDown="操作模式" ContentRight="自动" UserControlClicked="btn_OpState"/>
                     <cl:BasedSwitchButton Grid.Column="1" Name="workMode" ContentLeft="排杆" ContentDown="工作模式" ContentRight="送杆" UserControlClicked="btn_WorkModel"/>
+                    <Grid Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Menu Background="Transparent" Height="35" Width="120"  FontSize="16" FontWeight="Bold" Foreground="#008AFF">
+                            <MenuItem>
+                                <MenuItem.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <ContentPresenter Content="管 柱 选 择" Width="80"/>
+                                        <Image Margin="0,2,0,0"  Width="15" Source="..\Images\downTrangle.png" />
+                                    </StackPanel>
+                                </MenuItem.Header>
+                                <MenuItem Header="钻铤">
+                                    <MenuItem Header="6''钻铤" Click="btn_SelectDrillPipe" TabIndex="60"/>
+                                    <MenuItem Header="6.5''钻铤" Click="btn_SelectDrillPipe" TabIndex="65"/>
+                                    <MenuItem Header="7''钻铤" Click="btn_SelectDrillPipe" TabIndex="70"/>
+                                    <MenuItem Header="7.5''钻铤" Click="btn_SelectDrillPipe" TabIndex="75"/>
+                                    <MenuItem Header="8''钻铤" Click="btn_SelectDrillPipe" TabIndex="80"/>
+                                    <MenuItem Header="9''钻铤" Click="btn_SelectDrillPipe" TabIndex="90"/>
+                                    <MenuItem Header="10''钻铤" Click="btn_SelectDrillPipe" TabIndex="100"/>
+                                    <MenuItem Header="11''钻铤" Click="btn_SelectDrillPipe" TabIndex="110"/>
+                                </MenuItem>
+                                <MenuItem Header="钻杆">
+                                    <MenuItem Header="3 1/2''钻杆" Click="btn_SelectDrillPipe" TabIndex="35"/>
+                                    <MenuItem Header="4''钻杆" Click="btn_SelectDrillPipe" TabIndex="40"/>
+                                    <MenuItem Header="4 1/2''钻杆" Click="btn_SelectDrillPipe" TabIndex="45"/>
+                                    <MenuItem Header="5''钻杆" Click="btn_SelectDrillPipe" TabIndex="50"/>
+                                    <MenuItem Header="5.5''钻杆" Click="btn_SelectDrillPipe" TabIndex="55"/>
+                                    <MenuItem Header="5 7/8''钻杆" Click="btn_SelectDrillPipe" TabIndex="57"/>
+                                    <MenuItem Header="6 5/8''钻杆" Click="btn_SelectDrillPipe" TabIndex="68"/>
+                                </MenuItem>
+                            </MenuItem>
+                        </Menu>
+                        <Menu Grid.Row="2" Background="Transparent" Height="35" Width="120"  FontSize="16" FontWeight="Bold" Foreground="#008AFF">
+                            <MenuItem>
+                                <MenuItem.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <ContentPresenter Content="目的地选择" />
+                                        <Image Margin="0,2,0,0"  Width="15" Source="..\Images\downTrangle.png" />
+                                    </StackPanel>
+                                </MenuItem.Header>
+                                <MenuItem Header="立根盒" Click="btn_SelectDes" TabIndex="1"/>
+                                <MenuItem Header="猫道-井口" Click="btn_SelectDes" TabIndex="2"/>
+                                <MenuItem Header="猫道-鼠洞" Click="btn_SelectDes" TabIndex="3"/>
+                            </MenuItem>
+                        </Menu>
+                        <TextBlock Grid.Row="1" Text="未选择管柱类型" Name="tubeType" FontSize="14" FontWeight="Bold" VerticalAlignment="Center" />
+                        <TextBlock Grid.Row="3" Text="未选择目的地" Name="drDestination" FontSize="14" FontWeight="Bold" VerticalAlignment="Center"  />
+
+                    </Grid>
                 </Grid>
                 <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2">
                     <TextBlock Text="联 动 开 关:" Width="100" Margin="12,0,0,0" FontSize="16" FontWeight="Bold" Foreground="#212121" TextAlignment="Justify"></TextBlock>
-                    <cl:OnOffButton Name="oobLink" Margin="10,0,0,0" CBCheckedEvent="OnOffButton_CBCheckedEvent"/>
+                    <cl:CustomCheckBox Name="cbLink" UserControlClicked="cbLink_Clicked"/>
                     <TextBlock x:Name="tbLink"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="2">
-                    <Menu Background="Transparent" Height="35" Width="120"  FontSize="16" FontWeight="Bold" Foreground="#008AFF">
-                        <MenuItem>
-                            <MenuItem.Header>
-                                <StackPanel Orientation="Horizontal">
-                                    <ContentPresenter Content="管 柱 选 择" Width="80"/>
-                                    <Image Margin="0,2,0,0"  Width="15" Source="..\Images\downTrangle.png" />
-                                </StackPanel>
-                            </MenuItem.Header>
-                            <MenuItem Header="钻铤">
-                                <MenuItem Header="6''钻铤" Click="btn_SelectDrillPipe" TabIndex="60"/>
-                                <MenuItem Header="6.5''钻铤" Click="btn_SelectDrillPipe" TabIndex="65"/>
-                                <MenuItem Header="7''钻铤" Click="btn_SelectDrillPipe" TabIndex="70"/>
-                                <MenuItem Header="7.5''钻铤" Click="btn_SelectDrillPipe" TabIndex="75"/>
-                                <MenuItem Header="8''钻铤" Click="btn_SelectDrillPipe" TabIndex="80"/>
-                                <MenuItem Header="9''钻铤" Click="btn_SelectDrillPipe" TabIndex="90"/>
-                                <MenuItem Header="10''钻铤" Click="btn_SelectDrillPipe" TabIndex="100"/>
-                                <MenuItem Header="11''钻铤" Click="btn_SelectDrillPipe" TabIndex="110"/>
-                            </MenuItem>
-                            <MenuItem Header="钻杆">
-                                <MenuItem Header="3 1/2''钻杆" Click="btn_SelectDrillPipe" TabIndex="35"/>
-                                <MenuItem Header="4''钻杆" Click="btn_SelectDrillPipe" TabIndex="40"/>
-                                <MenuItem Header="4 1/2''钻杆" Click="btn_SelectDrillPipe" TabIndex="45"/>
-                                <MenuItem Header="5''钻杆" Click="btn_SelectDrillPipe" TabIndex="50"/>
-                                <MenuItem Header="5.5''钻杆" Click="btn_SelectDrillPipe" TabIndex="55"/>
-                                <MenuItem Header="5 7/8''钻杆" Click="btn_SelectDrillPipe" TabIndex="57"/>
-                                <MenuItem Header="6 5/8''钻杆" Click="btn_SelectDrillPipe" TabIndex="68"/>
-                            </MenuItem>
-                        </MenuItem>
-                    </Menu>
-                    <TextBlock Text="未选择管柱类型" Name="tubeType" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.ColumnSpan="2">
-                    <Menu Background="Transparent" Height="35" Width="120"  FontSize="16" FontWeight="Bold" Foreground="#008AFF">
-                        <MenuItem>
-                            <MenuItem.Header>
-                                <StackPanel Orientation="Horizontal">
-                                    <ContentPresenter Content="目的地选择" />
-                                    <Image Margin="0,2,0,0"  Width="15" Source="..\Images\downTrangle.png" />
-                                </StackPanel>
-                            </MenuItem.Header>
-                            <MenuItem Header="立根盒" Click="btn_SelectDes" TabIndex="1"/>
-                            <MenuItem Header="猫道-井口" Click="btn_SelectDes" TabIndex="2"/>
-                            <MenuItem Header="猫道-鼠洞" Click="btn_SelectDes" TabIndex="3"/>
-                        </MenuItem>
-                    </Menu>
-                    <Grid Height="5"></Grid>
-                    <TextBlock Text="未选择目的地" Name="drDestination" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                </StackPanel>
-                <Button Grid.Row="5" FontSize="14" FontWeight="Bold" Click="btn_SetDrillNum" Width="300" Grid.ColumnSpan="2" Margin="10,1,11,0">指梁选择</Button>
+                <Grid  Grid.Row="3" Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="大钩高度" Margin="5,0,0,0" FontSize="16" FontWeight="Bold" Foreground="#212121" TextAlignment="Justify"></TextBlock>
+                    <TextBlock Grid.Column="1" FontSize="18" Text="1111.1" Name="bigHookRealTimeValue" Foreground="#4C80FF"></TextBlock>
+                    <TextBlock Text="卡瓦" Grid.Column="2" Margin="5,0,0,0" FontSize="16" FontWeight="Bold" Foreground="#212121" TextAlignment="Justify"></TextBlock>
+                    <TextBlock x:Name="tbKava" Text="未知" Grid.Column="3" Margin="5,0,0,0" FontSize="16" FontWeight="Bold" Foreground="#4C80FF" TextAlignment="Justify"></TextBlock>
+                </Grid>
+                <Grid Grid.Row="4" Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" FontSize="14" FontWeight="Bold" Click="btn_SetDrillNum" Width="100" >指梁选择</Button>
+                    <Button Name="tbZeroSet"  Grid.Column="1" Content="零位标定" FontSize="18" FontWeight="Bold" Margin="15,0,0,0" Width="100" Click="tbZeroSet_Checked" Height="50"></Button>
+                    <Button Name="tbZeroUnSet"  Grid.Column="2" Content="取消标定" FontSize="18" FontWeight="Bold" Margin="5,0,0,0" Width="100"  Click="tbZeroUnSet_Checked" Height="50"></Button>
+
+                </Grid>
             </Grid>
         </Border>
         <Grid Name="gdSF" Grid.Row="1" Grid.Column="1"></Grid>

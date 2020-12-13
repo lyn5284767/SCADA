@@ -70,7 +70,7 @@ namespace Main.SecondFloor
                 this.DrillCollarLockTurn.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["107N23B0b7"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
                 this.MonkeyRoadCommutation.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["144b2"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
                 this.MonkeyRoadAction.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["144b3"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
-                this.DrillCollarLockCommutation.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["107N23B1b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.DrillCollarLockCommutation.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["107N23B0b7"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
                 this.LeftRopeAction.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["144b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
                 this.RightRopeAction.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["144b1"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
 
@@ -93,6 +93,10 @@ namespace Main.SecondFloor
                 this.Right7DrillCollarAction.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["143b6"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
                 this.Right8DrillCollarAction.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["143b7"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
                 #endregion
+
+                this.STOInput.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["125b7"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.STOOutput.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["144b5"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+
             }
             catch (Exception ex)
             {

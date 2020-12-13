@@ -83,6 +83,8 @@ namespace Main.SecondFloor
                 this.HandStretchEnable.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["503b3"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
                 this.HandWellheadEnable.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["503b4"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
                 this.DrillFloorOrSecondFloor.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["503b5"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.smKAVA.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["575b6"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+
                 #endregion
             }
             catch (Exception ex)

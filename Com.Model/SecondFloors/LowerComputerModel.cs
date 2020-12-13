@@ -12,7 +12,6 @@ namespace Com.Model.SecondFloors
     /// </summary>
     public class LowerComputerModel
     {
-        private int m_DeviceYear;
         /// <summary>
         /// 设备年份
         /// </summary>
@@ -30,6 +29,6 @@ namespace Com.Model.SecondFloors
         /// </summary>
         public int DeviceCarNum { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+      
     }
 }

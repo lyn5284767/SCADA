@@ -2627,7 +2627,7 @@ namespace COM.Common
             {
                 drTwo += (byte)values[0];
             }
-            return "R:" + drOne.ToString() + " + " + drTwo.ToString();
+            return "右:" + drOne.ToString() + " + " + drTwo.ToString();
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
@@ -2899,7 +2899,7 @@ namespace COM.Common
 
             bool type = (bool)value;
             if (type) return "遥控";
-            else return "近控";
+            else return "司钻";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -3071,12 +3071,12 @@ namespace COM.Common
                 return "联动未开启";
             }
             int error = (byte)values[0];
-            if(error == 23) return "模式不一致,无法开启联动";
+            if(error == 23) return "排送杆不一致,无法开启联动";
             else if (error == 24) return "目标指梁不一致，无法开启联动";
             else if (error == 25) return "非立根模式，无法开启联动";
-            else if (error == 26) return "非手自动模式，无法开启联动";
+            else if (error == 26) return "非自动模式，无法开启联动";
             else if (error == 40) return "请切换至二层台";
-            else if (error == 41) return "钻台面叜初始位";
+            else if (error == 41) return "钻台面非初始位";
             else if (error == 42) return "二层台钳头禁止打开";
             else if (error == 45) return "请切换至钻台面";
             else if (error == 46) return "钻台面钳头禁止打开";
@@ -3092,6 +3092,7 @@ namespace COM.Common
             else if (error == 64) return "二层台不在初始位";
             else if (error == 65) return "钻台面禁止缩回";
             else if (error == 66) return "二层台禁止缩回";
+            else if (error == 67) return "有解除互锁，禁止开启联动";
             else if (error == 120) return "二层台或钻台面不处于自动，无法开启";
             else if (error == 121) return "二层台或钻台面不处于初始步，无法开启";
             else if (error == 122) return "二层台或钻台面抓手有钻杆，无法开启";
@@ -3112,7 +3113,7 @@ namespace COM.Common
                 else if (b1) return "联动已开启，二层台使能";
                 else if (b2) return "联动已开启，钻台面使能";
             }
-            return "未知";
+            return "暂无";
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
@@ -3395,7 +3396,7 @@ namespace COM.Common
             else if (bType == 100) return "10寸钻铤";
             else if (bType == 110) return "11寸钻铤";
 
-            return "未选中管柱类型";
+            return "未选中管柱";
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
@@ -3742,7 +3743,7 @@ namespace COM.Common
                 return 0;
             }
             int val = (int)value;
-            double ret = (val - 141666) * 8 / 4096.0;
+            double ret = (val - GlobalData.Instance.da["SIRSelfWellPosSet"].Value.Int32) * 8 / (4096.0*2);
             ret = Math.Round(ret, 0);
             return ret;
         }
@@ -3782,6 +3783,9 @@ namespace COM.Common
             throw new NotImplementedException();
         }
     }
+    /// <summary>
+    /// 除以10 不保留小数点
+    /// </summary>
     public class TakeTenConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -3852,7 +3856,7 @@ namespace COM.Common
                 || values[1] == DependencyProperty.UnsetValue || values[1] == null
                 || values[2] == DependencyProperty.UnsetValue || values[2] == null)
             {
-                return (Brush)bc.ConvertFrom("#ADD8E6");
+                return (Brush)bc.ConvertFrom("#0000FF");
             }
             double val = (short)values[0] / 10.0;
             double min = (double)values[1];
@@ -3860,8 +3864,8 @@ namespace COM.Common
             if (max ==0) max = 100;
             double levelOne = (max - min) / 3;
             double levelTwo = ((max - min) / 3) * 2;
-            if (val < levelOne) return (Brush)bc.ConvertFrom("#2968DC");
-            else if (val < levelTwo) return (Brush)bc.ConvertFrom("#FFC464");
+            if (val < levelOne) return (Brush)bc.ConvertFrom("#0000FF");
+            else if (val < levelTwo) return (Brush)bc.ConvertFrom("#94944F");
             else return (Brush)bc.ConvertFrom("#FF0000");
         }
 
@@ -4298,15 +4302,23 @@ namespace COM.Common
             }
             else if (bType == 1)
             {
-                return "正在进行上卸扣";
+                return "正在井口进行上卸扣";
             }
             else if (bType == 2)
             {
-                return "不在井口";
+                return "已经退出井口鼠洞";
             }
             else if (bType == 3)
             {
                 return "退至安全位置";
+            }
+            else if (bType == 4)
+            {
+                return "当前位于鼠洞";
+            }
+            else if (bType == 5)
+            {
+                return "正在鼠洞上卸扣";
             }
 
             return "未知";
@@ -4374,6 +4386,36 @@ namespace COM.Common
             }
 
             return "未知";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 自研铁钻工-控制模式
+    /// </summary>
+    public class SIRSelfLocalOrRemoreCheckConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return false;
+            }
+
+            byte bType = (byte)value;
+            switch (bType)
+            {
+                case 1:
+                    return true;
+                case 2:
+                    return false;
+            }
+
+            return false;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -4652,6 +4694,26 @@ namespace COM.Common
     #endregion
 
     #region 集成系统
+    /// <summary>
+    /// 卡瓦打开-flase;卡瓦关闭-true
+    /// </summary>
+    public class KavaConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null || value == DependencyProperty.UnsetValue)
+            {
+                return "未知";
+            }
+            if ((bool)value) return "关闭";
+            else return "打开";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     /// <summary>
     /// 操作模式-描述
     /// </summary>
@@ -5278,6 +5340,31 @@ namespace COM.Common
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    #endregion
+
+    #region 宝石猫道
+    public class BSCatControlMultiConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null)
+                || (values[1] == DependencyProperty.UnsetValue) || (values[1] == null)
+                || (values[2] == DependencyProperty.UnsetValue) || (values[2] == null))
+            {
+                return "未知";
+            }
+
+            if ((bool)values[0]) return "本地";
+            if ((bool)values[1]) return "遥控";
+            if ((bool)values[2]) return "司钻";
+            return "未知";
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

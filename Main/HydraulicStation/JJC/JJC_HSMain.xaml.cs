@@ -173,6 +173,10 @@ namespace Main.HydraulicStation.JJC
             this.tmpStatus = GlobalData.Instance.da["508b6"].Value.Boolean;
 
             if (!GlobalData.Instance.ComunciationNormal) this.tbAlarm.Text = "网络连接失败！";
+            else
+            {
+                if (this.tbAlarm.Text == "网络连接失败！") this.tbAlarm.Text = "";
+            }
             #endregion
         }
 
@@ -388,7 +392,7 @@ namespace Main.HydraulicStation.JJC
                 byte[] byteToSend = new byte[10] { 0, 19, 4, 1, tempByte[0], tempByte[1], 0, 0, 0, 0 };
                 GlobalData.Instance.da.SendBytes(byteToSend);
             }
-            catch (Exception ex)
+            catch
             { 
                 MessageBox.Show("请输入数字!");
             }

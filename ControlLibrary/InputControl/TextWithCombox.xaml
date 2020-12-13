@@ -13,10 +13,10 @@
             </Border.Effect>
         </Border>
         <StackPanel Orientation="Horizontal" Name="stackPanel">
-            <TextBlock Name="tbk" Text="参数配置" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="14" FontFamily="微软雅黑" FontWeight="Bold"  Width="150" TextAlignment="Center">
+            <TextBlock Name="tbk" Text="参数配置" HorizontalAlignment="Center" Foreground="Black" VerticalAlignment="Center" Margin="1" FontSize="14" FontFamily="微软雅黑" FontWeight="Bold"  Width="150" TextAlignment="Center">
             </TextBlock>
-            <TextBox x:Name="textBoxShow" IsReadOnly="True" Text="{Binding Path=ShowTxtWithCB, ElementName=textWithCombox}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="12" FontFamily="微软雅黑" FontWeight="Bold" Width="140" TextAlignment="Center"/>
-            <ComboBox x:Name="cbSet" Width="140" LostFocus="textBox_ParameterConfig_LostFocus" FontSize="12"></ComboBox>
+            <TextBox x:Name="textBoxShow" IsReadOnly="True" Foreground="Black" Text="{Binding Path=ShowTxtWithCB, ElementName=textWithCombox}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="12" FontFamily="微软雅黑" FontWeight="Bold" Width="140" TextAlignment="Center"/>
+            <ComboBox x:Name="cbSet" Width="140" Foreground="Black" LostFocus="textBox_ParameterConfig_LostFocus" FontSize="12" GotFocus="cbSet_GotFocus"></ComboBox>
         </StackPanel>
     </Grid>
 </UserControl>

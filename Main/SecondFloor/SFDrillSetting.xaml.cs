@@ -55,6 +55,7 @@ namespace Main.SecondFloor
             InitializeComponent();
             //this.gdMain.Children.Add(amination);
             this.gdMain.Children.Add(aminationNew);
+            aminationNew.SetDrillNumEvent += AminationNew_SetDrillNumEvent;
             timer = new System.Threading.Timer(new TimerCallback(Timer_Elapsed), this, 2000, 100);//改成50ms 的时钟
 
             this.carPosistion.SetBinding(TextBox.TextProperty,new Binding("ShortTag") { Source = GlobalData.Instance.da["carRealPosition"], Mode = BindingMode.OneWay ,Converter = new CarPosCoverter()});//小车实际位置
@@ -64,6 +65,32 @@ namespace Main.SecondFloor
             //this.drarmPosistion.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["drArmPos"], Mode = BindingMode.OneWay, Converter = new ArmPosCoverter() });//手臂实际位置
             this.drarmPosistion.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["drArmPos"], Mode = BindingMode.OneWay});//手臂实际位置
             this.Loaded += SFDrillSetting_Loaded;
+
+        }
+
+        private void AminationNew_SetDrillNumEvent(byte number)
+        {
+            if (number < 16)
+            {
+                this.NowOrent.Text = "左";
+                this.NowSelect.Text = number.ToString();
+            }
+            else if (number == 16)
+            {
+                this.NowOrent.Text = "左";
+                this.NowSelect.Text = "钻铤";
+            }
+            else if (number > 16 && number < 32)
+            {
+                this.NowOrent.Text = "右";
+                this.NowSelect.Text = (number - 16).ToString();
+            }
+            else if (number == 32)
+            {
+                this.NowOrent.Text = "右";
+                this.NowSelect.Text = "钻铤"; 
+            }
+            else this.NowSelect.Text = "未选择";
         }
 
         private void SFDrillSetting_Loaded(object sender, RoutedEventArgs e)
@@ -294,8 +321,9 @@ namespace Main.SecondFloor
         private Regex regexDrillPipeCountCorrect = new Regex(@"^[0-9]+$");
         private void btn_DrillPipeCountCorrect_SetPipeCount(object sender, RoutedEventArgs e)
         {
+            if (this.NowSelect.Text == "钻铤") this.NowSelect.Text = "0";
             byte byteText = 0;
-            string strText = tbDrillPipeCountCorrectFingerDirectNumber.Text;
+            string strText = this.NowSelect.Text;
             if ((regexDrillPipeCountCorrect.Match(strText)).Success)
             {
                 try
@@ -306,7 +334,7 @@ namespace Main.SecondFloor
                 catch (Exception ex)
                 {
                     MessageBox.Show("参数数值范围异常：" + ex.Message);
-                    tbDrillPipeCountCorrectFingerDirectNumber.Text = "0";
+                    //tbDrillPipeCountCorrectFingerDirectNumber.Text = "0";
                     return;
                 }
 
@@ -314,12 +342,13 @@ namespace Main.SecondFloor
             else
             {
                 MessageBox.Show("参数为非数字");
-                tbDrillPipeCountCorrectFingerDirectNumber.Text = "0";
+                //tbDrillPipeCountCorrectFingerDirectNumber.Text = "0";
                 return;
             }
 
             byte byteCountText = 0;
             strText = tbDrillPipeCountCorrectPipeCount.Text;
+            
             if ((regexDrillPipeCountCorrect.Match(strText)).Success)
             {
                 try
@@ -343,7 +372,7 @@ namespace Main.SecondFloor
             }
 
 
-            if (this.cmbDrillPipeCountCorrectFingerDirect.Text == "右")
+            if (this.NowOrent.Text == "右")
             {
                 if (byteText == 0)
                 {
@@ -356,11 +385,11 @@ namespace Main.SecondFloor
                 else
                 {
                     MessageBox.Show("参数数值范围异常");
-                    tbDrillPipeCountCorrectFingerDirectNumber.Text = "0";
+                    //tbDrillPipeCountCorrectFingerDirectNumber.Text = "0";
                     return;
                 }
             }
-            else if (this.cmbDrillPipeCountCorrectFingerDirect.Text == "左")
+            else if (this.NowOrent.Text == "左")
             {
                 if (byteText == 0)
                 {
@@ -373,7 +402,7 @@ namespace Main.SecondFloor
                 else
                 {
                     MessageBox.Show("参数数值范围异常");
-                    tbDrillPipeCountCorrectFingerDirectNumber.Text = "0";
+                    //tbDrillPipeCountCorrectFingerDirectNumber.Text = "0";
                     return;
                 }
             }
@@ -453,6 +482,17 @@ namespace Main.SecondFloor
         private void tbPreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             GlobalData.Instance.GetKeyBoard();
+        }
+
+        private void btn_PluseDrill(object sender, RoutedEventArgs e)
+        {
+            tbDrillPipeCountCorrectPipeCount.Text = (int.Parse(tbDrillPipeCountCorrectPipeCount.Text) + 1).ToString();
+        }
+
+        private void btn_ReduceDrill(object sender, RoutedEventArgs e)
+        {
+            tbDrillPipeCountCorrectPipeCount.Text = (int.Parse(tbDrillPipeCountCorrectPipeCount.Text) - 1).ToString();
+
         }
     }
 }

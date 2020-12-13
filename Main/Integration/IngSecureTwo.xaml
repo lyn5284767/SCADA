@@ -47,7 +47,10 @@
             <RowDefinition Height="30"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Label HorizontalAlignment="Center" Grid.Row="0" FontSize="34" FontWeight="Bold" FontFamily="微软雅黑">警告</Label>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Label HorizontalAlignment="Center" Grid.Row="0" FontSize="34" FontWeight="Bold" FontFamily="微软雅黑">警告</Label>
+            <Button Height="50" FontSize="24" FontWeight="Bold" Click="Button_Click">互锁列表</Button>
+        </StackPanel>
         <Label HorizontalAlignment="Center" Grid.Row="1" Foreground="#E0496D" FontSize="18" FontFamily="微软雅黑">互锁是保证系统安全运行的前提，请勿随意解除互锁，须在专业人员指导下进行操作!</Label>
         <StackPanel Orientation="Horizontal" Grid.Row="2">
             <StackPanel>

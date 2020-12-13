@@ -50,6 +50,8 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="100"/>
                 <RowDefinition Height="60"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
             </Grid.RowDefinitions>
             <Button Width="325" Height="40" Panel.ZIndex="1" HorizontalAlignment="Center"  
                                  Background="#2B71CA" BorderBrush="#92C202" Grid.ColumnSpan="2">
@@ -59,9 +61,12 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <cl:BasedSwitchButton Grid.Column="0" Name="droperateMode" ContentLeft="手动" ContentDown="操作模式" ContentRight="自动" UserControlClicked="btn_DROpState"/>
                 <cl:BasedSwitchButton Grid.Column="1" Name="drworkMode" ContentLeft="排杆" ContentDown="工作模式" ContentRight="送杆" UserControlClicked="btn_DRWorkModel"/>
+                <cl:BasedSwitchButton Name="drTelecontrolModel" ContentLeft="司钻" ContentDown="操作" ContentRight="遥控" UserControlClicked="btn_drTelecontrolModel" Grid.Column="2" Height="100" Margin="0.333,0,0,0" VerticalAlignment="Top"/>
+
             </Grid>
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
@@ -84,7 +89,10 @@
                         <TextBlock Foreground="#212121">电机使能</TextBlock>
                     </StackPanel>
                 </Border>
-            </Grid>
+           </Grid>
+            <TextBlock x:Name="tbDRAlarm" Grid.Row="3" Text="" FontSize=" 18" Foreground="#E0496D"></TextBlock>
+            <TextBlock x:Name="tbDROpr" Grid.Row="4" Text="" FontSize=" 18" Foreground="#E0496D"></TextBlock>
+
         </Grid>
     </Grid>
 </UserControl>

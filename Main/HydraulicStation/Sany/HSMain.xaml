@@ -7,6 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="650" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="Ing">
     <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
     </UserControl.Resources>
     <Grid>
         <Grid>

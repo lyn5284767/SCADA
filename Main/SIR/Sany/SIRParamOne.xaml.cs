@@ -103,7 +103,7 @@ namespace Main.SIR.Sany
                 Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
             }
         }
-        /// <summary>
+        /// <summary>a
         /// 确认配置
         /// </summary>
         private void Button_tabItemParameterConfiguration_Confirm(object sender, RoutedEventArgs e)

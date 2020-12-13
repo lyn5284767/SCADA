@@ -574,5 +574,11 @@ namespace Main.Integration
 
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            IngLockList ingLock = new IngLockList();
+            ingLock.ShowDialog();
+        }
     }
 }

@@ -127,12 +127,15 @@ namespace ControlLibrary
 
         private void tb_ParameterConfig_Focus(object sender, MouseButtonEventArgs e)
         {
-            this.sh.Opacity = 0.5;
-            if (CtrGetFocusEvent != null)
+            if (e.ChangedButton == MouseButton.Left)
             {
-                CtrGetFocusEvent(this.ControlTag);
+                this.sh.Opacity = 0.5;
+                if (CtrGetFocusEvent != null)
+                {
+                    CtrGetFocusEvent(this.ControlTag);
+                }
+                GlobalData.Instance.GetKeyBoard();
             }
-            GlobalData.Instance.GetKeyBoard();
         }
     }
 }

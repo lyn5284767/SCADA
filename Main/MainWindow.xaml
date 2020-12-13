@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:secondfloor="clr-namespace:Main.SecondFloor"
         xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero" xmlns:controllibrary="http://talonzeng.com/ControlLibrary"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
         mc:Ignorable="d"
         Title="MainWindow" Height="768" Width="1024" WindowStyle="None" WindowState="Maximized" Background="#F5F6FA">
     <Window.Resources>
@@ -55,9 +56,13 @@ KeyboardNavigation.DirectionalNavigation="Cycle" Width="100"/>
             <Setter Property="FontFamily" Value="微软雅黑"/>
         </Style>
     </Window.Resources>
-
+    <!--<Grid>-->
+        <!--<hc:ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalAlignment="Right" IsInertiaEnabled="True" IsPenetrating="True">
+            <StackPanel hc:Growl.GrowlParent="True" VerticalAlignment="Top" Margin="0,10,10,10" Width="100"/>
+        </hc:ScrollViewer>-->
+    
     <DockPanel>
-        <Grid Height="40" Background="#E0001B" DockPanel.Dock="Top">
+        <Grid Height="40" Background="#E0001B" DockPanel.Dock="Top" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
@@ -142,7 +147,9 @@ KeyboardNavigation.DirectionalNavigation="Cycle" Width="100"/>
             </Border>
         </Grid>
         <Grid Name="spMain">
-            <!--<secondfloor:SFMain></secondfloor:SFMain>-->
-        </Grid>
+
+                <!--<secondfloor:SFMain></secondfloor:SFMain>-->
+            </Grid>
     </DockPanel>
+    <!--</Grid>-->
 </Window>

@@ -13,6 +13,7 @@
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontFamily" Value="微软雅黑"/>
+            <Setter Property="Foreground" Value="Black"/>
         </Style>
         <Style TargetType="TextBox">
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -36,6 +37,50 @@
                     </Setter>
                 </Trigger>
             </Style.Triggers>
+        </Style>
+        <Style TargetType="CheckBox">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="CheckBoxStyle" TargetType="{x:Type CheckBox}">
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="OverridesDefaultStyle" Value="False" />
+            <Setter Property="FocusVisualStyle" Value="{DynamicResource CheckBoxFocusVisual}" />
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="IsChecked" Value="False"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Height="{TemplateBinding Height}" Width="{TemplateBinding Height}">
+                                <Rectangle x:Name="CheckBoxRectangle" Fill="White" Opacity="0.3" RadiusY="5" RadiusX="5"/>
+                                <Rectangle x:Name="CheckBoxRectangleOut" Stroke="#FFABADB3" StrokeThickness="1" RadiusY="5" RadiusX="5"/>
+                                <Grid x:Name="CheckedMark" Height="{TemplateBinding Height}" Width="{TemplateBinding Height}" Visibility="Collapsed" >
+                                    <Viewbox>
+                                        <Grid>
+                                            <Path SnapsToDevicePixels="True" StrokeThickness="3" Data="M1,9 L10,17" Stroke="#3553ad"/>
+                                            <Path SnapsToDevicePixels="True" StrokeThickness="3" Data="M8,17 L20,4" Stroke="#3553ad"/>
+                                        </Grid>
+                                    </Viewbox>
+                                </Grid>
+                            </Grid>
+                            <ContentPresenter Grid.Column="1" VerticalAlignment="Center" Margin="8,0,0,0"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="CheckedMark" Property="Visibility" Value="Visible"></Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
     </UserControl.Resources>
     <Grid>
@@ -97,9 +142,9 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <CheckBox Name="cbDRSafeLimit" Grid.Row="0" FontSize="20" Checked="cbDRSafeLimit_Checked">钻台面安全限制解除</CheckBox>
-                    <CheckBox Name="cbIgnoreLimit" Grid.Row="1" FontSize="20" Checked="cbIgnoreLimit_Checked">忽略限制</CheckBox>
-                    <CheckBox Name="cbSelectPipe" Grid.Row="2" FontSize="20" Checked="cbSelectPipe_Checked">选择套管</CheckBox>
+                    <CheckBox Name="cbDRSafeLimit" Grid.Row="0" FontSize="20" Click="cbDRSafeLimit_Checked">钻台面限制解除</CheckBox>
+                    <CheckBox Name="cbIgnoreLimit" Grid.Row="1" FontSize="20" Click="cbIgnoreLimit_Checked">忽略限制</CheckBox>
+                    <CheckBox Name="cbSelectPipe" Grid.Row="2" FontSize="20" Click="cbSelectPipe_Checked">选择套管</CheckBox>
                 </Grid>
             </Grid>
             <Grid Height="200" Width="590">
@@ -120,12 +165,12 @@
                         <ColumnDefinition Width="120" />
                         <ColumnDefinition Width="120" />
                     </Grid.ColumnDefinitions>
-                    <cl:BasedSwitchButton Name="controlModel" ContentLeft="本地" ContentDown="控制模式" ContentRight="司钻" UserControlClicked="btn_controlModel" Grid.Column="0" />
+                    <cl:BasedSwitchButton Name="controlModel" ContentLeft="遥控" ContentDown="控制模式" ContentRight="司钻" UserControlClicked="btn_controlModel" Grid.Column="0" />
                     <cl:BasedSwitchButton Name="MainPumpOne" ContentLeft="停止" ContentDown="1#泵" ContentRight="启动" UserControlClicked="btn_MainPumpOne" Grid.Column="1" />
                     <cl:BasedSwitchButton Name="MainPumpTwo" ContentLeft="停止" ContentDown="2#泵" ContentRight="启动" UserControlClicked="btn_MainPumpTwo" Grid.Column="2" />
                     <cl:BasedSwitchButton Name="LeftOrRight" ContentLeft="左" ContentDown="左右选择" ContentRight="右" UserControlClicked="btn_LeftOrRight" Grid.Column="3" />
                     <cl:BasedSwitchButton Name="InOrOut" ContentLeft="内" ContentDown="内外选择" ContentRight="外" UserControlClicked="btn_InOrLeft" Grid.Column="4" />
-                    <TextBlock Name="tbTips" Grid.Row="1" Grid.ColumnSpan="5" Text="XXXX" FontSize="24" FontFamily="微软雅黑" FontWeight="Bold" Foreground="red" VerticalAlignment="Center" TextAlignment="Center"/>
+                    <TextBlock Name="tbTips" Grid.Row="1" Grid.ColumnSpan="5" Text="" FontSize="24" FontFamily="微软雅黑" FontWeight="Bold" Foreground="red" VerticalAlignment="Center" TextAlignment="Center"/>
                 </Grid>
             </Grid>
         </StackPanel>
@@ -136,10 +181,10 @@
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
+                    <RowDefinition Height="250"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
+                <Grid Grid.Row="0" Name="gdOldHand" Visibility="Collapsed">
                     <Border Background="White" CornerRadius="10" Margin="5,10,5,5">
                         <Border.Effect>
                             <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
@@ -194,6 +239,65 @@
                                 <Image Source="/Images/arrow.png" Name="Arrow_EquiptStatus"  Width="160" Height="160"/>
                               </Grid>
                         </Grid>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="0" Name="gdSixHand" Visibility="Visible">
+                    <Border Background="White" CornerRadius="10" Margin="5,10,5,0">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+                        </Border.Effect>
+                    </Border>
+                    <Grid Margin="5,10,5,5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                <TextBlock Text="右手柄信号" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,0,0,0" VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="左 右" Margin="10,0,0,0"></TextBlock>
+                                <TextBox Name="tbSixLeftOrRight" Width="60" Margin="10,0,0,0"  Text="0" TextAlignment="Center"/>
+                                <TextBlock Text="前 后" Margin="10,0,0,0"></TextBlock>
+                                <TextBox Name="tbSixFrontOrBehind" Width="60" Margin="10,0,0,0" Text="0" TextAlignment="Center"/>
+
+                            </StackPanel>
+                            <Grid Grid.Row="2">
+                                <TextBlock Text="大车进" Margin="-165,0,0,0" FontSize="16"></TextBlock>
+                                <TextBlock Text="小车进" Margin="0,-140,0,0" FontSize="16"></TextBlock>
+                                <TextBlock Text="大车退" Margin="165,0,0,0" FontSize="16"></TextBlock>
+                                <TextBlock Text="小车退" Margin="0,130,0,0" FontSize="16"></TextBlock>
+                                <Image Source="/Images/arrow.png" Name="SixArrow_EquiptStatus"  Width="120" Height="120"/>
+
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <Image Source="../Images/hand.png" Height="140" Width="160"/>
+                            <cl:SymbolMapping Name="smSixLUp" Margin="-55,-69,0,0" StrContent="" LampType="3" Width="30" Height="30"/>
+                            <cl:SymbolMapping Name="smSixLDown" Margin="-55,0,0,0" StrContent="" LampType="3" Width="30" Height="30"/>
+                            <cl:SymbolMapping Name="smSixMidUp" Margin="0,-40,0,0" StrContent="" LampType="3" Width="30" Height="30"/>
+                            <cl:SymbolMapping Name="smSixMidDown" Margin="0,25,0,0" StrContent="" LampType="3" Width="30" Height="30"/>
+                            <cl:SymbolMapping Name="smSixRUp" Margin="55,-69,0,0" StrContent="" LampType="3" Width="30" Height="30"/>
+                            <cl:SymbolMapping Name="smSixRDown" Margin="55,0,0,0" StrContent="" LampType="3" Width="30" Height="30"/>
+                            <TextBlock Text="自动上行" Margin="-185,-70,0,0" FontSize="16"></TextBlock>
+                            <TextBlock Text="自动下行" Margin="-185,0,0,0" FontSize="16"></TextBlock>
+                            <TextBlock Text="自动下行" Margin="-185,0,0,0" FontSize="16"></TextBlock>
+                            <TextBlock Text="自动进入" Margin="-5,-160,0,0" FontSize="16"></TextBlock>
+                            <TextBlock Text="自动退出" Margin="-5,110,0,0" FontSize="16"></TextBlock>
+                            <TextBlock Text="排架上升" Margin="185,-70,0,0" FontSize="16"></TextBlock>
+                            <TextBlock Text="排架下降" Margin="185,0,0,0" FontSize="16"></TextBlock>
+                            <cl:SymbolMapping Name="smSixEnable" Margin="-105,150,0,0" StrContent="" LampType="3" Width="30" Height="30"/>
+                            <cl:SymbolMapping Name="smSixBack" Margin="105,150,0,0" StrContent="" LampType="3" Width="30" Height="30"/>
+                            <TextBlock Text="底部确认" Margin="-105,200,0,0" FontSize="16"></TextBlock>
+                            <TextBlock Text="背部使能" Margin="105,200,0,0" FontSize="16"></TextBlock>
+                        </Grid>
+                    
                     </Grid>
                 </Grid>
                 <Grid Grid.Row="1">

@@ -96,6 +96,7 @@ namespace Main.Integration
         {
             try
             {
+                this.tbHookLocation.SetBinding(TextBox.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["156To159BigHookEncoderRealTimeValue"], Mode = BindingMode.OneWay, Converter = new DivideHundredConverter() });
                 this.tbZeroSet.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["575b0"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
                 this.tbHighSet.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["575b1"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
                 this.twtL3.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["LowBrakeArea"], Mode = BindingMode.OneWay });
@@ -216,6 +217,11 @@ namespace Main.Integration
             byte[] byteToSend = new byte[] { 16, 1, 24, 11, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
             ShowTips();
+        }
+
+        private void tbHighVal_GotFocus(object sender, RoutedEventArgs e)
+        {
+            GlobalData.Instance.GetKeyBoard();
         }
     }
 }

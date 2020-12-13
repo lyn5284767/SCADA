@@ -140,6 +140,12 @@
                         <cl:SymbolMapping StrContent="" Name="MonkeyRoadAction" LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                     <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <cl:SymbolMapping StrContent="" Name="STOInput" LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <cl:SymbolMapping StrContent="" Name="STOOutput" LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
                         <cl:SymbolMapping StrContent="" LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"/>
                     </Border>
                     <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
@@ -197,6 +203,12 @@
                     </Border>
                     <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
                         <TextBlock Text="B202" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="125.7" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="144.5" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
                     </Border>
                     <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
                         <TextBlock Text="" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
@@ -259,6 +271,12 @@
                     </Border>
                     <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
                         <TextBlock Text="猴道动作(修井)" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="STO输入" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
+                        <TextBlock Text="STO输入出" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontWeight="Bold"/>
                     </Border>
                     <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
                         <TextBlock Text="" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontWeight="Bold"/>
