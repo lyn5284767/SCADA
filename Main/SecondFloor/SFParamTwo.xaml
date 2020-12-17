@@ -68,6 +68,24 @@
                     </StackPanel>
                 </Border>
             </StackPanel>
+            <StackPanel Grid.Column="1">
+                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="240">
+                    <StackPanel Orientation="Horizontal">
+                        <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
+                            <TextBlock Text="直&#x0a;流&#x0a;电&#x0a;机&#x0a;类&#x0a;型"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
+                        </Border>
+                        <StackPanel>
+                            <cl:TextBlockWithTextBox Name="twtR53" ControlTag="53"  TbkText="钻铤锁电机" />
+                            <cl:TextBlockWithTextBox Name="twtR54" ControlTag="54"  TbkText="挡绳电机" />
+                            <cl:TextBlockWithTextBox Name="twtR55" ControlTag="55"  TbkText="指梁锁电机" />
+                            <cl:TextBlockWithTextBox Name="twtR58" ControlTag="58"  TbkText="猴道电机" />
+                            <cl:TextBlockWithTextBox Name="twtR56" ControlTag="56"  TbkText="左手指类型" />
+                            <cl:TextBlockWithTextBox Name="twtR57" ControlTag="57"  TbkText="右手指类型"/>
+                            <cl:TextBlockWithTextBox Name="twtR51" ControlTag="51"  TbkText="抓手类型"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
         </Grid>
 
         <Grid Grid.Row="1">

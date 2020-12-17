@@ -62,24 +62,36 @@ namespace Main.SIR.Sany
                     this.right.Visibility = Visibility.Visible;
                     this.ParamPage.Children.Add(SFPosSetOne.Instance);
                 }
-                //else if (page == 2)
-                //{
-                //    this.left.Visibility = Visibility.Visible;
-                //    this.right.Visibility = Visibility.Hidden;
-                //    this.ParamPage.Children.Add(SFParamTwo.Instance);
-                //}
-                //else if (page == 3)
-                //{
-                //    this.left.Visibility = Visibility.Visible;
-                //    this.right.Visibility = Visibility.Hidden;
-                //    this.ParamPage.Children.Add(SFParamThree.Instance);
-                //}
-                //else if (page == 4)
-                //{
-                //    this.left.Visibility = Visibility.Visible;
-                //    this.right.Visibility = Visibility.Hidden;
-                //    this.ParamPage.Children.Add(DRParamFour.Instance);
-                //}
+                else if (page == 2)
+                {
+                    this.left.Visibility = Visibility.Visible;
+                    this.right.Visibility = Visibility.Visible;
+                    this.ParamPage.Children.Add(SFPosSetTwo.Instance);
+                }
+                else if (page == 3)
+                {
+                    this.left.Visibility = Visibility.Visible;
+                    this.right.Visibility = Visibility.Visible;
+                    this.ParamPage.Children.Add(SFPosSetThree.Instance);
+                }
+                else if (page == 4)
+                {
+                    this.left.Visibility = Visibility.Visible;
+                    this.right.Visibility = Visibility.Visible;
+                    this.ParamPage.Children.Add(SFPosSetFour.Instance);
+                }
+                else if (page == 5)
+                {
+                    this.left.Visibility = Visibility.Visible;
+                    this.right.Visibility = Visibility.Visible;
+                    this.ParamPage.Children.Add(SFPosSetFive.Instance);
+                }
+                else if (page == 6)
+                {
+                    this.left.Visibility = Visibility.Visible;
+                    this.right.Visibility = Visibility.Hidden;
+                    this.ParamPage.Children.Add(SFPosSetSix.Instance);
+                }
             }
             catch (Exception ex)
             {

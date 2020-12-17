@@ -1318,6 +1318,10 @@ namespace DemoDriver
         /// 报表数据是否记录 0-不记录 1-记录
         /// </summary>
         public int ReportRecord { get; set; }
+        /// <summary>
+        /// 系统类型 0-钻井 1-修井 
+        /// </summary>
+        public int SysType { get; set; }
     }
 
     /// <summary>

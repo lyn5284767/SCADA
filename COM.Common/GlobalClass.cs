@@ -399,5 +399,9 @@ namespace COM.Common
         /// 当前告警类型 0-无告警；1-告警且未显示；2-告警且已经显示
         /// </summary>
         public int NowType { get; set; }
+        /// <summary>
+        /// 是否需要重新扫描 true-需要;false-不需要
+        /// </summary>
+        public bool NeedCheck { get; set; }
     }
 }

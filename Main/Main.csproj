@@ -443,6 +443,18 @@
     </Compile>
     <Compile Include="UIClass\RelayCommand.cs" />
     <Compile Include="UIClass\ScrollableTabPanel.cs" />
+    <Compile Include="WellRepair\DrillFloor\WR_DRMain.xaml.cs">
+      <DependentUpon>WR_DRMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WellRepair\SecondFloor\WR_SFMain.xaml.cs">
+      <DependentUpon>WR_SFMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WR_Amination.xaml.cs">
+      <DependentUpon>WR_Amination.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WR_SFAmination.xaml.cs">
+      <DependentUpon>WR_SFAmination.xaml</DependentUpon>
+    </Compile>
     <Page Include="Amination.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -836,6 +848,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="HydraulicStation\Sany\SIRSelfRecord.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WellRepair\DrillFloor\WR_DRMain.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WellRepair\SecondFloor\WR_SFMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WR_Amination.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WR_SFAmination.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

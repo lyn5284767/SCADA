@@ -66,7 +66,10 @@
                     <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="620">
                         <StackPanel>
                             <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="0" Padding="3">
-                                <TextBlock Text="抓手标定"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"/>
+                               <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="抓手标定"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"/>
+                                    <TextBlock Name="tbGrip" Text="**" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"></TextBlock>
+                                </StackPanel>
                             </Border>
 
                             <inputcontrol:SetControl Name="twt97" Head="80,1,12,97" TbkText="3.5寸" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
@@ -105,7 +108,11 @@
                     <StackPanel Orientation="Horizontal">
                         <StackPanel>
                             <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5,0,5,5" Padding="3">
-                                <TextBlock Text="手指标定"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="手指标定"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"/>
+                                    <TextBlock Name="tbLeftFinger" Text="**" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"></TextBlock>
+                                    <TextBlock Name="tbRightFinger" Text="**" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"></TextBlock>
+                                </StackPanel>
                             </Border>
                             <inputcontrol:SetControl Name="twt129" Head="80,1,12,129" TbkText="左手指最小值" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
                             <inputcontrol:SetControl Name="twt130" Head="80,1,12,130" TbkText="左手指最大值" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>

@@ -1,19 +1,17 @@
 ﻿using COM.Common;
 using ControlLibrary;
 using DatabaseLib;
-using DemoDriver;
 using HandyControl.Controls;
 using HBGKTest;
 using HBGKTest.YiTongCamera;
+using Main.SecondFloor;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -24,17 +22,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Main.SecondFloor
+namespace Main.WellRepair.SecondFloor
 {
     /// <summary>
-    /// SFMain.xaml 的交互逻辑
+    /// WR_SFMain.xaml 的交互逻辑
     /// </summary>
-    public partial class SFMain : UserControl
+    public partial class WR_SFMain : UserControl
     {
-        private static SFMain _instance = null;
+        private static WR_SFMain _instance = null;
         private static readonly object syncRoot = new object();
 
-        public static SFMain Instance
+        public static WR_SFMain Instance
         {
             get
             {
@@ -44,7 +42,7 @@ namespace Main.SecondFloor
                     {
                         if (_instance == null)
                         {
-                            _instance = new SFMain();
+                            _instance = new WR_SFMain();
                         }
                     }
                 }
@@ -57,7 +55,7 @@ namespace Main.SecondFloor
         public event FullScreenHandler FullScreenEvent;
 
         System.Threading.Timer timerWarning;
-        public static readonly DependencyProperty CommunicationProperty = DependencyProperty.Register("Communication", typeof(byte), typeof(SFMain), new PropertyMetadata((byte)0));//1代表通讯正常，2 代表人机界面--操作台通讯异常 3 操作台--二层台通讯异常
+        public static readonly DependencyProperty CommunicationProperty = DependencyProperty.Register("Communication", typeof(byte), typeof(WR_SFMain), new PropertyMetadata((byte)0));//1代表通讯正常，2 代表人机界面--操作台通讯异常 3 操作台--二层台通讯异常
         public byte Communication
         {
             get { return (byte)GetValue(CommunicationProperty); }
@@ -71,9 +69,7 @@ namespace Main.SecondFloor
         /// </summary>
         System.Timers.Timer cameraTimer;
 
-        //public Amination amination = new Amination();
-
-        public SFMain()
+        public WR_SFMain()
         {
             GlobalData.Instance.Rows = GlobalData.Instance.da["DrillNums"].Value.Byte;
             GlobalData.Instance.DrillNum = GlobalData.Instance.da["103E23B5"].Value.Byte;
@@ -81,6 +77,7 @@ namespace Main.SecondFloor
             Init();
             this.Loaded += SFMain_Loaded;
         }
+
 
         private void SFMain_Loaded(object sender, RoutedEventArgs e)
         {
@@ -95,7 +92,7 @@ namespace Main.SecondFloor
             GlobalData.Instance.Rows = GlobalData.Instance.da["DrillNums"].Value.Byte;
             GlobalData.Instance.DrillNum = GlobalData.Instance.da["103E23B5"].Value.Byte;
             //amination.InitRowsColoms(SystemType.SecondFloor);
-            aminationNew.InitRowsColoms(SystemType.SecondFloor);
+            wr_SFAmination.InitRowsColoms();
             PlayCameraInThread();
         }
 
@@ -116,8 +113,7 @@ namespace Main.SecondFloor
                 //amination.SystemChange(SystemType.SecondFloor);
                 //this.Am.Children.Add(amination);
 
-                aminationNew.SendFingerBeamNumberEvent += Instance_SendFingerBeamNumberEvent;
-                aminationNew.SystemChange(SystemType.SecondFloor);
+                wr_SFAmination.SendFingerBeamNumberEvent += Instance_SendFingerBeamNumberEvent;
             }
             catch (Exception ex)
             {
@@ -206,7 +202,7 @@ namespace Main.SecondFloor
         private bool bPre123b7 = false;
         #endregion
         private int iTimeCnt = 0;//用来为时钟计数的变量
- 
+
         private void TimerWarning_Elapsed(object obj)
         {
             try
@@ -219,10 +215,10 @@ namespace Main.SecondFloor
                     this.Warnning();
                     this.ReportDataUpdate();
                     //amination.LoadFingerBeamDrillPipe(SystemType.SecondFloor);
-                    aminationNew.LoadFingerBeamDrillPipe(SystemType.SecondFloor);
-                    if (GlobalData.Instance.da["operationModel"].Value.Byte==5)
+                    wr_SFAmination.LoadFingerBeamDrillPipe();
+                    if (GlobalData.Instance.da["operationModel"].Value.Byte == 5)
                     {
-                        if (GlobalData.Instance.da["workModel"].Value.Byte==2)
+                        if (GlobalData.Instance.da["workModel"].Value.Byte == 2)
                         {
                             this.tbDrillUp.Visibility = Visibility.Visible;
                             this.sbDrillUp.Visibility = Visibility.Visible;
@@ -237,7 +233,7 @@ namespace Main.SecondFloor
                             this.tbDrillDown.Visibility = Visibility.Visible;
                         }
                     }
-                   
+
                     if (GlobalData.Instance.da["operationModel"].Value.Byte == 1)
                     {
                         this.warnTwo.Text = "当前系统为紧急停止状态";
@@ -248,7 +244,7 @@ namespace Main.SecondFloor
                             this.warnTwo.Text = "";
                     }
                 }));
-                
+
             }
             catch (Exception ex)
             {
@@ -918,22 +914,22 @@ namespace Main.SecondFloor
 
             //if (Communication == 1)
             //{
-                if (!GlobalData.Instance.da["101B7b1"].Value.Boolean)
+            if (!GlobalData.Instance.da["101B7b1"].Value.Boolean)
+            {
+                WarnInfoThree.TryGetValue("机械手已进入防碰区，请注意防碰！", out byteKey);
+                if (byteKey == 0)
                 {
-                    WarnInfoThree.TryGetValue("机械手已进入防碰区，请注意防碰！", out byteKey);
-                    if (byteKey == 0)
-                    {
-                        WarnInfoThree.Add("机械手已进入防碰区，请注意防碰！", 1);
-                    }
+                    WarnInfoThree.Add("机械手已进入防碰区，请注意防碰！", 1);
                 }
-                else
+            }
+            else
+            {
+                WarnInfoThree.TryGetValue("机械手已进入防碰区，请注意防碰！", out byteKey);
+                if (byteKey != 0)
                 {
-                    WarnInfoThree.TryGetValue("机械手已进入防碰区，请注意防碰！", out byteKey);
-                    if (byteKey != 0)
-                    {
-                        WarnInfoThree.Remove("机械手已进入防碰区，请注意防碰！");
-                    }
+                    WarnInfoThree.Remove("机械手已进入防碰区，请注意防碰！");
                 }
+            }
             //}
             //else
             //{
@@ -1197,7 +1193,7 @@ namespace Main.SecondFloor
         private void VariableBinding()
         {
             this.rotateAngle.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["callAngle"], Mode = BindingMode.OneWay, Converter = new CallAngleConverter() });
-            this.bigHookRealTimeValue.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["156To159BigHookEncoderRealTimeValue"], Mode = BindingMode.OneWay ,Converter = new DivideHundredConverter()});
+            this.bigHookRealTimeValue.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["156To159BigHookEncoderRealTimeValue"], Mode = BindingMode.OneWay, Converter = new DivideHundredConverter() });
             this.bigHookCalibrationValue.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["160To163BigHookEncoderCalibrationValue"], Mode = BindingMode.OneWay });
             //this.leftFinger.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["103N23LeftFingerMotorSampleValue"], Mode = BindingMode.OneWay });
             //this.rightFinger.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["103N23RightFingerMotorSampleValue"], Mode = BindingMode.OneWay });
@@ -2095,7 +2091,7 @@ namespace Main.SecondFloor
             // 硬盘空间小于1G，开始清理录像
             foreach (System.IO.DriveInfo drive in drives)
             {
-                if (drive.Name == disk[0] + "\\" && drive.TotalFreeSpace / (1024 * 1024) < 1024 *2)
+                if (drive.Name == disk[0] + "\\" && drive.TotalFreeSpace / (1024 * 1024) < 1024 * 2)
                 {
                     DirectoryInfo root = new DirectoryInfo(path);
                     if (root.GetFiles().Count() > 10)
@@ -2220,8 +2216,8 @@ namespace Main.SecondFloor
             }
             cameraOne.FullScreenEvent -= CameraOne_FullScreenEvent;
             cameraOne.FullScreenEvent += CameraOne_FullScreenEvent;
-                //viewboxCameral1.Height = 300;
-                //viewboxCameral1.Width = 403;
+            //viewboxCameral1.Height = 300;
+            //viewboxCameral1.Width = 403;
         }
 
         private void CameraOne_FullScreenEvent()

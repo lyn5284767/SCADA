@@ -78,7 +78,7 @@ namespace Main.SIR
             dicNumToValue.Add(1, "系统压力");
             dicNumToValue.Add(2, "油温");
             dicNumToValue.Add(3, "液位");
-            dicNumToValue.Add(4, "主泵#1油量");
+            dicNumToValue.Add(4, "主泵#1流量");
             dicNumToValue.Add(5, "主泵#2流量");
 
             this.cbTypeSelect.ItemsSource = dicNumToValue;

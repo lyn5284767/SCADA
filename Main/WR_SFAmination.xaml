@@ -1,0 +1,1138 @@
+﻿<UserControl x:Class="Main.WR_SFAmination"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Main" xmlns:gl="clr-namespace:COM.Common;assembly=COM.Common"
+             xmlns:local1="http://talonzeng.com/ControlLibrary"
+             mc:Ignorable="d" 
+             d:DesignHeight="380" d:DesignWidth="620" Name="uc">
+    <UserControl.Resources>
+        <gl:AnimationFingerBeamNumberSelectCoverter x:Key="AnimationFingerBeamNumberSelectCvt"/>
+        <gl:AnimationCarTranslateTransformYCoverter x:Key="AnimationCarTranslateTransformYCvt"/>
+        <gl:AnimationArmImageConverter x:Key="AnimationArmImageCvt"/>
+        <gl:AnimationArmAngleRotateConverter x:Key="AnimationArmAngleRotateCvt"/>
+        <gl:AnimationArmTranslateTransformXCoverter x:Key="AnimationArmTransformXCvt"/>
+        <gl:AnimationArmTranslateTransformYCoverter x:Key="AnimationArmTransformYCvt"/>
+        <gl:AnimationArmRotateConverter x:Key="AnimationArmRotateCvt"/>
+        <gl:AnimationCurrentFingerBeamThicknessCoverter x:Key="AnimationCurrentFingerBeamThicknessCvt"/>
+        <gl:SecondFloorVisConverter x:Key="SecondFloorVisCVT"/>
+        <gl:DRVisConverter x:Key="DRVisCvt"/>
+        <gl:DRAnimationCarTranslateTransformYCoverter x:Key="DRAnimationCarTranslateTransformYCvt"/>
+        <gl:DRAnimationArmTranslateTransformXCoverter x:Key="DRAnimationArmTransformXCvt"/>
+        <gl:DRAnimationArmTranslateTransformYCoverter x:Key="DRAnimationArmTransformYCvt"/>
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style x:Key="MyFocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Control}">
+                        <Grid Margin="8">
+                            <Ellipse
+                    Name="r1"
+                    Stroke="Black"
+                    StrokeDashArray="2 2"
+                    StrokeThickness="1"/>
+                            <Border
+                    Name="border"
+                    Width="{TemplateBinding ActualWidth}"
+                    Height="{TemplateBinding ActualHeight}"
+                    BorderThickness="1"
+                    CornerRadius="2"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="CircleButton" TargetType="local1:AnimationButton">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="FocusVisualStyle" Value="{StaticResource MyFocusVisual}"/>
+            <Setter Property="Background" Value="#FF6DB4EF"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="local1:AnimationButton">
+                        <Grid>
+                            <Ellipse Fill="{TemplateBinding Background}"/>
+                            <Ellipse>
+                                <Ellipse.Fill>
+                                    <RadialGradientBrush>
+                                        <GradientStop Offset="0" Color="#00000000"/>
+                                        <GradientStop Offset="0.88" Color="#00000000"/>
+                                        <GradientStop Offset="1" Color="#80000000"/>
+                                    </RadialGradientBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <Ellipse Margin="5" x:Name="highlightCircle" >
+                                <Ellipse.Fill >
+                                    <LinearGradientBrush >
+                                        <GradientStop Offset="0" Color="#50FFFFFF"/>
+                                        <GradientStop Offset="0.5" Color="#00FFFFFF"/>
+                                        <GradientStop Offset="1" Color="#50FFFFFF"/>
+                                    </LinearGradientBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <ContentPresenter x:Name="content" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="highlightCircle" Property="Fill">
+                                    <Setter.Value>
+                                        <LinearGradientBrush StartPoint="0.3,0" EndPoint="0.7,1">
+                                            <GradientStop Offset="0" Color="#50FFFFFF"/>
+                                            <GradientStop Offset="0.5" Color="#00FFFFFF"/>
+                                            <GradientStop Offset="1" Color="#50FFFFFF"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter TargetName="content" Property="RenderTransform">
+                                    <Setter.Value>
+                                        <TranslateTransform Y="0.5" X="0.5"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid HorizontalAlignment="Center">
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Width="20" Name="spLeftRPCol">
+                <TextBlock Text="RP" Height="20" TextAlignment="Center"></TextBlock>
+                <Border BorderBrush="Gray" BorderThickness="0,0,1,0" Width="20" Grid.Column="0" Height="300" Name="rpbdLeft">
+                    <StackPanel Name="spOneCol">
+                        <Grid Height="8"></Grid>
+                        <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="gdrow15LeftRP">
+                            <TextBlock Name="tbrow15LeftRP"  Text="0"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="gdrow14LeftRP">
+                            <TextBlock Name="tbrow14LeftRP"  Text="0"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="gdrow13LeftRP">
+                            <TextBlock Name="tbrow13LeftRP"  Text="0"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="gdrow12LeftRP">
+                            <TextBlock Name="tbrow12LeftRP"  Text="0"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="gdrow11LeftRP">
+                            <TextBlock Name="tbrow11LeftRP"  Text="0"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="gdrow10LeftRP">
+                            <TextBlock Name="tbrow10LeftRP"  Text="0"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="gdrow9LeftRP">
+                            <TextBlock Name="tbrow9LeftRP"  Text="0"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="gdrow8LeftRP">
+                            <TextBlock Name="tbrow8LeftRP"  Text="0"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="gdrow7LeftRP">
+                            <TextBlock Name="tbrow7LeftRP"  Text="0"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="gdrow6LeftRP">
+                            <TextBlock Name="tbrow6LeftRP"  Text="0"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="gdrow5LeftRP">
+                            <TextBlock Name="tbrow5LeftRP"  Text="0"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="gdrow4LeftRP">
+                            <TextBlock Name="tbrow4LeftRP"  Text="0"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="gdrow3LeftRP">
+                            <TextBlock Name="tbrow3LeftRP"  Text="0"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="gdrow2LeftRP">
+                            <TextBlock Name="tbrow2LeftRP"  Text="0"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="gdrow1LeftRP">
+                            <TextBlock Name="tbrow1LeftRP"  Text="0"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFLeftFirstRowHeight, ElementName=uc}" Name="gdrow0LeftRP">
+                            <TextBlock Name="tbrow0LeftRP"  Text="0"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+
+            <StackPanel Width="30">
+                <TextBlock Text="" Height="20" TextAlignment="Center"></TextBlock>
+                <Border BorderBrush="Gray" BorderThickness="0,0,10,0" Width="30" Grid.Column="0" Height="300">
+                    <StackPanel Name="spThreeCol">
+                        <Grid Height="8"></Grid>
+                        <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="gdrow15Left">
+                            <TextBlock Name="tbrow15Left"  Text="15"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="gdrow14Left">
+                            <TextBlock Name="tbrow14Left"  Text="14"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="gdrow13Left">
+                            <TextBlock Name="tbrow13Left"  Text="13"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="gdrow12Left">
+                            <TextBlock Name="tbrow12Left"  Text="12"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="gdrow11Left">
+                            <TextBlock Name="tbrow11Left"  Text="11"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="gdrow10Left">
+                            <TextBlock Name="tbrow10Left"  Text="10"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="gdrow9Left">
+                            <TextBlock Name="tbrow9Left"  Text="9"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="gdrow8Left">
+                            <TextBlock Name="tbrow8Left"  Text="8"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="gdrow7Left">
+                            <TextBlock Name="tbrow7Left"  Text="7"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="gdrow6Left">
+                            <TextBlock Name="tbrow6Left"  Text="6"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="gdrow5Left">
+                            <TextBlock Name="tbrow5Left"  Text="5"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="gdrow4Left">
+                            <TextBlock Name="tbrow4Left"  Text="4"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="gdrow3Left">
+                            <TextBlock Name="tbrow3Left"  Text="3"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="gdrow2Left">
+                            <TextBlock Name="tbrow2Left"  Text="2"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="gdrow1Left">
+                            <TextBlock Name="tbrow1Left"  Text="1"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFLeftFirstRowHeight, ElementName=uc}" Name="gdrow0Left">
+                            <TextBlock Name="tbrow0Left"  Text="T"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+            <StackPanel Width="500" Name="spMidMain">
+                <Grid Height="20"></Grid>
+                <Grid Height="300" Name="gdMidMain">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="8"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="0" BorderBrush="#6D6F72" BorderThickness="0,8,0,0"></Border>
+                    <Grid Grid.Row="1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="190"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="190"/>
+                            </Grid.ColumnDefinitions>
+                            <!--左指梁-->
+                            <StackPanel Grid.Column="0" Name="spLeftDrill">
+                                <!--左15行-->
+                                <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="leftRow15">
+                                    <StackPanel Name="sfDrillL15" Orientation="Horizontal" Tag="15"></StackPanel>
+                                    <Border BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
+                                </Grid>
+                                <!--左14行-->
+                                <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="leftRow14">
+                                    <StackPanel Grid.Row="2" Name="sfDrillL14" Orientation="Horizontal" Tag="14"></StackPanel>
+                                    <Border Grid.Row="3" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
+                                </Grid>
+                                <!--左13行-->
+                                <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="leftRow13">
+                                    <StackPanel Grid.Row="4" Name="sfDrillL13" Orientation="Horizontal" Tag="13"></StackPanel>
+                                    <Border Grid.Row="5" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
+                                </Grid>
+                                <!--左12行-->
+                                <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="leftRow12">
+                                    <StackPanel Grid.Row="6" Name="sfDrillL12" Orientation="Horizontal" Tag="12"></StackPanel>
+                                    <Border Grid.Row="7" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
+                                </Grid>
+                                <!--左11行-->
+                                <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="leftRow11">
+                                    <StackPanel Grid.Row="8" Name="sfDrillL11" Orientation="Horizontal" Tag="11"></StackPanel>
+                                    <Border Grid.Row="9" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
+                                </Grid>
+                                <!--左10行-->
+                                <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="leftRow10">
+                                    <StackPanel Grid.Row="10" Name="sfDrillL10" Orientation="Horizontal" Tag="10"></StackPanel>
+                                    <Border Grid.Row="11" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
+                                </Grid>
+                                <!--左9行-->
+                                <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="leftRow9">
+                                    <StackPanel Grid.Row="12" Name="sfDrillL9" Orientation="Horizontal" Tag="9"></StackPanel>
+                                    <Border Grid.Row="13" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
+                                </Grid>
+                                <!--左8行-->
+                                <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="leftRow8">
+                                    <StackPanel Grid.Row="14" Name="sfDrillL8" Orientation="Horizontal" Tag="8"></StackPanel>
+                                    <Border Grid.Row="15" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
+                                </Grid>
+                                <!--左7行-->
+                                <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="leftRow7">
+                                    <StackPanel Grid.Row="16" Name="sfDrillL7" Orientation="Horizontal" Tag="7"></StackPanel>
+                                    <Border Grid.Row="17" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
+                                </Grid>
+                                <!--左6行-->
+                                <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="leftRow6">
+                                    <StackPanel Grid.Row="18" Name="sfDrillL6" Orientation="Horizontal" Tag="6"></StackPanel>
+                                    <Border Grid.Row="19" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
+                                </Grid>
+                                <!--左5行-->
+                                <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="leftRow5">
+                                    <StackPanel Grid.Row="20" Name="sfDrillL5" Orientation="Horizontal" Tag="5"></StackPanel>
+                                    <Border Grid.Row="21" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
+                                </Grid>
+                                <!--左4行-->
+                                <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="leftRow4">
+                                    <StackPanel Grid.Row="22" Name="sfDrillL4" Orientation="Horizontal" Tag="4"></StackPanel>
+                                    <Border Grid.Row="23" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
+                                </Grid>
+                                <!--左3行-->
+                                <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="leftRow3">
+                                    <StackPanel Grid.Row="24" Name="sfDrillL3" Orientation="Horizontal" Tag="3"></StackPanel>
+                                    <Border Grid.Row="25" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
+                                </Grid>
+                                <!--左2行-->
+                                <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="leftRow2">
+                                    <StackPanel Grid.Row="26" Name="sfDrillL2" Orientation="Horizontal" Tag="2"></StackPanel>
+                                    <Border Grid.Row="27" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
+                                </Grid>
+                                <!--左1行-->
+                                <Grid Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}" Name="leftRow1">
+                                    <StackPanel Grid.Row="28" Name="sfDrillL1" Orientation="Horizontal" Tag="1"></StackPanel>
+                                    <Border Grid.Row="29" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
+                                </Grid>
+                                <!--左钻铤-->
+                                <Grid Height="{Binding Path=WR_SFLeftFirstRowHeight, ElementName=uc}" Name="leftRow16">
+                                    <StackPanel Grid.Row="30" Orientation="Horizontal" Tag="16">
+                                        <Grid Width="90" Background="#6D6F72"></Grid>
+                                        <StackPanel Width="100" Name="sfDrillL0" Orientation="Horizontal" Tag="16"></StackPanel>
+                                    </StackPanel>
+                                    <Border Grid.Row="31" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
+                                </Grid>
+                            </StackPanel>
+                            <!--右指梁-->
+                            <StackPanel Grid.Column="4" Name="spRightDrill">
+                                <!--左15行-->
+                                <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="rightRow15">
+                                    <StackPanel Grid.Row="0" Name="sfDrillR15" Orientation="Horizontal" Tag="31"></StackPanel>
+                                    <Border Grid.Row="1" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
+                                </Grid>
+                                <!--左14行-->
+                                <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="rightRow14">
+                                    <StackPanel Grid.Row="2" Name="sfDrillR14" Orientation="Horizontal" Tag="30"></StackPanel>
+                                    <Border Grid.Row="3" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
+                                </Grid>
+                                <!--左13行-->
+                                <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="rightRow13">
+                                    <StackPanel Grid.Row="4" Name="sfDrillR13" Orientation="Horizontal" Tag="29"></StackPanel>
+                                    <Border Grid.Row="5" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
+                                </Grid>
+                                <!--左12行-->
+                                <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="rightRow12">
+                                    <StackPanel Grid.Row="6" Name="sfDrillR12" Orientation="Horizontal" Tag="28"></StackPanel>
+                                    <Border Grid.Row="7" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
+                                </Grid>
+                                <!--左11行-->
+                                <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="rightRow11">
+                                    <StackPanel Grid.Row="8" Name="sfDrillR11" Orientation="Horizontal" Tag="27"></StackPanel>
+                                    <Border Grid.Row="9" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
+                                </Grid>
+                                <!--左10行-->
+                                <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="rightRow10">
+                                    <StackPanel Grid.Row="10" Name="sfDrillR10" Orientation="Horizontal" Tag="26"></StackPanel>
+                                    <Border Grid.Row="11" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
+                                </Grid>
+                                <!--左9行-->
+                                <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="rightRow9">
+                                    <StackPanel Grid.Row="12" Name="sfDrillR9" Orientation="Horizontal" Tag="25"></StackPanel>
+                                    <Border Grid.Row="13" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
+                                </Grid>
+                                <!--左8行-->
+                                <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="rightRow8">
+                                    <StackPanel Grid.Row="14" Name="sfDrillR8" Orientation="Horizontal" Tag="24"></StackPanel>
+                                    <Border Grid.Row="15" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
+                                </Grid>
+                                <!--左7行-->
+                                <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="rightRow7">
+                                    <StackPanel Grid.Row="16" Name="sfDrillR7" Orientation="Horizontal" Tag="23"></StackPanel>
+                                    <Border Grid.Row="17" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
+                                </Grid>
+                                <!--左6行-->
+                                <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="rightRow6">
+                                    <StackPanel Grid.Row="18" Name="sfDrillR6" Orientation="Horizontal" Tag="22"></StackPanel>
+                                    <Border Grid.Row="19" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
+                                </Grid>
+                                <!--左5行-->
+                                <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="rightRow5">
+                                    <StackPanel Grid.Row="20" Name="sfDrillR5" Orientation="Horizontal" Tag="21"></StackPanel>
+                                    <Border Grid.Row="21" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
+                                </Grid>
+                                <!--左4行-->
+                                <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="rightRow4">
+                                    <StackPanel Grid.Row="22" Name="sfDrillR4" Orientation="Horizontal" Tag="20"></StackPanel>
+                                    <Border Grid.Row="23" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
+                                </Grid>
+                                <!--左3行-->
+                                <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="rightRow3">
+                                    <StackPanel Grid.Row="24" Name="sfDrillR3" Orientation="Horizontal" Tag="19"></StackPanel>
+                                    <Border Grid.Row="25" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
+                                </Grid>
+                                <!--左2行-->
+                                <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="rightRow2">
+                                    <StackPanel Grid.Row="26" Name="sfDrillR2" Orientation="Horizontal" Tag="18"></StackPanel>
+                                    <Border Grid.Row="27" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
+                                </Grid>
+                                <!--左1行-->
+                                <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="rightRow1">
+                                    <StackPanel Grid.Row="28" Name="sfDrillR1" Orientation="Horizontal" Tag="17"></StackPanel>
+                                    <Border Grid.Row="29" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
+                                </Grid>
+                                <!--左钻铤-->
+                                <Grid Height="{Binding Path=WR_SFRightFirstRowHeight, ElementName=uc}" Name="rightRow16">
+                                    <StackPanel Grid.Row="30" Orientation="Horizontal">
+                                        <StackPanel Width="100" Name="sfDrillR0" Orientation="Horizontal" Tag="32"></StackPanel>
+                                        <Grid Width="90" Background="#6D6F72"></Grid>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                            <!--左选择-->
+                            <StackPanel Grid.Column="1" Name="spLeftImg">
+                                <Grid Name="gdLeftImgRow15" Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border x:Name="sfFingerBeamArrow15" Grid.Column="0" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0"></Border>
+                                    <Image x:Name="sfBeamArrow15" Grid.Column="1" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="WR_PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="WR_OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Grid>
+                                <Grid Name="gdLeftImgRow14" Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border x:Name="sfFingerBeamArrow14" Grid.Column="0" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0"></Border>
+                                    <Image x:Name="sfBeamArrow14" Grid.Column="1" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="WR_PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="WR_OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Grid>
+                                <Grid Name="gdLeftImgRow13" Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border x:Name="sfFingerBeamArrow13" Grid.Column="0" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0"></Border>
+                                    <Image x:Name="sfBeamArrow13" Grid.Column="1" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="WR_PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="WR_OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Grid>
+                                <Grid Name="gdLeftImgRow12" Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border x:Name="sfFingerBeamArrow12" Grid.Column="0" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0"></Border>
+                                    <Image x:Name="sfBeamArrow12" Grid.Column="1" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="WR_PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="WR_OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Grid>
+                                <Grid Name="gdLeftImgRow11" Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border x:Name="sfFingerBeamArrow11" Grid.Column="0" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0"></Border>
+                                    <Image x:Name="sfBeamArrow11" Grid.Column="1" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="WR_PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="WR_OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Grid>
+                                <Grid Name="gdLeftImgRow10" Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border x:Name="sfFingerBeamArrow10" Grid.Column="0" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0"></Border>
+                                    <Image x:Name="sfBeamArrow10" Grid.Column="1" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="WR_PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="WR_OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Grid>
+                                <Grid Name="gdLeftImgRow9" Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border x:Name="sfFingerBeamArrow9" Grid.Column="0" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0"></Border>
+                                    <Image x:Name="sfBeamArrow9" Grid.Column="1" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="WR_PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="WR_OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Grid>
+                                <Grid Name="gdLeftImgRow8" Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border x:Name="sfFingerBeamArrow8" Grid.Column="0" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0"></Border>
+                                    <Image x:Name="sfBeamArrow8" Grid.Column="1" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="WR_PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="WR_OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Grid>
+                                <Grid Name="gdLeftImgRow7" Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border x:Name="sfFingerBeamArrow7" Grid.Column="0" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0"></Border>
+                                    <Image x:Name="sfBeamArrow7" Grid.Column="1" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="WR_PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="WR_OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Grid>
+                                <Grid Name="gdLeftImgRow6" Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border x:Name="sfFingerBeamArrow6" Grid.Column="0" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0"></Border>
+                                    <Image x:Name="sfBeamArrow6" Grid.Column="1" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="WR_PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="WR_OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Grid>
+                                <Grid Name="gdLeftImgRow5" Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border x:Name="sfFingerBeamArrow5" Grid.Column="0" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0"></Border>
+                                    <Image x:Name="sfBeamArrow5" Grid.Column="1" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="WR_PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="WR_OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Grid>
+                                <Grid Name="gdLeftImgRow4" Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border x:Name="sfFingerBeamArrow4" Grid.Column="0" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0"></Border>
+                                    <Image x:Name="sfBeamArrow4" Grid.Column="1" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="WR_PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="WR_OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Grid>
+                                <Grid Name="gdLeftImgRow3" Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border x:Name="sfFingerBeamArrow3" Grid.Column="0" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0"></Border>
+                                    <Image x:Name="sfBeamArrow3" Grid.Column="1" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="WR_PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="WR_OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Grid>
+                                <Grid Name="gdLeftImgRow2" Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border x:Name="sfFingerBeamArrow2" Grid.Column="0" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0"></Border>
+                                    <Image x:Name="sfBeamArrow2" Grid.Column="1" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="WR_PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="WR_OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Grid>
+                                <Grid Name="gdLeftImgRow1" Height="{Binding Path=WR_SFLeftRowHeight, ElementName=uc}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border x:Name="sfFingerBeamArrow1" Grid.Column="0" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0"></Border>
+                                    <Image x:Name="sfBeamArrow1" Grid.Column="1" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="WR_PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="WR_OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Grid>
+                                <Grid Name="gdLeftImgRow16" Height="{Binding Path=WR_SFLeftFirstRowHeight, ElementName=uc}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border x:Name="sfFingerBeamArrow16" Grid.Column="0" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0"></Border>
+                                    <Image x:Name="sfBeamArrow16" Grid.Column="1" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="WR_PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="WR_OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Grid>
+                            </StackPanel>
+                            <!--右选择-->
+                            <StackPanel Grid.Column="3" Name="spRightImg">
+                                <Grid Name="gdRightImgRow15" Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="2"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image x:Name="sfBeamArrow31" Grid.Column="0" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="WR_PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="WR_OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border x:Name="sfFingerBeamArrow31" Grid.Column="1" BorderBrush="#6D6F72" Tag="space" BorderThickness="0,0,2,0"></Border>
+                                </Grid>
+                                <Grid Name="gdRightImgRow14" Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="2"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image x:Name="sfBeamArrow30" Grid.Column="0" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="WR_PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="WR_OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border x:Name="sfFingerBeamArrow30" Grid.Column="1" BorderBrush="#6D6F72" Tag="space" BorderThickness="0,0,2,0"></Border>
+                                </Grid>
+                                <Grid Name="gdRightImgRow13" Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="2"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image x:Name="sfBeamArrow29" Grid.Column="0" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="WR_PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="WR_OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border x:Name="sfFingerBeamArrow29" Grid.Column="1" BorderBrush="#6D6F72" Tag="space" BorderThickness="0,0,2,0"></Border>
+                                </Grid>
+                                <Grid Name="gdRightImgRow12" Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="2"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image x:Name="sfBeamArrow28" Grid.Column="0" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="WR_PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="WR_OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border x:Name="sfFingerBeamArrow28" Grid.Column="1" BorderBrush="#6D6F72" Tag="space" BorderThickness="0,0,2,0"></Border>
+                                </Grid>
+                                <Grid Name="gdRightImgRow11" Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="2"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image x:Name="sfBeamArrow27" Grid.Column="0" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="WR_PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="WR_OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border x:Name="sfFingerBeamArrow27" Grid.Column="1" BorderBrush="#6D6F72" Tag="space" BorderThickness="0,0,2,0"></Border>
+                                </Grid>
+                                <Grid Name="gdRightImgRow10" Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="2"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image x:Name="sfBeamArrow26" Grid.Column="0" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="WR_PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="WR_OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border x:Name="sfFingerBeamArrow26" Grid.Column="1" BorderBrush="#6D6F72" Tag="space" BorderThickness="0,0,2,0"></Border>
+                                </Grid>
+                                <Grid Name="gdRightImgRow9" Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="2"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image x:Name="sfBeamArrow25" Grid.Column="0" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="WR_PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="WR_OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border x:Name="sfFingerBeamArrow25" Grid.Column="1" BorderBrush="#6D6F72" Tag="space" BorderThickness="0,0,2,0"></Border>
+                                </Grid>
+                                <Grid Name="gdRightImgRow8" Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="2"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image x:Name="sfBeamArrow24" Grid.Column="0" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="WR_PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="WR_OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border x:Name="sfFingerBeamArrow24" Grid.Column="1" BorderBrush="#6D6F72" Tag="space" BorderThickness="0,0,2,0"></Border>
+                                </Grid>
+                                <Grid Name="gdRightImgRow7" Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="2"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image x:Name="sfBeamArrow23" Grid.Column="0" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="WR_PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="WR_OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border x:Name="sfFingerBeamArrow23" Grid.Column="1" BorderBrush="#6D6F72" Tag="space" BorderThickness="0,0,2,0"></Border>
+                                </Grid>
+                                <Grid Name="gdRightImgRow6" Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="2"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image x:Name="sfBeamArrow22" Grid.Column="0" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="WR_PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="WR_OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border x:Name="sfFingerBeamArrow22" Grid.Column="1" BorderBrush="#6D6F72" Tag="space" BorderThickness="0,0,2,0"></Border>
+                                </Grid>
+                                <Grid Name="gdRightImgRow5" Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="2"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image x:Name="sfBeamArrow21" Grid.Column="0" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="WR_PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="WR_OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border x:Name="sfFingerBeamArrow21" Grid.Column="1" BorderBrush="#6D6F72" Tag="space" BorderThickness="0,0,2,0"></Border>
+                                </Grid>
+                                <Grid Name="gdRightImgRow4" Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="2"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image x:Name="sfBeamArrow20" Grid.Column="0" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="WR_PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="WR_OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border x:Name="sfFingerBeamArrow20" Grid.Column="1" BorderBrush="#6D6F72" Tag="space" BorderThickness="0,0,2,0"></Border>
+                                </Grid>
+                                <Grid Name="gdRightImgRow3" Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="2"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image x:Name="sfBeamArrow19" Grid.Column="0" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="WR_PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="WR_OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border x:Name="sfFingerBeamArrow19" Grid.Column="1" BorderBrush="#6D6F72" Tag="space" BorderThickness="0,0,2,0"></Border>
+                                </Grid>
+                                <Grid Name="gdRightImgRow2" Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="2"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image x:Name="sfBeamArrow18" Grid.Column="0" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="WR_PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="WR_OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border x:Name="sfFingerBeamArrow18" Grid.Column="1" BorderBrush="#6D6F72" Tag="space" BorderThickness="0,0,2,0"></Border>
+                                </Grid>
+                                <Grid Name="gdRightImgRow1" Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="2"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image x:Name="sfBeamArrow17" Grid.Column="0" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="WR_PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="WR_OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border x:Name="sfFingerBeamArrow17" Grid.Column="1" BorderBrush="#6D6F72" Tag="space" BorderThickness="0,0,2,0"></Border>
+                                </Grid>
+                                <Grid Name="gdRightImgRow16" Height="{Binding Path=WR_SFRightFirstRowHeight, ElementName=uc}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="2"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image x:Name="sfBeamArrow32" Grid.Column="0" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
+                                                <Binding Path="WR_PCFingerBeamNumberFeedBack" ElementName="uc"/>
+                                                <Binding Path="Name" RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="WR_OperationModel"  ElementName="uc"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border x:Name="sfFingerBeamArrow32" Grid.Column="1" BorderBrush="#6D6F72" Tag="space" BorderThickness="0,0,2,0"></Border>
+                                </Grid>
+                            </StackPanel>
+                            <Border Grid.Column="2"  BorderBrush="#6D6F72" BorderThickness="5,0,5,0" Height="300"></Border>
+                        </Grid>
+                        <!--二层台-->
+                   <local1:AnimationButton Width="20" Height="20" Style="{StaticResource CircleButton}" x:Name="RobotCar">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Images\RobotCar.bmp"/>
+                        </Button.Background>
+                        <local1:AnimationButton.RenderTransform>
+                            <!--   -->
+                            <TransformGroup>
+                                <TranslateTransform x:Name="carTranslate" X="0">
+                                    <!--  X = 0表示 X 轴不变化，只有Y轴移动 -->
+                                    <TranslateTransform.Y>
+                                        <MultiBinding Converter="{StaticResource AnimationCarTranslateTransformYCvt}">
+                                            <Binding Path="WR_RealHeight" ElementName="uc"/>
+                                                <Binding Path="WR_MiddleHeight" ElementName="uc"/>
+                                                <Binding Path="WR_RobotCarPosition" ElementName="uc"/>
+                                        </MultiBinding>
+                                    </TranslateTransform.Y>
+                                </TranslateTransform>
+                            </TransformGroup>
+                        </local1:AnimationButton.RenderTransform>
+                    </local1:AnimationButton>
+
+                    <Image Panel.ZIndex="99" Width="20" Name="RobotArm">
+                        <Image.Source>
+                                <Binding Path="WR_RobotGripStatus" ElementName="uc" Converter="{StaticResource AnimationArmImageCvt}"/>
+                        </Image.Source>
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <RotateTransform>
+                                    <RotateTransform.Angle>
+                                            <Binding Path="WR_RobotArmRotateAngle" ElementName="uc" Converter="{StaticResource AnimationArmAngleRotateCvt}"/>
+                                    </RotateTransform.Angle>
+                                    <RotateTransform.CenterX>
+                                        <Binding Path="ActualWidth" ElementName="RobotArm" Converter="{StaticResource AnimationArmRotateCvt}"/>
+                                    </RotateTransform.CenterX>
+                                    <RotateTransform.CenterY>
+                                        <Binding Path="ActualHeight" ElementName="RobotArm" Converter="{StaticResource AnimationArmRotateCvt}"/>
+                                    </RotateTransform.CenterY>
+                                </RotateTransform>
+                                <TranslateTransform >
+                                    <TranslateTransform.X>
+                                        <MultiBinding Converter="{StaticResource AnimationArmTransformXCvt}">
+                                                <Binding Path="WR_WorkAnimationWidth" ElementName="uc"/>
+                                                <Binding Path="WR_RobotArmRotateAngle" ElementName="uc"/>
+                                                <Binding Path="WR_RobotArmPosition" ElementName="uc"/>
+                                        </MultiBinding>
+                                    </TranslateTransform.X>
+                                    <TranslateTransform.Y>
+                                        <MultiBinding Converter="{StaticResource AnimationArmTransformYCvt}">
+                                                <Binding Path="WR_RealHeight" ElementName="uc"/>
+                                                <Binding Path="WR_MiddleHeight" ElementName="uc"/>
+                                                <Binding Path="WR_RobotCarPosition" ElementName="uc"/>
+                                                <Binding Path="WR_WorkAnimationWidth" ElementName="uc"/>
+                                                <Binding Path="WR_RobotArmRotateAngle" ElementName="uc"/>
+                                                <Binding Path="WR_RobotArmPosition" ElementName="uc"/>
+                                        </MultiBinding>
+                                    </TranslateTransform.Y>
+                                </TranslateTransform>
+
+                            </TransformGroup>
+
+
+                        </Image.RenderTransform>
+                    </Image>
+                    </Grid>
+                </Grid>
+                <StackPanel Height="60" Panel.ZIndex="-1">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="180"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="180"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="20"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="1" Text="RP L:0+0" Name="tbRPLeft"/>
+                        </Grid>
+                        <Image Name="imageElevatorStatus" Width="30" Grid.Column="1" Margin="0,20,0,0" Source="/Images/DK_1.png"/>
+                        <Grid Grid.Column="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="20"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="1" Text="R:0+0" Name="tbRPRight"/>
+                        </Grid>
+                    </Grid>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Width="30">
+                <TextBlock Text="" Height="20" TextAlignment="Center"></TextBlock>
+                <Border BorderBrush="Gray" BorderThickness="10,0,0,0" Width="30" Grid.Column="0" Height="300">
+                    <StackPanel Name="spFourCol">
+                        <Grid Height="8"></Grid>
+                        <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="gdrow15Right">
+                            <TextBlock Name="tbrow15Right"  Text="15"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="gdrow14Right">
+                            <TextBlock Name="tbrow14Right"  Text="14"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="gdrow13Right">
+                            <TextBlock Name="tbrow13Right"  Text="13"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="gdrow12Right">
+                            <TextBlock Name="tbrow12Right"  Text="12"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="gdrow11Right">
+                            <TextBlock Name="tbrow11Right"  Text="11"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="gdrow10Right">
+                            <TextBlock Name="tbrow10Right"  Text="10"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="gdrow9Right">
+                            <TextBlock Name="tbrow9Right"  Text="9"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="gdrow8Right">
+                            <TextBlock Name="tbrow8Right"  Text="8"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="gdrow7Right">
+                            <TextBlock Name="tbrow7Right"  Text="7"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="gdrow6Right">
+                            <TextBlock Name="tbrow6Right"  Text="6"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="gdrow5Right">
+                            <TextBlock Name="tbrow5Right"  Text="5"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="gdrow4Right">
+                            <TextBlock Name="tbrow4Right"  Text="4"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="gdrow3Right">
+                            <TextBlock Name="tbrow3Right"  Text="3"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="gdrow2Right">
+                            <TextBlock Name="tbrow2Right"  Text="2"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="gdrow1Right">
+                            <TextBlock Name="tbrow1Right"  Text="1"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFRightFirstRowHeight, ElementName=uc}" Name="gdrow0Right">
+                            <TextBlock Name="tbrow0Right"  Text="T"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+            <StackPanel Width="20" Name="spRightRPCol">
+                <TextBlock Text="RP" Height="20" TextAlignment="Center"></TextBlock>
+                <Border BorderBrush="Gray" BorderThickness="1,0,0,0" Width="20" Grid.Column="0" Height="300" Name="rpbdRight">
+                    <StackPanel Name="spSixCol">
+                        <Grid Height="8"></Grid>
+                        <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="gdrow15RightRP">
+                            <TextBlock Name="tbrow15RightRP"  Text="0"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="gdrow14RightRP">
+                            <TextBlock Name="tbrow14RightRP"  Text="0"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="gdrow13RightRP">
+                            <TextBlock Name="tbrow13RightRP"  Text="0"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="gdrow12RightRP">
+                            <TextBlock Name="tbrow12RightRP"  Text="0"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="gdrow11RightRP">
+                            <TextBlock Name="tbrow11RightRP"  Text="0"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="gdrow10RightRP">
+                            <TextBlock Name="tbrow10RightRP"  Text="0"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="gdrow9RightRP">
+                            <TextBlock Name="tbrow9RightRP"  Text="0"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="gdrow8RightRP">
+                            <TextBlock Name="tbrow8RightRP"  Text="0"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="gdrow7RightRP">
+                            <TextBlock Name="tbrow7RightRP"  Text="0"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="gdrow6RightRP">
+                            <TextBlock Name="tbrow6RightRP"  Text="0"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="gdrow5RightRP">
+                            <TextBlock Name="tbrow5RightRP"  Text="0"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="gdrow4RightRP">
+                            <TextBlock Name="tbrow4RightRP"  Text="0"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="gdrow3RightRP">
+                            <TextBlock Name="tbrow3RightRP"  Text="0"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="gdrow2RightRP">
+                            <TextBlock Name="tbrow2RightRP"  Text="0"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="gdrow1RightRP">
+                            <TextBlock Name="tbrow1RightRP"  Text="0"/>
+                        </Grid>
+                        <Grid Height="{Binding Path=WR_SFRightFirstRowHeight, ElementName=uc}" Name="gdrow0RightRP">
+                            <TextBlock Name="tbrow0RightRP"  Text="0"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

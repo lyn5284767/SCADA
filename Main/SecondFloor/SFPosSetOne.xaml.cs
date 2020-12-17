@@ -48,6 +48,9 @@ namespace Main.SecondFloor
             this.txtOpModel_LocationCalibration.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay, Converter = new OperationModelConverter() });
             this.txtWorkModel_LocationCalibration.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["workModel"], Mode = BindingMode.OneWay, Converter = new WorkModelConverter() });
             this.txtRotateAngle_LocationCalibration.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["callAngle"], Mode = BindingMode.OneWay, Converter = new CallAngleConverter() });
+            this.tbCarPos.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["111N23N1CarMotorCurrentPositionPulse"] });
+            this.tbArmPos.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["112N23N1ArmMotorCurrentPositionPulse"] });
+            this.tbRotatePos.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["113N23N1RotateMotorCurrentPositionPulse"] });
 
             timer = new System.Threading.Timer(new TimerCallback(Timer_Elapsed), this, 2000, 100);
         }

@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Main.SecondFloor"
              xmlns:cl="http://talonzeng.com/ControlLibrary"
              mc:Ignorable="d" 
-             d:DesignHeight="650" d:DesignWidth="800" Foreground="#525252" FontSize="14" FontFamily="微软雅黑" Background="#F5F6FA" Margin="1" Name="sfParamOne">
+             d:DesignHeight="670" d:DesignWidth="800" Foreground="#525252" FontSize="14" FontFamily="微软雅黑" Background="#F5F6FA" Margin="1" Name="sfParamOne">
     <UserControl.Resources>
         <Style TargetType="Button" x:Key="btnGreen">
             <Setter Property="Background" Value="#fff"/>
@@ -77,6 +77,8 @@
                             <cl:TextBlockWithTextBox Name="twtL5" ControlTag="27"  TbkText="休眠计时(min)"/>
                             <cl:TextBlockWithTextBox Name="twtLDeviceYear" ControlTag="46"  TbkText="设备年份"/>
                             <cl:TextBlockWithTextBox Name="twtLDeviceEncode" ControlTag="48"  TbkText="设备编码"/>
+                            <cl:TextBlockWithTextBox Name="twtL59" ControlTag="59"  TbkText="图号"/>
+                            <cl:TextBlockWithTextBox Name="twtL60" ControlTag="60"  TbkText="回转感应位置"/>
                             <cl:TextBlockWithTextBox Name="twtL6" ControlTag="19"  TbkText="钻杆指梁间距"/>
                             <cl:TextBlockWithTextBox Name="twtL7" ControlTag="20"  TbkText="钻杆指梁宽度"/>
                             <cl:TextBlockWithTextBox Name="twtL8" ControlTag="21"  TbkText="钻铤指梁宽度"/>

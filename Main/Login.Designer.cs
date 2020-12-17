@@ -74,30 +74,29 @@
             // 
             // cbType
             // 
-            this.cbType.Font = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cbType.Font = new System.Drawing.Font("宋体", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.cbType.FormattingEnabled = true;
             this.cbType.Items.AddRange(new object[] {
-                "操作员",
-                "管理员",
+            "操作员",
+            "管理员",
             "技术员",
-            "调试员"
-            });
-            this.cbType.Location = new System.Drawing.Point(439, 290);
-            this.cbType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            "调试员"});
+            this.cbType.Location = new System.Drawing.Point(439, 286);
+            this.cbType.Margin = new System.Windows.Forms.Padding(2);
             this.cbType.Name = "cbType";
-            this.cbType.Size = new System.Drawing.Size(189, 27);
+            this.cbType.Size = new System.Drawing.Size(189, 32);
             this.cbType.TabIndex = 4;
             // 
             // timeLable
             // 
             this.timeLable.AutoSize = true;
             this.timeLable.BackColor = System.Drawing.Color.Transparent;
-            this.timeLable.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.timeLable.ForeColor = System.Drawing.Color.White;
-            this.timeLable.Location = new System.Drawing.Point(423, 260);
+            this.timeLable.Font = new System.Drawing.Font("宋体", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.timeLable.ForeColor = System.Drawing.Color.Black;
+            this.timeLable.Location = new System.Drawing.Point(381, 260);
             this.timeLable.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.timeLable.Name = "timeLable";
-            this.timeLable.Size = new System.Drawing.Size(218, 19);
+            this.timeLable.Size = new System.Drawing.Size(257, 24);
             this.timeLable.TabIndex = 5;
             this.timeLable.Text = "2020-07-14 08:45:00";
             // 

@@ -15,6 +15,8 @@ using Main.SecondFloor;
 using Main.SIR;
 using Main.SIR.Sany;
 using Main.SIR.SanyRail;
+using Main.WellRepair.DrillFloor;
+using Main.WellRepair.SecondFloor;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -984,8 +986,8 @@ namespace Main
                         GlobalData.Instance.da.SendBytes(byteToSend);
 
                         this.spMain.Children.Clear();
-                        this.spMain.Children.Add(SFPositionSetting.Instance);
-                        //this.spMain.Children.Add(SFPosSetMain.Instance);
+                        //this.spMain.Children.Add(SFPositionSetting.Instance);
+                        this.spMain.Children.Add(SFPosSetMain.Instance);
                         this.mainTitle.Content = "SYAPS-二层台:位置标定";
                     }
                     else
@@ -1816,52 +1818,76 @@ namespace Main
             }
             else if (systemType == SystemType.SecondFloor)
             {
-                GlobalData.Instance.Ing = false;
-                this.spMain.Children.Clear();
-                SFMain.Instance.FullScreenEvent -= Instance_FullScreenEvent;
-                SFMain.Instance.FullScreenEvent += Instance_FullScreenEvent;
-                this.spMain.Children.Add(SFMain.Instance);
-                GlobalData.Instance.systemType = SystemType.SecondFloor;
-
-                this.BottomColorSetting(this.bdSf, this.tbSf, this.gdbottom);
-
-                RefreshPipeCount();
-                // 不是手动模式（4）或自动模式（5）切换回主界面变为手动模式
-                if (!(GlobalData.Instance.da["operationModel"].Value.Byte == 5 || GlobalData.Instance.da["operationModel"].Value.Byte == 4))
+                if (GlobalData.Instance.da.GloConfig.SysType == 1) // 修井
                 {
-                    byte[] byteToSend;
-                    byteToSend = SendByte(new List<byte> { 1, 4 });
+                    GlobalData.Instance.Ing = false;
+                    this.spMain.Children.Clear();
+                    SFMain.Instance.FullScreenEvent -= Instance_FullScreenEvent;
+                    SFMain.Instance.FullScreenEvent += Instance_FullScreenEvent;
+                    this.spMain.Children.Add(WR_SFMain.Instance);
+                    GlobalData.Instance.systemType = SystemType.SecondFloor;
 
-                    GlobalData.Instance.da.SendBytes(byteToSend);
+                    this.BottomColorSetting(this.bdSf, this.tbSf, this.gdbottom);
+
+                    RefreshPipeCount();
+                    // 不是手动模式（4）或自动模式（5）切换回主界面变为手动模式
+                    if (!(GlobalData.Instance.da["operationModel"].Value.Byte == 5 || GlobalData.Instance.da["operationModel"].Value.Byte == 4))
+                    {
+                        byte[] byteToSend;
+                        byteToSend = SendByte(new List<byte> { 1, 4 });
+
+                        GlobalData.Instance.da.SendBytes(byteToSend);
+                    }
+                    SetBorderBackGround();
                 }
-                SetBorderBackGround();
+                else
+                {
+                    GlobalData.Instance.Ing = false;
+                    this.spMain.Children.Clear();
+                    SFMain.Instance.FullScreenEvent -= Instance_FullScreenEvent;
+                    SFMain.Instance.FullScreenEvent += Instance_FullScreenEvent;
+                    this.spMain.Children.Add(SFMain.Instance);
+                    GlobalData.Instance.systemType = SystemType.SecondFloor;
+
+                    this.BottomColorSetting(this.bdSf, this.tbSf, this.gdbottom);
+
+                    RefreshPipeCount();
+                    // 不是手动模式（4）或自动模式（5）切换回主界面变为手动模式
+                    if (!(GlobalData.Instance.da["operationModel"].Value.Byte == 5 || GlobalData.Instance.da["operationModel"].Value.Byte == 4))
+                    {
+                        byte[] byteToSend;
+                        byteToSend = SendByte(new List<byte> { 1, 4 });
+
+                        GlobalData.Instance.da.SendBytes(byteToSend);
+                    }
+                    SetBorderBackGround();
+                }
             }
             else if (systemType == SystemType.DrillFloor)
             {
                 try
                 {
-                    
-                    // 自研
-                    if (GlobalData.Instance.da.GloConfig.DRType == (int)DRType.SANY)
+                    if (GlobalData.Instance.da.GloConfig.SysType == 1) // 修井
                     {
-                        GlobalData.Instance.Ing = false;
-                        this.spMain.Children.Clear();
-                        DRMain.Instance.DRFullScreenEvent -= Instance_DRFullScreenEvent;
-                        DRMain.Instance.DRFullScreenEvent += Instance_DRFullScreenEvent;
-                        this.spMain.Children.Add(DRMain.Instance);
-
-                        GlobalData.Instance.systemType = SystemType.DrillFloor;
-                        this.BottomColorSetting(this.bdDR, this.tbDR, this.gdbottom);
-
-                        // 不是手动模式（4）或自动模式（5）切换回主界面变为手动模式
-                        if (!(GlobalData.Instance.da["droperationModel"].Value.Byte == 5 || GlobalData.Instance.da["droperationModel"].Value.Byte == 4))
+                        // 自研
+                        if (GlobalData.Instance.da.GloConfig.DRType == (int)DRType.SANY)
                         {
-                            byte[] byteToSend;
-                            byteToSend = new byte[10] { 1, 32, 3, 30, 0, 0, 0, 0, 0, 0 };
+                            GlobalData.Instance.Ing = false;
+                            this.spMain.Children.Clear();
+                            this.spMain.Children.Add(WR_DRMain.Instance);
 
-                            GlobalData.Instance.da.SendBytes(byteToSend);
-                        }
-                    }// 杰瑞
+                            GlobalData.Instance.systemType = SystemType.DrillFloor;
+                            this.BottomColorSetting(this.bdDR, this.tbDR, this.gdbottom);
+
+                            // 不是手动模式（4）或自动模式（5）切换回主界面变为手动模式
+                            if (!(GlobalData.Instance.da["droperationModel"].Value.Byte == 5 || GlobalData.Instance.da["droperationModel"].Value.Byte == 4))
+                            {
+                                byte[] byteToSend;
+                                byteToSend = new byte[10] { 1, 32, 3, 30, 0, 0, 0, 0, 0, 0 };
+
+                                GlobalData.Instance.da.SendBytes(byteToSend);
+                            }
+                        }// 杰瑞
                     else if (GlobalData.Instance.da.GloConfig.DRType == (int)DRType.JR)
                     {
 
@@ -1870,6 +1896,40 @@ namespace Main
                     {
                         MessageBox.Show("未配置钻台面");
                         this.projectLoad.Visibility = Visibility.Collapsed;
+                    }
+                }
+                    else
+                    {
+                        // 自研
+                        if (GlobalData.Instance.da.GloConfig.DRType == (int)DRType.SANY)
+                        {
+                            GlobalData.Instance.Ing = false;
+                            this.spMain.Children.Clear();
+                            DRMain.Instance.DRFullScreenEvent -= Instance_DRFullScreenEvent;
+                            DRMain.Instance.DRFullScreenEvent += Instance_DRFullScreenEvent;
+                            this.spMain.Children.Add(DRMain.Instance);
+
+                            GlobalData.Instance.systemType = SystemType.DrillFloor;
+                            this.BottomColorSetting(this.bdDR, this.tbDR, this.gdbottom);
+
+                            // 不是手动模式（4）或自动模式（5）切换回主界面变为手动模式
+                            if (!(GlobalData.Instance.da["droperationModel"].Value.Byte == 5 || GlobalData.Instance.da["droperationModel"].Value.Byte == 4))
+                            {
+                                byte[] byteToSend;
+                                byteToSend = new byte[10] { 1, 32, 3, 30, 0, 0, 0, 0, 0, 0 };
+
+                                GlobalData.Instance.da.SendBytes(byteToSend);
+                            }
+                        }// 杰瑞
+                        else if (GlobalData.Instance.da.GloConfig.DRType == (int)DRType.JR)
+                        {
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("未配置钻台面");
+                            this.projectLoad.Visibility = Visibility.Collapsed;
+                        }
                     }
                     SetBorderBackGround();
                 }

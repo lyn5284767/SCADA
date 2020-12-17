@@ -49,6 +49,9 @@ namespace Main.DrillFloor.Sany
             InitializeComponent();
             this.Loaded += DRPosSetOne_Loaded;
             timer = new System.Threading.Timer(new TimerCallback(Timer_Elapsed), this, 2000, 100);
+
+            this.carPos.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["drCarPos"], Mode = BindingMode.OneWay });//小车位置                                                                                                                                                             //this.armPos.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["drArmPos"], Mode = BindingMode.OneWay, Converter = new ArmPosCoverter() });//手臂实际位置
+
         }
 
         private void DRPosSetOne_Loaded(object sender, RoutedEventArgs e)

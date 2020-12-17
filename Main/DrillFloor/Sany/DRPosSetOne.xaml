@@ -26,7 +26,10 @@
                     <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="660">
                         <StackPanel>
                             <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="0" Padding="3">
-                                <TextBlock Text="小车参数"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="小车参数"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"/>
+                                    <TextBlock FontSize="18" Name="carPos" Text="****" Foreground="#4C80FF"></TextBlock>
+                                </StackPanel>
                             </Border>
 
                             <inputcontrol:SetControl Name="twt1" Head="80, 33, 12, 1, 0, 0" TbkText="最靠近井口" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>

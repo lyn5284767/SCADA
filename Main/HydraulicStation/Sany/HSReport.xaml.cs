@@ -247,11 +247,14 @@ namespace Main.HydraulicStation
                     string nowTime = dateBaseReport.CreateTime.ToString();
                     SystemPressLabels.Add(nowTime);
                     SystemPressSeries[0].Values.Add(nowVal);
-                    vList.Add(tmpMax);
+                    vList.Add(nowVal);
                 }
             }
-            this.lvcSystemPress.MinValue = vList.Min()-1;
-            this.lvcSystemPress.MaxValue = vList.Max();
+            if (vList.Count > 0)
+            {
+                this.lvcSystemPress.MinValue = vList.Min() - 1;
+                this.lvcSystemPress.MaxValue = vList.Max();
+            }
         }
         /// <summary>
         /// 绘制主泵1流量曲线
@@ -318,8 +321,11 @@ namespace Main.HydraulicStation
                     vList.Add(nowVal);
                 }
             }
-            this.lvcMainFlow.MinValue = vList.Min() - 1;
-            this.lvcMainFlow.MaxValue = vList.Max();
+            if (vList.Count > 0)
+            {
+                this.lvcMainFlow.MinValue = vList.Min() - 1;
+                this.lvcMainFlow.MaxValue = vList.Max();
+            }
         }
 
         /// <summary>
@@ -382,13 +388,16 @@ namespace Main.HydraulicStation
                 {
                     double nowVal = double.Parse(dateBaseReport.Value);
                     string nowTime = dateBaseReport.CreateTime.ToString();
-                    SystemPressLabels.Add(nowTime);
-                    SystemPressSeries[0].Values.Add(nowVal);
+                    MainTwoFlowLabels.Add(nowTime);
+                    MainTwoFlowSeries[0].Values.Add(nowVal);
                     vList.Add(nowVal);
                 }
             }
-            this.lvcMainTwoFlow.MinValue = vList.Min() - 1;
-            this.lvcMainTwoFlow.MaxValue = vList.Max();
+            if (vList.Count > 0)
+            {
+                this.lvcMainTwoFlow.MinValue = vList.Min() - 1;
+                this.lvcMainTwoFlow.MaxValue = vList.Max();
+            }
         }
         /// <summary>
         /// 绘制油温曲线
@@ -455,8 +464,11 @@ namespace Main.HydraulicStation
                     vList.Add(nowVal);
                 }
             }
-            this.lvcOilTem.MinValue = vList.Min()-1;
-            this.lvcOilTem.MaxValue = vList.Max();
+            if (vList.Count > 0)
+            {
+                this.lvcOilTem.MinValue = vList.Min() - 1;
+                this.lvcOilTem.MaxValue = vList.Max();
+            }
         }
         /// <summary>
         /// 绘制液位曲线
@@ -523,8 +535,11 @@ namespace Main.HydraulicStation
                     vList.Add(nowVal);
                 }
             }
-            this.lvcOilLevel.MinValue = vList.Min()-1;
-            this.lvcOilLevel.MaxValue = vList.Max();
+            if (vList.Count > 0)
+            {
+                this.lvcOilLevel.MinValue = vList.Min() - 1;
+                this.lvcOilLevel.MaxValue = vList.Max();
+            }
         }
         /// <summary>
         /// 查询一月内

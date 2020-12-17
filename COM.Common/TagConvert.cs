@@ -766,8 +766,16 @@ namespace COM.Common
             else year = values[0].ToString();
             int deviceModel = int.Parse(values[1].ToString());
             string dModel = string.Empty;
-            if (deviceModel >= 2700) dModel = "0280";
-            else dModel = "0230";
+            if (GlobalData.Instance.da.GloConfig.SysType == 1) // 修井
+            {
+                if(deviceModel<2000) dModel = "0073";
+                else dModel = "0089";
+            }
+            else
+            {
+                if (deviceModel >= 2700) dModel = "0280";
+                else dModel = "0230";
+            }
             string encode = string.Empty;
             if (values[2].ToString().Length < 4)
             {
@@ -5362,6 +5370,436 @@ namespace COM.Common
             if ((bool)values[1]) return "遥控";
             if ((bool)values[2]) return "司钻";
             return "未知";
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    #endregion
+
+    #region 修井钻台面
+    /// <summary>
+    /// 修井钻台面-强制是否存在
+    /// </summary>
+    public class WR_ForceCoverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null)
+                || (values[1] == DependencyProperty.UnsetValue) || (values[1] == null)
+                || (values[2] == DependencyProperty.UnsetValue) || (values[2] == null))
+            {
+                return "未知";
+            }
+            if ((bool)values[0] || (bool)values[1] | (bool)values[2])
+            {
+                return "开启";
+            }
+
+            return "关闭";
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 钻台面-目的地设置
+    /// </summary>
+    public class WR_DesTypeConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return string.Empty;
+            }
+
+            byte bType = (byte)value;
+            switch (bType)
+            {
+                case 0:
+                    return "自由区域";
+                case 1:
+                    return "立根区";
+                case 2:
+                    return "猫道-井口";
+                case 3:
+                    return "鼠道-井口";
+            }
+
+            return "未设置目的地";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 修井钻台面-小车在轨道上X 轴的移动函数
+    /// </summary>
+    public class WR_DRAnimationCarXCoverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            double MaxMoveX;// 小车最大X位移
+            if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null))
+            {
+                return 0.0;
+            }
+            else
+            {
+                MaxMoveX = (double)(values[0]);
+            }
+
+            double heightToMiddle;
+            if ((values[1] == DependencyProperty.UnsetValue) || (values[1] == null))
+            {
+                return 0.0;
+            }
+            else
+            {
+                heightToMiddle = (double)(values[1]);
+            }
+
+            double carPosition;
+            if ((values[2] == DependencyProperty.UnsetValue) || (values[2] == null))
+            {
+                return 0.0;
+            }
+            else
+            {
+                carPosition = (double)(((short)(values[2])));
+            }
+            double NowPosistion = ((carPosition - GlobalData.Instance.DRCarMinPosistion) / (GlobalData.Instance.DRCarMaxPosistion - GlobalData.Instance.DRCarMinPosistion) * MaxMoveX) + heightToMiddle;
+
+            return NowPosistion;
+
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 就是把回转角度转换成单个字节的；
+    /// </summary>
+    public class WR_AnimationArmAngleRotateConverter : IValueConverter
+    {
+        public int RotateSbyteToInt(short shortIn)
+        {
+            byte[] bytes = BitConverter.GetBytes(shortIn);
+            int inOut = unchecked((sbyte)bytes[0]) + unchecked((sbyte)bytes[1]) * 128;
+            return inOut;
+        }
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+
+            double rotateAngle;
+            if ((value == DependencyProperty.UnsetValue) || (value == null))
+            {
+                return 0.0;
+            }
+            else
+            {
+                //armPosition = (double)((short)(values[2]));
+                // UDP协议需要除10
+                rotateAngle = double.Parse(value.ToString()) -90;
+            }
+            return rotateAngle;
+
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 钻台面-手臂Y轴移动
+    /// </summary>
+    public class WR_DRAnimationArmTranslateTransformXCoverter : IMultiValueConverter
+    {
+        public int PositionSbyteToInt(short shortIn)
+        {
+            byte[] bytes = BitConverter.GetBytes(shortIn);
+            int inOut = unchecked((sbyte)bytes[0]) + unchecked((sbyte)bytes[1]) * 128;
+            return inOut;
+        }
+        public int RotateSbyteToInt(byte byteIn)
+        {
+            int intOut = unchecked((sbyte)byteIn);
+            return intOut;
+        }
+
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            // 小车最大位移
+            double tubeActualHeight;
+            if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null))
+            {
+                return 0.0;
+            }
+            else
+            {
+                tubeActualHeight = (double)(values[0]);
+            }
+
+            //中间点的Y坐标
+            double heightToMiddle;
+            if ((values[1] == DependencyProperty.UnsetValue) || (values[1] == null))
+            {
+                return 0.0;
+            }
+            else
+            {
+                heightToMiddle = (double)(values[1]);
+            }
+
+            //小车的实际位置
+            double carPosition;
+            if ((values[2] == DependencyProperty.UnsetValue) || (values[2] == null))
+            {
+                return 0.0;
+            }
+            else
+            {
+                //carPosition = (double)((short)(values[3]));
+                //carPosition = (double)(PositionSbyteToInt((short)(values[2])));
+                carPosition = (double)(((short)(values[2])));
+            }
+
+
+            //界面能伸长的最大X坐标
+            double tubeActualWidth;
+            if ((values[3] == DependencyProperty.UnsetValue) || (values[3] == null))
+            {
+                return 0.0;
+            }
+            else
+            {
+                tubeActualWidth = (double)(values[3]);
+            }
+
+            //旋转的角度值
+            double rotateAngle;
+            if ((values[4] == DependencyProperty.UnsetValue) || (values[4] == null))
+            {
+                return 0.0;
+            }
+            else
+            {
+                rotateAngle = double.Parse(values[4].ToString());
+            }
+
+            //手臂所在的位置
+            double armPosition;
+            if ((values[5] == DependencyProperty.UnsetValue) || (values[5] == null))
+            {
+                return 0.0;
+            }
+            else
+            {
+                armPosition = (double)(((short)(values[5])));
+            }
+            double armPos = ((armPosition / GlobalData.Instance.DRArmMaxPosistion * tubeActualWidth) * Math.Cos(rotateAngle * Math.PI / 180) + (((carPosition - GlobalData.Instance.DRCarMinPosistion) / (GlobalData.Instance.DRCarMaxPosistion - GlobalData.Instance.DRCarMinPosistion) * tubeActualHeight) + heightToMiddle));
+
+            return armPos;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 1.WorkAnimationWidth 其实就是移动的半边距离
+    /// 2.RobotArmRotateAngle 手臂旋转的角度   
+    /// 3.RobotArmPosition 手臂当前的位置
+    /// 4.EquipmentModel 设备的型号 和 小车的轨道和 最长伸展的手臂有关
+    /// </summary>
+    public class WR_DRAnimationArmTranslateTransformYCoverter : IMultiValueConverter
+    {
+        /// <summary>
+        /// 手臂的实际位置
+        /// </summary>
+        /// <param name="shortIn"></param>
+        /// <returns></returns>
+        public int PositionSbyteToInt(short shortIn)
+        {
+            byte[] bytes = BitConverter.GetBytes(shortIn);
+            int intOut = unchecked((sbyte)bytes[0]) + unchecked((sbyte)bytes[1]) * 128;
+            return intOut;
+        }
+
+        /// <summary>
+        /// 回转点击 的角度
+        /// </summary>
+        /// <param name="byteIn"></param>
+        /// <returns></returns>
+        public int RotateSbyteToInt(byte byteIn)
+        {
+            int intOut = unchecked((sbyte)byteIn);
+            return intOut;
+        }
+
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            double ANIMATIONXMAXPOSITION;//在界面上面能够伸展的最长距离
+            if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null))
+            {
+                return 0.0;
+            }
+            else
+            {
+                ANIMATIONXMAXPOSITION = (double)(values[0]);
+            }
+
+            double rotateAngle;//回转电机的角度
+            if ((values[1] == DependencyProperty.UnsetValue) || (values[1] == null))
+            {
+                return 0.0;
+            }
+            else
+            {
+                // UDP协议改后需要除10；
+                rotateAngle = double.Parse(values[1].ToString());
+            }
+
+            double armPosition;//手臂的实际位置
+            if ((values[2] == DependencyProperty.UnsetValue) || (values[2] == null))
+            {
+                return 0.0;
+            }
+            else
+            {
+                //armPosition = (double)((short)(values[2]));
+                //armPosition = (double)(PositionSbyteToInt((short)(values[2])));
+                armPosition = (double)(((short)(values[2])));
+            }
+            double armXPosition = ((armPosition / GlobalData.Instance.DRArmMaxPosistion * ANIMATIONXMAXPOSITION) * Math.Sin(rotateAngle * Math.PI / 180));
+            return armXPosition;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 钻台面回转角度值 
+    /// </summary>
+    public class WR_DRCallAngleConverter : IValueConverter
+    {
+        //public int RotateSbyteToInt(byte byteIn)
+        //{
+        //    int intOut = unchecked((sbyte)byteIn);
+        //    return intOut;
+        //}
+        /// <summary>
+        ///  da["callAngle"]--15，16位换算成int
+        /// </summary>
+        /// <param name="shortIn"></param>
+        /// <returns></returns>
+        public double PositionSbyteToInt(short shortIn)
+        {
+            byte[] bytes = BitConverter.GetBytes(shortIn);
+            double inOut = unchecked((sbyte)bytes[0]) + unchecked((sbyte)bytes[1]) * 128;
+            return inOut;
+        }
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return 0;
+            }
+
+            //int iTemp = RotateSbyteToInt((byte)value);
+            // 传过来的角度要除以10
+            double iTemp = (double)((short)value) / 10.0;
+            //因为 角度可能只会到 88 89 ，到不了90，所以作如此处理
+            if (iTemp >= 180)
+            {
+                iTemp = 180;
+            }
+            if (iTemp >= 88 && iTemp <= 90)
+            {
+                iTemp = 90;
+            }
+            else if (iTemp <= -88 && iTemp >= 91)
+            {
+                iTemp = -90;
+            }
+            else if (iTemp <= -180)
+            {
+                iTemp = -180;
+            }
+
+            return iTemp;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 修井钻台面-排杆/送杆步骤
+    /// </summary>
+    public class WR_DRStepCoverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null)
+                || (values[1] == DependencyProperty.UnsetValue) || (values[1] == null)
+                || (values[2] == DependencyProperty.UnsetValue) || (values[2] == null))
+            {
+                return 0;
+            }
+            byte oprModel = (byte)values[0];
+            if (oprModel != 5) // 非自动模式
+            {
+                return 0;
+            }
+            byte workModer = (byte)values[1];
+            byte step = (byte)values[2];
+            if (workModer == 2) // 排杆
+            {
+                if (step == 0) return 0;
+                if (step >= 10 && step <= 20) return 1;
+                if (step >= 21 && step <= 29) return 2;
+                if (step == 30 ) return 3;
+                if (step >= 31 && step <= 39) return 4;
+                if (step == 40) return 5;
+                if (step >= 41 && step <= 44) return 6;
+                if (step == 45) return 7;
+            }
+            else if (workModer == 1) // 送杆
+            {
+                if (step == 0) return 0;
+                if (step >= 10 && step <= 20) return 1;
+                if (step >= 21 && step <= 29) return 2;
+                if (step == 30) return 3;
+                if (step >= 31 && step <= 39) return 4;
+                if (step == 40) return 5;
+                if (step >= 41 && step <= 44) return 6;
+                if (step == 45) return 7;
+            }
+
+            return 0;
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

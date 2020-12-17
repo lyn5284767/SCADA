@@ -90,7 +90,7 @@
                         <TextBlock Text="16" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
                     </Border>
                     <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
-                        <TextBlock Text="14" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
+                        <TextBlock Text="17" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
                     </Border>
                 </StackPanel>
             </Grid>
@@ -144,12 +144,6 @@
                     </Border>
                     <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
                         <cl:SymbolMapping StrContent="" Name="STOOutput" LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
-                        <cl:SymbolMapping StrContent="" LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"/>
-                    </Border>
-                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
-                        <cl:SymbolMapping StrContent="" LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"/>
                     </Border>
                     <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
                         <cl:SymbolMapping StrContent="" LampType="3" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"/>
@@ -216,15 +210,6 @@
                     <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
                         <TextBlock Text="" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
                     </Border>
-                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
-                        <TextBlock Text="" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
-                    </Border>
-                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
-                        <TextBlock Text="" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
-                    </Border>
-
-
-
                 </StackPanel>
             </Grid>
 
@@ -277,12 +262,6 @@
                     </Border>
                     <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
                         <TextBlock Text="STO输入出" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontWeight="Bold"/>
-                    </Border>
-                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
-                        <TextBlock Text="" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontWeight="Bold"/>
-                    </Border>
-                    <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
-                        <TextBlock Text="" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontWeight="Bold"/>
                     </Border>
                     <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
                         <TextBlock Text="" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontWeight="Bold"/>
