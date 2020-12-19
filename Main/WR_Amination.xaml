@@ -253,77 +253,77 @@
                             <!--左15行-->
                             <Grid Height="{Binding Path=WR_LeftRowHeight, ElementName=uc}" Name="leftRow15">
                                 <StackPanel Name="drDrillL15" Orientation="Horizontal" Tag="15"></StackPanel>
-                                <Border BorderBrush="#6D6F72" BorderThickness="0,2,0,0"></Border>
+                                <Border BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
                             </Grid>
                             <!--左14行-->
                             <Grid Height="{Binding Path=WR_LeftRowHeight, ElementName=uc}" Name="leftRow14">
                                 <StackPanel Grid.Row="2" Name="drDrillL14" Orientation="Horizontal" Tag="14"></StackPanel>
-                                <Border Grid.Row="3" BorderBrush="#6D6F72" BorderThickness="0,2,0,0"></Border>
+                                <Border Grid.Row="3" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
                             </Grid>
                             <!--左13行-->
                             <Grid Height="{Binding Path=WR_LeftRowHeight, ElementName=uc}" Name="leftRow13">
                                 <StackPanel Grid.Row="4" Name="drDrillL13" Orientation="Horizontal" Tag="13"></StackPanel>
-                                <Border Grid.Row="5" BorderBrush="#6D6F72" BorderThickness="0,2,0,0"></Border>
+                                <Border Grid.Row="5" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
                             </Grid>
                             <!--左12行-->
                             <Grid Height="{Binding Path=WR_LeftRowHeight, ElementName=uc}" Name="leftRow12">
                                 <StackPanel Grid.Row="6" Name="drDrillL12" Orientation="Horizontal" Tag="12"></StackPanel>
-                                <Border Grid.Row="7" BorderBrush="#6D6F72" BorderThickness="0,2,0,0"></Border>
+                                <Border Grid.Row="7" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
                             </Grid>
                             <!--左11行-->
                             <Grid Height="{Binding Path=WR_LeftRowHeight, ElementName=uc}" Name="leftRow11">
                                 <StackPanel Grid.Row="8" Name="drDrillL11" Orientation="Horizontal" Tag="11"></StackPanel>
-                                <Border Grid.Row="9" BorderBrush="#6D6F72" BorderThickness="0,2,0,0"></Border>
+                                <Border Grid.Row="9" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
                             </Grid>
                             <!--左10行-->
                             <Grid Height="{Binding Path=WR_LeftRowHeight, ElementName=uc}" Name="leftRow10">
                                 <StackPanel Grid.Row="10" Name="drDrillL10" Orientation="Horizontal" Tag="10"></StackPanel>
-                                <Border Grid.Row="11" BorderBrush="#6D6F72" BorderThickness="0,2,0,0"></Border>
+                                <Border Grid.Row="11" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
                             </Grid>
                             <!--左9行-->
                             <Grid Height="{Binding Path=WR_LeftRowHeight, ElementName=uc}" Name="leftRow9">
                                 <StackPanel Grid.Row="12" Name="drDrillL9" Orientation="Horizontal" Tag="9"></StackPanel>
-                                <Border Grid.Row="13" BorderBrush="#6D6F72" BorderThickness="0,2,0,0"></Border>
+                                <Border Grid.Row="13" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
                             </Grid>
                             <!--左8行-->
                             <Grid Height="{Binding Path=WR_LeftRowHeight, ElementName=uc}" Name="leftRow8">
                                 <StackPanel Grid.Row="14" Name="drDrillL8" Orientation="Horizontal" Tag="8"></StackPanel>
-                                <Border Grid.Row="15" BorderBrush="#6D6F72" BorderThickness="0,2,0,0"></Border>
+                                <Border Grid.Row="15" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
                             </Grid>
                             <!--左7行-->
                             <Grid Height="{Binding Path=WR_LeftRowHeight, ElementName=uc}" Name="leftRow7">
                                 <StackPanel Grid.Row="16" Name="drDrillL7" Orientation="Horizontal" Tag="7"></StackPanel>
-                                <Border Grid.Row="17" BorderBrush="#6D6F72" BorderThickness="0,2,0,0"></Border>
+                                <Border Grid.Row="17" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
                             </Grid>
                             <!--左6行-->
                             <Grid Height="{Binding Path=WR_LeftRowHeight, ElementName=uc}" Name="leftRow6">
                                 <StackPanel Grid.Row="18" Name="drDrillL6" Orientation="Horizontal" Tag="6"></StackPanel>
-                                <Border Grid.Row="19" BorderBrush="#6D6F72" BorderThickness="0,2,0,0"></Border>
+                                <Border Grid.Row="19" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
                             </Grid>
                             <!--左5行-->
                             <Grid Height="{Binding Path=WR_LeftRowHeight, ElementName=uc}" Name="leftRow5">
                                 <StackPanel Grid.Row="20" Name="drDrillL5" Orientation="Horizontal" Tag="5"></StackPanel>
-                                <Border Grid.Row="21" BorderBrush="#6D6F72" BorderThickness="0,2,0,0"></Border>
+                                <Border Grid.Row="21" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
                             </Grid>
                             <!--左4行-->
                             <Grid Height="{Binding Path=WR_LeftRowHeight, ElementName=uc}" Name="leftRow4">
                                 <StackPanel Grid.Row="22" Name="drDrillL4" Orientation="Horizontal" Tag="4"></StackPanel>
-                                <Border Grid.Row="23" BorderBrush="#6D6F72" BorderThickness="0,2,0,0"></Border>
+                                <Border Grid.Row="23" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
                             </Grid>
                             <!--左3行-->
                             <Grid Height="{Binding Path=WR_LeftRowHeight, ElementName=uc}" Name="leftRow3">
                                 <StackPanel Grid.Row="24" Name="drDrillL3" Orientation="Horizontal" Tag="3"></StackPanel>
-                                <Border Grid.Row="25" BorderBrush="#6D6F72" BorderThickness="0,2,0,0"></Border>
+                                <Border Grid.Row="25" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
                             </Grid>
                             <!--左2行-->
                             <Grid Height="{Binding Path=WR_LeftRowHeight, ElementName=uc}" Name="leftRow2">
                                 <StackPanel Grid.Row="26" Name="drDrillL2" Orientation="Horizontal" Tag="2"></StackPanel>
-                                <Border Grid.Row="27" BorderBrush="#6D6F72" BorderThickness="0,2,0,0"></Border>
+                                <Border Grid.Row="27" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
                             </Grid>
                             <!--左1行-->
                             <Grid Height="{Binding Path=WR_LeftRowHeight, ElementName=uc}" Name="leftRow1">
                                 <StackPanel Grid.Row="28" Name="drDrillL1" Orientation="Horizontal" Tag="1"></StackPanel>
-                                <Border Grid.Row="29" BorderBrush="#6D6F72" BorderThickness="0,2,0,0"></Border>
+                                <Border Grid.Row="29" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
                             </Grid>
                             <!--左钻铤-->
                             <Grid Height="{Binding Path=WR_LeftFirstRowHeight, ElementName=uc}" Name="leftRow16">
@@ -331,86 +331,85 @@
                                     <Grid Width="90" Background="#6D6F72"></Grid>
                                     <StackPanel Width="100" Name="drDrillL0" Orientation="Horizontal" Tag="16"></StackPanel>
                                 </StackPanel>
-                                <Border Grid.Row="31" BorderBrush="#6D6F72" BorderThickness="0,2,0,0"></Border>
+                                <Border Grid.Row="31" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
                             </Grid>
-                            <Border Grid.Row="31" BorderBrush="#6D6F72" BorderThickness="0,2,0,0"></Border>
                         </StackPanel>
                         <!--右指梁-->
                         <StackPanel Grid.Column="4" Name="spRightDrill">
                             <!--左15行-->
                             <Grid Height="{Binding Path=WR_RightRowHeight, ElementName=uc}" Name="rightRow15">
                                 <StackPanel Grid.Row="0" Name="drDrillR15" Orientation="Horizontal" Tag="31"></StackPanel>
-                                <Border Grid.Row="1" BorderBrush="#6D6F72" BorderThickness="0,2,0,0"></Border>
+                                <Border Grid.Row="1" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
                             </Grid>
                             <!--左14行-->
                             <Grid Height="{Binding Path=WR_RightRowHeight, ElementName=uc}" Name="rightRow14">
                                 <StackPanel Grid.Row="2" Name="drDrillR14" Orientation="Horizontal" Tag="30"></StackPanel>
-                                <Border Grid.Row="3" BorderBrush="#6D6F72" BorderThickness="0,2,0,0"></Border>
+                                <Border Grid.Row="3" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
                             </Grid>
                             <!--左13行-->
                             <Grid Height="{Binding Path=WR_RightRowHeight, ElementName=uc}" Name="rightRow13">
                                 <StackPanel Grid.Row="4" Name="drDrillR13" Orientation="Horizontal" Tag="29"></StackPanel>
-                                <Border Grid.Row="5" BorderBrush="#6D6F72" BorderThickness="0,2,0,0"></Border>
+                                <Border Grid.Row="5" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
                             </Grid>
                             <!--左12行-->
                             <Grid Height="{Binding Path=WR_RightRowHeight, ElementName=uc}" Name="rightRow12">
                                 <StackPanel Grid.Row="6" Name="drDrillR12" Orientation="Horizontal" Tag="28"></StackPanel>
-                                <Border Grid.Row="7" BorderBrush="#6D6F72" BorderThickness="0,2,0,0"></Border>
+                                <Border Grid.Row="7" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
                             </Grid>
                             <!--左11行-->
                             <Grid Height="{Binding Path=WR_RightRowHeight, ElementName=uc}" Name="rightRow11">
                                 <StackPanel Grid.Row="8" Name="drDrillR11" Orientation="Horizontal" Tag="27"></StackPanel>
-                                <Border Grid.Row="9" BorderBrush="#6D6F72" BorderThickness="0,2,0,0"></Border>
+                                <Border Grid.Row="9" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
                             </Grid>
                             <!--左10行-->
                             <Grid Height="{Binding Path=WR_RightRowHeight, ElementName=uc}" Name="rightRow10">
                                 <StackPanel Grid.Row="10" Name="drDrillR10" Orientation="Horizontal" Tag="26"></StackPanel>
-                                <Border Grid.Row="11" BorderBrush="#6D6F72" BorderThickness="0,2,0,0"></Border>
+                                <Border Grid.Row="11" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
                             </Grid>
                             <!--左9行-->
                             <Grid Height="{Binding Path=WR_RightRowHeight, ElementName=uc}" Name="rightRow9">
                                 <StackPanel Grid.Row="12" Name="drDrillR9" Orientation="Horizontal" Tag="25"></StackPanel>
-                                <Border Grid.Row="13" BorderBrush="#6D6F72" BorderThickness="0,2,0,0"></Border>
+                                <Border Grid.Row="13" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
                             </Grid>
                             <!--左8行-->
                             <Grid Height="{Binding Path=WR_RightRowHeight, ElementName=uc}" Name="rightRow8">
                                 <StackPanel Grid.Row="14" Name="drDrillR8" Orientation="Horizontal" Tag="24"></StackPanel>
-                                <Border Grid.Row="15" BorderBrush="#6D6F72" BorderThickness="0,2,0,0"></Border>
+                                <Border Grid.Row="15" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
                             </Grid>
                             <!--左7行-->
                             <Grid Height="{Binding Path=WR_RightRowHeight, ElementName=uc}" Name="rightRow7">
                                 <StackPanel Grid.Row="16" Name="drDrillR7" Orientation="Horizontal" Tag="23"></StackPanel>
-                                <Border Grid.Row="17" BorderBrush="#6D6F72" BorderThickness="0,2,0,0"></Border>
+                                <Border Grid.Row="17" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
                             </Grid>
                             <!--左6行-->
                             <Grid Height="{Binding Path=WR_RightRowHeight, ElementName=uc}" Name="rightRow6">
                                 <StackPanel Grid.Row="18" Name="drDrillR6" Orientation="Horizontal" Tag="22"></StackPanel>
-                                <Border Grid.Row="19" BorderBrush="#6D6F72" BorderThickness="0,2,0,0"></Border>
+                                <Border Grid.Row="19" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
                             </Grid>
                             <!--左5行-->
                             <Grid Height="{Binding Path=WR_RightRowHeight, ElementName=uc}" Name="rightRow5">
                                 <StackPanel Grid.Row="20" Name="drDrillR5" Orientation="Horizontal" Tag="21"></StackPanel>
-                                <Border Grid.Row="21" BorderBrush="#6D6F72" BorderThickness="0,2,0,0"></Border>
+                                <Border Grid.Row="21" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
                             </Grid>
                             <!--左4行-->
                             <Grid Height="{Binding Path=WR_RightRowHeight, ElementName=uc}" Name="rightRow4">
                                 <StackPanel Grid.Row="22" Name="drDrillR4" Orientation="Horizontal" Tag="20"></StackPanel>
-                                <Border Grid.Row="23" BorderBrush="#6D6F72" BorderThickness="0,2,0,0"></Border>
+                                <Border Grid.Row="23" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
                             </Grid>
                             <!--左3行-->
                             <Grid Height="{Binding Path=WR_RightRowHeight, ElementName=uc}" Name="rightRow3">
                                 <StackPanel Grid.Row="24" Name="drDrillR3" Orientation="Horizontal" Tag="19"></StackPanel>
-                                <Border Grid.Row="25" BorderBrush="#6D6F72" BorderThickness="0,2,0,0"></Border>
+                                <Border Grid.Row="25" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
                             </Grid>
                             <!--左2行-->
                             <Grid Height="{Binding Path=WR_RightRowHeight, ElementName=uc}" Name="rightRow2">
                                 <StackPanel Grid.Row="26" Name="drDrillR2" Orientation="Horizontal" Tag="18"></StackPanel>
-                                <Border Grid.Row="27" BorderBrush="#6D6F72" BorderThickness="0,2,0,0"></Border>
+                                <Border Grid.Row="27" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
                             </Grid>
                             <!--左1行-->
                             <Grid Height="{Binding Path=WR_RightRowHeight, ElementName=uc}" Name="rightRow1">
                                 <StackPanel Grid.Row="28" Name="drDrillR1" Orientation="Horizontal" Tag="17"></StackPanel>
-                                <Border Grid.Row="29" BorderBrush="#6D6F72" BorderThickness="0,2,0,0"></Border>
+                                <Border Grid.Row="29" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
                             </Grid>
                             <!--左钻铤-->
                             <Grid Height="{Binding Path=WR_RightFirstRowHeight, ElementName=uc}" Name="rightRow16">
@@ -418,7 +417,7 @@
                                     <StackPanel Width="100" Name="drDrillR0" Orientation="Horizontal" Tag="32"></StackPanel>
                                     <Grid Width="90" Background="#6D6F72"></Grid>
                                 </StackPanel>
-                                <Border Grid.Row="31" BorderBrush="#6D6F72" BorderThickness="0,2,0,0"></Border>
+                                <Border Grid.Row="31" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
                             </Grid>
                         </StackPanel>
                         <!--左选择-->

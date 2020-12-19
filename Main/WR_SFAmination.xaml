@@ -406,6 +406,7 @@
                                         <StackPanel Width="100" Name="sfDrillR0" Orientation="Horizontal" Tag="32"></StackPanel>
                                         <Grid Width="90" Background="#6D6F72"></Grid>
                                     </StackPanel>
+                                    <Border Grid.Row="31" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
                                 </Grid>
                             </StackPanel>
                             <!--左选择-->

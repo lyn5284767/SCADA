@@ -495,7 +495,7 @@ namespace Main
                     rows = GlobalData.Instance.Rows; // 指梁行数
                     drillCnt = GlobalData.Instance.DrillNum; // 最大钻铤数量
                     // 未从操作台读取到，则加载默认值
-                    if (rows == 0) rows = 15;
+                    if (rows == 0) rows = 10;
                     if (drillCnt == 0) drillCnt = 5;
 
                     StringBuilder sb = new StringBuilder(STRINGMAX);

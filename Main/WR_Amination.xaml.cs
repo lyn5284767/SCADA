@@ -1143,7 +1143,7 @@ namespace Main
         {
             try
             {
-                double TotalHight = 300.0 - 10.0; // 中间台面总高度-最上面横梁高度
+                double TotalHight = 300.0 - 8.0; // 中间台面总高度-最上面横梁高度
                 #region 计算左侧高度
                 double leftAvgHeight = 0.0;
                 if (this.showLeftOne) // 左钻铤行存在
