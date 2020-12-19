@@ -446,6 +446,27 @@
     <Compile Include="WellRepair\DrillFloor\WR_DRMain.xaml.cs">
       <DependentUpon>WR_DRMain.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WellRepair\DrillFloor\WR_ParamMain.xaml.cs">
+      <DependentUpon>WR_ParamMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WellRepair\DrillFloor\WR_ParamSetOne.xaml.cs">
+      <DependentUpon>WR_ParamSetOne.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WellRepair\DrillFloor\WR_ParamSetThree.xaml.cs">
+      <DependentUpon>WR_ParamSetThree.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WellRepair\DrillFloor\WR_ParamSetTwo.xaml.cs">
+      <DependentUpon>WR_ParamSetTwo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WellRepair\DrillFloor\WR_PosSetMain.xaml.cs">
+      <DependentUpon>WR_PosSetMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WellRepair\DrillFloor\WR_PosSetOne.xaml.cs">
+      <DependentUpon>WR_PosSetOne.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WellRepair\DrillFloor\WR_PosSetTwo.xaml.cs">
+      <DependentUpon>WR_PosSetTwo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WellRepair\SecondFloor\WR_SFMain.xaml.cs">
       <DependentUpon>WR_SFMain.xaml</DependentUpon>
     </Compile>
@@ -854,6 +875,34 @@
     <Page Include="WellRepair\DrillFloor\WR_DRMain.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WellRepair\DrillFloor\WR_ParamMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WellRepair\DrillFloor\WR_ParamSetOne.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WellRepair\DrillFloor\WR_ParamSetThree.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WellRepair\DrillFloor\WR_ParamSetTwo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WellRepair\DrillFloor\WR_PosSetMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WellRepair\DrillFloor\WR_PosSetOne.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WellRepair\DrillFloor\WR_PosSetTwo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WellRepair\SecondFloor\WR_SFMain.xaml">
       <SubType>Designer</SubType>

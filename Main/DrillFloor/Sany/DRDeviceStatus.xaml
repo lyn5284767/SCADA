@@ -317,34 +317,47 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <StackPanel Grid.Column="0">
-                                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,10" Width="150" Height="45" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btnCarTrunZero">
+                                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,5" Width="150" Height="45" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btnCarTrunZero">
                                     <TextBlock Name="tbCarTrunZero" FontSize="20" Text="滑车回零"></TextBlock>
                                 </Border>
-                                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,10" Width="150" Height="45" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btnRotateTrunZero">
+                                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,5" Width="150" Height="45" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btnRotateTrunZero">
                                     <TextBlock Name="tbRotateTrunZero" FontSize="20" Text="回转回零"></TextBlock>
                                 </Border>
-                                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,10" Width="150" Height="45" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btnMontorEnable">
+                                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,5" Width="150" Height="45" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btnMontorEnable">
                                     <TextBlock Name="tbMontorEnable" FontSize="20" Text="电机使能"></TextBlock>
                                 </Border>
-                                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,10" Width="150" Height="45" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btnClearDrillUpCount">
+                                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,5" Width="150" Height="45" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btnClearDrillUpCount">
                                     <TextBlock Name="tbClearDrillUpCount" FontSize="20" Text="排杆清零"></TextBlock>
                                 </Border>
                             </StackPanel>
                             <StackPanel Grid.Column="1">
-                                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,10" Width="150" Height="45" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btnClearDrill">
+                                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,5" Width="150" Height="45" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btnClearDrill">
                                     <TextBlock Name="tbClearDrill" FontSize="20" Text="清除钻杆"></TextBlock>
                                 </Border>
-                                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,10" Width="150" Height="45" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btnClearError">
+                                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,5" Width="150" Height="45" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btnClearError">
                                     <TextBlock Name="tbClearError" FontSize="20" Text="清除报警"></TextBlock>
                                 </Border>
-                                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,10" Width="150" Height="45" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btnroTransprot">
+                                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,5" Width="150" Height="45" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btnroTransprot">
                                     <TextBlock Name="tbTransprot" FontSize="20" Text="一键运输"></TextBlock>
                                 </Border>
-                                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,10" Width="150" Height="45" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btnClearDrillDownCount">
+                                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,5" Width="150" Height="45" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btnClearDrillDownCount">
                                     <TextBlock Name="tbClearDrillDownCount" FontSize="20" Text="送杆清零"></TextBlock>
                                 </Border>
                             </StackPanel>
                         </Grid>
+                    </StackPanel>
+                </Border>
+                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2">
+                    <StackPanel>
+                        <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5" Padding="3">
+                            <TextBlock Text="强制动作"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
+                        </Border>
+                        <cl:CustomCheckBox ContentString="小车强制开关" Margin="5" Name="cbCarOnOff" UserControlClicked="cbCarOnOff_Clicked"/>
+                        <cl:CustomCheckBox ContentString="手臂强制开关" Margin="5" Name="cbArmOnOff" UserControlClicked="cbArmOnOff_Clicked"/>
+                        <cl:CustomCheckBox ContentString="回转强制开关" Margin="5" Name="cbRotateOnOff" UserControlClicked="cbRotateOnOff_Clicked"/>
+                        <cl:CustomCheckBox ContentString="抓手强制开关" Margin="5" Name="cbGripOnOff" UserControlClicked="cbGripOnOff_Clicked"/>
+                        <cl:CustomCheckBox ContentString="手臂抱闸开关" Margin="5" Name="cbArmEmbraceOnOff" UserControlClicked="cbArmEmbraceOnOffClicked"/>
+                        <cl:CustomCheckBox ContentString="回转抱闸开关" Margin="5" Name="cbRotateEmbraceOnOff" UserControlClicked="cbRotateEmbraceOnOff_Clicked"/>
                     </StackPanel>
                 </Border>
             </StackPanel>

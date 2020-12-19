@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -15,17 +14,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Main.DrillFloor
+namespace Main.WellRepair.DrillFloor
 {
     /// <summary>
-    /// DRParamTwo.xaml 的交互逻辑
+    /// WR_ParamSetThree.xaml 的交互逻辑
     /// </summary>
-    public partial class DRParamThree : UserControl
+    public partial class WR_ParamSetThree : UserControl
     {
-        private static DRParamThree _instance = null;
+        private static WR_ParamSetThree _instance = null;
         private static readonly object syncRoot = new object();
 
-        public static DRParamThree Instance
+        public static WR_ParamSetThree Instance
         {
             get
             {
@@ -35,22 +34,21 @@ namespace Main.DrillFloor
                     {
                         if (_instance == null)
                         {
-                            _instance = new DRParamThree();
+                            _instance = new WR_ParamSetThree();
                         }
                     }
                 }
                 return _instance;
             }
         }
-
-        //System.Threading.Timer timer;
-        public DRParamThree()
+        public WR_ParamSetThree()
         {
             InitializeComponent();
             VariableBinding();
             //timer = new System.Threading.Timer(new TimerCallback(Timer_Elapsed), this, 2000, 100);
             this.Loaded += DRParamThree_Loaded;
         }
+
 
         private void Timer_Elapsed(object obj)
         {
@@ -73,12 +71,15 @@ namespace Main.DrillFloor
         {
             try
             {
-                this.twtL91.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["dr3WidthFix"], Mode = BindingMode.OneWay }); // 3寸宽度修正
-                this.twtL92.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["dr3AndHalfWidthFix"], Mode = BindingMode.OneWay }); // 3.5寸宽度修正
-                this.twtL93.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["dr4WidthFix"], Mode = BindingMode.OneWay }); // 4寸宽度修正
-                this.twtL94.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["dr4AndHalfWidthFix"], Mode = BindingMode.OneWay }); // 4.5寸宽度修正
-                this.twtL95.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["dr5WidthFix"], Mode = BindingMode.OneWay }); // 5寸宽度修正
-                this.twtL96.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["dr5AndHalfWidthFix"], Mode = BindingMode.OneWay }); // 5.5寸宽度修正
+                this.twtL91.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["WR_2And38Fix"], Mode = BindingMode.OneWay }); // 2-3/8间距修正
+                this.twtL92.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["WR_2And78Fix"], Mode = BindingMode.OneWay }); // 2-7/8间距修正
+                this.twtL93.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["WR_3And12Fix"], Mode = BindingMode.OneWay }); // 3 1/2间距修正
+                this.twtL96.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["WR_2And38CarFix"], Mode = BindingMode.OneWay }); // 2-3/8小车修正
+                this.twtL97.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["WR_2And78CarFix"], Mode = BindingMode.OneWay }); // 2-7/8小车修正
+                this.twtL98.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["WR_3And12CarFix"], Mode = BindingMode.OneWay }); // 3-1/2小车修正
+                this.twtL101.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["WR_2And38ArmFix"], Mode = BindingMode.OneWay }); // 2-3/8手臂修正
+                this.twtL102.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["WR_2And78ArmFix"], Mode = BindingMode.OneWay }); // 2-7/8手臂修正
+                this.twtL103.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["WR_3And12ArmFix"], Mode = BindingMode.OneWay }); // 3-1/2手臂修正
 
                 this.twtL1.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drRaiseEffectModel"], Mode = BindingMode.OneWay }); // 提效模式
                 this.twtL2.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drGripOpenCloseModel"], Mode = BindingMode.OneWay }); // 抓手开合模式
@@ -113,7 +114,7 @@ namespace Main.DrillFloor
         private void PageChange_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             sendCount++;
-            if (GlobalData.Instance.da["drPageNum"].Value.Byte == 40 || sendCount >5 || GlobalData.Instance.DRNowPage != "paramFour")
+            if (GlobalData.Instance.da["drPageNum"].Value.Byte == 40 || sendCount > 5 || GlobalData.Instance.DRNowPage != "paramFour")
             {
                 pageChange.Stop();
             }

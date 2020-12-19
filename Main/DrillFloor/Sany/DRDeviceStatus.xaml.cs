@@ -181,6 +181,14 @@ namespace Main.DrillFloor
                 this.armRetractElectOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["drHandRetractFeedback"], Mode = BindingMode.OneWay });// 疑问
 
                 this.raiseOpenOrClose.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["333b7"], Mode = BindingMode.OneWay, Converter = new InterLockingOppConverter() });
+
+                this.cbCarOnOff.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["335b0"], Mode = BindingMode.OneWay});
+                this.cbArmOnOff.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["335b1"], Mode = BindingMode.OneWay });
+                this.cbRotateOnOff.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["335b2"], Mode = BindingMode.OneWay });
+                this.cbGripOnOff.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["335b3"], Mode = BindingMode.OneWay });
+                this.cbArmEmbraceOnOff.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["335b5"], Mode = BindingMode.OneWay });
+                this.cbRotateEmbraceOnOff.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["335b6"], Mode = BindingMode.OneWay });
+
             }
             catch (Exception ex)
             {
@@ -352,5 +360,114 @@ namespace Main.DrillFloor
             byte[] byteToSend = GlobalData.Instance.SendToDR(new List<byte> { 22, 12 });
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
+        /// <summary>
+        /// 小车强制开关
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cbCarOnOff_Clicked(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+            if (this.cbCarOnOff.IsChecked)
+            {
+                byteToSend = new byte[] { 80, 33, 8, 1, 0, 0, 0, 0, 0, 0 };
+            }
+            else
+            {
+                byteToSend = new byte[] { 80, 33, 8, 1, 1, 0, 0, 0, 0, 0 };
+            }
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 手臂强制开关
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cbArmOnOff_Clicked(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+            if (this.cbArmOnOff.IsChecked)
+            {
+                byteToSend = new byte[] { 80, 33, 8, 2, 0, 0, 0, 0, 0, 0 };
+            }
+            else
+            {
+                byteToSend = new byte[] { 80, 33, 8, 2, 1, 0, 0, 0, 0, 0 };
+            }
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 回转强制开关
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cbRotateOnOff_Clicked(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+            if (this.cbRotateOnOff.IsChecked)
+            {
+                byteToSend = new byte[] { 80, 33, 8, 3, 0, 0, 0, 0, 0, 0 };
+            }
+            else
+            {
+                byteToSend = new byte[] { 80, 33, 8, 3, 1, 0, 0, 0, 0, 0 };
+            }
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cbArmEmbraceOnOffClicked(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+            if (this.cbArmEmbraceOnOff.IsChecked)
+            {
+                byteToSend = new byte[] { 80, 33, 8, 2, 0, 0, 0, 0, 0, 0 };
+            }
+            else
+            {
+                byteToSend = new byte[] { 80, 33, 8, 2, 2, 0, 0, 0, 0, 0 };
+            }
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 回转抱闸
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cbRotateEmbraceOnOff_Clicked(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+            if (this.cbRotateEmbraceOnOff.IsChecked)
+            {
+                byteToSend = new byte[] { 80, 33, 8, 3, 0, 0, 0, 0, 0, 0 };
+            }
+            else
+            {
+                byteToSend = new byte[] { 80, 33, 8, 3, 2, 0, 0, 0, 0, 0 };
+            }
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 抓手强制开关
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cbGripOnOff_Clicked(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+            if (this.cbGripOnOff.IsChecked)
+            {
+                byteToSend = new byte[] { 80, 33, 8, 4, 0, 0, 0, 0, 0, 0 };
+            }
+            else
+            {
+                byteToSend = new byte[] { 80, 33, 8, 4, 1, 0, 0, 0, 0, 0 };
+            }
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+
     }
 }

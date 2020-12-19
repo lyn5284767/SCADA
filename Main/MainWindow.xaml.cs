@@ -915,16 +915,33 @@ namespace Main
                 }
                 else if (GlobalData.Instance.systemType == SystemType.DrillFloor)
                 {
-                    if (!DRToHandleModel()) return;
-                    if (GlobalData.Instance.da["droperationModel"].Value.Byte != 5)
+                    if (GlobalData.Instance.da.GloConfig.SysType == 1)
                     {
-                        this.spMain.Children.Clear();
-                        this.spMain.Children.Add(DRParamSettingMain.Instance);
-                        this.mainTitle.Content = "SYAPS-钻台面:参数设置";
+                        if (!DRToHandleModel()) return;
+                        if (GlobalData.Instance.da["droperationModel"].Value.Byte != 5)
+                        {
+                            this.spMain.Children.Clear();
+                            this.spMain.Children.Add(WR_ParamMain.Instance);
+                            this.mainTitle.Content = "SYAPS-钻台面:参数设置";
+                        }
+                        else
+                        {
+                            MessageBox.Show("手动模式切换失败，请回主界面再次尝试！");
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("手动模式切换失败，请回主界面再次尝试！");
+                        if (!DRToHandleModel()) return;
+                        if (GlobalData.Instance.da["droperationModel"].Value.Byte != 5)
+                        {
+                            this.spMain.Children.Clear();
+                            this.spMain.Children.Add(DRParamSettingMain.Instance);
+                            this.mainTitle.Content = "SYAPS-钻台面:参数设置";
+                        }
+                        else
+                        {
+                            MessageBox.Show("手动模式切换失败，请回主界面再次尝试！");
+                        }
                     }
                 }
                 else if (GlobalData.Instance.systemType == SystemType.SIR)
@@ -997,17 +1014,35 @@ namespace Main
                 }
                 else if (GlobalData.Instance.systemType == SystemType.DrillFloor)
                 {
-                    if (!DRToHandleModel()) return;
-                    if (GlobalData.Instance.da["droperationModel"].Value.Byte !=5)
+                    if (GlobalData.Instance.da.GloConfig.SysType == 1)
                     {
-                        this.spMain.Children.Clear();
-                        //this.spMain.Children.Add(DRPosSetting.Instance);
-                        this.spMain.Children.Add(DRPosSetMain.Instance);
-                        this.mainTitle.Content = "SYAPS-钻台面:位置标定";
+                        if (!DRToHandleModel()) return;
+                        if (GlobalData.Instance.da["droperationModel"].Value.Byte != 5)
+                        {
+                            this.spMain.Children.Clear();
+                            //this.spMain.Children.Add(DRPosSetting.Instance);
+                            this.spMain.Children.Add(WR_PosSetMain.Instance);
+                            this.mainTitle.Content = "SYAPS-钻台面:位置标定";
+                        }
+                        else
+                        {
+                            MessageBox.Show("手动模式切换失败，请回主界面再次尝试！");
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("手动模式切换失败，请回主界面再次尝试！");
+                        if (!DRToHandleModel()) return;
+                        if (GlobalData.Instance.da["droperationModel"].Value.Byte != 5)
+                        {
+                            this.spMain.Children.Clear();
+                            //this.spMain.Children.Add(DRPosSetting.Instance);
+                            this.spMain.Children.Add(DRPosSetMain.Instance);
+                            this.mainTitle.Content = "SYAPS-钻台面:位置标定";
+                        }
+                        else
+                        {
+                            MessageBox.Show("手动模式切换失败，请回主界面再次尝试！");
+                        }
                     }
                 }
                 else if (GlobalData.Instance.systemType == SystemType.SIR)
