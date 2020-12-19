@@ -87,6 +87,7 @@ namespace Main.SecondFloor
                 this.twtL21.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["111E23Inch5DrillPipeCapacity"], Mode = BindingMode.OneWay });
                 this.twtL22.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["111E23Inch55DrillPipeCapacity"], Mode = BindingMode.OneWay });
                 this.twtL23.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["6Inch5/8DrillPipeCapacity"], Mode = BindingMode.OneWay });
+                this.twtL35.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["108E23Inch278DrillPipeCapcity"], Mode = BindingMode.OneWay });
 
                 this.twtR1.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["108E23MaxDrillPipeTypeSize"], Mode = BindingMode.OneWay });
                 this.twtR2.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["108E23MaxColumn"], Mode = BindingMode.OneWay });

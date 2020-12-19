@@ -88,7 +88,7 @@
                             <cl:TextBlockWithTextBox Name="twtL22" ControlTag="22"  TbkText="钻铤指梁间距" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
                             <cl:TextBlockWithTextBox Name="twtL23" ControlTag="23"  TbkText="钻铤设置值" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
                             <cl:TextBlockWithTextBox Name="twtL33" ControlTag="33"  TbkText="2 3/8寸钻杆容量" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
-                            <cl:TextBlockWithTextBox Name="twtL35" ControlTag="33"  TbkText="2 7/8钻杆容量" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+                            <cl:TextBlockWithTextBox Name="twtL35" ControlTag="35"  TbkText="2 7/8钻杆容量" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
                             <cl:TextBlockWithTextBox Name="twtL37" ControlTag="37"  TbkText="3.5寸钻杆容量" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
                             <!--<cl:TextBlockWithTextBox Name="twtL36" ControlTag="36"  TbkText="3寸钻杆容量" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
                             <cl:TextBlockWithTextBox Name="twtL37" ControlTag="37"  TbkText="3.5寸钻杆容量" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>

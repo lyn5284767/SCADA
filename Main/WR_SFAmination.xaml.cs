@@ -577,17 +577,21 @@ namespace Main
         {
             try
             {
+                int leftrow = rows;
+                if (this.showLeftOne) leftrow -= 1; // 左边有钻铤，减去一行
+                int rightrow = rows;
+                if (this.showRightOne) rightrow -= 1; // 左边有钻铤，减去一行
                 #region 隐藏两侧多余行数
-                HiddenTBInSP(this.spOneCol); // 隐藏第一列-左边二层台行数
-                HiddenTBInSP(this.spThreeCol); // 隐藏第三列-左边行数
-                HiddenTBInSP(this.spFourCol); // 隐藏第四列-右边行数
-                HiddenTBInSP(this.spSixCol); // 隐藏第六列-右边二层台行数
+                HiddenTBInSP(this.spOneCol, leftrow); // 隐藏第一列-左边二层台行数
+                HiddenTBInSP(this.spThreeCol, leftrow); // 隐藏第三列-左边行数
+                HiddenTBInSP(this.spFourCol, rightrow); // 隐藏第四列-右边行数
+                HiddenTBInSP(this.spSixCol, rightrow); // 隐藏第六列-右边二层台行数
                 #endregion
                 #region 隐藏指梁数
-                HiddenLeftDrillInSP(this.spLeftDrill);
-                HiddenLeftDrillInSP(this.spLeftImg);
-                HiddenLeftDrillInSP(this.spRightImg);
-                HiddenLeftDrillInSP(this.spRightDrill);
+                HiddenLeftDrillInSP(this.spLeftDrill, leftrow);
+                HiddenLeftDrillInSP(this.spLeftImg, leftrow);
+                HiddenLeftDrillInSP(this.spRightImg, rightrow);
+                HiddenLeftDrillInSP(this.spRightDrill, rightrow);
                 #endregion
                 if (this.showLeftOne)
                 {
@@ -612,19 +616,24 @@ namespace Main
         {
             try
             {
+                int leftrow = rows;
+                if (this.showLeftOne) leftrow -= 1; // 左边有钻铤，减去一行
+                int rightrow = rows;
+                if (this.showRightOne) rightrow -= 1; // 左边有钻铤，减去一行
+
                 double TotalHight = 300.0-8; // 中间台面总高度-最上面横梁高度
                 #region 计算左侧高度
                 double leftAvgHeight = 0.0;
                 if (this.showLeftOne) // 左钻铤行存在
                 {
-                    leftAvgHeight = (TotalHight - 5) / (rows + 1); // 平均高度为(总高度-钻铤行多的高度)/(指梁行数+钻铤行)
+                    leftAvgHeight = (TotalHight - 5) / (leftrow + 1); // 平均高度为(总高度-钻铤行多的高度)/(指梁行数+钻铤行)
                     this.WR_SFLeftRowHeight = leftAvgHeight;
                     this.WR_SFLeftFirstRowHeight = leftAvgHeight + 5;
 
                 }
                 else
                 {
-                    leftAvgHeight = TotalHight / rows; // 平均高度为(总高度-钻铤行多的高度)/(指梁行数+钻铤行)
+                    leftAvgHeight = TotalHight / leftrow; // 平均高度为(总高度-钻铤行多的高度)/(指梁行数+钻铤行)
                     this.WR_SFLeftRowHeight = leftAvgHeight;
                 }
                 #endregion
@@ -632,14 +641,14 @@ namespace Main
                 double rightAvgHeight = 0.0;
                 if (this.showRightOne) // 左钻铤行存在
                 {
-                    rightAvgHeight = (TotalHight - 5) / (rows + 1); // 平均高度为(总高度-钻铤行多的高度)/(指梁行数+钻铤行)
+                    rightAvgHeight = (TotalHight - 5) / (rightrow + 1); // 平均高度为(总高度-钻铤行多的高度)/(指梁行数+钻铤行)
                     this.WR_SFRightRowHeight = rightAvgHeight;
                     this.WR_SFRightFirstRowHeight = rightAvgHeight + 5;
 
                 }
                 else
                 {
-                    rightAvgHeight = TotalHight / rows; // 平均高度为(总高度-钻铤行多的高度)/(指梁行数+钻铤行)
+                    rightAvgHeight = TotalHight / rightrow; // 平均高度为(总高度-钻铤行多的高度)/(指梁行数+钻铤行)
                     this.WR_SFRightRowHeight = rightAvgHeight;
                 }
                 #endregion
@@ -685,7 +694,7 @@ namespace Main
         /// 隐藏StackPanel中Textblock
         /// </summary>
         /// <param name="sp">待隐藏的StackPanel</param>
-        private void HiddenTBInSP(StackPanel sp)
+        private void HiddenTBInSP(StackPanel sp,int realRow)
         {
             foreach (Grid gd in FindVisualChildren<Grid>(sp))
             {
@@ -694,7 +703,7 @@ namespace Main
                     string result = Regex.Replace(gd.Name, @"[^0-9]+", "");
                     int iRow = -1;
                     int.TryParse(result, out iRow);
-                    if (iRow > rows)
+                    if (iRow > realRow)
                     {
                         gd.Visibility = Visibility.Collapsed;
                     }
@@ -707,7 +716,7 @@ namespace Main
         }
 
 
-        private void HiddenLeftDrillInSP(StackPanel sp)
+        private void HiddenLeftDrillInSP(StackPanel sp,int realRows)
         {
             foreach (Grid gd in FindVisualChildren<Grid>(sp))
             {
@@ -716,7 +725,7 @@ namespace Main
                     string result = Regex.Replace(gd.Name, @"[^0-9]+", "");
                     int iRow = -1;
                     int.TryParse(result, out iRow);
-                    if (iRow > rows)
+                    if (iRow > realRows)
                     {
                         gd.Visibility = Visibility.Collapsed;
                     }
