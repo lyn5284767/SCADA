@@ -59,12 +59,13 @@ namespace Main.SecondFloor
                 this.twtL32.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SPDrillMaxSize"], Mode = BindingMode.OneWay });
                 this.twtL50.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SPDrillNum"], Mode = BindingMode.OneWay });
 
-                this.twtR53.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SPDrillOneWidth"], Mode = BindingMode.OneWay }); //钻铤锁类型
-                this.twtR54.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SPDrillOneSpace"], Mode = BindingMode.OneWay });
-                this.twtR55.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SPDrillTwoWidth"], Mode = BindingMode.OneWay });
-                this.twtR56.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SPDrillTwoSpace"], Mode = BindingMode.OneWay });
-                this.twtR57.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SPDrillMaxSize"], Mode = BindingMode.OneWay });
-                this.twtR51.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SPDrillNum"], Mode = BindingMode.OneWay });
+                this.twtR53.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SF_DrillType"], Mode = BindingMode.OneWay }); //钻铤锁类型
+                this.twtR54.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SF_RopeType"], Mode = BindingMode.OneWay });
+                this.twtR55.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SF_FingerLockType"], Mode = BindingMode.OneWay });
+                this.twtR56.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SF_MonkeyType"], Mode = BindingMode.OneWay });
+                this.twtR57.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SF_LeftFingerType"], Mode = BindingMode.OneWay });
+                this.twtR58.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SF_RightFingerType"], Mode = BindingMode.OneWay });
+                this.twtR51.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SF_GripType"], Mode = BindingMode.OneWay });
 
             }
             catch (Exception ex)
