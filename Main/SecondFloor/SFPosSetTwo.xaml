@@ -72,17 +72,17 @@
                                 </StackPanel>
                             </Border>
 
-                            <inputcontrol:SetControl Name="twt97" Head="80,1,12,97" TbkText="3.5寸" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt110" Head="80,1,12,110" TbkText="4寸补偿" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt112" Head="80,1,12,112" TbkText="4.5寸补偿" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt98" Head="80,1,12,98" TbkText="5寸" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt114" Head="80,1,12,114" TbkText="5.5寸补偿" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt108" Head="80,1,12,108" TbkText="5寸7/8" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt99" Head="80,1,12,99" TbkText="6寸" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt100" Head="80,1,12,100" TbkText="6.5寸" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt109" Head="80,1,12,109" TbkText="6寸5/8" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt101" Head="80,1,12,101" TbkText="7寸" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt102" Head="80,1,12,102" TbkText="7.5寸" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt97" Head="80,1,12,97,0,0" TbkText="3.5寸及以下" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt110" Head="80,1,12,110,0,0" TbkText="4寸补偿" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt112" Head="80,1,12,112,0,0" TbkText="4.5寸补偿" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt98" Head="80,1,12,98,0,0" TbkText="5寸" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt114" Head="80,1,12,114,0,0" TbkText="5.5寸补偿" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt108" Head="80,1,12,108,0,0" TbkText="5寸7/8" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt99" Head="80,1,12,99,0,0" TbkText="6寸" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt100" Head="80,1,12,100,0,0" TbkText="6.5寸" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt109" Head="80,1,12,109,0,0" TbkText="6寸5/8" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt101" Head="80,1,12,101,0,0" TbkText="7寸" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt102" Head="80,1,12,102,0,0" TbkText="7.5寸" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
 
                         </StackPanel>
                     </Border>
@@ -96,11 +96,11 @@
                             <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5,0,5,5" Padding="3">
                                 <TextBlock Text="抓手标定"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"/>
                             </Border>
-                            <inputcontrol:SetControl Name="twt103" Head="80,1,12,103" TbkText="8寸" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt104" Head="80,1,12,104" TbkText="9寸" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt105" Head="80,1,12,105" TbkText="10寸" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt106" Head="80,1,12,40" TbkText="11寸" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt107" Head="80,1,12,43" TbkText="最大寸" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt103" Head="80,1,12,103,0,0" TbkText="8寸" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt104" Head="80,1,12,104,0,0" TbkText="9寸" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt105" Head="80,1,12,105,0,0" TbkText="10寸" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt106" Head="80,1,12,40,0,0" TbkText="11寸" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt107" Head="80,1,12,43,0,0" TbkText="最大寸" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
                          </StackPanel>
                     </StackPanel>
                 </Border>
@@ -114,10 +114,10 @@
                                     <TextBlock Name="tbRightFinger" Text="**" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"></TextBlock>
                                 </StackPanel>
                             </Border>
-                            <inputcontrol:SetControl Name="twt129" Head="80,1,12,129" TbkText="左手指最小值" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt130" Head="80,1,12,130" TbkText="左手指最大值" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt131" Head="80,1,12,131" TbkText="右手指最小值" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt132" Head="80,1,12,72" TbkText="右手指最大值" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt129" Head="80,1,12,129,0,0" TbkText="左手指最小值" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt130" Head="80,1,12,130,0,0" TbkText="左手指最大值" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt131" Head="80,1,12,131,0,0" TbkText="右手指最小值" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt132" Head="80,1,12,72,0,0" TbkText="右手指最大值" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
                         </StackPanel>
                     </StackPanel>
                 </Border>

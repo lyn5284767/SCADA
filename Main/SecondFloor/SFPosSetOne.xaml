@@ -72,17 +72,17 @@
                                 </StackPanel>
                             </Border>
 
-                            <inputcontrol:SetControl Name="twt1" Head="80,1,12,1" TbkText="最靠近井口" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt2" Head="80,1,12,2" TbkText="最远离井口" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt3" Head="80,1,12,3" TbkText="右1#指梁" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt4" Head="80,1,12,4" TbkText="左1#指梁" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt6" Head="80,1,12,6" TbkText="排杆待机" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt7" Head="80,1,12,7" TbkText="回收位置" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt10" Head="80,1,12,10" TbkText="小车运输" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt21" Head="80,1,12,21" TbkText="右16指梁补偿" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt22" Head="80,1,12,22" TbkText="左16指梁补偿" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt23" Head="80,1,12,23" TbkText="右1#特殊指梁" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt24" Head="80,1,12,24" TbkText="左1#特殊指梁" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt1" Head="80,1,12,1,0,0" TbkText="最靠近井口" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt2" Head="80,1,12,2,0,0" TbkText="最远离井口" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt3" Head="80,1,12,3,0,0" TbkText="右1#指梁" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt4" Head="80,1,12,4,0,0" TbkText="左1#指梁" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt6" Head="80,1,12,6,0,0" TbkText="排杆待机" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt7" Head="80,1,12,7,0,0" TbkText="回收位置" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt10" Head="80,1,12,10,0,0" TbkText="小车运输" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt21" Head="80,1,12,21,0,0" TbkText="右16指梁补偿" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt22" Head="80,1,12,22,0,0" TbkText="左16指梁补偿" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt23" Head="80,1,12,23,0,0" TbkText="右1#特殊指梁" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt24" Head="80,1,12,24,0,0" TbkText="左1#特殊指梁" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
 
                         </StackPanel>
                     </Border>
@@ -99,12 +99,12 @@
                                     <TextBlock Name="tbArmPos" Text="**" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"></TextBlock>
                                 </StackPanel>
                             </Border>
-                            <inputcontrol:SetControl Name="twt33" Head="80,1,12,33" TbkText="最小收缩" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt34" Head="80,1,12,34" TbkText="钻杆最大伸展" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt39" Head="80,1,12,39" TbkText="手臂回收" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt40" Head="80,1,12,40" TbkText="井口最大伸展" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt43" Head="80,1,12,43" TbkText="钻铤最大伸展" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt42" Head="80,1,12,42" TbkText="手臂运输" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt33" Head="80,1,12,33,0,0" TbkText="最小收缩" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt34" Head="80,1,12,34,0,0" TbkText="钻杆最大伸展" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt39" Head="80,1,12,39,0,0" TbkText="手臂回收" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt40" Head="80,1,12,40,0,0" TbkText="井口最大伸展" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt43" Head="80,1,12,43,0,0" TbkText="钻铤最大伸展" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt42" Head="80,1,12,42,0,0" TbkText="手臂运输" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
                             </StackPanel>
                     </StackPanel>
                 </Border>
@@ -117,11 +117,11 @@
                                     <TextBlock Name="tbRotatePos" Text="**" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"></TextBlock>
                                 </StackPanel>
                             </Border>
-                            <inputcontrol:SetControl Name="twt65" Head="80,1,12,65" TbkText="-90°位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt66" Head="80,1,12,66" TbkText="90°位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt71" Head="80,1,12,71" TbkText="回收位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt72" Head="80,1,12,72" TbkText="井口位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt74" Head="80,1,12,74" TbkText="回转运输位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt65" Head="80,1,12,65,0,0" TbkText="-90°位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt66" Head="80,1,12,66,0,0" TbkText="90°位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt71" Head="80,1,12,71,0,0" TbkText="回收位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt72" Head="80,1,12,72,0,0" TbkText="井口位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt74" Head="80,1,12,74,0,0" TbkText="回转运输位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
                         </StackPanel>
                     </StackPanel>
                 </Border>

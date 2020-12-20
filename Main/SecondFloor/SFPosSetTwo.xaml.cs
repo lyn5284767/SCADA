@@ -53,6 +53,22 @@ namespace Main.SecondFloor
             this.tbRightFinger.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["103N23RightFingerMotorSampleValue"] });
 
             timer = new System.Threading.Timer(new TimerCallback(Timer_Elapsed), this, 2000, 100);
+            if (GlobalData.Instance.da.GloConfig.SysType == 1) //修井
+            {
+                this.twt110.Visibility = Visibility.Collapsed;
+                this.twt112.Visibility = Visibility.Collapsed;
+                this.twt114.Visibility = Visibility.Collapsed;
+                this.twt108.Visibility = Visibility.Collapsed;
+                this.twt99.Visibility = Visibility.Collapsed;
+                this.twt100.Visibility = Visibility.Collapsed;
+                this.twt109.Visibility = Visibility.Collapsed;
+                this.twt102.Visibility = Visibility.Collapsed;
+                this.twt103.Visibility = Visibility.Collapsed;
+                this.twt104.Visibility = Visibility.Collapsed;
+                this.twt105.Visibility = Visibility.Collapsed;
+                this.twt107.Visibility = Visibility.Collapsed;
+                this.twt106.TbkText = "最大值";
+            }
         }
 
 
