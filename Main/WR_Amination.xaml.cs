@@ -158,7 +158,7 @@ namespace Main
             set { SetValue(WR_DRRealMoveXProperty, value); }
         }
 
-        public static readonly DependencyProperty WR_DRMiddleXProperty = DependencyProperty.Register("WR_DRMiddleXProperty", typeof(double), typeof(WR_Amination), new PropertyMetadata((double)0.0));// 中间高度
+        public static readonly DependencyProperty WR_DRMiddleXProperty = DependencyProperty.Register("WR_DRMiddleX", typeof(double), typeof(WR_Amination), new PropertyMetadata((double)0.0));// 中间高度
 
         ///<summary>
         /// 钻台面-中间高度--减去用于置于零点
@@ -1227,9 +1227,9 @@ namespace Main
         {
             try
             {
-                this.WR_DRRealMoveX = 490-20; // 小车左右位移距离=总长度-小车宽度
-                this.WR_DRMiddleX = (490 + 10) / 2.0; // X轴中间 = （实际移动距离+左右壁框）/2
-                this.WR_DRWorkAnimationWidth = (500 - this.drRobotCar.Width) / 2; // X轴最大位移 (台面宽度-小车宽度)/2
+                this.WR_DRRealMoveX = (490-20)/2; // 小车左右位移距离=(总长度-小车宽度)/2
+                this.WR_DRMiddleX = (490 - 10) / 2.0; // X轴中间 = （实际移动距离+左右壁框）/2
+                this.WR_DRWorkAnimationWidth = (340 - this.drRobotCar.Width); // X轴最大位移 (台面宽度-小车宽度)/2
             }
             catch (Exception ex)
             {
