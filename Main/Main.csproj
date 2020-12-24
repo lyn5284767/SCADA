@@ -273,6 +273,12 @@
     <Compile Include="Integration\Ing_SIR_Self.xaml.cs">
       <DependentUpon>Ing_SIR_Self.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Integration\ModelDetailData.xaml.cs">
+      <DependentUpon>ModelDetailData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Integration\ModelSetWindow.xaml.cs">
+      <DependentUpon>ModelSetWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -641,6 +647,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Integration\Ing_SIR_Self.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Integration\ModelDetailData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Integration\ModelSetWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

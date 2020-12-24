@@ -50,6 +50,7 @@
     <Compile Include="Camera.cs" />
     <Compile Include="GlobalClass.cs" />
     <Compile Include="GlobalEx.cs" />
+    <Compile Include="GlobalMethed.cs" />
     <Compile Include="Global\GlobalData.cs" />
     <Compile Include="JsonHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

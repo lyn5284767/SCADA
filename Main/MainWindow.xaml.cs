@@ -268,6 +268,7 @@ namespace Main
         }
 
         int timeTick = 0;
+        List<string> sqlList = new List<string>();
         /// <summary>
         /// 报表数据记录
         /// </summary>
@@ -284,7 +285,6 @@ namespace Main
                     //double now3 = now * random.Next(0, 10);
                     //double now4 = now * random.Next(0, 15);
                     //double now5 = now * random.Next(0, 20);
-                    List<string> sqlList = new List<string>();
                     string sql = string.Empty;
                     // 系统压力
                     double systemPress = GlobalData.Instance.da["MPressAI"].Value.Int16 / 10.0;
@@ -330,7 +330,11 @@ namespace Main
                             sqlList.Add(sql);
                         }
                     }
-                    DataHelper.Instance.ExecuteNonQuery(sqlList.ToArray());
+                    if (sqlList.Count > 400)
+                    {
+                        DataHelper.Instance.ExecuteNonQuery(sqlList.ToArray());
+                        sqlList.Clear();
+                    }
                     timeTick++;
                     if (timeTick > 60) timeTick = 0;
                 }
@@ -448,10 +452,13 @@ namespace Main
                 deviceTimer = new System.Timers.Timer(200);
                 deviceTimer.Elapsed += DeviceTimer_Elapsed;
                 deviceTimer.Enabled = true;
-                if (!GlobalData.Instance.da["575b0"].Value.Boolean)
+                if (GlobalData.Instance.da.GloConfig.SysType == 0)
                 {
-                    SFStop.Instance.info("请先标定大钩零位");
-                    SFStop.Instance.ShowDialog();
+                    if (!GlobalData.Instance.da["575b0"].Value.Boolean)
+                    {
+                        SFStop.Instance.info("请先标定大钩零位");
+                        SFStop.Instance.ShowDialog();
+                    }
                 }
             }
             catch (Exception ex)
@@ -1354,8 +1361,8 @@ namespace Main
             try
             {
                 this.spMain.Children.Clear();
-                //this.spMain.Children.Add(IngMain.Instance);
-                this.spMain.Children.Add(IngMainNew.Instance);
+                this.spMain.Children.Add(IngMain.Instance);
+                //this.spMain.Children.Add(IngMainNew.Instance);
                 GlobalData.Instance.Ing = true;
                 IngMainNew.Instance.SetNowTechniqueEvent += Instance_SetNowTechniqueEvent;
                 GlobalData.Instance.systemType = SystemType.CIMS;

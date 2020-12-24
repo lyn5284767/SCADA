@@ -8,15 +8,16 @@
         Title="SFStop" Height="400" Width="450" WindowStyle="None" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="150"/>
             <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="80"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock Text="&#xe603;" TextAlignment="Center" FontFamily="../Font/#iconfont" FontSize="100" Foreground="Red"></TextBlock>
             <TextBlock Text="告警" FontSize="100" Foreground="Red"></TextBlock>
         </StackPanel>
-        <TextBlock x:Name="tbinfo" Grid.Row="1" Text="二层台急停" FontSize="40" Foreground="Red" HorizontalAlignment="Center"></TextBlock>
-        <Button Grid.Row="2" FontSize="36" Height="70" FontWeight="Bold" Click="Button_Click">关闭</Button>
+        <TextBlock x:Name="tbinfo" Grid.Row="1" Text="二层台急停" FontSize="40" Foreground="Red" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+        <Button Grid.Row="3" FontSize="36" Height="70" FontWeight="Bold" Click="Button_Click">关闭</Button>
     </Grid>
 </Window>

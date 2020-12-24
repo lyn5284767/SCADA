@@ -1570,8 +1570,15 @@ namespace Main
                     string strCarMaxPosistion = "0";
                     string strCarMinPosistion = "0";
                     string strArmMaxPosistion = "0";
-
-                    rows = GlobalData.Instance.Rows;
+                    if (GlobalData.Instance.da.GloConfig.SysType == 1)
+                    {
+                        rows = GlobalData.Instance.Rows + 1;
+                    }
+                    else
+                    {
+                        rows = GlobalData.Instance.Rows;
+                    }
+                   
 
                     WinAPI.GetPrivateProfileString("SECONDFLOOR", "COLOMS", strColoms, sb, STRINGMAX, configPath);
                     strColoms = sb.ToString();
@@ -1579,7 +1586,7 @@ namespace Main
                     drillCnt = GlobalData.Instance.DrillNum; // 最大钻铤数量
 
                     if (coloms == 0) coloms = 17;
-                    if (rows == 0)
+                    if (GlobalData.Instance.Rows == 0)
                     {
                         WinAPI.GetPrivateProfileString("SECONDFLOOR", "ROWS", strrow, sb, STRINGMAX, configPath);
                         strrow = sb.ToString();

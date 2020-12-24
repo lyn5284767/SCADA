@@ -1717,7 +1717,7 @@ namespace Main.SecondFloor
         /// </summary>
         private void btn_SelectDrillPipe658(object sender, RoutedEventArgs e)
         {
-            byte[] byteToSend = SendByte(new List<byte> { 3, 68 });
+            byte[] byteToSend = new byte[] { 80, 1, 3, 68, 0, 0, 1, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
@@ -1725,7 +1725,7 @@ namespace Main.SecondFloor
         /// </summary>
         private void btn_SelectDrillPipe35(object sender, RoutedEventArgs e)
         {
-            byte[] byteToSend = SendByte(new List<byte> { 3, 35 });
+            byte[] byteToSend = new byte[] { 80, 1, 3, 35, 0, 0, 1, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
@@ -1733,7 +1733,7 @@ namespace Main.SecondFloor
         /// </summary>
         private void btn_SelectDrillPipe45(object sender, RoutedEventArgs e)
         {
-            byte[] byteToSend = SendByte(new List<byte> { 3, 45 });
+            byte[] byteToSend = new byte[] { 80, 1, 3, 45, 0, 0, 1, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>

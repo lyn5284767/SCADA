@@ -287,8 +287,12 @@
             <StackPanel Width="460" Name="spMidMain">
                 <Grid Height="20"></Grid>
                 <Grid Height="300" Name="gdMidMain">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="7*"/>
+                        <RowDefinition Height="93*"/>
+                    </Grid.RowDefinitions>
                     <!--二层台-->
-                    <StackPanel Height="320" Name="spSFMid" Visibility="{Binding Path=SFType,ElementName=uc,Converter={StaticResource SecondFloorVisCVT}}">
+                    <StackPanel Height="320" Name="spSFMid" Visibility="{Binding Path=SFType,ElementName=uc,Converter={StaticResource SecondFloorVisCVT}}" Margin="0,0,0,-20" Grid.RowSpan="2">
                         <Border Height="8" BorderBrush="#6D6F72" BorderThickness="0,10,0,0"></Border>
                         <!--第15行-->
                         <DockPanel Height="{Binding Path=RowHeight, ElementName=uc}" Name="dprow15">
@@ -1717,7 +1721,7 @@
                             </StackPanel>
                         </DockPanel>
                     </StackPanel>
-                    <local1:AnimationButton Width="20" Height="20" Style="{StaticResource CircleButton}" x:Name="RobotCar" Visibility="{Binding Path=SFType,ElementName=uc,Converter={StaticResource SecondFloorVisCVT}}">
+                    <local1:AnimationButton Width="20" Height="20" Style="{StaticResource CircleButton}" x:Name="RobotCar" Visibility="{Binding Path=SFType,ElementName=uc,Converter={StaticResource SecondFloorVisCVT}}" Margin="220,118.854,220,140" Grid.Row="1">
                         <Button.Background>
                             <ImageBrush ImageSource="Images\RobotCar.bmp"/>
                         </Button.Background>
@@ -1738,7 +1742,7 @@
                         </local1:AnimationButton.RenderTransform>
                     </local1:AnimationButton>
 
-                    <Image Panel.ZIndex="99" Width="20" Name="RobotArm" Visibility="{Binding Path=SFType,ElementName=uc,Converter={StaticResource SecondFloorVisCVT}}">
+                    <Image Panel.ZIndex="99" Width="20" Name="RobotArm" Visibility="{Binding Path=SFType,ElementName=uc,Converter={StaticResource SecondFloorVisCVT}}" Margin="220,0" Grid.RowSpan="2">
                         <Image.Source>
                             <Binding Path="RobotGripStatus" ElementName="uc" Converter="{StaticResource AnimationArmImageCvt}"/>
                         </Image.Source>
@@ -1782,7 +1786,7 @@
                     </Image>
 
                     <!--钻台台架子-->
-                    <StackPanel Name="spDRMid" Visibility="{Binding Path=DRType,ElementName=uc,Converter={StaticResource DRVisCvt}}">
+                    <StackPanel Name="spDRMid" Visibility="{Binding Path=DRType,ElementName=uc,Converter={StaticResource DRVisCvt}}" Grid.RowSpan="2">
                         <Border Height="8" BorderBrush="#6D6F72" BorderThickness="0,10,0,0"></Border>
                         <!--第15行-->
                         <DockPanel Height="{Binding Path=DRRowHeight, ElementName=uc}" Name="drrow15">
@@ -1893,7 +1897,7 @@
                                     <Border x:Name="drFingerBeamArrow30" Grid.Column="4" Width="2" BorderBrush="#6D6F72" Tag="space" BorderThickness="2,0,0,0">
                                     </Border>
                                 </Grid>
-                                
+
                                 <!--<Border x:Name="drFingerBeamArrow14" Width="45" BorderBrush="#6D6F72" Tag="space">
                                     <Border.BorderThickness>
                                         <MultiBinding Converter="{StaticResource AnimationCurrentFingerBeamThicknessCvt}">
@@ -3189,7 +3193,7 @@
                             </StackPanel>
                         </DockPanel>
                     </StackPanel>
-                    <local1:AnimationButton Width="20" Height="20" Style="{StaticResource CircleButton}" x:Name="drRobotCar" Visibility="{Binding Path=SFType,ElementName=uc,Converter={StaticResource DRVisCvt}}">
+                    <local1:AnimationButton Width="20" Height="20" Style="{StaticResource CircleButton}" x:Name="drRobotCar" Visibility="{Binding Path=SFType,ElementName=uc,Converter={StaticResource DRVisCvt}}" Margin="220,118.854,220,140" Grid.Row="1">
                         <Button.Background>
                             <ImageBrush ImageSource="Images\RobotCar.bmp"/>
                         </Button.Background>
@@ -3210,10 +3214,10 @@
                         </local1:AnimationButton.RenderTransform>
                     </local1:AnimationButton>
 
-                    <Image Width="20" Name="DRRobotArm" Visibility="{Binding Path=SFType,ElementName=uc,Converter={StaticResource DRVisCvt}}">
+                    <Image Width="20" Name="DRRobotArm" Visibility="{Binding Path=SFType,ElementName=uc,Converter={StaticResource DRVisCvt}}" Margin="220,0" Grid.RowSpan="2">
                         <Image.Source>
                             <Binding Path="DRRobotGripStatus" ElementName="uc" Converter="{StaticResource AnimationArmImageCvt}"/>
-                          
+
                         </Image.Source>
                         <Image.RenderTransform>
                             <TransformGroup>

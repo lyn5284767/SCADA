@@ -404,4 +404,42 @@ namespace COM.Common
         /// </summary>
         public bool NeedCheck { get; set; }
     }
+    /// <summary>
+    /// 系统选择的模式
+    /// </summary>
+    public class GlobalModel
+    {
+        /// <summary>
+        /// 主键ID
+        /// </summary>
+        public int ID { get; set; }
+        /// <summary>
+        /// 液压站启动泵 0-不启动/未知；1-启动1主泵；2-启动2主泵；3-启动双泵
+        /// </summary>
+        public int HS_PumpType { get; set; }
+        /// <summary>
+        /// 工作模式 0-未知；1-排杆；2-送杆
+        /// </summary>
+        public int WorkType { get; set; }
+        /// <summary>
+        /// 管柱类型-0-未知；1-钻杆；2-钻铤
+        /// </summary>
+        public int PipeType { get; set; }
+        /// <summary>
+        /// 管柱尺寸-同协议
+        /// </summary>
+        public int PipeSize { get; set; }
+        /// <summary>
+        /// 目的地选择 0-未知；1-"立根区";2-"猫道-井口";3-"猫道-鼠道";
+        /// </summary>
+        public int DesType { get; set; }
+        /// <summary>
+        /// 选择指梁 -1-自动
+        /// </summary>
+        public int SelectDrill { get; set; }
+        /// <summary>
+        /// 当前选择模式
+        /// </summary>
+        public bool Selected { get; set; }
+    }
 }

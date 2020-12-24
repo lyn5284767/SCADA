@@ -140,7 +140,7 @@ namespace Main.SecondFloor
                 //SFPositionCompensate.Instance.amination.InitRowsColoms(systemType);
                 SFPositionCompensate.Instance.aminationNew.InitRowsColoms(systemType);
                 //IngMain.Instance.amination.InitRowsColoms(systemType);
-                IngMain.Instance.aminationNew.InitRowsColoms(systemType);
+                //IngMain.Instance.aminationNew.InitRowsColoms(systemType);
                 this.NumFixTips.Text = "加载成功";
             }
             catch (Exception ex)
@@ -471,7 +471,7 @@ namespace Main.SecondFloor
             //SFPositionCompensate.Instance.amination.InitRowsColoms(systemType);
             SFPositionCompensate.Instance.aminationNew.InitRowsColoms(systemType);
             //IngMain.Instance.amination.InitRowsColoms(systemType);
-            IngMain.Instance.aminationNew.InitRowsColoms(systemType);
+            //IngMain.Instance.aminationNew.InitRowsColoms(systemType);
         }
 
         public void SysTypeSelect(int index)
