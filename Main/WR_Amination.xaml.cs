@@ -1227,8 +1227,8 @@ namespace Main
         {
             try
             {
-                this.WR_DRRealMoveX = (490-20)/2; // 小车左右位移距离=(总长度-小车宽度)/2
-                this.WR_DRMiddleX = (490 - 10) / 2.0; // X轴中间 = （实际移动距离+左右壁框）/2
+                this.WR_DRRealMoveX = (500-20); // 小车左右位移距离=(总长度-小车宽度)/2
+                this.WR_DRMiddleX = (500 - 10) / 2.0; // X轴中间 = （实际移动距离+左右壁框）/2
                 this.WR_DRWorkAnimationWidth = (340 - this.drRobotCar.Width); // X轴最大位移 (台面宽度-小车宽度)/2
             }
             catch (Exception ex)

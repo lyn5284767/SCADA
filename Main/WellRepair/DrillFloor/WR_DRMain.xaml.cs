@@ -601,27 +601,6 @@ namespace Main.WellRepair.DrillFloor
 
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
-        /// <summary>
-        /// 钻台面-行车模式
-        /// </summary>
-        private void btn_drCarMoveModel(object sender, EventArgs e)
-        {
-            byte[] byteToSend;
-            if (this.drCarMoveModel.IsChecked)
-            {
-                this.drCarMoveModel.IsChecked = false;
-                this.drCarMoveModel.ContentDown = "行车右移";
-                byteToSend = new byte[10] { 80, 33, 9, 11, 0, 0, 0, 0, 0, 0 };
-            }
-            else
-            {
-                this.drCarMoveModel.IsChecked = true;
-                this.drCarMoveModel.ContentDown = "行车左移";
-                byteToSend = new byte[10] { 80, 33, 9, 1, 0, 0, 0, 0, 0, 0 };
-            }
-
-            GlobalData.Instance.da.SendBytes(byteToSend);
-        }
      
         /// <summary>
         /// 控制模式

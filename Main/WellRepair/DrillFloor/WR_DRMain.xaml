@@ -52,11 +52,11 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0" Orientation="Horizontal">
-                            <StackPanel Orientation="Horizontal" Width="100">
+                            <StackPanel Orientation="Horizontal" Width="110">
                                 <TextBlock Text="&#xe6af;" FontFamily="../../Font/#iconfont" FontSize="36" Foreground="#008AFF" TextAlignment="Center" Margin="5,10,5,10" Width="45" Height="45"></TextBlock>
                                 <StackPanel Margin="0,15,10,0">
                                     <TextBlock FontSize="18">小车</TextBlock>
-                                    <TextBlock FontSize="18" Name="carPos" Text="9999" Foreground="#4C80FF"></TextBlock>
+                                    <TextBlock FontSize="18" Name="carPos" Text="-9999" Foreground="#4C80FF"></TextBlock>
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Width="100">
@@ -68,7 +68,7 @@
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Grid.Row="1" Orientation="Horizontal">
-                            <StackPanel Orientation="Horizontal" Width="100">
+                            <StackPanel Orientation="Horizontal" Width="110">
                                 <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,2,10" Width="45" Height="45">
                                     <Image Source="../../Images/roate.png" Margin="2"></Image>
                                 </Border>
@@ -140,10 +140,16 @@
                             <ColumnDefinition/>
                             <!--<ColumnDefinition/>-->
                         </Grid.ColumnDefinitions>
-                        <cl:BasedSwitchButton Name="droperateMode" ContentLeft="手动" ContentDown="操作模式" ContentRight="自动" UserControlClicked="btn_drOpState" Grid.Column="0"/>
-                        <cl:BasedSwitchButton Name="drworkMode" ContentLeft="排杆" ContentDown="工作模式" ContentRight="送杆" UserControlClicked="btn_drWorkModel" Grid.Column="1"/>
-                        <cl:BasedSwitchButton Name="drCarMoveModel" ContentLeft="左移" ContentDown="行车右移" ContentRight="右移" IsChecked="False" UserControlClicked="btn_drCarMoveModel" Grid.Column="2"/>
-                        <cl:BasedSwitchButton Name="drTelecontrolModel" ContentLeft="司钻" ContentDown="操作" ContentRight="遥控" UserControlClicked="btn_drTelecontrolModel" Grid.Column="3" Height="100" Margin="0.333,0,0,0" VerticalAlignment="Top"/>
+                        <Grid Grid.Row="0" Grid.ColumnSpan="4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <cl:BasedSwitchButton Name="droperateMode" ContentLeft="手动" ContentDown="操作模式" ContentRight="自动" UserControlClicked="btn_drOpState" Grid.Column="0"/>
+                            <cl:BasedSwitchButton Name="drworkMode" ContentLeft="排杆" ContentDown="工作模式" ContentRight="送杆" UserControlClicked="btn_drWorkModel" Grid.Column="1"/>
+                            <cl:BasedSwitchButton Name="drTelecontrolModel" ContentLeft="司钻" ContentDown="操作" ContentRight="遥控" UserControlClicked="btn_drTelecontrolModel" Grid.Column="2"/>
+                        </Grid>
                         <Menu Grid.Row="1" Grid.Column="0" Background="Transparent" Height="40" Width="100"  FontSize="16" FontWeight="Bold" Foreground="#008AFF">
                             <MenuItem>
                                 <MenuItem.Header>

@@ -683,8 +683,8 @@
                         <StackPanel Grid.Column="3" Name="spRightImg">
                             <Grid Name="gdRightImgRow15" Height="{Binding Path=WR_RightRowHeight, ElementName=uc}">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="2"/>
                                     <ColumnDefinition/>
+                                    <ColumnDefinition Width="2"/>
                                 </Grid.ColumnDefinitions>
                                 <Image x:Name="drBeamArrow31" Grid.Column="0" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
                                     <Image.Source>
@@ -699,8 +699,8 @@
                             </Grid>
                             <Grid Name="gdRightImgRow14" Height="{Binding Path=WR_RightRowHeight, ElementName=uc}">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="2"/>
                                     <ColumnDefinition/>
+                                    <ColumnDefinition Width="2"/>
                                 </Grid.ColumnDefinitions>
                                 <Image x:Name="drBeamArrow30" Grid.Column="0" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
                                     <Image.Source>
@@ -715,8 +715,8 @@
                             </Grid>
                             <Grid Name="gdRightImgRow13" Height="{Binding Path=WR_RightRowHeight, ElementName=uc}">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="2"/>
                                     <ColumnDefinition/>
+                                    <ColumnDefinition Width="2"/>
                                 </Grid.ColumnDefinitions>
                                 <Image x:Name="drBeamArrow29" Grid.Column="0" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
                                     <Image.Source>
@@ -731,8 +731,8 @@
                             </Grid>
                             <Grid Name="gdRightImgRow12" Height="{Binding Path=WR_RightRowHeight, ElementName=uc}">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="2"/>
                                     <ColumnDefinition/>
+                                    <ColumnDefinition Width="2"/>
                                 </Grid.ColumnDefinitions>
                                 <Image x:Name="drBeamArrow28" Grid.Column="0" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
                                     <Image.Source>
@@ -747,8 +747,8 @@
                             </Grid>
                             <Grid Name="gdRightImgRow11" Height="{Binding Path=WR_RightRowHeight, ElementName=uc}">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="2"/>
                                     <ColumnDefinition/>
+                                    <ColumnDefinition Width="2"/>
                                 </Grid.ColumnDefinitions>
                                 <Image x:Name="drBeamArrow27" Grid.Column="0" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
                                     <Image.Source>
@@ -763,8 +763,8 @@
                             </Grid>
                             <Grid Name="gdRightImgRow10" Height="{Binding Path=WR_RightRowHeight, ElementName=uc}">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="2"/>
                                     <ColumnDefinition/>
+                                    <ColumnDefinition Width="2"/>
                                 </Grid.ColumnDefinitions>
                                 <Image x:Name="drBeamArrow26" Grid.Column="0" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
                                     <Image.Source>
@@ -779,8 +779,8 @@
                             </Grid>
                             <Grid Name="gdRightImgRow9" Height="{Binding Path=WR_RightRowHeight, ElementName=uc}">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="2"/>
                                     <ColumnDefinition/>
+                                    <ColumnDefinition Width="2"/>
                                 </Grid.ColumnDefinitions>
                                 <Image x:Name="drBeamArrow25" Grid.Column="0" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
                                     <Image.Source>
@@ -795,8 +795,8 @@
                             </Grid>
                             <Grid Name="gdRightImgRow8" Height="{Binding Path=WR_RightRowHeight, ElementName=uc}">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="2"/>
                                     <ColumnDefinition/>
+                                    <ColumnDefinition Width="2"/>
                                 </Grid.ColumnDefinitions>
                                 <Image x:Name="drBeamArrow24" Grid.Column="0" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
                                     <Image.Source>
@@ -811,8 +811,8 @@
                             </Grid>
                             <Grid Name="gdRightImgRow7" Height="{Binding Path=WR_RightRowHeight, ElementName=uc}">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="2"/>
                                     <ColumnDefinition/>
+                                    <ColumnDefinition Width="2"/>
                                 </Grid.ColumnDefinitions>
                                 <Image x:Name="drBeamArrow23" Grid.Column="0" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
                                     <Image.Source>
@@ -827,8 +827,8 @@
                             </Grid>
                             <Grid Name="gdRightImgRow6" Height="{Binding Path=WR_RightRowHeight, ElementName=uc}">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="2"/>
                                     <ColumnDefinition/>
+                                    <ColumnDefinition Width="2"/>
                                 </Grid.ColumnDefinitions>
                                 <Image x:Name="drBeamArrow22" Grid.Column="0" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
                                     <Image.Source>
@@ -843,8 +843,8 @@
                             </Grid>
                             <Grid Name="gdRightImgRow5" Height="{Binding Path=WR_RightRowHeight, ElementName=uc}">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="2"/>
                                     <ColumnDefinition/>
+                                    <ColumnDefinition Width="2"/>
                                 </Grid.ColumnDefinitions>
                                 <Image x:Name="drBeamArrow21" Grid.Column="0" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
                                     <Image.Source>
@@ -859,8 +859,8 @@
                             </Grid>
                             <Grid Name="gdRightImgRow4" Height="{Binding Path=WR_RightRowHeight, ElementName=uc}">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="2"/>
                                     <ColumnDefinition/>
+                                    <ColumnDefinition Width="2"/>
                                 </Grid.ColumnDefinitions>
                                 <Image x:Name="drBeamArrow20" Grid.Column="0" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
                                     <Image.Source>
@@ -875,8 +875,8 @@
                             </Grid>
                             <Grid Name="gdRightImgRow3" Height="{Binding Path=WR_RightRowHeight, ElementName=uc}">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="2"/>
                                     <ColumnDefinition/>
+                                    <ColumnDefinition Width="2"/>
                                 </Grid.ColumnDefinitions>
                                 <Image x:Name="drBeamArrow19" Grid.Column="0" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
                                     <Image.Source>
@@ -891,8 +891,8 @@
                             </Grid>
                             <Grid Name="gdRightImgRow2" Height="{Binding Path=WR_RightRowHeight, ElementName=uc}">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="2"/>
                                     <ColumnDefinition/>
+                                    <ColumnDefinition Width="2"/>
                                 </Grid.ColumnDefinitions>
                                 <Image x:Name="drBeamArrow18" Grid.Column="0" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
                                     <Image.Source>
@@ -907,8 +907,8 @@
                             </Grid>
                             <Grid Name="gdRightImgRow1" Height="{Binding Path=WR_RightRowHeight, ElementName=uc}">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="2"/>
                                     <ColumnDefinition/>
+                                    <ColumnDefinition Width="2"/>
                                 </Grid.ColumnDefinitions>
                                 <Image x:Name="drBeamArrow17" Grid.Column="0" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
                                     <Image.Source>
@@ -923,8 +923,8 @@
                             </Grid>
                             <Grid Name="gdRightImgRow16" Height="{Binding Path=WR_RightFirstRowHeight, ElementName=uc}">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="2"/>
                                     <ColumnDefinition/>
+                                    <ColumnDefinition Width="2"/>
                                 </Grid.ColumnDefinitions>
                                 <Image x:Name="drBeamArrow32" Grid.Column="0" MouseLeftButtonDown="btn_SendFingerBeamNumber" Width="43">
                                     <Image.Source>
