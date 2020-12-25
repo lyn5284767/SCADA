@@ -296,7 +296,7 @@
                             <RowDefinition Height="190"></RowDefinition>
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0">
-                            <TextBlock Name="tbOpr" Margin="5" Text=""  FontSize="24" FontFamily="宋体" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#E0496D"></TextBlock>
+                            <TextBlock Name="tbOpr" Margin="5" Text=""  FontSize="20" FontFamily="宋体" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#E0496D"></TextBlock>
                             <TextBlock Name="tbAlarm" Margin="5" Text=""  FontSize="24" FontFamily="宋体" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#E0496D">
                             </TextBlock>
                         </StackPanel>

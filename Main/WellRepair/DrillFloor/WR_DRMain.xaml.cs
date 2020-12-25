@@ -467,7 +467,7 @@ namespace Main.WellRepair.DrillFloor
             }
             else
             {
-                this.tbAlarm.FontSize = 24;
+                this.tbAlarm.FontSize = 20;
             }
             #endregion
 

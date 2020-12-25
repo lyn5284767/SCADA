@@ -309,7 +309,7 @@ namespace Main.Integration
         /// <summary>
         /// 初始化所有模式
         /// </summary>
-        private void InitAllModel()
+        public void InitAllModel()
         {
             List<Grid> gdList = new List<Grid>();
             gdList.Add(this.gdModelTwo);
@@ -319,11 +319,24 @@ namespace Main.Integration
             gdList.Add(this.gdModelSix);
             string sql = "Select * from GlobalModel Order by ID Desc";
             List<GlobalModel> list = DataHelper.Instance.ExecuteList<GlobalModel>(sql);
-            for (int i = 0; i < list.Count; i++)
+            for (int i = 0; i < 5; i++)
             {
-                ModelDetailData data = new ModelDetailData(list[i]);
-                gdList[i].Children.Clear();
-                gdList[i].Children.Add(data);
+                if (i<list.Count)
+                {
+                    ModelDetailData data = new ModelDetailData(list[i]);
+                    if(gdList[i].Children[0] is TextBlock)
+                        gdList[i].Children[0].Visibility = Visibility.Collapsed;
+                    gdList[i].Children.Add(data);
+                }
+                else
+                {
+                    if (gdList[i].Children[0] is TextBlock)
+                        gdList[i].Children[0].Visibility = Visibility.Visible;
+                    if (gdList[i].Children.Count == 2)
+                    {
+                        gdList[i].Children.RemoveAt(1);
+                    }
+                }
             }
         }
     }

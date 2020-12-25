@@ -66,8 +66,7 @@ namespace Main.SecondFloor
                 this.twt103.Visibility = Visibility.Collapsed;
                 this.twt104.Visibility = Visibility.Collapsed;
                 this.twt105.Visibility = Visibility.Collapsed;
-                this.twt107.Visibility = Visibility.Collapsed;
-                this.twt106.TbkText = "最大值";
+                this.twt106.Visibility = Visibility.Collapsed;
             }
         }
 

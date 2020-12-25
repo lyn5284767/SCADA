@@ -20,7 +20,8 @@ namespace Main.Integration
     /// </summary>
     public partial class ModelSetWindow : Window
     {
-        GlobalModel globalModel = new GlobalModel();
+        public GlobalModel globalModel = new GlobalModel();
+        public bool IsModify = false;
         /// <summary>
         /// 当前步骤 0-液压站；1-工作模式；2-管柱类型；3-管柱尺寸选择；4-目的地；5-指梁选择;6-确认配置
         /// </summary>
@@ -28,8 +29,14 @@ namespace Main.Integration
         public ModelSetWindow()
         {
             InitializeComponent();
+            this.Loaded += ModelSetWindow_Loaded;
+        }
+
+        private void ModelSetWindow_Loaded(object sender, RoutedEventArgs e)
+        {
             ShowStep(0);
         }
+
         /// <summary>
         /// 显示对应步骤
         /// </summary>
@@ -241,6 +248,7 @@ namespace Main.Integration
                 if (globalModel.DesType == 1) this.tbConfirmDes.Text = "目的地:立根盒";
                 else if (globalModel.DesType == 2) this.tbConfirmDes.Text = "目的地:井口-猫道";
                 else if (globalModel.DesType == 3) this.tbConfirmDes.Text = "目的地:猫道-鼠道";
+                else this.tbConfirmDes.Text = "目的地:未选择";
 
                 if (globalModel.SelectDrill == -1)
                 {
@@ -251,6 +259,11 @@ namespace Main.Integration
                 {
                     this.tbConfirmHandOrAuto.Text = "指梁选择:手动";
                     this.tbConfirmSelectedDrill.Text = "已选指梁:" + this.tbSelectedDrill.Text;
+                }
+                else
+                {
+                    this.tbConfirmHandOrAuto.Text = "指梁选择:未选择";
+                    this.tbConfirmSelectedDrill.Text = "已选指梁:未选择";
                 }
                 
             }
@@ -437,9 +450,18 @@ namespace Main.Integration
             Button btn = sender as Button;
             if (btn.Content.ToString() == "完成")
             {
-                string sql = string.Format("Insert Into GlobalModel(HS_PumpType,WorkType,PipeType,PipeSize,DesType,SelectDrill,Selected) " +
-                    "Values('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", globalModel.HS_PumpType, globalModel.WorkType, globalModel.PipeType, globalModel.PipeSize, globalModel.DesType, globalModel.SelectDrill, false);
-                DataHelper.Instance.ExecuteNonQuery(sql);
+                if (IsModify)
+                {
+                    string sql = string.Format("Update GlobalModel Set HS_PumpType='{0}',WorkType='{1}',PipeType='{2}',PipeSize='{3}',DesType='{4}',SelectDrill='{5}',Selected='{6}'" +
+                        "Where ID='{7}'", globalModel.HS_PumpType, globalModel.WorkType, globalModel.PipeType, globalModel.PipeSize, globalModel.DesType, globalModel.SelectDrill, false,globalModel.ID);
+                    DataHelper.Instance.ExecuteNonQuery(sql);
+                }
+                else
+                {
+                    string sql = string.Format("Insert Into GlobalModel(HS_PumpType,WorkType,PipeType,PipeSize,DesType,SelectDrill,Selected) " +
+                        "Values('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", globalModel.HS_PumpType, globalModel.WorkType, globalModel.PipeType, globalModel.PipeSize, globalModel.DesType, globalModel.SelectDrill, false);
+                    DataHelper.Instance.ExecuteNonQuery(sql);
+                }
                 this.Close();
             }
             this.Step += 1;

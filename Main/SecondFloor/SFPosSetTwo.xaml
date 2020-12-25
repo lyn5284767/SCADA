@@ -99,8 +99,8 @@
                             <inputcontrol:SetControl Name="twt103" Head="80,1,12,103,0,0" TbkText="8寸" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
                             <inputcontrol:SetControl Name="twt104" Head="80,1,12,104,0,0" TbkText="9寸" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
                             <inputcontrol:SetControl Name="twt105" Head="80,1,12,105,0,0" TbkText="10寸" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt106" Head="80,1,12,40,0,0" TbkText="11寸" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt107" Head="80,1,12,43,0,0" TbkText="最大寸" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt106" Head="80,1,12,106,0,0" TbkText="11寸" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt107" Head="80,1,12,107,0,0" TbkText="最大寸" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
                          </StackPanel>
                     </StackPanel>
                 </Border>

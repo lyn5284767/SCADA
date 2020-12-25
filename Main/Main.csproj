@@ -279,6 +279,9 @@
     <Compile Include="Integration\ModelSetWindow.xaml.cs">
       <DependentUpon>ModelSetWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Integration\ModelStartWindow.xaml.cs">
+      <DependentUpon>ModelStartWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -473,6 +476,9 @@
     <Compile Include="WellRepair\DrillFloor\WR_PosSetTwo.xaml.cs">
       <DependentUpon>WR_PosSetTwo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WellRepair\HS_Self\WR_HS_Self_Main.xaml.cs">
+      <DependentUpon>WR_HS_Self_Main.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WellRepair\SecondFloor\WR_SFMain.xaml.cs">
       <DependentUpon>WR_SFMain.xaml</DependentUpon>
     </Compile>
@@ -655,6 +661,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Integration\ModelSetWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Integration\ModelStartWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -915,6 +925,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WellRepair\DrillFloor\WR_PosSetTwo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WellRepair\HS_Self\WR_HS_Self_Main.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

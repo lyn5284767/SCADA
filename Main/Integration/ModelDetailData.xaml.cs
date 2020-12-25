@@ -1,4 +1,5 @@
 ﻿using COM.Common;
+using DatabaseLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace Main.Integration
     /// </summary>
     public partial class ModelDetailData : UserControl
     {
+        GlobalModel tmpModel { get; set; }
         public ModelDetailData()
         {
             InitializeComponent();
@@ -31,6 +33,7 @@ namespace Main.Integration
         public ModelDetailData(GlobalModel globalModel)
             : this()
         {
+            tmpModel = globalModel;
             string title = string.Empty;
             if (globalModel.HS_PumpType == 1) title = "1#泵";
             else if (globalModel.HS_PumpType == 2) title = "2#泵";
@@ -95,6 +98,56 @@ namespace Main.Integration
                 {
                     this.tbSelectedDrill.Text = "右钻铤";
                 }
+            }
+        }
+        /// <summary>
+        /// 显示操作项
+        /// </summary>
+        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.bdOpr.Visibility = Visibility.Visible;
+        }
+        /// <summary>
+        /// 隐藏操作项
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void bdOpr_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.bdOpr.Visibility = Visibility.Collapsed;
+        }
+
+        /// <summary>
+        /// 启动模式
+        /// </summary>
+        private void Start_Click(object sender, RoutedEventArgs e)
+        {
+            ModelStartWindow startWindow = new ModelStartWindow();
+            startWindow.StartModel(tmpModel);
+            startWindow.ShowDialog();
+        }
+        /// <summary>
+        /// 修改模式
+        /// </summary>
+        private void Modify_Click(object sender, RoutedEventArgs e)
+        {
+            ModelSetWindow modelSet = new ModelSetWindow();
+            modelSet.globalModel = tmpModel;
+            modelSet.IsModify = true;
+            modelSet.ShowDialog();
+            IngMain.Instance.InitAllModel();
+        }
+        /// <summary>
+        /// 删除模式
+        /// </summary>
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult res = MessageBox.Show("确认删除?", "提示", MessageBoxButton.YesNo);
+            if (res == MessageBoxResult.Yes)
+            {
+                string sql = string.Format("Delete From GlobalModel Where ID={0}", tmpModel.ID);
+                DataHelper.Instance.ExecuteNonQuery(sql);
+                IngMain.Instance.InitAllModel();
             }
         }
     }

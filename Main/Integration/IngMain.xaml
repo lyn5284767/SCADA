@@ -177,7 +177,7 @@
                             </Border.Effect>
                         </Border>
                         <Grid Margin="5" Name="gdModelTwo">
-                            <TextBlock Grid.Row="1" Name="tbModelTwoBank" Text="&#xe504;" FontFamily="../Font/#iconfont" FontSize="100" MouseLeftButtonDown="tbModel_MouseLeftButtonDown"></TextBlock>
+                            <TextBlock Name="tbModelTwoBank" Text="&#xe504;" FontFamily="../Font/#iconfont" FontSize="100" MouseLeftButtonDown="tbModel_MouseLeftButtonDown"></TextBlock>
                         </Grid>
                     </Grid>
                     <Grid Grid.Column="2" Grid.Row="0">

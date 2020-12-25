@@ -4698,7 +4698,28 @@ namespace COM.Common
             throw new NotImplementedException();
         }
     }
+    /// <summary>
+    /// Bool类型取反
+    /// </summary>
+    public class BoolNegationConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return false;
+            }
 
+            bool bType = (bool)value;
+
+            return !bType;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     #endregion
 
     #region 集成系统
@@ -5809,5 +5830,8 @@ namespace COM.Common
             throw new NotImplementedException();
         }
     }
+    #endregion
+
+    #region 修井液压站
     #endregion
 }

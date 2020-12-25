@@ -1,0 +1,143 @@
+﻿<UserControl x:Class="Main.WellRepair.HS_Self.WR_HS_Self_Main"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Main.WellRepair.HS_Self" xmlns:cl="http://talonzeng.com/ControlLibrary" xmlns:cl1="clr-namespace:ControlLibrary.Figure;assembly=ControlLibrary" xmlns:hc="https://handyorg.github.io/handycontrol"
+             mc:Ignorable="d" 
+            d:DesignHeight="670" d:DesignWidth="1024" Foreground="#525252" Background="#F5F6FA" Margin="1" Name="sirSelfMain">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="微软雅黑"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="160"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <StackPanel Orientation="Horizontal">
+                <Grid Width="330">
+                    <Border Background="White" CornerRadius="10" Margin="5,5,2,5" >
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+                        </Border.Effect>
+                    </Border>
+                    <Grid Margin="5" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">
+                            <TextBlock Text="高油温报警:" FontSize="18" VerticalAlignment="Center" Margin="10,0,0,0"></TextBlock>
+                            <cl:SymbolMapping Name="smHighOilAlarm"  StrContent="" LampType="3" Width="30" Height="30" Margin="5,0,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
+                            <TextBlock Text="低油温告警:" VerticalAlignment="Center" FontSize="18" Margin="10,0,0,0"></TextBlock>
+                            <cl:SymbolMapping Name="smLowOilAlarm"  StrContent="" LampType="3" Width="30" Height="30" Margin="5,0,0,0"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">
+                            <TextBlock Text="高液位报警:" FontSize="18" VerticalAlignment="Center" Margin="10,0,0,0"></TextBlock>
+                            <cl:SymbolMapping Name="smHighWaterAlarm"  StrContent="" LampType="3" Width="30" Height="30" Margin="5,0,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
+                            <TextBlock Text="低液位告警:" VerticalAlignment="Center" FontSize="18" Margin="10,0,0,0"></TextBlock>
+                            <cl:SymbolMapping Name="smLowWaterAlarm"  StrContent="" LampType="3" Width="30" Height="30" Margin="5,0,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="2" VerticalAlignment="Center">
+                            <TextBlock Text="高电压报警:" FontSize="18" Margin="10,0,0,0"></TextBlock>
+                            <cl:SymbolMapping Name="smHighVoltageAlarm"  StrContent="" LampType="3" Width="30" Height="30" Margin="5,0,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center">
+                            <TextBlock Text="低电压报警:" VerticalAlignment="Center" FontSize="18" Margin="10,0,0,0"></TextBlock>
+                            <cl:SymbolMapping Name="smLowVoltageAlarm"  StrContent="" LampType="3" Width="30" Height="30" Margin="5,0,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Center">
+                            <TextBlock Text="工作时长:" FontSize="18" Margin="10,0,0,0"></TextBlock>
+                            <TextBlock Name="tbWorkTime" VerticalAlignment="Center" Text="***" Foreground="#008AFF" FontSize="18" Margin="10,0,0,0"></TextBlock>
+                            <TextBlock Text="H" FontSize="18" Margin="10,0,0,0"></TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+                <Grid Width="690">
+                    <Border Background="White" CornerRadius="10" Margin="5">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+                        </Border.Effect>
+                    </Border>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <cl:BasedSwitchButton Name="controlModel" ContentLeft="本地" ContentDown="控制模式" ContentRight="司钻" UserControlClicked="btn_controlModel" Grid.Column="0" />
+                        <cl:BasedSwitchButton Name="PumpOne" ContentLeft="停止" ContentDown="1#电机" ContentRight="启动" UserControlClicked="btn_PumpOne" Grid.Column="1"/>
+                        <cl:BasedSwitchButton Name="FanOne" ContentLeft="停止" ContentDown="1#风扇" ContentRight="启动" UserControlClicked="btn_FanOne" Grid.Column="2"/>
+                        <cl:BasedSwitchButton Name="PumpTwo" ContentLeft="停止" ContentDown="2#电机" ContentRight="启动" UserControlClicked="btn_PumpTwo" Grid.Column="3" />
+                        <cl:BasedSwitchButton Name="FanTwo" ContentLeft="停止" ContentDown="2#风扇" ContentRight="启动" UserControlClicked="btn_FanTwo" Grid.Column="4"/>
+                    </Grid>
+                </Grid>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1">
+            <StackPanel Orientation="Horizontal">
+                <Grid Width="640">
+                    <Border Background="White" CornerRadius="10" Margin="5">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+                        </Border.Effect>
+                    </Border>
+                    <Grid Margin="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="300"/>
+                            <RowDefinition />
+
+                        </Grid.RowDefinitions>
+                        <Grid Margin="5" Grid.Row="0">
+                            <cl1:WR_HS_Self_Water Name="wr_HS_Self_Water"/>
+                        </Grid>
+                        <Grid Grid.Row="1" Margin="0,5,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Margin="0,10,0.5,0" Grid.Column="0">
+                                <hc:CircleProgressBar Name="cpbPumpOne" Text="100.0" ArcThickness="15" Value="50" FontWeight="Bold" Width="120" Height="120" FontSize="28" Foreground="#2968DC"/>
+                                <Label Background="Transparent" FontSize="20" FontWeight="Bold">1#泵(Mpa)</Label>
+                            </StackPanel>
+                            <StackPanel Margin="0,10,0.5,0" Grid.Column="1">
+                                <hc:CircleProgressBar Name="cpbPumpTwo" Text="100.0" ArcThickness="15" Value="50" FontWeight="Bold" Width="120" Height="120" FontSize="28" Foreground="#2968DC"/>
+                                <Label Background="Transparent" FontSize="20" FontWeight="Bold">2#泵(Mpa)</Label>
+                            </StackPanel>
+                            <StackPanel Margin="0,10,0.5,0" Grid.Column="2">
+                                <hc:CircleProgressBar Name="cpbOil" Text="100.0" ArcThickness="15" Value="50" FontWeight="Bold" Width="120" Height="120" FontSize="28" Foreground="#2968DC"/>
+                                <Label Background="Transparent" FontSize="20" FontWeight="Bold">油温(°C)</Label>
+                            </StackPanel>
+                            <StackPanel Margin="0,10,0.5,0" Grid.Column="3">
+                                <hc:CircleProgressBar Name="cpbVol" Text="100.0" ArcThickness="15" Value="50" FontWeight="Bold" Width="120" Height="120" FontSize="28" Foreground="#2968DC"/>
+                                <Label Background="Transparent" FontSize="20" FontWeight="Bold">电压(V)</Label>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Grid>
+         
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>
