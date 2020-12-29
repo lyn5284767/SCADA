@@ -77,18 +77,25 @@
                         </Border.Effect>
                     </Border>
                     <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <cl:BasedSwitchButton Name="controlModel" ContentLeft="本地" ContentDown="控制模式" ContentRight="司钻" UserControlClicked="btn_controlModel" Grid.Column="0" />
-                        <cl:BasedSwitchButton Name="PumpOne" ContentLeft="停止" ContentDown="1#电机" ContentRight="启动" UserControlClicked="btn_PumpOne" Grid.Column="1"/>
-                        <cl:BasedSwitchButton Name="FanOne" ContentLeft="停止" ContentDown="1#风扇" ContentRight="启动" UserControlClicked="btn_FanOne" Grid.Column="2"/>
-                        <cl:BasedSwitchButton Name="PumpTwo" ContentLeft="停止" ContentDown="2#电机" ContentRight="启动" UserControlClicked="btn_PumpTwo" Grid.Column="3" />
-                        <cl:BasedSwitchButton Name="FanTwo" ContentLeft="停止" ContentDown="2#风扇" ContentRight="启动" UserControlClicked="btn_FanTwo" Grid.Column="4"/>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="120"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <cl:BasedSwitchButton Name="controlModel" ContentLeft="本地" ContentDown="控制模式" ContentRight="司钻" UserControlClicked="btn_controlModel" Grid.Column="0" />
+                            <cl:BasedSwitchButton Name="PumpOne" ContentLeft="停止" ContentDown="1#电机" ContentRight="启动" UserControlClicked="btn_PumpOne" Grid.Column="1"/>
+                            <cl:BasedSwitchButton Name="FanOne" ContentLeft="停止" ContentDown="1#风扇" ContentRight="启动" UserControlClicked="btn_FanOne" Grid.Column="2"/>
+                            <cl:BasedSwitchButton Name="PumpTwo" ContentLeft="停止" ContentDown="2#电机" ContentRight="启动" UserControlClicked="btn_PumpTwo" Grid.Column="3" />
+                            <cl:BasedSwitchButton Name="FanTwo" ContentLeft="停止" ContentDown="2#风扇" ContentRight="启动" UserControlClicked="btn_FanTwo" Grid.Column="4"/>
+                        </Grid>
+                        <TextBlock Name="tbTips" Grid.Row="1" FontSize="18" FontFamily="微软雅黑" FontWeight="Bold" Foreground="red" Text="111"></TextBlock>
                     </Grid>
                 </Grid>
             </StackPanel>
@@ -136,7 +143,71 @@
                         </Grid>
                     </Grid>
                 </Grid>
-         
+                <Grid Width="380">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Border Background="White" CornerRadius="10" Margin="5">
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+                                </Border.Effect>
+                            </Border>
+                            <Grid Margin="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50"/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="油源控制" FontSize="24"></TextBlock>
+                                <StackPanel Orientation="Horizontal" Grid.Row="1">
+                                    <TextBlock Text="铁钻工" FontSize="18" VerticalAlignment="Center" Margin="10,0,0,0"></TextBlock>
+                                    <Button Name="btnIronOil" FontSize="18" Height="40" Width="100" Margin="20,0,0,0" Click="btnIronOil_Click">开启</Button>
+                                    <Button FontSize="18" Height="40" Width="100" Margin="20,0,0,0" Click="btnIronOilClose_Click">关闭</Button>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Row="2">
+                                    <TextBlock Text="油源1 " FontSize="18" VerticalAlignment="Center" Margin="10,0,0,0"></TextBlock>
+                                    <Button Name="btnOilOne" FontSize="18" Height="40" Width="100" Margin="20,0,0,0" Click="btnOilOne_Click">开启</Button>
+                                    <Button FontSize="18" Height="40" Width="100" Margin="20,0,0,0" Click="btnOilOneClose_Click">关闭</Button>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Row="3">
+                                    <TextBlock Text="油源2 " FontSize="18" VerticalAlignment="Center" Margin="10,0,0,0"></TextBlock>
+                                    <Button Name="btnOilTwo" FontSize="18" Height="40" Width="100" Margin="20,0,0,0" Click="btnOilTwo_Click">开启</Button>
+                                    <Button FontSize="18" Height="40" Width="100" Margin="20,0,0,0" Click="btnOilTwoClose_Click">关闭</Button>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Border Background="White" CornerRadius="10" Margin="5">
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+                                </Border.Effect>
+                            </Border>
+                            <Grid Margin="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50"/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="报警设置" FontSize="24"></TextBlock>
+                                <StackPanel Orientation="Horizontal" Grid.Row="1">
+                                    <TextBlock Text="油温报警" FontSize="18" VerticalAlignment="Center" Margin="10,0,0,0"></TextBlock>
+                                    <Button Name="btnOilAlarmOpen" FontSize="18" Height="40" Width="100" Margin="20,0,0,0" Click="btnOilAlarmOpen_Click">开启</Button>
+                                    <Button Name="btnOilAlarmClose" FontSize="18" Height="40" Width="100" Margin="20,0,0,0" Click="btnOilAlarmClose_Click">关闭</Button>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Row="2">
+                                    <TextBlock Text="液位报警 " FontSize="18" VerticalAlignment="Center" Margin="10,0,0,0"></TextBlock>
+                                    <Button Name="btnWaterAlarmOpen" FontSize="18" Height="40" Width="100" Margin="20,0,0,0" Click="btnWaterAlarmOpen_Click">开启</Button>
+                                    <Button Name="btnWaterAlarmClose" FontSize="18" Height="40" Width="100" Margin="20,0,0,0" Click="btnWaterAlarmClose_Click">关闭</Button>
+                                </StackPanel>
+                                
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Grid>
             </StackPanel>
         </Grid>
     </Grid>

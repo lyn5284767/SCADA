@@ -347,29 +347,31 @@
                                         </StackPanel>
                                     </MenuItem.Header>
                                     <MenuItem Header="钻铤" FontSize="24">
+                                        <MenuItem Header="2 7/8''钻铤" Click="btn_SelectDrill2Pipe28"/>
                                         <!--10.28新增-->
                                         <MenuItem Header="3.5''钻铤" Click="btn_SelectDrillPipe35"/>
-                                        <MenuItem Header="4.5''钻铤" Click="btn_SelectDrillPipe45"/>
+                                        <!--<MenuItem Header="4.5''钻铤" Click="btn_SelectDrillPipe45"/>-->
+                                        <MenuItem Header="4 6/8''钻铤" Click="btn_SelectDrill2Pipe48"/>
                                         <!--6.15新增 第四位1-->
-                                        <MenuItem Header="6''钻铤" Click="btn_SelectDrillPipe6"/>
-                                        <MenuItem Header="6.5''钻铤" Click="btn_SelectDrillPipe65"/>
+                                        <!--<MenuItem Header="6''钻铤" Click="btn_SelectDrillPipe6"/>-->
+                                        <!--<MenuItem Header="6.5''钻铤" Click="btn_SelectDrillPipe65"/>-->
                                         <MenuItem Header="7''钻铤" Click="btn_SelectDrillPipe7"/>
-                                        <MenuItem Header="7.5''钻铤" Click="btn_SelectDrillPipe75"/>
-                                        <MenuItem Header="8''钻铤" Click="btn_SelectDrillPipe8"/>
+                                        <!--<MenuItem Header="7.5''钻铤" Click="btn_SelectDrillPipe75"/>-->
+                                        <!--<MenuItem Header="8''钻铤" Click="btn_SelectDrillPipe8"/>
                                         <MenuItem Header="9''钻铤" Click="btn_SelectDrillPipe9"/>
                                         <MenuItem Header="10''钻铤" Click="btn_SelectDrillPipe10"/>
-                                        <MenuItem Header="11''钻铤" Click="btn_SelectDrillPipe11"/>
+                                        <MenuItem Header="11''钻铤" Click="btn_SelectDrillPipe11"/>-->
                                     </MenuItem>
                                     <MenuItem Header="钻杆" FontSize="24">
                                         <!--10.28新增-->
                                         <MenuItem Header="2 7/8''钻杆" Click="btn_SelectDrillPipe28"/>
                                         <MenuItem Header="3.5''钻杆" Click="btn_SelectDrillPipe312"/>
-                                        <MenuItem Header="4''钻杆" Click="btn_SelectDrillPipe4"/>
-                                        <MenuItem Header="4 1/2''钻杆" Click="btn_SelectDrillPipe412"/>
+                                        <!--<MenuItem Header="4''钻杆" Click="btn_SelectDrillPipe4"/>-->
+                                        <!--<MenuItem Header="4 1/2''钻杆" Click="btn_SelectDrillPipe412"/>-->
                                         <MenuItem Header="5''钻杆" Click="btn_SelectDrillPipe5"/>
-                                        <MenuItem Header="5.5''钻杆" Click="btn_SelectDrillPipe55"/>
-                                        <MenuItem Header="5 7/8''钻杆" Click="btn_SelectDrillPipe578"/>
-                                        <MenuItem Header="6 5/8''钻杆" Click="btn_SelectDrillPipe658"/>
+                                        <!--<MenuItem Header="5.5''钻杆" Click="btn_SelectDrillPipe55"/>-->
+                                        <!--<MenuItem Header="5 7/8''钻杆" Click="btn_SelectDrillPipe578"/>-->
+                                        <!--<MenuItem Header="6 5/8''钻杆" Click="btn_SelectDrillPipe658"/>-->
                                     </MenuItem>
                                 </MenuItem>
                             </Menu>

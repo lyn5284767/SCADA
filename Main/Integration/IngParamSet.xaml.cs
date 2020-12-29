@@ -129,6 +129,7 @@ namespace Main.Integration
                 this.twt7.dicNumToValue.Add(2, "JJC");
                 this.twt7.dicNumToValue.Add(3, "宝石");
                 this.twt7.dicNumToValue.Add(4, "江汉");
+                this.twt7.dicNumToValue.Add(5, "三一轨道式");
                 this.twt7.SetBinding(TextWithCombox.ShowTxtWithCBProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRType"], Mode = BindingMode.OneWay, ConverterParameter = this.twt7.dicNumToValue, Converter = new NumToTextConverter() });
                 // 猫道厂家
                 this.twt8.dicNumToValue = new Dictionary<int, string>();

@@ -3385,18 +3385,23 @@ namespace COM.Common
             }
             byte bType = (byte)values[0];
             bool IsSpecial = (bool)values[1];
-            if(bType == 35) return "3.5寸钻杆";
-            else if (bType == 28) return "2寸7/8钻杆";
+            if (bType == 28 && !IsSpecial) return "2寸7/8钻杆";
+            else if (bType == 28 && IsSpecial) return "2寸7/8钻铤";
+            else if(bType == 35 && !IsSpecial) return "3.5寸钻杆";
+            else if (bType == 35 && IsSpecial) return "3.5寸钻铤";
             else if(bType == 40) return "4寸钻杆";
             else if (bType == 45 && !IsSpecial) return "4.5寸钻杆";
-            else if (bType == 35 && IsSpecial) return "3.5寸钻铤";
             else if (bType == 45 && IsSpecial) return "4.5寸钻铤";
-            else if (bType == 50) return "5寸钻杆";
+            else if (bType == 48 && !IsSpecial) return "4 6/8寸钻杆";
+            else if (bType == 48 && IsSpecial) return "4 6/8寸钻铤";
+            else if (bType == 50 && !IsSpecial) return "5寸钻杆";
+            else if (bType == 50 && IsSpecial) return "5寸钻铤";
             else if (bType == 55) return "5.5寸钻杆";
             else if (bType == 57) return "5寸7/8钻杆";
             else if (bType == 60) return "6寸钻铤";
             else if (bType == 65) return "6.5寸钻铤";
             else if (bType == 68 && IsSpecial) return "6寸5/8钻杆";
+            else if (bType == 68 && !IsSpecial) return "6寸5/8钻铤";
             else if (bType == 70) return "7寸钻铤";
             else if (bType == 75) return "7.5寸钻铤";
             else if (bType == 80) return "8寸钻铤";
@@ -5830,8 +5835,381 @@ namespace COM.Common
             throw new NotImplementedException();
         }
     }
+
+    /// <summary>
+    /// 修井钻台面-管柱类型
+    /// </summary>
+    public class WR_DRPipeTypeCoverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null)
+                || (values[1] == DependencyProperty.UnsetValue) || (values[1] == null))
+            {
+                return "未知";
+            }
+            byte pipeType = (byte)values[0]; //1-钻杆；2-钻铤；3-套管；4-方钻杆
+            byte pipeSize = (byte)values[1];
+            string strOne = string.Empty;
+            string strTwo = string.Empty;
+            if (pipeType == 1) strTwo = "钻杆";
+            else if(pipeType == 2) strTwo = "钻铤";
+            else if (pipeType == 3) strTwo = "套管";
+            else if (pipeType == 4) strTwo = "方钻杆";
+
+            if (pipeSize == 24) strOne = "2 3/8寸";
+            else if (pipeSize == 25) strOne = "2.5寸";
+            else if (pipeSize == 28) strOne = "2 7/8寸";
+            else if (pipeSize == 30) strOne = "3寸";
+            else if (pipeSize == 35) strOne = "3.5寸";
+            else if (pipeSize == 38) strOne = "3 7/8寸";
+            else if (pipeSize == 40) strOne = "4寸";
+            else if (pipeSize == 45) strOne = "4.5寸";
+            else if (pipeSize == 47) strOne = "4 3/4寸";
+            else if (pipeSize == 50) strOne = "5寸";
+            if (strOne != string.Empty && strTwo != string.Empty)
+            {
+                return strOne + strTwo;
+            }
+            else
+            {
+                return "未知";
+            }
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     #endregion
 
     #region 修井液压站
+    #endregion
+
+    #region 修井铁钻工
+
+    /// <summary>
+    /// 修井铁钻工-操作模式
+    /// </summary>
+    public class WRSIRSelfOperationModelConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return string.Empty;
+            }
+
+            byte bType = (byte)value;
+            switch (bType)
+            {
+                case 0:
+                    return "手动";
+                case 1:
+                    return "自动";
+            }
+
+            return "操作模式";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 修井铁钻工-操作模式选择
+    /// </summary>
+    public class WRSIRSelfIsCheckConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return false;
+            }
+
+            byte bType = (byte)value;
+
+            if (bType == 0)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 修井铁钻工-工作模式
+    /// </summary>
+    public class WRSIRSelfWorkModelConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return string.Empty;
+            }
+
+            byte bType = (byte)value;
+            switch (bType)
+            {
+                case 0:
+                    return "下杆";
+                case 1:
+                    return "起杆";
+            }
+
+            return "工作模式";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 修井铁钻工-控制模式
+    /// </summary>
+    public class WRSIRSelfControlModelConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return string.Empty;
+            }
+
+            byte bType = (byte)value;
+            switch (bType)
+            {
+                case 0:
+                    return "本地";
+                case 1:
+                    return "远程";
+            }
+
+            return "控制模式";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 修井铁钻工-螺纹旋向
+    /// </summary>
+    public class WRSIRSelfRotateCheckCoverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+
+            if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null)
+                || (values[1] == DependencyProperty.UnsetValue) || (values[1] == null))
+            {
+                return false;
+            }
+
+            if ((bool)values[0]) return false;
+            else if ((bool)values[1]) return true;
+            else return false;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 修井铁钻工-螺纹旋向
+    /// </summary>
+    public class WRSIRSelfRotateCoverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+
+            if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null)
+                || (values[1] == DependencyProperty.UnsetValue) || (values[1] == null))
+            {
+                return "未知";
+            }
+
+            if ((bool)values[0]) return "左旋";
+            else if ((bool)values[1]) return "右旋";
+            else return "未知";
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 修井铁钻工-工位选择
+    /// </summary>
+    public class WRSIRSelfLocationConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return "未知";
+            }
+
+            byte bType = (byte)value;
+
+            if (bType == 0) return "鼠洞";
+            else if(bType == 1) return "井口";
+            else if (bType == 2) return "中位";
+            return "未知";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 修井铁钻工-管柱类型
+    /// </summary>
+    public class WRSIRSelfPipeTypeConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return "未知";
+            }
+
+            byte bType = (byte)value;
+            switch (bType)
+            {
+                case 1:
+                    return "钻杆";
+                case 2:
+                    return "油管";
+            }
+
+            return "未知";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+
+    /// <summary>
+    /// 修井铁钻工-操作模式选择
+    /// </summary>
+    public class WRSIRSelfPipeTypeIsCheckConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return false;
+            }
+
+            byte bType = (byte)value;
+
+            if (bType == 2)
+            {
+                return true;
+            }
+            else if (bType == 1) return false;
+
+            return false;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 铁钻工自动步骤
+    /// </summary>
+    public class WRSIRSelfAutoModeStepCoverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            string tb = (string)parameter;
+            bool autoOpr = false;
+            byte workmodel = 0;
+            if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null))
+            {
+                autoOpr = false;
+            }
+            else
+            {
+                if ((byte)values[0] == 1)
+                    autoOpr = true;
+            }
+            if ((values[1] == DependencyProperty.UnsetValue) || (values[1] == null))
+            {
+                workmodel = 0;
+            }
+            else
+            {
+                workmodel = (byte)values[1];
+            }
+            if ((values[2] == DependencyProperty.UnsetValue) || (values[2] == null))
+            {
+                return 0;
+            }
+            int byteAutoModeNowStep = (byte)values[2];
+            if (autoOpr && workmodel == 0) // 上扣
+            {
+                if (byteAutoModeNowStep == 1) return 0;
+                if (byteAutoModeNowStep == 2) return 1;
+                if (byteAutoModeNowStep == 3) return 2;
+                if (byteAutoModeNowStep == 4) return 3;
+                if (byteAutoModeNowStep == 5) return 4;
+                if (byteAutoModeNowStep == 6) return 5;
+                if (byteAutoModeNowStep == 7) return 6;
+                if (byteAutoModeNowStep == 8) return 7;
+                if (byteAutoModeNowStep == 9) return 8;
+                if (byteAutoModeNowStep == 10) return 9;
+            }
+            else if (autoOpr && workmodel == 1)// 卸扣
+            {
+                if (byteAutoModeNowStep == 11) return 0;
+                if (byteAutoModeNowStep == 12) return 1;
+                if (byteAutoModeNowStep == 13) return 2;
+                if (byteAutoModeNowStep == 14) return 3;
+                if (byteAutoModeNowStep == 15) return 4;
+                if (byteAutoModeNowStep == 16) return 5;
+                if (byteAutoModeNowStep == 17) return 6;
+                if (byteAutoModeNowStep == 18) return 7;
+                if (byteAutoModeNowStep == 19) return 8;
+                if (byteAutoModeNowStep == 20) return 8;
+            }
+
+
+            return 0;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     #endregion
 }

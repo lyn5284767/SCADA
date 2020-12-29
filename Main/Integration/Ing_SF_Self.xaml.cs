@@ -349,7 +349,7 @@ namespace Main.Integration
 
         private void Warnning()
         {
-            if (iTimeCnt % 2 == 0)
+            if (iTimeCnt % 10 == 0)
             {
                 // 告警列表!=0则有告警 
                 if (alarmList.Where(w=>w.NowType!=0).Count() > 0)

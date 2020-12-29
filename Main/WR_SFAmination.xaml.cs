@@ -492,7 +492,14 @@ namespace Main
             {
                 if (System.IO.File.Exists(configPath))
                 {
-                    rows = GlobalData.Instance.Rows; // 指梁行数
+                    if (GlobalData.Instance.da.GloConfig.SysType == 1)
+                    {
+                        rows = GlobalData.Instance.Rows + 1;
+                    }
+                    else
+                    {
+                        rows = GlobalData.Instance.Rows;
+                    }
                     drillCnt = GlobalData.Instance.DrillNum; // 最大钻铤数量
                     // 未从操作台读取到，则加载默认值
                     if (rows == 0) rows = 10;

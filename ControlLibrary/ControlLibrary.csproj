@@ -144,6 +144,12 @@
     <Compile Include="Figure\WR_HS_Self_Water.xaml.cs">
       <DependentUpon>WR_HS_Self_Water.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Figure\WR_SIR_Self_Press.xaml.cs">
+      <DependentUpon>WR_SIR_Self_Press.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Figure\WR_SIR_Self_Torque.xaml.cs">
+      <DependentUpon>WR_SIR_Self_Torque.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HalfCircleGauge.xaml.cs">
       <DependentUpon>HalfCircleGauge.xaml</DependentUpon>
     </Compile>
@@ -290,6 +296,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Figure\WR_HS_Self_Water.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Figure\WR_SIR_Self_Press.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Figure\WR_SIR_Self_Torque.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

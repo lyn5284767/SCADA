@@ -44,11 +44,13 @@ namespace Main.WellRepair.HS_Self
             }
         }
         System.Threading.Timer ReportTimer;
+        System.Threading.Timer timerWarning;
         public WR_HS_Self_Main()
         {
             InitializeComponent();
             VariableBinding();
             ReportTimer = new System.Threading.Timer(new TimerCallback(ReportTimer_Elapse), null, 500, 2000);
+            timerWarning = new System.Threading.Timer(new TimerCallback(Timer_Elapsed), this, 2000, 50);//改成50ms 的时钟
         }
 
         /// <summary>
@@ -112,6 +114,15 @@ namespace Main.WellRepair.HS_Self
                 cpbVolMultiBind.Bindings.Add(new Binding("Maximum") { Source = this.cpbVol, Mode = BindingMode.OneWay });
                 cpbVolMultiBind.NotifyOnSourceUpdated = true;
                 this.cpbVol.SetBinding(CircleProgressBar.ForegroundProperty, cpbVolMultiBind);
+
+                this.btnIronOil.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["766b0"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnOilOne.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["766b6"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnOilTwo.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["766b7"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnOilAlarmOpen.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["763b2"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnOilAlarmClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["763b3"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnWaterAlarmOpen.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["763b4"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnWaterAlarmClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["763b5"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+
             }
             catch (Exception ex)
             {
@@ -210,7 +221,7 @@ namespace Main.WellRepair.HS_Self
             {
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
-                    double drillTore = GlobalData.Instance.da["SIR_RailWay_SystemPress"].Value.Int16 / 1.0;
+                    double drillTore = GlobalData.Instance.da["WR_HS_Water"].Value.Int16 / 1.0;
                     this.wr_HS_Self_Water.AddPoints(drillTore);
                 }));
             }
@@ -218,6 +229,253 @@ namespace Main.WellRepair.HS_Self
             {
                 Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
             }
+        }
+        /// <summary>
+        /// 铁钻工油源开启
+        /// </summary>
+        private void btnIronOil_Click(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 0, 19, 3, 1, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 铁钻工油源关闭
+        /// </summary>
+        private void btnIronOilClose_Click(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 0, 19, 3, 2, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 油源1开启
+        /// </summary>
+        private void btnOilOne_Click(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 0, 19, 1, 1, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 油源1关闭
+        /// </summary>
+        private void btnOilOneClose_Click(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 0, 19, 1, 2, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 油源2开启
+        /// </summary>
+        private void btnOilTwo_Click(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 0, 19, 2, 1, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+
+        private void btnOilTwoClose_Click(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 0, 19, 2, 2, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 油温报警开启
+        /// </summary>
+        private void btnOilAlarmOpen_Click(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 0, 19, 9, 1, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 油温报警关闭
+        /// </summary>
+        private void btnOilAlarmClose_Click(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 0, 19, 9, 2, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 液位报警开启
+        /// </summary>
+        private void btnWaterAlarmOpen_Click(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 0, 19, 10, 1, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 液位报警关闭
+        /// </summary>
+        private void btnWaterAlarmClose_Click(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 0, 19, 10, 2, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        private int iTimeCnt = 0;
+        /// <summary>
+        /// 报警时钟
+        /// </summary>
+        private void Timer_Elapsed(object obj)
+        {
+            try
+            {
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    iTimeCnt++;
+                    if (iTimeCnt > 1000) iTimeCnt = 0;
+                    this.Warnning();
+                }));
+            }
+            catch (Exception ex)
+            {
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+            }
+        }
+        private Dictionary<string, int> tipList = new Dictionary<string, int>(); //告警列表
+        private int controlHeartTimes = 0; // 控制台心跳次数
+        private bool tmpStatus = false; // 控制台心跳临时存储状态
+        private bool bCommunicationCheck = false; // 是否有中断标志
+        /// <summary>
+        /// 告警信号
+        /// </summary>
+        private void Warnning()
+        {
+            #region 告警
+            int key = 0;
+            if (GlobalData.Instance.da["764b0"].Value.Boolean)
+            {
+                this.tipList.TryGetValue("液压站高油温报警", out key);
+                if (key == 0)
+                {
+                    this.tipList.Add("液压站高油温报警", 1);
+                }
+            }
+            else
+            {
+                this.tipList.TryGetValue("液压站高油温报警", out key);
+                if (key != 0)
+                {
+                    this.tipList.Remove("液压站高油温报警");
+                }
+            }
+
+            if (GlobalData.Instance.da["764b1"].Value.Boolean)
+            {
+                this.tipList.TryGetValue("液压站低油温报警", out key);
+                if (key == 0)
+                {
+                    this.tipList.Add("液压站低油温报警", 1);
+                }
+            }
+            else
+            {
+                this.tipList.TryGetValue("液压站低油温报警", out key);
+                if (key != 0)
+                {
+                    this.tipList.Remove("液压站低油温报警");
+                }
+            }
+
+            if (GlobalData.Instance.da["764b3"].Value.Boolean)
+            {
+                this.tipList.TryGetValue("液压站低液位报警", out key);
+                if (key == 0)
+                {
+                    this.tipList.Add("液压站低液位报警", 1);
+                }
+            }
+            else
+            {
+                this.tipList.TryGetValue("液压站低液位报警", out key);
+                if (key != 0)
+                {
+                    this.tipList.Remove("液压站低液位报警");
+                }
+            }
+
+            #endregion
+            if (GlobalData.Instance.da["763b6"].Value.Boolean)
+            {
+                this.tbTips.Text = "液压站急停";
+            }
+                //操作台控制器心跳
+                if (GlobalData.Instance.da["504b7"].Value.Boolean == this.tmpStatus)
+            {
+                this.controlHeartTimes += 1;
+                if (this.controlHeartTimes > 60)
+                {
+                    this.tipList.TryGetValue("液压站与操作台信号中断", out key);
+                    if (key == 0)
+                    {
+                        this.tipList.Add("液压站与操作台信号中断", 1);
+                    }
+                }
+                else
+                {
+                    this.tipList.TryGetValue("液压站与操作台信号中断", out key);
+                    if (key != 0)
+                    {
+                        this.tipList.Remove("液压站与操作台信号中断");
+                    }
+                }
+                if (!bCommunicationCheck && controlHeartTimes > 60)
+                {
+                    bCommunicationCheck = true;
+                }
+            }
+            else
+            {
+                this.controlHeartTimes = 0;
+            }
+            this.tmpStatus = GlobalData.Instance.da["504b7"].Value.Boolean;
+
+            if (!GlobalData.Instance.ComunciationNormal)
+            {
+                this.tipList.TryGetValue("网络连接失败", out key);
+                if (key == 0)
+                {
+                    this.tipList.Add("网络连接失败", 1);
+                }
+            }
+            else
+            {
+                this.tipList.TryGetValue("网络连接失败", out key);
+                if (key != 0)
+                {
+                    this.tipList.Remove("网络连接失败");
+                }
+            }
+
+            if (iTimeCnt % 10 == 0)
+            {
+                if (this.tipList.Count > 0)
+                {
+                    this.tbTips.FontSize = 20;
+                    this.tbTips.Visibility = Visibility.Visible;
+
+                    if (!this.tipList.ContainsValue(1))
+                    {
+                        this.tipList.Keys.ToList().ForEach(k => this.tipList[k] = 1);
+                    }
+
+                    foreach (var tkey in this.tipList.Keys.ToList())
+                    {
+                        if (this.tipList[tkey] == 1)
+                        {
+                            this.tbTips.Text = tkey;
+                            this.tipList[tkey] = 2;
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    this.tbTips.Visibility = Visibility.Hidden;
+                    this.tbTips.Text = "";
+                }
+            }
+            else
+            {
+                this.tbTips.FontSize = 28;
+            }
+
         }
     }
 }

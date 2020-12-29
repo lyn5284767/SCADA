@@ -482,6 +482,15 @@
     <Compile Include="WellRepair\SecondFloor\WR_SFMain.xaml.cs">
       <DependentUpon>WR_SFMain.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WellRepair\SIR_Self\WR_ParamSet.xaml.cs">
+      <DependentUpon>WR_ParamSet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WellRepair\SIR_Self\WR_SIR_IO.xaml.cs">
+      <DependentUpon>WR_SIR_IO.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WellRepair\SIR_Self\WR_SIR_Main.xaml.cs">
+      <DependentUpon>WR_SIR_Main.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WR_Amination.xaml.cs">
       <DependentUpon>WR_Amination.xaml</DependentUpon>
     </Compile>
@@ -936,6 +945,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="WellRepair\SIR_Self\WR_ParamSet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WellRepair\SIR_Self\WR_SIR_IO.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WellRepair\SIR_Self\WR_SIR_Main.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WR_Amination.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1191,6 +1212,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\hand.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\WR_SIR.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

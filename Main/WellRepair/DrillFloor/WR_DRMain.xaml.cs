@@ -50,6 +50,7 @@ namespace Main.WellRepair.DrillFloor
             InitializeComponent();
 
             VariableBinding();
+            InitAlarmKey();
             this.Loaded += WR_DRMain_Loaded;
             timerWarning = new System.Threading.Timer(new TimerCallback(Timer_Elapsed), this, 2000, 50);//50ms 的时钟
             this.wr_Amination.SendFingerBeamNumberEvent += Amination_SendFingerBeamNumberEvent;
@@ -86,7 +87,14 @@ namespace Main.WellRepair.DrillFloor
                 this.drworkMode.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drworkModel"], Mode = BindingMode.OneWay, Converter = new DRWorkModelIsCheckConverter() });
 
                 this.drDestination.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drDes"], Mode = BindingMode.OneWay, Converter = new DesTypeConverter() });// 目的地选择
-                this.tubeType.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drdrillPipeType"], Mode = BindingMode.OneWay, Converter = new DrillPipeTypeConverter() });// 管柱选择
+                
+                MultiBinding tubeTypeMultiBind = new MultiBinding();
+                tubeTypeMultiBind.Converter = new WR_DRPipeTypeCoverter();
+                tubeTypeMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["WR_DR_PipeType"], Mode = BindingMode.OneWay });
+                tubeTypeMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drdrillPipeType"], Mode = BindingMode.OneWay });
+                tubeTypeMultiBind.NotifyOnSourceUpdated = true;
+                this.tubeType.SetBinding(TextBlock.TextProperty, tubeTypeMultiBind);
+
 
                 this.drTelecontrolModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["325b1"], Mode = BindingMode.OneWay, Converter = new TelecontrolModelConverter() });
                 this.drTelecontrolModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["325b1"], Mode = BindingMode.OneWay, Converter = new TelecontrolModelIsCheckConverter() });
@@ -640,15 +648,6 @@ namespace Main.WellRepair.DrillFloor
             byte[] byteToSend = new byte[10] { 80, 33, 11, (byte)tag, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
-        /// <summary>
-        /// 设置钻杠
-        /// </summary>
-        private void btn_SelectDrillPipe(object sender, RoutedEventArgs e)
-        {
-            int tag = (sender as MenuItem).TabIndex;
-            byte[] byteToSend = GlobalData.Instance.SendToDR(new List<byte>() { 3, (byte)tag });
-            GlobalData.Instance.da.SendBytes(byteToSend);
-        }
 
         private void btn_CarToZero(object sender, RoutedEventArgs e)
         {
@@ -683,6 +682,33 @@ namespace Main.WellRepair.DrillFloor
                 byte[] byteToSend = GlobalData.Instance.SendToDR(new List<byte> { 5, number });
                 GlobalData.Instance.da.SendBytes(byteToSend);
             }
+        }
+        /// <summary>
+        /// 设置钻杠
+        /// </summary>
+        private void btn_SelectDrillPipe(object sender, RoutedEventArgs e)
+        {
+            int tag = (sender as MenuItem).TabIndex;
+            byte[] byteToSend = new byte[10] { 80, 33, 3, 3, 1, (byte)tag, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 钻铤选择
+        /// </summary>
+        private void btn_SelectDrillPipe2(object sender, RoutedEventArgs e)
+        {
+            int tag = (sender as MenuItem).TabIndex;
+            byte[] byteToSend = new byte[10] { 80, 33, 3, 2, (byte)tag, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 套管选择
+        /// </summary>
+        private void btn_SelectDrillPipe3(object sender, RoutedEventArgs e)
+        {
+            int tag = (sender as MenuItem).TabIndex;
+            byte[] byteToSend = new byte[10] { 80, 33, 3, 3, (byte)tag, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
         }
     }
 }

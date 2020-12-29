@@ -105,7 +105,7 @@
                 <StackPanel>
 
                     <StackPanel Orientation="Horizontal">
-                    <Button Content="确 定 配 置"  Click="ParamThreeSet"  Style="{StaticResource btnGreen}" FontWeight="Bold" FontFamily="宋体" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" IsDefault="False"/>
+                        <Button Content="确 定 配 置"  Click="ParamThreeSet"  Style="{StaticResource btnGreen}" FontWeight="Bold" FontFamily="宋体" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" IsDefault="False"/>
                 </StackPanel>
                 </StackPanel>
             </Grid>

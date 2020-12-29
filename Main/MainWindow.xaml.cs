@@ -16,7 +16,9 @@ using Main.SIR;
 using Main.SIR.Sany;
 using Main.SIR.SanyRail;
 using Main.WellRepair.DrillFloor;
+using Main.WellRepair.HS_Self;
 using Main.WellRepair.SecondFloor;
+using Main.WellRepair.SIR_Self;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -1361,8 +1363,8 @@ namespace Main
             try
             {
                 this.spMain.Children.Clear();
-                this.spMain.Children.Add(IngMain.Instance);
-                //this.spMain.Children.Add(IngMainNew.Instance);
+                //this.spMain.Children.Add(IngMain.Instance);
+                this.spMain.Children.Add(IngMainNew.Instance);
                 GlobalData.Instance.Ing = true;
                 IngMainNew.Instance.SetNowTechniqueEvent += Instance_SetNowTechniqueEvent;
                 GlobalData.Instance.systemType = SystemType.CIMS;
@@ -1564,30 +1566,38 @@ namespace Main
         {
             try
             {
-                GlobalData.Instance.Ing = false;
-                if (GlobalData.Instance.da.GloConfig.HydType == 0)
-                {
-                    MessageBox.Show("未配置液压站");
-                    return;
-                }// 自研
-                if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.SANY)
+                if (GlobalData.Instance.da.GloConfig.SysType == 1)
                 {
                     this.spMain.Children.Clear();
-                    this.spMain.Children.Add(HSMain.Instance);
-                }// 宝石
-                else if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.BS)
-                {
-
-                }// JJC
-                else if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.JJC)
-                {
-                    this.spMain.Children.Clear();
-                    this.spMain.Children.Add(JJC_HSMain.Instance);
+                    this.spMain.Children.Add(WR_HS_Self_Main.Instance);
                 }
                 else
                 {
-                    MessageBox.Show("未配置液压站");
-                    return;
+                    GlobalData.Instance.Ing = false;
+                    if (GlobalData.Instance.da.GloConfig.HydType == 0)
+                    {
+                        MessageBox.Show("未配置液压站");
+                        return;
+                    }// 自研
+                    if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.SANY)
+                    {
+                        this.spMain.Children.Clear();
+                        this.spMain.Children.Add(HSMain.Instance);
+                    }// 宝石
+                    else if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.BS)
+                    {
+
+                    }// JJC
+                    else if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.JJC)
+                    {
+                        this.spMain.Children.Clear();
+                        this.spMain.Children.Add(JJC_HSMain.Instance);
+                    }
+                    else
+                    {
+                        MessageBox.Show("未配置液压站");
+                        return;
+                    }
                 }
 
                 GlobalData.Instance.systemType = SystemType.HydraulicStation;
@@ -1698,64 +1708,106 @@ namespace Main
             }
             else if (GlobalData.Instance.systemType == SystemType.HydraulicStation)
             {
-                if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.SANY)
+                if (GlobalData.Instance.da.GloConfig.SysType == 1) //修井
                 {
-                    this.menuSecureSetting.Visibility = Visibility.Collapsed;
-                    this.menuIO.Visibility = Visibility.Collapsed;
-                    this.menuParam.Visibility = Visibility.Collapsed;
-                    this.menuPosition.Visibility = Visibility.Collapsed;
-                    this.menuCompensate.Visibility = Visibility.Collapsed;
-                    this.menuChart.Visibility = Visibility.Collapsed;
+                    if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.SANY)
+                    {
+                        this.menuSecureSetting.Visibility = Visibility.Collapsed;
+                        this.menuIO.Visibility = Visibility.Collapsed;
+                        this.menuParam.Visibility = Visibility.Collapsed;
+                        this.menuPosition.Visibility = Visibility.Collapsed;
+                        this.menuCompensate.Visibility = Visibility.Collapsed;
+                        this.menuChart.Visibility = Visibility.Collapsed;
+                    }
+                    else if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.JJC)
+                    {
+                        this.menuDrillSetting.Visibility = Visibility.Collapsed;
+                        this.menuSecureSetting.Visibility = Visibility.Collapsed;
+                        this.menuIO.Visibility = Visibility.Collapsed;
+                        this.menuDownDeviceStatus.Visibility = Visibility.Collapsed;
+                        this.menuParam.Visibility = Visibility.Collapsed;
+                        this.menuPosition.Visibility = Visibility.Collapsed;
+                        this.menuCompensate.Visibility = Visibility.Collapsed;
+                        this.menuRecord.Visibility = Visibility.Collapsed;
+                        this.menuChart.Visibility = Visibility.Collapsed;
+                        this.menuReport.Visibility = Visibility.Collapsed;
+                    }
                 }
-                else if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.JJC)
+                else
                 {
-                    this.menuDrillSetting.Visibility = Visibility.Collapsed;
-                    this.menuSecureSetting.Visibility = Visibility.Collapsed;
-                    this.menuIO.Visibility = Visibility.Collapsed;
-                    this.menuDownDeviceStatus.Visibility = Visibility.Collapsed;
-                    this.menuParam.Visibility = Visibility.Collapsed;
-                    this.menuPosition.Visibility = Visibility.Collapsed;
-                    this.menuCompensate.Visibility = Visibility.Collapsed;
-                    this.menuRecord.Visibility = Visibility.Collapsed;
-                    this.menuChart.Visibility = Visibility.Collapsed;
-                    this.menuReport.Visibility = Visibility.Collapsed;
+                    if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.SANY)
+                    {
+                        this.menuSecureSetting.Visibility = Visibility.Collapsed;
+                        this.menuIO.Visibility = Visibility.Collapsed;
+                        this.menuParam.Visibility = Visibility.Collapsed;
+                        this.menuPosition.Visibility = Visibility.Collapsed;
+                        this.menuCompensate.Visibility = Visibility.Collapsed;
+                        this.menuChart.Visibility = Visibility.Collapsed;
+                    }
+                    else if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.JJC)
+                    {
+                        this.menuDrillSetting.Visibility = Visibility.Collapsed;
+                        this.menuSecureSetting.Visibility = Visibility.Collapsed;
+                        this.menuIO.Visibility = Visibility.Collapsed;
+                        this.menuDownDeviceStatus.Visibility = Visibility.Collapsed;
+                        this.menuParam.Visibility = Visibility.Collapsed;
+                        this.menuPosition.Visibility = Visibility.Collapsed;
+                        this.menuCompensate.Visibility = Visibility.Collapsed;
+                        this.menuRecord.Visibility = Visibility.Collapsed;
+                        this.menuChart.Visibility = Visibility.Collapsed;
+                        this.menuReport.Visibility = Visibility.Collapsed;
+                    }
                 }
 
             }
             else if (GlobalData.Instance.systemType == SystemType.SIR)
             {
-                if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANY)
-                {
-                    this.menuDrillSetting.Visibility = Visibility.Collapsed;
-                    this.menuDownDeviceStatus.Visibility = Visibility.Collapsed;
-                    this.menuCompensate.Visibility = Visibility.Collapsed;
-                    this.menuChart.Visibility = Visibility.Collapsed;
-                    this.menuReport.Visibility = Visibility.Collapsed;
-
-                }
-                else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANYRailway)
+                if (GlobalData.Instance.da.GloConfig.SysType == 1) //修井
                 {
                     this.menuDrillSetting.Visibility = Visibility.Collapsed;
                     this.menuSecureSetting.Visibility = Visibility.Collapsed;
                     this.menuDownDeviceStatus.Visibility = Visibility.Collapsed;
-                    this.menuCompensate.Visibility = Visibility.Collapsed;
-                    this.menuRecord.Visibility = Visibility.Collapsed;
-                    this.menuChart.Visibility = Visibility.Collapsed;
-                    this.menuReport.Visibility = Visibility.Collapsed;
-
-                }
-                else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.JJC)
-                {
-                    this.menuDrillSetting.Visibility = Visibility.Collapsed;
-                    this.menuSecureSetting.Visibility = Visibility.Collapsed;
-                    this.menuIO.Visibility = Visibility.Collapsed;
-                    this.menuDownDeviceStatus.Visibility = Visibility.Collapsed;
-                    this.menuParam.Visibility = Visibility.Collapsed;
                     this.menuPosition.Visibility = Visibility.Collapsed;
                     this.menuCompensate.Visibility = Visibility.Collapsed;
                     this.menuRecord.Visibility = Visibility.Collapsed;
                     this.menuChart.Visibility = Visibility.Collapsed;
                     this.menuReport.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANY)
+                    {
+                        this.menuDrillSetting.Visibility = Visibility.Collapsed;
+                        this.menuDownDeviceStatus.Visibility = Visibility.Collapsed;
+                        this.menuCompensate.Visibility = Visibility.Collapsed;
+                        this.menuChart.Visibility = Visibility.Collapsed;
+                        this.menuReport.Visibility = Visibility.Collapsed;
+
+                    }
+                    else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANYRailway)
+                    {
+                        this.menuDrillSetting.Visibility = Visibility.Collapsed;
+                        this.menuSecureSetting.Visibility = Visibility.Collapsed;
+                        this.menuDownDeviceStatus.Visibility = Visibility.Collapsed;
+                        this.menuCompensate.Visibility = Visibility.Collapsed;
+                        this.menuRecord.Visibility = Visibility.Collapsed;
+                        this.menuChart.Visibility = Visibility.Collapsed;
+                        this.menuReport.Visibility = Visibility.Collapsed;
+
+                    }
+                    else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.JJC)
+                    {
+                        this.menuDrillSetting.Visibility = Visibility.Collapsed;
+                        this.menuSecureSetting.Visibility = Visibility.Collapsed;
+                        this.menuIO.Visibility = Visibility.Collapsed;
+                        this.menuDownDeviceStatus.Visibility = Visibility.Collapsed;
+                        this.menuParam.Visibility = Visibility.Collapsed;
+                        this.menuPosition.Visibility = Visibility.Collapsed;
+                        this.menuCompensate.Visibility = Visibility.Collapsed;
+                        this.menuRecord.Visibility = Visibility.Collapsed;
+                        this.menuChart.Visibility = Visibility.Collapsed;
+                        this.menuReport.Visibility = Visibility.Collapsed;
+                    }
                 }
             }
         }
@@ -1814,38 +1866,46 @@ namespace Main
             {
                 try
                 {
-                    // 无
-                    if (GlobalData.Instance.da.GloConfig.SIRType == 0)
+                    if (GlobalData.Instance.da.GloConfig.SysType == 1) // 修井
                     {
-                        MessageBox.Show("未配置铁钻工");
-                        this.projectLoad.Visibility = Visibility.Collapsed;
-                        return;
-                    }
-                    else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANY)
-                    {
-                        SIRSelfMain.Instance.FullScreenEvent -= Instance_SIRFullScreenEvent;
-                        SIRSelfMain.Instance.FullScreenEvent += Instance_SIRFullScreenEvent;
-                        this.spMain.Children.Add(SIRSelfMain.Instance);
+                        this.spMain.Children.Add(WR_SIR_Main.Instance);
                         GlobalData.Instance.Ing = false;
                     }
-                    else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.JJC)
+                    else
                     {
-                        this.spMain.Children.Add(SIRJJCMain.Instance);
-                        GlobalData.Instance.Ing = false;
-                    }
-                    else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.BS)
-                    {
-                        this.spMain.Children.Add(SIRBSMain.Instance);
-                        GlobalData.Instance.Ing = false;
-                    }
-                    else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.JH)
-                    {
+                        // 无
+                        if (GlobalData.Instance.da.GloConfig.SIRType == 0)
+                        {
+                            MessageBox.Show("未配置铁钻工");
+                            this.projectLoad.Visibility = Visibility.Collapsed;
+                            return;
+                        }
+                        else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANY)
+                        {
+                            SIRSelfMain.Instance.FullScreenEvent -= Instance_SIRFullScreenEvent;
+                            SIRSelfMain.Instance.FullScreenEvent += Instance_SIRFullScreenEvent;
+                            this.spMain.Children.Add(SIRSelfMain.Instance);
+                            GlobalData.Instance.Ing = false;
+                        }
+                        else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.JJC)
+                        {
+                            this.spMain.Children.Add(SIRJJCMain.Instance);
+                            GlobalData.Instance.Ing = false;
+                        }
+                        else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.BS)
+                        {
+                            this.spMain.Children.Add(SIRBSMain.Instance);
+                            GlobalData.Instance.Ing = false;
+                        }
+                        else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.JH)
+                        {
 
-                    }
-                    else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANYRailway)
-                    {
-                        this.spMain.Children.Add(SIRRailWayMain.Instance);
-                        GlobalData.Instance.Ing = false;
+                        }
+                        else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANYRailway)
+                        {
+                            this.spMain.Children.Add(SIRRailWayMain.Instance);
+                            GlobalData.Instance.Ing = false;
+                        }
                     }
 
                     GlobalData.Instance.systemType = SystemType.SIR;

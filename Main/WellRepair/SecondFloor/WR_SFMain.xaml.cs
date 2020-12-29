@@ -2377,5 +2377,21 @@ namespace Main.WellRepair.SecondFloor
 
             }
         }
+        /// <summary>
+        /// 2 7/8钻铤
+        /// </summary>
+        private void btn_SelectDrill2Pipe28(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 80, 1, 3, 28, 0, 0, 1, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 4 6/8钻铤
+        /// </summary>
+        private void btn_SelectDrill2Pipe48(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 80, 1, 3, 48, 0, 0, 1, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
     }
 }

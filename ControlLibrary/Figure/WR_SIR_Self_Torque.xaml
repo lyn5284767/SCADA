@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="ControlLibrary.Figure.WR_SIR_Self_Torque"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ControlLibrary.Figure" 
+             xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+             xmlns:lib="clr-namespace:ControlLibrary"
+             mc:Ignorable="d" 
+              d:DesignHeight="190" d:DesignWidth="370"
+             DataContext="{dxmvvm:ViewModelSource  Type={x:Type lib:RealtimeViewModel}}">
+    <Grid>
+        <dxc:ChartControl Name="chart" BorderThickness="0" Background="White" AutoLayout="False" CrosshairEnabled="False" IsHitTestVisible="False">
+            <dxc:ChartControl.Legend>
+                <dxc:Legend HorizontalPosition="Left" VerticalPosition="TopOutside" Orientation="Horizontal" />
+            </dxc:ChartControl.Legend>
+            <dxc:XYDiagram2D Margin="0,-10,0,-10">
+                <dxc:XYDiagram2D.AxisX>
+                    <dxc:AxisX2D x:Name="axisX">
+                        <dxc:AxisX2D.DateTimeScaleOptions>
+                            <dxc:ContinuousDateTimeScaleOptions />
+                        </dxc:AxisX2D.DateTimeScaleOptions>
+                        <dxc:AxisX2D.Label>
+                            <dxc:AxisLabel TextPattern="{}{A:HH:mm:ss}" />
+                        </dxc:AxisX2D.Label>
+                        <dxc:AxisX2D.WholeRange>
+                            <dxc:Range AutoSideMargins="True" MinValue="{Binding MinTime}" MaxValue="{Binding MaxTime}" />
+                        </dxc:AxisX2D.WholeRange>
+                    </dxc:AxisX2D>
+                </dxc:XYDiagram2D.AxisX>
+                <dxc:XYDiagram2D.AxisY>
+                    <dxc:AxisY2D Interlaced="True">
+                        <dxc:AxisY2D.WholeRange>
+                            <dxc:Range dxc:AxisY2D.AlwaysShowZeroLevel="False"/>
+                        </dxc:AxisY2D.WholeRange>
+                    </dxc:AxisY2D>
+                </dxc:XYDiagram2D.AxisY>
+                <dxc:LineSeries2D x:Name="series1"
+                                  DataSource="{Binding DataSource}"
+                                  ArgumentDataMember="DateAndTime"
+                                  ValueDataMember="Process1"
+                                  ArgumentScaleType="DateTime"
+                                  DisplayName="上扣扭矩">
+                    <dxc:LineSeries2D.LineStyle>
+                        <dxc:LineStyle Thickness="1" />
+                    </dxc:LineSeries2D.LineStyle>
+                </dxc:LineSeries2D>
+                <dxc:LineSeries2D x:Name="series2"
+                                  DataSource="{Binding DataSource}"
+                                  ArgumentDataMember="DateAndTime"
+                                  ValueDataMember="Process2"
+                                  ArgumentScaleType="DateTime"
+                                  DisplayName="卸扣扭矩">
+                    <dxc:LineSeries2D.LineStyle>
+                        <dxc:LineStyle Thickness="1" />
+                    </dxc:LineSeries2D.LineStyle>
+                </dxc:LineSeries2D>
+            </dxc:XYDiagram2D>
+            <dxc:ChartControl.Titles>
+                <dxc:Title Name="txtTitile" Dock="Top" HorizontalAlignment="Center" Content="扭矩曲线" FontSize="18" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="0,-10,0,0"/>
+            </dxc:ChartControl.Titles>
+        </dxc:ChartControl>
+
+    </Grid>
+</UserControl>
