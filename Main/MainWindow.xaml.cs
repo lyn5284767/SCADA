@@ -1363,8 +1363,8 @@ namespace Main
             try
             {
                 this.spMain.Children.Clear();
-                //this.spMain.Children.Add(IngMain.Instance);
-                this.spMain.Children.Add(IngMainNew.Instance);
+                this.spMain.Children.Add(IngMain.Instance);
+                //this.spMain.Children.Add(IngMainNew.Instance);
                 GlobalData.Instance.Ing = true;
                 IngMainNew.Instance.SetNowTechniqueEvent += Instance_SetNowTechniqueEvent;
                 GlobalData.Instance.systemType = SystemType.CIMS;

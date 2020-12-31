@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Main.Integration"
         mc:Ignorable="d"
-        Title="启动模式" Height="150" Width="400" WindowStartupLocation="CenterScreen">
-    <Grid >
+        Title="启动模式" Height="150" Width="550" WindowStartupLocation="CenterScreen" Closed="Window_Closed">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock Name="tbCurTip" Text="当前提示" FontSize="32" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Name="tbCurTip" Text="提示" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
          <ProgressBar Name="pbper" Grid.Row="1" Value="0" Margin="0,0,0,10"/>
     </Grid>
 </Window>

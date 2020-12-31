@@ -418,7 +418,7 @@ namespace COM.Common
         /// </summary>
         public int HS_PumpType { get; set; }
         /// <summary>
-        /// 工作模式 0-未知；1-排杆；2-送杆
+        /// 工作模式 0-未知；1-送杆；2-排杆
         /// </summary>
         public int WorkType { get; set; }
         /// <summary>
@@ -434,7 +434,7 @@ namespace COM.Common
         /// </summary>
         public int DesType { get; set; }
         /// <summary>
-        /// 选择指梁 -1-自动
+        /// 选择指梁 -1-自动;>1手动指定的指梁1-32
         /// </summary>
         public int SelectDrill { get; set; }
         /// <summary>

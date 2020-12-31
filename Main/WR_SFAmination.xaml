@@ -397,7 +397,7 @@
                                 </Grid>
                                 <!--左1行-->
                                 <Grid Height="{Binding Path=WR_SFRightRowHeight, ElementName=uc}" Name="rightRow1">
-                                    <StackPanel Grid.Row="28" Name="sfDrillR1" Orientation="Horizontal" Tag="17"></StackPanel>
+                                    <StackPanel Grid.Row="28" Name="sfDrillR1" Orientation="Horizontal" Tag="17" FlowDirection ="RightToLeft"></StackPanel>
                                     <Border Grid.Row="29" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
                                 </Grid>
                                 <!--左钻铤-->

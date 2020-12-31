@@ -91,7 +91,7 @@
                 <Label Margin="10,20,0,0" FontSize="16">上位机信息</Label>
                 <StackPanel Margin="50,20,0,0" Orientation="Horizontal">
                     <Label Content="程序版本:" FontSize="14" Foreground="#919191"/>
-                    <TextBlock Text="SDCH2-V1.0.1-D1" FontSize="14" Foreground="#919191">
+                    <TextBlock Text="SDCH2-V2.0.1-D1" FontSize="14" Foreground="#919191">
                     </TextBlock>
                 </StackPanel>
                 <StackPanel Margin="50,10,0,0" Orientation="Horizontal">

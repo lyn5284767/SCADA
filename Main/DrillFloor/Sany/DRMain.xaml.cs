@@ -277,7 +277,7 @@ namespace Main.DrillFloor
         private void Warnning()
         {
             #region 告警1
-            int warnOne = GlobalData.Instance.da["drTipsCode"].Value.Int32;
+            int warnOne = GlobalData.Instance.da["drTipsCode"].Value.Byte;
             if (warnOne == 1)
             {
                 this.warnOne.Text = "小车电机故障";

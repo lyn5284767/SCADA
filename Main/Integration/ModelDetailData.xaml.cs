@@ -22,6 +22,8 @@ namespace Main.Integration
     public partial class ModelDetailData : UserControl
     {
         GlobalModel tmpModel { get; set; }
+        public delegate void StartFinish(GlobalModel model);
+        public event StartFinish StartFinishEvent;
         public ModelDetailData()
         {
             InitializeComponent();
@@ -39,8 +41,8 @@ namespace Main.Integration
             else if (globalModel.HS_PumpType == 2) title = "2#泵";
             else if(globalModel.HS_PumpType == 3) title = "双泵";
 
-            if (globalModel.WorkType == 1) title += "排杆模式";
-            else if(globalModel.WorkType ==2) title += "送杆模式";
+            if (globalModel.WorkType == 1) title += "送杆模式";
+            else if(globalModel.WorkType ==2) title += "排杆模式";
             this.tbTitle.Text = title;
 
             string pipeType = string.Empty;
@@ -124,8 +126,20 @@ namespace Main.Integration
         {
             ModelStartWindow startWindow = new ModelStartWindow();
             startWindow.StartModel(tmpModel);
+            startWindow.StartSuccessEvent += StartWindow_StartSuccessEvent;
             startWindow.ShowDialog();
         }
+        /// <summary>
+        /// 模式启动成功事件
+        /// </summary>
+        private void StartWindow_StartSuccessEvent()
+        {
+            if (StartFinishEvent != null)
+            {
+                StartFinishEvent(tmpModel);
+            }
+        }
+
         /// <summary>
         /// 修改模式
         /// </summary>

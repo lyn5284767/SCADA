@@ -689,7 +689,7 @@ namespace Main.WellRepair.DrillFloor
         private void btn_SelectDrillPipe(object sender, RoutedEventArgs e)
         {
             int tag = (sender as MenuItem).TabIndex;
-            byte[] byteToSend = new byte[10] { 80, 33, 3, 3, 1, (byte)tag, 0, 0, 0, 0 };
+            byte[] byteToSend = new byte[10] { 80, 33, 3, 1, (byte)tag, 0, 0, 0, 0 ,0};
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
@@ -708,6 +708,14 @@ namespace Main.WellRepair.DrillFloor
         {
             int tag = (sender as MenuItem).TabIndex;
             byte[] byteToSend = new byte[10] { 80, 33, 3, 3, (byte)tag, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 方钻杆
+        /// </summary>
+        private void btn_SelectDrillPipe4(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 80, 33, 3, 4, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
     }

@@ -95,13 +95,13 @@ namespace Main.Integration
                 {
                     this.btnDrillUp.Background = (Brush)bc.ConvertFrom("#72C9F6");
                     this.btnDrillDown.Background = (Brush)bc.ConvertFrom("#FFFFFF");
-                    this.tbConfirmWorkModel.Text = "工况:排杆";
+                    this.tbConfirmWorkModel.Text = "工况:送杆";
                 }
                 else if (globalModel.WorkType == 2)
                 {
                     this.btnDrillUp.Background = (Brush)bc.ConvertFrom("#FFFFFF");
                     this.btnDrillDown.Background = (Brush)bc.ConvertFrom("#72C9F6");
-                    this.tbConfirmWorkModel.Text = "工况:送杆";
+                    this.tbConfirmWorkModel.Text = "工况:排杆";
                 }
             }
             else if (step == 2)
@@ -340,7 +340,7 @@ namespace Main.Integration
         /// </summary>
         private void DrillUp_Click(object sender, RoutedEventArgs e)
         {
-            globalModel.WorkType = 1;
+            globalModel.WorkType = 2;
             ShowStep(2);
         }
         /// <summary>
@@ -348,7 +348,7 @@ namespace Main.Integration
         /// </summary>
         private void DrillDown_Click(object sender, RoutedEventArgs e)
         {
-            globalModel.WorkType = 2;
+            globalModel.WorkType = 1;
             ShowStep(2);
         }
         /// <summary>

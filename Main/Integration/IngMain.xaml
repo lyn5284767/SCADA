@@ -21,7 +21,7 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
-                    <Border Background="White" Margin="10" CornerRadius="10" Grid.Row="0">
+                    <Border Background="White" Margin="5" CornerRadius="10" Grid.Row="0">
                         <Border.Effect>
                             <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0" Direction="280" ShadowDepth="0" />
                         </Border.Effect>
@@ -48,15 +48,15 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Grid.Row="3">
                             <TextBlock Text="铁  钻  工:" Margin="30,0,0,0" FontSize="18" FontWeight="Bold" Foreground="#212121" VerticalAlignment="Center"></TextBlock>
-                            <cl:SymbolMapping Name="sirStatus" StrContent="" LampType="3" Margin="2,5,2,5"/>
+                            <cl:SymbolMapping Name="sirStatus" StrContent="" LampType="1" Margin="2,5,2,5"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Grid.Row="4">
                             <TextBlock Text="液  压  站:" Margin="30,0,0,0" FontSize="18" FontWeight="Bold" Foreground="#212121" VerticalAlignment="Center"></TextBlock>
-                            <cl:SymbolMapping Name="hsStatus" StrContent="" LampType="3" Margin="2,5,2,5"/>
+                            <cl:SymbolMapping Name="hsStatus" StrContent="" LampType="1" Margin="2,5,2,5"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Grid.Row="5">
                             <TextBlock Text="猫    道:" Margin="30,0,0,0" FontSize="18" FontWeight="Bold" Foreground="#212121" VerticalAlignment="Center"></TextBlock>
-                            <cl:SymbolMapping Name="catStatus" StrContent="" LampType="3" Margin="20,5,2,5"/>
+                            <cl:SymbolMapping Name="catStatus" StrContent="" LampType="1" Margin="20,5,2,5"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Grid.Row="6">
                             <TextBlock Text="大 钩 高 度:" Margin="30,0,0,0" FontSize="18" FontWeight="Bold" Foreground="#212121" VerticalAlignment="Center"></TextBlock>
@@ -69,7 +69,7 @@
                     </Grid>
                 </Grid>
                 <Grid Grid.Row="1">
-                    <Border Background="White" Margin="10,5,10,10" CornerRadius="10" Grid.Row="0">
+                    <Border Background="White" Margin="5" CornerRadius="10" Grid.Row="0">
                         <Border.Effect>
                             <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0" Direction="280" ShadowDepth="0" />
                         </Border.Effect>
