@@ -221,7 +221,7 @@ namespace Main.WellRepair.HS_Self
             {
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
-                    double drillTore = GlobalData.Instance.da["WR_HS_Water"].Value.Int16 / 1.0;
+                    double drillTore = GlobalData.Instance.da["WR_HS_Water"].Value.Int16 / 10.0;
                     this.wr_HS_Self_Water.AddPoints(drillTore);
                 }));
             }

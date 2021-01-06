@@ -48,7 +48,7 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" FontSize="24" FontWeight="Bold" Width="80" Height="50" Click="Start_Click">启动</Button>
+                    <Button Name="btnStart" Grid.Column="0" FontSize="24" FontWeight="Bold" Width="80" Height="50" Click="Start_Click">启动</Button>
                     <Button Grid.Column="1" FontSize="24" FontWeight="Bold" Width="80" Height="50" Click="Modify_Click">修改</Button>
                     <Button Grid.Column="2" FontSize="24" FontWeight="Bold" Width="80" Height="50" Click="Delete_Click">删除</Button>
                 </Grid>

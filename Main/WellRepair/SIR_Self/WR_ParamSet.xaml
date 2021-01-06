@@ -49,8 +49,8 @@
                             <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="5" Padding="3">
                                 <TextBlock Text="位&#x0a;置&#x0a;设&#x0a;置" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Height="120"/>
                             </Border>
-                            <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="5" Padding="3">
-                                <TextBlock Text="参&#x0a;数&#x0a;设&#x0a;置" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Height="120"/>
+                            <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="5,25,5,5" Padding="3">
+                                <TextBlock Text="参&#x0a;数&#x0a;设&#x0a;置" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Height="350"/>
                             </Border>
                            
                         </StackPanel>
@@ -58,10 +58,7 @@
 
                     </Grid>
                     <Grid Grid.Column="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="19*"/>
-                            <RowDefinition Height="111*"/>
-                        </Grid.RowDefinitions>
+
                         <StackPanel Orientation="Vertical" Grid.RowSpan="2">
                             <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
                                 <TextBlock Text="待机位设置" Foreground="Black" FontSize="18" Width="180" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>

@@ -124,10 +124,23 @@ namespace Main.Integration
         /// </summary>
         private void Start_Click(object sender, RoutedEventArgs e)
         {
-            ModelStartWindow startWindow = new ModelStartWindow();
-            startWindow.StartModel(tmpModel);
-            startWindow.StartSuccessEvent += StartWindow_StartSuccessEvent;
-            startWindow.ShowDialog();
+            if (this.btnStart.Content.ToString() == "启动")
+            {
+                ModelStartWindow startWindow = new ModelStartWindow();
+                startWindow.StartModel(tmpModel);
+                startWindow.StartSuccessEvent += StartWindow_StartSuccessEvent;
+                startWindow.ShowDialog();
+            }
+            else
+            {
+                byte[] byteToSend = new byte[10] { 1, 32, 10, 0, 0, 0, 0, 0, 0, 0 };
+                GlobalData.Instance.da.SendBytes(byteToSend);
+                if (StartFinishEvent != null)
+                {
+                    StartFinishEvent(null);
+                    this.btnStart.Content = "启动";
+                }
+            }
         }
         /// <summary>
         /// 模式启动成功事件
@@ -137,6 +150,7 @@ namespace Main.Integration
             if (StartFinishEvent != null)
             {
                 StartFinishEvent(tmpModel);
+                this.btnStart.Content = "停止";
             }
         }
 

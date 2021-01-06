@@ -1,4 +1,5 @@
-﻿using System;
+﻿using COM.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,6 +42,7 @@ namespace Main.SecondFloor
         public SFStop()
         {
             InitializeComponent();
+            this.tbZeroSet.SetBinding(BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["575b0"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
         }
 
         public void info(string txt)
@@ -57,6 +59,30 @@ namespace Main.SecondFloor
         {
             this.Close();
             _instance = null;
+        }
+        /// <summary>
+        /// 零位标定
+        /// </summary>
+        private void ZeroSet_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result =  MessageBox.Show("确认标定零位?", "提示", MessageBoxButton.OKCancel);
+            if (result == MessageBoxResult.OK)
+            {
+                byte[] byteToSend = new byte[] { 16, 1, 24, 1, 0, 0, 0, 0, 0, 0 };
+                GlobalData.Instance.da.SendBytes(byteToSend);
+            }
+        }
+        /// <summary>
+        /// 取消零位标定
+        /// </summary>
+        private void ZeroCancek_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("确认取消标定零位?", "提示", MessageBoxButton.OKCancel);
+            if (result == MessageBoxResult.OK)
+            {
+                byte[] byteToSend = new byte[] { 16, 1, 24, 11, 0, 0, 0, 0, 0, 0 };
+                GlobalData.Instance.da.SendBytes(byteToSend);
+            }
         }
     }
 }

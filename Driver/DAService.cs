@@ -1279,7 +1279,7 @@ namespace DemoDriver
         /// </summary>
         public bool UdpOpen { set; get; }
         /// <summary>
-        /// 铁钻工类型 0-无 1-自研 2-JJC 3-宝石 4-江汉
+        /// 铁钻工类型 0-无 1-自研 2-JJC 3-宝石 4-江汉 5-三一轨道上铁钻工
         /// </summary>
         public int SIRType { get; set; }
         /// <summary>
@@ -1291,7 +1291,7 @@ namespace DemoDriver
         /// </summary>
         public int HydType { get; set; }
         /// <summary>
-        /// 钻台面类型 0-自研 1-杰瑞
+        /// 钻台面类型 0-无 1-自研 2-杰瑞
         /// </summary>
         public int DRType { get; set; }
         /// <summary>

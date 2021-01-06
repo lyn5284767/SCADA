@@ -574,7 +574,7 @@ namespace Main.Integration
                 if (gd.Children.Count == 2)
                 {
                     if (gd.Children[1] is ModelDetailData &&
-                        (gd.Tag is GlobalModel) && (gd.Tag as GlobalModel).ID == model.ID)
+                        (gd.Tag is GlobalModel) && model!=null && (gd.Tag as GlobalModel).ID == model.ID)
                     {
                         (gd.Children[1] as ModelDetailData).bdBg.Background = (Brush)bc.ConvertFrom("#72C9F6");
                     }

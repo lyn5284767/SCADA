@@ -86,10 +86,15 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="200"/>
-            <RowDefinition Height="450"/>
+            <RowDefinition />
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" Grid.Row="0">
-            <Grid Width="200">
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="230"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
                 <Border Background="White" CornerRadius="10" Margin="5,10,5,5">
                     <Border.Effect>
                         <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
@@ -130,7 +135,7 @@
                     </Button>
                 </Grid>
             </Grid>
-            <Grid Height="200" Width="230">
+            <Grid Height="200" Grid.Column="1">
                 <Border Background="White" CornerRadius="10" Margin="5,10,5,5" >
                     <Border.Effect>
                         <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
@@ -147,7 +152,7 @@
                     <CheckBox Name="cbSelectPipe" Grid.Row="2" FontSize="20" Click="cbSelectPipe_Checked">选择套管</CheckBox>
                 </Grid>
             </Grid>
-            <Grid Height="200" Width="590">
+            <Grid Height="200" Grid.Column="2">
                 <Border Background="White" CornerRadius="10" Margin="5,10,5,5" >
                     <Border.Effect>
                         <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
@@ -173,7 +178,7 @@
                     <TextBlock Name="tbTips" Grid.Row="1" Grid.ColumnSpan="5" Text="" FontSize="24" FontFamily="微软雅黑" FontWeight="Bold" Foreground="red" VerticalAlignment="Center" TextAlignment="Center"/>
                 </Grid>
             </Grid>
-        </StackPanel>
+        </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>

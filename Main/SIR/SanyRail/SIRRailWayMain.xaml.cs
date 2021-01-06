@@ -216,12 +216,12 @@ namespace Main.SIR.SanyRail
         private void Warnning()
         {
             if (GlobalData.Instance.da["977b0"].Value.Boolean) this.tbOprTips.Text = "请按启动键开始对缺";
-            if (GlobalData.Instance.da["977b1"].Value.Boolean) this.tbOprTips.Text = "请按启动键开始上卸扣切换";
-            if (GlobalData.Instance.da["977b2"].Value.Boolean) this.tbOprTips.Text = "请按启动键开始移动至目标位";
-            if (GlobalData.Instance.da["977b3"].Value.Boolean) this.tbOprTips.Text = "请确认丝扣油位置，按启动键继续";
-            if (GlobalData.Instance.da["977b4"].Value.Boolean) this.tbOprTips.Text = "请确认上卸扣位置，按启动键继续";
-            if (GlobalData.Instance.da["977b5"].Value.Boolean) this.tbOprTips.Text = "正在换挡，请确认换挡开关空挡，按启动键继续";
-            if (GlobalData.Instance.da["977b6"].Value.Boolean) this.tbOprTips.Text = "请确认安全门已开，按启动键退回待机位";
+            else if (GlobalData.Instance.da["977b1"].Value.Boolean) this.tbOprTips.Text = "请按启动键开始上卸扣切换";
+            else if (GlobalData.Instance.da["977b2"].Value.Boolean) this.tbOprTips.Text = "请按启动键开始移动至目标位";
+            else if (GlobalData.Instance.da["977b3"].Value.Boolean) this.tbOprTips.Text = "请确认丝扣油位置，按启动键继续";
+            else if (GlobalData.Instance.da["977b4"].Value.Boolean) this.tbOprTips.Text = "请确认上卸扣位置，按启动键继续";
+            else if (GlobalData.Instance.da["977b5"].Value.Boolean) this.tbOprTips.Text = "正在换挡，请确认换挡开关空挡，按启动键继续";
+            else if (GlobalData.Instance.da["977b6"].Value.Boolean) this.tbOprTips.Text = "请确认安全门已开，按启动键退回待机位";
             else this.tbOprTips.Text = "暂无操作";
             if (iTimeCnt % 10 == 0)
             {

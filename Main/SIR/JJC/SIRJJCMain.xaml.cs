@@ -143,13 +143,13 @@ namespace Main.SIR
 
             this.smArmReach.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
             this.smArmRetract.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b1"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
-            this.smButtonReach.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["802b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
-            this.smButtonRetract.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["802b1"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.smButtonReach.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["802b4"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.smButtonRetract.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["802b5"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
             this.smSysReset.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b1"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
             this.smPliersUp.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b2"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
             this.smPliersDown.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b3"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
-            this.smButtonIn.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["802b2"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
-            this.smButtonOut.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["802b3"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.smButtonIn.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["802b6"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.smButtonOut.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["802b7"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
             this.smHot.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b2"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
             this.smArmLeft.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b4"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
             this.smArmRight.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b5"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
@@ -161,6 +161,8 @@ namespace Main.SIR
 
             this.tubeType.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["IDDrillType"], Mode = BindingMode.OneWay, Converter = new SIR_JJC_DrillTypeConverter() });
 
+            this.cbSafeLimit.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["535b6"], Mode = BindingMode.OneWay });
+
         }
 
         /// <summary>
@@ -168,15 +170,16 @@ namespace Main.SIR
         /// </summary>
         private void btn_OpState(object sender, EventArgs e)
         {
-            byte[] data;
-            if (this.operateMode.IsChecked)
-            {
-                data = new byte[10] { 80, 16, 4, 2, 0, 0, 1, 0, 0, 0 };
-            }
-            else
-            {
-                data = new byte[10] { 80, 16, 4, 1, 0, 0, 1, 0, 0, 0 };
-            }
+            //byte[] data;
+            //if (this.operateMode.IsChecked)
+            //{
+            //    data = new byte[10] { 80, 16, 4, 2, 0, 0, 1, 0, 0, 0 };
+            //}
+            //else
+            //{
+            //    data = new byte[10] { 80, 16, 4, 1, 0, 0, 1, 0, 0, 0 };
+            //}
+            byte[] data = new byte[10] { 16, 1, 2, 0, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(data);
         }
         /// <summary>
@@ -290,6 +293,27 @@ namespace Main.SIR
             {
                 byte[] byteToSend = GlobalData.Instance.SendListToByte(new List<byte>() { 80, 16, 23, bConfigParameter[0], bConfigParameter[1], bConfigParameter[2], 2 });
                 GlobalData.Instance.da.SendBytes(byteToSend);
+            }
+        }
+        /// <summary>
+        /// 安全限制解除
+        /// </summary>
+        private void cbSafeLimit_Clicked(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+
+            if (this.cbSafeLimit.IsChecked)
+            {
+                byteToSend = new byte[10] { 80, 16, 1, 24, 2, 0, 0, 0, 0, 0 };
+                GlobalData.Instance.da.SendBytes(byteToSend);
+            }
+            else
+            {
+                if (MessageBox.Show("确认解除钻台面对铁钻工的安全设置", "提示", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                {
+                    byteToSend = new byte[10] { 80, 16, 1, 24, 1, 0, 0, 0, 0, 0 };
+                    GlobalData.Instance.da.SendBytes(byteToSend);
+                }
             }
         }
     }

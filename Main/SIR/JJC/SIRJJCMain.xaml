@@ -45,6 +45,7 @@
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FontFamily" Value="微软雅黑"/>
             <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Foreground" Value="Black"/>
         </Style>
         <Style TargetType="Label">
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -52,6 +53,7 @@
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FontFamily" Value="微软雅黑"/>
             <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Foreground" Value="Black"/>
         </Style>
     </UserControl.Resources>
     <Grid>
@@ -95,26 +97,44 @@
             <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,1,5,1" Width="120">
                 <cl:BasedSwitchButton Name="operateMode" ContentLeft="遥控" ContentDown="操作模式" ContentRight="司钻" UserControlClicked="btn_OpState" />
             </Border>
-            <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,1,5,1" Width="760">
+            <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,1,5,1" Width="580">
                 <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="150,0,0,0">
-                        <Label FontSize="24">上扣扭矩实时压力</Label>
-                        <cl:SymbolMapping Name="smUpButtonPressure" StrContent="" LampType="3" Height="35" HorizontalAlignment="Center" Margin="10,0,10,0"/>
-                        <TextBlock Name="tbRealTimePressure" Width="100" FontSize="24" Text="0" TextAlignment="Right"/>
-                        <TextBlock Name="tbUnitOne" Text="KN.M" FontSize="24"/>
-                        <cl:ShadowButton TBText ="切换" x:Name="sdswitch" TBFontSize="20" BDWidth="50" BDHeight="45" MouseLeftButtonDown="SwichUnit_MouseLeftButtonDown"/>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="50,0,0,0">
+                            <Label FontSize="24">上扣扭矩实时压力</Label>
+                            <cl:SymbolMapping Name="smUpButtonPressure" StrContent="" LampType="3" Height="35" HorizontalAlignment="Center" Margin="10,0,10,0"/>
+                            <TextBlock Name="tbRealTimePressure" Width="100" FontSize="24" Text="0" TextAlignment="Right"/>
+                            <TextBlock Name="tbUnitOne" Text="KN.M" FontSize="24"/>
+                            <cl:ShadowButton TBText ="切换" x:Name="sdswitch" TBFontSize="20" BDWidth="50" BDHeight="45" MouseLeftButtonDown="SwichUnit_MouseLeftButtonDown"/>
 
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Grid.Row="1"  Margin="150,0,0,0">
+                        </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1"  Margin="50,0,0,0">
                         <Label FontSize="24">上扣扭矩设定压力</Label>
                         <cl:ShadowButton TBText ="-" x:Name="PressureDown" TBFontSize="24" BDWidth="50" BDHeight="45" MouseLeftButtonDown="PressureDown_MouseLeftButtonDown"/>
                         <TextBlock Name="tbPressureSet" Width="100" FontSize="24" Text="0" TextAlignment="Right"/>
                         <TextBlock Name="tbUnitTwo" Text="KN.M" FontSize="24"/>
                         <cl:ShadowButton TBText ="+" x:Name="PressureUp" TBFontSize="24" BDWidth="50" BDHeight="45" MouseLeftButtonDown="PressureUp_MouseLeftButtonDown"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+            <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,1,5,1" Width="165">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <cl:CustomCheckBox Grid.Row="0" Margin="3,0,0,0" ContentString="安全限制解除" Name="cbSafeLimit" UserControlClicked="cbSafeLimit_Clicked"/>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1">
+                        <cl:SymbolMapping Name="smAllowIron" StrContent="" LampType="3" Height="25" />
+                        <TextBlock Text="铁钻工允许动作" Margin="5,0,0,0" FontSize="18" Foreground="Black"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="2">
+                        <cl:SymbolMapping Name="smDFAntiCollision" StrContent="" LampType="3" Height="25" />
+                        <TextBlock Text="钻台面触发防碰" Margin="5,0,0,0" FontSize="18" Foreground="Black"></TextBlock>
                     </StackPanel>
                 </Grid>
             </Border>

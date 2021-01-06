@@ -130,6 +130,7 @@ namespace Main.Integration
                 this.twt7.dicNumToValue.Add(3, "宝石");
                 this.twt7.dicNumToValue.Add(4, "江汉");
                 this.twt7.dicNumToValue.Add(5, "三一轨道式");
+                this.twt7.dicNumToValue.Add(11, "修井铁钻工");
                 this.twt7.SetBinding(TextWithCombox.ShowTxtWithCBProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRType"], Mode = BindingMode.OneWay, ConverterParameter = this.twt7.dicNumToValue, Converter = new NumToTextConverter() });
                 // 猫道厂家
                 this.twt8.dicNumToValue = new Dictionary<int, string>();
@@ -144,6 +145,7 @@ namespace Main.Integration
                 this.twt9.dicNumToValue.Add(1, "三一");
                 this.twt9.dicNumToValue.Add(2, "宝石");
                 this.twt9.dicNumToValue.Add(3, "JJC");
+                this.twt7.dicNumToValue.Add(11, "修井液压站");
                 this.twt9.SetBinding(TextWithCombox.ShowTxtWithCBProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["HSType"], Mode = BindingMode.OneWay, ConverterParameter = this.twt9.dicNumToValue, Converter = new NumToTextConverter() });
                 // 钻台面厂家
                 this.twt10.dicNumToValue = new Dictionary<int, string>();
