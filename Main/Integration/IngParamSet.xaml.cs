@@ -145,7 +145,7 @@ namespace Main.Integration
                 this.twt9.dicNumToValue.Add(1, "三一");
                 this.twt9.dicNumToValue.Add(2, "宝石");
                 this.twt9.dicNumToValue.Add(3, "JJC");
-                this.twt7.dicNumToValue.Add(11, "修井液压站");
+                this.twt9.dicNumToValue.Add(11, "修井液压站");
                 this.twt9.SetBinding(TextWithCombox.ShowTxtWithCBProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["HSType"], Mode = BindingMode.OneWay, ConverterParameter = this.twt9.dicNumToValue, Converter = new NumToTextConverter() });
                 // 钻台面厂家
                 this.twt10.dicNumToValue = new Dictionary<int, string>();
@@ -204,9 +204,10 @@ namespace Main.Integration
                 this.twt19.SetBinding(TextWithCombox.ShowTxtWithCBProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["589b2"], Mode = BindingMode.OneWay, ConverterParameter = this.twt16.dicNumToValue, Converter = new BoolToTextConverter() });
                 // 对接厂家配置
                 this.twt20.dicNumToValue = new Dictionary<int, string>();
-                this.twt20.dicNumToValue.Add(0, "宝石");
-                this.twt20.dicNumToValue.Add(1, "宏华/胜利");
-                this.twt20.SetBinding(TextWithCombox.ShowTxtWithCBProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["IngSetting"], Mode = BindingMode.OneWay, ConverterParameter = this.twt16.dicNumToValue, Converter = new BoolToTextConverter() });
+                this.twt20.dicNumToValue.Add(0, "无");
+                this.twt20.dicNumToValue.Add(1, "宝石");
+                this.twt20.dicNumToValue.Add(2, "宏华/胜利");
+                this.twt20.SetBinding(TextWithCombox.ShowTxtWithCBProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["IngSetting"], Mode = BindingMode.OneWay, ConverterParameter = this.twt16.dicNumToValue, Converter = new NumToTextConverter() });
                 #endregion
             }
             catch (Exception ex)

@@ -61,15 +61,18 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
+                        <!--<ColumnDefinition/>
+                        <ColumnDefinition/>-->
                     </Grid.ColumnDefinitions>
-                    <cl:BasedSwitchButton Name="ControlModel" ContentLeft="本地" ContentDown="控制模式" ContentRight="集成" UserControlClicked="btn_ControlModel" Grid.Column="0" />
+                    <!--<cl:BasedSwitchButton Name="ControlModel" ContentLeft="本地" ContentDown="控制模式" ContentRight="集成" UserControlClicked="btn_ControlModel" Grid.Column="0" />-->
+                    <cl:BasedSwitchButton Name="WorkModel" ContentLeft="待机" ContentDown="工作模式" ContentRight="工作" UserControlClicked="btn_WorkModel" Grid.Column="0" />
                     <cl:BasedSwitchButton Name="MainPumpOne" ContentLeft="启动" ContentDown="1#主泵" ContentRight="停止" UserControlClicked="btn_MainPumpOne" Grid.Column="1" />
                     <cl:BasedSwitchButton Name="MainPumpTwo" ContentLeft="启动" ContentDown="2#主泵" ContentRight="停止" UserControlClicked="btn_MainPumpTwo" Grid.Column="2" />
-                    <cl:BasedSwitchButton Name="CyclePump" ContentLeft="启动" ContentDown="循环泵" ContentRight="停止" UserControlClicked="btn_CyclePump" Grid.Column="3" />
+                    <cl:BasedSwitchButton Name="CatOil" ContentLeft="启动" ContentDown="猫头供油" ContentRight="停止" UserControlClicked="btn_CatOil" Grid.Column="3" />
+
+                    <!--<cl:BasedSwitchButton Name="CyclePump" ContentLeft="启动" ContentDown="循环泵" ContentRight="停止" UserControlClicked="btn_CyclePump" Grid.Column="3" />
                     <cl:BasedSwitchButton Name="ColdFan" ContentLeft="启动" ContentDown="冷却风机" ContentRight="停止" UserControlClicked="btn_ColdFan" Grid.Column="4" />
-                    <cl:BasedSwitchButton Name="Hot" ContentLeft="启动" ContentDown="加热器" ContentRight="停止" UserControlClicked="btn_Hot" Grid.Column="5" />
+                    <cl:BasedSwitchButton Name="Hot" ContentLeft="启动" ContentDown="加热器" ContentRight="停止" UserControlClicked="btn_Hot" Grid.Column="5" />-->
                 </Grid>
             </Grid>
         </Border>

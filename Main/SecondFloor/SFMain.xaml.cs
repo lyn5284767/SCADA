@@ -2053,9 +2053,18 @@ namespace Main.SecondFloor
             {
                 string str1 = System.Environment.CurrentDirectory;
                 string filePath = str1 + "\\video" + "\\video1";
-                string fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + ".avi";
+                string fileName = string.Empty; 
                 ICameraFactory cameraOne = GlobalData.Instance.cameraList.Where(w => w.Info.ID == 1).FirstOrDefault();
                 if (cameraOne == null) return;
+                if (cameraOne.Info.CameraType == 0)
+                {
+                    fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + ".avi";
+                }
+                else if (cameraOne.Info.CameraType == 1)
+                {
+                    fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + ".h264";
+                }
+                else return;
                 cameraOne.StopFile();
                 cameraOne.SaveFile(filePath, fileName);
                 DeleteOldFileName(filePath);
@@ -2074,6 +2083,15 @@ namespace Main.SecondFloor
                 string fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + ".avi";
                 ICameraFactory cameraTwo = GlobalData.Instance.cameraList.Where(w => w.Info.ID == 2).FirstOrDefault();
                 if (cameraTwo == null) return;
+                if (cameraTwo.Info.CameraType == 0)
+                {
+                    fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + ".avi";
+                }
+                else if (cameraTwo.Info.CameraType == 1)
+                {
+                    fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + ".h264";
+                }
+                else return;
                 cameraTwo.StopFile();
                 cameraTwo.SaveFile(filePath, fileName);
                 DeleteOldFileName(filePath);

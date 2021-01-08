@@ -71,7 +71,7 @@ namespace Main.HydraulicStation.JJC
                 btnRotateCatHeadRetract.AddHandler(Button.MouseDownEvent, new RoutedEventHandler(BtnRotateCatRetract_Click), true);
                 btnRotateCatHeadRetract.AddHandler(Button.MouseUpEvent, new RoutedEventHandler(BtnRotateCatHeadRetract_MouseUp), true);
                 #endregion
-                this.tbSoftErrorCode.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["HS_JJC_SoftStartErrorCode"], Mode = BindingMode.OneWay });
+                this.tbSoftErrorCode.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["HS_JJC_SoftStartErrorCode"], Mode = BindingMode.OneWay,Converter = new HS_JJC_SoftStartCodeConverter() });
                 this.tbSystemStatus.SetBinding(TextBlock.TextProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["733b0"], Mode = BindingMode.OneWay, Converter = new HS_JJC_SystemStatusConverter() });
                 MultiBinding hs_JJC_SoftMultiBind = new MultiBinding();
                 hs_JJC_SoftMultiBind.Converter = new HS_JJC_SoftConverter();
@@ -79,13 +79,16 @@ namespace Main.HydraulicStation.JJC
                 hs_JJC_SoftMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["733b2"], Mode = BindingMode.OneWay });
                 hs_JJC_SoftMultiBind.NotifyOnSourceUpdated = true;
                 this.tbSoftStart.SetBinding(TextBlock.TextProperty, hs_JJC_SoftMultiBind);
-   
-                this.ControlModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["735b0"], Mode = BindingMode.OneWay });
+
+                //this.ControlModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["735b0"], Mode = BindingMode.OneWay });
+                this.WorkModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["734b1"], Mode = BindingMode.OneWay });
                 this.MainPumpOne.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["733b3"], Mode = BindingMode.OneWay });
                 this.MainPumpTwo.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["733b4"], Mode = BindingMode.OneWay });
-                this.CyclePump.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["733b5"], Mode = BindingMode.OneWay });
-                this.ColdFan.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["733b6"], Mode = BindingMode.OneWay });
-                this.Hot.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["733b7"], Mode = BindingMode.OneWay });
+                this.CatOil.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["734b0"], Mode = BindingMode.OneWay });
+
+                //this.CyclePump.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["733b5"], Mode = BindingMode.OneWay });
+                //this.ColdFan.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["733b6"], Mode = BindingMode.OneWay });
+                //this.Hot.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["733b7"], Mode = BindingMode.OneWay });
 
                 MultiBinding hs_JJC_WorkModelMultiBind = new MultiBinding();
                 hs_JJC_WorkModelMultiBind.Converter = new HS_JJC_WorkModelConverter();
@@ -131,6 +134,7 @@ namespace Main.HydraulicStation.JJC
                     if (iTimeCnt > 1000) iTimeCnt = 0;
                     this.Warnning();
                     this.Communcation();
+                    this.MonitorAlarmStatus();
                     SendByCycle();
                 }));
             }
@@ -142,7 +146,8 @@ namespace Main.HydraulicStation.JJC
         private bool tmpStatus = false; // 控制台心跳临时存储状态
         private int controlHeartTimes = 0; // 控制台心跳次数
         private bool bCheckTwo = false;
-        Dictionary<string, byte> alarmKey = new Dictionary<string, byte>();
+        //Dictionary<string, byte> alarmKey = new Dictionary<string, byte>();
+        List<AlarmInfo> alarmList = new List<AlarmInfo>();
         /// <summary>
         /// 通信数据
         /// </summary>
@@ -182,114 +187,61 @@ namespace Main.HydraulicStation.JJC
 
         private void InitAlarmKey()
         {
-            alarmKey.Add("1号泵热继故障", 0);
-            alarmKey.Add("2号泵热继故障", 0);
-            alarmKey.Add("循环泵热继故障", 0);
-            alarmKey.Add("冷却热继故障", 0);
-            alarmKey.Add("液位过低", 0);
-            alarmKey.Add("油温过高", 0);
-            alarmKey.Add("油温过低", 0);
+            //alarmKey.Add("1号泵热继故障", 0);
+            //alarmKey.Add("2号泵热继故障", 0);
+            //alarmKey.Add("循环泵热继故障", 0);
+            //alarmKey.Add("冷却热继故障", 0);
+            //alarmKey.Add("液位过低,请及时加注液压油", 0);
+            //alarmKey.Add("油温过高", 0);
+            //alarmKey.Add("油温过低", 0);
+            alarmList.Add(new AlarmInfo() { TagName = "733b0", Description = "液压站急停", NowType = 0 });
+            alarmList.Add(new AlarmInfo() { TagName = "733b1", Description = "软启动器运行中", NowType = 0 });
+            alarmList.Add(new AlarmInfo() { TagName = "735b5", Description = "液位过低，请及时加注液压油", NowType = 0 });
+            alarmList.Add(new AlarmInfo() { TagName = "735b6", Description = "油温过高，请及时开启散热", NowType = 0 });
+            alarmList.Add(new AlarmInfo() { TagName = "735b7", Description = "油温过低，请开启加热", NowType = 0 });
+            alarmList.Add(new AlarmInfo() { TagName = "735b1", Description = "1号泵热继故障", NowType = 0 });
+            alarmList.Add(new AlarmInfo() { TagName = "735b2", Description = "2号泵热继故障", NowType = 0 });
+            alarmList.Add(new AlarmInfo() { TagName = "735b3", Description = "循环泵热继故障", NowType = 0 });
+            alarmList.Add(new AlarmInfo() { TagName = "735b4", Description = "冷却泵热继故障", NowType = 0 });
+        }
+
+        /// <summary>
+        /// 监控告警状态
+        /// </summary>
+        private void MonitorAlarmStatus()
+        {
+            foreach (AlarmInfo info in alarmList)
+            {
+                if (info.TagName == "733b0")
+                {
+                    if (!GlobalData.Instance.da[info.TagName].Value.Boolean)//有报警
+                    {
+                        if (info.NowType == 0) info.NowType = 1;// 前状态为未告警
+                    }
+                    else
+                    {
+                        info.NowType = 0;
+                    }
+                }
+                else
+                {
+                    if (GlobalData.Instance.da[info.TagName].Value.Boolean)//有报警
+                    {
+                        if (info.NowType == 0) info.NowType = 1;// 前状态为未告警
+                    }
+                    else
+                    {
+                        info.NowType = 0;
+                    }
+                }
+            }
         }
         /// <summary>
         /// 告警信号
         /// </summary>
         private void Warnning()
         {
-            if (GlobalData.Instance.da["735b1"].Value.Boolean)//1号泵热继故障
-            {
-                if(alarmKey["1号泵热继故障"] == 0) alarmKey["1号泵热继故障"] = 1;
-            }
-            else
-            {
-                alarmKey["1号泵热继故障"] = 0;
-            }
-            if (GlobalData.Instance.da["735b2"].Value.Boolean)//2号泵热继故障
-            {
-                if (alarmKey["2号泵热继故障"] == 0) alarmKey["2号泵热继故障"] = 1;
-            }
-            else
-            {
-                alarmKey["2号泵热继故障"] = 0;
-            }
-            if (GlobalData.Instance.da["735b3"].Value.Boolean)//循环泵热继故障
-            {
-                if (alarmKey["循环泵热继故障"] == 0) alarmKey["循环泵热继故障"] = 1;
-            }
-            else
-            {
-                alarmKey["循环泵热继故障"] = 0;
-            }
-            if (GlobalData.Instance.da["735b4"].Value.Boolean)//冷却热继故障
-            {
-                if (alarmKey["冷却热继故障"] == 0) alarmKey["冷却热继故障"] = 1;
-            }
-            else
-            {
-                alarmKey["冷却热继故障"] = 0;
-            }
-            if (GlobalData.Instance.da["735b5"].Value.Boolean)//液位过低
-            {
-                if (alarmKey["液位过低"] == 0) alarmKey["液位过低"] = 1;
-            }
-            else
-            {
-                alarmKey["液位过低"] = 0;
-            }
-            if (GlobalData.Instance.da["735b6"].Value.Boolean)//油温过高
-            {
-                if (alarmKey["油温过高"] == 0) alarmKey["油温过高"] = 1;
-            }
-            else
-            {
-                alarmKey["油温过高"] = 0;
-            }
-            if (GlobalData.Instance.da["735b7"].Value.Boolean)//油温过低
-            {
-                if (alarmKey["油温过低"] == 0) alarmKey["油温过低"] = 1;
-            }
-            else
-            {
-                alarmKey["油温过低"] = 0;
-            }
-
-            if (iTimeCnt % 10 == 0)
-            {
-                if (alarmKey.Count > 0)
-                {
-                    this.tbAlarm.FontSize = 14;
-                    this.tbAlarm.Visibility = Visibility.Visible;
-
-                    if (!alarmKey.ContainsValue(1) && alarmKey.ContainsValue(2)) // 如果没有显示为1的值，但是有显示为2的值，表示有告警且，显示循环完成，重置为1继续循环
-                    {
-                        foreach (var key in alarmKey.Keys.ToList())
-                        {
-                            if (alarmKey[key] == 2)
-                            {
-                                alarmKey[key] = 1;
-                            }
-                        }
-                    }
-
-                    foreach (var key in alarmKey.Keys.ToList())
-                    {
-                        if (alarmKey[key] == 1)
-                        {
-                            this.tbAlarm.Text = key;
-                            alarmKey[key] = 2;
-                            break;
-                        }
-                    }
-                }
-                else
-                {
-                    this.tbAlarm.Visibility = Visibility.Hidden;
-                    this.tbAlarm.Text = "";
-                }
-            }
-            else
-            {
-                this.tbAlarm.FontSize = 20;
-            }
+            
         }
         /// <summary>
         /// 主泵1启停
@@ -330,16 +282,16 @@ namespace Main.HydraulicStation.JJC
         /// </summary>
         private void btn_ColdFan(object sender, EventArgs e)
         {
-            byte[] byteToSend;
-            if (this.ColdFan.IsChecked) //当前启动状态
-            {
-                byteToSend = new byte[10] { 0, 19, 6, 2, 0, 0, 0, 0, 0, 0 };
-            }
-            else//当前停止状态
-            {
-                byteToSend = new byte[10] { 0, 19, 6, 1, 0, 0, 0, 0, 0, 0 };
-            }
-            GlobalData.Instance.da.SendBytes(byteToSend);
+            //byte[] byteToSend;
+            //if (this.ColdFan.IsChecked) //当前启动状态
+            //{
+            //    byteToSend = new byte[10] { 0, 19, 6, 2, 0, 0, 0, 0, 0, 0 };
+            //}
+            //else//当前停止状态
+            //{
+            //    byteToSend = new byte[10] { 0, 19, 6, 1, 0, 0, 0, 0, 0, 0 };
+            //}
+            //GlobalData.Instance.da.SendBytes(byteToSend);
         }
 
         /// <summary>
@@ -347,16 +299,16 @@ namespace Main.HydraulicStation.JJC
         /// </summary>
         private void btn_Hot(object sender, EventArgs e)
         {
-            byte[] byteToSend;
-            if (this.Hot.IsChecked) //当前启动状态
-            {
-                byteToSend = new byte[10] { 0, 19, 7, 2, 0, 0, 0, 0, 0, 0 };
-            }
-            else//当前停止状态
-            {
-                byteToSend = new byte[10] { 0, 19, 7, 1, 0, 0, 0, 0, 0, 0 };
-            }
-            GlobalData.Instance.da.SendBytes(byteToSend);
+            //byte[] byteToSend;
+            //if (this.Hot.IsChecked) //当前启动状态
+            //{
+            //    byteToSend = new byte[10] { 0, 19, 7, 2, 0, 0, 0, 0, 0, 0 };
+            //}
+            //else//当前停止状态
+            //{
+            //    byteToSend = new byte[10] { 0, 19, 7, 1, 0, 0, 0, 0, 0, 0 };
+            //}
+            //GlobalData.Instance.da.SendBytes(byteToSend);
         }
 
         /// <summary>
@@ -364,16 +316,16 @@ namespace Main.HydraulicStation.JJC
         /// </summary>
         private void btn_CyclePump(object sender, EventArgs e)
         {
-            byte[] byteToSend;
-            if (this.CyclePump.IsChecked) //当前启动状态
-            {
-                byteToSend = new byte[10] { 0, 19, 5, 2, 0, 0, 0, 0, 0, 0 };
-            }
-            else//当前停止状态
-            {
-                byteToSend = new byte[10] { 0, 19, 5, 1, 0, 0, 0, 0, 0, 0 };
-            }
-            GlobalData.Instance.da.SendBytes(byteToSend);
+            //byte[] byteToSend;
+            //if (this.CyclePump.IsChecked) //当前启动状态
+            //{
+            //    byteToSend = new byte[10] { 0, 19, 5, 2, 0, 0, 0, 0, 0, 0 };
+            //}
+            //else//当前停止状态
+            //{
+            //    byteToSend = new byte[10] { 0, 19, 5, 1, 0, 0, 0, 0, 0, 0 };
+            //}
+            //GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
         /// 设置猫头压力百分比
@@ -418,34 +370,39 @@ namespace Main.HydraulicStation.JJC
 
         private void SendByCycle()
         {
+            // 左猫头伸
             if (leftCatReach)
             {
                 byte[] byteToSend = new byte[10] { 0, 19, 3, 1, 1, 0, 0, 0, 0, 0 };
                 GlobalData.Instance.da.SendBytes(byteToSend);
 
             }
+            // 左猫头缩
             if (leftCatRetract)
             {
                 byte[] byteToSend = new byte[10] { 0, 19, 3, 2, 1, 0, 0, 0, 0, 0 };
                 GlobalData.Instance.da.SendBytes(byteToSend);
             }
+            // 右猫头伸
             if (rightCatReach)
             {
                 byte[] byteToSend = new byte[10] { 0, 19, 3, 1, 2, 0, 0, 0, 0, 0 };
                 GlobalData.Instance.da.SendBytes(byteToSend);
                 Thread.Sleep(50);
             }
+            // 右猫头缩
             if (rightCatRetract)
             {
                 byte[] byteToSend = new byte[10] { 0, 19, 3, 2, 2, 0, 0, 0, 0, 0 };
                 GlobalData.Instance.da.SendBytes(byteToSend);
             }
+            //旋转猫头正转
             if (rotateCatReach)
             {
                 byte[] byteToSend = new byte[10] { 0, 19, 3, 1, 3, 0, 0, 0, 0, 0 };
                 GlobalData.Instance.da.SendBytes(byteToSend);
             }
-
+            // 旋转猫头反转
             if (rotateCatRetract)
             {
                 byte[] byteToSend = new byte[10] { 0, 19, 3, 2, 3, 0, 0, 0, 0, 0 };
@@ -597,6 +554,23 @@ namespace Main.HydraulicStation.JJC
         private void btn_SelectCatWorkModel(object sender, RoutedEventArgs e)
         {
             byte[] byteToSend = new byte[10] { 0, 19, 3, 2, 4, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 工作模式切换
+        /// </summary>
+
+        private void btn_WorkModel(object sender, EventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 0, 19, 9, 0, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 猫头供油
+        /// </summary>
+        private void btn_CatOil(object sender, EventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 0, 19, 10, 0, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
     }

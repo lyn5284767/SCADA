@@ -81,12 +81,12 @@ namespace Main.Integration
                         this.pbper.Value = 10;
                     }
                     #endregion
-                    StartHS();
-                    CheckDeviceStatus();
-                    StartPipeTypeAndDes();
-                    TurnToAuto();
-                    SelectWorkModel();
-                    SelectedDrill();
+                    if (StartHS()) return;
+                    if (CheckDeviceStatus()) return;
+                    if (StartPipeTypeAndDes()) return;
+                    if (TurnToAuto()) return;
+                    if (SelectWorkModel()) return;
+                    if (SelectedDrill()) return;
                     StartLinkModel();
                 }));
             }
@@ -99,24 +99,25 @@ namespace Main.Integration
         /// <summary>
         /// step 2 启动液压站
         /// </summary>
-        private void StartHS()
+        private bool StartHS()
         {
             if (this.pbper.Value == 10)
             {
                 this.tbCurTip.Text = "检查液压站模式";
                 this.pbper.Value = 15;
-                return;
+                return true;
             }
             if (this.pbper.Value == 15) //1.检查液压站操作模式 15->20
             {
                 CheckHSWorkModel();
-                return;
+                return true;
             }
             if (this.pbper.Value == 20 || this.pbper.Value == 25)// 2.启动液压站 20->30
             {
                 StartHSPump();
-                return;
+                return true;
             }
+            return false;
         }
         /// <summary>
         /// 检查液压站操作模式
@@ -132,6 +133,12 @@ namespace Main.Integration
                 else if (GlobalData.Instance.da.GloConfig.HydType == 1)
                 {
                     #region 切换到司钻
+                    if (GlobalData.Instance.da["771b5"] == null || GlobalData.Instance.da["771b6"] == null)
+                    {
+                        this.tbCurTip.Text = "自研液压站数据库出错";
+                        return;
+                    }
+
                     if (GlobalData.Instance.da["771b5"].Value.Boolean && !GlobalData.Instance.da["771b6"].Value.Boolean)// 本地模式
                     {
                         this.tbCurTip.Text = "液压站处于本地控制模式，请切换到司钻再启动";
@@ -153,7 +160,21 @@ namespace Main.Integration
                 else if (GlobalData.Instance.da.GloConfig.HydType == 2)
                 { }
                 else if (GlobalData.Instance.da.GloConfig.HydType == 3)
-                { }
+                {
+                    if (!GlobalData.Instance.da["734b1"].Value.Boolean)
+                    {
+                        this.tbCurTip.Text = "泵准备启动";
+                        this.pbper.Value = 20;
+                        IsSend = false;
+                    }
+                    else
+                    {
+                        this.tbCurTip.Text = "液压站处于待机状态，正在启用";
+                        byte[] byteToSend = new byte[10] { 0, 19, 9, 0, 0, 0, 0, 0, 0, 0 }; 
+                        string tips = "液压站启用超时，正在重新启动";
+                        CheckOverTime(byteToSend, tips, 5);
+                    }
+                }
                 else
                 {
                     MessageBox.Show("液压站配置错误！请联系售后人员");
@@ -254,7 +275,81 @@ namespace Main.Integration
                 else if (GlobalData.Instance.da.GloConfig.HydType == 2)
                 { }
                 else if (GlobalData.Instance.da.GloConfig.HydType == 3)
-                { }
+                {
+                    #region JJC液压站启动泵
+                    if (tmpModel.HS_PumpType == 0)
+                    {
+                        this.tbCurTip.Text = "模式中未设置液压站，请返回修改";
+                    }
+                    else if (tmpModel.HS_PumpType == 1)
+                    {
+                        if (!GlobalData.Instance.da["733b3"].Value.Boolean) // 1#泵启动
+                        {
+                            this.tbCurTip.Text = "1#泵启动成功，准备检查电机状态";
+                            this.pbper.Value = 30;
+                            IsSend = false;
+                        }
+                        else
+                        {
+                            byte[] byteToSend = new byte[10] { 0, 19, 1, 1, 0, 0, 0, 0, 0, 0 }; // 1#泵启动协议
+                            string tips = "1#泵启动超时，重新启动";
+                            CheckOverTime(byteToSend, tips, 5);
+                        }
+                    }
+                    else if (tmpModel.HS_PumpType == 2)
+                    {
+                        if (!GlobalData.Instance.da["733b4"].Value.Boolean) // 2#泵启动
+                        {
+                            this.tbCurTip.Text = "2#泵启动成功，准备检查电机状态";
+                            this.pbper.Value = 30;
+                            IsSend = false;
+                        }
+                        else
+                        {
+                            byte[] byteToSend = new byte[10] { 0, 19, 2, 1, 0, 0, 0, 0, 0, 0 }; // 2#泵启动协议
+                            string tips = "2#泵启动超时，重新启动";
+                            CheckOverTime(byteToSend, tips, 5);
+                        }
+                    }
+                    else if (tmpModel.HS_PumpType == 3)
+                    {
+                        if (this.pbper.Value == 20)
+                        {
+                            if (!GlobalData.Instance.da["733b3"].Value.Boolean) // 1#泵启动
+                            {
+                                this.tbCurTip.Text = "1#泵启动成功,准备启动2#泵";
+                                this.pbper.Value = 25;
+                                IsSend = false;
+                            }
+                            else
+                            {
+                                byte[] byteToSend = new byte[10] { 0, 19, 1, 1, 0, 0, 0, 0, 0, 0 }; // 1#泵启动协议
+                                string tips = "1#泵启动超时，重新启动";
+                                CheckOverTime(byteToSend, tips, 5);
+                            }
+                        }
+                        else if (this.pbper.Value == 25)
+                        {
+                            if (!GlobalData.Instance.da["733b4"].Value.Boolean) // 2#泵启动
+                            {
+                                this.tbCurTip.Text = "2#泵启动成功，准备检查电机状态";
+                                this.pbper.Value = 30;
+                                IsSend = false;
+                            }
+                            else
+                            {
+                                byte[] byteToSend = new byte[10] { 0, 19, 2, 1, 0, 0, 0, 0, 0, 0 }; // 2#泵启动协议
+                                string tips = "2#泵启动超时，重新启动";
+                                CheckOverTime(byteToSend, tips, 5);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        this.tbCurTip.Text = "模式中设置液压站错误，请返回修改";
+                    }
+                    #endregion
+                }
                 else
                 {
                     MessageBox.Show("液压站配置错误！请联系售后人员");
@@ -271,19 +366,19 @@ namespace Main.Integration
         /// <summary>
         ///  Step 3 检查设备状态
         /// </summary>
-        private void CheckDeviceStatus()
+        private bool CheckDeviceStatus()
         {
             // 1.检查二层台电机是否需要使能
             if (this.pbper.Value == 30)
             {
                 SFMonitorEnable();
-                return;
+                return true;
             }
             // 2.检查钻台面电机是否需要使能
             if (this.pbper.Value == 35)
             {
                 DRMonitorEnable();
-                return;
+                return true;
             }
             // 3.检查铁钻工系统压力
             if (this.pbper.Value == 40)
@@ -297,14 +392,15 @@ namespace Main.Integration
                     this.tbCurTip.Text = "铁钻工系统压力正常";
                     this.pbper.Value = 45;
                 }
-                return;
+                return true;
             }
             // 4.检查二层台/钻台面回零情况
             if (this.pbper.Value == 45)
             {
                 SFAndDRTurnToZero();
-                return;
+                return true;
             }
+            return false;
         }
         /// <summary>
         /// 二层台电机使能
@@ -425,7 +521,7 @@ namespace Main.Integration
         /// <summary>
         /// Step 4 选择目的地和钻杆类型
         /// </summary>
-        private void StartPipeTypeAndDes()
+        private bool StartPipeTypeAndDes()
         {
             int pipeType = -1;
             // 尺寸>60，标志为特殊 或 尺寸<60,标志为普通 为钻杆
@@ -444,20 +540,21 @@ namespace Main.Integration
             if (this.pbper.Value == 50)
             {
                 SFPipeSet(pipeType);
-                return;
+                return true;
             }
             // 2.设置钻台面管柱类型
             if (this.pbper.Value == 55)
             {
                 DRPipeSet();
-                return;
+                return true;
             }
             // 3.设置钻台面的目的地
             if (this.pbper.Value == 60)
             {
                 DRDesTypeSet();
-                return;
+                return true;
             }
+            return false;
         }
         /// <summary>
         /// 设置二层台管柱类型
@@ -544,13 +641,14 @@ namespace Main.Integration
         /// <summary>
         /// step 5 切换到自动模式
         /// </summary>
-        private void TurnToAuto()
+        private bool TurnToAuto()
         {
             if (this.pbper.Value == 65)
             {
                 AutoSet();
-                return;
+                return true;
             }
+            return false;
         }
         /// <summary>
         /// 设置自动模式
@@ -581,7 +679,9 @@ namespace Main.Integration
                 sirAuto = GlobalData.Instance.da["SIRSelfOperModel"].Value.Byte == 5 ? true : false;
             }
             else if (GlobalData.Instance.da.GloConfig.SIRType == 2)
-            { }
+            {
+                sirAuto = true;
+            }
             else if (GlobalData.Instance.da.GloConfig.SIRType == 3)
             { }
             else if (GlobalData.Instance.da.GloConfig.SIRType == 4)
@@ -603,9 +703,17 @@ namespace Main.Integration
                 byte[] sirbyteToSend;// 铁钻工
                 sfbyteToSend = GlobalData.Instance.SendByte(new List<byte> { 1, 5 });
                 drbyteToSend = new byte[10] { 1, 32, 3, 31, 0, 0, 0, 0, 0, 0 };
-                sirbyteToSend = new byte[10] { 23, 17, 1, 2, 0, 0, 0, 0, 0, 0 };
+                
                 string tips = "切换自动模式超时，正在重新切换";
-                CheckOverTime(sfbyteToSend, drbyteToSend, sirbyteToSend, tips, 5);
+                if (GlobalData.Instance.da.GloConfig.SIRType == 1)
+                {
+                    sirbyteToSend = new byte[10] { 23, 17, 1, 2, 0, 0, 0, 0, 0, 0 };
+                    CheckOverTime(sfbyteToSend, drbyteToSend, sirbyteToSend, tips, 5);
+                }
+                else if (GlobalData.Instance.da.GloConfig.SIRType == 2)
+                {
+                    CheckOverTime(sfbyteToSend, drbyteToSend, tips, 5);
+                }
             }
         }
         #endregion
@@ -614,13 +722,14 @@ namespace Main.Integration
         /// <summary>
         ///  step 6 选择工作模式
         /// </summary>
-        private void SelectWorkModel()
+        private bool SelectWorkModel()
         {
             if (this.pbper.Value == 70)
             {
                 WorkModelSet();
-                return;
+                return true;
             }
+            return false;
         }
         /// <summary>
         /// 工作模式设备
@@ -688,6 +797,7 @@ namespace Main.Integration
             }
             else if (GlobalData.Instance.da.GloConfig.SIRType == 2)
             {
+                sirWorkModel = this.tmpModel.WorkType;
             }
             else if (GlobalData.Instance.da.GloConfig.SIRType == 3)
             { }
@@ -720,15 +830,29 @@ namespace Main.Integration
                 {
                     sfbyteToSend = GlobalData.Instance.SendByte(new List<byte> { 2, 1 });
                     drbyteToSend = new byte[10] { 1, 32, 4, 41, 0, 0, 0, 0, 0, 0 };
-                    sirbyteToSend = new byte[10] { 23, 17, 2, 1, 0, 0, 0, 0, 0, 0 };
-                    CheckOverTime(sfbyteToSend, drbyteToSend, sirbyteToSend, tips, 10);
+                    if (GlobalData.Instance.da.GloConfig.SIRType == 1)
+                    {
+                        sirbyteToSend = new byte[10] { 23, 17, 2, 1, 0, 0, 0, 0, 0, 0 };
+                        CheckOverTime(sfbyteToSend, drbyteToSend, sirbyteToSend, tips, 10);
+                    }
+                    else if (GlobalData.Instance.da.GloConfig.SIRType == 2)
+                    {
+                        CheckOverTime(sfbyteToSend, drbyteToSend, tips, 10);
+                    }
                 }
                 else if (this.tmpModel.WorkType == 2)
                 {
                     sfbyteToSend = GlobalData.Instance.SendByte(new List<byte> { 2, 2 });
                     drbyteToSend = new byte[10] { 1, 32, 4, 40, 0, 0, 0, 0, 0, 0 };
-                    sirbyteToSend = new byte[10] { 23, 17, 2, 2, 0, 0, 0, 0, 0, 0 };
-                    CheckOverTime(sfbyteToSend, drbyteToSend, sirbyteToSend, tips, 10);
+                    if (GlobalData.Instance.da.GloConfig.SIRType == 1)
+                    {
+                        sirbyteToSend = new byte[10] { 23, 17, 2, 2, 0, 0, 0, 0, 0, 0 };
+                        CheckOverTime(sfbyteToSend, drbyteToSend, sirbyteToSend, tips, 10);
+                    }
+                    else if (GlobalData.Instance.da.GloConfig.SIRType == 2)
+                    {
+                        CheckOverTime(sfbyteToSend, drbyteToSend, tips, 10);
+                    }
                 }
                 else
                 {
@@ -743,13 +867,14 @@ namespace Main.Integration
         /// <summary>
         ///  step 7 选择指梁
         /// </summary>
-        private void SelectedDrill()
+        private bool SelectedDrill()
         {
             if (this.pbper.Value == 80)
             {
                 SelectDrillSet();
-                return;
+                return true;
             }
+            return false;
         }
         /// <summary>
         /// 设置选择的指梁

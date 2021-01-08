@@ -41,6 +41,9 @@ namespace Main.SecondFloor
                 return _instance;
             }
         }
+
+        byte[] gripSetValue;
+        byte[] FingerSetValue;
         System.Threading.Timer timer;
         public SFPosSetTwo()
         {
@@ -68,8 +71,50 @@ namespace Main.SecondFloor
                 this.twt105.Visibility = Visibility.Collapsed;
                 this.twt106.Visibility = Visibility.Collapsed;
             }
+            this.twt97.SFSendProtocolEvent += SFSendProtocolEvent;
+            this.twt110.SFSendProtocolEvent += SFSendProtocolEvent;
+            this.twt112.SFSendProtocolEvent += SFSendProtocolEvent;
+            this.twt98.SFSendProtocolEvent += SFSendProtocolEvent;
+            this.twt114.SFSendProtocolEvent += SFSendProtocolEvent;
+            this.twt108.SFSendProtocolEvent += SFSendProtocolEvent;
+            this.twt99.SFSendProtocolEvent += SFSendProtocolEvent;
+            this.twt100.SFSendProtocolEvent += SFSendProtocolEvent;
+            this.twt109.SFSendProtocolEvent += SFSendProtocolEvent;
+            this.twt101.SFSendProtocolEvent += SFSendProtocolEvent;
+            this.twt102.SFSendProtocolEvent += SFSendProtocolEvent;
+            this.twt103.SFSendProtocolEvent += SFSendProtocolEvent;
+            this.twt104.SFSendProtocolEvent += SFSendProtocolEvent;
+            this.twt105.SFSendProtocolEvent += SFSendProtocolEvent;
+            this.twt106.SFSendProtocolEvent += SFSendProtocolEvent;
+            this.twt107.SFSendProtocolEvent += SFSendProtocolEvent;
+
+            this.twt129.SFSendProtocolEvent += Finger_SFSendProtocolEvent;
+            this.twt130.SFSendProtocolEvent += Finger_SFSendProtocolEvent;
+            this.twt131.SFSendProtocolEvent += Finger_SFSendProtocolEvent;
+            this.twt132.SFSendProtocolEvent += Finger_SFSendProtocolEvent;
         }
 
+        private void Finger_SFSendProtocolEvent(byte[] SetParam)
+        {
+            if (FingerSetValue.Length == 2)
+            {
+                SetParam[4] = FingerSetValue[0];
+                SetParam[5] = FingerSetValue[1];
+                GlobalData.Instance.da.SendBytes(SetParam);
+                this.tbFingerSet.Text = "0";
+            }
+        }
+
+        private void SFSendProtocolEvent(byte[] SetParam)
+        {
+            if (gripSetValue.Length == 2)
+            {
+                SetParam[4] = gripSetValue[0];
+                SetParam[5] = gripSetValue[1];
+                GlobalData.Instance.da.SendBytes(SetParam);
+                this.tbGripSet.Text = "0";
+            }
+        }
 
         private void Timer_Elapsed(object obj)
         {
@@ -104,6 +149,48 @@ namespace Main.SecondFloor
             catch (Exception ex)
             {
                 Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+            }
+        }
+
+        private void tb_ParameterConfig_Focus(object sender, MouseButtonEventArgs e)
+        {
+            if(e.ChangedButton == MouseButton.Left)
+            {
+                GlobalData.Instance.GetKeyBoard();
+            }
+        }
+        /// <summary>
+        /// 抓手标定值失去焦点
+        /// </summary>
+        private void tbGripSet_LostFocus(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string strText = this.tbGripSet.Text;
+                if (strText.Length == 0) strText = "0";
+                short i16Text = Convert.ToInt16(strText);
+                gripSetValue = BitConverter.GetBytes(i16Text);
+            }
+            catch (Exception ex)
+            {
+                this.tbGripSet.Text = "0";
+                MessageBox.Show("超出设置范围");
+            }
+        }
+
+        private void tbFingerSet_LostFocus(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string strText = this.tbFingerSet.Text;
+                if (strText.Length == 0) strText = "0";
+                short i16Text = Convert.ToInt16(strText);
+                FingerSetValue = BitConverter.GetBytes(i16Text);
+            }
+            catch (Exception ex)
+            {
+                this.tbGripSet.Text = "0";
+                MessageBox.Show("超出设置范围");
             }
         }
     }

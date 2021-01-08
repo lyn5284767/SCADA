@@ -164,7 +164,9 @@
                                     <MenuItem Header="猫道-鼠洞" Click="btn_SelectDes" TabIndex="3"/>
                                 </MenuItem>
                                 <MenuItem Header="回零"  FontSize="24">
+                                    <MenuItem Header="一键回零" Click="btn_AllToZero"/>
                                     <MenuItem Header="小车回零" Click="btn_CarToZero"/>
+                                    <MenuItem Header="手臂回零" Click="btn_ArmToZero"/>
                                     <MenuItem Header="旋转回零" Click="btn_RotateToZero"/>
                                 </MenuItem>
                                 <MenuItem Header="清除钻杆" FontSize="24" Click="btnClearDrill" />

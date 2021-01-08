@@ -869,6 +869,15 @@ namespace Main.SIR
                 string fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + ".avi";
                 ICameraFactory cameraOne = GlobalData.Instance.cameraList.Where(w => w.Info.ID == 5).FirstOrDefault();
                 if (cameraOne == null) return;
+                if (cameraOne.Info.CameraType == 0)
+                {
+                    fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + ".avi";
+                }
+                else if (cameraOne.Info.CameraType == 1)
+                {
+                    fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + ".h264";
+                }
+                else return;
                 cameraOne.StopFile();
                 cameraOne.SaveFile(filePath, fileName);
                 DeleteOldFileName(filePath);
@@ -888,6 +897,15 @@ namespace Main.SIR
                 string fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + ".avi";
                 ICameraFactory cameraOne = GlobalData.Instance.cameraList.Where(w => w.Info.ID == 6).FirstOrDefault();
                 if (cameraOne == null) return;
+                if (cameraOne.Info.CameraType == 0)
+                {
+                    fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + ".avi";
+                }
+                else if (cameraOne.Info.CameraType == 1)
+                {
+                    fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + ".h264";
+                }
+                else return;
                 cameraOne.StopFile();
                 cameraOne.SaveFile(filePath, fileName);
                 DeleteOldFileName(filePath);

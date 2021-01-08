@@ -5345,6 +5345,56 @@ namespace COM.Common
             throw new NotImplementedException();
         }
     }
+
+    /// <summary>
+    /// 软启动故障代码
+    /// </summary>
+    public class HS_JJC_SoftStartCodeConverter : IValueConverter
+    {
+
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null || value == DependencyProperty.UnsetValue)
+            {
+                return "未知";
+            }
+
+            int val = (short)value;
+            switch (val)
+            {
+                case 128:
+                    return "电机无反应";
+                case 129:
+                    return "电机启动缺相";
+                case 130:
+                    return "启动硅过热";
+                case 131:
+                    return "启动失败";
+                case 132:
+                    return "软起输入或输出短路/电机连接开路";
+                case 133:
+                    return "限流功能失效或电机运行过流";
+                case 134:
+                    return "电机热过载";
+                case 135:
+                    return "相序错误";
+                case 136:
+                    return "相电流不平衡";
+                case 137:
+                    return "参数丢失";
+                case 138:
+                    return "接线错误";
+                default:
+                    return "正常";
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     #endregion
 
     #region JJC铁钻工

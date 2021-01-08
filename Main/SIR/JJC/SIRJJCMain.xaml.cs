@@ -162,7 +162,8 @@ namespace Main.SIR
             this.tubeType.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["IDDrillType"], Mode = BindingMode.OneWay, Converter = new SIR_JJC_DrillTypeConverter() });
 
             this.cbSafeLimit.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["535b6"], Mode = BindingMode.OneWay });
-
+            this.smAllowIron.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["802b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.smDFAntiCollision.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["308b1"], Mode = BindingMode.OneWay, Converter = new OppositeBoolTagConverter() });
         }
 
         /// <summary>
@@ -265,7 +266,10 @@ namespace Main.SIR
             {
                 try
                 {
-                    short i16Text = Convert.ToInt16(strText);
+                    if (strText.Length == 0) strText = "0";
+                    short i16Text = (short)(double.Parse(strText) * 10);
+
+                    //short i16Text = Convert.ToInt16(strText);
                     byte[] tempByte = BitConverter.GetBytes(i16Text);
                     GlobalData.Instance.ConfigParameter[0] = (byte)int.Parse(tb.Tag.ToString());
                     GlobalData.Instance.ConfigParameter[1] = tempByte[0];

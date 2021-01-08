@@ -42,6 +42,7 @@ namespace Main.SecondFloor
             }
         }
         System.Threading.Timer timer;
+        byte[] rightDrillSetValue;
         public SFPosSetFive()
         {
             InitializeComponent();
@@ -50,6 +51,37 @@ namespace Main.SecondFloor
             this.txtRotateAngle_LocationCalibration.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["callAngle"], Mode = BindingMode.OneWay, Converter = new CallAngleConverter() });
 
             timer = new System.Threading.Timer(new TimerCallback(Timer_Elapsed), this, 2000, 100);
+            this.twt149.SFSendProtocolEvent += RightDrill_SFSendProtocolEvent;
+            this.twt150.SFSendProtocolEvent += RightDrill_SFSendProtocolEvent;
+            this.twt151.SFSendProtocolEvent += RightDrill_SFSendProtocolEvent;
+            this.twt152.SFSendProtocolEvent += RightDrill_SFSendProtocolEvent;
+            this.twt165.SFSendProtocolEvent += RightDrill_SFSendProtocolEvent;
+            this.twt166.SFSendProtocolEvent += RightDrill_SFSendProtocolEvent;
+            this.twt167.SFSendProtocolEvent += RightDrill_SFSendProtocolEvent;
+            this.twt168.SFSendProtocolEvent += RightDrill_SFSendProtocolEvent;
+            this.twt161.SFSendProtocolEvent += RightDrill_SFSendProtocolEvent;
+            this.twt162.SFSendProtocolEvent += RightDrill_SFSendProtocolEvent;
+            this.twt163.SFSendProtocolEvent += RightDrill_SFSendProtocolEvent;
+            this.twt164.SFSendProtocolEvent += RightDrill_SFSendProtocolEvent;
+            this.twt173.SFSendProtocolEvent += RightDrill_SFSendProtocolEvent;
+            this.twt174.SFSendProtocolEvent += RightDrill_SFSendProtocolEvent;
+            this.twt175.SFSendProtocolEvent += RightDrill_SFSendProtocolEvent;
+            this.twt176.SFSendProtocolEvent += RightDrill_SFSendProtocolEvent;
+        }
+
+        /// <summary>
+        /// 右钻铤配置协议
+        /// </summary>
+        /// <param name="SetParam">协议内容</param>
+        private void RightDrill_SFSendProtocolEvent(byte[] SetParam)
+        {
+            if (rightDrillSetValue.Length == 2)
+            {
+                SetParam[4] = rightDrillSetValue[0];
+                SetParam[5] = rightDrillSetValue[1];
+                GlobalData.Instance.da.SendBytes(SetParam);
+                this.tbRightDrillSet.Text = "0";
+            }
         }
 
         private void Timer_Elapsed(object obj)
@@ -82,6 +114,38 @@ namespace Main.SecondFloor
             catch (Exception ex)
             {
                 Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+            }
+        }
+        /// <summary>
+        /// 启动软键盘
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tb_ParameterConfig_Focus(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                GlobalData.Instance.GetKeyBoard();
+            }
+        }
+        /// <summary>
+        /// 有钻铤设置值
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tbLeftDrillSet_LostFocus(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string strText = this.tbRightDrillSet.Text;
+                if (strText.Length == 0) strText = "0";
+                short i16Text = Convert.ToInt16(strText);
+                rightDrillSetValue = BitConverter.GetBytes(i16Text);
+            }
+            catch (Exception ex)
+            {
+                this.tbRightDrillSet.Text = "0";
+                MessageBox.Show("超出设置范围");
             }
         }
     }

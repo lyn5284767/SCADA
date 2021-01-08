@@ -39,24 +39,24 @@
                         </Grid.RowDefinitions>
                         <TextBlock Text=">部件状态" Foreground="Black" FontSize="24" HorizontalAlignment="Left" Margin="10,0,0,0"/>
                         <StackPanel Orientation="Horizontal" Grid.Row="1">
-                            <TextBlock Text="二  层  台:" Margin="30,0,0,0" FontSize="18" FontWeight="Bold" Foreground="#212121" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Name="tbsf" Width="120" Text="二层台(未配置):" Margin="30,0,0,0" FontSize="18" FontWeight="Bold" Foreground="#212121" VerticalAlignment="Center"></TextBlock>
                             <cl:SymbolMapping Name="sfStatus" StrContent="" LampType="3" Margin="2,5,2,5"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Grid.Row="2">
-                            <TextBlock Text="钻  台  面:" Margin="30,0,0,0" FontSize="18" FontWeight="Bold" Foreground="#212121" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Name="tbdr" Width="120"  Text="钻  台  面:" Margin="30,0,0,0" FontSize="18" FontWeight="Bold" Foreground="#212121" VerticalAlignment="Center"></TextBlock>
                             <cl:SymbolMapping Name="drStatus" StrContent="" LampType="3" Margin="2,5,2,5"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Grid.Row="3">
-                            <TextBlock Text="铁  钻  工:" Margin="30,0,0,0" FontSize="18" FontWeight="Bold" Foreground="#212121" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Name="tbIron" Width="120"  Text="铁  钻  工:" Margin="30,0,0,0" FontSize="18" FontWeight="Bold" Foreground="#212121" VerticalAlignment="Center"></TextBlock>
                             <cl:SymbolMapping Name="sirStatus" StrContent="" LampType="1" Margin="2,5,2,5"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Grid.Row="4">
-                            <TextBlock Text="液  压  站:" Margin="30,0,0,0" FontSize="18" FontWeight="Bold" Foreground="#212121" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Name="tbHS" Width="120"  Text="液  压  站:" Margin="30,0,0,0" FontSize="18" FontWeight="Bold" Foreground="#212121" VerticalAlignment="Center"></TextBlock>
                             <cl:SymbolMapping Name="hsStatus" StrContent="" LampType="1" Margin="2,5,2,5"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Grid.Row="5">
-                            <TextBlock Text="猫    道:" Margin="30,0,0,0" FontSize="18" FontWeight="Bold" Foreground="#212121" VerticalAlignment="Center"></TextBlock>
-                            <cl:SymbolMapping Name="catStatus" StrContent="" LampType="1" Margin="20,5,2,5"/>
+                            <TextBlock Name="tbCat" Width="120"  Text="猫    道:" Margin="30,0,0,0" FontSize="18" FontWeight="Bold" Foreground="#212121" VerticalAlignment="Center"></TextBlock>
+                            <cl:SymbolMapping Name="catStatus" StrContent="" LampType="1" Margin="2,5,2,5"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Grid.Row="6">
                             <TextBlock Text="大 钩 高 度:" Margin="30,0,0,0" FontSize="18" FontWeight="Bold" Foreground="#212121" VerticalAlignment="Center"></TextBlock>

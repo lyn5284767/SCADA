@@ -270,7 +270,7 @@ namespace HBGKTest.YiTongCamera
                     //TRACE("H264_DVR_StopRealPlay fail m_iPlayhandle = %d", m_iPlayhandle);
                 }
             }
-
+            Log.Log4Net.AddLog("摄像头播放");
             H264_DVR_CLIENTINFO playstru = new H264_DVR_CLIENTINFO();
 
             playstru.nChannel = nChannel;
@@ -291,6 +291,7 @@ namespace HBGKTest.YiTongCamera
             }
             m_lLogin = pDev.lLoginID;
             m_iChannel = nChannel;
+            Log.Log4Net.AddLog("摄像头完成");
             return m_iPlayhandle;
         }
 
@@ -323,7 +324,7 @@ namespace HBGKTest.YiTongCamera
                     dir.Create();
                 }
 
-                if (NetSDK.H264_DVR_StartLocalRecord(m_iPlayhandle, filePath + "/"+fileName, (int)MEDIA_FILE_TYPE.MEDIA_FILE_AVI))
+                if (NetSDK.H264_DVR_StartLocalRecord(m_iPlayhandle, filePath + "/"+fileName, (int)MEDIA_FILE_TYPE.MEDIA_FILE_NONE))
                 {
                     m_bRecord = true;
                 }
@@ -344,6 +345,7 @@ namespace HBGKTest.YiTongCamera
             {
                 if (chInfo != null)
                 {
+                    Log.Log4Net.AddLog(chInfo.RemoteIP+"摄像头准备播放");
                     InitSDK();
                     H264_DVR_DEVICEINFO dvrdevInfo = new H264_DVR_DEVICEINFO();
                     dvrdevInfo.Init();
@@ -365,7 +367,7 @@ namespace HBGKTest.YiTongCamera
                     }
                     else //摄像头登录失败
                     {
-                        //MessageBox.Show("一通摄像头调用失败，请检查配置！");
+                        Log.Log4Net.AddLog("摄像头登录失败，错误码："+ nLoginID);
                         return false;
                     }
                 }

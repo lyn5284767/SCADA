@@ -21,6 +21,13 @@ namespace ControlLibrary.InputControl
     public partial class SetControl : UserControl
     {
         /// <summary>
+        ///  二层台位置标定事件委托
+        /// </summary>
+        /// <param name="SetParam"></param>
+        public delegate void SFSendProtocol(byte[] SetParam);
+
+        public event SFSendProtocol SFSendProtocolEvent;
+        /// <summary>
         /// 名称
         /// </summary>
         public string TbkText { get; set; }
@@ -82,7 +89,14 @@ namespace ControlLibrary.InputControl
                 {
                     GlobalData.Instance.SetParam[i] = 0;
                 }
-                GlobalData.Instance.da.SendBytes(GlobalData.Instance.SetParam);
+                if (GlobalData.Instance.systemType == SystemType.SecondFloor && SFSendProtocolEvent != null)
+                {
+                    SFSendProtocolEvent(GlobalData.Instance.SetParam);
+                }
+                else
+                {
+                    GlobalData.Instance.da.SendBytes(GlobalData.Instance.SetParam);
+                }
             }
             catch (Exception ex)
             {

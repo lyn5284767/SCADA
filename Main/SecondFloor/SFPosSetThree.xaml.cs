@@ -42,6 +42,8 @@ namespace Main.SecondFloor
             }
         }
         System.Threading.Timer timer;
+        byte[] ropeSetValue;
+        byte[] monkeyRoadSetValue;
         public SFPosSetThree()
         {
             InitializeComponent();
@@ -50,6 +52,40 @@ namespace Main.SecondFloor
             this.txtRotateAngle_LocationCalibration.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["callAngle"], Mode = BindingMode.OneWay, Converter = new CallAngleConverter() });
 
             timer = new System.Threading.Timer(new TimerCallback(Timer_Elapsed), this, 2000, 100);
+            this.twt133.SFSendProtocolEvent += Rope_SFSendProtocolEvent;
+            this.twt134.SFSendProtocolEvent += Rope_SFSendProtocolEvent;
+            this.twt135.SFSendProtocolEvent += Rope_SFSendProtocolEvent;
+            this.twt136.SFSendProtocolEvent += Rope_SFSendProtocolEvent;
+
+            this.twt137.SFSendProtocolEvent += MonkeyRoad_SFSendProtocolEvent;
+        }
+        /// <summary>
+        /// 猴道设置协议
+        /// </summary>
+        /// <param name="SetParam">设置协议</param>
+        private void MonkeyRoad_SFSendProtocolEvent(byte[] SetParam)
+        {
+            if (monkeyRoadSetValue.Length == 2)
+            {
+                SetParam[4] = monkeyRoadSetValue[0];
+                SetParam[5] = monkeyRoadSetValue[1];
+                GlobalData.Instance.da.SendBytes(SetParam);
+                this.tbMonkeyRoadSet.Text = "0";
+            }
+        }
+        /// <summary>
+        /// 档绳设置协议
+        /// </summary>
+        /// <param name="SetParam">设置协议</param>
+        private void Rope_SFSendProtocolEvent(byte[] SetParam)
+        {
+            if (ropeSetValue.Length == 2)
+            {
+                SetParam[4] = ropeSetValue[0];
+                SetParam[5] = ropeSetValue[1];
+                GlobalData.Instance.da.SendBytes(SetParam);
+                this.tbRopeSet.Text = "0";
+            }
         }
 
         private void Timer_Elapsed(object obj)
@@ -71,6 +107,54 @@ namespace Main.SecondFloor
             catch (Exception ex)
             {
                 Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+            }
+        }
+        /// <summary>
+        /// 软键盘弹出
+        /// </summary>
+        private void tb_ParameterConfig_Focus(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                GlobalData.Instance.GetKeyBoard();
+            }
+        }
+        /// <summary>
+        /// 档绳设置值
+        /// </summary>
+        private void tbRopeSet_LostFocus(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string strText = this.tbRopeSet.Text;
+                if (strText.Length == 0) strText = "0";
+                short i16Text = Convert.ToInt16(strText);
+                ropeSetValue = BitConverter.GetBytes(i16Text);
+            }
+            catch (Exception ex)
+            {
+                this.tbRopeSet.Text = "0";
+                MessageBox.Show("超出设置范围");
+            }
+        }
+        /// <summary>
+        /// 猴道设置值
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tbMonkeyRoadSet_LostFocus(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string strText = this.tbMonkeyRoadSet.Text;
+                if (strText.Length == 0) strText = "0";
+                short i16Text = Convert.ToInt16(strText);
+                monkeyRoadSetValue = BitConverter.GetBytes(i16Text);
+            }
+            catch (Exception ex)
+            {
+                this.tbMonkeyRoadSet.Text = "0";
+                MessageBox.Show("超出设置范围");
             }
         }
     }

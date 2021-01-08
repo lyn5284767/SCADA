@@ -57,7 +57,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
-                <Border Background="White" CornerRadius="10" Margin="5">
+                <Border Background="White" CornerRadius="10" Margin="2">
                     <Border.Effect>
                         <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
                     </Border.Effect>
@@ -68,7 +68,10 @@
                             <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="0" Padding="3">
                                <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="抓手标定"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"/>
-                                    <TextBlock Name="tbGrip" Text="**" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"></TextBlock>
+                                    <TextBlock Text="当前值:" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="16" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"/>
+                                    <TextBlock Name="tbGrip" VerticalAlignment="Center" Text="**" Margin="10,0,0,0" FontSize="16" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"></TextBlock>
+                                    <TextBlock Text="标定值:" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="16" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"/>
+                                    <TextBox Name="tbGripSet" Margin="5,0,0,0" FontWeight="Bold" Width="100" PreviewMouseDown="tb_ParameterConfig_Focus" LostFocus="tbGripSet_LostFocus"/>
                                 </StackPanel>
                             </Border>
 
@@ -110,8 +113,11 @@
                             <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5,0,5,5" Padding="3">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="手指标定"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"/>
+                                    <TextBlock Text="当前值:" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="16" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"/>
                                     <TextBlock Name="tbLeftFinger" Text="**" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"></TextBlock>
                                     <TextBlock Name="tbRightFinger" Text="**" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"></TextBlock>
+                                    <TextBlock Text="标定值:" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="16" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"/>
+                                    <TextBox Name="tbFingerSet" Margin="5,0,0,0" FontWeight="Bold" Width="100" PreviewMouseDown="tb_ParameterConfig_Focus" LostFocus="tbFingerSet_LostFocus"/>
                                 </StackPanel>
                             </Border>
                             <inputcontrol:SetControl Name="twt129" Head="80,1,12,129,0,0" TbkText="左手指最小值" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>

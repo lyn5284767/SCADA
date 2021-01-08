@@ -66,7 +66,11 @@
                     <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="250">
                         <StackPanel>
                             <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="0" Padding="3">
-                                <TextBlock Text="挡绳标定"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="挡绳标定"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"/>
+                                    <TextBlock Text="标定值:" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="16" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"/>
+                                    <TextBox Name="tbRopeSet" Margin="5,0,0,0" FontWeight="Bold" Width="100" PreviewMouseDown="tb_ParameterConfig_Focus" LostFocus="tbRopeSet_LostFocus"/>
+                                </StackPanel>
                             </Border>
 
                             <inputcontrol:SetControl Name="twt133" Head="80,1,12,133,0,0" TbkText="左挡绳最小值" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
@@ -90,7 +94,11 @@
                         <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0" Height="150">
                             <StackPanel>
                                 <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="0" Padding="3">
-                                    <TextBlock Text="猴道标定"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="猴道标定"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"/>
+                                        <TextBlock Text="标定值:" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="16" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"/>
+                                        <TextBox Name="tbMonkeyRoadSet" Margin="5,0,0,0" FontWeight="Bold" Width="100" PreviewMouseDown="tb_ParameterConfig_Focus" LostFocus="tbMonkeyRoadSet_LostFocus"/>
+                                    </StackPanel>
                                 </Border>
 
                                 <inputcontrol:SetControl Name="twt137" Head="80,1,12,137,0,0" TbkText="猴道伸出" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
