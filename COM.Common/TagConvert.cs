@@ -5589,7 +5589,7 @@ namespace COM.Common
             {
                 //armPosition = (double)((short)(values[2]));
                 // UDP协议需要除10
-                rotateAngle = double.Parse(value.ToString()) -90;
+                rotateAngle = -double.Parse(value.ToString()) +90;
             }
             return rotateAngle;
 
@@ -5689,7 +5689,7 @@ namespace COM.Common
                 armPosition = (double)(((short)(values[5])));
             }
 
-            double armPos = ((armPosition / GlobalData.Instance.DRArmMaxPosistion * tubeActualWidth) * Math.Cos(rotateAngle * Math.PI / 180) - (((carPosition - GlobalData.Instance.DRCarMinPosistion) / (GlobalData.Instance.DRCarMaxPosistion - GlobalData.Instance.DRCarMinPosistion) * tubeActualHeight) - heightToMiddle));
+            double armPos = -((armPosition / GlobalData.Instance.DRArmMaxPosistion * tubeActualWidth) * Math.Cos(rotateAngle * Math.PI / 180) + (((carPosition - GlobalData.Instance.DRCarMinPosistion) / (GlobalData.Instance.DRCarMaxPosistion - GlobalData.Instance.DRCarMinPosistion) * tubeActualHeight) - heightToMiddle));
 
             return armPos;
         }

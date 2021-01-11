@@ -412,12 +412,12 @@
                                 <Border Grid.Row="29" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
                             </Grid>
                             <!--左钻铤-->
-                            <Grid Height="{Binding Path=WR_RightFirstRowHeight, ElementName=uc}" Name="rightRow16">
-                                <StackPanel Grid.Row="30" Orientation="Horizontal">
+                            <Grid Height="{Binding Path=WR_RightFirstRowHeight, ElementName=uc}" Name="rightRow16" Panel.ZIndex="-1">
+                                <StackPanel Grid.Row="30" Orientation="Horizontal"  Panel.ZIndex="-1">
                                     <StackPanel Width="100" Name="drDrillR0" Orientation="Horizontal" Tag="32" FlowDirection ="RightToLeft"></StackPanel>
-                                    <Grid Width="90" Background="#6D6F72"></Grid>
+                                    <Grid Width="90" Background="#6D6F72" Panel.ZIndex="-1"></Grid>
                                 </StackPanel>
-                                <Border Grid.Row="31" BorderBrush="#6D6F72" BorderThickness="0,0,0,2"></Border>
+                                <Border Grid.Row="31" BorderBrush="#6D6F72" BorderThickness="0,0,0,2" Panel.ZIndex="-1"></Border>
                             </Grid>
                         </StackPanel>
                         <!--左选择-->
@@ -980,7 +980,7 @@
                                     </TransformGroup>
                                 </local1:AnimationButton.RenderTransform>
                             </local1:AnimationButton>
-                            <Image Width="20" Name="DRRobotArm">
+                            <Image Width="20" Name="DRRobotArm" Panel.ZIndex="999">
                                 <Image.Source>
                                     <Binding Path="WR_DRRobotGripStatus" ElementName="uc" Converter="{StaticResource AnimationArmImageCvt}"/>
                                 </Image.Source>

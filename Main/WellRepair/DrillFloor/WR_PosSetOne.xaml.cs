@@ -100,7 +100,7 @@ namespace Main.WellRepair.DrillFloor
                     else if (feedback == 9) this.twt9.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
                     else if (feedback == 10) this.twt10.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
                     else if (feedback == 12) this.twt12.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
-                    else if (feedback == 13) this.twt14.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
+                    else if (feedback == 14) this.twt14.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
 
                     else if (feedback == 33) this.twt33.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
                     else if (feedback == 34) this.twt34.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
@@ -111,6 +111,8 @@ namespace Main.WellRepair.DrillFloor
                     else if (feedback == 40) this.twt40.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
                     else if (feedback == 41) this.twt41.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
                     else if (feedback == 42) this.twt42.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
+                    else if (feedback == 44) this.twt44.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
+
                     else if (feedback == 45) this.twt45.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
                     else if (feedback == 46) this.twt46.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
                     else if (feedback == 47) this.twt47.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
