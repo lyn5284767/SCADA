@@ -68,12 +68,17 @@
                             <inputcontrol:TwoTextWithInput Name="twt5" TbkText="钳体前进" TextTwoVisible="Collapsed" Head="80,16,5"/>
                             <inputcontrol:TwoTextWithInput Name="twt6" TbkText="钳体后退" TextTwoVisible="Collapsed" Head="80,16,6"/>
                             <Grid Height="10"></Grid>
-                            <inputcontrol:TwoTextWithInput Name="twt7" TbkText="主钳上扣高档圈数" TextTwoVisible="Collapsed" Head="80,16,8"/>
-                            <inputcontrol:TwoTextWithInput Name="twt17" TbkText="卸扣高档切换停止圈数" TextTwoVisible="Collapsed" Head="80,16,8000"/>
-                            <inputcontrol:TwoTextWithInput Name="twt18" TbkText="偏扣圈数" TextTwoVisible="Collapsed" Head="80,16,8000"/>
-                            <inputcontrol:TwoTextWithInput Name="twt8" TbkText="主钳上扣高低档切换扭矩"  Head="80,16,9"/>
-                            <inputcontrol:TwoTextWithInput Name="twt12" TbkText="主钳卸扣高低档切换扭矩" Head="80,16,14"/>
-                            <inputcontrol:TwoTextWithInput Name="twt9" TbkText="主钳上卸扣扭矩" Head="80,16,7"/>
+                            <inputcontrol:TwoTextWithInput Name="twt15" TbkText="卸扣高档切换停止圈数" TextTwoVisible="Collapsed" Head="80,16,15"/>
+                            <inputcontrol:TwoTextWithInput Name="twt8" TbkText="主钳上扣高档圈数" TextTwoVisible="Collapsed" Head="80,16,8"/>
+                            <inputcontrol:TwoTextWithInput Name="twt16" TbkText="主钳上扣高低档切换压力" TextTwoVisible="Collapsed"  Head="80,16,16"/>
+                            <inputcontrol:TwoTextWithInput Name="twt17" TbkText="主钳上扣低档停止切换压力" TextTwoVisible="Collapsed"  Head="80,16,17"/>
+                            <inputcontrol:TwoTextWithInput Name="twt18" TbkText="主钳卸扣高低档切换压力" TextTwoVisible="Collapsed"  Head="80,16,18"/>
+                            <inputcontrol:TwoTextWithInput Name="twt19" TbkText="主钳卸扣低档停止切换压力" TextTwoVisible="Collapsed"  Head="80,16,19"/>
+                            <inputcontrol:TwoTextWithInput Name="twt20" TbkText="偏扣圈数" TextTwoVisible="Collapsed" Head="80,16,20"/>
+                            <inputcontrol:TwoTextWithInput Name="twt7" TbkText="主钳上卸扣扭矩" Head="80,16,7"/>
+                            <!--<inputcontrol:TwoTextWithInput Name="twt8" TbkText="主钳上扣高低档切换扭矩"  Head="80,16,9"/>-->
+                            <!--<inputcontrol:TwoTextWithInput Name="twt12" TbkText="主钳卸扣高低档切换扭矩" Head="80,16,14"/>-->
+                         
                             <Grid Height="10"></Grid>
                             <inputcontrol:TwoTextWithInput Name="twt10" TbkText="清洗时间设置" TextTwoVisible="Collapsed" Head="80,16,10"/>
                             <inputcontrol:TwoTextWithInput Name="twt11" TbkText="喷油时间设置" TextTwoVisible="Collapsed" Head="80,16,11"/>

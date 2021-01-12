@@ -189,6 +189,7 @@ namespace Main.SIR.SanyRail
         {
             alarmList.Add(new AlarmInfo() { TagName = "969b0", Description = "发生偏扣", NowType = 0 });
             alarmList.Add(new AlarmInfo() { TagName = "969b1", Description = "发生打滑", NowType = 0 });
+            alarmList.Add(new AlarmInfo() { TagName = "969b2", Description = "上扣故障", NowType = 0 });
         }
         private int controlHeartTimes = 0; // 控制台心跳次数
         private bool tmpStatus = false; // 控制台心跳临时存储状态

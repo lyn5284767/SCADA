@@ -74,13 +74,23 @@ namespace Main.SIR.SanyRail
                 #endregion
 
                 #region 上卸扣参数
-                this.twt7.SetBinding(TwoTextWithInput.TextOneShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_CycleSet"], Mode = BindingMode.OneWay});
-                this.twt8.SetBinding(TwoTextWithInput.TextOneShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIR_RailWay_InBtnChangeTorque"], Mode = BindingMode.OneWay });
-                this.twt8.SetBinding(TwoTextWithInput.TextTwoShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIR_RailWay_InBtnChangePress"], Mode = BindingMode.OneWay });
-                this.twt12.SetBinding(TwoTextWithInput.TextOneShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIR_RailWay_OutBtnChangeTorque"], Mode = BindingMode.OneWay });
-                this.twt12.SetBinding(TwoTextWithInput.TextTwoShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIR_RailWay_OutBtnChangePress"], Mode = BindingMode.OneWay });
-                this.twt9.SetBinding(TwoTextWithInput.TextOneShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIR_RailWay_InBtnTorqueSet"], Mode = BindingMode.OneWay });
-                this.twt9.SetBinding(TwoTextWithInput.TextTwoShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIR_RailWay_InBtnPressSet"], Mode = BindingMode.OneWay });
+                //this.twt7.SetBinding(TwoTextWithInput.TextOneShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_CycleSet"], Mode = BindingMode.OneWay});
+                //this.twt8.SetBinding(TwoTextWithInput.TextOneShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIR_RailWay_InBtnChangeTorque"], Mode = BindingMode.OneWay });
+                //this.twt8.SetBinding(TwoTextWithInput.TextTwoShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIR_RailWay_InBtnChangePress"], Mode = BindingMode.OneWay });
+                //this.twt12.SetBinding(TwoTextWithInput.TextOneShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIR_RailWay_OutBtnChangeTorque"], Mode = BindingMode.OneWay });
+                //this.twt12.SetBinding(TwoTextWithInput.TextTwoShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIR_RailWay_OutBtnChangePress"], Mode = BindingMode.OneWay });
+                //this.twt9.SetBinding(TwoTextWithInput.TextOneShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIR_RailWay_InBtnTorqueSet"], Mode = BindingMode.OneWay });
+                //this.twt9.SetBinding(TwoTextWithInput.TextTwoShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIR_RailWay_InBtnPressSet"], Mode = BindingMode.OneWay });
+                this.twt15.SetBinding(TwoTextWithInput.TextOneShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIR_Railway_OutBtnStopCycle"], Mode = BindingMode.OneWay });
+                this.twt8.SetBinding(TwoTextWithInput.TextOneShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_CycleSet"], Mode = BindingMode.OneWay });
+                this.twt16.SetBinding(TwoTextWithInput.TextOneShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIR_RailWay_InBtnChangePress"], Mode = BindingMode.OneWay });
+                this.twt17.SetBinding(TwoTextWithInput.TextOneShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIR_RailWay_InBtnStopPress"], Mode = BindingMode.OneWay });
+                this.twt18.SetBinding(TwoTextWithInput.TextOneShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIR_RailWay_OutBtnChangePress"], Mode = BindingMode.OneWay });
+                this.twt19.SetBinding(TwoTextWithInput.TextOneShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIR_RailWay_OutBtnStopPress"], Mode = BindingMode.OneWay });
+                this.twt20.SetBinding(TwoTextWithInput.TextOneShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIR_Railway_DeviationCycle"], Mode = BindingMode.OneWay });
+                this.twt7.SetBinding(TwoTextWithInput.TextOneShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIR_RailWay_InBtnTorqueSet"], Mode = BindingMode.OneWay });
+                this.twt7.SetBinding(TwoTextWithInput.TextTwoShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIR_RailWay_InBtnPressSet"], Mode = BindingMode.OneWay });
+
                 #endregion
                 #region 丝扣油参数
                 this.twt10.SetBinding(TwoTextWithInput.TextOneShowTextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIE_RailWay_ClearTimeSet"], Mode = BindingMode.OneWay });

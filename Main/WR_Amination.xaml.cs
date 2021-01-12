@@ -1019,7 +1019,6 @@ namespace Main
                 {
                     if (GlobalData.Instance.da.GloConfig.SysType == 1)
                     {
-                        GlobalData.Instance.Rows = 10;
                         rows = GlobalData.Instance.Rows + 1;
                     }
                     else

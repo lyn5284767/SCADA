@@ -102,7 +102,7 @@ namespace Main.WellRepair.DrillFloor
                 tubeTypeMultiBind.NotifyOnSourceUpdated = true;
                 this.tubeType.SetBinding(TextBlock.TextProperty, tubeTypeMultiBind);
 
-
+               
                 this.drTelecontrolModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["325b1"], Mode = BindingMode.OneWay, Converter = new TelecontrolModelConverter() });
                 this.drTelecontrolModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["325b1"], Mode = BindingMode.OneWay, Converter = new TelecontrolModelIsCheckConverter() });
                 //送杆
@@ -181,6 +181,7 @@ namespace Main.WellRepair.DrillFloor
                     iTimeCnt++;
                     if (iTimeCnt > 1000) iTimeCnt = 0;
                     this.Warnning();
+                    this.MonitorAlarmStatus();
                     if (GlobalData.Instance.da["droperationModel"].Value.Byte == 5)
                     {
                         if (GlobalData.Instance.da["drworkModel"].Value.Byte == 2)
@@ -224,53 +225,281 @@ namespace Main.WellRepair.DrillFloor
         {
             #region 操作提示
             int warnOne = GlobalData.Instance.da["drTipsCode"].Value.Int32;
-            if (warnOne == 1)
+            //if (warnOne == 1)
+            //{
+            //    this.tbOpr.Text = "小车电机故障";
+            //}
+            //else if (warnOne == 3)
+            //{
+            //    this.tbOpr.Text = "回转电机故障";
+            //}
+            //else if (warnOne == 6)
+            //{
+            //    this.tbOpr.Text = "机械手禁止向井口移动";
+            //}
+            //else if (warnOne == 7)
+            //{
+            //    this.tbOpr.Text = "禁止机械手缩回";
+            //}
+            //else if (warnOne == 11)
+            //{
+            //    this.tbOpr.Text = "抓手不允许打开";
+            //}
+            //else if (warnOne == 12)
+            //{
+            //    this.tbOpr.Text = "抓手不允许关闭";
+            //}
+            //else if (warnOne == 13)
+            //{
+            //    this.tbOpr.Text = "请将小车移至井口";
+            //}
+            //else if (warnOne == 15)
+            //{
+            //    this.tbOpr.Text = "小车不能往井口移动";
+            //}
+            //else if (warnOne == 20)
+            //{
+            //    this.tbOpr.Text = "回转回零异常，检查传感器";
+            //}
+            //else if (warnOne == 21)
+            //{
+            //    this.tbOpr.Text = "小车未回零或最大最小值限制";
+            //}
+            //else if (warnOne == 22 || warnOne == 23)
+            //{
+            //    this.tbOpr.Text = "手臂回零或最大最小值限制";
+            //}
+            //else if (warnOne == 29)
+            //{
+            //    this.tbOpr.Text = "此位置无法排放钻铤，请重新选择";
+            //}
+            //else if (warnOne == 31)
+            //{
+            //    this.tbOpr.Text = "抓手中有钻杆，请切换手动处理";
+            //}
+            //else if (warnOne == 32)
+            //{
+            //    this.tbOpr.Text = "请先回收手臂";
+            //}
+            //else if (warnOne == 33)
+            //{
+            //    this.tbOpr.Text = "小车回零中...";
+            //}
+            //else if (warnOne == 34)
+            //{
+            //    this.tbOpr.Text = "请将手臂收到最小";
+            //}
+            //else if (warnOne == 35)
+            //{
+            //    this.tbOpr.Text = "手臂回零中...";
+            //}
+            //else if (warnOne == 36)
+            //{
+            //    this.tbOpr.Text = "请先回收小车";
+            //}
+            //else if (warnOne == 37)
+            //{
+            //    this.tbOpr.Text = "回转回零中...";
+            //}
+            //else if (warnOne == 38)
+            //{
+            //    this.tbOpr.Text = "请将小车移动到中间靠井口";
+            //}
+            //else if (warnOne == 39)
+            //{
+            //    this.tbOpr.Text = "此轴已回零";
+            //}
+            //else if (warnOne == 40)
+            //{
+            //    this.tbOpr.Text = "系统未回零，请谨慎操作";
+            //}
+            //else if (warnOne == 41)
+            //{
+            //    this.tbOpr.Text = "请选择管柱类型";
+            //}
+            //else if (warnOne == 42)
+            //{
+            //    this.tbOpr.Text = "请选择指梁";
+            //}
+            //else if (warnOne == 43)
+            //{
+            //    this.tbOpr.Text = "请选择目的地";
+            //}
+            //else if (warnOne == 44)
+            //{
+            //    this.tbOpr.Text = "管柱已满，请切换指梁";
+            //}
+            //else if (warnOne == 45)
+            //{
+            //    this.tbOpr.Text = "请启动确认按键启动";
+            //}
+            //else if (warnOne == 46)
+            //{
+            //    this.tbOpr.Text = "确定大钩上提";
+            //}
+            //else if (warnOne == 47)
+            //{
+            //    this.tbOpr.Text = "抓手还未打开";
+            //}
+            //else if (warnOne == 48)
+            //{
+            //    this.tbOpr.Text = "抓手动作中...";
+            //}
+            //else if (warnOne == 49)
+            //{
+            //    this.tbOpr.Text = "请确认井口安全";
+            //}
+            //else if (warnOne == 50)
+            //{
+            //    this.tbOpr.Text = "确认上管柱已脱离下管柱";
+            //}
+            //else if (warnOne == 51)
+            //{
+            //    this.tbOpr.Text = "确认抓手中已有管柱";
+            //}
+            //else if (warnOne == 52)
+            //{
+            //    this.tbOpr.Text = "确认定位完成，大钩下落，钻杆入盒";
+            //}
+            //else if (warnOne == 53)
+            //{
+            //    this.tbOpr.Text = "请确认抓手已打开";
+            //}
+            //else if (warnOne == 54)
+            //{
+            //    this.tbOpr.Text = "自动排管动作完成";
+            //}
+            //else if (warnOne == 55)
+            //{
+            //    this.tbOpr.Text = "此指梁无钻杆";
+            //}
+            //else if (warnOne == 56)
+            //{
+            //    this.tbOpr.Text = "自动送杆抓杆失败，请确认抓手有钻杆";
+            //}
+            //else if (warnOne == 57)
+            //{
+            //    this.tbOpr.Text = "抓手未关闭";
+            //}
+            //else if (warnOne == 58)
+            //{
+            //    this.tbOpr.Text = "确认定位完成，大钩下落，上下管柱接触";
+            //}
+            //else if (warnOne == 59)
+            //{
+            //    this.tbOpr.Text = "需要人工确认吊卡关闭";
+            //}
+            //else if (warnOne == 60)
+            //{
+            //    this.tbOpr.Text = "自动送杆动作完成";
+            //}
+            //else if (warnOne == 61)
+            //{
+            //    this.tbOpr.Text = "确认启动回收模式";
+            //}
+            //else if (warnOne == 62)
+            //{
+            //    this.tbOpr.Text = "回收完成";
+            //}
+            //else if (warnOne == 65)
+            //{
+            //    this.tbOpr.Text = "请先回收手臂";
+            //}
+            //else if (warnOne == 71)
+            //{
+            //    this.tbOpr.Text = "请启动运输模式";
+            //}
+            //else if (warnOne == 72)
+            //{
+            //    this.tbOpr.Text = "已完成运输模式";
+            //}
+            //else if (warnOne == 81)
+            //{
+            //    this.tbOpr.Text = "两点距离太近";
+            //}
+            //else if (warnOne == 82)
+            //{
+            //    this.tbOpr.Text = "双轴运动";
+            //}
+            //else if (warnOne == 83)
+            //{
+            //    this.tbOpr.Text = "记录点数超限";
+            //}
+            //else if (warnOne == 84)
+            //{
+            //    this.tbOpr.Text = "记录点数为零";
+            //}
+            //else if (warnOne == 85)
+            //{
+            //    this.tbOpr.Text = "即将进入下一次示教";
+            //}
+            //else if (warnOne == 91)
+            //{
+            //    this.tbOpr.Text = "小车补偿超出范围";
+            //}
+            //else if (warnOne == 93)
+            //{
+            //    this.tbOpr.Text = "回转补偿超出范围";
+            //}
+            //else if (warnOne == 101)
+            //{
+            //    this.tbOpr.Text = "盖板未打开，无法向右平移";
+            //}
+            //else if (warnOne == 102)
+            //{
+            //    this.tbOpr.Text = "盖板未打开，无法向左平移";
+            //}
+            //else if (warnOne == 103)
+            //{
+            //    this.tbOpr.Text = "机械手在左侧，无法向左平移";
+            //}
+            //else if (warnOne == 104)
+            //{
+            //    this.tbOpr.Text = "机械手在右侧，无法向右平移";
+            //}
+            //else
+            //{
+            //    this.tbOpr.Text = "";
+            //}
+            if (warnOne == 13)
             {
-                this.tbOpr.Text = "小车电机故障";
+                this.tbOpr.Text = "滑车回零完成";
             }
-            else if (warnOne == 3)
+            else if (warnOne == 14)
             {
-                this.tbOpr.Text = "回转电机故障";
-            }
-            else if (warnOne == 6)
-            {
-                this.tbOpr.Text = "机械手禁止向井口移动";
-            }
-            else if (warnOne == 7)
-            {
-                this.tbOpr.Text = "禁止机械手缩回";
-            }
-            else if (warnOne == 11)
-            {
-                this.tbOpr.Text = "抓手不允许打开";
-            }
-            else if (warnOne == 12)
-            {
-                this.tbOpr.Text = "抓手不允许关闭";
-            }
-            else if (warnOne == 13)
-            {
-                this.tbOpr.Text = "请将小车移至井口";
+                this.tbOpr.Text = "手臂回零完成";
             }
             else if (warnOne == 15)
             {
-                this.tbOpr.Text = "小车不能往井口移动";
+                this.tbOpr.Text = "回转回零完成";
             }
             else if (warnOne == 20)
             {
-                this.tbOpr.Text = "回转回零异常，检查传感器";
+                this.tbOpr.Text = "回转回零异常，请检查传感器";
             }
             else if (warnOne == 21)
             {
-                this.tbOpr.Text = "小车未回零或最大最小值限制";
+                this.tbOpr.Text = "滑车未回零或限制最大最小值";
             }
-            else if (warnOne == 22 || warnOne == 23)
+            else if (warnOne == 22)
             {
-                this.tbOpr.Text = "手臂回零或最大最小值限制";
+                this.tbOpr.Text = "手臂未回零或限制最大最小值";
+            }
+            else if (warnOne == 24)
+            {
+                this.tbOpr.Text = "回零超时";
+            }
+            else if (warnOne == 25)
+            {
+                this.tbOpr.Text = "猫道互锁，禁止回零";
+            }
+            else if (warnOne == 29)
+            {
+                this.tbOpr.Text = "此位置无法排放钻铤，请重新选择";
             }
             else if (warnOne == 31)
             {
-                this.tbOpr.Text = "抓手中有钻杆，请切换手动处理";
+                this.tbOpr.Text = "抓手中又钻杆，切换到手动模式处理";
             }
             else if (warnOne == 32)
             {
@@ -278,11 +507,11 @@ namespace Main.WellRepair.DrillFloor
             }
             else if (warnOne == 33)
             {
-                this.tbOpr.Text = "小车回零中...";
+                this.tbOpr.Text = "滑车回零中...";
             }
             else if (warnOne == 34)
             {
-                this.tbOpr.Text = "请将手臂收到最小";
+                this.tbOpr.Text = "请将手臂收回最小位";
             }
             else if (warnOne == 35)
             {
@@ -290,7 +519,7 @@ namespace Main.WellRepair.DrillFloor
             }
             else if (warnOne == 36)
             {
-                this.tbOpr.Text = "请先回收小车";
+                this.tbOpr.Text = "请先回收滑车";
             }
             else if (warnOne == 37)
             {
@@ -298,7 +527,7 @@ namespace Main.WellRepair.DrillFloor
             }
             else if (warnOne == 38)
             {
-                this.tbOpr.Text = "请将小车移动到中间靠井口";
+                this.tbOpr.Text = "请将滑车移到中间或靠井口";
             }
             else if (warnOne == 39)
             {
@@ -306,7 +535,7 @@ namespace Main.WellRepair.DrillFloor
             }
             else if (warnOne == 40)
             {
-                this.tbOpr.Text = "系统未回零，请谨慎操作";
+                this.tbOpr.Text = "系统未回零，谨慎操作";
             }
             else if (warnOne == 41)
             {
@@ -400,6 +629,18 @@ namespace Main.WellRepair.DrillFloor
             {
                 this.tbOpr.Text = "请先回收手臂";
             }
+            else if (warnOne == 67)
+            {
+                this.tbOpr.Text = "禁止机械手回转";
+            }
+            else if (warnOne == 68)
+            {
+                this.tbOpr.Text = "禁止手臂伸出";
+            }
+            else if (warnOne == 69)
+            {
+                this.tbOpr.Text = "禁止机械手平移";
+            }
             else if (warnOne == 71)
             {
                 this.tbOpr.Text = "请启动运输模式";
@@ -407,6 +648,14 @@ namespace Main.WellRepair.DrillFloor
             else if (warnOne == 72)
             {
                 this.tbOpr.Text = "已完成运输模式";
+            }
+            else if (warnOne == 76)
+            {
+                this.tbOpr.Text = "机械手与选定指梁非同侧，请手动操作";
+            }
+            else if (warnOne == 77)
+            {
+                this.tbOpr.Text = "检测到回转回零失败，禁止回转回零";
             }
             else if (warnOne == 81)
             {
@@ -451,6 +700,10 @@ namespace Main.WellRepair.DrillFloor
             else if (warnOne == 104)
             {
                 this.tbOpr.Text = "机械手在右侧，无法向右平移";
+            }
+            else if (warnOne == 105)
+            {
+                this.tbOpr.Text = "猫道限制行车平移";
             }
             else
             {
@@ -517,14 +770,25 @@ namespace Main.WellRepair.DrillFloor
 
         private void InitAlarmKey()
         {
-            alarmList.Add(new AlarmInfo() { TagName = "drErrorCode1", Description = "小车电机故障", NowType = 0 });
+            alarmList.Add(new AlarmInfo() { TagName = "drErrorCode1", Description = "滑车电机故障", NowType = 0 });
+            alarmList.Add(new AlarmInfo() { TagName = "drErrorCode2", Description = "手臂电机故障", NowType = 0 });
             alarmList.Add(new AlarmInfo() { TagName = "drErrorCode3", Description = "回转电机故障", NowType = 0 });
             alarmList.Add(new AlarmInfo() { TagName = "drErrorCode6", Description = "机械手禁止向井口移动", NowType = 0 });
             alarmList.Add(new AlarmInfo() { TagName = "drErrorCode7", Description = "禁止机械手缩回", NowType = 0 });
             alarmList.Add(new AlarmInfo() { TagName = "drErrorCode11", Description = "抓手不允许打开", NowType = 0 });
             alarmList.Add(new AlarmInfo() { TagName = "drErrorCode12", Description = "抓手不允许关闭", NowType = 0 });
-            alarmList.Add(new AlarmInfo() { TagName = "drErrorCode13", Description = "小车不允许在此位置", NowType = 0 });
+            alarmList.Add(new AlarmInfo() { TagName = "drErrorCode13", Description = "滑车不允许在此位置", NowType = 0 });
+            alarmList.Add(new AlarmInfo() { TagName = "drErrorCode14", Description = "机械手禁止向猫道移动", NowType = 0 });
+            alarmList.Add(new AlarmInfo() { TagName = "drErrorCode20", Description = "回转回零异常，禁止回零", NowType = 0 });
+            alarmList.Add(new AlarmInfo() { TagName = "drErrorCode21", Description = "手臂最大限位，禁止伸出", NowType = 0 });
+            alarmList.Add(new AlarmInfo() { TagName = "drErrorCode22", Description = "手臂最小限位，禁止缩回", NowType = 0 });
+            alarmList.Add(new AlarmInfo() { TagName = "drErrorCode23", Description = "手臂伸出限制，禁止伸出", NowType = 0 });
+            alarmList.Add(new AlarmInfo() { TagName = "drErrorCode26", Description = "禁止继续回转", NowType = 0 });
             alarmList.Add(new AlarmInfo() { TagName = "UnReZero", Description = "系统未回零", NowType = 0 });
+
+            alarmList.Add(new AlarmInfo() { TagName = "323b0", Description = "完全关闭", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "323b1", Description = "关闭1级", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "323b2", Description = "完全打开", NowType = 0, NeedCheck = true });
 
             alarmList.Add(new AlarmInfo() { TagName = "337b0", Description = "抓手传感器异常", NowType = 0, NeedCheck = true });
             alarmList.Add(new AlarmInfo() { TagName = "337b1", Description = "抓手打开卡滞", NowType = 0, NeedCheck = true });
@@ -550,12 +814,19 @@ namespace Main.WellRepair.DrillFloor
         {
             int warnTwoNO = GlobalData.Instance.da["drErrorCode"].Value.Int32;
             if (warnTwoNO == 1) alarmList.Where(w => w.TagName == "drErrorCode1").FirstOrDefault().NowType = 1;
+            if (warnTwoNO == 2) alarmList.Where(w => w.TagName == "drErrorCode2").FirstOrDefault().NowType = 1;
             else if (warnTwoNO == 3) alarmList.Where(w => w.TagName == "drErrorCode3").FirstOrDefault().NowType = 1;
             else if (warnTwoNO == 6) alarmList.Where(w => w.TagName == "drErrorCode6").FirstOrDefault().NowType = 1;
             else if (warnTwoNO == 7) alarmList.Where(w => w.TagName == "drErrorCode7").FirstOrDefault().NowType = 1;
             else if (warnTwoNO == 11) alarmList.Where(w => w.TagName == "drErrorCode11").FirstOrDefault().NowType = 1;
             else if (warnTwoNO == 12) alarmList.Where(w => w.TagName == "drErrorCode12").FirstOrDefault().NowType = 1;
             else if (warnTwoNO == 13) alarmList.Where(w => w.TagName == "drErrorCode13").FirstOrDefault().NowType = 1;
+            else if (warnTwoNO == 14) alarmList.Where(w => w.TagName == "drErrorCode14").FirstOrDefault().NowType = 1;
+            else if (warnTwoNO == 20) alarmList.Where(w => w.TagName == "drErrorCode20").FirstOrDefault().NowType = 1;
+            else if (warnTwoNO == 21) alarmList.Where(w => w.TagName == "drErrorCode21").FirstOrDefault().NowType = 1;
+            else if (warnTwoNO == 22) alarmList.Where(w => w.TagName == "drErrorCode22").FirstOrDefault().NowType = 1;
+            else if (warnTwoNO == 23) alarmList.Where(w => w.TagName == "drErrorCode23").FirstOrDefault().NowType = 1;
+            else if (warnTwoNO == 26) alarmList.Where(w => w.TagName == "drErrorCode26").FirstOrDefault().NowType = 1;
             else alarmList.Where(w => w.TagName.Contains("drErrorCode")).ForEach(o => o.NowType = 0);
             if (!GlobalData.Instance.da["324b0"].Value.Boolean
                 || !GlobalData.Instance.da["324b2"].Value.Boolean
@@ -564,6 +835,21 @@ namespace Main.WellRepair.DrillFloor
                 alarmList.Where(w => w.TagName == "UnReZero").FirstOrDefault().NowType = 1;
             }
             else alarmList.Where(w => w.TagName == "UnReZero").FirstOrDefault().NowType = 0;
+
+            foreach (AlarmInfo info in alarmList)
+            {
+                if (GlobalData.Instance.da[info.TagName] != null)
+                {
+                    if (GlobalData.Instance.da[info.TagName].Value.Boolean)//有报警
+                    {
+                        if (info.NowType == 0) info.NowType = 1;// 前状态为未告警
+                    }
+                    else
+                    {
+                        info.NowType = 0;
+                    }
+                }
+            }
         }
 
 
