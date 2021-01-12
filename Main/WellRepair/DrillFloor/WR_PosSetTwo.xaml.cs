@@ -108,6 +108,9 @@ namespace Main.WellRepair.DrillFloor
                     else if (feedback == 97) this.twt97.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
                     else if (feedback == 98) this.twt98.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
                     else if (feedback == 99) this.twt99.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
+                    else if (feedback == 100) this.twt100.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
+                    else if (feedback == 101) this.twt101.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
+
                 }));
             }
             catch (Exception ex)

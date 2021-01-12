@@ -45,7 +45,7 @@
             </StackPanel>
 
             <StackPanel Grid.Column="1">
-                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="250">
+                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="380">
                     <StackPanel Orientation="Horizontal">
                         <StackPanel>
                             <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5,0,5,5" Padding="3">
@@ -58,7 +58,9 @@
 
                             </StackPanel>
                             <inputcontrol:SetControl Name="twt97" Head="80, 33, 12, 97, 0, 0" TbkText="关闭设定值" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt98" Head="80, 33, 12, 98, 0, 0" TbkText="中间设定值" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt98" Head="80, 33, 12, 98, 0, 0" TbkText="中间设定值1" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt100" Head="80, 33, 12, 100, 0, 0" TbkText="中间设定值1" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt101" Head="80, 33, 12, 101, 0, 0" TbkText="中间设定值1" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
                             <inputcontrol:SetControl Name="twt99" Head="80, 33, 12, 99, 0, 0" TbkText="打开设定值" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
 
                         </StackPanel>

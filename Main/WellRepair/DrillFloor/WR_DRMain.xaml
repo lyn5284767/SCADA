@@ -161,7 +161,8 @@
                                 <MenuItem Header="目的地选择"  FontSize="24">
                                     <MenuItem Header="立根盒" Click="btn_SelectDes" TabIndex="1"/>
                                     <MenuItem Header="猫道-井口" Click="btn_SelectDes" TabIndex="2"/>
-                                    <MenuItem Header="猫道-鼠洞" Click="btn_SelectDes" TabIndex="3"/>
+                                    <MenuItem Header="大鼠洞-井口" Click="btn_SelectDes" TabIndex="3"/>
+                                    <MenuItem Header="自由区域" Click="btn_SelectDes" TabIndex="0"/>
                                 </MenuItem>
                                 <MenuItem Header="回零"  FontSize="24">
                                     <MenuItem Header="一键回零" Click="btn_AllToZero"/>
