@@ -5932,6 +5932,34 @@ namespace COM.Common
             throw new NotImplementedException();
         }
     }
+
+    /// <summary>
+    /// 从下位机获取回转角度值 da["callAngle"]--15，16位
+    /// </summary>
+    public class WR_GripConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return "未知";
+            }
+
+            byte status = (byte)value;
+            if (status == 1) return "打开";
+            if (status == 5) return "半开";
+            if (status == 3 || status == 6) return "关闭";
+            if (status == 2 || status == 4) return "??";
+
+            return "未知";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     #endregion
 
     #region 修井液压站

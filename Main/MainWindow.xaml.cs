@@ -462,10 +462,38 @@ namespace Main
                         SFStop.Instance.ShowDialog();
                     }
                 }
+                SetUnUseDevice();
             }
             catch (Exception ex)
             {
                 Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+            }
+        }
+        /// <summary>
+        /// 设置未使用的设备颜色
+        /// </summary>
+        private void SetUnUseDevice()
+        {
+            var bc = new BrushConverter();
+            if (GlobalData.Instance.da.GloConfig.SFType == 0)
+            {
+                this.tbSf.Foreground = (Brush)bc.ConvertFrom("#BDBDBD");
+            }
+            if (GlobalData.Instance.da.GloConfig.DRType == 0)
+            {
+                this.tbDR.Foreground = (Brush)bc.ConvertFrom("#BDBDBD");
+            }
+            if (GlobalData.Instance.da.GloConfig.SIRType == 0)
+            {
+                this.tbSIR.Foreground = (Brush)bc.ConvertFrom("#BDBDBD");
+            }
+            if (GlobalData.Instance.da.GloConfig.CatType == 0)
+            {
+                this.tbCat.Foreground = (Brush)bc.ConvertFrom("#BDBDBD");
+            }
+            if (GlobalData.Instance.da.GloConfig.HydType == 0)
+            {
+                this.tbHS.Foreground = (Brush)bc.ConvertFrom("#BDBDBD");
             }
         }
 
@@ -1490,6 +1518,8 @@ namespace Main
             }
             bdLeft.Background = (Brush)bc.ConvertFrom("#80FFF8");
             tbLeft.Foreground = (Brush)bc.ConvertFrom("#000000");
+
+            SetUnUseDevice();
         }
         /// <summary>
         /// 铁钻工

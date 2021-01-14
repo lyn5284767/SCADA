@@ -1017,6 +1017,7 @@ namespace Main
             {
                 if (System.IO.File.Exists(configPath))
                 {
+                    GlobalData.Instance.Rows = 10;
                     if (GlobalData.Instance.da.GloConfig.SysType == 1)
                     {
                         rows = GlobalData.Instance.Rows + 1;

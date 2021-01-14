@@ -143,54 +143,56 @@
                         <Grid Grid.Row="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="5"></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="1.2*"></ColumnDefinition>
                                 <ColumnDefinition></ColumnDefinition>
                                 <ColumnDefinition></ColumnDefinition>
                                 <ColumnDefinition></ColumnDefinition>
                                 <ColumnDefinition Width="5"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Label Grid.Row="0" Grid.Column="1" FontSize="18">电机</Label>
-                            <cl:SymbolMapping Name="carMotorWorkStatus"  Grid.Row="0" Grid.Column="2" StrContent="" LampType="3" Margin="36,2,2,2"/>
-                            <cl:SymbolMapping Name="armMotorWorkStatus" Grid.Row="0" Grid.Column="3" StrContent="" LampType="3" Margin="20,2,2,2"/>
-                            <cl:SymbolMapping Name="rotateMotorWorkStatus" Grid.Row="0" Grid.Column="4" StrContent="" LampType="3" Margin="20,2,2,2"/>
+                            <Label Grid.Row="0" Grid.Column="1" FontSize="18" HorizontalAlignment="Left">电机</Label>
+                            <cl:SymbolMapping Name="carMotorWorkStatus" Margin="2" HorizontalAlignment="Center" Grid.Column="2" StrContent="" LampType="3"/>
+                            <cl:SymbolMapping Name="armMotorWorkStatus"  Margin="2" HorizontalAlignment="Center" Grid.Column="3" StrContent="" LampType="3"/>
+                            <cl:SymbolMapping Name="rotateMotorWorkStatus" Margin="2" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="4" StrContent="" LampType="3"/>
                         </Grid>
                         <Grid Grid.Row="1">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="5"></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="1.2*"></ColumnDefinition>
                                 <ColumnDefinition></ColumnDefinition>
                                 <ColumnDefinition></ColumnDefinition>
                                 <ColumnDefinition></ColumnDefinition>
                                 <ColumnDefinition Width="5"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
 
-                            <Label Grid.Row="2" Grid.Column="1" FontSize="18">回零</Label>
-                            <cl:SymbolMapping Name="carMotorRetZero" Grid.Row="2" Grid.Column="2" StrContent="" Margin="36,2,2,2"/>
-                            <cl:SymbolMapping Name="armMotorRetZero" Grid.Row="2" Grid.Column="3" StrContent="" Margin="20,2,2,2"/>
-                            <cl:SymbolMapping Name="rotateMotorRetZero" Grid.Row="2" Grid.Column="4" StrContent="" Margin="20,2,2,2"/>
+                            <Label Grid.Row="2" Grid.Column="1" FontSize="18" HorizontalAlignment="Left">回零</Label>
+                            <cl:SymbolMapping Name="carMotorRetZero"  Margin="2" HorizontalAlignment="Center" Grid.Column="2" StrContent=""/>
+                            <cl:SymbolMapping Name="armMotorRetZero"  Margin="2" HorizontalAlignment="Center" Grid.Column="3" StrContent=""/>
+                            <cl:SymbolMapping Name="rotateMotorRetZero"  Margin="2" HorizontalAlignment="Center" Grid.Column="4" StrContent=""/>
                         </Grid>
                         <Grid Grid.Row="2">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="2"></ColumnDefinition>
+                                <ColumnDefinition Width="5"></ColumnDefinition>
+                                <ColumnDefinition Width="1.2*"></ColumnDefinition>
                                 <ColumnDefinition></ColumnDefinition>
                                 <ColumnDefinition></ColumnDefinition>
                                 <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition Width="2"></ColumnDefinition>
+                                <ColumnDefinition Width="5"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="1" Grid.ColumnSpan="2">
+                            <Grid Grid.Column="1">
                                 <Grid.RowDefinitions>
                                     <RowDefinition/>
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
-                                <StackPanel Orientation="Horizontal" Grid.Row="0">
-                                    <Label Margin="20,0,5,0" FontSize="18">标定状态</Label>
-                                    <cl:SymbolMapping Name="bigHookCalibrationStatus" Margin="8,2,2,2" StrContent="" LampType="3" HorizontalAlignment="Center"/>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Grid.Row="1" >
-                                    <Label Margin="20,0,5,0" FontSize="18">特殊指梁</Label>
-                                    <cl:SymbolMapping Name="spcialDrill" Margin="8,2,2,2"  StrContent="" LampType="3"/>
-                                </StackPanel>
+                                <Label FontSize="18" HorizontalAlignment="Left" Grid.Row="0">标定状态</Label>
+                                <Label FontSize="18" HorizontalAlignment="Left" Grid.Row="1">特殊指梁</Label>
+                            </Grid>
+                            <Grid Grid.Column="2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <cl:SymbolMapping Name="bigHookCalibrationStatus" Margin="2" StrContent="" LampType="3" HorizontalAlignment="Center"/>
+                                <cl:SymbolMapping Grid.Row="1" Name="spcialDrill" Margin="2"  StrContent="" LampType="3" HorizontalAlignment="Center"/>
                             </Grid>
                             <Border Grid.Column="3" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2,5,5,2">
                                 <StackPanel Orientation="Vertical" VerticalAlignment="Center">
@@ -478,9 +480,13 @@
                                 <!--<main:Amination x:Name="amination"/>-->
                                 <main:AminationNew x:Name="aminationNew"/>
                             </Grid>
-                            <StackPanel Grid.Row="2" Orientation="Horizontal">
-                                <TextBlock Text="送&#13;杆" Name="tbDrillDown" Visibility="Collapsed" FontSize="16"/>
-                            <hc:StepBar Width="620" FontSize="14" Name="sbDrillDown" Visibility="Collapsed" Margin="8,0,0,0">
+                            <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="62*"/>
+                            </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="送&#13;杆" Name="tbDrillDown" Visibility="Collapsed" FontSize="16"/>
+                            <hc:StepBar Grid.Column="1" FontSize="14" Name="sbDrillDown" Visibility="Collapsed" Margin="8,0,0,0">
                                     <hc:StepBarItem Content="送杆启动" Margin="-5,0,0,0" FontWeight="Bold"/>
                                     <hc:StepBarItem Content="指梁定位" Margin="-5,0,0,0" FontWeight="Bold"/>
                                     <hc:StepBarItem Content="指梁抓杆" Margin="-5,0,0,0" FontWeight="Bold"/>
@@ -491,8 +497,8 @@
                                     <hc:StepBarItem Content="井口位置" Margin="-5,0,0,0" FontWeight="Bold"/>
                                     <hc:StepBarItem Content="送杆完成" Margin="-12,0,0,0" FontWeight="Bold"/>
                                 </hc:StepBar>
-                                <TextBlock Text="排&#13;杆" Name="tbDrillUp" FontSize="16" Margin="8,0,0,0"/>
-                                <hc:StepBar Width="620" FontSize="14" Name="sbDrillUp">
+                                <TextBlock Grid.Column="0" Text="排&#13;杆" Name="tbDrillUp" FontSize="16" Margin="8,0,0,0"/>
+                                <hc:StepBar Grid.Column="1" FontSize="14" Name="sbDrillUp">
                                     <hc:StepBarItem Content="排杆启动" Margin="-5,0,0,0" FontWeight="Bold"/>
                                     <hc:StepBarItem Content="井口定位" Margin="-5,0,0,0" FontWeight="Bold"/>
                                     <hc:StepBarItem Content="井口抓杆" Margin="-5,0,0,0" FontWeight="Bold"/>
@@ -516,7 +522,7 @@
                             <Border x:Name="bdStepTip"  BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Margin="10,5,20,5" Width="120" Background="#E02740" Visibility="Collapsed">
                                 <TextBlock  Text="井口位置" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/>
                             </Border>-->
-                            </StackPanel>
+                            </Grid>
                         </Grid>
                 </Grid>
                 <Border Background="White" CornerRadius="10" Margin="5,5,2,5" Grid.Column="1">
@@ -526,8 +532,8 @@
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="90"></RowDefinition>
-                            <RowDefinition Height="190"></RowDefinition>
-                            <RowDefinition Height="190"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0">
                             <TextBlock Grid.Row="0" Name="warnOne" Margin="5" Text=""  FontSize="16" FontFamily="宋体" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#E0496D"></TextBlock>
@@ -535,23 +541,23 @@
                             <TextBlock Grid.Row="2" Name="warnThree" Margin="5" Text=""  FontSize="24" FontFamily="宋体" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#E0496D"></TextBlock>
                         </StackPanel>
                         <Grid x:Name="gridRow1Column1" Grid.Row="1" Margin="0 5 0 0">
-                            <StackPanel Grid.Column="1">
-                                <Viewbox x:Name="viewboxCameral1" Stretch="Uniform" Height="180" Margin="0,0,0.333,0">
+                            <!--<StackPanel Grid.Column="1">-->
+                                <Viewbox x:Name="viewboxCameral1" Stretch="Uniform">
                                     <Grid x:Name="gridCamera1">
                                         <Image Source="../Images/camera.jpg"/>
                                     </Grid>
                                 </Viewbox>
-                            </StackPanel>
+                            <!--</StackPanel>-->
                         </Grid>
 
                         <Grid x:Name="gridRow1Column2" Grid.Row="2" Margin="0 5 0 0">
-                            <StackPanel Grid.Column="1">
-                                <Viewbox x:Name="viewboxCameral2" Stretch="Uniform" Height="180">
+                            <!--<StackPanel Grid.Column="1">-->
+                                <Viewbox x:Name="viewboxCameral2" Stretch="Uniform">
                                     <Grid x:Name="gridCamera2">
                                         <Image Source="../Images/camera.jpg"/>
                                     </Grid>
                                 </Viewbox>
-                            </StackPanel>
+                            <!--</StackPanel>-->
                         </Grid>
                         <!--<Grid Grid.Row="2" Margin="5 2 5 0">
                             <Grid.ColumnDefinitions>

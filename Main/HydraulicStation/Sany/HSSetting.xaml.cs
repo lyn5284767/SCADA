@@ -1047,13 +1047,21 @@ namespace Main.HydraulicStation
             byte[] byteToSend = new byte[10] { 0, 19, 34, 0, 1, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
-
+        /// <summary>
+        /// 取消液位限制
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnCancelWaterLevel_Click(object sender, RoutedEventArgs e)
         {
             byte[] byteToSend = new byte[10] { 0, 19, 100, 0, 1, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
-
+        /// <summary>
+        /// 取消温度限制
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnCancelTmp_Click(object sender, RoutedEventArgs e)
         {
             byte[] byteToSend = new byte[10] { 0, 19, 101, 0, 1, 0, 0, 0, 0, 0 };

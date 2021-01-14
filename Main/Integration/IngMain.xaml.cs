@@ -564,35 +564,61 @@ namespace Main.Integration
                     }
                 }
             }
+            // 修井
+            if (GlobalData.Instance.da.GloConfig.SysType == 1)
+            {
+                if (GlobalData.Instance.da.GloConfig.SFType == 0) this.tbsf.Text = "二层台(未配置)";
+                else if (GlobalData.Instance.da.GloConfig.SFType == 1) this.tbsf.Text = "二层台(三一)";
+                else this.tbsf.Text = "二层台(错误)";
 
-            if (GlobalData.Instance.da.GloConfig.SFType == 0) this.tbsf.Text = "二层台(未配置)";
-            else if(GlobalData.Instance.da.GloConfig.SFType == 1) this.tbsf.Text = "二层台(三一)";
-            else this.tbsf.Text = "二层台(错误)";
+                if (GlobalData.Instance.da.GloConfig.DRType == 0) this.tbdr.Text = "钻台面(未配置)";
+                else if (GlobalData.Instance.da.GloConfig.DRType == 1) this.tbdr.Text = "钻台面(三一)";
+                else this.tbdr.Text = "钻台面(错误)";
 
-            if (GlobalData.Instance.da.GloConfig.DRType == 0) this.tbdr.Text = "钻台面(未配置)";
-            else if (GlobalData.Instance.da.GloConfig.DRType == 1) this.tbdr.Text = "钻台面(三一)";
-            else if (GlobalData.Instance.da.GloConfig.DRType == 2) this.tbdr.Text = "钻台面(杰瑞)";
-            else this.tbdr.Text = "钻台面(错误)";
+                if (GlobalData.Instance.da.GloConfig.SIRType == 0) this.tbIron.Text = "铁钻工(未配置)";
+                else if (GlobalData.Instance.da.GloConfig.SIRType == 1) this.tbIron.Text = "铁钻工(三一)";
+                else this.tbIron.Text = "铁钻工(错误)";
 
-            if (GlobalData.Instance.da.GloConfig.SIRType == 0) this.tbIron.Text = "铁钻工(未配置)";
-            else if (GlobalData.Instance.da.GloConfig.SIRType == 1) this.tbIron.Text = "铁钻工(三一)";
-            else if (GlobalData.Instance.da.GloConfig.SIRType == 2) this.tbIron.Text = "铁钻工(JJC)";
-            else if (GlobalData.Instance.da.GloConfig.SIRType == 3) this.tbIron.Text = "铁钻工(宝石)";
-            else if (GlobalData.Instance.da.GloConfig.SIRType == 4) this.tbIron.Text = "铁钻工(江汉)";
-            else if (GlobalData.Instance.da.GloConfig.SIRType == 5) this.tbIron.Text = "铁钻工(轨道)";
-            else this.tbIron.Text = "铁钻工(错误)";
+                if (GlobalData.Instance.da.GloConfig.HydType == 0) this.tbHS.Text = "液压站(未配置)";
+                else if (GlobalData.Instance.da.GloConfig.HydType == 1) this.tbHS.Text = "液压站(三一)";
+                else this.tbHS.Text = "液压站(错误)";
 
-            if (GlobalData.Instance.da.GloConfig.HydType == 0) this.tbHS.Text = "液压站(未配置)";
-            else if (GlobalData.Instance.da.GloConfig.HydType == 1) this.tbHS.Text = "液压站(三一)";
-            else if (GlobalData.Instance.da.GloConfig.HydType == 2) this.tbHS.Text = "液压站(宝石)";
-            else if (GlobalData.Instance.da.GloConfig.HydType == 3) this.tbHS.Text = "液压站(JJC)";
-            else this.tbHS.Text = "液压站(错误)";
 
-            if (GlobalData.Instance.da.GloConfig.CatType == 0) this.tbCat.Text = "猫道(未配置)";
-            else if (GlobalData.Instance.da.GloConfig.CatType == 1) this.tbCat.Text = "猫道(三一)";
-            else if (GlobalData.Instance.da.GloConfig.CatType == 2) this.tbCat.Text = "猫道(宝石)";
-            else if (GlobalData.Instance.da.GloConfig.CatType == 3) this.tbCat.Text = "液压站(宏达)";
-            else this.tbCat.Text = "猫道(错误)";
+                if (GlobalData.Instance.da.GloConfig.CatType == 0) this.tbCat.Text = "猫道(未配置)";
+                else if (GlobalData.Instance.da.GloConfig.CatType == 1) this.tbCat.Text = "猫道(三一)";
+                else this.tbCat.Text = "猫道(错误)";
+            }
+            else // 钻井
+            {
+                if (GlobalData.Instance.da.GloConfig.SFType == 0) this.tbsf.Text = "二层台(未配置)";
+                else if (GlobalData.Instance.da.GloConfig.SFType == 1) this.tbsf.Text = "二层台(三一)";
+                else this.tbsf.Text = "二层台(错误)";
+
+                if (GlobalData.Instance.da.GloConfig.DRType == 0) this.tbdr.Text = "钻台面(未配置)";
+                else if (GlobalData.Instance.da.GloConfig.DRType == 1) this.tbdr.Text = "钻台面(三一)";
+                else if (GlobalData.Instance.da.GloConfig.DRType == 2) this.tbdr.Text = "钻台面(杰瑞)";
+                else this.tbdr.Text = "钻台面(错误)";
+
+                if (GlobalData.Instance.da.GloConfig.SIRType == 0) this.tbIron.Text = "铁钻工(未配置)";
+                else if (GlobalData.Instance.da.GloConfig.SIRType == 1) this.tbIron.Text = "铁钻工(三一)";
+                else if (GlobalData.Instance.da.GloConfig.SIRType == 2) this.tbIron.Text = "铁钻工(JJC)";
+                else if (GlobalData.Instance.da.GloConfig.SIRType == 3) this.tbIron.Text = "铁钻工(宝石)";
+                else if (GlobalData.Instance.da.GloConfig.SIRType == 4) this.tbIron.Text = "铁钻工(江汉)";
+                else if (GlobalData.Instance.da.GloConfig.SIRType == 5) this.tbIron.Text = "铁钻工(轨道)";
+                else this.tbIron.Text = "铁钻工(错误)";
+
+                if (GlobalData.Instance.da.GloConfig.HydType == 0) this.tbHS.Text = "液压站(未配置)";
+                else if (GlobalData.Instance.da.GloConfig.HydType == 1) this.tbHS.Text = "液压站(三一)";
+                else if (GlobalData.Instance.da.GloConfig.HydType == 2) this.tbHS.Text = "液压站(宝石)";
+                else if (GlobalData.Instance.da.GloConfig.HydType == 3) this.tbHS.Text = "液压站(JJC)";
+                else this.tbHS.Text = "液压站(错误)";
+
+                if (GlobalData.Instance.da.GloConfig.CatType == 0) this.tbCat.Text = "猫道(未配置)";
+                else if (GlobalData.Instance.da.GloConfig.CatType == 1) this.tbCat.Text = "猫道(三一)";
+                else if (GlobalData.Instance.da.GloConfig.CatType == 2) this.tbCat.Text = "猫道(宝石)";
+                else if (GlobalData.Instance.da.GloConfig.CatType == 3) this.tbCat.Text = "液压站(宏达)";
+                else this.tbCat.Text = "猫道(错误)";
+            }
         }
 
         private void Data_StartFinishEvent(GlobalModel model)
