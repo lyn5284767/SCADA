@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using System.Diagnostics;
-using System.Runtime.InteropServices;
 using DatabaseLib;
 using COM.Common;
-using System.Windows.Threading;
-using DevExpress.Xpf.Charts.Native;
 
 namespace Main
 {
@@ -23,6 +13,9 @@ namespace Main
             get { return _curUsr; }
         }
         System.Timers.Timer serviceTimer;
+        /// <summary>
+        /// 登录
+        /// </summary>
         public Login()
         {
             InitializeComponent();
@@ -50,7 +43,9 @@ namespace Main
             Control.CheckForIllegalCrossThreadCalls = false;
             this.cbType.Focus();
         }
-
+        /// <summary>
+        /// 输入密码弹出软键盘
+        /// </summary>
         private void TextBox_PassWord_Click(object sender, EventArgs e)
         {
             GlobalData.Instance.GetKeyBoard();
@@ -60,12 +55,18 @@ namespace Main
         //{
         //    GlobalData.Instance.GetKeyBoard();
         //}
-
+        /// <summary>
+        /// 当前时间
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void timer_Tick(object sender, System.Timers.ElapsedEventArgs e)
         {
                 this.timeLable.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"); 
         }
-
+        /// <summary>
+        /// 退出登录
+        /// </summary>
         private void BtnQuit_Click(object sender, EventArgs e)
         {
             WinAPI.TextBox_Name_LostFocus(null, null);
@@ -80,7 +81,9 @@ namespace Main
                 }
             }
         }
-
+        /// <summary>
+        /// 登录
+        /// </summary>
         private void BtnLogin_Click(object sender, EventArgs e)
         {
             TryLogin();
@@ -94,7 +97,9 @@ namespace Main
                 MessageBox.Show("密码或账户输入错误！");
             }
         }
-
+        /// <summary>
+        /// 根据不同角色用户登录
+        /// </summary>
         private void TryLogin()
         {
             //string usrName = this.textBox_Name.Text.Trim();

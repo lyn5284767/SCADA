@@ -125,7 +125,7 @@ namespace Main.Integration
         private void btn_SIRPipeTypeModel(object sender, EventArgs e)
         {
             byte[] byteToSend;
-            if (this.sirPipeTypeModel.IsChecked) //当前钻杠
+            if (this.sirPipeTypeModel.IsChecked) //当前钻杆
             {
                 byteToSend = new byte[10] { 23, 17, 3, 2, 0, 0, 0, 0, 0, 0 };
             }

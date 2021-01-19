@@ -231,9 +231,9 @@
                     </StackPanel>
                 </Border>
             </StackPanel>
-            <StackPanel Width="500" Name="spMidMain">
+            <StackPanel Width="500" Name="spMidMain" Panel.ZIndex="-1">
                 <Grid Height="20"></Grid>
-                <Grid Height="300" Name="gdMidMain">
+                <Grid Height="300" Name="gdMidMain" Panel.ZIndex="-1">
                     <!--钻台台架子-->
                     <Grid.RowDefinitions>
                         <RowDefinition Height="8"/>
@@ -961,7 +961,7 @@
                         <Grid Grid.Row="1" Grid.ColumnSpan="3">
                             <Border Height="40" BorderBrush="#6D6F72" BorderThickness="5,5,5,5">
                             </Border>
-                            <local1:AnimationButton Width="20" Height="20" Style="{StaticResource CircleButton}" x:Name="drRobotCar">
+                            <local1:AnimationButton Width="20" Height="20" Style="{StaticResource CircleButton}" x:Name="drRobotCar" Panel.ZIndex="999">
                                 <Button.Background>
                                     <ImageBrush ImageSource="Images\RobotCar.bmp"/>
                                 </Button.Background>

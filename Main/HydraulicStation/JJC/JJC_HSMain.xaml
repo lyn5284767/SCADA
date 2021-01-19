@@ -37,8 +37,8 @@
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="220"/>
-            <RowDefinition Height="430"/>
+            <RowDefinition Height="22*"/>
+            <RowDefinition Height="43*"/>
         </Grid.RowDefinitions>
         <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5" Grid.Row="0">
             <Border.Effect>
@@ -46,15 +46,19 @@
             </Border.Effect>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="10*"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="JJC液压站" FontSize="24" Grid.Row="0"></TextBlock>
-                <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
-                    <TextBlock Text="告警信息:" FontSize="24" Foreground="#E02740"></TextBlock>
-                    <TextBlock Name="tbAlarm" Text="无" FontSize="24" Foreground="#E02740"></TextBlock>
-                </StackPanel>
+                <Viewbox>
+                    <TextBlock Text="JJC液压站" FontSize="24" Grid.Row="0" Margin="0,5,0,5"></TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Row="1">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,5">
+                        <TextBlock Text="告警信息:" FontSize="24" Foreground="#E02740"></TextBlock>
+                        <TextBlock Name="tbAlarm" Text="无" FontSize="24" Foreground="#E02740"></TextBlock>
+                    </StackPanel>
+                </Viewbox>
                 <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -65,10 +69,18 @@
                         <ColumnDefinition/>-->
                     </Grid.ColumnDefinitions>
                     <!--<cl:BasedSwitchButton Name="ControlModel" ContentLeft="本地" ContentDown="控制模式" ContentRight="集成" UserControlClicked="btn_ControlModel" Grid.Column="0" />-->
-                    <cl:BasedSwitchButton Name="WorkModel" ContentLeft="待机" ContentDown="工作模式" ContentRight="工作" UserControlClicked="btn_WorkModel" Grid.Column="0" />
-                    <cl:BasedSwitchButton Name="MainPumpOne" ContentLeft="启动" ContentDown="1#主泵" ContentRight="停止" UserControlClicked="btn_MainPumpOne" Grid.Column="1" />
-                    <cl:BasedSwitchButton Name="MainPumpTwo" ContentLeft="启动" ContentDown="2#主泵" ContentRight="停止" UserControlClicked="btn_MainPumpTwo" Grid.Column="2" />
-                    <cl:BasedSwitchButton Name="CatOil" ContentLeft="启动" ContentDown="猫头供油" ContentRight="停止" UserControlClicked="btn_CatOil" Grid.Column="3" />
+                    <Viewbox Grid.Column="0" >
+                        <cl:BasedSwitchButton Name="WorkModel" ContentLeft="待机" ContentDown="工作模式" ContentRight="工作" UserControlClicked="btn_WorkModel" Margin="2"/>
+                    </Viewbox>
+                    <Viewbox Grid.Column="1" >
+                        <cl:BasedSwitchButton Name="MainPumpOne" ContentLeft="启动" ContentDown="1#主泵" ContentRight="停止" UserControlClicked="btn_MainPumpOne" Margin="2"/>
+                    </Viewbox>
+                    <Viewbox Grid.Column="2" >
+                        <cl:BasedSwitchButton Name="MainPumpTwo" ContentLeft="启动" ContentDown="2#主泵" ContentRight="停止" UserControlClicked="btn_MainPumpTwo" Margin="2"/>
+                    </Viewbox>
+                    <Viewbox Grid.Column="3" >
+                        <cl:BasedSwitchButton Name="CatOil" ContentLeft="启动" ContentDown="猫头供油" ContentRight="停止" UserControlClicked="btn_CatOil" Margin="2"/>
+                    </Viewbox>
 
                     <!--<cl:BasedSwitchButton Name="CyclePump" ContentLeft="启动" ContentDown="循环泵" ContentRight="停止" UserControlClicked="btn_CyclePump" Grid.Column="3" />
                     <cl:BasedSwitchButton Name="ColdFan" ContentLeft="启动" ContentDown="冷却风机" ContentRight="停止" UserControlClicked="btn_ColdFan" Grid.Column="4" />
@@ -100,100 +112,128 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Border BorderBrush="Gray" Background="White" BorderThickness="0,0,1,1" Grid.Column="0" Grid.Row="0">
-                        <StackPanel Orientation="Horizontal"  Margin="20,0,0,0">
-                            <TextBlock Text="系统状态:"></TextBlock>
-                            <TextBlock Name="tbSystemStatus" Text="XX" Foreground="#008AFF"></TextBlock>
-                        </StackPanel>
+                        <Viewbox>
+                            <StackPanel Orientation="Horizontal"  Margin="20,0,0,0" Width="200">
+                                <TextBlock Text="系统状态:"></TextBlock>
+                                <TextBlock Name="tbSystemStatus" Text="XX" Foreground="#008AFF"></TextBlock>
+                            </StackPanel>
+                        </Viewbox>
                     </Border>
                     <Border  BorderBrush="Gray" Background="White" BorderThickness="1,0,0,1" Grid.Column="1" Grid.Row="0">
-                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
-                            <TextBlock Text="软启动器:"></TextBlock>
-                            <TextBlock Name="tbSoftStart" Text="XX" Foreground="#008AFF"></TextBlock>
-                        </StackPanel>
+                        <Viewbox>
+                            <StackPanel Orientation="Horizontal" Margin="20,0,0,0" Width="200">
+                                <TextBlock Text="软启动器:"></TextBlock>
+                                <TextBlock Name="tbSoftStart" Text="XX" Foreground="#008AFF"></TextBlock>
+                            </StackPanel>
+                        </Viewbox>
                     </Border>
                     <Border BorderBrush="Gray" Background="White" BorderThickness="0,0,1,1" Grid.Column="0" Grid.Row="1">
-                        <StackPanel Orientation="Horizontal"  Margin="20,0,0,0">
-                            <TextBlock Text="系统压力:"></TextBlock>
-                            <TextBlock Name="tbCurSystemPress" Text="XX" Foreground="#008AFF"></TextBlock>
-                            <TextBlock Text="（Mpa）"></TextBlock>
-                        </StackPanel>
+                        <Viewbox>
+                            <StackPanel Orientation="Horizontal"  Margin="20,5,0,5" Width="200">
+                                <TextBlock Text="系统压力:"></TextBlock>
+                                <TextBlock Name="tbCurSystemPress" Text="XX" Foreground="#008AFF"></TextBlock>
+                                <TextBlock Text="（Mpa）"></TextBlock>
+                            </StackPanel>
+                        </Viewbox>
                     </Border>
                     <Border  BorderBrush="Gray" Background="White" BorderThickness="1,0,0,1" Grid.Column="1" Grid.Row="1">
-                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
-                            <TextBlock Text="猫头压力:"></TextBlock>
-                            <TextBlock Name="tbCurCatPress" Text="XX" Foreground="#008AFF"></TextBlock>
-                            <TextBlock Text="（Mpa）"></TextBlock>
-                        </StackPanel>
+                        <Viewbox>
+                            <StackPanel Orientation="Horizontal" Margin="20,0,0,0" Width="200">
+                                <TextBlock Text="猫头压力:"></TextBlock>
+                                <TextBlock Name="tbCurCatPress" Text="XX" Foreground="#008AFF"></TextBlock>
+                                <TextBlock Text="（Mpa）"></TextBlock>
+                            </StackPanel>
+                        </Viewbox>
                     </Border>
                     <Border BorderBrush="Gray" Background="White" BorderThickness="0,1,1,1" Grid.Column="0" Grid.Row="2">
-                        <StackPanel Orientation="Horizontal"  Margin="20,0,0,0">
-                            <TextBlock Text="1#主泵总运行时间:"></TextBlock>
-                            <TextBlock Name="tbMainOneTotolTime" Text="XX" Foreground="#008AFF"></TextBlock>
-                            <TextBlock Text="（天）"></TextBlock>
-                        </StackPanel>
+                        <Viewbox>
+                            <StackPanel Orientation="Horizontal"  Margin="20,0,0,0" Width="200">
+                                <TextBlock Text="1#主泵总运行时间:"></TextBlock>
+                                <TextBlock Name="tbMainOneTotolTime" Text="XX" Foreground="#008AFF"></TextBlock>
+                                <TextBlock Text="（天）"></TextBlock>
+                            </StackPanel>
+                        </Viewbox>
                     </Border>
                     <Border  BorderBrush="Gray" Background="White" BorderThickness="1,1,0,1" Grid.Column="1" Grid.Row="2">
-                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
-                            <TextBlock Text="1#主泵当次运行时间:"></TextBlock>
-                            <TextBlock Name="tbMainOneCurTime" Text="XX" Foreground="#008AFF"></TextBlock>
-                            <TextBlock Text="（小时）"></TextBlock>
-                        </StackPanel>
+                        <Viewbox>
+                            <StackPanel Orientation="Horizontal" Margin="20,0,0,0" Width="200">
+                                <TextBlock Text="1#主泵当次运行时间:"></TextBlock>
+                                <TextBlock Name="tbMainOneCurTime" Text="XX" Foreground="#008AFF"></TextBlock>
+                                <TextBlock Text="(小时)"></TextBlock>
+                            </StackPanel>
+                        </Viewbox>
                     </Border>
                     <Border BorderBrush="Gray" Background="White" BorderThickness="0,1,1,1" Grid.Column="0" Grid.Row="3">
-                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
-                            <TextBlock Text="2#主泵总运行时间:"></TextBlock>
-                            <TextBlock Name="tbMainTwoTotolTime" Text="XX" Foreground="#008AFF"></TextBlock>
-                            <TextBlock Text="（天）"></TextBlock>
-                        </StackPanel>
+                        <Viewbox>
+                            <StackPanel Orientation="Horizontal" Margin="20,0,0,0" Width="200">
+                                <TextBlock Text="2#主泵总运行时间:"></TextBlock>
+                                <TextBlock Name="tbMainTwoTotolTime" Text="XX" Foreground="#008AFF"></TextBlock>
+                                <TextBlock Text="（天）"></TextBlock>
+                            </StackPanel>
+                        </Viewbox>
                     </Border>
                     <Border  BorderBrush="Gray" Background="White" BorderThickness="1,1,0,1" Grid.Column="1" Grid.Row="3">
-                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
-                            <TextBlock Text="2#主泵当次运行时间:"></TextBlock>
-                            <TextBlock Name="tbMainTwoCurTime" Text="XX" Foreground="#008AFF"></TextBlock>
-                            <TextBlock Text="（小时）"></TextBlock>
-                        </StackPanel>
+                        <Viewbox>
+                            <StackPanel Orientation="Horizontal" Margin="20,0,0,0" Width="200">
+                                <TextBlock Text="2#主泵当次运行时间:"></TextBlock>
+                                <TextBlock Name="tbMainTwoCurTime" Text="XX" Foreground="#008AFF"></TextBlock>
+                                <TextBlock Text="(小时)"></TextBlock>
+                            </StackPanel>
+                        </Viewbox>
                     </Border>
                     <Border BorderBrush="Gray" Background="White" BorderThickness="0,1,1,1" Grid.Column="0" Grid.Row="4">
-                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
-                            <TextBlock Text="加热启动温度:"></TextBlock>
-                            <TextBlock Name="tbHotStartTmp" Text="XX" Foreground="#008AFF"></TextBlock>
-                            <TextBlock Text="（度）"></TextBlock>
-                        </StackPanel>
+                        <Viewbox>
+                            <StackPanel Orientation="Horizontal" Margin="20,0,0,0" Width="200">
+                                <TextBlock Text="加热启动温度:"></TextBlock>
+                                <TextBlock Name="tbHotStartTmp" Text="XX" Foreground="#008AFF"></TextBlock>
+                                <TextBlock Text="（度）"></TextBlock>
+                            </StackPanel>
+                        </Viewbox>
                     </Border>
                     <Border  BorderBrush="Gray" Background="White" BorderThickness="1,1,0,1" Grid.Column="1" Grid.Row="4">
-                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
-                            <TextBlock Text="加热停止温度:"></TextBlock>
-                            <TextBlock Name="tbHotStopTmp" Text="XX" Foreground="#008AFF"></TextBlock>
-                            <TextBlock Text="（度）"></TextBlock>
-                        </StackPanel>
+                        <Viewbox>
+                            <StackPanel Orientation="Horizontal" Margin="20,0,0,0" Width="200">
+                                <TextBlock Text="加热停止温度:"></TextBlock>
+                                <TextBlock Name="tbHotStopTmp" Text="XX" Foreground="#008AFF"></TextBlock>
+                                <TextBlock Text="（度）"></TextBlock>
+                            </StackPanel>
+                        </Viewbox>
                     </Border>
                     <Border BorderBrush="Gray" Background="White" BorderThickness="0,1,1,1" Grid.Column="0" Grid.Row="5">
-                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
-                            <TextBlock Text="当前液位:"></TextBlock>
-                            <TextBlock Name="tbCurOilLevel" Text="XX" Foreground="#008AFF"></TextBlock>
-                            <TextBlock Text="（L）"></TextBlock>
-                        </StackPanel>
+                        <Viewbox>
+                            <StackPanel Orientation="Horizontal" Margin="20,0,0,0" Width="200">
+                                <TextBlock Text="当前液位:"></TextBlock>
+                                <TextBlock Name="tbCurOilLevel" Text="XX" Foreground="#008AFF"></TextBlock>
+                                <TextBlock Text="（L）"></TextBlock>
+                            </StackPanel>
+                        </Viewbox>
                     </Border>
                     <Border  BorderBrush="Gray" Background="White" BorderThickness="1,1,0,1" Grid.Column="1" Grid.Row="5">
-                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
-                            <TextBlock Text="过低报警液位:"></TextBlock>
-                            <TextBlock Name="tbLowOilAlarm" Text="XX" Foreground="#008AFF"></TextBlock>
-                            <TextBlock Text="（L）"></TextBlock>
-                        </StackPanel>
+                        <Viewbox>
+                            <StackPanel Orientation="Horizontal" Margin="20,0,0,0" Width="200">
+                                <TextBlock Text="过低报警液位:"></TextBlock>
+                                <TextBlock Name="tbLowOilAlarm" Text="XX" Foreground="#008AFF"></TextBlock>
+                                <TextBlock Text="（L）"></TextBlock>
+                            </StackPanel>
+                        </Viewbox>
                     </Border>
                     <Border BorderBrush="Gray" Background="White" BorderThickness="0,1,1,0" Grid.Column="0" Grid.Row="6">
-                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
-                            <TextBlock Text="最低停泵液位:"></TextBlock>
-                            <TextBlock Name="tbLowStopPump" Text="XX" Foreground="#008AFF"></TextBlock>
-                            <TextBlock Text="（L）"></TextBlock>
-                        </StackPanel>
+                        <Viewbox>
+                            <StackPanel Orientation="Horizontal" Margin="20,0,0,0" Width="200">
+                                <TextBlock Text="最低停泵液位:"></TextBlock>
+                                <TextBlock Name="tbLowStopPump" Text="XX" Foreground="#008AFF"></TextBlock>
+                                <TextBlock Text="（L）"></TextBlock>
+                            </StackPanel>
+                        </Viewbox>
                     </Border>
                     <Border  BorderBrush="Gray" Background="White" BorderThickness="1,1,0,0" Grid.Column="1" Grid.Row="6">
-                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
-                            <TextBlock Text="当前猫头比例阀电流:"></TextBlock>
-                            <TextBlock Name="tbCurCatOutputElec" Text="XX" Foreground="#008AFF"></TextBlock>
-                            <TextBlock Text="（A）"></TextBlock>
-                        </StackPanel>
+                        <Viewbox>
+                            <StackPanel Orientation="Horizontal" Margin="20,0,0,0" Width="200">
+                                <TextBlock Text="当前猫头比例阀电流:"></TextBlock>
+                                <TextBlock Name="tbCurCatOutputElec" Text="XX" Foreground="#008AFF"></TextBlock>
+                                <TextBlock Text="（A）"></TextBlock>
+                            </StackPanel>
+                        </Viewbox>
                     </Border>
                 </Grid>
             </Border>
@@ -211,57 +251,67 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Border BorderBrush="Gray" Background="White" BorderThickness="0,0,0,1"  Grid.Row="0">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="左猫头:" Margin="10,0,0,0"></TextBlock>
-                            <Button Name="btnLeftCatHeadRetract" FontSize="18" Width="60" Height="50" Margin="25,0,0,0">下降</Button>
-                            <Button Name="btnLeftCatHeadClose"  FontSize="18" Width="50" Height="50" Click="BtnLeftCatClose_Click">关</Button>
-                            <Button Name="btnLeftCatHeadReach" FontSize="18" Width="60" Height="50">上升</Button>
-                            <TextBlock Text="右猫头:" Margin="10,0,0,0"></TextBlock>
-                            <Button Name="btnRightCatHeadRetract" FontSize="18" Width="60" Height="50" Margin="10,0,0,0">下降</Button>
-                            <Button Name="btnRightCatHeadClose" FontSize="18" Width="50" Height="50" Click="BtnRightCatClose_Click">关</Button>
-                            <Button Name="btnRightCatHeadReach" FontSize="18" Width="60" Height="50">上升</Button>
-                        </StackPanel>
+                        <Viewbox>
+                            <StackPanel Orientation="Horizontal" Width="500">
+                                <TextBlock Text="左猫头:" Margin="10,0,0,0"></TextBlock>
+                                <Button Name="btnLeftCatHeadRetract" FontSize="18" Width="60" Height="50" Margin="25,0,0,0">下降</Button>
+                                <Button Name="btnLeftCatHeadClose"  FontSize="18" Width="50" Height="50" Click="BtnLeftCatClose_Click">关</Button>
+                                <Button Name="btnLeftCatHeadReach" FontSize="18" Width="60" Height="50">上升</Button>
+                                <TextBlock Text="右猫头:" Margin="10,0,0,0"></TextBlock>
+                                <Button Name="btnRightCatHeadRetract" FontSize="18" Width="60" Height="50" Margin="10,0,0,0">下降</Button>
+                                <Button Name="btnRightCatHeadClose" FontSize="18" Width="50" Height="50" Click="BtnRightCatClose_Click">关</Button>
+                                <Button Name="btnRightCatHeadReach" FontSize="18" Width="60" Height="50">上升</Button>
+                            </StackPanel>
+                        </Viewbox>
                     </Border>
                     <Border BorderBrush="Gray" Background="White" BorderThickness="0,0,0,1"  Grid.Row="1">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="旋转猫头:" Margin="10,0,0,0"></TextBlock>
-                            <Button Name="btnRotateCatHeadRetract" FontSize="18" Width="60" Height="50" Margin="10,0,0,0">反转</Button>
-                            <Button Name="btnRotateCatHeadClose"  FontSize="18" Width="50" Height="50" Click="BtnRotateCatClose_Click">关</Button>
-                            <Button Name="btnRotateCatHeadReach" FontSize="18" Width="60" Height="50">正转</Button>
-                        </StackPanel>
+                        <Viewbox>
+                            <StackPanel Orientation="Horizontal" Width="500">
+                                <TextBlock Text="旋转猫头:" Margin="10,0,0,0"></TextBlock>
+                                <Button Name="btnRotateCatHeadRetract" FontSize="18" Width="60" Height="50" Margin="10,0,0,0">反转</Button>
+                                <Button Name="btnRotateCatHeadClose"  FontSize="18" Width="50" Height="50" Click="BtnRotateCatClose_Click">关</Button>
+                                <Button Name="btnRotateCatHeadReach" FontSize="18" Width="60" Height="50">正转</Button>
+                            </StackPanel>
+                        </Viewbox>
                     </Border>
                     <Border BorderBrush="Gray" Background="White" BorderThickness="0,0,0,1"  Grid.Row="2">
-                        <StackPanel Orientation="Horizontal"  Margin="0,0,0,0">
-                            <Menu Background="Transparent" Height="35" Width="100"  FontSize="14" FontFamily="微软雅黑" FontWeight="Bold" Foreground="#BDBDBD">
-                                <MenuItem>
-                                    <MenuItem.Header>
-                                        <StackPanel Orientation="Horizontal">
-                                            <ContentPresenter Content="模式选择" />
-                                            <Image Margin="0,2,0,0"  Width="15" Source="..\..\Images\downTrangle.png" />
-                                        </StackPanel>
-                                    </MenuItem.Header>
-                                    <MenuItem Header="待机模式" Click="btn_SelectStayWorkModel"/>
-                                    <MenuItem Header="猫头供油模式" Click="btn_SelectCatWorkModel"/>
-                                </MenuItem>
-                            </Menu>
-                            <TextBlock Name="tbSelectModel" VerticalAlignment="Center" Text="XX" Width="80" Foreground="#008AFF"></TextBlock>
-                        </StackPanel>
+                        <Viewbox>
+                            <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" Width="500">
+                                <Menu Background="Transparent" Height="35" Width="100"  FontSize="14" FontFamily="微软雅黑" FontWeight="Bold" Foreground="#BDBDBD">
+                                    <MenuItem>
+                                        <MenuItem.Header>
+                                            <StackPanel Orientation="Horizontal">
+                                                <ContentPresenter Content="模式选择" />
+                                                <Image Margin="0,2,0,0"  Width="15" Source="..\..\Images\downTrangle.png" />
+                                            </StackPanel>
+                                        </MenuItem.Header>
+                                        <MenuItem Header="待机模式" Click="btn_SelectStayWorkModel"/>
+                                        <MenuItem Header="猫头供油模式" Click="btn_SelectCatWorkModel"/>
+                                    </MenuItem>
+                                </Menu>
+                                <TextBlock Name="tbSelectModel" VerticalAlignment="Center" Text="XX" Width="80" Foreground="#008AFF"></TextBlock>
+                            </StackPanel>
+                        </Viewbox>
                     </Border>
                     <Border  BorderBrush="Gray" Background="White" BorderThickness="0,1,0,1" Grid.Row="3">
-                        <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
-                            <TextBlock Text="猫头压力百分比"></TextBlock>
-                            <TextBlock Text="xx" Margin="10,0,0,0"></TextBlock>
-                            <TextBlock Text="%"></TextBlock>
-                            <TextBox Name="tbCatPressPer" Height="20" Width="50" Margin="10,0,0,0" PreviewMouseDown="tb_ParameterConfig_Focus"></TextBox>
-                            <TextBlock Text="%"></TextBlock>
-                            <Button Margin="10,0,0,0" Click="Button_Click">设置</Button>
-                        </StackPanel>
+                        <Viewbox>
+                            <StackPanel Orientation="Horizontal" Margin="10,0,0,0" Width="500">
+                                <TextBlock Text="猫头压力百分比"></TextBlock>
+                                <TextBlock Text="xx" Margin="10,0,0,0"></TextBlock>
+                                <TextBlock Text="%"></TextBlock>
+                                <TextBox Name="tbCatPressPer" Height="20" Width="50" Margin="10,0,0,0" PreviewMouseDown="tb_ParameterConfig_Focus"></TextBox>
+                                <TextBlock Text="%"></TextBlock>
+                                <Button Margin="10,0,0,0" Click="Button_Click">设置</Button>
+                            </StackPanel>
+                        </Viewbox>
                     </Border>
                     <Border  BorderBrush="Gray" Background="White" BorderThickness="0,1,0,1" Grid.Row="4">
-                        <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
-                            <TextBlock Text="软启动器故障代码:"></TextBlock>
-                            <TextBlock Name="tbSoftErrorCode" Text="XX" Foreground="#008AFF"></TextBlock>
-                        </StackPanel>
+                        <Viewbox>
+                            <StackPanel Orientation="Horizontal" Margin="10,0,0,0" Width="500">
+                                <TextBlock Text="软启动器故障代码:"></TextBlock>
+                                <TextBlock Name="tbSoftErrorCode" Text="XX" Foreground="#008AFF"></TextBlock>
+                            </StackPanel>
+                        </Viewbox>
                     </Border>
                 </Grid>
             </Border>

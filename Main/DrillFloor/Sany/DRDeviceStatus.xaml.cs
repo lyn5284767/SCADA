@@ -122,7 +122,7 @@ namespace Main.DrillFloor
                 this.rotateError.SetBinding(TextBlock.TextProperty, new Binding("UShortTag") { Source = GlobalData.Instance.da["drDriverThreeError"], Mode = BindingMode.OneWay });
 
                 this.gridFeeling.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["327b4"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
-                this.gridStatus.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drgripStatus"], Mode = BindingMode.OneWay, Converter = new GripConverter() });
+                this.gridStatus.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drgripStatus"], Mode = BindingMode.OneWay, Converter = new WR_GripConverter() });
                 this.gridLocation.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["gridSample"], Mode = BindingMode.OneWay });
                 GridErrorMultiConverter gridErrorMultiConverter = new GridErrorMultiConverter();
                 MultiBinding gridErrorMultiBind = new MultiBinding();

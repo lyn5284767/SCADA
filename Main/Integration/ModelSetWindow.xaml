@@ -36,7 +36,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Name="btnPipe" Grid.Column="0" FontSize="32" Height="200" Width="150" Click="Pipe_Click">钻杠</Button>
+            <Button Name="btnPipe" Grid.Column="0" FontSize="32" Height="200" Width="150" Click="Pipe_Click">钻杆</Button>
             <Button Name="btnCollar" Grid.Column="1" FontSize="32" Height="200" Width="150" Click="Collar_Click">钻铤</Button>
         </Grid>
         <Grid Grid.Row="1" Name="gdCollarType" Visibility="Collapsed">

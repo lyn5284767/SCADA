@@ -52,23 +52,23 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0" Orientation="Horizontal">
-                            <StackPanel Orientation="Horizontal" Width="110">
+                            <StackPanel Orientation="Horizontal" Width="100">
                                 <TextBlock Text="&#xe6af;" FontFamily="../../Font/#iconfont" FontSize="36" Foreground="#008AFF" TextAlignment="Center" Margin="5,10,5,10" Width="45" Height="45"></TextBlock>
                                 <StackPanel Margin="0,15,10,0">
                                     <TextBlock FontSize="18">小车</TextBlock>
-                                    <TextBlock FontSize="18" Name="carPos" Text="-9999" Foreground="#4C80FF"></TextBlock>
+                                    <TextBlock FontSize="18" Name="carPos" Text="9999" Foreground="#4C80FF"></TextBlock>
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Width="100">
-                                <TextBlock Text="&#xe6ae;" FontFamily="../../Font/#iconfont" FontSize="36" Foreground="#008AFF" TextAlignment="Center" Margin="5,10,5,10" Width="45" Height="45"></TextBlock>
-                                <StackPanel Margin="0,15,10,0">
+                                <TextBlock Text="&#xe6ae;" FontFamily="../../Font/#iconfont" FontSize="36" Foreground="#008AFF" TextAlignment="Center" Margin="0,10,5,10" Width="45" Height="45"></TextBlock>
+                                <StackPanel Margin="-5,15,10,0">
                                     <TextBlock FontSize="18">手臂</TextBlock>
                                     <TextBlock FontSize="18" Text="9999" Name="armPos" Foreground="#4C80FF"></TextBlock>
                                 </StackPanel>
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Grid.Row="1" Orientation="Horizontal">
-                            <StackPanel Orientation="Horizontal" Width="110">
+                            <StackPanel Orientation="Horizontal" Width="100">
                                 <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,2,10" Width="45" Height="45">
                                     <Image Source="../../Images/roate.png" Margin="2"></Image>
                                 </Border>
@@ -77,11 +77,11 @@
                                     <TextBlock Name="rotatePos" FontSize="18" Text="9999" Foreground="#4C80FF"></TextBlock>
                                 </StackPanel>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal" Width="100">
-                                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,5,10" Width="45" Height="45">
+                            <StackPanel Orientation="Horizontal" Width="110">
+                                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="0,10,5,10" Width="45" Height="45">
                                     <Image Source="../../Images/finger.png" Margin="2"></Image>
                                 </Border>
-                                <StackPanel Margin="0,15,10,0">
+                                <StackPanel Margin="-5,15,10,0">
                                     <TextBlock FontSize="18">抓手</TextBlock>
                                     <TextBlock Text="未知" Name="gripMotor" FontSize="18" Foreground="#4C80FF"></TextBlock>
                                 </StackPanel>
@@ -101,15 +101,17 @@
                                 <RowDefinition Height="30"></RowDefinition>
                                 <RowDefinition Height="30"></RowDefinition>
                                 <RowDefinition Height="30"></RowDefinition>
+                                <RowDefinition Height="30"></RowDefinition>
+                                <RowDefinition Height="30"></RowDefinition>
                             </Grid.RowDefinitions>
                             <StackPanel Grid.Row="0" Orientation="Horizontal">
-                                <Label Margin="10,0,0,0" FontSize="18">电机</Label>
+                                <Label Margin="10,0,0,0" FontSize="18" Foreground="Black">电机</Label>
                                 <cl:SymbolMapping Name="drcarMotorWorkStatus" StrContent="" Margin="10,2,2,2"/>
                                 <cl:SymbolMapping Name="drArmMotorWorkStatus" StrContent="" Margin="10,2,2,2"/>
                                 <cl:SymbolMapping Name="drRotateMotorWorkStatus" StrContent="" Margin="10,2,2,2"/>
                             </StackPanel>
                             <StackPanel Grid.Row="1" Orientation="Horizontal">
-                                <Label Margin="10,0,0,0" FontSize="18">回零</Label>
+                                <Label Margin="10,0,0,0" FontSize="18" Foreground="Black">回零</Label>
                                 <cl:SymbolMapping Name="drcarMotorRetZero" StrContent="" Margin="10,2,2,2"/>
                                 <cl:SymbolMapping Name="drArmMotorRetZero" StrContent="" Margin="10,2,2,2"/>
                                 <cl:SymbolMapping Name="drRotateMotorRetZero" StrContent="" Margin="10,2,2,2"/>
@@ -118,6 +120,23 @@
                                 <TextBlock Text="强制状态:" FontSize="18" Margin="10,0,0,0"></TextBlock>
                                 <TextBlock Name="tbForce" Text="未知" FontSize="18"></TextBlock>
                             </StackPanel>
+                            <Menu Grid.Row="3" Background="Transparent" FontSize="16" FontWeight="Bold">
+                                <MenuItem>
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal" Margin="0,-3,0,0">
+                                            <ContentPresenter Content="记忆功能"/>
+                                            <Image Margin="0,2,0,0"  Width="15" Source="..\..\Images\downTrangle.png" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                    <MenuItem Header="立根井口记忆" FontSize="24" Click="btnWellMemory" />
+                                    <MenuItem Header="猫道井口记忆" FontSize="24" Click="btnCatMemory" />
+                                    <MenuItem Header="记忆清除" FontSize="24" Click="btnMemoryClear" />
+                                    <MenuItem Header="立根记忆恢复" FontSize="24" Click="btnWellMemoryRecovery" />
+                                    <MenuItem Header="猫道记忆恢复" FontSize="24" Click="btnCatMemoryRecovery" />
+                                </MenuItem>
+                            </Menu>
+                            <TextBlock Grid.Row="4" Text="记忆位置" Name="tbMemoryPos" FontSize="16" Margin="10,-4,0,0" VerticalAlignment="Center" />
+
                         </Grid>
                     </Grid>
                 </Grid>
@@ -171,6 +190,7 @@
                                     <MenuItem Header="旋转回零" Click="btn_RotateToZero"/>
                                 </MenuItem>
                                 <MenuItem Header="清除钻杆" FontSize="24" Click="btnClearDrill" />
+                                <MenuItem Header="设备回收" FontSize="24" Click="btnArmBack" />
                             </MenuItem>
                         </Menu>
                         <TextBlock Grid.Row="1" Grid.Column="1" Text="未选择目的地" Name="drDestination" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />

@@ -105,12 +105,12 @@ namespace Main.WellRepair.DrillFloor
                         this.twtR14.ShowText = GlobalData.Instance.da["drHandWithDrillTwoMaxSpeed"].ToString(); // 手臂钻铤最大速度
                         this.twtR15.ShowText = GlobalData.Instance.da["drRotateMoveReduce"].ToString(); // 回转减速比
                         this.twtR16.ShowText = GlobalData.Instance.da["drRotateMaxSpeed"].ToString(); // 回转空载最大速度
-                        this.twtR17.ShowText = GlobalData.Instance.da["drRotateWithDrillOneMaxSpeed"].ToString(); // 回转钻杠最大速度
+                        this.twtR17.ShowText = GlobalData.Instance.da["drRotateWithDrillOneMaxSpeed"].ToString(); // 回转钻杆最大速度
                         this.twtR18.ShowText = GlobalData.Instance.da["drRotateWithDrillTwoMaxSpeed"].ToString(); // 回转钻铤最大速度
                     }
                     else if (groupNO == 2)
                     {
-                        this.twtL20.ShowText = GlobalData.Instance.da["drDrillOneSpace"].ToString(); // 钻杠指梁壁厚
+                        this.twtL20.ShowText = GlobalData.Instance.da["drDrillOneSpace"].ToString(); // 钻杆指梁壁厚
                         this.twtL22.ShowText = GlobalData.Instance.da["drDrillTwoSpace"].ToString(); // 钻铤指梁厚度
                         this.twtL23.ShowText = GlobalData.Instance.da["drDrillSettingNum"].ToString(); // 钻铤设置值
                         this.twtR24.ShowText = GlobalData.Instance.da["drArmMaxPos"].ToString(); // 手臂最大距离

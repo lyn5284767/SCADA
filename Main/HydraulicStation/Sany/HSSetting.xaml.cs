@@ -811,7 +811,7 @@ namespace Main.HydraulicStation
                             // 有告警且全部显示完成
                             if (this.alarmList.Where(w => w.NowType == 1).Count() == 0)
                             {
-                                this.alarmList.ForEach(w => w.NowType = 1);
+                                this.alarmList.Where(w => w.NowType == 2).ToList().ForEach(w => w.NowType = 1);
                             }
                             AlarmInfo tmp = this.alarmList.Where(w => w.NowType == 1).FirstOrDefault();
                             if (tmp != null)
@@ -820,6 +820,10 @@ namespace Main.HydraulicStation
                                 this.tbAlarm.Text = tmp.Description;
                                 tmp.NowType = 2;
                             }
+                        }
+                        else
+                        {
+                            this.tbAlarm.Text = "暂无告警";
                         }
                     }
                     else

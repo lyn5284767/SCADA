@@ -265,5 +265,15 @@ namespace Main.Integration
                 GlobalData.Instance.da.GloConfig.SFType = sfType;
             }
         }
+        /// <summary>
+        /// 摄像头配置
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CameraSet(object sender, RoutedEventArgs e)
+        {
+            ModifyCameraWindow modifyCameraWindow = new ModifyCameraWindow();
+            modifyCameraWindow.ShowDialog();
+        }
     }
 }

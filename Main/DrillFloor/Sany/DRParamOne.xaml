@@ -83,7 +83,7 @@
                         </Border>
                         <StackPanel>
                             <cl:TextBlockWithTextBox Name="twtL19" ControlTag="19"  TbkText="钻杆指梁宽度" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
-                            <cl:TextBlockWithTextBox Name="twtL20" ControlTag="20"  TbkText="钻杠指梁壁厚" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+                            <cl:TextBlockWithTextBox Name="twtL20" ControlTag="20"  TbkText="钻杆指梁壁厚" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
                             <cl:TextBlockWithTextBox Name="twtL21" ControlTag="21"  TbkText="钻铤指梁宽度" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
                             <cl:TextBlockWithTextBox Name="twtL22" ControlTag="22"  TbkText="钻铤指梁壁厚" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
                             <cl:TextBlockWithTextBox Name="twtL23" ControlTag="23"  TbkText="钻铤设置值" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>

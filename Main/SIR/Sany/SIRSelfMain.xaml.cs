@@ -250,7 +250,7 @@ namespace Main.SIR
         private void btn_PipeTypeModel(object sender, EventArgs e)
         {
             byte[] byteToSend;
-            if (this.PipeTypeModel.IsChecked) //当前钻杠
+            if (this.PipeTypeModel.IsChecked) //当前钻杆
             {
                 byteToSend = new byte[10] { 23, 17, 3, 2, 0, 0, 0, 0, 0, 0 };
                 this.bdCosing.Visibility = Visibility.Visible;

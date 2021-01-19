@@ -282,6 +282,9 @@
     <Compile Include="Integration\ModelStartWindow.xaml.cs">
       <DependentUpon>ModelStartWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Integration\ModifyCameraWindow.xaml.cs">
+      <DependentUpon>ModifyCameraWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -482,8 +485,8 @@
     <Compile Include="WellRepair\SecondFloor\WR_SFMain.xaml.cs">
       <DependentUpon>WR_SFMain.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WellRepair\SIR_Self\WR_ParamSet.xaml.cs">
-      <DependentUpon>WR_ParamSet.xaml</DependentUpon>
+    <Compile Include="WellRepair\SIR_Self\WR_SIR_ParamSet.xaml.cs">
+      <DependentUpon>WR_SIR_ParamSet.xaml</DependentUpon>
     </Compile>
     <Compile Include="WellRepair\SIR_Self\WR_SIR_IO.xaml.cs">
       <DependentUpon>WR_SIR_IO.xaml</DependentUpon>
@@ -674,6 +677,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Integration\ModelStartWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Integration\ModifyCameraWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -945,7 +952,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WellRepair\SIR_Self\WR_ParamSet.xaml">
+    <Page Include="WellRepair\SIR_Self\WR_SIR_ParamSet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

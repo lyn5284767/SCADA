@@ -1338,6 +1338,10 @@ namespace DemoDriver
         /// </summary>
         public int ChlId { get; set; }
         /// <summary>
+        /// 设备型号
+        /// </summary>
+        public int NDeviceType { get; set; }
+        /// <summary>
         /// 远端渠道
         /// </summary>
         public int REMOTECHANNLE { get; set; }
