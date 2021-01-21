@@ -676,7 +676,7 @@ namespace Main.Integration
             { }
             else if (GlobalData.Instance.da.GloConfig.SIRType == 1)
             {
-                sirAuto = GlobalData.Instance.da["SIRSelfOperModel"].Value.Byte == 5 ? true : false;
+                sirAuto = GlobalData.Instance.da["SIRSelfOperModel"].Value.Byte == 2 ? true : false;
             }
             else if (GlobalData.Instance.da.GloConfig.SIRType == 2)
             {
