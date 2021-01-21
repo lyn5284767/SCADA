@@ -14,19 +14,25 @@
             <Setter Property="Foreground" Value="Black"/>
         </Style>
     </UserControl.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="160"/>
-            <RowDefinition/>
+            <RowDefinition Height="16*"/>
+            <RowDefinition Height="51*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <StackPanel Orientation="Horizontal">
-                <Grid Width="330">
-                    <Border Background="White" CornerRadius="10" Margin="5,5,2,5" >
-                        <Border.Effect>
-                            <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
-                        </Border.Effect>
-                    </Border>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="33*"/>
+                <ColumnDefinition Width="29*"/>
+                <ColumnDefinition Width="40*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Border Background="White" CornerRadius="10" Margin="5,5,2,5" >
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+                    </Border.Effect>
+                </Border>
+                <Viewbox>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="5"></ColumnDefinition>
@@ -48,7 +54,7 @@
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal">
-                            <Border BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,2,10" Width="45">
+                            <Border BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,5,2,10" Width="45">
                                 <Image Source="../../Images/roate.png" Margin="2"></Image>
                             </Border>
                             <StackPanel Margin="0,20,10,0">
@@ -88,13 +94,15 @@
                             </StackPanel>
                         </StackPanel>
                     </Grid>
-                </Grid>
-                <Grid Width="290">
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Column="1">
                     <Border Background="White" CornerRadius="10" Margin="5" >
                         <Border.Effect>
                             <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
                         </Border.Effect>
                     </Border>
+                <Viewbox>
                     <Grid Margin="5" >
                         <Grid.RowDefinitions>
                             <RowDefinition/>
@@ -107,81 +115,95 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">
-                            <TextBlock Text="主钳缺口:" FontSize="16" VerticalAlignment="Center" Margin="10,0,0,0"></TextBlock>
+                            <TextBlock Text="主钳缺口:" FontSize="16" VerticalAlignment="Center" Margin="10,5,0,5"></TextBlock>
                             <cl:SymbolMapping Name="smMainGapOne"  StrContent="" LampType="3" Width="30" Height="30" Margin="5,0,0,0"/>
                             <cl:SymbolMapping Name="smMainGapTwo"  StrContent="" LampType="3" Width="30" Height="30" Margin="5,0,0,0"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
-                            <TextBlock Text="背钳缺口:" VerticalAlignment="Center" FontSize="16" Margin="10,0,0,0"></TextBlock>
-                            <cl:SymbolMapping Name="smBackGapOne"  StrContent="" LampType="3" Width="30" Height="30" Margin="22,0,0,0"/>
+                            <TextBlock Text="背钳缺口:" VerticalAlignment="Center" FontSize="16" Margin="10,5,0,5"></TextBlock>
+                            <cl:SymbolMapping Name="smBackGapOne"  StrContent="" LampType="3" Width="30" Height="30" Margin="20,0,0,0"/>
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">
-                            <TextBlock Text="上扣工位:" FontSize="16" VerticalAlignment="Center" Margin="10,0,0,0"></TextBlock>
+                            <TextBlock Text="上扣工位:" FontSize="16" VerticalAlignment="Center" Margin="10,5,0,5"></TextBlock>
                             <cl:SymbolMapping Name="smInButtonPosOne" StrContent="" LampType="3" Width="30" Height="30" Margin="5,0,0,0"/>
                             <cl:SymbolMapping Name="smInButtonPosTwo" StrContent="" LampType="3" Width="30" Height="30" Margin="5,0,0,0"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
-                            <TextBlock Text="安全门复位:" VerticalAlignment="Center" FontSize="16" Margin="10,0,0,0"></TextBlock>
-                            <cl:SymbolMapping Name="smSafeDoorReset" StrContent="" LampType="3" Width="30" Height="30" Margin="5,0,0,0"/>
+                            <TextBlock Text="安全门复位:" VerticalAlignment="Center" FontSize="16" Margin="10,5,0,5"></TextBlock>
+                            <cl:SymbolMapping Name="smSafeDoorReset" StrContent="" LampType="3" Width="30" Height="30" Margin="3,0,0,0"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Grid.Row="2" VerticalAlignment="Center">
-                            <TextBlock Text="卸扣工位:" FontSize="16" Margin="10,0,0,0"></TextBlock>
+                            <TextBlock Text="卸扣工位:" FontSize="16" Margin="10,5,0,5"></TextBlock>
                             <cl:SymbolMapping Name="smOutButtonPosOne" StrContent="" LampType="3" Width="30" Height="30" Margin="5,0,0,0"/>
                             <cl:SymbolMapping Name="smOutButtonPosTwo" StrContent="" LampType="3" Width="30" Height="30" Margin="5,0,0,0"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center">
-                            <TextBlock Text="安全门关闭:" VerticalAlignment="Center" FontSize="16" Margin="10,0,0,0"></TextBlock>
-                            <cl:SymbolMapping Name="smSafeDoorClose"  StrContent="" LampType="3" Width="30" Height="30" Margin="5,0,0,0"/>
+                            <TextBlock Text="安全门关闭:" VerticalAlignment="Center" FontSize="16" Margin="10,5,0,5"></TextBlock>
+                            <cl:SymbolMapping Name="smSafeDoorClose"  StrContent="" LampType="3" Width="30" Height="30" Margin="3,0,0,0"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Center">
-                            <TextBlock Text="液压钳缺口:" FontSize="16" Margin="10,0,0,0"></TextBlock>
+                            <TextBlock Text="液压钳缺口:" FontSize="16" Margin="10,5,0,5"></TextBlock>
                             <TextBlock Name="tbTongsGap" VerticalAlignment="Center" Text="安全设置已关闭" Foreground="#008AFF" FontSize="16" Margin="10,0,0,0"></TextBlock>
                         </StackPanel>
                     </Grid>
-                </Grid>
-                <Grid Width="400">
-                    <Border Background="White" CornerRadius="10" Margin="5">
-                        <Border.Effect>
-                            <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
-                        </Border.Effect>
-                    </Border>
-                    <StackPanel Orientation="Horizontal">
-                        <Grid Width="50" Margin="10,0,0,0">
-                            <Image Source="../../Images/left.png" Name="left" MouseDown="Left_MouseDown"></Image>
-                        </Grid>
-                        <StackPanel Orientation="Horizontal" Name="firstPage">
-                            <cl:BasedSwitchButton Name="oprModel" Margin="5,0,0,0" ContentLeft="手动" ContentDown="操作模式" ContentRight="自动" UserControlClicked="btn_oprModel"/>
-                            <cl:BasedSwitchButton Name="workModel" Margin="5,0,0,0" ContentLeft="上扣" ContentDown="工作模式" ContentRight="卸扣" UserControlClicked="btn_workModel"/>
-                            <cl:BasedSwitchButton Name="PipeTypeModel" Margin="5,0,0,0" ContentLeft="钻杆/铤" ContentDown="钻具选择" ContentRight="套管" UserControlClicked="btn_PipeTypeModel"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Name="secondPage" Visibility="Collapsed">
-                            <cl:BasedSwitchButton Name="locationModel" Margin="5,0,0,0" ContentLeft="井口" ContentDown="工位选择" ContentRight="鼠洞" UserControlClicked="btn_locationModel"/>
-                            <cl:BasedSwitchButton Name="controlModel" Margin="5,0,0,0" ContentLeft="司钻" ContentDown="控制模式" ContentRight="遥控" UserControlClicked="btn_controlModel"/>
-                        </StackPanel>
-                            <Grid Width="50" Margin="10,0,0,0">
-                            <Image Source="../../Images/right.png" Name="right" MouseDown="Right_MouseDown"></Image>
-                        </Grid>
-                        
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Column="2">
+                <Border Background="White" CornerRadius="10" Margin="5">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+                    </Border.Effect>
+                </Border>
+                <StackPanel Orientation="Horizontal">
+                    <Grid Width="50" Margin="10,0,0,0">
+                        <Image Source="../../Images/left.png" Name="left" MouseDown="Left_MouseDown"></Image>
+                    </Grid>
+                    <StackPanel Orientation="Horizontal" Name="firstPage">
+                        <Viewbox>
+                            <cl:BasedSwitchButton Name="oprModel" Margin="5,35,0,35" ContentLeft="手动" ContentDown="操作模式" ContentRight="自动" UserControlClicked="btn_oprModel"/>
+                        </Viewbox>
+                        <Viewbox>
+                            <cl:BasedSwitchButton Name="workModel" Margin="5,35,0,35" ContentLeft="上扣" ContentDown="工作模式" ContentRight="卸扣" UserControlClicked="btn_workModel"/>
+                        </Viewbox>
+                        <Viewbox>
+                            <cl:BasedSwitchButton Name="PipeTypeModel" Margin="5,35,0,35" ContentLeft="钻杆/铤" ContentDown="钻具选择" ContentRight="套管" UserControlClicked="btn_PipeTypeModel"/>
+                        </Viewbox>
+                   </StackPanel>
+                    <StackPanel Orientation="Horizontal" Name="secondPage" Visibility="Collapsed">
+                        <Viewbox>
+                            <cl:BasedSwitchButton Name="locationModel" Margin="5,35,0,35" ContentLeft="井口" ContentDown="工位选择" ContentRight="鼠洞" UserControlClicked="btn_locationModel"/>
+                        </Viewbox>
+                        <Viewbox>
+                            <cl:BasedSwitchButton Name="controlModel" Margin="5,35,0,35" ContentLeft="司钻" ContentDown="控制模式" ContentRight="遥控" UserControlClicked="btn_controlModel"/>
+                        </Viewbox>
                     </StackPanel>
-                </Grid>
-            </StackPanel>
+                    <Grid Width="50" Margin="10,0,0,0">
+                        <Image Source="../../Images/right.png" Name="right" MouseDown="Right_MouseDown"></Image>
+                    </Grid>
+
+                </StackPanel>
+            </Grid>
         </Grid>
         <Grid Grid.Row="1">
-            <StackPanel Orientation="Horizontal">
-                <Grid Width="640">
-                    <Border Background="White" CornerRadius="10" Margin="5">
-                        <Border.Effect>
-                            <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
-                        </Border.Effect>
-                    </Border>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="64*"/>
+                <ColumnDefinition Width="38*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Border Background="White" CornerRadius="10" Margin="5">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+                    </Border.Effect>
+                </Border>
+                <Viewbox>
                     <Grid Margin="5">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="200"/>
                             <RowDefinition Height="110"/>
                             <RowDefinition Height="110"/>
                             <RowDefinition />
-                            
+
                         </Grid.RowDefinitions>
                         <Grid Margin="5" Grid.Row="0">
                             <Grid.ColumnDefinitions>
@@ -208,7 +230,7 @@
                                 <TextBlock Text="背钳松开" Margin="-225,90,0,0" FontSize="16"></TextBlock>
                                 <TextBlock Text="上扣对缺" Margin="225,50,0,0" FontSize="16"></TextBlock>
                                 <TextBlock Text="卸扣对缺" Margin="225,90,0,0" FontSize="16"></TextBlock>
-                              
+
                                 <cl:SymbolMapping Name="smSixEnable" Margin="-105,110,0,0" StrContent="" LampType="3" Width="30" Height="30"/>
                                 <cl:SymbolMapping Name="smSixBack" Margin="105,110,0,0" StrContent="" LampType="3" Width="30" Height="30"/>
                                 <TextBlock Text="底部确认" Margin="-105,160,0,0" FontSize="16"></TextBlock>
@@ -307,13 +329,15 @@
                             </hc:StepBar>
                         </StackPanel>
                     </Grid>
-                </Grid>
-                <Grid Width="380">
-                    <Border Background="White" CornerRadius="10" Margin="5">
-                        <Border.Effect>
-                            <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
-                        </Border.Effect>
-                    </Border>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Border Background="White" CornerRadius="10" Margin="5">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+                    </Border.Effect>
+                </Border>
+                <Viewbox>
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40"/>
@@ -338,8 +362,8 @@
                             </Viewbox>
                         </Grid>
                     </Grid>
-                </Grid>
-            </StackPanel>
+                </Viewbox>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

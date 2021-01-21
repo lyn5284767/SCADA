@@ -7,278 +7,279 @@
              xmlns:cl="http://talonzeng.com/ControlLibrary"
              mc:Ignorable="d" 
              d:DesignHeight="608" d:DesignWidth="1024" Foreground="#525252" FontSize="14" FontFamily="微软雅黑" Background="#F5F6FA" Margin="1" Name="sfDeviceStatus">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="45"/>
-            <RowDefinition Height="45"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="250"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="50"/>
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
+    <Viewbox>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="250"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
 
-            <Grid Grid.Column="0">
-                <StackPanel Orientation="Horizontal" Height="40" HorizontalAlignment="Center">
-                    <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Width="270">
-                        <StackPanel>
-                            <StackPanel Height="30" Orientation="Horizontal">
-                                <TextBlock Text="操作模式：" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
-                                <TextBlock Text="    " Name="opModel_EquiptStatusPage" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                <Grid Grid.Column="0">
+                    <StackPanel Orientation="Horizontal" Height="40" HorizontalAlignment="Center">
+                        <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Width="270">
+                            <StackPanel>
+                                <StackPanel Height="30" Orientation="Horizontal">
+                                    <TextBlock Text="操作模式：" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
+                                    <TextBlock Text="    " Name="opModel_EquiptStatusPage" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
-                    </Border>
-                </StackPanel>
-            </Grid>
-            <Grid Grid.Column="1">
-                <StackPanel Orientation="Horizontal" Height="40" HorizontalAlignment="Center">
-                    <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Width="270">
-                        <StackPanel>
-                            <StackPanel Height="30" Orientation="Horizontal">
-                                <TextBlock Text="工作模式：" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
-                                <TextBlock Text="    " Name="wokeModel_EquiptStatusPage" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
-                            </StackPanel>
-                        </StackPanel>
-                    </Border>
-                </StackPanel>
-            </Grid>
-            <Grid Grid.Column="2">
-                <StackPanel Orientation="Horizontal" Height="40" HorizontalAlignment="Center">
-                    <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Width="270">
-                        <StackPanel>
-                            <StackPanel Height="30" Orientation="Horizontal">
-                                <TextBlock Text="开机时间：" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
-                                <TextBlock Text="0.0" Name="startUpTime" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
-                                <TextBlock FontSize="16" FontWeight="Bold" VerticalAlignment="Center">h</TextBlock>
-                            </StackPanel>
-                        </StackPanel>
-                    </Border>
-                </StackPanel>
-            </Grid>
-
-
-        </Grid>
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-
-
-            <Grid Grid.Column="0">
-                <StackPanel Orientation="Horizontal" Height="40" HorizontalAlignment="Center">
-                    <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Width="270">
-                        <StackPanel>
-                            <StackPanel Height="30" Orientation="Horizontal">
-                                <TextBlock Text="自动下钻次数：" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
-                                <TextBlock Text="  " Name="drillDownCount_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
-                            </StackPanel>
-                        </StackPanel>
-                    </Border>
-                </StackPanel>
-            </Grid>
-            <Grid Grid.Column="1">
-                <StackPanel Orientation="Horizontal" Height="40" HorizontalAlignment="Center">
-                    <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Width="270">
-                        <StackPanel>
-                            <StackPanel Height="30" Orientation="Horizontal">
-                                <TextBlock Text="自动起钻次数：" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
-                                <TextBlock Text="    " Name="drillUpCount_EquipStatus" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
-                            </StackPanel>
-                        </StackPanel>
-                    </Border>
-                </StackPanel>
-            </Grid>
-            <Grid Grid.Column="2">
-                <StackPanel Orientation="Horizontal" Height="40" HorizontalAlignment="Center">
-                    <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Width="270">
-                        <StackPanel>
-                            <StackPanel Height="30" Orientation="Horizontal">
-                                <TextBlock Text="工作时间：" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
-                                <TextBlock Text="0.0"  Name="workTime_EquipStatus" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
-                                <TextBlock FontSize="16" FontWeight="Bold" VerticalAlignment="Center">h</TextBlock>
-                            </StackPanel>
-                        </StackPanel>
-                    </Border>
-                </StackPanel>
-            </Grid>
-        </Grid>
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Width="350" Margin="5">
-                    <StackPanel Height="120" Orientation="Vertical">
-                        <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <cl:SymbolMapping StrContent="" LampType="3" Name="lampType_carMotorRet_EquiptStatus"/>
-                            <TextBlock Text="小车电机：" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
-                            <cl:SymbolMapping StrContent="" LampType="3" Name="lampType_carMotorProximitySwitch_EquiptStatus"/>
-                        </StackPanel>
-                        <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="状态：" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
-                            <!--<Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">-->
-                            <TextBlock Text="0" Name="txt_CarMotorStatus_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
-                            <!--</Border>-->
-                        </StackPanel>
-                        <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="位置：" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
-                            <!--<Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">-->
-                            <TextBlock Text="0" Name="txt_carMotorPosi_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
-                            <!--</Border>-->
-                        </StackPanel>
-                        <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="错误：" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
-                            <!--<Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">-->
-                            <TextBlock Text="0" Name="txt_CarMotorWarnCode_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
-                            <!--</Border>-->
-                        </StackPanel>
+                        </Border>
                     </StackPanel>
-                </Border>
-
-            </Grid>
-
-            <Grid Grid.Column="1">
-                <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Width="350" Margin="5">
-                    <StackPanel Height="120" Orientation="Vertical">
-                        <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <cl:SymbolMapping StrContent="" LampType="3" Name="lampType_RotateMotorRet_EquipStatus"/>
-                            <TextBlock Text="回转电机：" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
-                            <cl:SymbolMapping StrContent="" LampType="3" Name="lampType_RotateMotorProximitySwitch_EquiptStatus"/>
-                        </StackPanel>
-                        <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="状态：" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
-                            <!--<Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">-->
-                            <TextBlock Text="0" Name="txt_RotateMotorStatus_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
-                            <!--</Border>-->
-                        </StackPanel>
-                        <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="位置：" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
-                            <!--<Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">-->
-                            <TextBlock Text="0" Name="txt_RotateMotorPosi_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
-                            <!--</Border>-->
-                        </StackPanel>
-                        <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="错误：" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
-                            <!--<Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">-->
-                            <TextBlock Text="0" Name="txt_RotateMotorWarnCode_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
-                            <!--</Border>-->
-                        </StackPanel>
-                    </StackPanel>
-                </Border>
-
-            </Grid>
-
-        </Grid>
-
-        <Grid Grid.Row="3">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Width="350" Margin="5">
-                    <StackPanel Height="160" Orientation="Vertical">
-                        <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <cl:SymbolMapping StrContent="" LampType="3" Name="lampType_ArmMotorRet_EquiptStatus"/>
-                            <TextBlock Text="手臂电机：" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
-                            <cl:SymbolMapping StrContent="" LampType="3" Name="lampType_ArmMotorProximitySwitch_EquiptStatus"/>
-                        </StackPanel>
-                        <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="状态：" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
-                            <!--<Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">-->
-                            <TextBlock Text="0" Name="txt_ArmMotorStatus_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
-                            <!--</Border>-->
-                        </StackPanel>
-                        <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="位置：" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
-                            <!--<Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">-->
-                            <TextBlock Text="0"  Name="txt_ArmMotorPosi_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
-                            <!--</Border>-->
-                        </StackPanel>
-                        <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="错误：" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
-                            <!--<Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">-->
-                            <TextBlock Text="0" Name="txt_ArmMotorWarnCode_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
-                            <!--</Border>-->
-                        </StackPanel>
-                    </StackPanel>
-                </Border>
-
-            </Grid>
-
-            <Grid Grid.Column="1" Margin="0,0,0,10" >
-                <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Width="440" Margin="40,5,20,-5">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="0">
-                            <TextBlock Text="        " VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
-                            <TextBlock Text="手柄状态" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
-                            <TextBlock Text="        " VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
-                        </StackPanel>
-                        <Grid Grid.Row="1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <StackPanel Grid.Column="0">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="手柄X" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
-                                    <!--<Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">-->
-                                    <TextBlock Text="0" Name="txt_HandleX_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
-                                    <!--</Border>-->
+                </Grid>
+                <Grid Grid.Column="1">
+                    <StackPanel Orientation="Horizontal" Height="40" HorizontalAlignment="Center">
+                        <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Width="270">
+                            <StackPanel>
+                                <StackPanel Height="30" Orientation="Horizontal">
+                                    <TextBlock Text="工作模式：" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
+                                    <TextBlock Text="    " Name="wokeModel_EquiptStatusPage" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="手柄Y" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
-                                    <!--<Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">-->
-                                    <TextBlock Text="0" Name="txt_HandleY_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
-                                    <!--</Border>-->
-                                </StackPanel>
-
-                                <StackPanel Height="60" Orientation="Horizontal" Margin="5">
-                                    <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">
-                                        <!--左手柄，控制二层台和钻台面-->
-                                        <StackPanel Height="60" Width="140" Orientation="Horizontal">
-                                            <cl:SymbolMappingV StrContent="左" LampType="3" Width="25" Name="lampType_LeftButton_EquiptStatus"/>
-                                            <cl:SymbolMappingV StrContent="右" LampType="3" Width="25" Name="lampType_RightButton_EquiptStatus"/>
-                                            <cl:SymbolMappingV StrContent="前" LampType="3" Width="25" Name="lampType_FrontButton_EquiptStatus"/>
-                                            <cl:SymbolMappingV StrContent="后" LampType="3" Width="25" Name="lampType_BehindButton_EquiptStatus"/>
-                                            <cl:SymbolMappingV StrContent="使能" LampType="3" Width="25" Name="lampType_EnableButton_EquiptStatus"/>
-                                        </StackPanel>
-                                    </Border>
-                                </StackPanel>
-
-                                <StackPanel Height="60" Orientation="Horizontal" Margin="5">
-                                    <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">
-                                        <!--左手柄，控制二层台和钻台面-->
-                                        <StackPanel Height="60" Width="180" Orientation="Horizontal">
-                                            <cl:SymbolMappingV StrContent="背" LampType="3" Width="25" Name="lampType_BackButton_EquiptStatus"/>
-                                            <cl:SymbolMappingV StrContent="上" LampType="3" Width="25" Name="lampType_UpButton_EquiptStatus"/>
-                                            <cl:SymbolMappingV StrContent="下" LampType="3" Width="25" Name="lampType_DownButton_EquiptStatus"/>
-                                            <cl:SymbolMappingV StrContent="中上" LampType="3" Width="25" Name="lampType_MidUpButton_EquiptStatus"/>
-                                            <cl:SymbolMappingV StrContent="中下" LampType="3" Width="25" Name="lampType_MidDownButton_EquiptStatus"/>
-
-                                            <cl:SymbolMappingV StrContent="上开" LampType="3" Width="25" Name="lampType_UpSeesawButton_EquiptStatus"/>
-                                            <cl:SymbolMappingV StrContent="下开" LampType="3" Width="25" Name="lampType_DownSeesawButton_EquiptStatus"/>
-                                        </StackPanel>
-                                    </Border>
-                                </StackPanel>
-
                             </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <StackPanel Orientation="Horizontal" Height="40" HorizontalAlignment="Center">
+                        <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Width="270">
+                            <StackPanel>
+                                <StackPanel Height="30" Orientation="Horizontal">
+                                    <TextBlock Text="开机时间：" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
+                                    <TextBlock Text="0.0" Name="startUpTime" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
+                                    <TextBlock FontSize="16" FontWeight="Bold" VerticalAlignment="Center">h</TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Grid>
 
-                            <Grid Grid.Column="1">
-                                <Image Source="/Images/arrow.png" Name="Arrow_EquiptStatus"  Width="160" Height="160"/>
-                                <!--<Grid.ColumnDefinitions>
+
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+
+                <Grid Grid.Column="0">
+                    <StackPanel Orientation="Horizontal" Height="40" HorizontalAlignment="Center">
+                        <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Width="270">
+                            <StackPanel>
+                                <StackPanel Height="30" Orientation="Horizontal">
+                                    <TextBlock Text="自动下钻次数：" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
+                                    <TextBlock Text="  " Name="drillDownCount_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <StackPanel Orientation="Horizontal" Height="40" HorizontalAlignment="Center">
+                        <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Width="270">
+                            <StackPanel>
+                                <StackPanel Height="30" Orientation="Horizontal">
+                                    <TextBlock Text="自动起钻次数：" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                                    <TextBlock Text="    " Name="drillUpCount_EquipStatus" VerticalAlignment="Center" Margin="5" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <StackPanel Orientation="Horizontal" Height="40" HorizontalAlignment="Center">
+                        <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Width="270">
+                            <StackPanel>
+                                <StackPanel Height="30" Orientation="Horizontal">
+                                    <TextBlock Text="工作时间：" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
+                                    <TextBlock Text="0.0"  Name="workTime_EquipStatus" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
+                                    <TextBlock FontSize="16" FontWeight="Bold" VerticalAlignment="Center">h</TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Width="350" Margin="5">
+                        <StackPanel Height="120" Orientation="Vertical">
+                            <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <cl:SymbolMapping StrContent="" LampType="3" Name="lampType_carMotorRet_EquiptStatus"/>
+                                <TextBlock Text="小车电机：" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
+                                <cl:SymbolMapping StrContent="" LampType="3" Name="lampType_carMotorProximitySwitch_EquiptStatus"/>
+                            </StackPanel>
+                            <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="状态：" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
+                                <!--<Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">-->
+                                <TextBlock Text="0" Name="txt_CarMotorStatus_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                                <!--</Border>-->
+                            </StackPanel>
+                            <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="位置：" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
+                                <!--<Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">-->
+                                <TextBlock Text="0" Name="txt_carMotorPosi_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                                <!--</Border>-->
+                            </StackPanel>
+                            <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="错误：" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
+                                <!--<Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">-->
+                                <TextBlock Text="0" Name="txt_CarMotorWarnCode_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                                <!--</Border>-->
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                </Grid>
+
+                <Grid Grid.Column="1">
+                    <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Width="350" Margin="5">
+                        <StackPanel Height="120" Orientation="Vertical">
+                            <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <cl:SymbolMapping StrContent="" LampType="3" Name="lampType_RotateMotorRet_EquipStatus"/>
+                                <TextBlock Text="回转电机：" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
+                                <cl:SymbolMapping StrContent="" LampType="3" Name="lampType_RotateMotorProximitySwitch_EquiptStatus"/>
+                            </StackPanel>
+                            <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="状态：" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
+                                <!--<Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">-->
+                                <TextBlock Text="0" Name="txt_RotateMotorStatus_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
+                                <!--</Border>-->
+                            </StackPanel>
+                            <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="位置：" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
+                                <!--<Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">-->
+                                <TextBlock Text="0" Name="txt_RotateMotorPosi_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
+                                <!--</Border>-->
+                            </StackPanel>
+                            <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="错误：" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
+                                <!--<Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">-->
+                                <TextBlock Text="0" Name="txt_RotateMotorWarnCode_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                                <!--</Border>-->
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                </Grid>
+
+            </Grid>
+
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Width="350" Margin="5">
+                        <StackPanel Height="160" Orientation="Vertical">
+                            <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <cl:SymbolMapping StrContent="" LampType="3" Name="lampType_ArmMotorRet_EquiptStatus"/>
+                                <TextBlock Text="手臂电机：" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
+                                <cl:SymbolMapping StrContent="" LampType="3" Name="lampType_ArmMotorProximitySwitch_EquiptStatus"/>
+                            </StackPanel>
+                            <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="状态：" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
+                                <!--<Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">-->
+                                <TextBlock Text="0" Name="txt_ArmMotorStatus_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="14" FontFamily="宋体" FontWeight="Bold"/>
+                                <!--</Border>-->
+                            </StackPanel>
+                            <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="位置：" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
+                                <!--<Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">-->
+                                <TextBlock Text="0"  Name="txt_ArmMotorPosi_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
+                                <!--</Border>-->
+                            </StackPanel>
+                            <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="错误：" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
+                                <!--<Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">-->
+                                <TextBlock Text="0" Name="txt_ArmMotorWarnCode_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
+                                <!--</Border>-->
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                </Grid>
+
+                <Grid Grid.Column="1" Margin="0,0,0,10" >
+                    <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Width="440" Margin="40,5,20,-5">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="0">
+                                <TextBlock Text="        " VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
+                                <TextBlock Text="手柄状态" VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
+                                <TextBlock Text="        " VerticalAlignment="Center" Margin="5" FontSize="16" FontWeight="Bold"/>
+                            </StackPanel>
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="手柄X" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
+                                        <!--<Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">-->
+                                        <TextBlock Text="0" Name="txt_HandleX_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
+                                        <!--</Border>-->
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="手柄Y" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
+                                        <!--<Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">-->
+                                        <TextBlock Text="0" Name="txt_HandleY_EquiptStatus" VerticalAlignment="Center" Margin="5" FontSize="14" FontWeight="Bold"/>
+                                        <!--</Border>-->
+                                    </StackPanel>
+
+                                    <StackPanel Height="60" Orientation="Horizontal" Margin="5">
+                                        <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">
+                                            <!--左手柄，控制二层台和钻台面-->
+                                            <StackPanel Height="60" Width="140" Orientation="Horizontal">
+                                                <cl:SymbolMappingV StrContent="左" LampType="3" Width="25" Name="lampType_LeftButton_EquiptStatus"/>
+                                                <cl:SymbolMappingV StrContent="右" LampType="3" Width="25" Name="lampType_RightButton_EquiptStatus"/>
+                                                <cl:SymbolMappingV StrContent="前" LampType="3" Width="25" Name="lampType_FrontButton_EquiptStatus"/>
+                                                <cl:SymbolMappingV StrContent="后" LampType="3" Width="25" Name="lampType_BehindButton_EquiptStatus"/>
+                                                <cl:SymbolMappingV StrContent="使能" LampType="3" Width="25" Name="lampType_EnableButton_EquiptStatus"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </StackPanel>
+
+                                    <StackPanel Height="60" Orientation="Horizontal" Margin="5">
+                                        <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">
+                                            <!--左手柄，控制二层台和钻台面-->
+                                            <StackPanel Height="60" Width="180" Orientation="Horizontal">
+                                                <cl:SymbolMappingV StrContent="背" LampType="3" Width="25" Name="lampType_BackButton_EquiptStatus"/>
+                                                <cl:SymbolMappingV StrContent="上" LampType="3" Width="25" Name="lampType_UpButton_EquiptStatus"/>
+                                                <cl:SymbolMappingV StrContent="下" LampType="3" Width="25" Name="lampType_DownButton_EquiptStatus"/>
+                                                <cl:SymbolMappingV StrContent="中上" LampType="3" Width="25" Name="lampType_MidUpButton_EquiptStatus"/>
+                                                <cl:SymbolMappingV StrContent="中下" LampType="3" Width="25" Name="lampType_MidDownButton_EquiptStatus"/>
+
+                                                <cl:SymbolMappingV StrContent="上开" LampType="3" Width="25" Name="lampType_UpSeesawButton_EquiptStatus"/>
+                                                <cl:SymbolMappingV StrContent="下开" LampType="3" Width="25" Name="lampType_DownSeesawButton_EquiptStatus"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </StackPanel>
+
+                                </StackPanel>
+
+                                <Grid Grid.Column="1">
+                                    <Image Source="/Images/arrow.png" Name="Arrow_EquiptStatus"  Width="160" Height="160"/>
+                                    <!--<Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
                                     <ColumnDefinition Width="30"/>
                                     <ColumnDefinition/>
@@ -292,85 +293,86 @@
                                 <Image Source="..\Images\A_B_1.png" Name="leftArrow_EquiptStatus"  Width="30" Height="30" Grid.Column="0" Grid.Row="1"/>
                                 <Image Source="..\Images\A_B_3.png" Name="rightArrow_EquiptStatus"  Width="30" Height="30" Grid.Column="2" Grid.Row="1"/>
                                 <Image Source="..\Images\A_B_2.png" Name="upArrow_EquiptStatus"  Width="30" Height="30" Grid.Column="1" Grid.Row="0"/>-->
+                                </Grid>
                             </Grid>
                         </Grid>
-                    </Grid>
+                    </Border>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="4">
+                <Border Grid.Column="0" Grid.Row="0" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,5,10">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <StackPanel Margin="50,0,0,0" Orientation="Horizontal">
+                            <Label FontSize="16" Content="设备编码:" Grid.Row="1"/>
+                            <TextBlock Name="tbDeviceEncode" Grid.Row="2" Width="200">
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Margin="50,0,0,0" Orientation="Horizontal">
+                            <Label FontSize="16" Content="程序版本:" Grid.Row="3" Grid.Column="0"/>
+                            <TextBlock Name="tbSecondVersion" Grid.Row="4" Grid.Column="0" Width="200">
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Margin="50,0,0,0" Orientation="Horizontal">
+                            <Label FontSize="16" Content="版本日期:" Grid.Row="5" Grid.Column="0"/>
+                            <TextBlock Name="tbSecondVersionDate" Grid.Row="6" Grid.Column="0" Width="200">
+                            </TextBlock>
+                        </StackPanel>
+                    </StackPanel>
                 </Border>
+                <!--<Button  Click="btn_testES" Visibility="Collapsed"/>-->
+                <!--<TextBlock Name="txtWarnInfo_EquiptStatus" Text="提示信息"  FontSize="16" FontFamily="宋体" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="DarkRed" TextWrapping="Wrap"/>-->
             </Grid>
-        </Grid>
-        <Grid Grid.Row="4">
-            <Border Grid.Column="0" Grid.Row="0" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,5,10">
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <StackPanel Margin="50,0,0,0" Orientation="Horizontal">
-                        <Label FontSize="16" Content="设备编码:" Grid.Row="1"/>
-                        <TextBlock Name="tbDeviceEncode" Grid.Row="2" Width="200">
-                        </TextBlock>
-                    </StackPanel>
-                    <StackPanel Margin="50,0,0,0" Orientation="Horizontal">
-                        <Label FontSize="16" Content="程序版本:" Grid.Row="3" Grid.Column="0"/>
-                        <TextBlock Name="tbSecondVersion" Grid.Row="4" Grid.Column="0" Width="200">
-                        </TextBlock>
-                    </StackPanel>
-                    <StackPanel Margin="50,0,0,0" Orientation="Horizontal">
-                        <Label FontSize="16" Content="版本日期:" Grid.Row="5" Grid.Column="0"/>
-                        <TextBlock Name="tbSecondVersionDate" Grid.Row="6" Grid.Column="0" Width="200">
-                        </TextBlock>
-                    </StackPanel>
-                </StackPanel>
-            </Border>
-            <!--<Button  Click="btn_testES" Visibility="Collapsed"/>-->
-            <!--<TextBlock Name="txtWarnInfo_EquiptStatus" Text="提示信息"  FontSize="16" FontFamily="宋体" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="DarkRed" TextWrapping="Wrap"/>-->
-        </Grid>
-        <Grid Grid.Row="5">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="160"/>
-                <ColumnDefinition Width="150"/>
-                <ColumnDefinition Width="140"/>
-                <ColumnDefinition Width="140"/>
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <Menu Height="40" Width="150"  FontSize="16" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
-                    <MenuItem>
-                        <MenuItem.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <ContentPresenter Content="页 面 切 换"/>
-                                <Image Width="30" Source="..\Images\triangle.png" />
-                            </StackPanel>
-                        </MenuItem.Header>
-                        <MenuItem Header="钻 铤 锁 状 态" Click="MenuItem_EquipmentStatus_DrillCollar_Click" >
+            <Grid Grid.Row="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="160"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="140"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Menu Height="40" Width="150"  FontSize="16" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
+                        <MenuItem>
+                            <MenuItem.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <ContentPresenter Content="页 面 切 换"/>
+                                    <Image Width="30" Source="..\Images\triangle.png" />
+                                </StackPanel>
+                            </MenuItem.Header>
+                            <MenuItem Header="钻 铤 锁 状 态" Click="MenuItem_EquipmentStatus_DrillCollar_Click" >
+                            </MenuItem>
+                            <MenuItem Header="指 梁 锁 状 态" Click="MenuItem_EquipmentStatus_FingerBeam_Click">
+                            </MenuItem>
+                            <MenuItem Header="返 回 主 页" Click="MenutItem_EquipmentStatus_ReturnHomePage_Click" Visibility="Collapsed">
+                            </MenuItem>
                         </MenuItem>
-                        <MenuItem Header="指 梁 锁 状 态" Click="MenuItem_EquipmentStatus_FingerBeam_Click">
+                    </Menu>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Menu Height="40" Width="140"  FontSize="16" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
+                        <MenuItem>
+                            <MenuItem.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <ContentPresenter Content="附 属 功 能" />
+                                    <Image Width="30" Source="..\Images\triangle.png" />
+                                </StackPanel>
+                            </MenuItem.Header>
+                            <MenuItem Header="设备保养确认" Click="btn_ConfirmEquiptMaintenance" >
+                            </MenuItem>
+                            <MenuItem Header="开机时间清零" Click="btn_ClearStartUpTime" Name="miClearStartUpTime">
+                            </MenuItem>
+                            <MenuItem Header="工作时间清零" Click="btn_ClearWorkTime" Name="miClearWorkTime">
+                            </MenuItem>
+                            <MenuItem Header="下钻次数清零" Click="btn_ClearDrillDownCnt" Name="miClearDrillDownCnt">
+                            </MenuItem>
+                            <MenuItem Header="起钻次数清零" Click="btn_ClearDrillUpCnt" Name="miClearDrillUpCnt">
+                            </MenuItem>
                         </MenuItem>
-                        <MenuItem Header="返 回 主 页" Click="MenutItem_EquipmentStatus_ReturnHomePage_Click" Visibility="Collapsed">
-                        </MenuItem>
-                    </MenuItem>
-                </Menu>
-            </Grid>
-            <Grid Grid.Column="1">
-                <Menu Height="40" Width="140"  FontSize="16" FontWeight="Bold" Margin="1" BorderThickness="1" BorderBrush="Black">
-                    <MenuItem>
-                        <MenuItem.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <ContentPresenter Content="附 属 功 能" />
-                                <Image Width="30" Source="..\Images\triangle.png" />
-                            </StackPanel>
-                        </MenuItem.Header>
-                        <MenuItem Header="设备保养确认" Click="btn_ConfirmEquiptMaintenance" >
-                        </MenuItem>
-                        <MenuItem Header="开机时间清零" Click="btn_ClearStartUpTime" Name="miClearStartUpTime">
-                        </MenuItem>
-                        <MenuItem Header="工作时间清零" Click="btn_ClearWorkTime" Name="miClearWorkTime">
-                        </MenuItem>
-                        <MenuItem Header="下钻次数清零" Click="btn_ClearDrillDownCnt" Name="miClearDrillDownCnt">
-                        </MenuItem>
-                        <MenuItem Header="起钻次数清零" Click="btn_ClearDrillUpCnt" Name="miClearDrillUpCnt">
-                        </MenuItem>
-                    </MenuItem>
-                </Menu>
-            </Grid>
-            <cl:CustomCheckBox ContentString="送杆提效" Margin="10" Name="cbDrillDwon" Grid.Column="2" UserControlClicked="cbDrillDwon_Clicked"/>
+                    </Menu>
+                </Grid>
+                <cl:CustomCheckBox ContentString="送杆提效" Margin="10" Name="cbDrillDwon" Grid.Column="2" UserControlClicked="cbDrillDwon_Clicked"/>
 
-            <!--<Button Grid.Column="2" Click="btn_testES" Visibility="Collapsed"/>-->
+                <!--<Button Grid.Column="2" Click="btn_testES" Visibility="Collapsed"/>-->
+            </Grid>
         </Grid>
-    </Grid>
+    </Viewbox>
 </UserControl>

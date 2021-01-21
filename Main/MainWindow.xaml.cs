@@ -111,6 +111,7 @@ namespace Main
             //    info6.ID = 6;
             //    GlobalData.Instance.chList.Add(info6);
             //}
+            
             foreach (CameraInfo cameraInfo in list)
             {
                 ChannelInfo ch1 = new ChannelInfo();

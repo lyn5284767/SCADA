@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:Main.SecondFloor"
              xmlns:cl="http://talonzeng.com/ControlLibrary"
              mc:Ignorable="d" 
-             Foreground="#525252" FontSize="14" FontFamily="微软雅黑" Background="#F5F6FA" Width="800" Height="650" Margin="1" Name="sfParamTwo">
+             Foreground="#525252" FontSize="14" FontFamily="微软雅黑" Background="#F5F6FA"  d:DesignWidth="800"  d:DesignHeight="650" Margin="1" Name="sfParamTwo">
     <UserControl.Resources>
         <Style TargetType="Label">
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -41,63 +41,54 @@
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="60"/>
-        </Grid.RowDefinitions>
+    <Viewbox>
         <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="600"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="36*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="36*"/>
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0">
-                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="200">
-                    <StackPanel Orientation="Horizontal">
-                        <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                            <TextBlock Text="特&#x0a;殊&#x0a;指&#x0a;梁&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
-                        </Border>
-                        <StackPanel>
-                            <cl:TextBlockWithTextBox Name="twtL28" ControlTag="28"  TbkText="钻杆指梁宽度" />
-                            <cl:TextBlockWithTextBox Name="twtL29" ControlTag="29"  TbkText="钻杆指梁间距" />
-                            <cl:TextBlockWithTextBox Name="twtL30" ControlTag="30"  TbkText="钻铤指梁宽度" />
-                            <cl:TextBlockWithTextBox Name="twtL31" ControlTag="31"  TbkText="钻铤指梁间距" />
-                            <cl:TextBlockWithTextBox Name="twtL32" ControlTag="21"  TbkText="最大钻杆尺寸" />
-                            <cl:TextBlockWithTextBox Name="twtL50" ControlTag="50"  TbkText="单边指梁数目"/>
-                        </StackPanel>
-                    </StackPanel>
-                </Border>
-            </StackPanel>
-            <StackPanel Grid.Column="1">
-                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="240">
-                    <StackPanel Orientation="Horizontal">
-                        <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                            <TextBlock Text="直&#x0a;流&#x0a;电&#x0a;机&#x0a;类&#x0a;型"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
-                        </Border>
-                        <StackPanel>
-                            <cl:TextBlockWithTextBox Name="twtR53" ControlTag="53"  TbkText="钻铤锁电机" />
-                            <cl:TextBlockWithTextBox Name="twtR54" ControlTag="54"  TbkText="挡绳电机" />
-                            <cl:TextBlockWithTextBox Name="twtR55" ControlTag="55"  TbkText="指梁锁电机" />
-                            <cl:TextBlockWithTextBox Name="twtR58" ControlTag="58"  TbkText="猴道电机" />
-                            <cl:TextBlockWithTextBox Name="twtR56" ControlTag="56"  TbkText="左手指类型" />
-                            <cl:TextBlockWithTextBox Name="twtR57" ControlTag="57"  TbkText="右手指类型"/>
-                            <cl:TextBlockWithTextBox Name="twtR51" ControlTag="51"  TbkText="抓手类型"/>
-                        </StackPanel>
-                    </StackPanel>
-                </Border>
-            </StackPanel>
-        </Grid>
-
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="160"/>
-            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <StackPanel Orientation="Vertical">
+                    <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
+                        <TextBlock Text="特&#x0a;殊&#x0a;指&#x0a;梁&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
+                    </Border>
+                </StackPanel>
+            </Grid>
             <Grid Grid.Column="1">
-                <StackPanel Orientation="Horizontal">
-                    <Button Content="确 定 配 置"  Click="ParamTwoSet"  Style="{StaticResource btnGreen}" FontWeight="Bold" FontFamily="宋体" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" IsDefault="False"/>
+                <StackPanel Orientation="Vertical">
+                    <cl:TextBlockWithTextBox Name="twtL28" ControlTag="28"  TbkText="钻杆指梁宽度" />
+                    <cl:TextBlockWithTextBox Name="twtL29" ControlTag="29"  TbkText="钻杆指梁间距" />
+                    <cl:TextBlockWithTextBox Name="twtL30" ControlTag="30"  TbkText="钻铤指梁宽度" />
+                    <cl:TextBlockWithTextBox Name="twtL31" ControlTag="31"  TbkText="钻铤指梁间距" />
+                    <cl:TextBlockWithTextBox Name="twtL32" ControlTag="21"  TbkText="最大钻杆尺寸" />
+                    <cl:TextBlockWithTextBox Name="twtL50" ControlTag="50"  TbkText="单边指梁数目"/>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Column="2">
+                <StackPanel Orientation="Vertical">
+                    <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
+                        <TextBlock Text="直&#x0a;流&#x0a;电&#x0a;机&#x0a;类&#x0a;型"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
+                    </Border>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Column="3">
+                <StackPanel>
+                    <cl:TextBlockWithTextBox Name="twtR53" ControlTag="53"  TbkText="钻铤锁电机" />
+                    <cl:TextBlockWithTextBox Name="twtR54" ControlTag="54"  TbkText="挡绳电机" />
+                    <cl:TextBlockWithTextBox Name="twtR55" ControlTag="55"  TbkText="指梁锁电机" />
+                    <cl:TextBlockWithTextBox Name="twtR58" ControlTag="58"  TbkText="猴道电机" />
+                    <cl:TextBlockWithTextBox Name="twtR56" ControlTag="56"  TbkText="左手指类型" />
+                    <cl:TextBlockWithTextBox Name="twtR57" ControlTag="57"  TbkText="右手指类型"/>
+                    <cl:TextBlockWithTextBox Name="twtR51" ControlTag="51"  TbkText="抓手类型"/>
+                    <Button Content="确 定 配 置"  Click="ParamTwoSet"  Style="{StaticResource btnGreen}" FontWeight="Bold" FontFamily="宋体" FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="30" IsDefault="False"/>
                 </StackPanel>
             </Grid>
         </Grid>
-    </Grid>
+    </Viewbox>
 </UserControl>
