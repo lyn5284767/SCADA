@@ -167,8 +167,8 @@
                     
                     <Grid Margin="5,10,5,5">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height=" 100"/>
-                            <RowDefinition/>
+                            <RowDefinition Height=" 2.2*"/>
+                            <RowDefinition Height=" 1*"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -180,10 +180,18 @@
                         <Viewbox>
                             <cl:BasedSwitchButton Name="SelectType" ContentLeft="钻台面" ContentDown="机械手" ContentRight="二层台" UserControlClicked="btn_SelectType" Grid.Column="0" Visibility="Collapsed"/>
                         </Viewbox>
-                            <cl:BasedSwitchButton Name="droperateMode" ContentLeft="手动" ContentDown="操作模式" ContentRight="自动" UserControlClicked="btn_drOpState" Grid.Column="0"/>
-                        <cl:BasedSwitchButton Name="drworkMode" ContentLeft="排杆" ContentDown="工作模式" ContentRight="送杆" UserControlClicked="btn_drWorkModel" Grid.Column="1"/>
-                        <cl:BasedSwitchButton Name="drCarMoveModel" ContentLeft="左移" ContentDown="行车右移" ContentRight="右移" IsChecked="False" UserControlClicked="btn_drCarMoveModel" Grid.Column="2"/>
-                        <cl:BasedSwitchButton Name="drTelecontrolModel" ContentLeft="司钻" ContentDown="操作" ContentRight="遥控" UserControlClicked="btn_drTelecontrolModel" Grid.Column="3" Height="100" Margin="0.333,0,0,0" VerticalAlignment="Top"/>
+                        <Viewbox Grid.Column="0" >
+                            <cl:BasedSwitchButton Name="droperateMode" ContentLeft="手动" ContentDown="操作模式" ContentRight="自动" UserControlClicked="btn_drOpState" Margin="5"/>
+                        </Viewbox>
+                        <Viewbox Grid.Column="1">
+                            <cl:BasedSwitchButton Name="drworkMode" ContentLeft="排杆" ContentDown="工作模式" ContentRight="送杆" UserControlClicked="btn_drWorkModel" Margin="5"/>
+                        </Viewbox>
+                        <Viewbox Grid.Column="2" >
+                            <cl:BasedSwitchButton Name="drCarMoveModel" ContentLeft="左移" ContentDown="行车右移" ContentRight="右移" IsChecked="False" UserControlClicked="btn_drCarMoveModel" Margin="5"/>
+                        </Viewbox>
+                        <Viewbox Grid.Column="3" >
+                            <cl:BasedSwitchButton Name="drTelecontrolModel" ContentLeft="司钻" ContentDown="操作" ContentRight="遥控" UserControlClicked="btn_drTelecontrolModel" Margin="5"/>
+                        </Viewbox>
                         <Menu Grid.Row="1" Grid.Column="0" Background="Transparent" Height="40" Width="100"  FontSize="16" FontWeight="Bold" Foreground="#008AFF">
                             <MenuItem>
                                 <MenuItem.Header>
@@ -202,6 +210,7 @@
                                     <MenuItem Header="旋转回零" Click="btn_RotateToZero"/>
                                 </MenuItem>
                                 <MenuItem Header="清除钻杆" FontSize="24" Click="btnClearDrill" />
+                                <MenuItem Header="设备回收" FontSize="24" Click="btnDeviceBack" />
                             </MenuItem>
                         </Menu>
                         <TextBlock Grid.Row="1" Grid.Column="1" Text="未选择目的地" Name="drDestination" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
@@ -257,16 +266,20 @@
                            
                         </Grid>
                         <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,5,5,5" Style="{StaticResource ShadowBorder}">
-                            <StackPanel Orientation="Vertical" MouseDown="btn_drAllMotorRetZero" HorizontalAlignment="Center">
-                                <TextBlock FontSize="32" Foreground="#008AFF" FontWeight="Bold" Text="  0  "></TextBlock>
-                                <TextBlock>一键回零</TextBlock>
-                            </StackPanel>
+                            <Viewbox>
+                                <StackPanel Orientation="Vertical" MouseDown="btn_drAllMotorRetZero" HorizontalAlignment="Center">
+                                    <TextBlock FontSize="32" Foreground="#008AFF" FontWeight="Bold" Text="  0  "></TextBlock>
+                                    <TextBlock>一键回零</TextBlock>
+                                </StackPanel>
+                            </Viewbox>
                         </Border>
                         <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,5,5,5" Grid.Row="1" Style="{StaticResource ShadowBorder}">
-                            <StackPanel Orientation="Vertical" MouseDown="btn_drMotorEnable" HorizontalAlignment="Center">
-                                <TextBlock Text="&#xe61e;" FontFamily="../../Font/#iconfont" FontSize="36" Foreground="#008AFF" TextAlignment="Center" Height="42"></TextBlock>
-                                <TextBlock>电机使能</TextBlock>
-                            </StackPanel>
+                            <Viewbox>
+                                <StackPanel Orientation="Vertical" MouseDown="btn_drMotorEnable" HorizontalAlignment="Center">
+                                    <TextBlock Text="&#xe61e;" FontFamily="../../Font/#iconfont" FontSize="36" Foreground="#008AFF" TextAlignment="Center" Height="42"></TextBlock>
+                                    <TextBlock>电机使能</TextBlock>
+                                </StackPanel>
+                            </Viewbox>
                         </Border>
                     </Grid>
                 </Grid>
@@ -316,10 +329,12 @@
                             <hc:StepBarItem Content="台面完成"/>
                         </hc:StepBar>
                     </Grid>
-                    <Grid Grid.Row="0" Name="Am"  Height="380">
+                    <Grid Grid.Row="0" Name="Am" >
                             <!--<main:Amination x:Name="amination"/>-->
+                        <Viewbox>
                             <main:AminationNew x:Name="aminationNew"/>
-                        </Grid>
+                        </Viewbox>
+                    </Grid>
                     </Grid>
                 
                 </Grid>

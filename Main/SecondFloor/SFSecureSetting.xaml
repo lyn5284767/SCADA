@@ -32,108 +32,115 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
     </UserControl.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
+    <Viewbox>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="468"/>
+            </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Grid.Column="0" Margin="10">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="操作模式：" FontSize="16"/>
-                    <TextBlock Text="       " Name="opModel_SecuritySettingsPage" FontSize="16"/>
-                </StackPanel>
-            </Border>
-            <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Grid.Column="1" Margin="10">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="工作模式：" FontSize="16"/>
-                    <TextBlock Text="       " Name="workModel_SecuritySettingsPage" FontSize="16"/>
-                </StackPanel>
-            </Border>
-            <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Grid.Column="2" Margin="10">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="回转：" FontSize="16"/>
-                    <TextBlock Text="       " Name="rotateAngle_SecuritySettingsPage" FontSize="16"/>
-                </StackPanel>
-            </Border>
-            <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Grid.Column="3" Margin="10">
-                <cl:SymbolMapping StrContent="大钩标定状态" LampType="3" Height="35" Margin="10" Grid.Column="2" Name="HookStatus" FontSize="16"/>
-            </Border>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Grid.Column="0" Margin="10">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock Text="操作模式："/>
+                        <TextBlock Text="       " Name="opModel_SecuritySettingsPage"/>
+                    </StackPanel>
+                </Border>
+                <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Grid.Column="1" Margin="10">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock Text="工作模式："/>
+                        <TextBlock Text="       " Name="workModel_SecuritySettingsPage"/>
+                    </StackPanel>
+                </Border>
+                <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Grid.Column="2" Margin="10">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock Text="回转："/>
+                        <TextBlock Text="       " Name="rotateAngle_SecuritySettingsPage"/>
+                    </StackPanel>
+                </Border>
+                <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Grid.Column="3" Margin="10">
+                    <cl:SymbolMapping StrContent="大钩标定状态" LampType="3" Height="35" Grid.Column="2" Name="HookStatus"/>
+                </Border>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <cl:SymbolMapping StrContent="井口手指打开使能" LampType="3" Height="35" Margin="10" Grid.Column="0" Name="WellheadfingerOpen"/>
+                <cl:SymbolMapping StrContent="井口手臂缩回使能" LampType="3" Height="35" Margin="10" Grid.Column="1" Name="WellheadarmOpen"/>
+                <cl:SymbolMapping StrContent="靠近井口运动使能" LampType="3" Height="35" Margin="10" Grid.Column="2" Name="ApproachingWellheadOpen"/>
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="700"/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0" BorderBrush="Gray" Padding="20" BorderThickness="0 1 1 0">
+                    <StackPanel>
+                        <cl:CustomCheckBox ContentString="机械手大钩互锁" Margin="10" Name="checkBoxBigHookInterLockingOfRobot" UserControlClicked="BoxBigHookInterLockingOfRobot_Clicked"/>
+                        <cl:CustomCheckBox ContentString="机械手顶驱互锁" Margin="10" Name="checkBoxManipulatorTopDriveInterlock" UserControlClicked="ManipulatorTopDriverInterlock_Clicked"/>
+                        <cl:CustomCheckBox ContentString="指梁锁打开确认"  Margin="10" Name="checkBoxFingerBeamLockOpenConfirmation" UserControlClicked="FingerBeamLockOpenConfirm_Clicked"/>
+                        <cl:CustomCheckBox ContentString="伺服电机过载限制" Margin="10" Name="checkBoxServoMotorOverloadLimit" UserControlClicked="ServoMotorOverloadLimit_Clicked"/>
+                        <cl:CustomCheckBox ContentString="机械手挡绳互锁" Margin="10" Name="checkBoxInterlockingOfManipulatorRopes" UserControlClicked="InterlockOfManipulatorRopes_Clicked"/>
+                        <cl:CustomCheckBox ContentString="吊卡关门信号屏蔽" Margin="10" Name="checkBoxElevatorClosingSignalShielding" UserControlClicked="ElevatorCloseSignShield_Clicked"/>
+                        <cl:CustomCheckBox ContentString="吊卡打开限制解除" Margin="10" Name="checkBoxElevatorOpenLimitCancel" UserControlClicked="ElevatorOpenLimitCancel_Clicked"/>
+                        <cl:CustomCheckBox ContentString="机械手检修模式" Margin="10" Name="checkBoxRobotInspectionMode" UserControlClicked="RobotInspectionMode_Clicked"/>
+                        <cl:CustomCheckBox ContentString="回转回零限制" Margin="10" Name="checkBoxRoteTurnZero" UserControlClicked="CheckBoxRoteTurnZero_UserControlClicked"/>
+                    </StackPanel>
+                </Border>
+                <Border Grid.Column="1" BorderBrush="Gray" BorderThickness="0 1 0 0" Padding="20">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Grid.Row="0" Text="机械手大钩互锁角度" Margin="15" VerticalAlignment="Center"/>
+                        <TextBox Grid.Column="1" Grid.Row="0" Width="80" Text="0" Margin="15" IsReadOnly="True" TextAlignment="Center" Name="BigHookInterLockingAngleOfRobotShowValue" FontSize="16"/>
+                        <TextBox PreviewMouseDown="tb_GotFocus" Grid.Column="2" Grid.Row="0" Width="80" Text="0" Margin="15" TextAlignment="Center" Name="BigHookInterLockingAngleOfRobotSettingValue" FontSize="16"/>
+                        <Button Content="设置" Style="{StaticResource btnGreen}" Grid.Column="3" Grid.Row="0" Margin="15" Width="80" Click="btn_SetBigHookInterLockAngle_Click" FontSize="16"/>
+
+                        <TextBlock Grid.Column="0" Grid.Row="1" Text="机械手顶驱互锁角度" Margin="15" VerticalAlignment="Center"/>
+                        <TextBox Grid.Column="1" Grid.Row="1" Width="80" Text="0" Margin="15" IsReadOnly="True" TextAlignment="Center" Name="ManipulatorTopDriveInterlockAngleShowValue" FontSize="16"/>
+                        <!--<TextBox Grid.Column="2" Grid.Row="0" Width="80" Text="0" Margin="15" TextAlignment="Center" Name="BigHookInterLockingAngleOfRobotSettingValue"/>-->
+                        <TextBox PreviewMouseDown="tb_GotFocus"  Grid.Column="2" Grid.Row="1" Width="80" Text="0" Margin="15" TextAlignment="Center" Name="ManipulatorTopDriveInterlockAngleSetValue" FontSize="16"/>
+                        <Button Content="设置" Style="{StaticResource btnGreen}" Grid.Column="3" Grid.Row="1" Margin="15" Width="80" Click="btn_SetTopDriverInterlockAngle_Click" FontSize="16"/>
+
+                        <TextBlock Grid.Column="0" Grid.Row="2" Text="大钩高度显示值" Margin="15" VerticalAlignment="Center"/>
+                        <TextBox Grid.Column="1" Grid.Row="2" Width="80" Text="0" Margin="15" TextAlignment="Center" IsReadOnly="True" Name="BigHookHeightShowValue" FontSize="16"/>
+                        <Button Content="设置" Style="{StaticResource btnGreen}" Grid.Column="3" Grid.Row="2" Margin="15" Width="80" Visibility="Hidden" FontSize="16"/>
+
+                        <TextBlock Grid.Column="0" Grid.Row="3" Text="大钩高度标定值" Margin="15" VerticalAlignment="Center"/>
+                        <TextBox PreviewMouseDown="tb_GotFocus"  Grid.Column="1" Grid.Row="3" Width="80" Text="0" Margin="15" TextAlignment="Center" Name="BigHookHeightSetValue" FontSize="16"/>
+                        <Button Content="标定" Style="{StaticResource btnGreen}" Grid.Column="2" Grid.Row="4" Margin="15" Width="80" Click="btn_BigHookHeight_Click" FontSize="16"/>
+                        <Button Content="取消" Style="{StaticResource btnGreen}" Grid.Column="3" Grid.Row="4" Margin="15" Width="80" Click="btn_BigHookHeightCannel_Click" FontSize="16"/>
+                    </Grid>
+                </Border>
+            </Grid>
         </Grid>
-
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <cl:SymbolMapping StrContent="井口手指打开使能" LampType="3" Height="35" Margin="10" Grid.Column="0" Name="WellheadfingerOpen"/>
-            <cl:SymbolMapping StrContent="井口手臂缩回使能" LampType="3" Height="35" Margin="10" Grid.Column="1" Name="WellheadarmOpen"/>
-            <cl:SymbolMapping StrContent="靠近井口运动使能" LampType="3" Height="35" Margin="10" Grid.Column="2" Name="ApproachingWellheadOpen"/>
-        </Grid>
-
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Border Grid.Column="0" BorderBrush="Gray" Padding="20" BorderThickness="0 1 1 0">
-                <StackPanel>
-                    <cl:CustomCheckBox ContentString="机械手大钩互锁" Margin="10" Name="checkBoxBigHookInterLockingOfRobot" UserControlClicked="BoxBigHookInterLockingOfRobot_Clicked"/>
-                    <cl:CustomCheckBox ContentString="机械手顶驱互锁" Margin="10" Name="checkBoxManipulatorTopDriveInterlock" UserControlClicked="ManipulatorTopDriverInterlock_Clicked"/>
-                    <cl:CustomCheckBox ContentString="指梁锁打开确认"  Margin="10" Name="checkBoxFingerBeamLockOpenConfirmation" UserControlClicked="FingerBeamLockOpenConfirm_Clicked"/>
-                    <cl:CustomCheckBox ContentString="伺服电机过载限制" Margin="10" Name="checkBoxServoMotorOverloadLimit" UserControlClicked="ServoMotorOverloadLimit_Clicked"/>
-                    <cl:CustomCheckBox ContentString="机械手挡绳互锁" Margin="10" Name="checkBoxInterlockingOfManipulatorRopes" UserControlClicked="InterlockOfManipulatorRopes_Clicked"/>
-                    <cl:CustomCheckBox ContentString="吊卡关门信号屏蔽" Margin="10" Name="checkBoxElevatorClosingSignalShielding" UserControlClicked="ElevatorCloseSignShield_Clicked"/>
-                    <cl:CustomCheckBox ContentString="吊卡打开限制解除" Margin="10" Name="checkBoxElevatorOpenLimitCancel" UserControlClicked="ElevatorOpenLimitCancel_Clicked"/>
-                    <cl:CustomCheckBox ContentString="机械手检修模式" Margin="10" Name="checkBoxRobotInspectionMode" UserControlClicked="RobotInspectionMode_Clicked"/>
-                    <cl:CustomCheckBox ContentString="回转回零限制" Margin="10" Name="checkBoxRoteTurnZero" UserControlClicked="CheckBoxRoteTurnZero_UserControlClicked"/>
-                </StackPanel>
-            </Border>
-            <Border Grid.Column="1" BorderBrush="Gray" BorderThickness="0 1 0 0" Padding="20">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Grid.Row="0" Text="机械手大钩互锁角度" Margin="15" VerticalAlignment="Center" FontSize="16"/>
-                    <TextBox Grid.Column="1" Grid.Row="0" Width="80" Text="0" Margin="15" IsReadOnly="True" TextAlignment="Center" Name="BigHookInterLockingAngleOfRobotShowValue" FontSize="16"/>
-                    <TextBox PreviewMouseDown="tb_GotFocus" Grid.Column="2" Grid.Row="0" Width="80" Text="0" Margin="15" TextAlignment="Center" Name="BigHookInterLockingAngleOfRobotSettingValue" FontSize="16"/>
-                    <Button Content="设置" Style="{StaticResource btnGreen}" Grid.Column="3" Grid.Row="0" Margin="15" Width="80" Click="btn_SetBigHookInterLockAngle_Click" FontSize="16"/>
-
-                    <TextBlock Grid.Column="0" Grid.Row="1" Text="机械手顶驱互锁角度" Margin="15" VerticalAlignment="Center" FontSize="16"/>
-                    <TextBox Grid.Column="1" Grid.Row="1" Width="80" Text="0" Margin="15" IsReadOnly="True" TextAlignment="Center" Name="ManipulatorTopDriveInterlockAngleShowValue" FontSize="16"/>
-                    <!--<TextBox Grid.Column="2" Grid.Row="0" Width="80" Text="0" Margin="15" TextAlignment="Center" Name="BigHookInterLockingAngleOfRobotSettingValue"/>-->
-                    <TextBox PreviewMouseDown="tb_GotFocus"  Grid.Column="2" Grid.Row="1" Width="80" Text="0" Margin="15" TextAlignment="Center" Name="ManipulatorTopDriveInterlockAngleSetValue" FontSize="16"/>
-                    <Button Content="设置" Style="{StaticResource btnGreen}" Grid.Column="3" Grid.Row="1" Margin="15" Width="80" Click="btn_SetTopDriverInterlockAngle_Click" FontSize="16"/>
-
-                    <TextBlock Grid.Column="0" Grid.Row="2" Text="大钩高度显示值" Margin="15" VerticalAlignment="Center" FontSize="16"/>
-                    <TextBox Grid.Column="1" Grid.Row="2" Width="80" Text="0" Margin="15" TextAlignment="Center" IsReadOnly="True" Name="BigHookHeightShowValue" FontSize="16"/>
-                    <Button Content="设置" Style="{StaticResource btnGreen}" Grid.Column="3" Grid.Row="2" Margin="15" Width="80" Visibility="Hidden" FontSize="16"/>
-
-                    <TextBlock Grid.Column="0" Grid.Row="3" Text="大钩高度标定值" Margin="15" VerticalAlignment="Center" FontSize="16"/>
-                    <TextBox PreviewMouseDown="tb_GotFocus"  Grid.Column="1" Grid.Row="3" Width="80" Text="0" Margin="15" TextAlignment="Center" Name="BigHookHeightSetValue" FontSize="16"/>
-                    <Button Content="标定" Style="{StaticResource btnGreen}" Grid.Column="2" Grid.Row="4" Margin="15" Width="80" Click="btn_BigHookHeight_Click" FontSize="16"/>
-                    <Button Content="取消" Style="{StaticResource btnGreen}" Grid.Column="3" Grid.Row="4" Margin="15" Width="80" Click="btn_BigHookHeightCannel_Click" FontSize="16"/>
-                </Grid>
-            </Border>
-        </Grid>
-    </Grid>
+    </Viewbox>
 </UserControl>

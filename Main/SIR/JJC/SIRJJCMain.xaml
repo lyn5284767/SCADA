@@ -58,9 +58,9 @@
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="500"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="50*"/>
         </Grid.RowDefinitions>
         <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5" Grid.Row="0">
             <Grid>
@@ -71,82 +71,147 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <StackPanel Orientation="Horizontal" Grid.Column="0">
+                <Viewbox Grid.Column="0">
+                    <StackPanel Orientation="Horizontal">
                     <Label>右手柄选择：</Label>
                     <TextBlock Name="tbRightHandleSelect" Width="100" Text="00"></TextBlock>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Column="1">
-                    <Label>工作状态：</Label>
-                    <TextBlock Name="tbWorkStatus" Width="100" Text="00"></TextBlock>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Column="2">
-                    <Label>操作模式：</Label>
-                    <TextBlock Name="tbOprModel" Width="100" Text="00"></TextBlock>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Column="3">
-                    <Label>工作位置：</Label>
-                    <TextBlock Name="tbWorkLocation" Width="100" Text="00"></TextBlock>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Column="4">
-                    <Label>铁钻工心跳</Label>
-                    <cl:SymbolMapping Name="smHeart" StrContent="" LampType="3" Height="25" HorizontalAlignment="Center"/>
-                </StackPanel>
+                </Viewbox>
+                <Viewbox Grid.Column="1">
+                    <StackPanel Orientation="Horizontal">
+                        <Label>工作状态：</Label>
+                        <TextBlock Name="tbWorkStatus" Width="100" Text="00"></TextBlock>
+                    </StackPanel>
+                </Viewbox>
+                <Viewbox Grid.Column="2">
+                    <StackPanel Orientation="Horizontal">
+                        <Label>操作模式：</Label>
+                        <TextBlock Name="tbOprModel" Width="100" Text="00"></TextBlock>
+                    </StackPanel>
+                </Viewbox>
+                <Viewbox Grid.Column="3">
+                    <StackPanel Orientation="Horizontal">
+                        <Label>工作位置：</Label>
+                        <TextBlock Name="tbWorkLocation" Width="100" Text="00"></TextBlock>
+                    </StackPanel>
+                </Viewbox>
+                <Viewbox Grid.Column="4">
+                    <StackPanel Orientation="Horizontal">
+                        <Label>铁钻工心跳</Label>
+                        <cl:SymbolMapping Name="smHeart" StrContent="" LampType="3" Height="25" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Viewbox>
             </Grid>
         </Border>
-        <StackPanel Orientation="Horizontal" Grid.Row="1">
-            <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,1,5,1" Width="120">
-                <cl:BasedSwitchButton Name="operateMode" ContentLeft="遥控" ContentDown="操作模式" ContentRight="司钻" UserControlClicked="btn_OpState" />
+        <Grid  Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="12*"/>
+                <ColumnDefinition Width="58*"/>
+                <ColumnDefinition Width="16.5*"/>
+                <ColumnDefinition Width="12*"/>
+            </Grid.ColumnDefinitions>
+            <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,1,5,1">
+                <Viewbox  Grid.Column="0">
+                    <cl:BasedSwitchButton Name="operateMode" ContentLeft="遥控" ContentDown="操作模式" ContentRight="司钻" UserControlClicked="btn_OpState" />
+                </Viewbox>
             </Border>
-            <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,1,5,1" Width="580">
+            <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,1,5,1" Grid.Column="1">
                 <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="50,0,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid  Grid.Row="0" Margin="20,5,0,5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Viewbox Grid.Column="0">
                             <Label FontSize="24">上扣扭矩实时压力</Label>
+                        </Viewbox>
+                        <Viewbox Grid.Column="1">
                             <cl:SymbolMapping Name="smUpButtonPressure" StrContent="" LampType="3" Height="35" HorizontalAlignment="Center" Margin="10,0,10,0"/>
+                        </Viewbox>
+                        <Viewbox Grid.Column="2">
                             <TextBlock Name="tbRealTimePressure" Width="100" FontSize="24" Text="0" TextAlignment="Right"/>
+                        </Viewbox>
+                        <Viewbox Grid.Column="3">
                             <TextBlock Name="tbUnitOne" Text="KN.M" FontSize="24"/>
-                            <cl:ShadowButton TBText ="切换" x:Name="sdswitch" TBFontSize="20" BDWidth="50" BDHeight="45" MouseLeftButtonDown="SwichUnit_MouseLeftButtonDown"/>
+                        </Viewbox>
+                        <Viewbox Grid.Column="4">
+                            <cl:ShadowButton TBText ="切换" x:Name="sdswitch" TBFontSize="24" MouseLeftButtonDown="SwichUnit_MouseLeftButtonDown"/>
+                        </Viewbox>
+                    </Grid>
+                    <Grid  Grid.Row="1" Margin="20,5,0,5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Viewbox Grid.Column="0">
+                            <Label FontSize="24">上扣扭矩设定压力</Label>
+                        </Viewbox>
+                        <Viewbox Grid.Column="1">
+                            <cl:ShadowButton TBText ="-" x:Name="PressureDown" TBFontSize="24" BDWidth="50" BDHeight="45" Margin="25,0,20,0" MouseLeftButtonDown="PressureDown_MouseLeftButtonDown"/>
+                        </Viewbox>
+                        <Viewbox Grid.Column="2">
+                            <TextBlock Name="tbPressureSet" Width="100" FontSize="24" Text="0" TextAlignment="Right"/>
+                        </Viewbox>
+                        <Viewbox Grid.Column="3">
+                            <TextBlock Name="tbUnitTwo" Text="KN.M" FontSize="24"/>
+                        </Viewbox>
+                        <Viewbox Grid.Column="4">
+                            <cl:ShadowButton TBText ="+" x:Name="PressureUp" TBFontSize="24" BDWidth="50" BDHeight="45" MouseLeftButtonDown="PressureUp_MouseLeftButtonDown"/>
+                        </Viewbox>
 
-                        </StackPanel>
-                    <StackPanel Orientation="Horizontal" Grid.Row="1"  Margin="50,0,0,0">
-                        <Label FontSize="24">上扣扭矩设定压力</Label>
-                        <cl:ShadowButton TBText ="-" x:Name="PressureDown" TBFontSize="24" BDWidth="50" BDHeight="45" MouseLeftButtonDown="PressureDown_MouseLeftButtonDown"/>
-                        <TextBlock Name="tbPressureSet" Width="100" FontSize="24" Text="0" TextAlignment="Right"/>
-                        <TextBlock Name="tbUnitTwo" Text="KN.M" FontSize="24"/>
-                        <cl:ShadowButton TBText ="+" x:Name="PressureUp" TBFontSize="24" BDWidth="50" BDHeight="45" MouseLeftButtonDown="PressureUp_MouseLeftButtonDown"/>
-                    </StackPanel>
+                    </Grid>
                 </Grid>
             </Border>
-            <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,1,5,1" Width="165">
+            <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,1,5,1" Grid.Column="2">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <cl:CustomCheckBox Grid.Row="0" Margin="3,0,0,0" ContentString="安全限制解除" Name="cbSafeLimit" UserControlClicked="cbSafeLimit_Clicked"/>
-                    <StackPanel Orientation="Horizontal" Grid.Row="1">
-                        <cl:SymbolMapping Name="smAllowIron" StrContent="" LampType="3" Height="25" />
-                        <TextBlock Text="铁钻工允许动作" Margin="5,0,0,0" FontSize="18" Foreground="Black"></TextBlock>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Grid.Row="2">
-                        <cl:SymbolMapping Name="smDFAntiCollision" StrContent="" LampType="3" Height="25" />
-                        <TextBlock Text="钻台面触发防碰" Margin="5,0,0,0" FontSize="18" Foreground="Black"></TextBlock>
-                    </StackPanel>
+                    <Viewbox Grid.Row="0">
+                        <cl:CustomCheckBox Margin="3,0,0,0" ContentString="安全限制解除" Name="cbSafeLimit" UserControlClicked="cbSafeLimit_Clicked"/>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1">
+                        <StackPanel Orientation="Horizontal">
+                            <cl:SymbolMapping Name="smAllowIron" StrContent="" LampType="3" Height="25" />
+                            <TextBlock Text="铁钻工允许动作" Margin="5,0,0,0" FontSize="18" Foreground="Black"></TextBlock>
+                        </StackPanel>
+                    </Viewbox>
+                    <Viewbox Grid.Row="2">
+                        <StackPanel Orientation="Horizontal">
+                            <cl:SymbolMapping Name="smDFAntiCollision" StrContent="" LampType="3" Height="25" />
+                            <TextBlock Text="钻台面触发防碰" Margin="5,0,0,0" FontSize="18" Foreground="Black"></TextBlock>
+                        </StackPanel>
+                    </Viewbox>
                 </Grid>
             </Border>
-            <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,1,5,1" Width="120">
-                <StackPanel>
-                    <Menu Background="Transparent" Height="30" Width="90"  FontSize="16" FontFamily="宋体" FontWeight="Bold" Foreground="#008AFF">
+            <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,1,5,1" Grid.Column="3">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="10*"/>
+                    </Grid.RowDefinitions>
+                    <Menu Background="Transparent" Grid.Row="0" HorizontalAlignment="Center" FontSize="16" FontFamily="宋体" FontWeight="Bold" Foreground="#008AFF">
                         <MenuItem>
                             <MenuItem.Header>
-                                <StackPanel Orientation="Vertical">
-                                    <ContentPresenter Content="管柱选择" />
-                                    <Image Margin="0,2,0,0"  Width="15" Source="..\..\Images\downTrangle.png" />
-                                </StackPanel>
+                                <Viewbox>
+                                    <StackPanel Orientation="Vertical">
+                                        <ContentPresenter Content="管柱选择" />
+                                        <Image Margin="0,2,0,0"  Width="15" Source="..\..\Images\downTrangle.png" />
+                                    </StackPanel>
+                                </Viewbox>
                             </MenuItem.Header>
                             <MenuItem Header="DP_2_7/8" Click="btn_SelectDrillPipe" TabIndex="11"/>
                             <MenuItem Header="DP_3_1/2" Click="btn_SelectDrillPipe" TabIndex="1"/>
@@ -161,20 +226,27 @@
                             <MenuItem Header="DC_9" Click="btn_SelectDrillPipe" TabIndex="10"/>
                         </MenuItem>
                     </Menu>
-                    <Grid Height="5"></Grid>
-                    <TextBlock Text="未选择管柱类型" Name="tubeType" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                </StackPanel>
+                    <Grid Height="5" Grid.Row="1"></Grid>
+
+                    <TextBlock Text="未选择管柱类型" Grid.Row="2" Name="tubeType" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Grid>
             </Border>
-        </StackPanel>
-        <DockPanel Grid.Row="2">
-            <Grid DockPanel.Dock="Left" Width="270">
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="27*"/>
+                <ColumnDefinition Width="48*"/>
+                <ColumnDefinition Width="27*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
                 <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,5,10">
                     <Border.Effect>
                         <DropShadowEffect x:Name="effRotateSelect" BlurRadius="20" Color="Gray" Direction="20" Opacity="0" RenderingBias="Quality" ShadowDepth="5"/>
                     </Border.Effect>
-                    <StackPanel Name="spRotateSet">
-                        <TextBlock FontSize="28" Text="旋 转 标 定 请 求" MouseDown="spRotateSetMouseDown"></TextBlock>
-                        <Grid Height="20"></Grid>
+                    <Viewbox>
+                        <StackPanel Name="spRotateSet">
+                            <TextBlock FontSize="28" Text="旋 转 标 定 请 求" MouseDown="spRotateSetMouseDown" Margin="5,0,5,0"></TextBlock>
+                            <Grid Height="20"></Grid>
                         <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
                             <Label>旋转标定</Label>
                             <cl:SymbolMapping Name="smRotate" StrContent="" LampType="3" Height="25" Margin="20,0,0,0"/>
@@ -230,20 +302,23 @@
                         <Grid Height="10"></Grid>
                         <Button Content="确 定 配 置"  Click="ParamSet"  Style="{StaticResource btnGreen}" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180" Height="30" IsDefault="False"/>
                     </StackPanel>
+                    </Viewbox>
                 </Border>
             </Grid>
-            <Border DockPanel.Dock="Right" Width="270" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,5,10">
+            <Border  Grid.Column="2" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,5,10">
                 <Border.Effect>
                     <DropShadowEffect x:Name="effInOutSelect" BlurRadius="20" Color="Gray" Direction="20" Opacity="0" RenderingBias="Quality" ShadowDepth="5"/>
                 </Border.Effect>
-                <StackPanel>
-                    <TextBlock FontSize="28" Text="伸 缩 标 定 请 求" MouseDown="InOutSetMouseDown"></TextBlock>
+                <Viewbox>
+                    <StackPanel>
+                    <TextBlock FontSize="28" Text="伸 缩 标 定 请 求" MouseDown="InOutSetMouseDown" Margin="5,0,5,0"></TextBlock>
                     <Grid Height="20"></Grid>
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
                         <Label>伸缩标定</Label>
                         <cl:SymbolMapping Name="smInOut" StrContent="" LampType="3" Height="25" Margin="20,0,0,0"/>
                     </StackPanel>
-                    <Grid Height="10"></Grid>
+                   
+                  <Grid Height="10"></Grid>
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
                         <TextBlock Width="80" TextAlignment="Center" Foreground="#919191">标定状态：</TextBlock>
                         <TextBlock Name="tbInOutStatus" Foreground="#919191" Text="未知" Width="50" TextAlignment="Center"/>
@@ -304,14 +379,16 @@
                     <Grid Height="10"></Grid>
                     <Button Content="确 定 配 置"  Click="ParamSet"  Style="{StaticResource btnGreen}" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180" Height="30" IsDefault="False"/>
                 </StackPanel>
+                </Viewbox>
             </Border>
-            <Grid>
+            <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="200"/>
-                    <RowDefinition/>
+                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="40*"/>
                 </Grid.RowDefinitions>
                 <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,5,5" Grid.Row="0">
-                    <Grid>
+                    <Viewbox>
+                        <Grid>
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="40"/>
@@ -371,91 +448,94 @@
                             </Grid>
                         </Grid>
                     </Grid>
+                    </Viewbox>
                 </Border>
                 <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,5,5,10" Grid.Row="1">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition Height="50"/>
-                        </Grid.RowDefinitions>
-                        <Grid Grid.Row="0">
+                    <Viewbox>
+                        <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
+                                <RowDefinition Height="10*"/>
+                                <RowDefinition Height="5*"/>
                             </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center">
-                                <Label>臂架伸出</Label>
-                                <cl:SymbolMapping Name="smArmReach" StrContent="" LampType="3" Height="25" HorizontalAlignment="Center"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center">
-                                <Label>臂架缩回</Label>
-                                <cl:SymbolMapping Name="smArmRetract" StrContent="" LampType="3" Height="25" HorizontalAlignment="Center"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center">
-                                <Label>冲扣伸出</Label>
-                                <cl:SymbolMapping Name="smButtonReach" StrContent="" LampType="3" Height="25" HorizontalAlignment="Center"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center">
-                                <Label>冲扣缩回</Label>
-                                <cl:SymbolMapping Name="smButtonRetract" StrContent="" LampType="3" Height="25" HorizontalAlignment="Center"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center">
-                                <Label>系统复位</Label>
-                                <cl:SymbolMapping Name="smSysReset" StrContent="" LampType="3" Height="25" HorizontalAlignment="Center"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">
-                                <Label>钳体上升</Label>
-                                <cl:SymbolMapping Name="smPliersUp" StrContent="" LampType="3" Height="25" HorizontalAlignment="Center"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center">
-                                <Label>钳体下降</Label>
-                                <cl:SymbolMapping Name="smPliersDown" StrContent="" LampType="3" Height="25" HorizontalAlignment="Center"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center">
-                                <Label>旋扣旋进</Label>
-                                <cl:SymbolMapping Name="smButtonIn" StrContent="" LampType="3" Height="25" HorizontalAlignment="Center"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center">
-                                <Label>旋扣旋出</Label>
-                                <cl:SymbolMapping Name="smButtonOut" StrContent="" LampType="3" Height="25" HorizontalAlignment="Center"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center">
-                                <TextBlock Text="   电加热" Foreground="Black"></TextBlock>
-                                <cl:SymbolMapping Name="smHot" StrContent="" LampType="3" Height="25" HorizontalAlignment="Center"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center">
-                                <Label>臂架左转</Label>
-                                <cl:SymbolMapping Name="smArmLeft" StrContent="" LampType="3" Height="25" HorizontalAlignment="Center"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center">
-                                <Label>臂架右转</Label>
-                                <cl:SymbolMapping Name="smArmRight" StrContent="" LampType="3" Height="25" HorizontalAlignment="Center"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center">
-                                <Label>冲扣执行</Label>
-                                <cl:SymbolMapping Name="smButtonImple" StrContent="" LampType="3" Height="25" HorizontalAlignment="Center"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center">
-                                <Label>卸扣执行</Label>
-                                <cl:SymbolMapping Name="smButtonCancel" StrContent="" LampType="3" Height="25" HorizontalAlignment="Center"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Center">
-                                <TextBlock Text="    锁大钩" Foreground="Black"></TextBlock>
-                                <cl:SymbolMapping Name="smLockHook" StrContent="" LampType="3" Height="25" HorizontalAlignment="Center"/>
-                            </StackPanel>
+                            <Grid Grid.Row="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center"  Margin="5">
+                                    <Label>臂架伸出</Label>
+                                    <cl:SymbolMapping Name="smArmReach" StrContent="" LampType="3" Height="25" HorizontalAlignment="Center"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Margin="5">
+                                    <Label>臂架缩回</Label>
+                                    <cl:SymbolMapping Name="smArmRetract" StrContent="" LampType="3" Height="25" HorizontalAlignment="Center"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" Margin="5">
+                                    <Label>冲扣伸出</Label>
+                                    <cl:SymbolMapping Name="smButtonReach" StrContent="" LampType="3" Height="25" HorizontalAlignment="Center"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" Margin="5">
+                                    <Label>冲扣缩回</Label>
+                                    <cl:SymbolMapping Name="smButtonRetract" StrContent="" LampType="3" Height="25" HorizontalAlignment="Center"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" Margin="5">
+                                    <Label>系统复位</Label>
+                                    <cl:SymbolMapping Name="smSysReset" StrContent="" LampType="3" Height="25" HorizontalAlignment="Center"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" Margin="5">
+                                    <Label>钳体上升</Label>
+                                    <cl:SymbolMapping Name="smPliersUp" StrContent="" LampType="3" Height="25" HorizontalAlignment="Center"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Margin="5">
+                                    <Label>钳体下降</Label>
+                                    <cl:SymbolMapping Name="smPliersDown" StrContent="" LampType="3" Height="25" HorizontalAlignment="Center"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Margin="5">
+                                    <Label>旋扣旋进</Label>
+                                    <cl:SymbolMapping Name="smButtonIn" StrContent="" LampType="3" Height="25" HorizontalAlignment="Center"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" Margin="5">
+                                    <Label>旋扣旋出</Label>
+                                    <cl:SymbolMapping Name="smButtonOut" StrContent="" LampType="3" Height="25" HorizontalAlignment="Center"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" Margin="5">
+                                    <TextBlock Text="   电加热" Foreground="Black"></TextBlock>
+                                    <cl:SymbolMapping Name="smHot" StrContent="" LampType="3" Height="25" HorizontalAlignment="Center"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" Margin="5">
+                                    <Label>臂架左转</Label>
+                                    <cl:SymbolMapping Name="smArmLeft" StrContent="" LampType="3" Height="25" HorizontalAlignment="Center"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" Margin="5">
+                                    <Label>臂架右转</Label>
+                                    <cl:SymbolMapping Name="smArmRight" StrContent="" LampType="3" Height="25" HorizontalAlignment="Center"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" Margin="5">
+                                    <Label>冲扣执行</Label>
+                                    <cl:SymbolMapping Name="smButtonImple" StrContent="" LampType="3" Height="25" HorizontalAlignment="Center"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center" Margin="5">
+                                    <Label>卸扣执行</Label>
+                                    <cl:SymbolMapping Name="smButtonCancel" StrContent="" LampType="3" Height="25" HorizontalAlignment="Center"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Center" Margin="5">
+                                    <TextBlock Text="    锁大钩" Foreground="Black"></TextBlock>
+                                    <cl:SymbolMapping Name="smLockHook" StrContent="" LampType="3" Height="25" HorizontalAlignment="Center"/>
+                                </StackPanel>
+                            </Grid>
+                            <TextBlock Name="tbWarn" Grid.Row="1" HorizontalAlignment="Center" Text="" FontSize="24"  Foreground="#E0496D"></TextBlock>
                         </Grid>
-                        <TextBlock Name="tbWarn" Grid.Row="1" HorizontalAlignment="Center" Text="" FontSize="24"  Foreground="#E0496D"></TextBlock>
-                    </Grid>
+                    </Viewbox>
                 </Border>
             </Grid>
-        </DockPanel>
+        </Grid>
     </Grid>
 </UserControl>

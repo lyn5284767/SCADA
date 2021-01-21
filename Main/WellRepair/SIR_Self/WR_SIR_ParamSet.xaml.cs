@@ -19,12 +19,12 @@ namespace Main.WellRepair.SIR_Self
     /// <summary>
     /// WR_ParamSet.xaml 的交互逻辑
     /// </summary>
-    public partial class WR_ParamSet : UserControl
+    public partial class WR_SIR_ParamSet : UserControl
     {
-        private static WR_ParamSet _instance = null;
+        private static WR_SIR_ParamSet _instance = null;
         private static readonly object syncRoot = new object();
 
-        public static WR_ParamSet Instance
+        public static WR_SIR_ParamSet Instance
         {
             get
             {
@@ -34,14 +34,14 @@ namespace Main.WellRepair.SIR_Self
                     {
                         if (_instance == null)
                         {
-                            _instance = new WR_ParamSet();
+                            _instance = new WR_SIR_ParamSet();
                         }
                     }
                 }
                 return _instance;
             }
         }
-        public WR_ParamSet()
+        public WR_SIR_ParamSet()
         {
             InitializeComponent();
             VariableBinding();

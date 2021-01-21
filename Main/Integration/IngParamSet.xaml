@@ -104,8 +104,9 @@
             <Grid Grid.Column="1">
                 <StackPanel>
 
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical">
                         <Button Content="确 定 配 置"  Click="ParamThreeSet"  Style="{StaticResource btnGreen}" FontWeight="Bold" FontFamily="宋体" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" IsDefault="False"/>
+                        <Button Content="摄像头配置"  Click="CameraSet"  Style="{StaticResource btnGreen}" FontWeight="Bold" FontFamily="宋体" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" IsDefault="False"/>
                 </StackPanel>
                 </StackPanel>
             </Grid>

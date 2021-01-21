@@ -7,58 +7,60 @@
              xmlns:inputcontrol="clr-namespace:ControlLibrary.InputControl;assembly=ControlLibrary"
              mc:Ignorable="d" 
             d:DesignHeight="680" d:DesignWidth="924" Foreground="#525252" FontSize="14" FontFamily="微软雅黑" Background="#F5F6FA" Margin="1" Name="sfPositionSetting">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0">
-                <Border Background="White" CornerRadius="10" Margin="5,0,5,5">
-                    <Border.Effect>
-                        <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
-                    </Border.Effect>
-                </Border>
-                <StackPanel Orientation="Horizontal">
-                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="360">
-                        <StackPanel>
-                            <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="0" Padding="3">
-                                <TextBlock Text="左钻铤位置"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"/>
-                            </Border>
+    <Viewbox>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="680"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <Border Background="White" CornerRadius="10" Margin="5,0,5,5">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+                        </Border.Effect>
+                    </Border>
+                    <StackPanel Orientation="Horizontal">
+                        <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="360">
+                            <StackPanel>
+                                <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="0" Padding="3">
+                                    <TextBlock Text="左钻铤位置"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"/>
+                                </Border>
 
-                            <inputcontrol:SetControl Name="twt49" Head="80, 33, 12, 49, 0, 0" TbkText="左1#钻铤位置" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt50" Head="80, 33, 12, 50, 0, 0" TbkText="左2#钻铤位置" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt51" Head="80, 33, 12, 51, 0, 0" TbkText="左3#钻铤位置" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt52" Head="80, 33, 12, 52, 0, 0" TbkText="左4#钻铤位置" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt53" Head="80, 33, 12, 53, 0, 0" TbkText="左5#钻铤位置" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt54" Head="80, 33, 12, 54, 0, 0" TbkText="左6#钻铤位置" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            
+                                <inputcontrol:SetControl Name="twt49" Head="80, 33, 12, 49, 0, 0" TbkText="左1#钻铤位置" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt50" Head="80, 33, 12, 50, 0, 0" TbkText="左2#钻铤位置" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt51" Head="80, 33, 12, 51, 0, 0" TbkText="左3#钻铤位置" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt52" Head="80, 33, 12, 52, 0, 0" TbkText="左4#钻铤位置" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt53" Head="80, 33, 12, 53, 0, 0" TbkText="左5#钻铤位置" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt54" Head="80, 33, 12, 54, 0, 0" TbkText="左6#钻铤位置" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="360">
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel>
+                                <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5,0,5,5" Padding="3">
+                                    <TextBlock Text="右钻铤位置"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"/>
+                                </Border>
+                                <inputcontrol:SetControl Name="twt55" Head="80, 33, 12, 55, 0, 0" TbkText="右1#钻铤位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt56" Head="80, 33, 12, 56, 0, 0" TbkText="右2#钻铤位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt57" Head="80, 33, 12, 57, 0, 0" TbkText="右3#钻铤位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt58" Head="80, 33, 12, 58, 0, 0" TbkText="右4#钻铤位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt59" Head="80, 33, 12, 59, 0, 0" TbkText="右5#钻铤位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt60" Head="80, 33, 12, 60, 0, 0" TbkText="右6#钻铤位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+
+                            </StackPanel>
                         </StackPanel>
                     </Border>
                 </StackPanel>
-
-            </StackPanel>
-            <StackPanel Grid.Column="1">
-                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="360">
-                    <StackPanel Orientation="Horizontal">
-                        <StackPanel>
-                            <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5,0,5,5" Padding="3">
-                                <TextBlock Text="右钻铤位置"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"/>
-                            </Border>
-                            <inputcontrol:SetControl Name="twt55" Head="80, 33, 12, 55, 0, 0" TbkText="右1#钻铤位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt56" Head="80, 33, 12, 56, 0, 0" TbkText="右2#钻铤位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt57" Head="80, 33, 12, 57, 0, 0" TbkText="右3#钻铤位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt58" Head="80, 33, 12, 58, 0, 0" TbkText="右4#钻铤位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt59" Head="80, 33, 12, 59, 0, 0" TbkText="右5#钻铤位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt60" Head="80, 33, 12, 60, 0, 0" TbkText="右6#钻铤位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-
-                        </StackPanel>
-                    </StackPanel>
-                </Border>
-            </StackPanel>
+            </Grid>
         </Grid>
-    </Grid>
+    </Viewbox>
 </UserControl>

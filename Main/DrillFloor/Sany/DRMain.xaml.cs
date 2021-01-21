@@ -699,7 +699,7 @@ namespace Main.DrillFloor
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
-        /// 设置钻杠
+        /// 设置钻杆
         /// </summary>
         private void btn_SelectDrillPipe(object sender, RoutedEventArgs e)
         {
@@ -1299,6 +1299,12 @@ namespace Main.DrillFloor
                 byte[] byteToSend = GlobalData.Instance.SendToDR(new List<byte> { 10, 1 });
                 GlobalData.Instance.da.SendBytes(byteToSend);
             }
+        }
+
+        private void btnDeviceBack(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 80, 33, 1, 6, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
         }
     }
 }

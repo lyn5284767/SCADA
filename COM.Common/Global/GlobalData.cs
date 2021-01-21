@@ -85,7 +85,7 @@ namespace COM.Common
         /// </summary>
         public int FirstRowHeightCompensate { get; set; }
         /// <summary>
-        /// 钻杠行数
+        /// 钻杆行数
         /// </summary>
         public int Rows { get; set; }
         /// <summary>

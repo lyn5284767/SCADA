@@ -7,34 +7,36 @@
              xmlns:cl="http://talonzeng.com/ControlLibrary"
              mc:Ignorable="d" 
              d:DesignHeight="608" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" FontFamily="微软雅黑" Margin="1" Name="sfChart">
-    <Grid Name="gdMain">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="180"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <GroupBox Grid.Column="0" Header="电机实时电流值" FontSize="16" FontWeight="Bold" Grid.Row="0">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <cl:MessageShow Template="{StaticResource messegeShow}" Content="0.75" ContentUp="小车电机" ContentDown="mA" Margin="6" Name="carMotorElecCurrent"/>
-                <cl:MessageShow Template="{StaticResource messegeShow}" Content="0.75" ContentUp="手臂电机" ContentDown="mA" Margin="6"  Name="armMotorElecCurrent"/>
-                <cl:MessageShow Template="{StaticResource messegeShow}" Content="0.75" ContentUp="回转电机" ContentDown="mA" Margin="6"  Name="rotateMotorElecCurrent"/>
-            </StackPanel>
-        </GroupBox>
-        <GroupBox Grid.Column="1" Header="电机实时速度值" FontSize="16" FontWeight="Bold" Grid.Row="0">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <cl:MessageShow Template="{StaticResource messegeShow}" Content="0.75" ContentUp="小车电机" ContentDown="r/min" Margin="6" Name="carMotorRealTimeSpeed"/>
-                <cl:MessageShow Template="{StaticResource messegeShow}" Content="0.75" ContentUp="手臂电机" ContentDown="r/min" Margin="6" Name="armMotorRealTimeSpeed"/>
-                <cl:MessageShow Template="{StaticResource messegeShow}" Content="0.75" ContentUp="回转电机" ContentDown="r/min" Margin="6" Name="rotateMotorRealTimeSpeed"/>
-            </StackPanel>
-        </GroupBox>
-        <Border Grid.Column="0" Grid.Row="1" BorderBrush="Gray" BorderThickness="1">
-            <cl:MotorElecCurrentChart Name="motorElecCurrentChart" />
-        </Border>
-        <Border Grid.Column="1" Grid.Row="1" BorderBrush="Gray" BorderThickness="1">
-            <cl:MotorSpeedChart  Name="motorSpeedChart" />
-        </Border>
-    </Grid>
+    <Viewbox>
+        <Grid Name="gdMain">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="180"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <GroupBox Grid.Column="0" Header="电机实时电流值" FontSize="16" FontWeight="Bold" Grid.Row="0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <cl:MessageShow Template="{StaticResource messegeShow}" Content="0.75" ContentUp="小车电机" ContentDown="mA" Margin="6" Name="carMotorElecCurrent"/>
+                    <cl:MessageShow Template="{StaticResource messegeShow}" Content="0.75" ContentUp="手臂电机" ContentDown="mA" Margin="6"  Name="armMotorElecCurrent"/>
+                    <cl:MessageShow Template="{StaticResource messegeShow}" Content="0.75" ContentUp="回转电机" ContentDown="mA" Margin="6"  Name="rotateMotorElecCurrent"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Grid.Column="1" Header="电机实时速度值" FontSize="16" FontWeight="Bold" Grid.Row="0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <cl:MessageShow Template="{StaticResource messegeShow}" Content="0.75" ContentUp="小车电机" ContentDown="r/min" Margin="6" Name="carMotorRealTimeSpeed"/>
+                    <cl:MessageShow Template="{StaticResource messegeShow}" Content="0.75" ContentUp="手臂电机" ContentDown="r/min" Margin="6" Name="armMotorRealTimeSpeed"/>
+                    <cl:MessageShow Template="{StaticResource messegeShow}" Content="0.75" ContentUp="回转电机" ContentDown="r/min" Margin="6" Name="rotateMotorRealTimeSpeed"/>
+                </StackPanel>
+            </GroupBox>
+            <Border Grid.Column="0" Grid.Row="1" BorderBrush="Gray" BorderThickness="1">
+                <cl:MotorElecCurrentChart Name="motorElecCurrentChart" />
+            </Border>
+            <Border Grid.Column="1" Grid.Row="1" BorderBrush="Gray" BorderThickness="1">
+                <cl:MotorSpeedChart  Name="motorSpeedChart" />
+            </Border>
+        </Grid>
+    </Viewbox>
 </UserControl>

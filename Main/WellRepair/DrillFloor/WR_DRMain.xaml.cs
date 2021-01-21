@@ -122,7 +122,9 @@ namespace Main.WellRepair.DrillFloor
                 sbDrillDownMultiBind.NotifyOnSourceUpdated = true;
                 this.sbDrillDown.SetBinding(StepBar.StepIndexProperty, sbDrillDownMultiBind);
 
-                //timerWarning = new System.Threading.Timer(new TimerCallback(Timer_Elapsed), this, 2000, 50);//改成50ms 的时钟
+                this.tbMemoryPos.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["WR_DR_MemoryPos"], Mode = BindingMode.OneWay, Converter = new WR_MemoryPos() });// 目的地选择
+
+                timerWarning = new System.Threading.Timer(new TimerCallback(Timer_Elapsed), this, 2000, 50);//改成50ms 的时钟
                 InitCameraInfo();
             }
             catch (Exception ex)
@@ -182,8 +184,8 @@ namespace Main.WellRepair.DrillFloor
                     if (iTimeCnt > 1000) iTimeCnt = 0;
                     this.Warnning();
                     this.MonitorAlarmStatus();
-                    //if (GlobalData.Instance.da["droperationModel"].Value.Byte == 5)
-                    //{
+                    if (GlobalData.Instance.da["droperationModel"].Value.Byte == 5)
+                    {
                         if (GlobalData.Instance.da["drworkModel"].Value.Byte == 2)
                         {
                             this.sbDrillUp.Visibility = Visibility.Visible;
@@ -192,9 +194,9 @@ namespace Main.WellRepair.DrillFloor
                         else
                         {
                             this.sbDrillUp.Visibility = Visibility.Collapsed;
-                            sbDrillDown.Visibility = Visibility.Visible;
+                            this.sbDrillDown.Visibility = Visibility.Visible;
                         }
-                    //}
+                    }
 
                     if (GlobalData.Instance.da["droperationModel"].Value.Byte == 1)
                     {
@@ -499,7 +501,7 @@ namespace Main.WellRepair.DrillFloor
             }
             else if (warnOne == 31)
             {
-                this.tbOpr.Text = "抓手中又钻杆，切换到手动模式处理";
+                this.tbOpr.Text = "抓手中有钻杆，切换到手动模式处理";
             }
             else if (warnOne == 32)
             {
@@ -724,7 +726,7 @@ namespace Main.WellRepair.DrillFloor
                     // 有告警且全部显示完成
                     if (this.alarmList.Where(w => w.NowType == 1).Count() == 0)
                     {
-                        this.alarmList.ForEach(w => w.NowType = 1);
+                        this.alarmList.Where(w => w.NowType == 2).ToList().ForEach(w => w.NowType = 1);
                     }
                     AlarmInfo tmp = this.alarmList.Where(w => w.NowType == 1).FirstOrDefault();
                     if (tmp != null)
@@ -733,6 +735,10 @@ namespace Main.WellRepair.DrillFloor
                         this.tbAlarm.Text = tmp.Description;
                         tmp.NowType = 2;
                     }
+                }
+                else
+                {
+                    this.tbAlarm.Text = "暂无告警";
                 }
             }
             else
@@ -761,11 +767,11 @@ namespace Main.WellRepair.DrillFloor
             }
             this.tmpStatus = GlobalData.Instance.da["508b6"].Value.Boolean;
 
-            if (!GlobalData.Instance.ComunciationNormal) this.tbAlarm.Text = "网络连接失败！";
-            else
-            {
-                if (this.tbAlarm.Text == "网络连接失败！") this.tbAlarm.Text = "";
-            }
+            //if (!GlobalData.Instance.ComunciationNormal) this.tbAlarm.Text = "网络连接失败！";
+            //else
+            //{
+            //    if (this.tbAlarm.Text == "网络连接失败！") this.tbAlarm.Text = "";
+            //}
         }
 
         private void InitAlarmKey()
@@ -813,26 +819,99 @@ namespace Main.WellRepair.DrillFloor
         private void MonitorAlarmStatus()
         {
             int warnTwoNO = GlobalData.Instance.da["drErrorCode"].Value.Int32;
-            if (warnTwoNO == 1) alarmList.Where(w => w.TagName == "drErrorCode1").FirstOrDefault().NowType = 1;
-            if (warnTwoNO == 2) alarmList.Where(w => w.TagName == "drErrorCode2").FirstOrDefault().NowType = 1;
-            else if (warnTwoNO == 3) alarmList.Where(w => w.TagName == "drErrorCode3").FirstOrDefault().NowType = 1;
-            else if (warnTwoNO == 6) alarmList.Where(w => w.TagName == "drErrorCode6").FirstOrDefault().NowType = 1;
-            else if (warnTwoNO == 7) alarmList.Where(w => w.TagName == "drErrorCode7").FirstOrDefault().NowType = 1;
-            else if (warnTwoNO == 11) alarmList.Where(w => w.TagName == "drErrorCode11").FirstOrDefault().NowType = 1;
-            else if (warnTwoNO == 12) alarmList.Where(w => w.TagName == "drErrorCode12").FirstOrDefault().NowType = 1;
-            else if (warnTwoNO == 13) alarmList.Where(w => w.TagName == "drErrorCode13").FirstOrDefault().NowType = 1;
-            else if (warnTwoNO == 14) alarmList.Where(w => w.TagName == "drErrorCode14").FirstOrDefault().NowType = 1;
-            else if (warnTwoNO == 20) alarmList.Where(w => w.TagName == "drErrorCode20").FirstOrDefault().NowType = 1;
-            else if (warnTwoNO == 21) alarmList.Where(w => w.TagName == "drErrorCode21").FirstOrDefault().NowType = 1;
-            else if (warnTwoNO == 22) alarmList.Where(w => w.TagName == "drErrorCode22").FirstOrDefault().NowType = 1;
-            else if (warnTwoNO == 23) alarmList.Where(w => w.TagName == "drErrorCode23").FirstOrDefault().NowType = 1;
-            else if (warnTwoNO == 26) alarmList.Where(w => w.TagName == "drErrorCode26").FirstOrDefault().NowType = 1;
-            else alarmList.Where(w => w.TagName.Contains("drErrorCode")).ForEach(o => o.NowType = 0);
+            if (warnTwoNO == 1)
+            {
+                if(alarmList.Where(w => w.TagName == "drErrorCode1").FirstOrDefault().NowType ==0)
+                    alarmList.Where(w => w.TagName == "drErrorCode1").FirstOrDefault().NowType = 1;
+            }
+            else alarmList.Where(w => w.TagName == "drErrorCode1").FirstOrDefault().NowType = 0;
+            if (warnTwoNO == 2)
+            {
+                if (alarmList.Where(w => w.TagName == "drErrorCode2").FirstOrDefault().NowType == 0)
+                    alarmList.Where(w => w.TagName == "drErrorCode2").FirstOrDefault().NowType = 1;
+            }
+            else alarmList.Where(w => w.TagName == "drErrorCode2").FirstOrDefault().NowType = 0;
+            if (warnTwoNO == 3)
+            {
+                if (alarmList.Where(w => w.TagName == "drErrorCode3").FirstOrDefault().NowType == 0)
+                    alarmList.Where(w => w.TagName == "drErrorCode3").FirstOrDefault().NowType = 1;
+            }
+            else alarmList.Where(w => w.TagName == "drErrorCode3").FirstOrDefault().NowType = 0;
+            if (warnTwoNO == 6)
+            {
+                if (alarmList.Where(w => w.TagName == "drErrorCode6").FirstOrDefault().NowType == 0)
+                    alarmList.Where(w => w.TagName == "drErrorCode6").FirstOrDefault().NowType = 1;
+            }
+            else alarmList.Where(w => w.TagName == "drErrorCode6").FirstOrDefault().NowType = 0;
+            if (warnTwoNO == 7)
+            {
+                if (alarmList.Where(w => w.TagName == "drErrorCode7").FirstOrDefault().NowType == 0)
+                    alarmList.Where(w => w.TagName == "drErrorCode7").FirstOrDefault().NowType = 1;
+            }
+            else alarmList.Where(w => w.TagName == "drErrorCode7").FirstOrDefault().NowType = 0;
+            if (warnTwoNO == 11)
+            {
+                if (alarmList.Where(w => w.TagName == "drErrorCode11").FirstOrDefault().NowType == 0)
+                    alarmList.Where(w => w.TagName == "drErrorCode11").FirstOrDefault().NowType = 1;
+            }
+            else alarmList.Where(w => w.TagName == "drErrorCode11").FirstOrDefault().NowType = 0;
+            if (warnTwoNO == 12)
+            {
+                if (alarmList.Where(w => w.TagName == "drErrorCode12").FirstOrDefault().NowType == 0)
+                    alarmList.Where(w => w.TagName == "drErrorCode12").FirstOrDefault().NowType = 1;
+            }
+            else alarmList.Where(w => w.TagName == "drErrorCode12").FirstOrDefault().NowType = 0;
+            if (warnTwoNO == 13)
+            {
+                if (alarmList.Where(w => w.TagName == "drErrorCode13").FirstOrDefault().NowType == 0)
+                    alarmList.Where(w => w.TagName == "drErrorCode13").FirstOrDefault().NowType = 1;
+            }
+            else alarmList.Where(w => w.TagName == "drErrorCode13").FirstOrDefault().NowType = 0;
+            if (warnTwoNO == 14)
+            {
+                if (alarmList.Where(w => w.TagName == "drErrorCode14").FirstOrDefault().NowType == 0)
+                    alarmList.Where(w => w.TagName == "drErrorCode14").FirstOrDefault().NowType = 1;
+            }
+            else alarmList.Where(w => w.TagName == "drErrorCode14").FirstOrDefault().NowType = 0;
+            if (warnTwoNO == 20)
+            {
+                if (alarmList.Where(w => w.TagName == "drErrorCode20").FirstOrDefault().NowType == 0)
+                    alarmList.Where(w => w.TagName == "drErrorCode20").FirstOrDefault().NowType = 1;
+            }
+            else alarmList.Where(w => w.TagName == "drErrorCode20").FirstOrDefault().NowType = 0;
+            if (warnTwoNO == 21)
+            {
+                if (alarmList.Where(w => w.TagName == "drErrorCode21").FirstOrDefault().NowType == 0)
+                    alarmList.Where(w => w.TagName == "drErrorCode21").FirstOrDefault().NowType = 1;
+            }
+            else alarmList.Where(w => w.TagName == "drErrorCode21").FirstOrDefault().NowType = 0;
+            if (warnTwoNO == 22)
+            {
+                if (alarmList.Where(w => w.TagName == "drErrorCode22").FirstOrDefault().NowType == 0)
+                    alarmList.Where(w => w.TagName == "drErrorCode22").FirstOrDefault().NowType = 1;
+            }
+            else alarmList.Where(w => w.TagName == "drErrorCode22").FirstOrDefault().NowType = 0;
+            if (warnTwoNO == 23)
+            {
+                if (alarmList.Where(w => w.TagName == "drErrorCode23").FirstOrDefault().NowType == 0)
+                    alarmList.Where(w => w.TagName == "drErrorCode23").FirstOrDefault().NowType = 1;
+            }
+            else alarmList.Where(w => w.TagName == "drErrorCode23").FirstOrDefault().NowType = 0;
+            if (warnTwoNO == 26)
+            {
+                if (alarmList.Where(w => w.TagName == "drErrorCode26").FirstOrDefault().NowType == 0)
+                    alarmList.Where(w => w.TagName == "drErrorCode26").FirstOrDefault().NowType = 1;
+            }
+            else alarmList.Where(w => w.TagName == "drErrorCode26").FirstOrDefault().NowType = 0;
+
             if (!GlobalData.Instance.da["324b0"].Value.Boolean
                 || !GlobalData.Instance.da["324b2"].Value.Boolean
                 || !GlobalData.Instance.da["324b4"].Value.Boolean)
             {
-                alarmList.Where(w => w.TagName == "UnReZero").FirstOrDefault().NowType = 1;
+                if (alarmList.Where(w => w.TagName == "UnReZero").FirstOrDefault().NowType == 0)
+                {
+                    alarmList.Where(w => w.TagName == "UnReZero").FirstOrDefault().NowType = 1;
+                }
             }
             else alarmList.Where(w => w.TagName == "UnReZero").FirstOrDefault().NowType = 0;
 
@@ -994,7 +1073,7 @@ namespace Main.WellRepair.DrillFloor
             }
         }
         /// <summary>
-        /// 设置钻杠
+        /// 设置钻杆
         /// </summary>
         private void btn_SelectDrillPipe(object sender, RoutedEventArgs e)
         {
@@ -1590,10 +1669,64 @@ namespace Main.WellRepair.DrillFloor
             }
         }
         #endregion
-
-        private void btnDeviceBack(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// 设备回收
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnArmBack(object sender, RoutedEventArgs e)
         {
             byte[] byteToSend = new byte[10] { 80, 33, 1, 6, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 立根盒井口记忆
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnWellMemory(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 80, 33, 16, 2, 1, 1, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 猫道井口记忆
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCatMemory(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 80, 33, 16, 2, 4, 4, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 记忆清除
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnMemoryClear(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 80, 33, 16, 2, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 立根井口记忆恢复
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnWellMemoryRecovery(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 80, 33, 16, 2, 0, 1, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 猫道井口记忆恢复
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCatMemoryRecovery(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 80, 33, 16, 2, 0, 4, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
     }

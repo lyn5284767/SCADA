@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Main.DrillFloor"
              xmlns:cl="http://talonzeng.com/ControlLibrary"
              mc:Ignorable="d" 
-                          Foreground="#525252" FontSize="14" FontFamily="微软雅黑" Background="#F5F6FA" Width="800" Height="650" Margin="1" Name="drParamTwo">
+                          Foreground="#525252" FontSize="14" FontFamily="微软雅黑" Background="#F5F6FA" d:DesignWidth="800" d:DesignHeight="650" Margin="1" Name="drParamTwo">
     <UserControl.Resources>
         <Style TargetType="Button" x:Key="btnGreen">
             <Setter Property="Background" Value="#fff"/>
@@ -49,82 +49,84 @@
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="60"/>
-        </Grid.RowDefinitions>
+    <Viewbox>
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0">
-                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="485">
-                    <StackPanel Orientation="Horizontal">
-                        <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                            <TextBlock Text="电&#x0a;流&#x0a;设&#x0a;置&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
-                        </Border>
-                        <StackPanel>
-                            <cl:TextBlockWithTextBox Name="twtL51" ControlTag="51"  TbkText="伸出最大电流(mA)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
-                            <cl:TextBlockWithTextBox Name="twtL52" ControlTag="52"  TbkText="伸出最小电流(mA)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
-                            <cl:TextBlockWithTextBox Name="twtL53" ControlTag="53"  TbkText="伸出加速度" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
-                            <cl:TextBlockWithTextBox Name="twtL54" ControlTag="54"  TbkText="伸出减速度" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
-                            <cl:TextBlockWithTextBox Name="twtL55" ControlTag="55"  TbkText="伸出加减速周期(m/s)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
-                            <cl:TextBlockWithTextBox Name="twtL56" ControlTag="56"  TbkText="伸出缓存距离(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
-                            <cl:TextBlockWithTextBox Name="twtL65" ControlTag="65"  TbkText="伸出缓冲电流(mA)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
-                            <cl:TextBlockWithTextBox Name="twtL57" ControlTag="57"  TbkText="缩回最大电流(mA)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
-                            <cl:TextBlockWithTextBox Name="twtL58" ControlTag="58"  TbkText="缩回最小电流(mA)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
-                            <cl:TextBlockWithTextBox Name="twtL59" ControlTag="59"  TbkText="缩回加速度" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
-                            <cl:TextBlockWithTextBox Name="twtL60" ControlTag="60"  TbkText="缩回减速度" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
-                            <cl:TextBlockWithTextBox Name="twtL61" ControlTag="61"  TbkText="缩回加减速周期(m/s)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
-                            <cl:TextBlockWithTextBox Name="twtL62" ControlTag="62"  TbkText="缩回缓冲距离(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
-                            <cl:TextBlockWithTextBox Name="twtL66" ControlTag="66"  TbkText="缩回缓冲电流(mA)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
-                            <cl:TextBlockWithTextBox Name="twtL63" ControlTag="63"  TbkText="侧移工作时间(s)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="590"/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="400"/>
+                    <ColumnDefinition Width="400"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="485">
+                        <StackPanel Orientation="Horizontal">
+                            <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
+                                <TextBlock Text="电&#x0a;流&#x0a;设&#x0a;置&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
+                            </Border>
+                            <StackPanel>
+                                <cl:TextBlockWithTextBox Name="twtL51" ControlTag="51"  TbkText="伸出最大电流(mA)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
+                                <cl:TextBlockWithTextBox Name="twtL52" ControlTag="52"  TbkText="伸出最小电流(mA)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+                                <cl:TextBlockWithTextBox Name="twtL53" ControlTag="53"  TbkText="伸出加速度" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+                                <cl:TextBlockWithTextBox Name="twtL54" ControlTag="54"  TbkText="伸出减速度" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+                                <cl:TextBlockWithTextBox Name="twtL55" ControlTag="55"  TbkText="伸出加减速周期(m/s)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+                                <cl:TextBlockWithTextBox Name="twtL56" ControlTag="56"  TbkText="伸出缓存距离(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+                                <cl:TextBlockWithTextBox Name="twtL65" ControlTag="65"  TbkText="伸出缓冲电流(mA)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+                                <cl:TextBlockWithTextBox Name="twtL57" ControlTag="57"  TbkText="缩回最大电流(mA)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+                                <cl:TextBlockWithTextBox Name="twtL58" ControlTag="58"  TbkText="缩回最小电流(mA)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+                                <cl:TextBlockWithTextBox Name="twtL59" ControlTag="59"  TbkText="缩回加速度" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+                                <cl:TextBlockWithTextBox Name="twtL60" ControlTag="60"  TbkText="缩回减速度" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+                                <cl:TextBlockWithTextBox Name="twtL61" ControlTag="61"  TbkText="缩回加减速周期(m/s)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+                                <cl:TextBlockWithTextBox Name="twtL62" ControlTag="62"  TbkText="缩回缓冲距离(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+                                <cl:TextBlockWithTextBox Name="twtL66" ControlTag="66"  TbkText="缩回缓冲电流(mA)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+                                <cl:TextBlockWithTextBox Name="twtL63" ControlTag="63"  TbkText="侧移工作时间(s)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+                            </StackPanel>
                         </StackPanel>
-                    </StackPanel>
-                </Border>
-            </StackPanel>
-            <StackPanel Grid.Column="1">
-                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="485">
-                    <StackPanel Orientation="Horizontal">
-                        <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                            <TextBlock Text="补&#x0a;偿&#x0a;设&#x0a;置&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
-                        </Border>
-                        <StackPanel>
-                            <cl:TextBlockWithTextBox Name="twtR71" ControlTag="71"  TbkText="钻杆长度(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
-                            <cl:TextBlockWithTextBox Name="twtR72" ControlTag="72"  TbkText="第1根距井口距离(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
-                            <cl:TextBlockWithTextBox Name="twtR73" ControlTag="73"  TbkText="小车左第1根偏移(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
-                            <cl:TextBlockWithTextBox Name="twtR74" ControlTag="74"  TbkText="小车左调整斜率(%)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
-                            <cl:TextBlockWithTextBox Name="twtR75" ControlTag="75"  TbkText="小车右第1根斜率偏移(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
-                            <cl:TextBlockWithTextBox Name="twtR76" ControlTag="76"  TbkText="小车右调整斜率(%)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
-                            <cl:TextBlockWithTextBox Name="twtR77" ControlTag="77"  TbkText="排杆小车偏移(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
-                            <cl:TextBlockWithTextBox Name="twtR78" ControlTag="78"  TbkText="送杆小车偏移(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
-                            <cl:TextBlockWithTextBox Name="twtR85" ControlTag="85"  TbkText="送杆小车偏移2(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
-                            <cl:TextBlockWithTextBox Name="twtR86" ControlTag="86"  TbkText="送杆小车偏移3(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
-                            <cl:TextBlockWithTextBox Name="twtR83" ControlTag="83"  TbkText="手臂第1根偏移(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
-                            <cl:TextBlockWithTextBox Name="twtR84" ControlTag="84"  TbkText="手臂调整斜率(%)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
-                            <cl:TextBlockWithTextBox Name="twtR79" ControlTag="79"  TbkText="3''第1根手臂修正(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
-                            <cl:TextBlockWithTextBox Name="twtR80" ControlTag="80"  TbkText="4''第1根手臂修正(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
-                            <cl:TextBlockWithTextBox Name="twtR81" ControlTag="81"  TbkText="5''第1根手臂修正(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="485">
+                        <StackPanel Orientation="Horizontal">
+                            <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
+                                <TextBlock Text="补&#x0a;偿&#x0a;设&#x0a;置&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
+                            </Border>
+                            <StackPanel>
+                                <cl:TextBlockWithTextBox Name="twtR71" ControlTag="71"  TbkText="钻杆长度(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
+                                <cl:TextBlockWithTextBox Name="twtR72" ControlTag="72"  TbkText="第1根距井口距离(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+                                <cl:TextBlockWithTextBox Name="twtR73" ControlTag="73"  TbkText="小车左第1根偏移(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+                                <cl:TextBlockWithTextBox Name="twtR74" ControlTag="74"  TbkText="小车左调整斜率(%)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+                                <cl:TextBlockWithTextBox Name="twtR75" ControlTag="75"  TbkText="小车右第1根斜率偏移(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+                                <cl:TextBlockWithTextBox Name="twtR76" ControlTag="76"  TbkText="小车右调整斜率(%)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+                                <cl:TextBlockWithTextBox Name="twtR77" ControlTag="77"  TbkText="排杆小车偏移(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+                                <cl:TextBlockWithTextBox Name="twtR78" ControlTag="78"  TbkText="送杆小车偏移(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+                                <cl:TextBlockWithTextBox Name="twtR85" ControlTag="85"  TbkText="送杆小车偏移2(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+                                <cl:TextBlockWithTextBox Name="twtR86" ControlTag="86"  TbkText="送杆小车偏移3(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+                                <cl:TextBlockWithTextBox Name="twtR83" ControlTag="83"  TbkText="手臂第1根偏移(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+                                <cl:TextBlockWithTextBox Name="twtR84" ControlTag="84"  TbkText="手臂调整斜率(%)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+                                <cl:TextBlockWithTextBox Name="twtR79" ControlTag="79"  TbkText="3''第1根手臂修正(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+                                <cl:TextBlockWithTextBox Name="twtR80" ControlTag="80"  TbkText="4''第1根手臂修正(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+                                <cl:TextBlockWithTextBox Name="twtR81" ControlTag="81"  TbkText="5''第1根手臂修正(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+                            </StackPanel>
                         </StackPanel>
-                    </StackPanel>
-                </Border>
-            </StackPanel>
-        </Grid>
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="160"/>
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="1">
-                <StackPanel Orientation="Horizontal">
-                    <Button Content="确 定 配 置"  Click="ParamThreeSet"  Style="{StaticResource btnGreen}" FontWeight="Bold" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" IsDefault="False"/>
+                    </Border>
                 </StackPanel>
             </Grid>
-            <!--<Border Grid.Column="1" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,10" Width="150" Height="40" Style="{StaticResource ShadowBorder}">
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="160"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="1">
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="确 定 配 置"  Click="ParamThreeSet"  Style="{StaticResource btnGreen}" FontWeight="Bold" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" IsDefault="False"/>
+                    </StackPanel>
+                </Grid>
+                <!--<Border Grid.Column="1" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,10" Width="150" Height="40" Style="{StaticResource ShadowBorder}">
                 <TextBlock Name="tbLink" FontSize="20" Foreground="#008AFF" MouseDown="ParamThreeSet" HorizontalAlignment="Center" VerticalAlignment="Center" Text="    确定配置    "></TextBlock>
             </Border>-->
+            </Grid>
         </Grid>
-    </Grid>
+    </Viewbox>
 </UserControl>

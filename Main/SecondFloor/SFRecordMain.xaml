@@ -7,7 +7,7 @@
              xmlns:TimeTool="clr-namespace:Loya.Dameer;assembly=Loya.Dameer"
              xmlns:controllibrary="http://talonzeng.com/ControlLibrary"
              mc:Ignorable="d" 
-            d:DesignHeight="608" d:DesignWidth="1024" Foreground="#525252" FontSize="14" FontFamily="微软雅黑" Background="#F5F6FA" Margin="1" Name="sfRecordMain">
+            d:DesignHeight="650" d:DesignWidth="1024" Foreground="#525252" FontSize="14" FontFamily="微软雅黑" Background="#F5F6FA" Margin="1" Name="sfRecordMain">
     <UserControl.Resources>
         <Style TargetType="Label">
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -41,48 +41,50 @@
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="600"/>
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <ComboBox Name="cbTypeSelect" SelectedIndex="0" FontSize="16" FontFamily="微软雅黑" Width="200" Grid.Column="0">
-            </ComboBox>
-            <ComboBox Name="cbOprOrAlarm" SelectedIndex="0" FontSize="16" FontFamily="微软雅黑" Width="200" Grid.Column="1">
-                <ComboBoxItem>全部</ComboBoxItem>
-                <ComboBoxItem>报警信息</ComboBoxItem>
-                <ComboBoxItem>状态信息</ComboBoxItem>
-            </ComboBox>
-            <TimeTool:Dameer FontSize="16" Name="beginTime" Format="Custom" CustomFormat="yyyy-MM-dd HH:mm:ss" ShowCheckBox="False" Grid.Column="2"/>
-            <TimeTool:Dameer FontSize="16" Name="endTime" Format="Custom" CustomFormat="yyyy-MM-dd HH:mm:ss" ShowCheckBox="False" Grid.Column="3"/>
-            <Button Style="{StaticResource btnGreen}" Click="Button_MouseDown" Grid.Column="4">查询</Button>
-        </Grid>
-        <Grid Grid.Row="1">
-            <DataGrid Name="lvRecord" FontSize="16" FontFamily="微软雅黑" AutoGenerateColumns="False" ScrollViewer.VerticalScrollBarVisibility="Visible">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="序号" Width="70" Binding="{Binding OID}"/>
-                    <DataGridTextColumn Header="内容" Width="220" Binding="{Binding Content}"/>
-                    <DataGridTextColumn Header="记录值" Width="200" Binding="{Binding Value}"/>
-                    <DataGridTextColumn Header="类别" Width="120" Binding="{Binding Type}"/>
-                    <DataGridTextColumn Header="时间" Width="300" Binding="{Binding TimeStamp}"/>
-                </DataGrid.Columns>
-            </DataGrid>
-            <controllibrary:LoadControl x:Name="projectLoad" Grid.Column="2" HorizontalAlignment="Center" Visibility="Collapsed"/>
-        </Grid>
-        <!--<Grid DockPanel.Dock="Left" Width="50">
+    <Viewbox>
+        <Grid Width="1024" Height="650">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="600"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <ComboBox Name="cbTypeSelect" SelectedIndex="0" FontSize="16" FontFamily="微软雅黑" Width="200" Grid.Column="0">
+                </ComboBox>
+                <ComboBox Name="cbOprOrAlarm" SelectedIndex="0" FontSize="16" FontFamily="微软雅黑" Width="200" Grid.Column="1">
+                    <ComboBoxItem>全部</ComboBoxItem>
+                    <ComboBoxItem>报警信息</ComboBoxItem>
+                    <ComboBoxItem>状态信息</ComboBoxItem>
+                </ComboBox>
+                <TimeTool:Dameer FontSize="16" Name="beginTime" Format="Custom" CustomFormat="yyyy-MM-dd HH:mm:ss" ShowCheckBox="False" Grid.Column="2"/>
+                <TimeTool:Dameer FontSize="16" Name="endTime" Format="Custom" CustomFormat="yyyy-MM-dd HH:mm:ss" ShowCheckBox="False" Grid.Column="3"/>
+                <Button Style="{StaticResource btnGreen}" Click="Button_MouseDown" Grid.Column="4">查询</Button>
+            </Grid>
+            <Grid Grid.Row="1">
+                <DataGrid Name="lvRecord" FontSize="16" FontFamily="微软雅黑" AutoGenerateColumns="False" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="序号" Width="70" Binding="{Binding OID}"/>
+                        <DataGridTextColumn Header="内容" Width="220" Binding="{Binding Content}"/>
+                        <DataGridTextColumn Header="记录值" Width="200" Binding="{Binding Value}"/>
+                        <DataGridTextColumn Header="类别" Width="120" Binding="{Binding Type}"/>
+                        <DataGridTextColumn Header="时间" Width="300" Binding="{Binding TimeStamp}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <controllibrary:LoadControl x:Name="projectLoad" Grid.Column="2" HorizontalAlignment="Center" Visibility="Collapsed"/>
+            </Grid>
+            <!--<Grid DockPanel.Dock="Left" Width="50">
             <Image Source="../Images/left.png" Name="left" MouseDown="Left_MouseDown"></Image>
         </Grid>
         <Grid DockPanel.Dock="Right" Width="50">
             <Image Source="../Images/right.png" Name="right" MouseDown="Right_MouseDown"></Image>
         </Grid>
         <Grid Name="RecordPage"></Grid>-->
-    </Grid>
+        </Grid>
+    </Viewbox>
 </UserControl>

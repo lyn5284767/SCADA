@@ -145,7 +145,7 @@ namespace COM.Common
             // 传过来的角度要除以10
             double iTemp = (double)((short)value) / 10.0;
             //因为 角度可能只会到 88 89 ，到不了90，所以作如此处理
-            if (iTemp >= 88 )
+            if (iTemp >= 88)
             {
                 iTemp = 90;
             }
@@ -4386,7 +4386,7 @@ namespace COM.Common
         {
             if (value == null)
             {
-                return "未知";
+                return "控制模式";
             }
 
             byte bType = (byte)value;
@@ -4398,7 +4398,7 @@ namespace COM.Common
                     return "遥控";
             }
 
-            return "未知";
+            return "控制模式";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -5456,6 +5456,41 @@ namespace COM.Common
     #endregion
 
     #region 修井钻台面
+
+    /// <summary>
+    /// 钻台面-目的地设置
+    /// </summary>
+    public class WR_MemoryPos : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return string.Empty;
+            }
+
+            byte bType = (byte)value;
+            switch (bType)
+            {
+                case 1:
+                    return "立根记忆位置1";
+                case 2:
+                    return "立根记忆位置2";
+                case 3:
+                    return "立根记忆位置3";
+                case 4:
+                    return "猫道记忆位置";
+            }
+
+            return "记忆位置";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     /// <summary>
     /// 修井钻台面-强制是否存在
     /// </summary>
@@ -5952,9 +5987,8 @@ namespace COM.Common
             if (status == 3 || status == 6) return "关闭";
             if (status == 2 || status == 4) return "??";
             if (GlobalData.Instance.da["323b0"] != null && GlobalData.Instance.da["323b0"].Value.Boolean) return "完全关闭";
-            if (GlobalData.Instance.da["323b1"] != null && GlobalData.Instance.da["323b1"].Value.Boolean) return "完全关闭";
-            if (GlobalData.Instance.da["323b2"] != null && GlobalData.Instance.da["323b2"].Value.Boolean) return "完全关闭";
-
+            if (GlobalData.Instance.da["323b1"] != null && GlobalData.Instance.da["323b1"].Value.Boolean) return "关闭1级";
+            if (GlobalData.Instance.da["323b2"] != null && GlobalData.Instance.da["323b2"].Value.Boolean) return "完全打开";
 
             return "未知";
         }

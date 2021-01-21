@@ -241,7 +241,38 @@ namespace Main.HydraulicStation.JJC
         /// </summary>
         private void Warnning()
         {
-            
+            #region 告警
+            if (iTimeCnt % 10 == 0)
+            {
+                this.tbAlarm.FontSize = 18;
+                this.tbAlarm.Visibility = Visibility.Visible;
+                // 告警列表!=0则有告警 
+                if (alarmList.Where(w => w.NowType != 0).Count() > 0)
+                {
+
+                    // 有告警且全部显示完成
+                    if (this.alarmList.Where(w => w.NowType == 1).Count() == 0)
+                    {
+                        this.alarmList.Where(w => w.NowType == 2).ToList().ForEach(w => w.NowType = 1);
+                    }
+                    AlarmInfo tmp = this.alarmList.Where(w => w.NowType == 1).FirstOrDefault();
+                    if (tmp != null)
+                    {
+                        this.tbAlarm.FontSize = 18;
+                        this.tbAlarm.Text = tmp.Description;
+                        tmp.NowType = 2;
+                    }
+                }
+                else
+                {
+                    this.tbAlarm.Text = "暂无告警";
+                }
+            }
+            else
+            {
+                this.tbAlarm.FontSize = 20;
+            }
+            #endregion
         }
         /// <summary>
         /// 主泵1启停

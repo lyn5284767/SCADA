@@ -287,7 +287,7 @@ namespace Main
                 drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow31, Num = 31 });
 
                 #endregion
-                #region 初始化钻台面钻杠/钻铤数量
+                #region 初始化钻台面钻杆/钻铤数量
                 this.drDrillCountList.Clear();
                 this.drDrillCountList.Add(new DrillModel() { Name = "drDrillNum1", Num = 0, LorR = "left" });
                 this.drDrillCountList.Add(new DrillModel() { Name = "drDrillNum2", Num = 0, LorR = "left" });
@@ -1032,7 +1032,7 @@ namespace Main
                     if (drillCnt == 0) drillCnt = 5;
 
                     StringBuilder sb = new StringBuilder(STRINGMAX);
-                    // 加载钻杠列，未读取到则加载默认值
+                    // 加载钻杆列，未读取到则加载默认值
                     string strColoms = "0";
                     WinAPI.GetPrivateProfileString("SECONDFLOOR", "COLOMS", strColoms, sb, STRINGMAX, configPath);
                     strColoms = sb.ToString();
@@ -1293,7 +1293,7 @@ namespace Main
         }
 
         /// <summary>
-        /// 加载钻杠
+        /// 加载钻杆
         /// </summary>
         public void LoadFingerBeamDrillPipe()
         {
@@ -1306,7 +1306,7 @@ namespace Main
                     {
                         foreach (var model in this.drDrillCountList)
                         {
-                            if (model.Num != GlobalData.Instance.da[model.Name].Value.Byte) // 钻杠数量改变
+                            if (model.Num != GlobalData.Instance.da[model.Name].Value.Byte) // 钻杆数量改变
                             {
                                 model.Num = GlobalData.Instance.da[model.Name].Value.Byte;
                                 Regex regexFingerBeam = new Regex(@"(\d+)$", RegexOptions.Compiled | RegexOptions.CultureInvariant);
@@ -1332,7 +1332,7 @@ namespace Main
         /// 更新具体的钻杆数量
         /// </summary>
         /// <param name="fingerBeamNumber">行数</param>
-        /// <param name="fingerBeamDrillPipeCount">钻杠数</param>
+        /// <param name="fingerBeamDrillPipeCount">钻杆数</param>
         public void SetDrillPipeCountVisible(int fingerBeamNumber, int fingerBeamDrillPipeCount)
         {
             try
@@ -1341,7 +1341,7 @@ namespace Main
                 {
                     return;
                 }
-                double width = 0.0; // 显示的钻杠/钻铤宽度
+                double width = 0.0; // 显示的钻杆/钻铤宽度
                 double margin = 0.0; //边距
                     if (fingerBeamNumber == 16 || fingerBeamNumber == 32)
                     {
@@ -1373,7 +1373,7 @@ namespace Main
                     else
                     {
 
-                        #region 钻杠设置
+                        #region 钻杆设置
                         if (fingerBeamDrillPipeCount > coloms)
                         {
                             fingerBeamDrillPipeCount = coloms;

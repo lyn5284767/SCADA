@@ -6,13 +6,15 @@
              xmlns:local="clr-namespace:Main.SIR.Sany"
              mc:Ignorable="d" 
              d:DesignHeight="650" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="SFParamSet">
-    <DockPanel>
-        <Grid DockPanel.Dock="Left" Width="50">
-            <Image Source="../Images/left.png" Name="left" MouseDown="Left_MouseDown"></Image>
-        </Grid>
-        <Grid DockPanel.Dock="Right" Width="50">
-            <Image Source="../Images/right.png" Name="right" MouseDown="Right_MouseDown"></Image>
-        </Grid>
-        <Grid Name="ParamPage"></Grid>
-    </DockPanel>
+    <Viewbox>
+        <DockPanel>
+            <Grid DockPanel.Dock="Left" Width="50">
+                <Image Source="../Images/left.png" Name="left" MouseDown="Left_MouseDown"></Image>
+            </Grid>
+            <Grid DockPanel.Dock="Right" Width="50">
+                <Image Source="../Images/right.png" Name="right" MouseDown="Right_MouseDown"></Image>
+            </Grid>
+            <Grid Name="ParamPage" Width="550"></Grid>
+        </DockPanel>
+    </Viewbox>
 </UserControl>

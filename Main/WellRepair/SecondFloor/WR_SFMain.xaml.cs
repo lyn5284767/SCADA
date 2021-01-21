@@ -1603,7 +1603,7 @@ namespace Main.WellRepair.SecondFloor
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
-        /// 清空钻杠数目
+        /// 清空钻杆数目
         /// </summary>
         private void btn_DrillPipeCountCorrect_CancelAllPipe(object sender, RoutedEventArgs e)
         {
@@ -1611,7 +1611,7 @@ namespace Main.WellRepair.SecondFloor
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
-        /// 取消钻杠
+        /// 取消钻杆
         /// </summary>
         private void btn_CancelDrillPipe(object sender, RoutedEventArgs e)
         {

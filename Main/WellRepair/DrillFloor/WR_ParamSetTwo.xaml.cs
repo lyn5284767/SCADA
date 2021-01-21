@@ -107,10 +107,10 @@ namespace Main.WellRepair.DrillFloor
 
 
                         this.twtR51.ShowText = GlobalData.Instance.da["WR_CarMaxSpeed"].ToString(); // 回转空载最大速度
-                        this.twtR52.ShowText = GlobalData.Instance.da["WR_WR_CarMinSpeed"].ToString(); // 回转钻杠最大速度
+                        this.twtR52.ShowText = GlobalData.Instance.da["WR_WR_CarMinSpeed"].ToString(); // 回转钻杆最大速度
                         this.twtR53.ShowText = GlobalData.Instance.da["WR_ArmMaxSpeed"].ToString(); // 回转钻铤最大速度
                         this.twtR54.ShowText = GlobalData.Instance.da["WR_ArmMinSpeed"].ToString(); // 回转空载最大速度
-                        this.twtR55.ShowText = GlobalData.Instance.da["WR_RotateMaxSpeed"].ToString(); // 回转钻杠最大速度
+                        this.twtR55.ShowText = GlobalData.Instance.da["WR_RotateMaxSpeed"].ToString(); // 回转钻杆最大速度
                         this.twtR56.ShowText = GlobalData.Instance.da["WR_RotateMinSpeed"].ToString(); // 回转钻铤最大速度
                     }
 

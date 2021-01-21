@@ -105,24 +105,24 @@ namespace Main.DrillFloor
                         this.twtR14.ShowText = GlobalData.Instance.da["drHandWithDrillTwoMaxSpeed"].ToString(); // 手臂钻铤最大速度
                         this.twtR15.ShowText = GlobalData.Instance.da["drRotateMoveReduce"].ToString(); // 回转减速比
                         this.twtR16.ShowText = GlobalData.Instance.da["drRotateMaxSpeed"].ToString(); // 回转空载最大速度
-                        this.twtR17.ShowText = GlobalData.Instance.da["drRotateWithDrillOneMaxSpeed"].ToString(); // 回转钻杠最大速度
+                        this.twtR17.ShowText = GlobalData.Instance.da["drRotateWithDrillOneMaxSpeed"].ToString(); // 回转钻杆最大速度
                         this.twtR18.ShowText = GlobalData.Instance.da["drRotateWithDrillTwoMaxSpeed"].ToString(); // 回转钻铤最大速度
                     }
                     else if (groupNO == 2)
                     {
-                        this.twtL19.ShowText = GlobalData.Instance.da["drDrillOneWidth"].ToString();// 钻杠指梁宽度
-                        this.twtL20.ShowText = GlobalData.Instance.da["drDrillOneSpace"].ToString(); // 钻杠指梁壁厚
+                        this.twtL19.ShowText = GlobalData.Instance.da["drDrillOneWidth"].ToString();// 钻杆指梁宽度
+                        this.twtL20.ShowText = GlobalData.Instance.da["drDrillOneSpace"].ToString(); // 钻杆指梁壁厚
                         this.twtL21.ShowText = GlobalData.Instance.da["drDrillTwoWidth"].ToString(); // 钻铤指梁宽度
                         this.twtL22.ShowText = GlobalData.Instance.da["drDrillTwoSpace"].ToString(); // 钻铤指梁厚度
                         this.twtL23.ShowText = GlobalData.Instance.da["drDrillSettingNum"].ToString(); // 钻铤设置值
                         this.twtR24.ShowText = GlobalData.Instance.da["drArmMaxPos"].ToString(); // 手臂最大距离
                         this.twtL25.ShowText = GlobalData.Instance.da["drRowsNum"].ToString(); // 单边钻杆排数
-                        this.twtL36.ShowText = GlobalData.Instance.da["dr3Num"].ToString(); // 3寸钻杠容量
+                        this.twtL36.ShowText = GlobalData.Instance.da["dr3Num"].ToString(); // 3寸钻杆容量
                         this.twtL37.ShowText = GlobalData.Instance.da["dr3AndHalfNum"].ToString(); // 3.5寸钻杆容量
                         this.twtL39.ShowText = GlobalData.Instance.da["dr4Num"].ToString(); // 4寸钻杆容量
                         this.twtL40.ShowText = GlobalData.Instance.da["dr4AndHalfNum"].ToString(); // 4.5寸钻杆容量
-                        this.twtL41.ShowText = GlobalData.Instance.da["dr5Num"].ToString(); // 5寸钻杠容量
-                        this.twtL42.ShowText = GlobalData.Instance.da["dr5AndHalfNum"].ToString(); // 5.5寸钻杠容量
+                        this.twtL41.ShowText = GlobalData.Instance.da["dr5Num"].ToString(); // 5寸钻杆容量
+                        this.twtL42.ShowText = GlobalData.Instance.da["dr5AndHalfNum"].ToString(); // 5.5寸钻杆容量
                         this.twtL28.ShowText = GlobalData.Instance.da["drDeviceYear"].ToString(); // 设备年份
                         this.twtL29.ShowText = GlobalData.Instance.da["drDeviceCarNO"].ToString(); // 设备机号
                     }

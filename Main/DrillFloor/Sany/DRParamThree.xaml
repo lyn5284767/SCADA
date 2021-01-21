@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:cl="http://talonzeng.com/ControlLibrary"
              mc:Ignorable="d" 
-             Foreground="#525252" FontSize="14" FontFamily="微软雅黑" Background="#F5F6FA" Width="800" Height="650" Margin="1" Name="drParamThree">
+             Foreground="#525252" FontSize="14" FontFamily="微软雅黑" Background="#F5F6FA" d:DesignWidth="800" d:DesignHeight="650" Margin="1" Name="drParamThree">
     <UserControl.Resources>
         <Style TargetType="Button" x:Key="btnGreen">
             <Setter Property="Background" Value="#fff"/>
@@ -48,62 +48,64 @@
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="35"/>
-        </Grid.RowDefinitions>
+    <Viewbox>
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0">
-                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="240">
-                    <StackPanel Orientation="Horizontal">
-                        <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                            <TextBlock Text="电&#x0a;流&#x0a;设&#x0a;置&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
-                        </Border>
-                        <StackPanel>
-                            <cl:TextBlockWithTextBox Name="twtL91" ControlTag="91"  TbkText="3寸钻杆宽度修正" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
-                            <cl:TextBlockWithTextBox Name="twtL92" ControlTag="92"  TbkText="3.5寸钻杆宽度修正" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
-                            <cl:TextBlockWithTextBox Name="twtL93" ControlTag="93"  TbkText="4寸钻杆宽度修正" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
-                            <cl:TextBlockWithTextBox Name="twtL94" ControlTag="94"  TbkText="4.5寸钻杆宽度修正" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
-                            <cl:TextBlockWithTextBox Name="twtL95" ControlTag="95"  TbkText="5寸钻杆宽度修正" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
-                            <cl:TextBlockWithTextBox Name="twtL96" ControlTag="96"  TbkText="5.5寸钻杆宽度修正" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
-                            <!--<Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,10" Width="150" Height="40" Style="{StaticResource ShadowBorder}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="590"/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="400"/>
+                    <ColumnDefinition Width="400"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="240">
+                        <StackPanel Orientation="Horizontal">
+                            <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
+                                <TextBlock Text="电&#x0a;流&#x0a;设&#x0a;置&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
+                            </Border>
+                            <StackPanel>
+                                <cl:TextBlockWithTextBox Name="twtL91" ControlTag="91"  TbkText="3寸钻杆宽度修正" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
+                                <cl:TextBlockWithTextBox Name="twtL92" ControlTag="92"  TbkText="3.5寸钻杆宽度修正" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
+                                <cl:TextBlockWithTextBox Name="twtL93" ControlTag="93"  TbkText="4寸钻杆宽度修正" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
+                                <cl:TextBlockWithTextBox Name="twtL94" ControlTag="94"  TbkText="4.5寸钻杆宽度修正" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
+                                <cl:TextBlockWithTextBox Name="twtL95" ControlTag="95"  TbkText="5寸钻杆宽度修正" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
+                                <cl:TextBlockWithTextBox Name="twtL96" ControlTag="96"  TbkText="5.5寸钻杆宽度修正" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
+                                <!--<Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,10" Width="150" Height="40" Style="{StaticResource ShadowBorder}">
                                 <TextBlock Name="tbLink" FontSize="20" Foreground="#008AFF" MouseDown="ParamTwoSet" HorizontalAlignment="Center" VerticalAlignment="Center" Text="    确定配置    "></TextBlock>
                             </Border>-->
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <Button Content="确 定 配 置"  Click="ParamThreeSet"  Style="{StaticResource btnGreen}" FontWeight="Bold" FontSize="16" Width="100" Height="30" IsDefault="False"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button Content="确 定 配 置"  Click="ParamThreeSet"  Style="{StaticResource btnGreen}" FontWeight="Bold" FontSize="16" Width="100" Height="30" IsDefault="False"/>
+                                </StackPanel>
                             </StackPanel>
                         </StackPanel>
-                    </StackPanel>
-                </Border>
-            </StackPanel>
-            <StackPanel Grid.Column="1">
-                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="240">
-                    <StackPanel Orientation="Horizontal">
-                        <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                            <TextBlock Text="选&#x0a;配&#x0a;设&#x0a;置&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
-                        </Border>
-                        <StackPanel>
-                            <cl:TextBlockWithTextBox Name="twtL1" ControlTag="1"  TbkText="提效模式" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
-                            <cl:TextBlockWithTextBox Name="twtL2" ControlTag="2"  TbkText="抓手开合模式" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
-                            <cl:TextBlockWithTextBox Name="twtL3" ControlTag="3"  TbkText="运动动作报警" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
-                            <cl:TextBlockWithTextBox Name="twtL4" ControlTag="4"  TbkText="系统延时" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
-                            <cl:TextBlockWithTextBox Name="twtL5" ControlTag="5"  TbkText="时间修正" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
-                            <cl:TextBlockWithTextBox Name="twtL6" ControlTag="6"  TbkText="遥控器配置" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
-                            <!--<Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,10" Width="150" Height="40" Style="{StaticResource ShadowBorder}">
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="240">
+                        <StackPanel Orientation="Horizontal">
+                            <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
+                                <TextBlock Text="选&#x0a;配&#x0a;设&#x0a;置&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
+                            </Border>
+                            <StackPanel>
+                                <cl:TextBlockWithTextBox Name="twtL1" ControlTag="1"  TbkText="提效模式" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
+                                <cl:TextBlockWithTextBox Name="twtL2" ControlTag="2"  TbkText="抓手开合模式" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
+                                <cl:TextBlockWithTextBox Name="twtL3" ControlTag="3"  TbkText="运动动作报警" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
+                                <cl:TextBlockWithTextBox Name="twtL4" ControlTag="4"  TbkText="系统延时" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
+                                <cl:TextBlockWithTextBox Name="twtL5" ControlTag="5"  TbkText="时间修正" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
+                                <cl:TextBlockWithTextBox Name="twtL6" ControlTag="6"  TbkText="遥控器配置" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
+                                <!--<Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,10" Width="150" Height="40" Style="{StaticResource ShadowBorder}">
                                 <TextBlock FontSize="20" Foreground="#008AFF" MouseDown="ParamTwoSet2" HorizontalAlignment="Center" VerticalAlignment="Center" Text="    确定配置    "></TextBlock>
                             </Border>-->
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <Button Content="确 定 配 置"  Click="ParamThreeSet2"  Style="{StaticResource btnGreen}" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="30" IsDefault="False"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button Content="确 定 配 置"  Click="ParamThreeSet2"  Style="{StaticResource btnGreen}" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="30" IsDefault="False"/>
+                                </StackPanel>
                             </StackPanel>
                         </StackPanel>
-                    </StackPanel>
-                </Border>
-            </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Grid>
         </Grid>
-    </Grid>
+    </Viewbox>
 </UserControl>

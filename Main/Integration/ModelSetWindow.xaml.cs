@@ -224,7 +224,7 @@ namespace Main.Integration
                     {
                         if (btn.Tag.ToString() == globalModel.PipeSize.ToString())
                         {
-                            this.tbConfirmPipe.Text = "管柱:" + btn.Content + "钻杠";
+                            this.tbConfirmPipe.Text = "管柱:" + btn.Content + "钻杆";
                             break;
                         }
                     }

@@ -7,126 +7,128 @@
              xmlns:inputcontrol="clr-namespace:ControlLibrary.InputControl;assembly=ControlLibrary"
              mc:Ignorable="d" 
              d:DesignHeight="680" d:DesignWidth="924" Foreground="#525252" FontSize="14" FontFamily="微软雅黑" Background="#F5F6FA" Margin="1" Name="sfPositionSetting">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="35"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0" >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <StackPanel Orientation="Horizontal" Height="35">
-                    <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Width="300">
-                        <StackPanel Height="25" Orientation="Horizontal">
-                            <TextBlock Text="操作模式：" VerticalAlignment="Center" Margin="5,0,5,5" FontSize="16" FontWeight="Bold"/>
-                            <TextBlock Text="       0 " Name="txtOpModel_LocationCalibration" VerticalAlignment="Center" Margin="5,0,5,5" FontSize="16" FontWeight="Bold"/>
-                        </StackPanel>
-                    </Border>
-                </StackPanel>
-            </Grid>
-            <Grid Grid.Column="1">
-                <StackPanel Orientation="Horizontal" Height="35">
-                    <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Width="300">
-                        <StackPanel Height="25" Orientation="Horizontal">
-                            <TextBlock Text="工作模式：" VerticalAlignment="Center" Margin="5,0,5,5" FontSize="16" FontWeight="Bold"/>
-                            <TextBlock Text="       0 " Name="txtWorkModel_LocationCalibration" VerticalAlignment="Center" Margin="5,0,5,5" FontSize="16" FontWeight="Bold"/>
-                        </StackPanel>
-                    </Border>
-                </StackPanel>
-            </Grid>
-            <Grid Grid.Column="2">
-                <StackPanel Orientation="Horizontal" Height="35">
-                    <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Width="300">
-                        <StackPanel Height="25" Orientation="Horizontal">
-                            <TextBlock Text="回转：" VerticalAlignment="Center" Margin="5,0,5,5" FontSize="16" FontWeight="Bold"/>
-                            <TextBlock Text="       0 " Name="txtRotateAngle_LocationCalibration" VerticalAlignment="Center" Margin="5,0,5,5" FontSize="16" FontWeight="Bold"/>
-                        </StackPanel>
-                    </Border>
-
-                </StackPanel>
-            </Grid>
-
-        </Grid>
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0">
-                <Border Background="White" CornerRadius="10" Margin="0">
-                    <Border.Effect>
-                        <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
-                    </Border.Effect>
-                </Border>
-                <StackPanel Orientation="Horizontal">
-                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="620">
-                        <StackPanel>
-                            <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="0" Padding="3">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="小车位置"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"/>
-                                    <TextBlock Name="tbCarPos" Text="**" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"></TextBlock>
-                                </StackPanel>
-                            </Border>
-
-                            <inputcontrol:SetControl Name="twt1" Head="80,1,12,1,0,0" TbkText="最靠近井口" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt2" Head="80,1,12,2,0,0" TbkText="最远离井口" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt3" Head="80,1,12,3,0,0" TbkText="右1#指梁" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt4" Head="80,1,12,4,0,0" TbkText="左1#指梁" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt6" Head="80,1,12,6,0,0" TbkText="排杆待机" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt7" Head="80,1,12,7,0,0" TbkText="回收位置" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt10" Head="80,1,12,10,0,0" TbkText="小车运输" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt21" Head="80,1,12,21,0,0" TbkText="右16指梁补偿" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt22" Head="80,1,12,22,0,0" TbkText="左16指梁补偿" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt23" Head="80,1,12,23,0,0" TbkText="右1#特殊指梁" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt24" Head="80,1,12,24,0,0" TbkText="左1#特殊指梁" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-
-                        </StackPanel>
-                    </Border>
-                </StackPanel>
-             
-            </StackPanel>
-            <StackPanel Grid.Column="1">
-                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="350">
-                    <StackPanel Orientation="Horizontal">
-                        <StackPanel>
-                            <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5,0,5,5" Padding="3">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="手臂位置"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"/>
-                                    <TextBlock Name="tbArmPos" Text="**" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"></TextBlock>
-                                </StackPanel>
-                            </Border>
-                            <inputcontrol:SetControl Name="twt33" Head="80,1,12,33,0,0" TbkText="最小收缩" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt34" Head="80,1,12,34,0,0" TbkText="钻杆最大伸展" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt39" Head="80,1,12,39,0,0" TbkText="手臂回收" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt40" Head="80,1,12,40,0,0" TbkText="井口最大伸展" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt43" Head="80,1,12,43,0,0" TbkText="钻铤最大伸展" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt42" Head="80,1,12,42,0,0" TbkText="手臂运输" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+    <Viewbox>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <StackPanel Orientation="Horizontal" Height="35">
+                        <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Width="300">
+                            <StackPanel Height="25" Orientation="Horizontal">
+                                <TextBlock Text="操作模式：" VerticalAlignment="Center" Margin="5,0,5,5" FontSize="16" FontWeight="Bold"/>
+                                <TextBlock Text="       0 " Name="txtOpModel_LocationCalibration" VerticalAlignment="Center" Margin="5,0,5,5" FontSize="16" FontWeight="Bold"/>
                             </StackPanel>
+                        </Border>
                     </StackPanel>
-                </Border>
-                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="280">
-                    <StackPanel Orientation="Horizontal">
-                        <StackPanel>
-                            <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5,0,5,5" Padding="3">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="回转位置"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"/>
-                                    <TextBlock Name="tbRotatePos" Text="**" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"></TextBlock>
-                                </StackPanel>
-                            </Border>
-                            <inputcontrol:SetControl Name="twt65" Head="80,1,12,65,0,0" TbkText="-90°位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt66" Head="80,1,12,66,0,0" TbkText="90°位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt71" Head="80,1,12,71,0,0" TbkText="回收位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt72" Head="80,1,12,72,0,0" TbkText="井口位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt74" Head="80,1,12,74,0,0" TbkText="回转运输位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                        </StackPanel>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <StackPanel Orientation="Horizontal" Height="35">
+                        <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Width="300">
+                            <StackPanel Height="25" Orientation="Horizontal">
+                                <TextBlock Text="工作模式：" VerticalAlignment="Center" Margin="5,0,5,5" FontSize="16" FontWeight="Bold"/>
+                                <TextBlock Text="       0 " Name="txtWorkModel_LocationCalibration" VerticalAlignment="Center" Margin="5,0,5,5" FontSize="16" FontWeight="Bold"/>
+                            </StackPanel>
+                        </Border>
                     </StackPanel>
-                </Border>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <StackPanel Orientation="Horizontal" Height="35">
+                        <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3" Width="300">
+                            <StackPanel Height="25" Orientation="Horizontal">
+                                <TextBlock Text="回转：" VerticalAlignment="Center" Margin="5,0,5,5" FontSize="16" FontWeight="Bold"/>
+                                <TextBlock Text="       0 " Name="txtRotateAngle_LocationCalibration" VerticalAlignment="Center" Margin="5,0,5,5" FontSize="16" FontWeight="Bold"/>
+                            </StackPanel>
+                        </Border>
 
-            </StackPanel>
+                    </StackPanel>
+                </Grid>
+
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <Border Background="White" CornerRadius="10" Margin="0">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+                        </Border.Effect>
+                    </Border>
+                    <StackPanel Orientation="Horizontal">
+                        <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="620">
+                            <StackPanel>
+                                <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="0" Padding="3">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="小车位置"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"/>
+                                        <TextBlock Name="tbCarPos" Text="**" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"></TextBlock>
+                                    </StackPanel>
+                                </Border>
+
+                                <inputcontrol:SetControl Name="twt1" Head="80,1,12,1,0,0" TbkText="最靠近井口" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt2" Head="80,1,12,2,0,0" TbkText="最远离井口" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt3" Head="80,1,12,3,0,0" TbkText="右1#指梁" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt4" Head="80,1,12,4,0,0" TbkText="左1#指梁" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt6" Head="80,1,12,6,0,0" TbkText="排杆待机" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt7" Head="80,1,12,7,0,0" TbkText="回收位置" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt10" Head="80,1,12,10,0,0" TbkText="小车运输" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt21" Head="80,1,12,21,0,0" TbkText="右16指梁补偿" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt22" Head="80,1,12,22,0,0" TbkText="左16指梁补偿" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt23" Head="80,1,12,23,0,0" TbkText="右1#特殊指梁" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt24" Head="80,1,12,24,0,0" TbkText="左1#特殊指梁" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="350">
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel>
+                                <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5,0,5,5" Padding="3">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="手臂位置"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"/>
+                                        <TextBlock Name="tbArmPos" Text="**" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"></TextBlock>
+                                    </StackPanel>
+                                </Border>
+                                <inputcontrol:SetControl Name="twt33" Head="80,1,12,33,0,0" TbkText="最小收缩" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt34" Head="80,1,12,34,0,0" TbkText="钻杆最大伸展" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt39" Head="80,1,12,39,0,0" TbkText="手臂回收" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt40" Head="80,1,12,40,0,0" TbkText="井口最大伸展" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt43" Head="80,1,12,43,0,0" TbkText="钻铤最大伸展" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt42" Head="80,1,12,42,0,0" TbkText="手臂运输" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="280">
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel>
+                                <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5,0,5,5" Padding="3">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="回转位置"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"/>
+                                        <TextBlock Name="tbRotatePos" Text="**" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"></TextBlock>
+                                    </StackPanel>
+                                </Border>
+                                <inputcontrol:SetControl Name="twt65" Head="80,1,12,65,0,0" TbkText="-90°位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt66" Head="80,1,12,66,0,0" TbkText="90°位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt71" Head="80,1,12,71,0,0" TbkText="回收位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt72" Head="80,1,12,72,0,0" TbkText="井口位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt74" Head="80,1,12,74,0,0" TbkText="回转运输位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                </StackPanel>
+            </Grid>
         </Grid>
-    </Grid>
+    </Viewbox>
 </UserControl>

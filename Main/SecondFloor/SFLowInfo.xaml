@@ -21,114 +21,116 @@
             <Setter Property="FontFamily" Value="微软雅黑"/>
         </Style>
     </UserControl.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Border Grid.Column="0" Grid.Row="0" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,5,10">
-            <StackPanel>
-                <Label Margin="10,20,0,0" FontSize="16">二层台信息</Label>
-                <StackPanel Margin="50,20,0,0" Orientation="Horizontal">
-                    <Label Content="设备编码:" Grid.Row="1" FontSize="14" Foreground="#919191"/>
-                    <TextBlock Name="tbDeviceEncode" Grid.Row="2" FontSize="14" Foreground="#919191">
-                    </TextBlock>
+    <Viewbox>
+        <Grid Width="1024">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" Grid.Row="0" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,5,10">
+                <StackPanel>
+                    <Label Margin="10,20,0,0" FontSize="16">二层台信息</Label>
+                    <StackPanel Margin="50,20,0,0" Orientation="Horizontal">
+                        <Label Content="设备编码:" Grid.Row="1" FontSize="14" Foreground="#919191"/>
+                        <TextBlock Name="tbDeviceEncode" Grid.Row="2" FontSize="14" Foreground="#919191">
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel Margin="50,10,0,0" Orientation="Horizontal">
+                        <Label Content="程序版本:" Grid.Row="3" Grid.Column="0" FontSize="14" Foreground="#919191"/>
+                        <TextBlock Name="tbSecondVersion" Grid.Row="4" Grid.Column="0" FontSize="14" Foreground="#919191">
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel Margin="50,10,0,0" Orientation="Horizontal">
+                        <Label Content="版本日期:" Grid.Row="5" Grid.Column="0" FontSize="14" Foreground="#919191"/>
+                        <TextBlock Name="tbSecondVersionDate" Grid.Row="6" Grid.Column="0" FontSize="14" Foreground="#919191">
+                        </TextBlock>
+                    </StackPanel>
                 </StackPanel>
-                <StackPanel Margin="50,10,0,0" Orientation="Horizontal">
-                    <Label Content="程序版本:" Grid.Row="3" Grid.Column="0" FontSize="14" Foreground="#919191"/>
-                    <TextBlock Name="tbSecondVersion" Grid.Row="4" Grid.Column="0" FontSize="14" Foreground="#919191">
-                    </TextBlock>
+            </Border>
+            <Border Grid.Column="0" Grid.Row="1" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,5,10">
+                <StackPanel>
+                    <Label Margin="10,20,0,0" FontSize="16">钻台面信息</Label>
+                    <StackPanel Margin="50,20,0,0" Orientation="Horizontal">
+                        <Label Content="设备编码:" FontSize="14" Foreground="#919191"/>
+                        <TextBlock Name="drDeviceEncode" FontSize="14" Text="" Foreground="#919191">
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel Margin="50,10,0,0" Orientation="Horizontal">
+                        <Label Content="程序版本:" FontSize="14" Foreground="#919191"/>
+                        <TextBlock Name="drVersion" FontSize="14" Text="" Foreground="#919191">
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel Margin="50,10,0,0" Orientation="Horizontal">
+                        <Label Content="版本日期:" FontSize="14" Foreground="#919191"/>
+                        <TextBlock Name="drVersionDate" FontSize="14" Foreground="#919191">
+                        </TextBlock>
+                    </StackPanel>
                 </StackPanel>
-                <StackPanel Margin="50,10,0,0" Orientation="Horizontal">
-                    <Label Content="版本日期:" Grid.Row="5" Grid.Column="0" FontSize="14" Foreground="#919191"/>
-                    <TextBlock Name="tbSecondVersionDate" Grid.Row="6" Grid.Column="0" FontSize="14" Foreground="#919191">
-                    </TextBlock>
+            </Border>
+            <Border Grid.Column="1" Grid.Row="0" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,5,10">
+                <StackPanel>
+                    <Label Margin="10,20,0,0" FontSize="16">司钻房信息</Label>
+                    <StackPanel Margin="50,20,0,0" Orientation="Horizontal">
+                        <Label Content="程序版本:" Grid.Row="1" Grid.Column="1" FontSize="14" Foreground="#919191"/>
+                        <TextBlock Name="tbOperVersion" Grid.Row="2" Grid.Column="1" FontSize="14" Foreground="#919191">
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel Margin="50,10,0,0" Orientation="Horizontal">
+                        <Label Content="版本日期:" Grid.Row="3" Grid.Column="1" FontSize="14" Foreground="#919191"/>
+                        <TextBlock Name="tbOperVersionDate" Grid.Row="4" Grid.Column="1" FontSize="14" Foreground="#919191">
+                        </TextBlock>
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
-        </Border>
-        <Border Grid.Column="0" Grid.Row="1" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,5,10">
-            <StackPanel>
-                <Label Margin="10,20,0,0" FontSize="16">钻台面信息</Label>
-                <StackPanel Margin="50,20,0,0" Orientation="Horizontal">
-                    <Label Content="设备编码:" FontSize="14" Foreground="#919191"/>
-                    <TextBlock Name="drDeviceEncode" FontSize="14" Text="" Foreground="#919191">
-                    </TextBlock>
+            </Border>
+            <Border Grid.Column="1" Grid.Row="1" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,5,10">
+                <StackPanel>
+                    <Label Margin="10,20,0,0" FontSize="16">上位机信息</Label>
+                    <StackPanel Margin="50,20,0,0" Orientation="Horizontal">
+                        <Label Content="程序版本:" FontSize="14" Foreground="#919191"/>
+                        <TextBlock Text="SDCH2-V2.0.1-D1" FontSize="14" Foreground="#919191">
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel Margin="50,10,0,0" Orientation="Horizontal">
+                        <Label Content="版本日期:" FontSize="14" Foreground="#919191"/>
+                        <TextBlock Text="2020.08.17" FontSize="14" Foreground="#919191">
+                        </TextBlock>
+                    </StackPanel>
                 </StackPanel>
-                <StackPanel Margin="50,10,0,0" Orientation="Horizontal">
-                    <Label Content="程序版本:" FontSize="14" Foreground="#919191"/>
-                    <TextBlock Name="drVersion" FontSize="14" Text="" Foreground="#919191">
-                    </TextBlock>
+            </Border>
+            <Border Grid.Column="0" Grid.Row="2" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,5,10">
+                <StackPanel>
+                    <Label Margin="10,20,0,0" FontSize="16">工作信息</Label>
+                    <StackPanel Margin="50,20,0,0" Orientation="Horizontal">
+                        <Label Content="开机时间:" FontSize="14" Foreground="#919191"/>
+                        <TextBlock Name="startUpTime" FontSize="14" Text="0" Foreground="#919191">
+                        </TextBlock>
+                        <TextBlock FontSize="14" Text="h" Foreground="#919191">
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel Margin="50,10,0,0" Orientation="Horizontal">
+                        <Label Content="工作时间:" FontSize="14" Foreground="#919191"/>
+                        <TextBlock Name="workTime_EquipStatus" FontSize="14" Text="0" Foreground="#919191">
+                        </TextBlock>
+                        <TextBlock FontSize="14" Text="h" Foreground="#919191">
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel Margin="50,10,0,0" Orientation="Horizontal">
+                        <Label Content="自动下钻次数:" FontSize="14" Foreground="#919191"/>
+                        <TextBlock Name="drillDownCount_EquiptStatus" FontSize="14" Text="0" Foreground="#919191">
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel Margin="50,10,0,0" Orientation="Horizontal">
+                        <Label Content="自动起钻次数:" FontSize="14" Foreground="#919191"/>
+                        <TextBlock Name="drillUpCount_EquipStatus" FontSize="14" Text="0" Foreground="#919191">
+                        </TextBlock>
+                    </StackPanel>
                 </StackPanel>
-                <StackPanel Margin="50,10,0,0" Orientation="Horizontal">
-                    <Label Content="版本日期:" FontSize="14" Foreground="#919191"/>
-                    <TextBlock Name="drVersionDate" FontSize="14" Foreground="#919191">
-                    </TextBlock>
-                </StackPanel>
-            </StackPanel>
-        </Border>
-        <Border Grid.Column="1" Grid.Row="0" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,5,10">
-            <StackPanel>
-                <Label Margin="10,20,0,0" FontSize="16">司钻房信息</Label>
-                <StackPanel Margin="50,20,0,0" Orientation="Horizontal">
-                    <Label Content="程序版本:" Grid.Row="1" Grid.Column="1" FontSize="14" Foreground="#919191"/>
-                    <TextBlock Name="tbOperVersion" Grid.Row="2" Grid.Column="1" FontSize="14" Foreground="#919191">
-                    </TextBlock>
-                </StackPanel>
-                <StackPanel Margin="50,10,0,0" Orientation="Horizontal">
-                    <Label Content="版本日期:" Grid.Row="3" Grid.Column="1" FontSize="14" Foreground="#919191"/>
-                    <TextBlock Name="tbOperVersionDate" Grid.Row="4" Grid.Column="1" FontSize="14" Foreground="#919191">
-                    </TextBlock>
-                </StackPanel>
-            </StackPanel>
-        </Border>
-        <Border Grid.Column="1" Grid.Row="1" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,5,10">
-            <StackPanel>
-                <Label Margin="10,20,0,0" FontSize="16">上位机信息</Label>
-                <StackPanel Margin="50,20,0,0" Orientation="Horizontal">
-                    <Label Content="程序版本:" FontSize="14" Foreground="#919191"/>
-                    <TextBlock Text="SDCH2-V2.0.1-D1" FontSize="14" Foreground="#919191">
-                    </TextBlock>
-                </StackPanel>
-                <StackPanel Margin="50,10,0,0" Orientation="Horizontal">
-                    <Label Content="版本日期:" FontSize="14" Foreground="#919191"/>
-                    <TextBlock Text="2020.08.17" FontSize="14" Foreground="#919191">
-                    </TextBlock>
-                </StackPanel>
-            </StackPanel>
-        </Border>
-        <Border Grid.Column="0" Grid.Row="2" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,5,10">
-            <StackPanel>
-                <Label Margin="10,20,0,0" FontSize="16">工作信息</Label>
-                <StackPanel Margin="50,20,0,0" Orientation="Horizontal">
-                    <Label Content="开机时间:" FontSize="14" Foreground="#919191"/>
-                    <TextBlock Name="startUpTime" FontSize="14" Text="0" Foreground="#919191">
-                    </TextBlock>
-                    <TextBlock FontSize="14" Text="h" Foreground="#919191">
-                    </TextBlock>
-                </StackPanel>
-                <StackPanel Margin="50,10,0,0" Orientation="Horizontal">
-                    <Label Content="工作时间:" FontSize="14" Foreground="#919191"/>
-                    <TextBlock Name="workTime_EquipStatus" FontSize="14" Text="0" Foreground="#919191">
-                    </TextBlock>
-                    <TextBlock FontSize="14" Text="h" Foreground="#919191">
-                    </TextBlock>
-                </StackPanel>
-                <StackPanel Margin="50,10,0,0" Orientation="Horizontal">
-                    <Label Content="自动下钻次数:" FontSize="14" Foreground="#919191"/>
-                    <TextBlock Name="drillDownCount_EquiptStatus" FontSize="14" Text="0" Foreground="#919191">
-                    </TextBlock>
-                </StackPanel>
-                <StackPanel Margin="50,10,0,0" Orientation="Horizontal">
-                    <Label Content="自动起钻次数:" FontSize="14" Foreground="#919191"/>
-                    <TextBlock Name="drillUpCount_EquipStatus" FontSize="14" Text="0" Foreground="#919191">
-                    </TextBlock>
-                </StackPanel>
-            </StackPanel>
-        </Border>
-    </Grid>
+            </Border>
+        </Grid>
+    </Viewbox>
 </UserControl>

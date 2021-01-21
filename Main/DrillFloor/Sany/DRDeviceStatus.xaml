@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Main.DrillFloor"
              xmlns:cl="http://talonzeng.com/ControlLibrary"
              mc:Ignorable="d" 
-            d:DesignHeight="608" d:DesignWidth="1024" Foreground="#525252" FontSize="14" FontFamily="微软雅黑" Background="#F5F6FA" Margin="1" Name="drDeviceStatus">
+            d:DesignHeight="650" d:DesignWidth="1024" Foreground="#525252" FontSize="14" FontFamily="微软雅黑" Background="#F5F6FA" Margin="1" Name="drDeviceStatus">
     <UserControl.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -39,336 +39,338 @@
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Grid.Column="0">
-                <cl:SymbolMapping Name="bigHookCalibrationStatus" StrContent="系统通信：" LampType="3" Height="25" HorizontalAlignment="Center"/>
-            </Border>
-            <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Grid.Column="1">
-                <StackPanel Height="30" Orientation="Horizontal">
-                    <TextBlock Text="操作模式："/>
-                    <TextBlock Text="手动" Margin="2,0,5,0" Name="opModel_EquiptStatusPage"/>
-                </StackPanel>
-            </Border>
-            <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Grid.Column="2">
-                <StackPanel Height="30" Orientation="Horizontal">
-                    <TextBlock Text="工作模式："/>
-                    <TextBlock Text="排杆" Margin="2,0,5,0" Name="workModel_EquiptStatusPage"/>
-                </StackPanel>
-            </Border>
-            <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Grid.Column="3">
-                <StackPanel Height="30" Orientation="Horizontal">
-                    <TextBlock Text="工作时间："/>
-                    <TextBlock Text="    0.0h" Margin="2,0,5,0" Name="workTime_EquipStatus"/>
-                </StackPanel>
-            </Border>
-            <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Grid.Column="4">
-                <StackPanel Height="30" Orientation="Horizontal">
-                    <TextBlock Text="排杆次数："/>
-                    <TextBlock Text="" Margin="2,0,5,0" Name="drillUpCount_EquiptStatus"/>
-                </StackPanel>
-            </Border>
-            <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Grid.Column="5">
-                <StackPanel Height="30" Orientation="Horizontal">
-                    <TextBlock Text="送杆次数："/>
-                    <TextBlock Text="" Margin="2,0,5,0" Name="drillDownCount_EquiptStatus"/>
-                </StackPanel>
-            </Border>
-        </Grid>
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0">
-                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <StackPanel Grid.Column="0">
-                            <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                                <TextBlock Text="滑车"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
-                            </Border>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <cl:SymbolMapping Grid.Column="0" Name="carTurnZore" StrContent="回零" LampType="3" Height="25" HorizontalAlignment="Center"/>
-                                <cl:SymbolMapping Grid.Column="1" Name="carFeeling" StrContent="感应" LampType="3" Height="25" HorizontalAlignment="Center"/>
-                            </Grid>
-                            <StackPanel Orientation="Horizontal" Margin="12,2,2,2">
-                                <Label>状态:</Label>
-                                <TextBlock Name="carStatus"></TextBlock>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="12,2,2,2">
-                                <Label>位置:</Label>
-                                <TextBlock Name="carLocation"></TextBlock>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="12,2,2,2">
-                                <Label>错误:</Label>
-                                <TextBlock Name="carError"></TextBlock>
-                            </StackPanel>
-                            <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                                <TextBlock Text="手臂"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
-                            </Border>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <cl:SymbolMapping Grid.Column="0" Name="armFeeling" StrContent="感应" LampType="3" Height="25" HorizontalAlignment="Center"/>
-                            </Grid>
-                            <StackPanel Orientation="Horizontal" Margin="12,2,2,2">
-                                <Label>状态:</Label>
-                                <TextBlock Name="armStatus"></TextBlock>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="12,2,2,2">
-                                <Label>位置:</Label>
-                                <TextBlock Name="armLocation"></TextBlock>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="12,2,2,2">
-                                <Label>错误:</Label>
-                                <TextBlock Name="armError"></TextBlock>
-                            </StackPanel>
-                        </StackPanel>
-                        <StackPanel Grid.Column="1">
-                            <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                                <TextBlock Text="回转"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
-                            </Border>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <cl:SymbolMapping Grid.Column="0" Name="rotateTurnZore" StrContent="回零" LampType="3" Height="25" HorizontalAlignment="Center"/>
-                                <cl:SymbolMapping Grid.Column="1" Name="rotateFeeling" StrContent="感应" LampType="3" Height="25" HorizontalAlignment="Center"/>
-                            </Grid>
-                            <StackPanel Orientation="Horizontal" Margin="12,2,2,2">
-                                <Label>状态:</Label>
-                                <TextBlock Name="rotateStatus"></TextBlock>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="12,2,2,2">
-                                <Label>位置:</Label>
-                                <TextBlock Name="rotateLocation"></TextBlock>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="12,2,2,2">
-                                <Label>错误:</Label>
-                                <TextBlock Name="rotateError"></TextBlock>
-                            </StackPanel>
-                            <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                                <TextBlock Text="抓手"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
-                            </Border>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <cl:SymbolMapping Grid.Column="0" Name="gridFeeling" StrContent="感应" LampType="3" Height="25" HorizontalAlignment="Center"/>
-                            </Grid>
-                            <StackPanel Orientation="Horizontal" Margin="12,2,2,2">
-                                <Label>状态:</Label>
-                                <TextBlock Name="gridStatus"></TextBlock>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="12,2,2,2">
-                                <Label>位置:</Label>
-                                <TextBlock Name="gridLocation"></TextBlock>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="12,2,2,2">
-                                <Label>错误:</Label>
-                                <TextBlock Name="gridError"></TextBlock>
-                            </StackPanel>
-                        </StackPanel>
-                    </Grid>
+    <Viewbox>
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Grid.Column="0">
+                    <cl:SymbolMapping Name="bigHookCalibrationStatus" StrContent="系统通信：" LampType="3" Height="25" HorizontalAlignment="Center"/>
                 </Border>
-                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2">
-                    <StackPanel>
-                        <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                            <TextBlock Text="安全信息"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
-                        </Border>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <cl:SymbolMapping Grid.Column="0" Grid.Row="0" Name="pliersForbidOpen" StrContent="钳头禁止打开" LampType="3" Height="25" Margin="12,2,2,2"/>
-                            <cl:SymbolMapping Grid.Column="1" Grid.Row="0" Name="ForbidMoveToWell" StrContent="禁止向井口移动" LampType="3" Height="25" Margin="12,2,2,2"/>
-                            <cl:SymbolMapping Grid.Column="0" Grid.Row="1" Name="ForbidHandRetract" StrContent="禁止机械手缩回" LampType="3" Height="25" Margin="12,2,2,2"/>
-                            <cl:SymbolMapping Grid.Column="1" Grid.Row="1" Name="WellLocation" StrContent="井口位置" LampType="3" Height="25" Margin="12,2,2,2"/>
-                            <cl:SymbolMapping Grid.Column="0" Grid.Row="2" Name="ForbidToCat" StrContent="禁止向猫道移动" LampType="3" Height="25" Margin="12,2,2,2"/>
-                            <cl:SymbolMapping Grid.Column="1" Grid.Row="2" Name="CatLocked" StrContent="猫道互锁" LampType="3" Height="25" Margin="12,2,2,2"/>
-                            <cl:SymbolMapping Grid.Column="0" Grid.Row="3" Name="smLink" StrContent="联动井口位" LampType="3" Height="25" Margin="12,2,2,2"/>
-
-                        </Grid>
+                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Grid.Column="1">
+                    <StackPanel Height="30" Orientation="Horizontal">
+                        <TextBlock Text="操作模式："/>
+                        <TextBlock Text="手动" Margin="2,0,5,0" Name="opModel_EquiptStatusPage"/>
                     </StackPanel>
                 </Border>
-            </StackPanel>
-            <StackPanel Grid.Column="1">
-                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2">
-                    <StackPanel>
-                        <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                            <TextBlock Text="手柄状态"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
-                        </Border>
-                        <Grid Margin="12,2,2,2">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="2*"/>
-                            </Grid.ColumnDefinitions>
-                            <StackPanel Orientation="Horizontal" Grid.Column="0">
-                                <Label>手柄X:</Label>
-                                <TextBlock Name="handleX"></TextBlock>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Grid.Column="1">
-                                <cl:SymbolMapping Name="btnLeft" StrContent="L" LampType="3" Height="25" Margin="12,2,2,2"/>
-                                <cl:SymbolMapping Name="btnRight" StrContent="R" LampType="3" Height="25" Margin="12,2,2,2"/>
-                                <cl:SymbolMapping Name="btnEnable" StrContent="E" LampType="3" Height="25" Margin="12,2,2,2"/>
-                            </StackPanel>
-                        </Grid>
-                        <Grid Margin="12,2,2,2">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="2*"/>
-                            </Grid.ColumnDefinitions>
-                            <StackPanel Orientation="Horizontal" Grid.Column="0">
-                                <Label>手柄Y:</Label>
-                                <TextBlock Name="handleY"></TextBlock>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Grid.Column="1">
-                                <cl:SymbolMapping Name="btnLeftBack" StrContent="LB" LampType="3" Height="25" Margin="12,2,2,2"/>
-                                <cl:SymbolMapping Name="btnRightBack" StrContent="RB" LampType="3" Height="25" Margin="12,2,2,2"/>
-                            </StackPanel>
-                        </Grid>
+                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Grid.Column="2">
+                    <StackPanel Height="30" Orientation="Horizontal">
+                        <TextBlock Text="工作模式："/>
+                        <TextBlock Text="排杆" Margin="2,0,5,0" Name="workModel_EquiptStatusPage"/>
                     </StackPanel>
                 </Border>
-                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2">
-                    <StackPanel>
-                        <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <StackPanel Grid.Column="0">
-                            <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                                <TextBlock Text="输入"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
-                            </Border>
-                            <cl:SymbolMapping Name="gridOpen" StrContent="抓手打开" LampType="3" Height="25" Margin="12,2,2,2"/>
-                            <cl:SymbolMapping Name="gridClose" StrContent="抓手关闭" LampType="3" Height="25" Margin="12,2,2,2"/>
-                            <cl:SymbolMapping Name="carTurnLeft" StrContent="行车左移" LampType="3" Height="25" Margin="12,2,2,2"/>
-                            <cl:SymbolMapping Name="carTurnRight" StrContent="行车右移" LampType="3" Height="25" Margin="12,2,2,2"/>
-                            <cl:SymbolMapping Name="HotSign" StrContent="加热信号" LampType="3" Height="25" Margin="12,2,2,2"/>
-                            <cl:SymbolMapping Name="emergencyStop" StrContent="紧急停止" LampType="3" Height="25" Margin="12,2,2,2"/>
-                            <cl:SymbolMapping Name="confirmSign" StrContent="确认信号" LampType="3" Height="25" Margin="12,2,2,2"/>
-                            <cl:SymbolMapping Name="carOverload" StrContent="滑车超载" LampType="3" Height="25" Margin="12,2,2,2"/>
-                            <cl:SymbolMapping Name="rotateOverload" StrContent="回转超载" LampType="3" Height="25" Margin="12,2,2,2"/>
-                            <cl:SymbolMapping Name="carMoveLimit" StrContent="行车限制" LampType="3" Height="25" Margin="12,2,2,2"/>
-                        </StackPanel>
-                        <StackPanel Grid.Column="1">
-                            <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                                <TextBlock Text="输出"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
-                            </Border>
-                            <cl:SymbolMapping Name="gridOpenOut" StrContent="抓手打开" LampType="3" Height="25" Margin="12,2,2,2"/>
-                            <cl:SymbolMapping Name="gridCloseOut" StrContent="抓手关闭" LampType="3" Height="25" Margin="12,2,2,2"/>
-                            <cl:SymbolMapping Name="carTurnLeftOut" StrContent="行车左移" LampType="3" Height="25" Margin="12,2,2,2"/>
-                            <cl:SymbolMapping Name="carTurnRightOut" StrContent="行车右移" LampType="3" Height="25" Margin="12,2,2,2"/>
-                            <cl:SymbolMapping Name="cabinetHot" StrContent="柜体加热" LampType="3" Height="25" Margin="12,2,2,2"/>
-                            <cl:SymbolMapping Name="errorTips" StrContent="故障报警" LampType="3" Height="25" Margin="12,2,2,2"/>
-                            <cl:SymbolMapping Name="confirmSignOut" StrContent="确认指示" LampType="3" Height="25" Margin="12,2,2,2"/>
-                            <cl:SymbolMapping Name="mainValve" StrContent="主溢流阀" LampType="3" Height="25" Margin="12,2,2,2"/>
-                            <cl:SymbolMapping Name="sysOil" StrContent="系统油源" LampType="3" Height="25" Margin="12,2,2,2"/>
-                            <cl:SymbolMapping Name="stoControl" StrContent="STO控制" LampType="3" Height="25" Margin="12,2,2,2"/>
-                        </StackPanel>
-                    </Grid>
-                        <StackPanel Orientation="Horizontal" Margin="12,2,2,2">
-                            <Label>手臂伸出电流</Label>
-                            <TextBox Width="70" Name="armReachElectIn" Margin="5,2,2,2" IsReadOnly="True"/>
-                            <TextBox Width="70" Name="armReachElectOut" Margin="12,2,2,2" IsReadOnly="True"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="12,2,2,2">
-                            <Label>手臂缩回电流</Label>
-                            <TextBox Width="70" Name="armRetractElectIn" Margin="5,2,2,2" IsReadOnly="True"/>
-                            <TextBox Width="70" Name="armRetractElectOut" Margin="12,2,2,2" IsReadOnly="True"/>
-                        </StackPanel>
-                        <cl:CustomCheckBox ContentString="提效开启/关闭" Margin="15,2,2,2"  Name="raiseOpenOrClose" UserControlClicked="CBraiseOpenOrClose_Clicked"/>
+                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Grid.Column="3">
+                    <StackPanel Height="30" Orientation="Horizontal">
+                        <TextBlock Text="工作时间："/>
+                        <TextBlock Text="    0.0h" Margin="2,0,5,0" Name="workTime_EquipStatus"/>
                     </StackPanel>
                 </Border>
-            </StackPanel>
-            <StackPanel Grid.Column="2">
-                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2">
-                    <StackPanel>
-                        <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                            <TextBlock Text="操作"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
-                        </Border>
+                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Grid.Column="4">
+                    <StackPanel Height="30" Orientation="Horizontal">
+                        <TextBlock Text="排杆次数："/>
+                        <TextBlock Text="" Margin="2,0,5,0" Name="drillUpCount_EquiptStatus"/>
+                    </StackPanel>
+                </Border>
+                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Grid.Column="5">
+                    <StackPanel Height="30" Orientation="Horizontal">
+                        <TextBlock Text="送杆次数："/>
+                        <TextBlock Text="" Margin="2,0,5,0" Name="drillDownCount_EquiptStatus"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <StackPanel Grid.Column="0">
-                                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,5" Width="150" Height="45" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btnCarTrunZero">
-                                    <TextBlock Name="tbCarTrunZero" FontSize="20" Text="滑车回零"></TextBlock>
+                                <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5" Padding="3">
+                                    <TextBlock Text="滑车"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
                                 </Border>
-                                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,5" Width="150" Height="45" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btnRotateTrunZero">
-                                    <TextBlock Name="tbRotateTrunZero" FontSize="20" Text="回转回零"></TextBlock>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <cl:SymbolMapping Grid.Column="0" Name="carTurnZore" StrContent="回零" LampType="3" Height="25" HorizontalAlignment="Center"/>
+                                    <cl:SymbolMapping Grid.Column="1" Name="carFeeling" StrContent="感应" LampType="3" Height="25" HorizontalAlignment="Center"/>
+                                </Grid>
+                                <StackPanel Orientation="Horizontal" Margin="12,2,2,2">
+                                    <Label>状态:</Label>
+                                    <TextBlock Name="carStatus"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="12,2,2,2">
+                                    <Label>位置:</Label>
+                                    <TextBlock Name="carLocation"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="12,2,2,2">
+                                    <Label>错误:</Label>
+                                    <TextBlock Name="carError"></TextBlock>
+                                </StackPanel>
+                                <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5" Padding="3">
+                                    <TextBlock Text="手臂"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
                                 </Border>
-                                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,5" Width="150" Height="45" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btnMontorEnable">
-                                    <TextBlock Name="tbMontorEnable" FontSize="20" Text="电机使能"></TextBlock>
-                                </Border>
-                                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,5" Width="150" Height="45" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btnClearDrillUpCount">
-                                    <TextBlock Name="tbClearDrillUpCount" FontSize="20" Text="排杆清零"></TextBlock>
-                                </Border>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <cl:SymbolMapping Grid.Column="0" Name="armFeeling" StrContent="感应" LampType="3" Height="25" HorizontalAlignment="Center"/>
+                                </Grid>
+                                <StackPanel Orientation="Horizontal" Margin="12,2,2,2">
+                                    <Label>状态:</Label>
+                                    <TextBlock Name="armStatus"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="12,2,2,2">
+                                    <Label>位置:</Label>
+                                    <TextBlock Name="armLocation"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="12,2,2,2">
+                                    <Label>错误:</Label>
+                                    <TextBlock Name="armError"></TextBlock>
+                                </StackPanel>
                             </StackPanel>
                             <StackPanel Grid.Column="1">
-                                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,5" Width="150" Height="45" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btnClearDrill">
-                                    <TextBlock Name="tbClearDrill" FontSize="20" Text="清除钻杆"></TextBlock>
+                                <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5" Padding="3">
+                                    <TextBlock Text="回转"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
                                 </Border>
-                                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,5" Width="150" Height="45" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btnClearError">
-                                    <TextBlock Name="tbClearError" FontSize="20" Text="清除报警"></TextBlock>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <cl:SymbolMapping Grid.Column="0" Name="rotateTurnZore" StrContent="回零" LampType="3" Height="25" HorizontalAlignment="Center"/>
+                                    <cl:SymbolMapping Grid.Column="1" Name="rotateFeeling" StrContent="感应" LampType="3" Height="25" HorizontalAlignment="Center"/>
+                                </Grid>
+                                <StackPanel Orientation="Horizontal" Margin="12,2,2,2">
+                                    <Label>状态:</Label>
+                                    <TextBlock Name="rotateStatus"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="12,2,2,2">
+                                    <Label>位置:</Label>
+                                    <TextBlock Name="rotateLocation"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="12,2,2,2">
+                                    <Label>错误:</Label>
+                                    <TextBlock Name="rotateError"></TextBlock>
+                                </StackPanel>
+                                <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5" Padding="3">
+                                    <TextBlock Text="抓手"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
                                 </Border>
-                                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,5" Width="150" Height="45" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btnroTransprot">
-                                    <TextBlock Name="tbTransprot" FontSize="20" Text="一键运输"></TextBlock>
-                                </Border>
-                                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,5" Width="150" Height="45" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btnClearDrillDownCount">
-                                    <TextBlock Name="tbClearDrillDownCount" FontSize="20" Text="送杆清零"></TextBlock>
-                                </Border>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <cl:SymbolMapping Grid.Column="0" Name="gridFeeling" StrContent="感应" LampType="3" Height="25" HorizontalAlignment="Center"/>
+                                </Grid>
+                                <StackPanel Orientation="Horizontal" Margin="12,2,2,2">
+                                    <Label>状态:</Label>
+                                    <TextBlock Name="gridStatus"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="12,2,2,2">
+                                    <Label>位置:</Label>
+                                    <TextBlock Name="gridLocation"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="12,2,2,2">
+                                    <Label>错误:</Label>
+                                    <TextBlock Name="gridError"></TextBlock>
+                                </StackPanel>
                             </StackPanel>
                         </Grid>
-                    </StackPanel>
-                </Border>
-                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2">
-                    <StackPanel>
-                        <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                            <TextBlock Text="强制动作"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
-                        </Border>
-                        <cl:CustomCheckBox ContentString="小车强制开关" Margin="5" Name="cbCarOnOff" UserControlClicked="cbCarOnOff_Clicked"/>
-                        <cl:CustomCheckBox ContentString="手臂强制开关" Margin="5" Name="cbArmOnOff" UserControlClicked="cbArmOnOff_Clicked"/>
-                        <cl:CustomCheckBox ContentString="回转强制开关" Margin="5" Name="cbRotateOnOff" UserControlClicked="cbRotateOnOff_Clicked"/>
-                        <cl:CustomCheckBox ContentString="抓手强制开关" Margin="5" Name="cbGripOnOff" UserControlClicked="cbGripOnOff_Clicked"/>
-                        <cl:CustomCheckBox ContentString="手臂抱闸开关" Margin="5" Name="cbArmEmbraceOnOff" UserControlClicked="cbArmEmbraceOnOffClicked"/>
-                        <cl:CustomCheckBox ContentString="回转抱闸开关" Margin="5" Name="cbRotateEmbraceOnOff" UserControlClicked="cbRotateEmbraceOnOff_Clicked"/>
-                    </StackPanel>
-                </Border>
-            </StackPanel>
+                    </Border>
+                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2">
+                        <StackPanel>
+                            <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5" Padding="3">
+                                <TextBlock Text="安全信息"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
+                            </Border>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <cl:SymbolMapping Grid.Column="0" Grid.Row="0" Name="pliersForbidOpen" StrContent="钳头禁止打开" LampType="3" Height="25" Margin="12,2,2,2"/>
+                                <cl:SymbolMapping Grid.Column="1" Grid.Row="0" Name="ForbidMoveToWell" StrContent="禁止向井口移动" LampType="3" Height="25" Margin="12,2,2,2"/>
+                                <cl:SymbolMapping Grid.Column="0" Grid.Row="1" Name="ForbidHandRetract" StrContent="禁止机械手缩回" LampType="3" Height="25" Margin="12,2,2,2"/>
+                                <cl:SymbolMapping Grid.Column="1" Grid.Row="1" Name="WellLocation" StrContent="井口位置" LampType="3" Height="25" Margin="12,2,2,2"/>
+                                <cl:SymbolMapping Grid.Column="0" Grid.Row="2" Name="ForbidToCat" StrContent="禁止向猫道移动" LampType="3" Height="25" Margin="12,2,2,2"/>
+                                <cl:SymbolMapping Grid.Column="1" Grid.Row="2" Name="CatLocked" StrContent="猫道互锁" LampType="3" Height="25" Margin="12,2,2,2"/>
+                                <cl:SymbolMapping Grid.Column="0" Grid.Row="3" Name="smLink" StrContent="联动井口位" LampType="3" Height="25" Margin="12,2,2,2"/>
+
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2">
+                        <StackPanel>
+                            <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5" Padding="3">
+                                <TextBlock Text="手柄状态"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
+                            </Border>
+                            <Grid Margin="12,2,2,2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Orientation="Horizontal" Grid.Column="0">
+                                    <Label>手柄X:</Label>
+                                    <TextBlock Name="handleX"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Column="1">
+                                    <cl:SymbolMapping Name="btnLeft" StrContent="L" LampType="3" Height="25" Margin="12,2,2,2"/>
+                                    <cl:SymbolMapping Name="btnRight" StrContent="R" LampType="3" Height="25" Margin="12,2,2,2"/>
+                                    <cl:SymbolMapping Name="btnEnable" StrContent="E" LampType="3" Height="25" Margin="12,2,2,2"/>
+                                </StackPanel>
+                            </Grid>
+                            <Grid Margin="12,2,2,2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Orientation="Horizontal" Grid.Column="0">
+                                    <Label>手柄Y:</Label>
+                                    <TextBlock Name="handleY"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Column="1">
+                                    <cl:SymbolMapping Name="btnLeftBack" StrContent="LB" LampType="3" Height="25" Margin="12,2,2,2"/>
+                                    <cl:SymbolMapping Name="btnRightBack" StrContent="RB" LampType="3" Height="25" Margin="12,2,2,2"/>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2">
+                        <StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0">
+                                    <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5" Padding="3">
+                                        <TextBlock Text="输入"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
+                                    </Border>
+                                    <cl:SymbolMapping Name="gridOpen" StrContent="抓手打开" LampType="3" Height="25" Margin="12,2,2,2"/>
+                                    <cl:SymbolMapping Name="gridClose" StrContent="抓手关闭" LampType="3" Height="25" Margin="12,2,2,2"/>
+                                    <cl:SymbolMapping Name="carTurnLeft" StrContent="行车左移" LampType="3" Height="25" Margin="12,2,2,2"/>
+                                    <cl:SymbolMapping Name="carTurnRight" StrContent="行车右移" LampType="3" Height="25" Margin="12,2,2,2"/>
+                                    <cl:SymbolMapping Name="HotSign" StrContent="加热信号" LampType="3" Height="25" Margin="12,2,2,2"/>
+                                    <cl:SymbolMapping Name="emergencyStop" StrContent="紧急停止" LampType="3" Height="25" Margin="12,2,2,2"/>
+                                    <cl:SymbolMapping Name="confirmSign" StrContent="确认信号" LampType="3" Height="25" Margin="12,2,2,2"/>
+                                    <cl:SymbolMapping Name="carOverload" StrContent="滑车超载" LampType="3" Height="25" Margin="12,2,2,2"/>
+                                    <cl:SymbolMapping Name="rotateOverload" StrContent="回转超载" LampType="3" Height="25" Margin="12,2,2,2"/>
+                                    <cl:SymbolMapping Name="carMoveLimit" StrContent="行车限制" LampType="3" Height="25" Margin="12,2,2,2"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1">
+                                    <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5" Padding="3">
+                                        <TextBlock Text="输出"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
+                                    </Border>
+                                    <cl:SymbolMapping Name="gridOpenOut" StrContent="抓手打开" LampType="3" Height="25" Margin="12,2,2,2"/>
+                                    <cl:SymbolMapping Name="gridCloseOut" StrContent="抓手关闭" LampType="3" Height="25" Margin="12,2,2,2"/>
+                                    <cl:SymbolMapping Name="carTurnLeftOut" StrContent="行车左移" LampType="3" Height="25" Margin="12,2,2,2"/>
+                                    <cl:SymbolMapping Name="carTurnRightOut" StrContent="行车右移" LampType="3" Height="25" Margin="12,2,2,2"/>
+                                    <cl:SymbolMapping Name="cabinetHot" StrContent="柜体加热" LampType="3" Height="25" Margin="12,2,2,2"/>
+                                    <cl:SymbolMapping Name="errorTips" StrContent="故障报警" LampType="3" Height="25" Margin="12,2,2,2"/>
+                                    <cl:SymbolMapping Name="confirmSignOut" StrContent="确认指示" LampType="3" Height="25" Margin="12,2,2,2"/>
+                                    <cl:SymbolMapping Name="mainValve" StrContent="主溢流阀" LampType="3" Height="25" Margin="12,2,2,2"/>
+                                    <cl:SymbolMapping Name="sysOil" StrContent="系统油源" LampType="3" Height="25" Margin="12,2,2,2"/>
+                                    <cl:SymbolMapping Name="stoControl" StrContent="STO控制" LampType="3" Height="25" Margin="12,2,2,2"/>
+                                </StackPanel>
+                            </Grid>
+                            <StackPanel Orientation="Horizontal" Margin="12,2,2,2">
+                                <Label>手臂伸出电流</Label>
+                                <TextBox Width="70" Name="armReachElectIn" Margin="5,2,2,2" IsReadOnly="True"/>
+                                <TextBox Width="70" Name="armReachElectOut" Margin="12,2,2,2" IsReadOnly="True"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="12,2,2,2">
+                                <Label>手臂缩回电流</Label>
+                                <TextBox Width="70" Name="armRetractElectIn" Margin="5,2,2,2" IsReadOnly="True"/>
+                                <TextBox Width="70" Name="armRetractElectOut" Margin="12,2,2,2" IsReadOnly="True"/>
+                            </StackPanel>
+                            <cl:CustomCheckBox ContentString="提效开启/关闭" Margin="15,2,2,2"  Name="raiseOpenOrClose" UserControlClicked="CBraiseOpenOrClose_Clicked"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Column="2">
+                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2">
+                        <StackPanel>
+                            <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5" Padding="3">
+                                <TextBlock Text="操作"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
+                            </Border>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0">
+                                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,5" Width="150" Height="45" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btnCarTrunZero">
+                                        <TextBlock Name="tbCarTrunZero" FontSize="20" Text="滑车回零"></TextBlock>
+                                    </Border>
+                                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,5" Width="150" Height="45" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btnRotateTrunZero">
+                                        <TextBlock Name="tbRotateTrunZero" FontSize="20" Text="回转回零"></TextBlock>
+                                    </Border>
+                                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,5" Width="150" Height="45" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btnMontorEnable">
+                                        <TextBlock Name="tbMontorEnable" FontSize="20" Text="电机使能"></TextBlock>
+                                    </Border>
+                                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,5" Width="150" Height="45" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btnClearDrillUpCount">
+                                        <TextBlock Name="tbClearDrillUpCount" FontSize="20" Text="排杆清零"></TextBlock>
+                                    </Border>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1">
+                                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,5" Width="150" Height="45" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btnClearDrill">
+                                        <TextBlock Name="tbClearDrill" FontSize="20" Text="清除钻杆"></TextBlock>
+                                    </Border>
+                                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,5" Width="150" Height="45" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btnClearError">
+                                        <TextBlock Name="tbClearError" FontSize="20" Text="清除报警"></TextBlock>
+                                    </Border>
+                                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,5" Width="150" Height="45" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btnroTransprot">
+                                        <TextBlock Name="tbTransprot" FontSize="20" Text="一键运输"></TextBlock>
+                                    </Border>
+                                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,5" Width="150" Height="45" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btnClearDrillDownCount">
+                                        <TextBlock Name="tbClearDrillDownCount" FontSize="20" Text="送杆清零"></TextBlock>
+                                    </Border>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2">
+                        <StackPanel>
+                            <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5" Padding="3">
+                                <TextBlock Text="强制动作"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
+                            </Border>
+                            <cl:CustomCheckBox ContentString="小车强制开关" Margin="5" Name="cbCarOnOff" UserControlClicked="cbCarOnOff_Clicked"/>
+                            <cl:CustomCheckBox ContentString="手臂强制开关" Margin="5" Name="cbArmOnOff" UserControlClicked="cbArmOnOff_Clicked"/>
+                            <cl:CustomCheckBox ContentString="回转强制开关" Margin="5" Name="cbRotateOnOff" UserControlClicked="cbRotateOnOff_Clicked"/>
+                            <cl:CustomCheckBox ContentString="抓手强制开关" Margin="5" Name="cbGripOnOff" UserControlClicked="cbGripOnOff_Clicked"/>
+                            <cl:CustomCheckBox ContentString="手臂抱闸开关" Margin="5" Name="cbArmEmbraceOnOff" UserControlClicked="cbArmEmbraceOnOffClicked"/>
+                            <cl:CustomCheckBox ContentString="回转抱闸开关" Margin="5" Name="cbRotateEmbraceOnOff" UserControlClicked="cbRotateEmbraceOnOff_Clicked"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Grid>
         </Grid>
-    </Grid>
+    </Viewbox>
 </UserControl>

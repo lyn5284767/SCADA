@@ -73,41 +73,60 @@ namespace Main
         /// </summary>
         private void InitCameraInfo()
         {
-            ChannelInfo info1 = GetConfigPara("CAMERA1");
-            ChannelInfo info2 = GetConfigPara("CAMERA2");
-            ChannelInfo info3 = GetConfigPara("CAMERA3");
-            ChannelInfo info4 = GetConfigPara("CAMERA4");
-            ChannelInfo info5 = GetConfigPara("CAMERA5");
-            ChannelInfo info6 = GetConfigPara("CAMERA6");
-            if (info1 != null)
+            string sql = " Select * from CameraInfo";
+            List<CameraInfo> list = DataHelper.Instance.ExecuteList<CameraInfo>(sql);
+            //ChannelInfo info1 = GetConfigPara("CAMERA1");
+            //ChannelInfo info2 = GetConfigPara("CAMERA2");
+            //ChannelInfo info3 = GetConfigPara("CAMERA3");
+            //ChannelInfo info4 = GetConfigPara("CAMERA4");
+            //ChannelInfo info5 = GetConfigPara("CAMERA5");
+            //ChannelInfo info6 = GetConfigPara("CAMERA6");
+            //if (info1 != null)
+            //{
+            //    info1.ID = 1;
+            //    GlobalData.Instance.chList.Add(info1);
+            //}
+            //if (info2 != null)
+            //{
+            //    info2.ID = 2;
+            //    GlobalData.Instance.chList.Add(info2);
+            //}
+            //if (info3 != null)
+            //{
+            //    info3.ID = 3;
+            //    GlobalData.Instance.chList.Add(info3);
+            //}
+            //if (info4 != null)
+            //{
+            //    info4.ID = 4;
+            //    GlobalData.Instance.chList.Add(info4);
+            //}
+            //if (info5 != null)
+            //{
+            //    info5.ID = 5;
+            //    GlobalData.Instance.chList.Add(info5);
+            //}
+            //if (info6 != null)
+            //{
+            //    info6.ID = 6;
+            //    GlobalData.Instance.chList.Add(info6);
+            //}
+            
+            foreach (CameraInfo cameraInfo in list)
             {
-                info1.ID = 1;
-                GlobalData.Instance.chList.Add(info1);
-            }
-            if (info2 != null)
-            {
-                info2.ID = 2;
-                GlobalData.Instance.chList.Add(info2);
-            }
-            if (info3 != null)
-            {
-                info3.ID = 3;
-                GlobalData.Instance.chList.Add(info3);
-            }
-            if (info4 != null)
-            {
-                info4.ID = 4;
-                GlobalData.Instance.chList.Add(info4);
-            }
-            if (info5 != null)
-            {
-                info5.ID = 5;
-                GlobalData.Instance.chList.Add(info5);
-            }
-            if (info6 != null)
-            {
-                info6.ID = 6;
-                GlobalData.Instance.chList.Add(info6);
+                ChannelInfo ch1 = new ChannelInfo();
+                ch1.ID = cameraInfo.Id;
+                ch1.ChlID = cameraInfo.ChlId.ToString();
+                ch1.nDeviceType = cameraInfo.NDeviceType;
+                ch1.RemoteChannle = cameraInfo.REMOTECHANNLE.ToString();
+                ch1.RemoteIP = cameraInfo.REMOTEIP;
+                ch1.RemotePort = cameraInfo.REMOTEPORT;
+                ch1.RemoteUser = cameraInfo.REMOTEUSER;
+                ch1.RemotePwd = cameraInfo.REMOTEPWD;
+                ch1.nPlayPort = cameraInfo.NPLAYPORT;
+                ch1.PtzPort = cameraInfo.PTZPORT;
+                ch1.CameraType = cameraInfo.CAMERATYPE;
+                GlobalData.Instance.chList.Add(ch1);
             }
             foreach (ChannelInfo info in GlobalData.Instance.chList)
             {
@@ -768,19 +787,29 @@ namespace Main
                 }
                 else if (GlobalData.Instance.systemType == SystemType.SIR)
                 {
-                    if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANY)
+                    if (GlobalData.Instance.da.GloConfig.SysType == 1)
                     {
                         this.spMain.Children.Clear();
-                        this.spMain.Children.Add(SIRSelfIO.Instance);
+                        this.spMain.Children.Add(WR_SIR_IO.Instance);
                         this.mainTitle.Content = "SYAPS-铁钻工:IO查询";
                         return;
                     }
-                    else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANYRailway)
+                    else
                     {
-                        this.spMain.Children.Clear();
-                        this.spMain.Children.Add(SIRRailWayIO.Instance);
-                        this.mainTitle.Content = "SYAPS-铁钻工:IO查询";
-                        return;
+                        if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANY)
+                        {
+                            this.spMain.Children.Clear();
+                            this.spMain.Children.Add(SIRSelfIO.Instance);
+                            this.mainTitle.Content = "SYAPS-铁钻工:IO查询";
+                            return;
+                        }
+                        else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANYRailway)
+                        {
+                            this.spMain.Children.Clear();
+                            this.spMain.Children.Add(SIRRailWayIO.Instance);
+                            this.mainTitle.Content = "SYAPS-铁钻工:IO查询";
+                            return;
+                        }
                     }
                 }
                 else if (GlobalData.Instance.systemType == SystemType.HydraulicStation)
@@ -796,7 +825,7 @@ namespace Main
             }
         }
         /// <summary>
-        /// 钻杠数量设置
+        /// 钻杆数量设置
         /// </summary>
         private void MouseDownDrillSetting(object sender, RoutedEventArgs e)
         {
@@ -983,19 +1012,29 @@ namespace Main
                 }
                 else if (GlobalData.Instance.systemType == SystemType.SIR)
                 {
-                    if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANY)
+                    if (GlobalData.Instance.da.GloConfig.SysType == 1)
                     {
                         this.spMain.Children.Clear();
-                        this.spMain.Children.Add(SIRParamMain.Instance);
+                        this.spMain.Children.Add(WR_SIR_ParamSet.Instance);
                         this.mainTitle.Content = "SYAPS-铁钻工:参数设置";
                         return;
                     }
-                    else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANYRailway)
+                    else
                     {
-                        this.spMain.Children.Clear();
-                        this.spMain.Children.Add(SIRRailWayParamSet.Instance);
-                        this.mainTitle.Content = "SYAPS-铁钻工:参数设置";
-                        return;
+                        if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANY)
+                        {
+                            this.spMain.Children.Clear();
+                            this.spMain.Children.Add(SIRParamMain.Instance);
+                            this.mainTitle.Content = "SYAPS-铁钻工:参数设置";
+                            return;
+                        }
+                        else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANYRailway)
+                        {
+                            this.spMain.Children.Clear();
+                            this.spMain.Children.Add(SIRRailWayParamSet.Instance);
+                            this.mainTitle.Content = "SYAPS-铁钻工:参数设置";
+                            return;
+                        }
                     }
                 }
                 else if (GlobalData.Instance.systemType == SystemType.HydraulicStation)

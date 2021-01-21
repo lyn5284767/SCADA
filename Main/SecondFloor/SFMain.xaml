@@ -54,81 +54,93 @@
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
                     <Border BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,5,5">
-                    <Border.Effect>
-                        <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
-                    </Border.Effect>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="5"></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition Width="5"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition Height="0.5"></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
-                            <Border BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="0,0,0,10" VerticalAlignment="Center" Width="45">
-                                <Image Source="../Images/roate.png" Margin="2"></Image>
-                            </Border>
-                            <StackPanel Margin="0,0,10,0" VerticalAlignment="Center">
-                                <TextBlock FontSize="18">回转</TextBlock>
-                                <TextBlock Name="rotateAngle" Text="80" FontSize="18" Foreground="#4C80FF"></TextBlock>
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+                        </Border.Effect>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="5"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition Height="0.5"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+                                <Border BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="0,5,2,20" VerticalAlignment="Center">
+                                    <Viewbox>
+                                        <Image Source="../Images/roate.png" Margin="2"></Image>
+                                    </Viewbox>
+                                </Border>
+                                <StackPanel Margin="0,0,10,0" VerticalAlignment="Center">
+                                    <TextBlock FontSize="18">回转</TextBlock>
+                                    <TextBlock Name="rotateAngle" Text="80" FontSize="18" Foreground="#4C80FF"></TextBlock>
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
-                        <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal">
-                                <Border BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="0,0,0,10" VerticalAlignment="Center" Width="45">
-                                <Image Source="../Images/hook.png" Margin="2"></Image>
-                            </Border>
+                            <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal">
+                                <Border BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="0,5,2,15" VerticalAlignment="Center">
+                                    <Viewbox>
+                                        <Image Source="../Images/hook.png" Margin="2"></Image>
+                                    </Viewbox>
+                                </Border>
                                 <StackPanel Margin="0,0,10,0" VerticalAlignment="Center">
                                     <TextBlock FontSize="18">大钩</TextBlock>
                                     <TextBlock FontSize="18" Text="1111.1" Name="bigHookRealTimeValue" Foreground="#4C80FF"></TextBlock>
                                 </StackPanel>
                             </StackPanel>
-                        <StackPanel Grid.Row="0" Grid.Column="3" Orientation="Horizontal">
-                                <Border BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="0,0,0,10" VerticalAlignment="Center" Width="45">
-                                <Image Source="../Images/calibration.png" Margin="2"></Image>
-                            </Border>
+                            <StackPanel Grid.Row="0" Grid.Column="3" Orientation="Horizontal">
+                                <Border BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,5,2,15" VerticalAlignment="Center">
+                                    <Viewbox>
+                                        <Image Source="../Images/calibration.png" Margin="2"></Image>
+                                    </Viewbox>
+                                </Border>
                                 <StackPanel Margin="0,0,10,0" VerticalAlignment="Center">
                                     <TextBlock FontSize="18">标定</TextBlock>
                                     <TextBlock FontSize="18" Text="   0  " Name="bigHookCalibrationValue"  Foreground="#4C80FF"></TextBlock>
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
-                        <Grid Grid.Row="1" Grid.Column="1" Background="Black"></Grid>
-                        <Grid Grid.Row="1" Grid.Column="2" Background="Black"></Grid>
-                        <Grid Grid.Row="1" Grid.Column="3" Background="Black"></Grid>
-                        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
-                                <Border BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="0,0,0,10" VerticalAlignment="Center" Width="45">
-                                <Image Source="../Images/leftFinger.png" Margin="2"></Image>
-                            </Border>
+                            <Grid Grid.Row="1" Grid.Column="1" Background="Black"></Grid>
+                            <Grid Grid.Row="1" Grid.Column="2" Background="Black"></Grid>
+                            <Grid Grid.Row="1" Grid.Column="3" Background="Black"></Grid>
+                            <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+                                <Border BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="0,5,2,15" VerticalAlignment="Center">
+                                    <Viewbox>
+                                        <Image Source="../Images/leftFinger.png" Margin="2"></Image>
+                                    </Viewbox>
+                                </Border>
                                 <StackPanel Margin="-5,0,10,0" VerticalAlignment="Center">
                                     <TextBlock FontSize="18">左手指</TextBlock>
                                     <TextBlock FontSize="18" Name="leftFinger" Text="   0 "  Foreground="#4C80FF"></TextBlock>
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
-                        <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal">
-                                <Border BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="0,00,0,10" VerticalAlignment="Center" Width="45">
-                                <Image Source="../Images/rightFinger.png" Margin="2"></Image>
-                            </Border>
+                            <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal">
+                                <Border BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3"  Margin="0,5,2,15" VerticalAlignment="Center">
+                                    <Viewbox>
+                                        <Image Source="../Images/rightFinger.png" Margin="2"></Image>
+                                    </Viewbox>
+                                </Border>
                                 <StackPanel Margin="-5,0,10,0" VerticalAlignment="Center">
                                     <TextBlock FontSize="18">右手指</TextBlock>
                                     <TextBlock FontSize="18" Name="rightFinger" Text="   0 "  Foreground="#4C80FF"></TextBlock>
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
-                        <StackPanel Grid.Row="2" Grid.Column="3" Orientation="Horizontal">
-                                <Border BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="0,0,0,10" VerticalAlignment="Center" Width="45">
-                                <Image Source="../Images/finger.png" Margin="2"></Image>
-                            </Border>
+                            <StackPanel Grid.Row="2" Grid.Column="3" Orientation="Horizontal">
+                                <Border BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,5,2,15" VerticalAlignment="Center">
+                                    <Viewbox>
+                                        <Image Source="../Images/finger.png" Margin="2"></Image>
+                                    </Viewbox>
+                                </Border>
                                 <StackPanel Margin="0,0,10,0" VerticalAlignment="Center">
                                     <TextBlock FontSize="18">开度</TextBlock>
                                     <TextBlock FontSize="18" Name="gripMotor" Text="   0 "  Foreground="#4C80FF"></TextBlock>
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
-                    </Grid>
-                </Border>
+                        </Grid>
+                    </Border>
                 </Grid>
                 <Border  BorderBrush="White" Background="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,5,5" Grid.Column="1">
                     <Border.Effect>
@@ -149,7 +161,9 @@
                                 <ColumnDefinition></ColumnDefinition>
                                 <ColumnDefinition Width="5"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Label Grid.Row="0" Grid.Column="1" FontSize="18" HorizontalAlignment="Left">电机</Label>
+                            <Viewbox  Grid.Row="0" Grid.Column="1">
+                                <Label FontSize="18" HorizontalAlignment="Left">电机</Label>
+                            </Viewbox>
                             <cl:SymbolMapping Name="carMotorWorkStatus" Margin="2" HorizontalAlignment="Center" Grid.Column="2" StrContent="" LampType="3"/>
                             <cl:SymbolMapping Name="armMotorWorkStatus"  Margin="2" HorizontalAlignment="Center" Grid.Column="3" StrContent="" LampType="3"/>
                             <cl:SymbolMapping Name="rotateMotorWorkStatus" Margin="2" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="4" StrContent="" LampType="3"/>
@@ -163,8 +177,9 @@
                                 <ColumnDefinition></ColumnDefinition>
                                 <ColumnDefinition Width="5"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-
-                            <Label Grid.Row="2" Grid.Column="1" FontSize="18" HorizontalAlignment="Left">回零</Label>
+                            <Viewbox  Grid.Row="2" Grid.Column="1">
+                                <Label FontSize="18" HorizontalAlignment="Left">回零</Label>
+                            </Viewbox>
                             <cl:SymbolMapping Name="carMotorRetZero"  Margin="2" HorizontalAlignment="Center" Grid.Column="2" StrContent=""/>
                             <cl:SymbolMapping Name="armMotorRetZero"  Margin="2" HorizontalAlignment="Center" Grid.Column="3" StrContent=""/>
                             <cl:SymbolMapping Name="rotateMotorRetZero"  Margin="2" HorizontalAlignment="Center" Grid.Column="4" StrContent=""/>
@@ -183,8 +198,12 @@
                                     <RowDefinition/>
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
-                                <Label FontSize="18" HorizontalAlignment="Left" Grid.Row="0">标定状态</Label>
-                                <Label FontSize="18" HorizontalAlignment="Left" Grid.Row="1">特殊指梁</Label>
+                                <Viewbox  Grid.Row="0">
+                                    <Label FontSize="18" HorizontalAlignment="Left" Grid.Row="0">标定状态</Label>
+                                </Viewbox>
+                                <Viewbox  Grid.Row="1">
+                                    <Label FontSize="18" HorizontalAlignment="Left" Grid.Row="1">特殊指梁</Label>
+                                </Viewbox>
                             </Grid>
                             <Grid Grid.Column="2">
                                 <Grid.RowDefinitions>
@@ -195,16 +214,20 @@
                                 <cl:SymbolMapping Grid.Row="1" Name="spcialDrill" Margin="2"  StrContent="" LampType="3" HorizontalAlignment="Center"/>
                             </Grid>
                             <Border Grid.Column="3" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2,5,5,2">
-                                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                                    <TextBlock Height="35" FontSize="24" FontWeight="Bold" Text="左挡" HorizontalAlignment="Center" Margin="0,5,0,0"></TextBlock>
-                                    <TextBlock Name="leftRope" Margin="0,2,0,0" Text="未知" HorizontalAlignment="Center"  Foreground="#4C80FF"></TextBlock>
-                                </StackPanel>
+                                <Viewbox>
+                                    <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                                        <TextBlock Height="35" FontSize="24" FontWeight="Bold" Text="左挡" HorizontalAlignment="Center" Margin="0,5,0,0"></TextBlock>
+                                        <TextBlock Name="leftRope" Margin="0,2,0,0" Text="未知" HorizontalAlignment="Center"  Foreground="#4C80FF"></TextBlock>
+                                    </StackPanel>
+                                </Viewbox>
                             </Border>
                             <Border Grid.Column="4" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2,5,5,2">
-                                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                                    <TextBlock Height="35" FontSize="24" FontWeight="Bold" Text="右挡" HorizontalAlignment="Center" Margin="0,5,0,0"></TextBlock>
-                                    <TextBlock Name="rightRope" Margin="0,2,0,0" Text="未知" HorizontalAlignment="Center"  Foreground="#4C80FF"></TextBlock>
-                                </StackPanel>
+                                <Viewbox>
+                                    <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                                        <TextBlock Height="35" FontSize="24" FontWeight="Bold" Text="右挡" HorizontalAlignment="Center" Margin="0,5,0,0"></TextBlock>
+                                        <TextBlock Name="rightRope" Margin="0,2,0,0" Text="未知" HorizontalAlignment="Center"  Foreground="#4C80FF"></TextBlock>
+                                    </StackPanel>
+                                </Viewbox>
                             </Border>
 
                             <!--<StackPanel Grid.Row="3" Grid.Column="1" Orientation="Vertical" MouseDown="btn_AllMotorRetZero">
@@ -299,12 +322,18 @@
 
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="90"/>
-                            <RowDefinition/>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="1*"/>
                         </Grid.RowDefinitions>
-                        <cl:BasedSwitchButton Name="operateMode" ContentLeft="手动" ContentDown="操作模式" ContentRight="自动" UserControlClicked="btn_OpState" Grid.Column="0" Grid.Row="0"/>
-                        <cl:BasedSwitchButton Name="workMode" ContentLeft="排杆" ContentDown="工作模式" ContentRight="送杆" UserControlClicked="btn_WorkModel" Margin="5 0 0 0" Grid.Column="1" Grid.Row="0"/>
-                        <cl:BasedSwitchButton Name="controlModel" ContentLeft="司钻" ContentDown="工作模式" ContentRight="遥控" UserControlClicked="btn_ControlModel" Margin="5 0 0 0" Grid.Column="2" Grid.Row="0"/>
+                        <Viewbox Grid.Column="0" >
+                            <cl:BasedSwitchButton Name="operateMode" ContentLeft="手动" ContentDown="操作模式" ContentRight="自动" UserControlClicked="btn_OpState"  Margin="5"/>
+                        </Viewbox>
+                        <Viewbox Grid.Column="1" >
+                            <cl:BasedSwitchButton Name="workMode" ContentLeft="排杆" ContentDown="工作模式" ContentRight="送杆" UserControlClicked="btn_WorkModel" Margin="5"/>
+                        </Viewbox>
+                        <Viewbox Grid.Column="2" >
+                            <cl:BasedSwitchButton Name="controlModel" ContentLeft="司钻" ContentDown="工作模式" ContentRight="遥控" UserControlClicked="btn_ControlModel" Margin="5"/>
+                        </Viewbox>
 
                         <Border BorderBrush="White" BorderThickness="1" CornerRadius="2" Padding="0" Margin="0,5,0,10" Grid.Column="0" Grid.Row="1">
                             <Menu Background="Transparent" Height="40" Width="100"  FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Foreground="#008AFF">
@@ -408,16 +437,20 @@
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
                         <Border Grid.Column="3" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2,5,5,2" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btn_AllMotorRetZero">
-                            <StackPanel Orientation="Vertical">
+                            <Viewbox>
+                                <StackPanel Orientation="Vertical">
                                 <TextBlock FontSize="32" Foreground="#008AFF" FontWeight="Bold" Text="0" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
                                 <TextBlock TextAlignment="Center">一键回零</TextBlock>
                             </StackPanel>
+                            </Viewbox>
                         </Border>
                         <Border Grid.Row="1" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2,5,5,2" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btn_MotorEnable">
-                            <StackPanel Orientation="Vertical">
+                            <Viewbox>
+                                <StackPanel Orientation="Vertical">
                                 <TextBlock Text="&#xe61e;" FontFamily="../Font/#iconfont" FontSize="36" Foreground="#008AFF" TextAlignment="Center" Height="42"></TextBlock>
                                 <TextBlock TextAlignment="Center">电机使能</TextBlock>
                             </StackPanel>
+                            </Viewbox>
                         </Border>
 
 
@@ -439,9 +472,9 @@
                     </Border>
                     <Grid Margin="5,5,2,5" >
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="30"/>
-                                <RowDefinition/>
-                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="3*"/>
+                                <RowDefinition Height="38*"/>
+                                <RowDefinition Height="5*"/>
                             </Grid.RowDefinitions>
                             <!--6.15新增-->
                             <Grid Grid.Row="0">
@@ -475,11 +508,13 @@
                                     <Label Margin="5,0,0,0">mm</Label>
                                 </StackPanel>
                             </Grid>
-                            <Grid Grid.Row="1" Name="Am"  Height="380">
-                                <TextBlock Name="wellTips" Text="井口位置" TextAlignment="Center" FontSize="16" Foreground="Red"/>
+                        <Grid Grid.Row="1" Name="Am" >
+                            <TextBlock Name="wellTips" Text="井口位置" TextAlignment="Center" FontSize="16" Foreground="Red"/>
                                 <!--<main:Amination x:Name="amination"/>-->
+                            <Viewbox>
                                 <main:AminationNew x:Name="aminationNew"/>
-                            </Grid>
+                            </Viewbox>
+                        </Grid>
                             <Grid Grid.Row="2">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="3*"/>

@@ -94,7 +94,7 @@ namespace Main
         public static readonly DependencyProperty DRProperty = DependencyProperty.Register("DRType", typeof(SystemType), typeof(Amination), new PropertyMetadata(SystemType.SecondFloor)); // 钻台面台显示
 
         /// <summary>
-        /// 钻杠行高
+        /// 钻杆行高
         /// </summary>
         public double RowHeight
         {
@@ -264,7 +264,7 @@ namespace Main
         public static readonly DependencyProperty DRWorkAnimationWidthProperty = DependencyProperty.Register("DRWorkAnimationWidth", typeof(double), typeof(Amination), new PropertyMetadata((double)0.0)); // 手臂最大位移
 
         /// <summary>
-        /// 钻台面-钻杠行高
+        /// 钻台面-钻杆行高
         /// </summary>
         public double DRRowHeight
         {
@@ -452,7 +452,7 @@ namespace Main
                 this.tbrow10RightRP.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["114N2N22N9FingerBeamDrillPipeCount26"], Mode = BindingMode.OneWay });
                 this.tbrow0RightRP.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["114N2N22N9FingerBeamDrillPipeCount32"], Mode = BindingMode.OneWay });
 
-                #region 初始化二层台钻杠/钻铤数量
+                #region 初始化二层台钻杆/钻铤数量
                 FingerBeamDrillPipeCountList.Clear();
                 FingerBeamDrillPipeCountList.Add(new DrillModel() { Name = "111N2N22N9FingerBeamDrillPipeCount1", Num = 0 });
                 FingerBeamDrillPipeCountList.Add(new DrillModel() { Name = "111N2N22N9FingerBeamDrillPipeCount2", Num = 0 });
@@ -490,7 +490,7 @@ namespace Main
                 FingerBeamDrillPipeCountList.Add(new DrillModel() { Name = "114N2N22N9FingerBeamDrillPipeCount31", Num = 0 });
                 FingerBeamDrillPipeCountList.Add(new DrillModel() { Name = "114N2N22N9FingerBeamDrillPipeCount32", Num = 0 });
                 #endregion
-                #region 初始化钻台面钻杠/钻铤数量
+                #region 初始化钻台面钻杆/钻铤数量
                 this.drDrillCountList.Clear();
                 this.drDrillCountList.Add(new DrillModel() { Name = "drDrillNum1", Num = 0, LorR = "left" });
                 this.drDrillCountList.Add(new DrillModel() { Name = "drDrillNum2", Num = 0, LorR = "left" });
@@ -650,7 +650,7 @@ namespace Main
                     strColoms = sb.ToString();
                     int.TryParse(strColoms, out coloms);                    drillCnt = GlobalData.Instance.DrillNum; // 最大钻铤数量
 
-                    // 钻杠高度
+                    // 钻杆高度
                     WinAPI.GetPrivateProfileString("SECONDFLOOR", "HEIGHT", strHeight, sb, STRINGMAX, configPath);
                     strHeight = sb.ToString();
                     int.TryParse(strHeight, out rowHeight);
@@ -690,7 +690,7 @@ namespace Main
                     strArmMaxPosistion = sb.ToString();
                     int.TryParse(strArmMaxPosistion, out armMaxPosistion);
                     GlobalData.Instance.ArmMaxPosistion = armMaxPosistion;
-                    // 小车实际移动距离 = 钻铤行高度（this.FirstRowHeight + 8 ）+钻杠行高度*行数 - 小车大小
+                    // 小车实际移动距离 = 钻铤行高度（this.FirstRowHeight + 8 ）+钻杆行高度*行数 - 小车大小
                     RealHeight = this.FirstRowHeight + 8 + (rowHeight + 5) * rows  - GlobalData.Instance.CarSize; 
                     // 中间高度 = （实际移动距离+最上方横梁）/2
                     MiddleHeight = (RealHeight + 8) / 2.0;
@@ -705,7 +705,7 @@ namespace Main
                     string drstrCarMinPosistion = "0";
                     string drstrArmMaxPosistion = "0";
 
-                    // 钻杠高度
+                    // 钻杆高度
                     WinAPI.GetPrivateProfileString("DRILLFLOOR", "HEIGHT", drstrHeight, sb, STRINGMAX, configPath);
                     drstrHeight = sb.ToString();
                     int.TryParse(drstrHeight, out drHeight);
@@ -734,7 +734,7 @@ namespace Main
                     drstrArmMaxPosistion = sb.ToString();
                     int.TryParse(drstrArmMaxPosistion, out drarmMaxPosistion);
                     GlobalData.Instance.DRArmMaxPosistion = drarmMaxPosistion;
-                    // 小车实际移动距离 = 钻铤行高度（this.FirstRowHeight + 8 ）+钻杠行高度*行数 - 小车大小
+                    // 小车实际移动距离 = 钻铤行高度（this.FirstRowHeight + 8 ）+钻杆行高度*行数 - 小车大小
                     DRRealHeight = this.DRFirstRowHeight + 8 + (drHeight + 5) * rows - GlobalData.Instance.CarSize;
                     // 中间高度 = （实际移动距离+最上方横梁）/2
                     DRMiddleHeight = (DRRealHeight + 8) / 2.0;
@@ -774,7 +774,7 @@ namespace Main
             {
                 LoadRows(systemType);
 
-                #region 钻铤/钻杠 数量设置
+                #region 钻铤/钻杆 数量设置
                 LoadFingerBeamDrillPipe(systemType);
                 #endregion
                 #region 设置间距
@@ -850,7 +850,7 @@ namespace Main
         }
 
         /// <summary>
-        /// 二层台加载钻杠
+        /// 二层台加载钻杆
         /// </summary>
         public void LoadFingerBeamDrillPipe(SystemType systemType)
         {
@@ -866,7 +866,7 @@ namespace Main
                     {
                         foreach (var model in FingerBeamDrillPipeCountList)
                         {
-                            if (model.Num != GlobalData.Instance.da[model.Name].Value.Byte) // 钻杠数量改变
+                            if (model.Num != GlobalData.Instance.da[model.Name].Value.Byte) // 钻杆数量改变
                             {
                                 model.Num = GlobalData.Instance.da[model.Name].Value.Byte;
                                 Regex regexFingerBeam = new Regex(@"(\d+)$", RegexOptions.Compiled | RegexOptions.CultureInvariant);
@@ -887,7 +887,7 @@ namespace Main
                     {
                         foreach (var model in this.drDrillCountList)
                         {
-                            if (model.Num != GlobalData.Instance.da[model.Name].Value.Byte) // 钻杠数量改变
+                            if (model.Num != GlobalData.Instance.da[model.Name].Value.Byte) // 钻杆数量改变
                             {
                                 model.Num = GlobalData.Instance.da[model.Name].Value.Byte;
                                 Regex regexFingerBeam = new Regex(@"(\d+)$", RegexOptions.Compiled | RegexOptions.CultureInvariant);
@@ -912,7 +912,7 @@ namespace Main
         /// 更新具体的钻杆数量
         /// </summary>
         /// <param name="fingerBeamNumber">行数</param>
-        /// <param name="fingerBeamDrillPipeCount">钻杠数</param>
+        /// <param name="fingerBeamDrillPipeCount">钻杆数</param>
         public void SetDrillPipeCountVisible(int fingerBeamNumber, int fingerBeamDrillPipeCount,SystemType systemType)
         {
             try
@@ -921,7 +921,7 @@ namespace Main
                 {
                     return;
                 }
-                double width = 0.0; // 显示的钻杠/钻铤宽度
+                double width = 0.0; // 显示的钻杆/钻铤宽度
                 double margin = 0.0; //边距
                 if (systemType == SystemType.SecondFloor)
                 {
@@ -955,7 +955,7 @@ namespace Main
                     else
                     {
 
-                        #region 钻杠设置
+                        #region 钻杆设置
                         if (fingerBeamDrillPipeCount > coloms)
                         {
                             fingerBeamDrillPipeCount = coloms;
@@ -1013,7 +1013,7 @@ namespace Main
                     else
                     {
 
-                        #region 钻杠设置
+                        #region 钻杆设置
                         if (fingerBeamDrillPipeCount > coloms)
                         {
                             fingerBeamDrillPipeCount = coloms;

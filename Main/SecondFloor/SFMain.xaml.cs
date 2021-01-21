@@ -1,28 +1,21 @@
 ﻿using COM.Common;
 using ControlLibrary;
 using DatabaseLib;
-using DemoDriver;
 using HandyControl.Controls;
 using HBGKTest;
 using HBGKTest.YiTongCamera;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Main.SecondFloor
 {
@@ -1607,7 +1600,7 @@ namespace Main.SecondFloor
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
-        /// 清空钻杠数目
+        /// 清空钻杆数目
         /// </summary>
         private void btn_DrillPipeCountCorrect_CancelAllPipe(object sender, RoutedEventArgs e)
         {
@@ -1615,7 +1608,7 @@ namespace Main.SecondFloor
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
-        /// 取消钻杠
+        /// 取消钻杆
         /// </summary>
         private void btn_CancelDrillPipe(object sender, RoutedEventArgs e)
         {

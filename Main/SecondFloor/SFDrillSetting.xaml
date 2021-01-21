@@ -35,69 +35,70 @@
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
-    
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Border Grid.Row="0" Grid.Column="1" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3">
-            <Grid x:Name="QuantitConfig">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="0">
-                    <StackPanel Orientation="Horizontal" Margin="5">
-                        <TextBlock Text="指梁序号" VerticalAlignment="Center" Width="200"/>
-                        <TextBlock x:Name="NowOrent" Text=""/>
-                        <TextBlock x:Name="NowSelect" Text=""/>
-                        <!--<ComboBox x:Name="cmbDrillPipeCountCorrectFingerDirect" Margin="0 0 10 0">
+    <Viewbox>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="460"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Row="0" Grid.Column="1" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3">
+                <Grid x:Name="QuantitConfig">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <TextBlock Text="指梁序号" VerticalAlignment="Center" Width="200"/>
+                            <TextBlock x:Name="NowOrent" Text=""/>
+                            <TextBlock x:Name="NowSelect" Text=""/>
+                            <!--<ComboBox x:Name="cmbDrillPipeCountCorrectFingerDirect" Margin="0 0 10 0">
                             <ComboBoxItem Content="左" IsSelected="True"/>
                             <ComboBoxItem Content="右"/>
                         </ComboBox>-->
-                        <!--<TextBox x:Name="tbDrillPipeCountCorrectFingerDirectNumber"  PreviewMouseDown="tbPreviewMouseDown" Width="35" Text=""/>-->
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="5">
-                        <TextBlock Text="钻杆数量" VerticalAlignment="Center" Width="200"/>
-                        <Button FontSize="18" FontWeight="Bold" Height="40" Width="60" Margin="0,0,5,0" Click="btn_ReduceDrill">-</Button>
-                        <TextBox x:Name="tbDrillPipeCountCorrectPipeCount" IsReadOnly="True" Width="50" Text="0"/>
-                        <Button FontSize="18" FontWeight="Bold" Height="40" Width="60" Margin="5,0,0,0" Click="btn_PluseDrill">+</Button>
-                    </StackPanel>
-                    <StackPanel Grid.Column="1">
-                        <StackPanel Orientation="Horizontal">
-                            <Button Style="{StaticResource btnGreen}" Click="btn_SecondFloorReLoad" Content="重新加载"/>
-                            <Button Style="{StaticResource btnGreen}" Click="btn_SecondMaxPosistion" Margin="2,5,2,5" Content="小车"/>
-                            <TextBox x:Name="carPosistion" Width="50" Text="0" Margin="2,5,2,5" IsEnabled="False" Visibility="Visible"/>
-                            <TextBox x:Name="drcarPosistion" Width="50" Text="0" Margin="2,5,2,5" IsEnabled="False" Visibility="Collapsed"/>
-                            <Button Style="{StaticResource btnGreen}" Click="btn_SecondArmMaxPosistion" Margin="2,5,2,5" Content="手臂"/>
-                            <TextBox x:Name="armPosistion" Width="50" Text="0" Margin="2,5,2,5" IsEnabled="False" Visibility="Visible"/>
-                            <TextBox x:Name="drarmPosistion" Width="50" Text="0" Margin="2,5,2,5" IsEnabled="False" Visibility="Collapsed"/>
+                            <!--<TextBox x:Name="tbDrillPipeCountCorrectFingerDirectNumber"  PreviewMouseDown="tbPreviewMouseDown" Width="35" Text=""/>-->
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <TextBlock Text="钻杆数量" VerticalAlignment="Center" Width="200"/>
+                            <Button FontSize="18" FontWeight="Bold" Height="40" Width="60" Margin="0,0,5,0" Click="btn_ReduceDrill">-</Button>
+                            <TextBox x:Name="tbDrillPipeCountCorrectPipeCount" IsReadOnly="True" Width="50" Text="0"/>
+                            <Button FontSize="18" FontWeight="Bold" Height="40" Width="60" Margin="5,0,0,0" Click="btn_PluseDrill">+</Button>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <StackPanel Orientation="Horizontal">
+                                <Button Style="{StaticResource btnGreen}" Click="btn_SecondFloorReLoad" Content="重新加载"/>
+                                <Button Style="{StaticResource btnGreen}" Click="btn_SecondMaxPosistion" Margin="2,5,2,5" Content="小车"/>
+                                <TextBox x:Name="carPosistion" Width="50" Text="0" Margin="2,5,2,5" IsEnabled="False" Visibility="Visible"/>
+                                <TextBox x:Name="drcarPosistion" Width="50" Text="0" Margin="2,5,2,5" IsEnabled="False" Visibility="Collapsed"/>
+                                <Button Style="{StaticResource btnGreen}" Click="btn_SecondArmMaxPosistion" Margin="2,5,2,5" Content="手臂"/>
+                                <TextBox x:Name="armPosistion" Width="50" Text="0" Margin="2,5,2,5" IsEnabled="False" Visibility="Visible"/>
+                                <TextBox x:Name="drarmPosistion" Width="50" Text="0" Margin="2,5,2,5" IsEnabled="False" Visibility="Collapsed"/>
+                            </StackPanel>
                         </StackPanel>
                     </StackPanel>
-                </StackPanel>
-                <StackPanel Grid.Column="1">
-                    <Button Style="{StaticResource btnGreen}" Click="btn_DrillPipeCountCorrect_CancelAllPipe" Content="清空所有钻杆"/>
-                    <Button Style="{StaticResource btnGreen}"  Click="btn_DrillPipeCountCorrect_FlashPipeCount" Content="刷新钻杆数量"/>
-                    <Button Style="{StaticResource btnGreen}" Click="btn_DrillPipeCountCorrect_SetPipeCount" Content="设置钻杆"/>
-                </StackPanel>
-                <StackPanel Grid.Column="2">
-                    <TextBlock Text="无操作" VerticalAlignment="Center" Width="150" Name="NumFixTips" Margin="5,12,5,15"/>
-                    <ComboBox Name="cbSysTypeSelect" SelectedIndex="0" SelectionChanged="ComboBox_SelectionChanged" FontFamily="微软雅黑">
-                        <ComboBoxItem>全部</ComboBoxItem>
-                        <ComboBoxItem>二层台</ComboBoxItem>
-                        <ComboBoxItem>钻台面</ComboBoxItem>
-                    </ComboBox>
-                </StackPanel>
-            </Grid>
-        </Border>
-        <Grid Grid.Column="1" Grid.Row="1" Name="gdMain"></Grid>
-        <!--<cl:Animation x:Name="secondFloorDrillPipeCorrectAnimation" Grid.Column="1" Grid.Row="1"/>-->
-    </Grid>
+                    <StackPanel Grid.Column="1">
+                        <Button Style="{StaticResource btnGreen}" Click="btn_DrillPipeCountCorrect_CancelAllPipe" Content="清空所有钻杆"/>
+                        <Button Style="{StaticResource btnGreen}"  Click="btn_DrillPipeCountCorrect_FlashPipeCount" Content="刷新钻杆数量"/>
+                        <Button Style="{StaticResource btnGreen}" Click="btn_DrillPipeCountCorrect_SetPipeCount" Content="设置钻杆"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2">
+                        <TextBlock Text="无操作" VerticalAlignment="Center" Width="150" Name="NumFixTips" Margin="5,12,5,15"/>
+                        <ComboBox Name="cbSysTypeSelect" SelectedIndex="0" SelectionChanged="ComboBox_SelectionChanged" FontFamily="微软雅黑">
+                            <ComboBoxItem>全部</ComboBoxItem>
+                            <ComboBoxItem>二层台</ComboBoxItem>
+                            <ComboBoxItem>钻台面</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                </Grid>
+            </Border>
+            <Grid Grid.Column="1" Grid.Row="1" Name="gdMain"></Grid>
+            <!--<cl:Animation x:Name="secondFloorDrillPipeCorrectAnimation" Grid.Column="1" Grid.Row="1"/>-->
+        </Grid>
+    </Viewbox>
 </UserControl>
