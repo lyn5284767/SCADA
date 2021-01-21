@@ -145,7 +145,7 @@ namespace COM.Common
             // 传过来的角度要除以10
             double iTemp = (double)((short)value) / 10.0;
             //因为 角度可能只会到 88 89 ，到不了90，所以作如此处理
-            if (iTemp >= 88)
+            if (iTemp >= 88 )
             {
                 iTemp = 90;
             }
@@ -5951,6 +5951,10 @@ namespace COM.Common
             if (status == 5) return "半开";
             if (status == 3 || status == 6) return "关闭";
             if (status == 2 || status == 4) return "??";
+            if (GlobalData.Instance.da["323b0"] != null && GlobalData.Instance.da["323b0"].Value.Boolean) return "完全关闭";
+            if (GlobalData.Instance.da["323b1"] != null && GlobalData.Instance.da["323b1"].Value.Boolean) return "完全关闭";
+            if (GlobalData.Instance.da["323b2"] != null && GlobalData.Instance.da["323b2"].Value.Boolean) return "完全关闭";
+
 
             return "未知";
         }

@@ -70,7 +70,7 @@ namespace Main.WellRepair.DrillFloor
                 //this.carPos.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["drCarPos"], Mode = BindingMode.OneWay, Converter = new CarPosCoverter() });//小车位置
                 this.carPos.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["drCarPos"], Mode = BindingMode.OneWay });//小车位置                                                                                                                                                             //this.armPos.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["drArmPos"], Mode = BindingMode.OneWay, Converter = new ArmPosCoverter() });//手臂实际位置
                 this.armPos.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["drArmPos"], Mode = BindingMode.OneWay });//手臂实际位置
-                this.rotatePos.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["drRotePos"], Mode = BindingMode.OneWay, Converter = new DRCallAngleConverter() });//回转角度
+                this.rotatePos.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["drRotePos"], Mode = BindingMode.OneWay, Converter = new WR_DRCallAngleConverter() });//回转角度
                 this.gripMotor.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drgripStatus"], Mode = BindingMode.OneWay, Converter = new WR_GripConverter() });//抓手状态
 
                 this.drcarMotorWorkStatus.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["324b1"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
@@ -122,7 +122,7 @@ namespace Main.WellRepair.DrillFloor
                 sbDrillDownMultiBind.NotifyOnSourceUpdated = true;
                 this.sbDrillDown.SetBinding(StepBar.StepIndexProperty, sbDrillDownMultiBind);
 
-                timerWarning = new System.Threading.Timer(new TimerCallback(Timer_Elapsed), this, 2000, 50);//改成50ms 的时钟
+                //timerWarning = new System.Threading.Timer(new TimerCallback(Timer_Elapsed), this, 2000, 50);//改成50ms 的时钟
                 InitCameraInfo();
             }
             catch (Exception ex)
@@ -182,8 +182,8 @@ namespace Main.WellRepair.DrillFloor
                     if (iTimeCnt > 1000) iTimeCnt = 0;
                     this.Warnning();
                     this.MonitorAlarmStatus();
-                    if (GlobalData.Instance.da["droperationModel"].Value.Byte == 5)
-                    {
+                    //if (GlobalData.Instance.da["droperationModel"].Value.Byte == 5)
+                    //{
                         if (GlobalData.Instance.da["drworkModel"].Value.Byte == 2)
                         {
                             this.sbDrillUp.Visibility = Visibility.Visible;
@@ -192,9 +192,9 @@ namespace Main.WellRepair.DrillFloor
                         else
                         {
                             this.sbDrillUp.Visibility = Visibility.Collapsed;
-                            this.sbDrillDown.Visibility = Visibility.Visible;
+                            sbDrillDown.Visibility = Visibility.Visible;
                         }
-                    }
+                    //}
 
                     if (GlobalData.Instance.da["droperationModel"].Value.Byte == 1)
                     {
@@ -1590,5 +1590,11 @@ namespace Main.WellRepair.DrillFloor
             }
         }
         #endregion
+
+        private void btnDeviceBack(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 80, 33, 1, 6, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
     }
 }

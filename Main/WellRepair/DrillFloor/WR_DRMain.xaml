@@ -171,6 +171,7 @@
                                     <MenuItem Header="旋转回零" Click="btn_RotateToZero"/>
                                 </MenuItem>
                                 <MenuItem Header="清除钻杆" FontSize="24" Click="btnClearDrill" />
+                                <MenuItem Header="设备回收" FontSize="24" Click="btnDeviceBack" />
                             </MenuItem>
                         </Menu>
                         <TextBlock Grid.Row="1" Grid.Column="1" Text="未选择目的地" Name="drDestination" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
