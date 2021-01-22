@@ -161,21 +161,21 @@
                     </Grid>
                     <StackPanel Orientation="Horizontal" Name="firstPage">
                         <Viewbox>
+                            <cl:BasedSwitchButton Name="controlModel" Margin="5,35,0,35" ContentLeft="司钻" ContentDown="控制模式" ContentRight="遥控" UserControlClicked="btn_controlModel"/>
+                        </Viewbox>
+                        <Viewbox>
                             <cl:BasedSwitchButton Name="oprModel" Margin="5,35,0,35" ContentLeft="手动" ContentDown="操作模式" ContentRight="自动" UserControlClicked="btn_oprModel"/>
                         </Viewbox>
                         <Viewbox>
                             <cl:BasedSwitchButton Name="workModel" Margin="5,35,0,35" ContentLeft="上扣" ContentDown="工作模式" ContentRight="卸扣" UserControlClicked="btn_workModel"/>
                         </Viewbox>
-                        <Viewbox>
-                            <cl:BasedSwitchButton Name="PipeTypeModel" Margin="5,35,0,35" ContentLeft="钻杆/铤" ContentDown="钻具选择" ContentRight="套管" UserControlClicked="btn_PipeTypeModel"/>
-                        </Viewbox>
-                   </StackPanel>
+                    </StackPanel>
                     <StackPanel Orientation="Horizontal" Name="secondPage" Visibility="Collapsed">
                         <Viewbox>
                             <cl:BasedSwitchButton Name="locationModel" Margin="5,35,0,35" ContentLeft="井口" ContentDown="工位选择" ContentRight="鼠洞" UserControlClicked="btn_locationModel"/>
                         </Viewbox>
                         <Viewbox>
-                            <cl:BasedSwitchButton Name="controlModel" Margin="5,35,0,35" ContentLeft="司钻" ContentDown="控制模式" ContentRight="遥控" UserControlClicked="btn_controlModel"/>
+                            <cl:BasedSwitchButton Name="PipeTypeModel" Margin="5,35,0,35" ContentLeft="钻杆/铤" ContentDown="钻具选择" ContentRight="套管" UserControlClicked="btn_PipeTypeModel"/>
                         </Viewbox>
                     </StackPanel>
                     <Grid Width="50" Margin="10,0,0,0">

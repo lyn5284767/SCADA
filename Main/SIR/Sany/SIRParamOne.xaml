@@ -35,78 +35,88 @@
             <Setter Property="Foreground" Value="Black"/>
         </Style>
     </UserControl.Resources>
-    <Grid>
-        <StackPanel Grid.Column="1">
-            <StackPanel Orientation="Horizontal" Background="White">
-                <TextBlock Text="参数名" FontSize="18" FontWeight="Bold" Width="150" Margin="40,0,0,0" TextAlignment="Center"></TextBlock>
-                <TextBlock Text="显示值" FontSize="18" FontWeight="Bold" Width="70" TextAlignment="Center"></TextBlock>
-                <TextBlock Text="转换扭矩" FontSize="18" FontWeight="Bold" Width="150" TextAlignment="Center"></TextBlock>
-                <TextBlock Text="标定值" FontSize="18" FontWeight="Bold" Width="70" TextAlignment="Center"></TextBlock>
-            </StackPanel>
-            <Border Name="bdDrill" Background="White" BorderBrush="White" BorderThickness="1" Margin="2,5,2,5" CornerRadius="5" >
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="40"/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0">
-                        <StackPanel Orientation="Vertical">
-                            <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="2" Padding="3">
-                                <TextBlock Text="钻&#x0a;杆&#x0a;/&#x0a;钻&#x0a;铤&#x0a;类&#x0a;型"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Height="180" />
-                            </Border>
-                        </StackPanel>
-                    </Grid>
-                    <Grid Grid.Column="1">
-                        <StackPanel Orientation="Vertical">
-                            <inputcontrol:TextWithTips Name="twtL9" Margin="0,5,0,5" Head="24,17,3,1" UnitOne="R" UnitTwo="/" UnitThree="R" TbkText="上扣圈数设置" MaxVal="19"/>
-                            <inputcontrol:TextWithTips Name="twtL10" Margin="0,5,0,5" Head="24,17,3,2" UnitOne="R" UnitTwo="/" UnitThree="R"  TbkText="卸扣圈数设置" MaxVal="19"/>
-                            <inputcontrol:TextWithTips Name="twtL1" Margin="0,5,0,5" Head="24,17,1,1" UnitOne="Mpa" UnitTwo="KN.m" UnitThree="KN.m"  TbkText="高挡上扣设置" MaxVal="9999"/>
-                            <inputcontrol:TextWithTips Name="twtL2" Margin="0,5,0,5" Head="24,17,1,2" UnitOne="Mpa" UnitTwo="KN.m" UnitThree="Mpa"  TbkText="上扣安全保护" MaxVal="21.5" Multiply="True"/>
-                            <inputcontrol:TextWithTips Name="twtL11" Margin="0,5,0,5" Head="24,17,3,3" UnitOne="Mpa" UnitTwo="KN.m" UnitThree="KN.m"  TbkText="紧扣扭矩设置" MaxVal="9999"/>
-                            <inputcontrol:TextWithTips Name="twtL12" Margin="0,5,0,5" Head="24,17,3,4" UnitOne="Mpa" UnitTwo="KN.m" UnitThree="Mpa"  TbkText="紧扣安全保护" MaxVal="21.5" Multiply="True"/>
-                            <inputcontrol:TextWithTips Name="twtL3" Margin="0,5,0,5" Head="24,17,1,3" UnitOne="S" UnitTwo="/" UnitThree="S"  TbkText="冲扣动作周期" MaxVal="255"/>
-                            <inputcontrol:TextWithTips Name="twtL4" Margin="0,5,0,5" Head="24,17,1,4" UnitOne="Mpa" UnitTwo="KN.m" UnitThree="Mpa"  TbkText="卸扣安全保护" MaxVal="21.5" Multiply="True"/>
-                            <!--<cl:TextBlockWithTextBox Name="twtL9" TagTwo="3" ControlTag="1"  TbkText="上扣圈数设置"/>-->
-                            <!--<cl:TextBlockWithTextBox Name="twtL10" TagTwo="3" ControlTag="2"  TbkText="卸扣圈数设置"/>
+    <Viewbox>
+        <Grid Width="840">
+            <StackPanel Grid.Column="1">
+                <StackPanel Orientation="Horizontal" Background="White">
+                    <Viewbox>
+                        <TextBlock Text="参数名" FontSize="18" FontWeight="Bold" Width="150" Margin="40,0,0,0" TextAlignment="Center"></TextBlock>
+                    </Viewbox>
+                    <Viewbox>
+                        <TextBlock Text="显示值" FontSize="18" FontWeight="Bold" Width="70" TextAlignment="Center"></TextBlock>
+                    </Viewbox>
+                    <Viewbox>
+                        <TextBlock Text="转换扭矩" FontSize="18" FontWeight="Bold" Width="150" TextAlignment="Center"></TextBlock>
+                    </Viewbox>
+                    <Viewbox>
+                        <TextBlock Text="标定值" FontSize="18" FontWeight="Bold" Width="70" TextAlignment="Center"></TextBlock>
+                    </Viewbox>
+                </StackPanel>
+                <Border Name="bdDrill" Background="White" BorderBrush="White" BorderThickness="1" Margin="2,5,2,5" CornerRadius="5" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <StackPanel Orientation="Vertical">
+                                <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="2" Padding="3">
+                                    <TextBlock Text="钻&#x0a;杆&#x0a;/&#x0a;钻&#x0a;铤&#x0a;类&#x0a;型"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Height="180" />
+                                </Border>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <StackPanel Orientation="Vertical">
+                                <inputcontrol:TextWithTips Name="twtL9" Margin="0,5,0,5" Head="24,17,3,1" UnitOne="R" UnitTwo="/" UnitThree="R" TbkText="上扣圈数设置" MaxVal="19"/>
+                                <inputcontrol:TextWithTips Name="twtL10" Margin="0,5,0,5" Head="24,17,3,2" UnitOne="R" UnitTwo="/" UnitThree="R"  TbkText="卸扣圈数设置" MaxVal="19"/>
+                                <inputcontrol:TextWithTips Name="twtL1" Margin="0,5,0,5" Head="24,17,1,1" UnitOne="Mpa" UnitTwo="KN.m" UnitThree="KN.m"  TbkText="高挡上扣设置" MaxVal="9999"/>
+                                <inputcontrol:TextWithTips Name="twtL2" Margin="0,5,0,5" Head="24,17,1,2" UnitOne="Mpa" UnitTwo="KN.m" UnitThree="Mpa"  TbkText="上扣安全保护" MaxVal="21.5" Multiply="True"/>
+                                <inputcontrol:TextWithTips Name="twtL11" Margin="0,5,0,5" Head="24,17,3,3" UnitOne="Mpa" UnitTwo="KN.m" UnitThree="KN.m"  TbkText="紧扣扭矩设置" MaxVal="9999"/>
+                                <inputcontrol:TextWithTips Name="twtL12" Margin="0,5,0,5" Head="24,17,3,4" UnitOne="Mpa" UnitTwo="KN.m" UnitThree="Mpa"  TbkText="紧扣安全保护" MaxVal="21.5" Multiply="True"/>
+                                <inputcontrol:TextWithTips Name="twtL3" Margin="0,5,0,5" Head="24,17,1,3" UnitOne="S" UnitTwo="/" UnitThree="S"  TbkText="冲扣动作周期" MaxVal="255"/>
+                                <inputcontrol:TextWithTips Name="twtL4" Margin="0,5,0,5" Head="24,17,1,4" UnitOne="Mpa" UnitTwo="KN.m" UnitThree="Mpa"  TbkText="卸扣安全保护" MaxVal="21.5" Multiply="True"/>
+                                <!--<cl:TextBlockWithTextBox Name="twtL9" TagTwo="3" ControlTag="1"  TbkText="上扣圈数设置"/>-->
+                                <!--<cl:TextBlockWithTextBox Name="twtL10" TagTwo="3" ControlTag="2"  TbkText="卸扣圈数设置"/>
                             <cl:TextBlockWithTextBox Name="twtL1" TagTwo="1" ControlTag="1"  TbkText="高速上扣设置"/>
                             <cl:TextBlockWithTextBox Name="twtL2" TagTwo="1" ControlTag="2"  TbkText="上扣安全保护"/>
                             <cl:TextBlockWithTextBox Name="twtL11" TagTwo="3" ControlTag="3"  TbkText="紧扣动作设置"/>
                             <cl:TextBlockWithTextBox Name="twtL12" TagTwo="3" ControlTag="4"  TbkText="紧扣安全保护"/>
                             <cl:TextBlockWithTextBox Name="twtL3" TagTwo="1" ControlTag="3"  TbkText="冲扣动作周期"/>
                             <cl:TextBlockWithTextBox Name="twtL4" TagTwo="1" ControlTag="4"  TbkText="卸扣安全保护"/>-->
-                        </StackPanel>
+                            </StackPanel>
+                        </Grid>
                     </Grid>
-                </Grid>
-            </Border>
-            <Border Name="bdTubes" Background="White" BorderBrush="White" BorderThickness="1" Margin="2,5,2,5" CornerRadius="5" >
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="40"/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0">
-                        <StackPanel Orientation="Vertical">
-                            <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="2" Padding="3">
-                                <TextBlock Text="套&#x0a;管&#x0a;类&#x0a;型&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Height="90"/>
-                            </Border>
-                        </StackPanel>
-                    </Grid>
-                    <Grid Grid.Column="1">
-                        <StackPanel Orientation="Vertical">
-                            <inputcontrol:TextWithTips Name="twtL5" Margin="0,5,0,5" Head="24,17,2,1" UnitOne="Mpa" UnitTwo="KN.m" UnitThree="KN.m"  TbkText="高档上扣设置" MaxVal="21.5" Multiply="True"/>
-                            <inputcontrol:TextWithTips Name="twtL6" Margin="0,5,0,5" Head="24,17,2,2" UnitOne="Mpa" UnitTwo="KN.m" UnitThree="Mpa"  TbkText="上扣安全保护" MaxVal="21.5" Multiply="True"/>
-                            <inputcontrol:TextWithTips Name="twtL7" Margin="0,5,0,5" Head="24,17,2,3" UnitOne="Mpa" UnitTwo="KN.m" UnitThree="KN.m"  TbkText="卸扣扭矩设置" MaxVal="21.5" Multiply="True"/>
-                            <inputcontrol:TextWithTips Name="twtL8" Margin="0,5,0,5" Head="24,17,2,4" UnitOne="Mpa" UnitTwo="KN.m" UnitThree="KN.m"  TbkText="卸扣安全保护" MaxVal="21.5" Multiply="True"/>
-                            <!--<cl:TextBlockWithTextBox Name="twtL5" TagTwo="2" ControlTag="1"  TbkText="上扣动作设置"/>-->
-                            <!--<cl:TextBlockWithTextBox Name="twtL6" TagTwo="2" ControlTag="2"  TbkText="上扣安全保护"/>-->
-                            <!--<cl:TextBlockWithTextBox Name="twtL7" TagTwo="2" ControlTag="3"  TbkText="卸扣动作设置"/>
+                </Border>
+                <Border Name="bdTubes" Background="White" BorderBrush="White" BorderThickness="1" Margin="2,5,2,5" CornerRadius="5" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <StackPanel Orientation="Vertical">
+                                <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="1,0,1,0" Margin="2" Padding="3">
+                                    <TextBlock Text="套&#x0a;管&#x0a;类&#x0a;型&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Height="90"/>
+                                </Border>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <StackPanel Orientation="Vertical">
+                                <inputcontrol:TextWithTips Name="twtL5" Margin="0,5,0,5" Head="24,17,2,1" UnitOne="Mpa" UnitTwo="KN.m" UnitThree="KN.m"  TbkText="高档上扣设置" MaxVal="21.5" Multiply="True"/>
+                                <inputcontrol:TextWithTips Name="twtL6" Margin="0,5,0,5" Head="24,17,2,2" UnitOne="Mpa" UnitTwo="KN.m" UnitThree="Mpa"  TbkText="上扣安全保护" MaxVal="21.5" Multiply="True"/>
+                                <inputcontrol:TextWithTips Name="twtL7" Margin="0,5,0,5" Head="24,17,2,3" UnitOne="Mpa" UnitTwo="KN.m" UnitThree="KN.m"  TbkText="卸扣扭矩设置" MaxVal="21.5" Multiply="True"/>
+                                <inputcontrol:TextWithTips Name="twtL8" Margin="0,5,0,5" Head="24,17,2,4" UnitOne="Mpa" UnitTwo="KN.m" UnitThree="KN.m"  TbkText="卸扣安全保护" MaxVal="21.5" Multiply="True"/>
+                                <!--<cl:TextBlockWithTextBox Name="twtL5" TagTwo="2" ControlTag="1"  TbkText="上扣动作设置"/>-->
+                                <!--<cl:TextBlockWithTextBox Name="twtL6" TagTwo="2" ControlTag="2"  TbkText="上扣安全保护"/>-->
+                                <!--<cl:TextBlockWithTextBox Name="twtL7" TagTwo="2" ControlTag="3"  TbkText="卸扣动作设置"/>
                             <cl:TextBlockWithTextBox Name="twtL8" TagTwo="2" ControlTag="4"  TbkText="卸扣安全保护"/>-->
-                        </StackPanel>
+                            </StackPanel>
+                        </Grid>
                     </Grid>
-                </Grid>
-            </Border>
-            
-            <Button Content="确 认 配 置" Click="Button_tabItemParameterConfiguration_Confirm" Style="{StaticResource btnGreen}" FontWeight="Bold" FontFamily="宋体" FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="35" IsDefault="False"/>
-        </StackPanel>
-    </Grid>
+                </Border>
+
+                <Button Content="确 认 配 置" Click="Button_tabItemParameterConfiguration_Confirm" Style="{StaticResource btnGreen}" FontWeight="Bold" FontFamily="宋体" FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="35" IsDefault="False"/>
+            </StackPanel>
+        </Grid>
+    </Viewbox>
 </UserControl>

@@ -71,19 +71,19 @@
                             <TextBlock Text="防摆动"></TextBlock>
                         </Border>
                         <Border Grid.Row="0" Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
-                            <cl:SymbolMapping Name="smLocalOpr" StrContent="" LampType="3" Width="40" Height="40"/>
+                            <cl:SymbolMapping Name="smLocalOpr" StrContent="" LampType="0" Width="40" Height="40"/>
                         </Border>
                         <Border Grid.Row="1" Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
-                            <cl:SymbolMapping Name="smUpResetOutBtn" StrContent="" LampType="3" Width="40" Height="40"/>
+                            <cl:SymbolMapping Name="smUpResetOutBtn" StrContent="" LampType="0" Width="40" Height="40"/>
                         </Border>
                         <Border Grid.Row="2" Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
-                            <cl:SymbolMapping Name="smCosingPress" StrContent="" LampType="3" Width="40" Height="40"/>
+                            <cl:SymbolMapping Name="smCosingPress" StrContent="" LampType="0" Width="40" Height="40"/>
                         </Border>
                         <Border Grid.Row="3" Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
-                            <cl:SymbolMapping Name="smBackTongsClose" StrContent="" LampType="3" Width="40" Height="40"/>
+                            <cl:SymbolMapping Name="smBackTongsClose" StrContent="" LampType="0" Width="40" Height="40"/>
                         </Border>
                         <Border Grid.Row="4" Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
-                            <cl:SymbolMapping Name="smStopMove" StrContent="" LampType="3" Width="40" Height="40"/>
+                            <cl:SymbolMapping Name="smStopMove" StrContent="" LampType="0" Width="40" Height="40"/>
                         </Border>
                         <Border Grid.Row="0" Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
                             <TextBlock Text="背钳伸出"></TextBlock>
@@ -101,19 +101,19 @@
                             <TextBlock Text="连杆升降"></TextBlock>
                         </Border>
                         <Border Grid.Row="0" Grid.Column="3" BorderBrush="Gray" BorderThickness="1">
-                            <cl:SymbolMapping Name="smBackTongReach" StrContent="" LampType="3" Width="40" Height="40"/>
+                            <cl:SymbolMapping Name="smBackTongReach" StrContent="" LampType="0" Width="40" Height="40"/>
                         </Border>
                         <Border Grid.Row="1" Grid.Column="3" BorderBrush="Gray" BorderThickness="1">
-                            <cl:SymbolMapping Name="smDownResetInBtn" StrContent="" LampType="3" Width="40" Height="40"/>
+                            <cl:SymbolMapping Name="smDownResetInBtn" StrContent="" LampType="0" Width="40" Height="40"/>
                         </Border>
                         <Border Grid.Row="2" Grid.Column="3" BorderBrush="Gray" BorderThickness="1">
-                            <cl:SymbolMapping Name="smRotateFloat" StrContent="" LampType="3" Width="40" Height="40"/>
+                            <cl:SymbolMapping Name="smRotateFloat" StrContent="" LampType="0" Width="40" Height="40"/>
                         </Border>
                         <Border Grid.Row="3" Grid.Column="3" BorderBrush="Gray" BorderThickness="1">
-                            <cl:SymbolMapping Name="smBakcTongsOpen" StrContent="" LampType="3" Width="40" Height="40"/>
+                            <cl:SymbolMapping Name="smBakcTongsOpen" StrContent="" LampType="0" Width="40" Height="40"/>
                         </Border>
                         <Border Grid.Row="4" Grid.Column="3" BorderBrush="Gray" BorderThickness="1">
-                            <cl:SymbolMapping Name="smPipeUpDown" StrContent="" LampType="3" Width="40" Height="40"/>
+                            <cl:SymbolMapping Name="smPipeUpDown" StrContent="" LampType="0" Width="40" Height="40"/>
                         </Border>
                         <Border Grid.Row="0" Grid.Column="4" BorderBrush="Gray" BorderThickness="1">
                             <TextBlock Text="背钳缩回"></TextBlock>
@@ -131,46 +131,46 @@
                             <TextBlock Text="钳体高档"></TextBlock>
                         </Border>
                         <Border Grid.Row="0" Grid.Column="5" BorderBrush="Gray" BorderThickness="1">
-                            <cl:SymbolMapping Name="smBackTongRetract" StrContent="" LampType="3" Width="40" Height="40"/>
+                            <cl:SymbolMapping Name="smBackTongRetract" StrContent="" LampType="0" Width="40" Height="40"/>
                         </Border>
                         <Border Grid.Row="1" Grid.Column="5" BorderBrush="Gray" BorderThickness="1">
-                            <cl:SymbolMapping Name="smDownRestOutBtn" StrContent="" LampType="3" Width="40" Height="40"/>
+                            <cl:SymbolMapping Name="smDownRestOutBtn" StrContent="" LampType="0" Width="40" Height="40"/>
                         </Border>
                         <Border Grid.Row="2" Grid.Column="5" BorderBrush="Gray" BorderThickness="1">
-                            <cl:SymbolMapping Name="smAlarm" StrContent="" LampType="3" Width="40" Height="40"/>
+                            <cl:SymbolMapping Name="smAlarm" StrContent="" LampType="0" Width="40" Height="40"/>
                         </Border>
                         <Border Grid.Row="3" Grid.Column="5" BorderBrush="Gray" BorderThickness="1">
-                            <cl:SymbolMapping Name="smTongsFront" StrContent="" LampType="3" Width="40" Height="40"/>
+                            <cl:SymbolMapping Name="smTongsFront" StrContent="" LampType="0" Width="40" Height="40"/>
                         </Border>
                         <Border Grid.Row="4" Grid.Column="5" BorderBrush="Gray" BorderThickness="1">
-                            <cl:SymbolMapping Name="smTongsHigh" StrContent="" LampType="3" Width="40" Height="40"/>
+                            <cl:SymbolMapping Name="smTongsHigh" StrContent="" LampType="0" Width="40" Height="40"/>
                         </Border>
                         <Border Grid.Row="0" Grid.Column="6" BorderBrush="Gray" BorderThickness="1">
                             <TextBlock Text="上复位上扣"></TextBlock>
                         </Border>
-                        <Border Grid.Row="1" Grid.Column="6" BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="0.333,0.333,0,0.333" Width="126">
+                        <Border Grid.Row="1" Grid.Column="6" BorderBrush="Gray" BorderThickness="1" >
                             <TextBlock Text="紧急停止"></TextBlock>
                         </Border>
-                        <Border Grid.Row="3" Grid.Column="6" BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="0.333,0.333,0,0.333" Width="126">
+                        <Border Grid.Row="3" Grid.Column="6" BorderBrush="Gray" BorderThickness="1">
                             <TextBlock Text="钳体后摆"></TextBlock>
                         </Border>
-                        <Border Grid.Row="4" Grid.Column="6" BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="0.333,0.333,0,0.333" Width="126">
+                        <Border Grid.Row="4" Grid.Column="6" BorderBrush="Gray" BorderThickness="1">
                             <TextBlock Text="钳体低档"></TextBlock>
                         </Border>
                         <Border Grid.Row="2" Grid.Column="6" BorderBrush="Gray" BorderThickness="1">
                            
                         </Border>
                         <Border Grid.Row="0" Grid.Column="7" BorderBrush="Gray" BorderThickness="1">
-                            <cl:SymbolMapping Name="smUpResetInBtn" StrContent="" LampType="3" Width="40" Height="40"/>
+                            <cl:SymbolMapping Name="smUpResetInBtn" StrContent="" LampType="0" Width="40" Height="40"/>
                         </Border>
                         <Border Grid.Row="1" Grid.Column="7" BorderBrush="Gray" BorderThickness="1">
-                            <cl:SymbolMapping Name="smStop" StrContent="" LampType="3" Width="40" Height="40"/>
+                            <cl:SymbolMapping Name="smStop" StrContent="" LampType="0" Width="40" Height="40"/>
                         </Border>
                         <Border Grid.Row="3" Grid.Column="7" BorderBrush="Gray" BorderThickness="1">
-                            <cl:SymbolMapping Name="smTongsBack" StrContent="" LampType="3" Width="40" Height="40"/>
+                            <cl:SymbolMapping Name="smTongsBack" StrContent="" LampType="0" Width="40" Height="40"/>
                         </Border>
                         <Border Grid.Row="4" Grid.Column="7" BorderBrush="Gray" BorderThickness="1">
-                            <cl:SymbolMapping Name="smTongsLow" StrContent="" LampType="3" Width="40" Height="40"/>
+                            <cl:SymbolMapping Name="smTongsLow" StrContent="" LampType="0" Width="40" Height="40"/>
                         </Border>
                         <Border Grid.Row="2" Grid.Column="7" BorderBrush="Gray" BorderThickness="1">
                             

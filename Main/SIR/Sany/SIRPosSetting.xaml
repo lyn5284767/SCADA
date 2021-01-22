@@ -48,7 +48,8 @@
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
                 <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="480">
-                    <StackPanel Orientation="Horizontal">
+                    <Viewbox>
+                        <StackPanel Orientation="Horizontal">
                         <!--<Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
                             <TextBlock Text="小&#x0a;车&#x0a;参&#x0a;数&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontFamily="宋体" FontWeight="Bold"/>
                         </Border>-->
@@ -73,6 +74,7 @@
                             <!--<Button Content="确 定 配 置"  Click="Button_Setting"  Style="{StaticResource btnGreen}" FontWeight="Bold" FontFamily="微软雅黑" FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="40" IsDefault="False"/>-->
                         </StackPanel>
                     </StackPanel>
+                    </Viewbox>
                 </Border>
             </StackPanel>
         </Grid>
