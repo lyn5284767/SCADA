@@ -464,7 +464,6 @@ namespace Main
                 GlobalData.Instance.da = new DemoDriver.DAService();
                 IsLogin();
                 //MouseDownSF(null, null);
-                MouseIng(null, null);
                 reportTimer = new System.Timers.Timer();
                 reportTimer.Interval = 1000;
                 reportTimer.Elapsed += ReportTimer_Elapsed;
@@ -473,6 +472,29 @@ namespace Main
                 deviceTimer = new System.Timers.Timer(200);
                 deviceTimer.Elapsed += DeviceTimer_Elapsed;
                 deviceTimer.Enabled = true;
+                //SetUnUseDevice();
+                InitSystem();
+            }
+            catch (Exception ex)
+            {
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+            }
+        }
+        /// <summary>
+        /// 初始化系统
+        /// </summary>
+        private void InitSystem()
+        {
+            this.tbIng.MaxDropDownHeight = 500;
+            this.bdSf.MaxDropDownHeight = 500;
+            // 集成系统
+            if (GlobalData.Instance.da.GloConfig.IngSystem == 0)
+            {
+                this.spBottom.Visibility = Visibility.Visible;
+                this.gdbottomSF.Visibility = Visibility.Collapsed;
+                SetUseDevice();
+                InitIngRole();
+                MouseIng(null, null);
                 if (GlobalData.Instance.da.GloConfig.SysType == 0)
                 {
                     if (!GlobalData.Instance.da["575b0"].Value.Boolean)
@@ -481,39 +503,130 @@ namespace Main
                         SFStop.Instance.ShowDialog();
                     }
                 }
-                SetUnUseDevice();
-            }
-            catch (Exception ex)
+            }// 二层台单机
+            else if (GlobalData.Instance.da.GloConfig.IngSystem == 1)
             {
-                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+                this.spBottom.Visibility = Visibility.Collapsed;
+                this.gdbottomSF.Visibility = Visibility.Visible;
+                bdSFMain_Click(null, null);
+                if (GlobalData.Instance.systemRole <= SystemRole.TechMan)
+                {
+                    this.bdSFOther.Visibility = Visibility.Visible;
+                    this.bdSFVersion.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    this.bdSFOther.Visibility = Visibility.Collapsed;
+                    this.bdSFVersion.Visibility = Visibility.Visible;
+                }
             }
         }
         /// <summary>
-        /// 设置未使用的设备颜色
+        /// 初始化角色权限
         /// </summary>
-        private void SetUnUseDevice()
+        private void InitIngRole()
         {
-            var bc = new BrushConverter();
+            // 操作员
+            if (GlobalData.Instance.systemRole == SystemRole.OperMan)
+            {
+                this.miIngSecure.Visibility = Visibility.Collapsed;
+                this.miIngParam.Visibility = Visibility.Collapsed;
+                this.miIngPosition.Visibility = Visibility.Collapsed;
+
+                this.miSFSecure.Visibility = Visibility.Collapsed;
+                this.miSFParam.Visibility = Visibility.Collapsed;
+                this.miSFPosition.Visibility = Visibility.Collapsed;
+
+                this.miDRSecure.Visibility = Visibility.Collapsed;
+                this.miDRParam.Visibility = Visibility.Collapsed;
+                this.miDRPosition.Visibility = Visibility.Collapsed;
+
+                this.miSIRSecure.Visibility = Visibility.Collapsed;
+                this.miSIRParam.Visibility = Visibility.Collapsed;
+                this.miSIRPosition.Visibility = Visibility.Collapsed;
+            }// 管理员
+            else if (GlobalData.Instance.systemRole == SystemRole.AdminMan)
+            {
+                this.miIngParam.Visibility = Visibility.Collapsed;
+                this.miIngPosition.Visibility = Visibility.Collapsed;
+
+                this.miSFParam.Visibility = Visibility.Collapsed;
+                this.miSFPosition.Visibility = Visibility.Collapsed;
+
+                this.miDRParam.Visibility = Visibility.Collapsed;
+                this.miDRPosition.Visibility = Visibility.Collapsed;
+
+                this.miSIRParam.Visibility = Visibility.Collapsed;
+                this.miSIRPosition.Visibility = Visibility.Collapsed;
+            }// 技术员
+            else if (GlobalData.Instance.systemRole == SystemRole.TechMan)
+            {
+                this.miIngParam.Visibility = Visibility.Collapsed;
+                this.miSFParam.Visibility = Visibility.Collapsed;
+                this.miDRPosition.Visibility = Visibility.Collapsed;
+                this.miSIRParam.Visibility = Visibility.Collapsed;
+            }
+        }
+        /// <summary>
+        /// 设置配置的集成设备
+        /// </summary>
+        private void SetUseDevice()
+        {
+            // 默认显示一个集成系统
+            int TotalDeviceNum = 1;
+            double TotalWidth = this.Width;
             if (GlobalData.Instance.da.GloConfig.SFType == 0)
             {
-                this.tbSf.Foreground = (Brush)bc.ConvertFrom("#BDBDBD");
+                this.bdSf.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                this.bdSf.Visibility = Visibility.Visible;
+                TotalDeviceNum += 1;
             }
             if (GlobalData.Instance.da.GloConfig.DRType == 0)
             {
-                this.tbDR.Foreground = (Brush)bc.ConvertFrom("#BDBDBD");
+                this.bdDR.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                this.bdDR.Visibility = Visibility.Visible;
+                TotalDeviceNum += 1;
             }
             if (GlobalData.Instance.da.GloConfig.SIRType == 0)
             {
-                this.tbSIR.Foreground = (Brush)bc.ConvertFrom("#BDBDBD");
+                this.bdSIR.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                this.bdSIR.Visibility = Visibility.Visible;
+                TotalDeviceNum += 1;
             }
             if (GlobalData.Instance.da.GloConfig.CatType == 0)
             {
-                this.tbCat.Foreground = (Brush)bc.ConvertFrom("#BDBDBD");
+                this.bdCat.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                this.bdCat.Visibility = Visibility.Visible;
+                TotalDeviceNum += 1;
             }
             if (GlobalData.Instance.da.GloConfig.HydType == 0)
             {
-                this.tbHS.Foreground = (Brush)bc.ConvertFrom("#BDBDBD");
+                this.bdHS.Visibility = Visibility.Collapsed;
             }
+            else
+            {
+                this.bdHS.Visibility = Visibility.Visible;
+                TotalDeviceNum += 1;
+            }
+            double avgWidth = (TotalWidth-100) / TotalDeviceNum;
+            this.tbIng.Width = avgWidth;
+            if (GlobalData.Instance.da.GloConfig.SFType != 0) this.bdSf.Width = avgWidth;
+            if (GlobalData.Instance.da.GloConfig.DRType != 0) this.bdDR.Width = avgWidth;
+            if (GlobalData.Instance.da.GloConfig.SIRType != 0) this.bdSIR.Width = avgWidth;
+            if (GlobalData.Instance.da.GloConfig.CatType != 0) this.bdCat.Width = avgWidth;
+            if (GlobalData.Instance.da.GloConfig.HydType != 0) this.bdHS.Width = avgWidth;
         }
 
 
@@ -537,22 +650,7 @@ namespace Main
                 timer.Start();
             }
         }
-        /// <summary>
-        /// 二层台 主页
-        /// </summary>
-        private void MouseDownSF(object sender, MouseButtonEventArgs e)
-        {
-            if (GlobalData.Instance.da.GloConfig.SFType == 0)
-            {
-                MessageBox.Show("未配置二层台");
-                return;
-            }
-            this.spMain.Children.Clear();
-            this.spMain.Children.Add(projectLoad);
-            this.projectLoad.Visibility = System.Windows.Visibility.Visible;
-            nowSystemType = SystemType.SecondFloor;
-            this.mainTitle.Content = "SYAPS-二层台:主页";
-        }
+       
         /// <summary>
         /// 主页
         /// </summary>
@@ -1406,75 +1504,36 @@ namespace Main
                 MessageBox.Show("关机部件保养周期到，请及时保养");
             }
         }
-        /// <summary>
-        /// 钻台面台
-        /// </summary>
-        private void MouseDR(object sender, MouseButtonEventArgs e)
-        {
-            if (GlobalData.Instance.da.GloConfig.DRType == 0)
-            {
-                MessageBox.Show("未配置钻台面");
-                return;
-            }
-            this.spMain.Children.Clear();
-            this.spMain.Children.Add(projectLoad);
-            this.projectLoad.Visibility = System.Windows.Visibility.Visible;
-            nowSystemType = SystemType.DrillFloor;
-            this.mainTitle.Content = "SYAPS-钻台面:主页";
-        }
-        /// <summary>
-        /// 集成系统
-        /// </summary>
-        private void MouseIng(object sender, MouseButtonEventArgs e)
-        {
-            try
-            {
-                this.spMain.Children.Clear();
-                this.spMain.Children.Add(IngMain.Instance);
-                //this.spMain.Children.Add(IngMainNew.Instance);
-                GlobalData.Instance.Ing = true;
-                IngMainNew.Instance.SetNowTechniqueEvent += Instance_SetNowTechniqueEvent;
-                GlobalData.Instance.systemType = SystemType.CIMS;
-
-                this.BottomColorSetting(this.bdIng, this.tbIng, this.gdbottom);
-                SetBorderBackGround();
-                this.mainTitle.Content = "SYAPS-集成系统:主页";
-            }
-            catch (Exception ex)
-            {
-                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
-                MessageBox.Show(ex.StackTrace);
-            }
-        }
+     
         /// <summary>
         /// 切换工艺模式
         /// </summary>
         /// <param name="technique">当前工艺</param>
         private void Instance_SetNowTechniqueEvent(Technique technique)
         {
-            if (technique == Technique.DrillDown)
-            {
-                this.tbTechnique.Text = "工艺:" + Environment.NewLine + "下钻";
-                this.tbMidDeviceOne.Text = "防喷筒";
+            //if (technique == Technique.DrillDown)
+            //{
+            //    this.tbTechnique.Text = "模式:" + Environment.NewLine + "下钻";
+            //    this.tbMidDeviceOne.Text = "防喷筒";
                 
-                Grid.SetColumn(this.bdSIR, 5);
-                Grid.SetColumn(this.bdMidDeviceOne, 4);
-                Grid.SetColumn(this.bdDR, 3);
-                Grid.SetColumn(this.bdSf, 2);
-            }
-            else if (technique == Technique.DrillUp)
-            {
-                this.tbTechnique.Text = "工艺:" + Environment.NewLine + "起钻";
-                this.tbMidDeviceOne.Text = "清扣和" + Environment.NewLine + "丝扣油";
-                Grid.SetColumn(this.bdSIR, 2);
-                Grid.SetColumn(this.bdMidDeviceOne, 3);
-                Grid.SetColumn(this.bdDR, 4);
-                Grid.SetColumn(this.bdSf, 5);
-            }
-            else
-            {
-                this.tbTechnique.Text = "非联动";
-            }
+            //    Grid.SetColumn(this.bdSIR, 5);
+            //    Grid.SetColumn(this.bdMidDeviceOne, 4);
+            //    Grid.SetColumn(this.bdDR, 3);
+            //    Grid.SetColumn(this.bdSf, 2);
+            //}
+            //else if (technique == Technique.DrillUp)
+            //{
+            //    this.tbTechnique.Text = "模式:" + Environment.NewLine + "起钻";
+            //    this.tbMidDeviceOne.Text = "清扣和" + Environment.NewLine + "丝扣油";
+            //    Grid.SetColumn(this.bdSIR, 2);
+            //    Grid.SetColumn(this.bdMidDeviceOne, 3);
+            //    Grid.SetColumn(this.bdDR, 4);
+            //    Grid.SetColumn(this.bdSf, 5);
+            //}
+            //else
+            //{
+            //    this.tbTechnique.Text = "非联动";
+            //}
         }
 
         /// <summary>
@@ -1543,12 +1602,12 @@ namespace Main
             foreach (Border bd in FindVisualChildren<Border>(gdBottom))
             {
                 //bd.Background = (Brush)bc.ConvertFrom("#C4DEE8");
-                if (bd.Name == "bdHome"|| bd.Name == "bdSf" || bd.Name == "bdDR" || bd.Name == "bdIng" || bd.Name == "bdHome" || bd.Name == "bdDrillSetting"
-                    || bd.Name == "bdSecureSetting" || bd.Name == "bdIO" || bd.Name == "bdDeviceStatus" || bd.Name == "bdOther" || bd.Name=="bdSIR" || bd.Name == "bdHS"
-                    || bd.Name== "bdCat")
-                {
+                //if (bd.Name == "bdHome"|| bd.Name == "bdSf" || bd.Name == "bdDR" || bd.Name == "bdIng" || bd.Name == "bdHome" || bd.Name == "bdDrillSetting"
+                //    || bd.Name == "bdSecureSetting" || bd.Name == "bdIO" || bd.Name == "bdDeviceStatus" || bd.Name == "bdOther" || bd.Name=="bdSIR" || bd.Name == "bdHS"
+                //    || bd.Name== "bdCat")
+                //{
                     bd.Background = (Brush)bc.ConvertFrom("#FCFDFF");
-                }
+                //}
             }
      
             foreach (TextBlock tb in FindVisualChildren<TextBlock>(gdBottom))
@@ -1558,19 +1617,42 @@ namespace Main
             bdLeft.Background = (Brush)bc.ConvertFrom("#80FFF8");
             tbLeft.Foreground = (Brush)bc.ConvertFrom("#000000");
 
-            SetUnUseDevice();
+            //SetUnUseDevice();
         }
-        /// <summary>
-        /// 铁钻工
-        /// </summary>
-        private void SIR_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+
+        private void BottomColorSetting(Border bdLeft, TextBlock tbLeft, StackPanel gdBottom)
         {
-            this.spMain.Children.Clear();
-            this.spMain.Children.Add(projectLoad);
-            this.projectLoad.Visibility = System.Windows.Visibility.Visible;
-            nowSystemType = SystemType.SIR;
-            this.mainTitle.Content = "SYAPS-铁钻工:主页";
+            var bc = new BrushConverter();
+            foreach (Border bd in FindVisualChildren<Border>(gdBottom))
+            {
+                bd.Background = (Brush)bc.ConvertFrom("#FCFDFF");
+            }
+
+            foreach (TextBlock tb in FindVisualChildren<TextBlock>(gdBottom))
+            {
+                tb.Foreground = (Brush)bc.ConvertFrom("#1F7AFF");
+            }
+            bdLeft.Background = (Brush)bc.ConvertFrom("#80FFF8");
+            tbLeft.Foreground = (Brush)bc.ConvertFrom("#000000");
+
+            //SetUnUseDevice();
         }
+
+        private void BottomColorSetting(HandyControl.Controls.SplitButton tbLeft, StackPanel gdBottom)
+        {
+            var bc = new BrushConverter();
+            foreach (HandyControl.Controls.SplitButton bd in FindVisualChildren<HandyControl.Controls.SplitButton>(gdBottom))
+            {
+                bd.Background = (Brush)bc.ConvertFrom("#FCFDFF");
+                bd.Foreground = (Brush)bc.ConvertFrom("#1F7AFF");
+            }
+
+            tbLeft.Background = (Brush)bc.ConvertFrom("#80FFF8");
+            tbLeft.Foreground = (Brush)bc.ConvertFrom("#000000");
+
+            //SetUnUseDevice();
+        }
+       
         /// <summary>
         /// 二层台-切换到手动模式
         /// </summary>
@@ -1626,259 +1708,165 @@ namespace Main
             }
             return true;
         }
-        /// <summary>
-        /// 液压站
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void MouseHS(object sender, MouseButtonEventArgs e)
-        {
-            try
-            {
-                if (GlobalData.Instance.da.GloConfig.SysType == 1)
-                {
-                    this.spMain.Children.Clear();
-                    this.spMain.Children.Add(WR_HS_Self_Main.Instance);
-                }
-                else
-                {
-                    GlobalData.Instance.Ing = false;
-                    if (GlobalData.Instance.da.GloConfig.HydType == 0)
-                    {
-                        MessageBox.Show("未配置液压站");
-                        return;
-                    }// 自研
-                    if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.SANY)
-                    {
-                        this.spMain.Children.Clear();
-                        this.spMain.Children.Add(HSMain.Instance);
-                    }// 宝石
-                    else if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.BS)
-                    {
-
-                    }// JJC
-                    else if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.JJC)
-                    {
-                        this.spMain.Children.Clear();
-                        this.spMain.Children.Add(JJC_HSMain.Instance);
-                    }
-                    else
-                    {
-                        MessageBox.Show("未配置液压站");
-                        return;
-                    }
-                }
-
-                GlobalData.Instance.systemType = SystemType.HydraulicStation;
-                this.BottomColorSetting(this.bdHS, this.tbHS, this.gdbottom);
-                SetBorderBackGround();
-                this.mainTitle.Content = "SYAPS-液压站:主页";
-            }
-            catch (Exception ex)
-            {
-                Log.Log4Net.AddLog(ex.ToString(), Log.InfoLevel.ERROR);
-            }
-        }
-        /// <summary>
-        /// 选择猫道
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Cat_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            try
-            {
-                nowSystemType = SystemType.CatRoad;
-                GlobalData.Instance.Ing = false;
-                if (GlobalData.Instance.da.GloConfig.CatType == 0)
-                {
-                    MessageBox.Show("未配置猫道");
-                    return;
-                }
-                // 自研
-                else if (GlobalData.Instance.da.GloConfig.CatType == (int)CatType.SANY)
-                {
-         
-                }
-                // 宝石
-                else if (GlobalData.Instance.da.GloConfig.CatType == (int)CatType.BS)
-                {
-                    this.spMain.Children.Clear();
-                    this.spMain.Children.Add(BSCatMain.Instance);
-                }
-                // 宏达
-                else if (GlobalData.Instance.da.GloConfig.CatType == (int)CatType.HD)
-                {
-                    
-                }
-
-                GlobalData.Instance.systemType = SystemType.CatRoad;
-                this.BottomColorSetting(this.bdCat, this.tbCat, this.gdbottom);
-                SetBorderBackGround();
-                this.mainTitle.Content = "SYAPS-猫道:主页";
-            }
-            catch (Exception ex)
-            {
-                Log.Log4Net.AddLog(ex.ToString(), Log.InfoLevel.ERROR);
-            }
-        }
+       
+      
         /// <summary>
         /// 根据选择不同类型设备，显示可用和不可用功能
         /// </summary>
         private void SetBorderBackGround()
         {
-            this.menuDrillSetting.Header = "设备设置";
-            this.menuDrillSetting.Visibility = Visibility.Visible;
-            this.menuSecureSetting.Visibility = Visibility.Visible;
-            this.menuIO.Visibility = Visibility.Visible;
-            this.menuDownDeviceStatus.Visibility = Visibility.Visible;
-            this.menuParam.Visibility = Visibility.Visible;
-            this.menuPosition.Visibility = Visibility.Visible;
-            this.menuCompensate.Visibility = Visibility.Visible;
-            this.menuRecord.Visibility = Visibility.Visible;
-            this.menuChart.Visibility = Visibility.Visible;
-            this.menuReport.Visibility = Visibility.Visible;
-            if (GlobalData.Instance.Ing)
-            {
-                this.menuDrillSetting.Header = "钻杆设置";
-                this.menuIO.Visibility = Visibility.Collapsed;
-                this.menuDownDeviceStatus.Visibility = Visibility.Collapsed;
-                this.menuCompensate.Visibility = Visibility.Collapsed;
+            //this.menuDrillSetting.Header = "设备设置";
+            //this.menuDrillSetting.Visibility = Visibility.Visible;
+            //this.menuSecureSetting.Visibility = Visibility.Visible;
+            //this.menuIO.Visibility = Visibility.Visible;
+            //this.menuDownDeviceStatus.Visibility = Visibility.Visible;
+            //this.menuParam.Visibility = Visibility.Visible;
+            //this.menuPosition.Visibility = Visibility.Visible;
+            //this.menuCompensate.Visibility = Visibility.Visible;
+            //this.menuRecord.Visibility = Visibility.Visible;
+            //this.menuChart.Visibility = Visibility.Visible;
+            //this.menuReport.Visibility = Visibility.Visible;
+            //if (GlobalData.Instance.Ing)
+            //{
+            //    this.menuDrillSetting.Header = "钻杆设置";
+            //    this.menuIO.Visibility = Visibility.Collapsed;
+            //    this.menuDownDeviceStatus.Visibility = Visibility.Collapsed;
+            //    this.menuCompensate.Visibility = Visibility.Collapsed;
              
-                this.menuChart.Visibility = Visibility.Collapsed;
-                this.menuReport.Visibility = Visibility.Collapsed;
-                return;
-            }
-            if (GlobalData.Instance.systemType == SystemType.SecondFloor)
-            {
-                this.menuDrillSetting.Header = "钻杆设置";
-            }
-            else if (GlobalData.Instance.systemType == SystemType.DrillFloor)
-            {
-                this.menuDrillSetting.Header = "钻杆设置";
-                this.menuIO.Visibility = Visibility.Collapsed;
-                this.menuCompensate.Visibility = Visibility.Collapsed;
-                this.menuRecord.Visibility = Visibility.Collapsed;
-                this.menuChart.Visibility = Visibility.Collapsed;
-                this.menuReport.Visibility = Visibility.Collapsed;
-            }
-            else if (GlobalData.Instance.systemType == SystemType.CatRoad)
-            {
-                this.menuDrillSetting.Visibility = Visibility.Collapsed;
-                this.menuSecureSetting.Visibility = Visibility.Collapsed;
-                this.menuIO.Visibility = Visibility.Collapsed;
-                this.menuDownDeviceStatus.Visibility = Visibility.Collapsed;
-                this.menuParam.Visibility = Visibility.Collapsed;
-                this.menuPosition.Visibility = Visibility.Collapsed;
-                this.menuCompensate.Visibility = Visibility.Collapsed;
-                this.menuRecord.Visibility = Visibility.Collapsed;
-                this.menuChart.Visibility = Visibility.Collapsed;
-                this.menuReport.Visibility = Visibility.Collapsed;
-            }
-            else if (GlobalData.Instance.systemType == SystemType.HydraulicStation)
-            {
-                if (GlobalData.Instance.da.GloConfig.SysType == 1) //修井
-                {
-                    if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.SANY)
-                    {
-                        this.menuSecureSetting.Visibility = Visibility.Collapsed;
-                        this.menuIO.Visibility = Visibility.Collapsed;
-                        this.menuParam.Visibility = Visibility.Collapsed;
-                        this.menuPosition.Visibility = Visibility.Collapsed;
-                        this.menuCompensate.Visibility = Visibility.Collapsed;
-                        this.menuChart.Visibility = Visibility.Collapsed;
-                    }
-                    else if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.JJC)
-                    {
-                        this.menuDrillSetting.Visibility = Visibility.Collapsed;
-                        this.menuSecureSetting.Visibility = Visibility.Collapsed;
-                        this.menuIO.Visibility = Visibility.Collapsed;
-                        this.menuDownDeviceStatus.Visibility = Visibility.Collapsed;
-                        this.menuParam.Visibility = Visibility.Collapsed;
-                        this.menuPosition.Visibility = Visibility.Collapsed;
-                        this.menuCompensate.Visibility = Visibility.Collapsed;
-                        this.menuRecord.Visibility = Visibility.Collapsed;
-                        this.menuChart.Visibility = Visibility.Collapsed;
-                        this.menuReport.Visibility = Visibility.Collapsed;
-                    }
-                }
-                else
-                {
-                    if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.SANY)
-                    {
-                        this.menuSecureSetting.Visibility = Visibility.Collapsed;
-                        this.menuIO.Visibility = Visibility.Collapsed;
-                        this.menuParam.Visibility = Visibility.Collapsed;
-                        this.menuPosition.Visibility = Visibility.Collapsed;
-                        this.menuCompensate.Visibility = Visibility.Collapsed;
-                        this.menuChart.Visibility = Visibility.Collapsed;
-                    }
-                    else if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.JJC)
-                    {
-                        this.menuDrillSetting.Visibility = Visibility.Collapsed;
-                        this.menuSecureSetting.Visibility = Visibility.Collapsed;
-                        this.menuIO.Visibility = Visibility.Collapsed;
-                        this.menuDownDeviceStatus.Visibility = Visibility.Collapsed;
-                        this.menuParam.Visibility = Visibility.Collapsed;
-                        this.menuPosition.Visibility = Visibility.Collapsed;
-                        this.menuCompensate.Visibility = Visibility.Collapsed;
-                        this.menuRecord.Visibility = Visibility.Collapsed;
-                        this.menuChart.Visibility = Visibility.Collapsed;
-                        this.menuReport.Visibility = Visibility.Collapsed;
-                    }
-                }
+            //    this.menuChart.Visibility = Visibility.Collapsed;
+            //    this.menuReport.Visibility = Visibility.Collapsed;
+            //    return;
+            //}
+            //if (GlobalData.Instance.systemType == SystemType.SecondFloor)
+            //{
+            //    this.menuDrillSetting.Header = "钻杆设置";
+            //}
+            //else if (GlobalData.Instance.systemType == SystemType.DrillFloor)
+            //{
+            //    this.menuDrillSetting.Header = "钻杆设置";
+            //    this.menuIO.Visibility = Visibility.Collapsed;
+            //    this.menuCompensate.Visibility = Visibility.Collapsed;
+            //    this.menuRecord.Visibility = Visibility.Collapsed;
+            //    this.menuChart.Visibility = Visibility.Collapsed;
+            //    this.menuReport.Visibility = Visibility.Collapsed;
+            //}
+            //else if (GlobalData.Instance.systemType == SystemType.CatRoad)
+            //{
+            //    this.menuDrillSetting.Visibility = Visibility.Collapsed;
+            //    this.menuSecureSetting.Visibility = Visibility.Collapsed;
+            //    this.menuIO.Visibility = Visibility.Collapsed;
+            //    this.menuDownDeviceStatus.Visibility = Visibility.Collapsed;
+            //    this.menuParam.Visibility = Visibility.Collapsed;
+            //    this.menuPosition.Visibility = Visibility.Collapsed;
+            //    this.menuCompensate.Visibility = Visibility.Collapsed;
+            //    this.menuRecord.Visibility = Visibility.Collapsed;
+            //    this.menuChart.Visibility = Visibility.Collapsed;
+            //    this.menuReport.Visibility = Visibility.Collapsed;
+            //}
+            //else if (GlobalData.Instance.systemType == SystemType.HydraulicStation)
+            //{
+            //    if (GlobalData.Instance.da.GloConfig.SysType == 1) //修井
+            //    {
+            //        if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.SANY)
+            //        {
+            //            this.menuSecureSetting.Visibility = Visibility.Collapsed;
+            //            this.menuIO.Visibility = Visibility.Collapsed;
+            //            this.menuParam.Visibility = Visibility.Collapsed;
+            //            this.menuPosition.Visibility = Visibility.Collapsed;
+            //            this.menuCompensate.Visibility = Visibility.Collapsed;
+            //            this.menuChart.Visibility = Visibility.Collapsed;
+            //        }
+            //        else if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.JJC)
+            //        {
+            //            this.menuDrillSetting.Visibility = Visibility.Collapsed;
+            //            this.menuSecureSetting.Visibility = Visibility.Collapsed;
+            //            this.menuIO.Visibility = Visibility.Collapsed;
+            //            this.menuDownDeviceStatus.Visibility = Visibility.Collapsed;
+            //            this.menuParam.Visibility = Visibility.Collapsed;
+            //            this.menuPosition.Visibility = Visibility.Collapsed;
+            //            this.menuCompensate.Visibility = Visibility.Collapsed;
+            //            this.menuRecord.Visibility = Visibility.Collapsed;
+            //            this.menuChart.Visibility = Visibility.Collapsed;
+            //            this.menuReport.Visibility = Visibility.Collapsed;
+            //        }
+            //    }
+            //    else
+            //    {
+            //        if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.SANY)
+            //        {
+            //            this.menuSecureSetting.Visibility = Visibility.Collapsed;
+            //            this.menuIO.Visibility = Visibility.Collapsed;
+            //            this.menuParam.Visibility = Visibility.Collapsed;
+            //            this.menuPosition.Visibility = Visibility.Collapsed;
+            //            this.menuCompensate.Visibility = Visibility.Collapsed;
+            //            this.menuChart.Visibility = Visibility.Collapsed;
+            //        }
+            //        else if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.JJC)
+            //        {
+            //            this.menuDrillSetting.Visibility = Visibility.Collapsed;
+            //            this.menuSecureSetting.Visibility = Visibility.Collapsed;
+            //            this.menuIO.Visibility = Visibility.Collapsed;
+            //            this.menuDownDeviceStatus.Visibility = Visibility.Collapsed;
+            //            this.menuParam.Visibility = Visibility.Collapsed;
+            //            this.menuPosition.Visibility = Visibility.Collapsed;
+            //            this.menuCompensate.Visibility = Visibility.Collapsed;
+            //            this.menuRecord.Visibility = Visibility.Collapsed;
+            //            this.menuChart.Visibility = Visibility.Collapsed;
+            //            this.menuReport.Visibility = Visibility.Collapsed;
+            //        }
+            //    }
 
-            }
-            else if (GlobalData.Instance.systemType == SystemType.SIR)
-            {
-                if (GlobalData.Instance.da.GloConfig.SysType == 1) //修井
-                {
-                    this.menuDrillSetting.Visibility = Visibility.Collapsed;
-                    this.menuSecureSetting.Visibility = Visibility.Collapsed;
-                    this.menuDownDeviceStatus.Visibility = Visibility.Collapsed;
-                    this.menuPosition.Visibility = Visibility.Collapsed;
-                    this.menuCompensate.Visibility = Visibility.Collapsed;
-                    this.menuRecord.Visibility = Visibility.Collapsed;
-                    this.menuChart.Visibility = Visibility.Collapsed;
-                    this.menuReport.Visibility = Visibility.Collapsed;
-                }
-                else
-                {
-                    if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANY)
-                    {
-                        this.menuDrillSetting.Visibility = Visibility.Collapsed;
-                        this.menuDownDeviceStatus.Visibility = Visibility.Collapsed;
-                        this.menuCompensate.Visibility = Visibility.Collapsed;
-                        this.menuChart.Visibility = Visibility.Collapsed;
-                        this.menuReport.Visibility = Visibility.Collapsed;
+            //}
+            //else if (GlobalData.Instance.systemType == SystemType.SIR)
+            //{
+            //    if (GlobalData.Instance.da.GloConfig.SysType == 1) //修井
+            //    {
+            //        this.menuDrillSetting.Visibility = Visibility.Collapsed;
+            //        this.menuSecureSetting.Visibility = Visibility.Collapsed;
+            //        this.menuDownDeviceStatus.Visibility = Visibility.Collapsed;
+            //        this.menuPosition.Visibility = Visibility.Collapsed;
+            //        this.menuCompensate.Visibility = Visibility.Collapsed;
+            //        this.menuRecord.Visibility = Visibility.Collapsed;
+            //        this.menuChart.Visibility = Visibility.Collapsed;
+            //        this.menuReport.Visibility = Visibility.Collapsed;
+            //    }
+            //    else
+            //    {
+            //        if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANY)
+            //        {
+            //            this.menuDrillSetting.Visibility = Visibility.Collapsed;
+            //            this.menuDownDeviceStatus.Visibility = Visibility.Collapsed;
+            //            this.menuCompensate.Visibility = Visibility.Collapsed;
+            //            this.menuChart.Visibility = Visibility.Collapsed;
+            //            this.menuReport.Visibility = Visibility.Collapsed;
 
-                    }
-                    else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANYRailway)
-                    {
-                        this.menuDrillSetting.Visibility = Visibility.Collapsed;
-                        this.menuSecureSetting.Visibility = Visibility.Collapsed;
-                        this.menuDownDeviceStatus.Visibility = Visibility.Collapsed;
-                        this.menuCompensate.Visibility = Visibility.Collapsed;
-                        this.menuRecord.Visibility = Visibility.Collapsed;
-                        this.menuChart.Visibility = Visibility.Collapsed;
-                        this.menuReport.Visibility = Visibility.Collapsed;
+            //        }
+            //        else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANYRailway)
+            //        {
+            //            this.menuDrillSetting.Visibility = Visibility.Collapsed;
+            //            this.menuSecureSetting.Visibility = Visibility.Collapsed;
+            //            this.menuDownDeviceStatus.Visibility = Visibility.Collapsed;
+            //            this.menuCompensate.Visibility = Visibility.Collapsed;
+            //            this.menuRecord.Visibility = Visibility.Collapsed;
+            //            this.menuChart.Visibility = Visibility.Collapsed;
+            //            this.menuReport.Visibility = Visibility.Collapsed;
 
-                    }
-                    else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.JJC)
-                    {
-                        this.menuDrillSetting.Visibility = Visibility.Collapsed;
-                        this.menuSecureSetting.Visibility = Visibility.Collapsed;
-                        this.menuIO.Visibility = Visibility.Collapsed;
-                        this.menuDownDeviceStatus.Visibility = Visibility.Collapsed;
-                        this.menuParam.Visibility = Visibility.Collapsed;
-                        this.menuPosition.Visibility = Visibility.Collapsed;
-                        this.menuCompensate.Visibility = Visibility.Collapsed;
-                        this.menuRecord.Visibility = Visibility.Collapsed;
-                        this.menuChart.Visibility = Visibility.Collapsed;
-                        this.menuReport.Visibility = Visibility.Collapsed;
-                    }
-                }
-            }
+            //        }
+            //        else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.JJC)
+            //        {
+            //            this.menuDrillSetting.Visibility = Visibility.Collapsed;
+            //            this.menuSecureSetting.Visibility = Visibility.Collapsed;
+            //            this.menuIO.Visibility = Visibility.Collapsed;
+            //            this.menuDownDeviceStatus.Visibility = Visibility.Collapsed;
+            //            this.menuParam.Visibility = Visibility.Collapsed;
+            //            this.menuPosition.Visibility = Visibility.Collapsed;
+            //            this.menuCompensate.Visibility = Visibility.Collapsed;
+            //            this.menuRecord.Visibility = Visibility.Collapsed;
+            //            this.menuChart.Visibility = Visibility.Collapsed;
+            //            this.menuReport.Visibility = Visibility.Collapsed;
+            //        }
+            //    }
+            //}
         }
         //BackgroundWorker bgMeet;
         //
@@ -1978,7 +1966,8 @@ namespace Main
                     }
 
                     GlobalData.Instance.systemType = SystemType.SIR;
-                    this.BottomColorSetting(this.bdSIR, this.tbSIR, this.gdbottom);
+                    //this.BottomColorSetting(this.bdSIR, this.tbSIR, this.gdbottom);
+                    this.BottomColorSetting(this.bdSIR, this.spBottom);
                     SetBorderBackGround();
                 }
                 catch (Exception ex)
@@ -1998,7 +1987,8 @@ namespace Main
                     this.spMain.Children.Add(WR_SFMain.Instance);
                     GlobalData.Instance.systemType = SystemType.SecondFloor;
 
-                    this.BottomColorSetting(this.bdSf, this.tbSf, this.gdbottom);
+                    //this.BottomColorSetting(this.bdSf, this.tbSf, this.gdbottom);
+                    //this.BottomColorSetting(this.bdSf, this.tbSf, this.spBottom);
 
                     RefreshPipeCount();
                     // 不是手动模式（4）或自动模式（5）切换回主界面变为手动模式
@@ -2019,8 +2009,15 @@ namespace Main
                     SFMain.Instance.FullScreenEvent += Instance_FullScreenEvent;
                     this.spMain.Children.Add(SFMain.Instance);
                     GlobalData.Instance.systemType = SystemType.SecondFloor;
-
-                    this.BottomColorSetting(this.bdSf, this.tbSf, this.gdbottom);
+                    if (GlobalData.Instance.da.GloConfig.IngSystem == 0)
+                    {
+                        //this.BottomColorSetting(this.bdSf, this.tbSf, this.gdbottom);
+                        this.BottomColorSetting(this.bdSf, this.spBottom);
+                    }
+                    else if (GlobalData.Instance.da.GloConfig.IngSystem == 1)
+                    {
+                        this.BottomColorSetting(this.bdSFMain, this.tbSFMain, this.gdbottomSF);
+                    }
 
                     RefreshPipeCount();
                     // 不是手动模式（4）或自动模式（5）切换回主界面变为手动模式
@@ -2048,7 +2045,8 @@ namespace Main
                             this.spMain.Children.Add(WR_DRMain.Instance);
 
                             GlobalData.Instance.systemType = SystemType.DrillFloor;
-                            this.BottomColorSetting(this.bdDR, this.tbDR, this.gdbottom);
+                            //this.BottomColorSetting(this.bdDR, this.tbDR, this.gdbottom);
+                            this.BottomColorSetting(this.bdDR, this.spBottom);
 
                             // 不是手动模式（4）或自动模式（5）切换回主界面变为手动模式
                             if (!(GlobalData.Instance.da["droperationModel"].Value.Byte == 5 || GlobalData.Instance.da["droperationModel"].Value.Byte == 4))
@@ -2081,7 +2079,8 @@ namespace Main
                             this.spMain.Children.Add(DRMain.Instance);
 
                             GlobalData.Instance.systemType = SystemType.DrillFloor;
-                            this.BottomColorSetting(this.bdDR, this.tbDR, this.gdbottom);
+                            //this.BottomColorSetting(this.bdDR, this.tbDR, this.gdbottom);
+                            this.BottomColorSetting(this.bdDR, this.spBottom);
 
                             // 不是手动模式（4）或自动模式（5）切换回主界面变为手动模式
                             if (!(GlobalData.Instance.da["droperationModel"].Value.Byte == 5 || GlobalData.Instance.da["droperationModel"].Value.Byte == 4))
@@ -2120,5 +2119,881 @@ namespace Main
                 if (this.WindowState == WindowState.Normal) this.WindowState = WindowState.Maximized;
             }
         }
+        #region 二层台单机系统
+        /// <summary>
+        /// 二层台主页面
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void bdSFMain_Click(object sender, MouseButtonEventArgs e)
+        {
+            this.spMain.Children.Clear();
+            this.spMain.Children.Add(projectLoad);
+            this.projectLoad.Visibility = System.Windows.Visibility.Visible;
+            nowSystemType = SystemType.SecondFloor;
+            this.mainTitle.Content = "SYAPS-二层台:主页";
+        }
+        /// <summary>
+        /// 钻杆设置
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void bdSFDrillSet_Click(object sender, MouseButtonEventArgs e)
+        {
+            this.spMain.Children.Clear();
+            this.spMain.Children.Add(SFDrillSetting.Instance);
+            this.mainTitle.Content = "SYAPS-二层台:钻杆设置";
+            SFDrillSetting.Instance.SysTypeSelect(1);
+            RefreshPipeCount();
+            BottomColorSetting(this.bdSFDrillSet, this.tbSFDrillSet, this.gdbottomSF);
+        }
+        /// <summary>
+        /// 设备状态
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void bdSFDeviceStatus_Click(object sender, MouseButtonEventArgs e)
+        {
+            this.spMain.Children.Clear();
+            this.spMain.Children.Add(SFDeviceStatus.Instance);
+            this.mainTitle.Content = "SYAPS-二层台:设备状态";
+            SFDeviceStatus.Instance.SwitchDeviceStatusPageEvent += Instance_SwitchDeviceStatusPageEvent;
+            gotoEquipStatusPage();
+            this.checkMaintain();
+            BottomColorSetting(this.bdSFDeviceStatus, this.tbSFDeviceStatus, this.gdbottomSF);
+        }
+        /// <summary>
+        /// IO查询
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void bdSFIO_Click(object sender, MouseButtonEventArgs e)
+        {
+            this.spMain.Children.Clear();
+            this.spMain.Children.Add(SFIOMain.Instance);
+            this.mainTitle.Content = "SYAPS-二层台:IO查询";
+            byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 22, 0 });
+            GlobalData.Instance.da.SendBytes(byteToSend);
+            BottomColorSetting(this.bdSFIO, this.tbSFIO, this.gdbottomSF);
+        }
+        /// <summary>
+        /// 安全设置
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void bdSafeSet_Click(object sender, MouseButtonEventArgs e)
+        {
+            if (GlobalData.Instance.systemRole == SystemRole.OperMan)
+            {
+                MessageBox.Show("管理员以上级别才能访问，您不具备权限！");
+                return;
+            }
+            this.spMain.Children.Clear();
+            this.spMain.Children.Add(SFSecureSetting.Instance);
+            this.mainTitle.Content = "SYAPS-二层台:安全设置";
+            BottomColorSetting(this.bdSFSafeSet, this.tbSFSafeSet, this.gdbottomSF);
+        }
+        /// <summary>
+        /// 记录查询
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SFRecord_Click(object sender, MouseButtonEventArgs e)
+        {
+            this.spMain.Children.Clear();
+            this.spMain.Children.Add(SFRecordMain.Instance);
+            this.mainTitle.Content = "SYAPS-二层台:记录查询";
+            BottomColorSetting(this.bdSFRecord, this.tbSFRecord, this.gdbottomSF);
+        }
+        /// <summary>
+        /// 图表
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tbSFFigure_Click(object sender, MouseButtonEventArgs e)
+        {
+            this.spMain.Children.Clear();
+            this.spMain.Children.Add(SFChart.Instance);
+            this.mainTitle.Content = "SYAPS-二层台:图表";
+            BottomColorSetting(this.bdSFFigure, this.tbSFFigure, this.gdbottomSF);
+        }
+        /// <summary>
+        /// 报表
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void bdSFReport_Click(object sender, MouseButtonEventArgs e)
+        {
+            this.spMain.Children.Clear();
+            SFReport.Instance.ReportTextBlockShow();
+            this.spMain.Children.Add(SFReport.Instance);
+            this.mainTitle.Content = "SYAPS-二层台:报表";
+            BottomColorSetting(this.bdSFReport, this.tbSFReport, this.gdbottomSF);
+        }
+        /// <summary>
+        /// 版本信息
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void bdSFVersion_Click(object sender, MouseButtonEventArgs e)
+        {
+            this.spMain.Children.Clear();
+            this.spMain.Children.Add(SFLowInfo.Instance);
+            BottomColorSetting(this.bdSFVersion, this.tbSFVersion, this.gdbottomSF);
+        }
+        /// <summary>
+        /// 参数设置
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SFParamSetting_Click(object sender, RoutedEventArgs e)
+        {
+            if (!SFToHandleModel()) return;
+            if (GlobalData.Instance.da["operationModel"].Value.Byte != 5)
+            {
+                byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 23, 0 });
+                GlobalData.Instance.da.SendBytes(byteToSend);
+
+                this.spMain.Children.Clear();
+                this.spMain.Children.Add(SFParamMain.Instance);
+                this.mainTitle.Content = "SYAPS-二层台:参数设置";
+            }
+            else
+            {
+                MessageBox.Show("手动模式切换失败，请回主界面再次尝试！");
+            }
+        }
+        /// <summary>
+        /// 位置标定
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SFPositionSetting_Click(object sender, RoutedEventArgs e)
+        {
+            if (!SFToHandleModel()) return;
+            if (GlobalData.Instance.da["operationModel"].Value.Byte != 5)
+            {
+                byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 12, 0 });
+                GlobalData.Instance.da.SendBytes(byteToSend);
+
+                this.spMain.Children.Clear();
+                //this.spMain.Children.Add(SFPositionSetting.Instance);
+                this.spMain.Children.Add(SFPosSetMain.Instance);
+                this.mainTitle.Content = "SYAPS-二层台:位置标定";
+            }
+            else
+            {
+                MessageBox.Show("手动模式切换失败，请回主界面再次尝试！！");
+            }
+        }
+        /// <summary>
+        /// 版本信息
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void bdSFVersion_Click(object sender, RoutedEventArgs e)
+        {
+            bdSFVersion_Click(null, null);
+        }
+        #endregion
+
+        #region 集成页面
+        /// <summary>
+        /// 集成系统-主菜单 ，首次点击进入主页，再次点击弹出菜单列表
+        /// </summary>
+        private void MouseIng(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (GlobalData.Instance.systemType != SystemType.CIMS)
+                {
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(IngMain.Instance);
+                    this.spMain.Children.Add(IngMainNew.Instance);
+                    GlobalData.Instance.Ing = true;
+                    IngMainNew.Instance.SetNowTechniqueEvent += Instance_SetNowTechniqueEvent;
+                    IngMain.Instance.SetNowTechniqueEvent += Instance_SetNowTechniqueEvent;
+                    GlobalData.Instance.systemType = SystemType.CIMS;
+
+                    //this.BottomColorSetting(this.bdIng, this.tbIng, this.gdbottom);
+                    this.BottomColorSetting(this.tbIng, this.spBottom);
+                    SetBorderBackGround();
+                    this.mainTitle.Content = "SYAPS-集成系统:主页";
+                }
+                else
+                {
+                    this.tbIng.IsDropDownOpen = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+                MessageBox.Show(ex.StackTrace);
+            }
+        }
+        /// <summary>
+        /// 菜单列-主页
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MouseDownIng(object sender, RoutedEventArgs e)
+        {
+            this.spMain.Children.Clear();
+            this.spMain.Children.Add(IngMain.Instance);
+            GlobalData.Instance.Ing = true;
+            IngMain.Instance.SetNowTechniqueEvent += Instance_SetNowTechniqueEvent;
+            GlobalData.Instance.systemType = SystemType.CIMS;
+
+            this.mainTitle.Content = "SYAPS-集成系统:主页";
+        }
+        /// <summary>
+        /// 记录查询
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MouseDownRecord(object sender, RoutedEventArgs e)
+        {
+            this.spMain.Children.Clear();
+            this.spMain.Children.Add(IngRecord.Instance);
+            this.mainTitle.Content = "SYAPS-集成系统:记录查询";
+            return;
+        }
+        /// <summary>
+        /// 安全配置
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MouseDownSecure(object sender, RoutedEventArgs e)
+        {
+            this.spMain.Children.Clear();
+            this.spMain.Children.Add(IngSecureMain.Instance);
+            this.mainTitle.Content = "SYAPS-集成系统:安全设置";
+            return;
+        }
+        /// <summary>
+        /// 参数配置
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MouseDownParam(object sender, RoutedEventArgs e)
+        {
+            this.spMain.Children.Clear();
+            this.spMain.Children.Add(IngParamSet.Instance);
+            this.mainTitle.Content = "SYAPS-集成系统:参数设置";
+            return;
+        }
+        /// <summary>
+        /// 位置标定
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MouseDownPosition(object sender, RoutedEventArgs e)
+        {
+            this.spMain.Children.Clear();
+            this.spMain.Children.Add(IngPosSetting.Instance);
+            this.mainTitle.Content = "SYAPS-集成系统:位置标定";
+            return;
+        }
+        /// <summary>
+        /// 版本信息
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MouseDownVersion(object sender, RoutedEventArgs e)
+        {
+            this.spMain.Children.Clear();
+            this.spMain.Children.Add(SFLowInfo.Instance);
+        }
+        #endregion
+
+        #region 二层台
+
+        /// <summary>
+        /// 二层台 主页
+        /// </summary>
+        private void MouseDownSF(object sender, RoutedEventArgs e)
+        {
+            if (GlobalData.Instance.systemType != SystemType.SecondFloor)
+            {
+                this.spMain.Children.Clear();
+                this.spMain.Children.Add(projectLoad);
+                this.projectLoad.Visibility = System.Windows.Visibility.Visible;
+                nowSystemType = SystemType.SecondFloor;
+                this.mainTitle.Content = "SYAPS-二层台:主页";
+            }
+            else
+            {
+                this.bdSf.IsDropDownOpen = true;
+            }
+        }
+        /// <summary>
+        /// 二层台-主页
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MouseSFMain(object sender, RoutedEventArgs e)
+        {
+            this.spMain.Children.Clear();
+            this.spMain.Children.Add(projectLoad);
+            this.projectLoad.Visibility = System.Windows.Visibility.Visible;
+            nowSystemType = SystemType.SecondFloor;
+            this.mainTitle.Content = "SYAPS-二层台:主页";
+        }
+        /// <summary>
+        /// 钻杆设置
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MouseSFDrillSet(object sender, RoutedEventArgs e)
+        {
+            this.spMain.Children.Clear();
+            this.spMain.Children.Add(SFDrillSetting.Instance);
+            this.mainTitle.Content = "SYAPS-二层台:钻杆设置";
+            SFDrillSetting.Instance.SysTypeSelect(1);
+            RefreshPipeCount();
+        }
+        /// <summary>
+        /// 设备状态
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MouseSFDeviceStatus(object sender, RoutedEventArgs e)
+        {
+            this.spMain.Children.Clear();
+            this.spMain.Children.Add(SFDeviceStatus.Instance);
+            this.mainTitle.Content = "SYAPS-二层台:设备状态";
+            SFDeviceStatus.Instance.SwitchDeviceStatusPageEvent += Instance_SwitchDeviceStatusPageEvent;
+            gotoEquipStatusPage();
+            this.checkMaintain();
+        }
+        /// <summary>
+        /// IO查询
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+
+        private void MouseSFIO(object sender, RoutedEventArgs e)
+        {
+            this.spMain.Children.Clear();
+            this.spMain.Children.Add(SFIOMain.Instance);
+            this.mainTitle.Content = "SYAPS-二层台:IO查询";
+            byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 22, 0 });
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 记录查询
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MouseSFRecord(object sender, RoutedEventArgs e)
+        {
+            this.spMain.Children.Clear();
+            this.spMain.Children.Add(SFRecordMain.Instance);
+            this.mainTitle.Content = "SYAPS-二层台:记录查询";
+        }
+        /// <summary>
+        /// 图表
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MouseSFDiagram(object sender, RoutedEventArgs e)
+        {
+            this.spMain.Children.Clear();
+            this.spMain.Children.Add(SFChart.Instance);
+            this.mainTitle.Content = "SYAPS-二层台:图表";
+        }
+        /// <summary>
+        /// 报表
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MouseSFReport(object sender, RoutedEventArgs e)
+        {
+            this.spMain.Children.Clear();
+            SFReport.Instance.ReportTextBlockShow();
+            this.spMain.Children.Add(SFReport.Instance);
+            this.mainTitle.Content = "SYAPS-二层台:报表";
+        }
+        /// <summary>
+        /// 安全设置
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MouseSFSafe(object sender, RoutedEventArgs e)
+        {
+            this.spMain.Children.Clear();
+            this.spMain.Children.Add(IngSecureMain.Instance);
+            this.mainTitle.Content = "SYAPS-集成系统:安全设置";
+            return;
+        }
+        /// <summary>
+        /// 参数设置
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MouseSFParam(object sender, RoutedEventArgs e)
+        {
+            if (!SFToHandleModel()) return;
+            if (GlobalData.Instance.da["operationModel"].Value.Byte != 5)
+            {
+                byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 23, 0 });
+                GlobalData.Instance.da.SendBytes(byteToSend);
+
+                this.spMain.Children.Clear();
+                this.spMain.Children.Add(SFParamMain.Instance);
+                this.mainTitle.Content = "SYAPS-二层台:参数设置";
+            }
+            else
+            {
+                MessageBox.Show("手动模式切换失败，请回主界面再次尝试！");
+            }
+        }
+        /// <summary>
+        /// 位置标定
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MouseSFPosition(object sender, RoutedEventArgs e)
+        {
+            if (!SFToHandleModel()) return;
+            if (GlobalData.Instance.da["operationModel"].Value.Byte != 5)
+            {
+                byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 12, 0 });
+                GlobalData.Instance.da.SendBytes(byteToSend);
+
+                this.spMain.Children.Clear();
+                //this.spMain.Children.Add(SFPositionSetting.Instance);
+                this.spMain.Children.Add(SFPosSetMain.Instance);
+                this.mainTitle.Content = "SYAPS-二层台:位置标定";
+            }
+            else
+            {
+                MessageBox.Show("手动模式切换失败，请回主界面再次尝试！！");
+            }
+        }
+        #endregion
+        #region 钻台面
+        /// <summary>
+        /// 钻台面
+        /// </summary>
+        private void MouseDR(object sender, RoutedEventArgs e)
+        {
+            if (GlobalData.Instance.systemType != SystemType.DrillFloor)
+            {
+                this.spMain.Children.Clear();
+                this.spMain.Children.Add(projectLoad);
+                this.projectLoad.Visibility = System.Windows.Visibility.Visible;
+                nowSystemType = SystemType.DrillFloor;
+                this.mainTitle.Content = "SYAPS-钻台面:主页";
+            }
+            else
+            {
+                this.bdDR.IsDropDownOpen = true;
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MouseDRMain(object sender, RoutedEventArgs e)
+        {
+            this.spMain.Children.Clear();
+            this.spMain.Children.Add(projectLoad);
+            this.projectLoad.Visibility = System.Windows.Visibility.Visible;
+            nowSystemType = SystemType.DrillFloor;
+            this.mainTitle.Content = "SYAPS-钻台面:主页";
+        }
+        /// <summary>
+        /// 钻杆设置
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MouseDRDrillSet(object sender, RoutedEventArgs e)
+        {
+            this.spMain.Children.Clear();
+            this.spMain.Children.Add(SFDrillSetting.Instance);
+            this.mainTitle.Content = "SYAPS-钻台面:钻杆设置";
+            SFDrillSetting.Instance.SysTypeSelect(2);
+            byte[] byteToSend = GlobalData.Instance.SendToDR(new List<byte> { 7, 1 });
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 设备状态
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MouseDRDeviceStatus(object sender, RoutedEventArgs e)
+        {
+            this.spMain.Children.Clear();
+            this.spMain.Children.Add(DRDeviceStatus.Instance);
+            this.mainTitle.Content = "SYAPS-钻台面:设备状态";
+        }
+        /// <summary>
+        /// 安全设置
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MouseDRSafe(object sender, RoutedEventArgs e)
+        {
+            this.spMain.Children.Clear();
+            this.spMain.Children.Add(DRSecureSetting.Instance);
+            this.mainTitle.Content = "SYAPS-钻台面:安全设置";
+        }
+        /// <summary>
+        /// 参数设置
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MouseDRParam(object sender, RoutedEventArgs e)
+        {
+            if (GlobalData.Instance.da.GloConfig.SysType == 1)
+            {
+                if (!DRToHandleModel()) return;
+                if (GlobalData.Instance.da["droperationModel"].Value.Byte != 5)
+                {
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(WR_ParamMain.Instance);
+                    this.mainTitle.Content = "SYAPS-钻台面:参数设置";
+                }
+                else
+                {
+                    MessageBox.Show("手动模式切换失败，请回主界面再次尝试！");
+                }
+            }
+            else
+            {
+                if (!DRToHandleModel()) return;
+                if (GlobalData.Instance.da["droperationModel"].Value.Byte != 5)
+                {
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(DRParamSettingMain.Instance);
+                    this.mainTitle.Content = "SYAPS-钻台面:参数设置";
+                }
+                else
+                {
+                    MessageBox.Show("手动模式切换失败，请回主界面再次尝试！");
+                }
+            }
+        }
+        /// <summary>
+        /// 位置标定
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MouseDRPosition(object sender, RoutedEventArgs e)
+        {
+            if (GlobalData.Instance.da.GloConfig.SysType == 1)
+            {
+                if (!DRToHandleModel()) return;
+                if (GlobalData.Instance.da["droperationModel"].Value.Byte != 5)
+                {
+                    this.spMain.Children.Clear();
+                    //this.spMain.Children.Add(DRPosSetting.Instance);
+                    this.spMain.Children.Add(WR_PosSetMain.Instance);
+                    this.mainTitle.Content = "SYAPS-钻台面:位置标定";
+                }
+                else
+                {
+                    MessageBox.Show("手动模式切换失败，请回主界面再次尝试！");
+                }
+            }
+            else
+            {
+                if (!DRToHandleModel()) return;
+                if (GlobalData.Instance.da["droperationModel"].Value.Byte != 5)
+                {
+                    this.spMain.Children.Clear();
+                    //this.spMain.Children.Add(DRPosSetting.Instance);
+                    this.spMain.Children.Add(DRPosSetMain.Instance);
+                    this.mainTitle.Content = "SYAPS-钻台面:位置标定";
+                }
+                else
+                {
+                    MessageBox.Show("手动模式切换失败，请回主界面再次尝试！");
+                }
+            }
+        }
+        #endregion
+
+        #region 铁钻工
+        /// <summary>
+        /// 铁钻工
+        /// </summary>
+        private void SIR_MouseLeftButtonDown(object sender, RoutedEventArgs e)
+        {
+            if (GlobalData.Instance.systemType != SystemType.SIR)
+            {
+                this.spMain.Children.Clear();
+                this.spMain.Children.Add(projectLoad);
+                this.projectLoad.Visibility = System.Windows.Visibility.Visible;
+                nowSystemType = SystemType.SIR;
+                this.mainTitle.Content = "SYAPS-铁钻工:主页";
+            }
+            else
+            {
+                this.bdSIR.IsDropDownOpen = true;
+            }
+        }
+        /// <summary>
+        /// 主页
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MouseSIRMain(object sender, RoutedEventArgs e)
+        {
+            this.spMain.Children.Clear();
+            this.spMain.Children.Add(projectLoad);
+            this.projectLoad.Visibility = System.Windows.Visibility.Visible;
+            nowSystemType = SystemType.SIR;
+            this.mainTitle.Content = "SYAPS-铁钻工:主页";
+        }
+        /// <summary>
+        /// 记录查询
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MouseSIRRecord(object sender, RoutedEventArgs e)
+        {
+            this.spMain.Children.Clear();
+            this.spMain.Children.Add(SIRRecord.Instance);
+            this.mainTitle.Content = "SYAPS-铁钻工:记录查询";
+            return;
+        }
+        /// <summary>
+        /// IO查询
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MouseSIRIO(object sender, RoutedEventArgs e)
+        {
+            if (GlobalData.Instance.da.GloConfig.SysType == 1)
+            {
+                this.spMain.Children.Clear();
+                this.spMain.Children.Add(WR_SIR_IO.Instance);
+                this.mainTitle.Content = "SYAPS-铁钻工:IO查询";
+                return;
+            }
+            else
+            {
+                if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANY)
+                {
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(SIRSelfIO.Instance);
+                    this.mainTitle.Content = "SYAPS-铁钻工:IO查询";
+                    return;
+                }
+                else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANYRailway)
+                {
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(SIRRailWayIO.Instance);
+                    this.mainTitle.Content = "SYAPS-铁钻工:IO查询";
+                    return;
+                }
+            }
+        }
+        /// <summary>
+        /// 安全设置
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MouseSIRSecure(object sender, RoutedEventArgs e)
+        {
+            this.spMain.Children.Clear();
+            this.spMain.Children.Add(SIRSecureSetting.Instance);
+            this.mainTitle.Content = "SYAPS-铁钻工:安全设置";
+            return;
+        }
+        /// <summary>
+        /// 参数设置
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MouseSIRParam(object sender, RoutedEventArgs e)
+        {
+            if (GlobalData.Instance.da.GloConfig.SysType == 1)
+            {
+                this.spMain.Children.Clear();
+                this.spMain.Children.Add(WR_SIR_ParamSet.Instance);
+                this.mainTitle.Content = "SYAPS-铁钻工:参数设置";
+                return;
+            }
+            else
+            {
+                if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANY)
+                {
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(SIRParamMain.Instance);
+                    this.mainTitle.Content = "SYAPS-铁钻工:参数设置";
+                    return;
+                }
+                else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANYRailway)
+                {
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(SIRRailWayParamSet.Instance);
+                    this.mainTitle.Content = "SYAPS-铁钻工:参数设置";
+                    return;
+                }
+            }
+        }
+        /// <summary>
+        /// 位置标定
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MouseSIRPosition(object sender, RoutedEventArgs e)
+        {
+            if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANY)
+            {
+                this.spMain.Children.Clear();
+                this.spMain.Children.Add(SIRPosSetting.Instance);
+                this.mainTitle.Content = "SYAPS-铁钻工:位置标定";
+                return;
+            }
+            else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANYRailway)
+            {
+                this.spMain.Children.Clear();
+                this.spMain.Children.Add(SIRRailWayPosSet.Instance);
+                this.mainTitle.Content = "SYAPS-铁钻工:位置标定";
+                return;
+            }
+        }
+        #endregion
+
+        #region 猫道
+        /// <summary>
+        /// 选择猫道
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Cat_MouseLeftButtonDown(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                nowSystemType = SystemType.CatRoad;
+                GlobalData.Instance.Ing = false;
+                if (GlobalData.Instance.da.GloConfig.CatType == 0)
+                {
+                    MessageBox.Show("未配置猫道");
+                    return;
+                }
+                // 自研
+                else if (GlobalData.Instance.da.GloConfig.CatType == (int)CatType.SANY)
+                {
+
+                }
+                // 宝石
+                else if (GlobalData.Instance.da.GloConfig.CatType == (int)CatType.BS)
+                {
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(BSCatMain.Instance);
+                }
+                // 宏达
+                else if (GlobalData.Instance.da.GloConfig.CatType == (int)CatType.HD)
+                {
+
+                }
+
+                GlobalData.Instance.systemType = SystemType.CatRoad;
+                //this.BottomColorSetting(this.bdCat, this.tbCat, this.gdbottom);
+                this.BottomColorSetting(this.bdCat,this.spBottom);
+                SetBorderBackGround();
+                this.mainTitle.Content = "SYAPS-猫道:主页";
+            }
+            catch (Exception ex)
+            {
+                Log.Log4Net.AddLog(ex.ToString(), Log.InfoLevel.ERROR);
+            }
+        }
+        #endregion
+
+        #region 液压站
+        /// <summary>
+        /// 液压站
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MouseHS(object sender, RoutedEventArgs e)
+        {
+            if (GlobalData.Instance.systemType != SystemType.HydraulicStation)
+            {
+                try
+                {
+                    if (GlobalData.Instance.da.GloConfig.SysType == 1)
+                    {
+                        this.spMain.Children.Clear();
+                        this.spMain.Children.Add(WR_HS_Self_Main.Instance);
+                    }
+                    else
+                    {
+                        GlobalData.Instance.Ing = false;
+                        if (GlobalData.Instance.da.GloConfig.HydType == 0)
+                        {
+                            MessageBox.Show("未配置液压站");
+                            return;
+                        }// 自研
+                        if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.SANY)
+                        {
+                            this.spMain.Children.Clear();
+                            this.spMain.Children.Add(HSMain.Instance);
+                        }// 宝石
+                        else if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.BS)
+                        {
+
+                        }// JJC
+                        else if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.JJC)
+                        {
+                            this.spMain.Children.Clear();
+                            this.spMain.Children.Add(JJC_HSMain.Instance);
+                        }
+                        else
+                        {
+                            MessageBox.Show("未配置液压站");
+                            return;
+                        }
+                    }
+
+                    GlobalData.Instance.systemType = SystemType.HydraulicStation;
+                    //this.BottomColorSetting(this.bdHS, this.tbHS, this.gdbottom);
+                    this.BottomColorSetting(this.bdHS, this.spBottom);
+                    SetBorderBackGround();
+                    this.mainTitle.Content = "SYAPS-液压站:主页";
+                }
+                catch (Exception ex)
+                {
+                    Log.Log4Net.AddLog(ex.ToString(), Log.InfoLevel.ERROR);
+                }
+            }
+            else
+            {
+                this.bdHS.IsDropDownOpen = true;
+            }
+        }
+
+        private void MouseHSMain(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MouseHSDrillSet(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MouseHSDeviceStatus(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MouseHSRecord(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MouseHSReport(object sender, RoutedEventArgs e)
+        {
+
+        }
+        #endregion
     }
 }

@@ -150,6 +150,9 @@
     <Compile Include="Cat\BSCatMain.xaml.cs">
       <DependentUpon>BSCatMain.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Cat\ZY_CatMain.xaml.cs">
+      <DependentUpon>ZY_CatMain.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DrillFloor\Sany\DRCameraFullScreen.xaml.cs">
       <DependentUpon>DRCameraFullScreen.xaml</DependentUpon>
     </Compile>
@@ -509,6 +512,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Cat\BSCatMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Cat\ZY_CatMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

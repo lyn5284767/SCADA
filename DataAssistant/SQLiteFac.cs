@@ -222,7 +222,13 @@ namespace DatabaseLib
 
         public DbDataReader ExecuteReader(string sSQL)
         {
-            throw new NotImplementedException();
+            using (SQLiteConnection m_dbConnection = new SQLiteConnection("Data Source=Monitor.db3;Version=3;"))
+            {
+                SQLiteCommand command = new SQLiteCommand(sSQL, m_dbConnection);
+                if (m_dbConnection.State == ConnectionState.Closed)
+                    m_dbConnection.Open();
+                return command.ExecuteReader(CommandBehavior.CloseConnection);
+            }
         }
 
         public object ExecuteScalar(string sSQL)

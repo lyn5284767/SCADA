@@ -98,6 +98,11 @@ namespace Main.Integration
         /// 钻台面当前选择指梁
         /// </summary>
         public int drSelectDrill { get; set; }
+
+        public delegate void SetNowTechnique(Technique technique);
+        public event SetNowTechnique SetNowTechniqueEvent;
+        Technique tmpTechnique;
+        Technique nowTechnique;
         public IngMain()
         {
             InitializeComponent();
@@ -224,6 +229,16 @@ namespace Main.Integration
 
                     }
 
+                    // 460b0=true联动开启
+                    if (nowTechnique != tmpTechnique)
+                    {
+                        if (SetNowTechniqueEvent != null)
+                        {
+                            SetNowTechniqueEvent(nowTechnique);
+                        }
+                        tmpTechnique = nowTechnique;
+                    }
+
                     this.Warnning();
                     this.Communcation();
                     this.MonitorSysStatus();
@@ -335,7 +350,7 @@ namespace Main.Integration
                     //this.workMode.ContentDown = "送杆";
                     //this.workMode.IsChecked = false;
                     alarmKey["设备工作模式不一致"] = 0;
-                    //nowTechnique = Technique.DrillDown;
+                    nowTechnique = Technique.DrillDown;
                 }// 存在的设备全为2，设备不存在为-1，则为排杆
                 else if ((this.sfWorkModel == 2 || this.sfWorkModel == -1)
                     && (this.drWorkModel == 2 || this.drWorkModel == -1)
@@ -345,7 +360,7 @@ namespace Main.Integration
                     //this.workMode.ContentDown = "排杆";
                     //this.workMode.IsChecked = true;
                     alarmKey["设备工作模式不一致"] = 0;
-                    //nowTechnique = Technique.DrillUp;
+                    nowTechnique = Technique.DrillUp;
                 }
                 else
                 {

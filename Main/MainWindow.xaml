@@ -72,7 +72,7 @@ KeyboardNavigation.DirectionalNavigation="Cycle" Width="100"/>
             <Label FontWeight="Bold" Foreground="White" FontSize="28" Grid.Column="1" Name="mainTitle">SYAPS-集成系统:主页</Label>
             <TextBlock Name="timeLable" Grid.Column="2" HorizontalAlignment="Right" Foreground="White" FontSize="20" >2020-5-12 09:11:32</TextBlock>
         </Grid>
-        <Grid Height="55" Background="#F5F6FA" DockPanel.Dock="Bottom" Name="gdbottom">
+        <!--<Grid Height="55" Background="#F5F6FA" DockPanel.Dock="Bottom" Name="gdbottom" Visibility="Visible">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
@@ -90,13 +90,13 @@ KeyboardNavigation.DirectionalNavigation="Cycle" Width="100"/>
                         系统</TextBlock>
             </Border>
             <Border Name="bdTechnique" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="1">
-                <TextBlock Name="tbTechnique" FontSize="16" Foreground="#1F7AFF" FontWeight="Bold" Text="工艺:&#x0a;未联动"></TextBlock>
+                <TextBlock Name="tbTechnique" FontSize="16" Foreground="#1F7AFF" FontWeight="Bold" Text="模式:&#x0a;未联动"></TextBlock>
             </Border>
             <Border Name="bdSIR" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="2" MouseLeftButtonDown="SIR_MouseLeftButtonDown">
                 <TextBlock FontSize="16" Foreground="#1F7AFF" FontWeight="Bold" Name="tbSIR">铁钻工</TextBlock>
             </Border>
             <Border Name="bdMidDeviceOne" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="3">
-                <TextBlock Name="tbMidDeviceOne" FontSize="16" Foreground="#1F7AFF" FontWeight="Bold">防喷筒</TextBlock>
+                <TextBlock Name="tbMidDeviceOne" FontSize="16" Foreground="#BDBDBD" FontWeight="Bold">防喷筒</TextBlock>
             </Border>
             <Border Background="White" BorderThickness="1" CornerRadius="4" Grid.Column="4" Name="bdDR" MouseLeftButtonDown="MouseDR">
                 <TextBlock FontSize="16" Foreground="#1F7AFF" FontWeight="Bold" Name="tbDR">钻台面</TextBlock>
@@ -145,11 +145,149 @@ KeyboardNavigation.DirectionalNavigation="Cycle" Width="100"/>
             <Border Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="9" MouseLeftButtonDown="MouseDownExit">
                 <Image Source="Images/exit.png" Margin="2" Width="45" Height="45"></Image>
             </Border>
+        </Grid>-->
+        <Grid Height="55" Background="#F5F6FA" DockPanel.Dock="Bottom" Name="gdbottomSF" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Border Name="bdSFMain" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="0" MouseLeftButtonDown="bdSFMain_Click" HorizontalAlignment="Right" Width="101">
+                <TextBlock Name="tbSFMain" FontSize="16" Foreground="#1F7AFF" FontWeight="Bold">主页面</TextBlock>
+            </Border>
+            <Border Name="bdSFDrillSet" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="1" MouseLeftButtonDown="bdSFDrillSet_Click">
+                <TextBlock Name="tbSFDrillSet" FontSize="16" Foreground="#1F7AFF" FontWeight="Bold" Text="钻杆设置"></TextBlock>
+            </Border>
+            <Border Name="bdSFDeviceStatus" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="2" MouseLeftButtonDown="bdSFDeviceStatus_Click">
+                <TextBlock FontSize="16" Foreground="#1F7AFF" FontWeight="Bold" Name="tbSFDeviceStatus">设备状态</TextBlock>
+            </Border>
+            <Border Name="bdSFIO" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="3"  MouseLeftButtonDown="bdSFIO_Click">
+                <TextBlock Name="tbSFIO" FontSize="16" Foreground="#1F7AFF" FontWeight="Bold">IO查询</TextBlock>
+            </Border>
+            <Border Background="White" BorderThickness="1" CornerRadius="4" Grid.Column="4" Name="bdSFSafeSet" MouseLeftButtonDown="bdSafeSet_Click">
+                <TextBlock FontSize="16" Foreground="#1F7AFF" FontWeight="Bold" Name="tbSFSafeSet">安全配置</TextBlock>
+            </Border>
+            <Border Name="bdSFRecord" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="5" MouseLeftButtonDown="SFRecord_Click">
+                <TextBlock Name="tbSFRecord" Foreground="#1F7AFF" FontSize="16" FontWeight="Bold">记录查询</TextBlock>
+            </Border>
+            <Border Name="bdSFFigure" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="6"  MouseLeftButtonDown="tbSFFigure_Click">
+                <TextBlock Name="tbSFFigure" FontSize="16" Foreground="#1F7AFF" FontWeight="Bold">图表</TextBlock>
+            </Border>
+            <Border Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="7" Name="bdSFReport" MouseLeftButtonDown="bdSFReport_Click">
+                <TextBlock FontSize="16" Foreground="#1F7AFF" FontWeight="Bold" Name="tbSFReport">报表</TextBlock>
+            </Border>
+            <Border Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="8" Name="bdSFVersion" MouseLeftButtonDown="bdSFVersion_Click">
+                <TextBlock FontSize="16" Foreground="#1F7AFF" FontWeight="Bold" Name="tbSFVersion">版本信息</TextBlock>
+            </Border>
+            <Border Name="bdSFOther" Background="White"  BorderThickness="1" CornerRadius="5" Grid.Column="8">
+                <Menu Grid.Column="11" Margin="2" Name="sfbottomMenuDown" Width="100" VerticalAlignment="Center" HorizontalContentAlignment="Center">
+                    <MenuItem x:Name="misfMenuItem" >
+                        <MenuItem.Header>
+                            <TextBlock FontSize="16" Foreground="#1F7AFF" FontWeight="Bold" VerticalAlignment="Center"><Run Text="更多页面"/></TextBlock>
+                        </MenuItem.Header>
+                        <MenuItem x:Name="miParamSet" Header="参数设置" Click="SFParamSetting_Click" Template="{StaticResource MenuItemControlTemplate1}"/>
+                        <MenuItem Header="" Height="3" Background="Transparent"/>
+                        <MenuItem x:Name="miPosSet" Header="位置标定" Click="SFPositionSetting_Click" Template="{StaticResource MenuItemControlTemplate1}"/>
+                        <MenuItem Header="" Height="3" Background="Transparent"/>
+                        <MenuItem x:Name="miVersion" Header="版本信息" Click="bdSFVersion_Click" Template="{StaticResource MenuItemControlTemplate1}"/>
+                    </MenuItem>
+                </Menu>
+            </Border>
+            <Border Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="9" MouseLeftButtonDown="MouseDownExit">
+                <Image Source="Images/exit.png" Margin="2" Width="45" Height="45"></Image>
+            </Border>
         </Grid>
+
+        <StackPanel Orientation="Horizontal" Height="55" Background="#F5F6FA" DockPanel.Dock="Bottom" Name="spBottom" Visibility="Visible">
+            <hc:SplitButton Name="tbIng" Content="集成系统" HorizontalAlignment="Stretch" Foreground="#1F7AFF" Height="55" FontSize="16" FontWeight="Bold" Click="MouseIng">
+                <hc:SplitButton.DropDownContent>
+                    <StackPanel>
+                        <MenuItem Header="主页" Click="MouseDownIng"/>
+                        <MenuItem Header="钻杆设置" Click="MouseDownDrillSetting"/>
+                        <MenuItem Header="记录查询" Click="MouseDownRecord"/>
+                        <MenuItem Header="安全配置" Name="miIngSecure" Click="MouseDownSecure"/>
+                        <MenuItem Header="参数配置" Name="miIngParam" Click="MouseDownParam"/>
+                        <MenuItem Header="位置标定" Name="miIngPosition" Click="MouseDownPosition"/>
+                        <MenuItem Header="版本信息" Click="MouseDownVersion"/>
+                    </StackPanel>
+                </hc:SplitButton.DropDownContent>
+            </hc:SplitButton>
+            <hc:SplitButton Name="bdSf" Content="二层台" HorizontalAlignment="Stretch" Foreground="#1F7AFF" Height="55" FontSize="16" FontWeight="Bold" Click="MouseDownSF">
+                <hc:SplitButton.DropDownContent>
+                    <StackPanel>
+                        <MenuItem Header="主页" Click="MouseSFMain"/>
+                        <MenuItem Header="钻杆设置" Click="MouseSFDrillSet"/>
+                        <MenuItem Header="设备状态" Click="MouseSFDeviceStatus"/>
+                        <MenuItem Header="IO状态" Click="MouseSFIO"/>
+                        <MenuItem Header="记录查询" Click="MouseSFRecord"/>
+                        <MenuItem Header="电机图表" Click="MouseSFDiagram"/>
+                        <MenuItem Header="报表" Click="MouseSFReport"/>
+                        <MenuItem Header="安全配置" Name="miSFSecure" Click="MouseSFSafe"/>
+                        <MenuItem Header="参数配置" Name="miSFParam" Click="MouseSFParam"/>
+                        <MenuItem Header="位置标定" Name="miSFPosition" Click="MouseSFPosition"/>
+                    </StackPanel>
+                </hc:SplitButton.DropDownContent>
+            </hc:SplitButton>
+            <hc:SplitButton Name="bdDR" Content="钻台面" HorizontalAlignment="Stretch" Foreground="#1F7AFF" Height="55" FontSize="16" FontWeight="Bold" Click="MouseDR">
+                <hc:SplitButton.DropDownContent>
+                    <StackPanel>
+                        <MenuItem Header="主页" Click="MouseDRMain"/>
+                        <MenuItem Header="钻杆设置" Click="MouseDRDrillSet"/>
+                        <MenuItem Header="设备状态" Click="MouseDRDeviceStatus"/>
+                        <MenuItem Header="安全配置" Name="miDRSecure" Click="MouseDRSafe"/>
+                        <MenuItem Header="参数配置" Name="miDRParam" Click="MouseDRParam"/>
+                        <MenuItem Header="位置标定" Name="miDRPosition" Click="MouseDRPosition"/>
+                    </StackPanel>
+                </hc:SplitButton.DropDownContent>
+            </hc:SplitButton>
+            <hc:SplitButton Name="bdSIR" Content="铁钻工" HorizontalAlignment="Stretch" Foreground="#1F7AFF" Height="55" FontSize="16" FontWeight="Bold" Click="SIR_MouseLeftButtonDown">
+                <hc:SplitButton.DropDownContent>
+                    <StackPanel>
+                        <MenuItem Header="主页" Click="MouseSIRMain"/>
+                        <MenuItem Header="记录查询" Click="MouseSIRRecord"/>
+                        <MenuItem Header="IO查询" Click="MouseSIRIO"/>
+                        <MenuItem Header="安全配置" Name="miSIRSecure" Click="MouseSIRSecure"/>
+                        <MenuItem Header="参数配置" Name="miSIRParam" Click="MouseSIRParam"/>
+                        <MenuItem Header="位置标定" Name="miSIRPosition" Click="MouseSIRPosition"/>
+                    </StackPanel>
+                </hc:SplitButton.DropDownContent>
+            </hc:SplitButton>
+            <hc:SplitButton Name="bdCat" Content="猫道" HorizontalAlignment="Stretch" Foreground="#1F7AFF" Height="55" FontSize="16" FontWeight="Bold" Click="Cat_MouseLeftButtonDown">
+                <!--<hc:SplitButton.DropDownContent>
+                    <StackPanel>
+                    </StackPanel>
+                </hc:SplitButton.DropDownContent>-->
+            </hc:SplitButton>
+            <!--<Border Background="White" BorderThickness="1" CornerRadius="5" Name="bdHS" MouseLeftButtonDown="MouseHS">
+                <TextBlock FontSize="16" Foreground="#1F7AFF" FontWeight="Bold" Name="tbHS">液压站</TextBlock>
+            </Border>-->
+            <hc:SplitButton Name="bdHS" Content="液压站" HorizontalAlignment="Stretch" Foreground="#1F7AFF" Height="55" FontSize="16" FontWeight="Bold" Click="MouseHS">
+                <hc:SplitButton.DropDownContent>
+                    <StackPanel>
+                        <MenuItem Header="主页" Click="MouseHSMain"/>
+                        <MenuItem Header="设备设置" Click="MouseHSDrillSet"/>
+                        <MenuItem Header="设备状态" Click="MouseHSDeviceStatus"/>
+                        <MenuItem Header="记录查询" Click="MouseHSRecord"/>
+                        <MenuItem Header="报表" Click="MouseHSReport"/>
+                    </StackPanel>
+                </hc:SplitButton.DropDownContent>
+            </hc:SplitButton>
+            <Border Background="White" BorderThickness="1" CornerRadius="5" Width="100" MouseLeftButtonDown="MouseDownExit">
+                <Image Source="Images/exit.png" Margin="2" Width="45" Height="45"></Image>
+            </Border>
+        </StackPanel>
+
         <Grid Name="spMain">
 
-                <!--<secondfloor:SFMain></secondfloor:SFMain>-->
-            </Grid>
+            <!--<secondfloor:SFMain></secondfloor:SFMain>-->
+        </Grid>
     </DockPanel>
     <!--</Grid>-->
 </Window>

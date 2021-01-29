@@ -438,18 +438,24 @@
                         </Grid.RowDefinitions>
                         <Border Grid.Column="3" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2,5,5,2" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btn_AllMotorRetZero">
                             <Viewbox>
-                                <StackPanel Orientation="Vertical">
-                                <TextBlock FontSize="32" Foreground="#008AFF" FontWeight="Bold" Text="0" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-                                <TextBlock TextAlignment="Center">一键回零</TextBlock>
-                            </StackPanel>
+                                <Grid>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock FontSize="32" Foreground="#008AFF" FontWeight="Bold" Text="0" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                                        <TextBlock TextAlignment="Center">一键回零</TextBlock>
+                                    </StackPanel>
+                                    <TextBlock Name="tbTurnZeroHand" Text="&#xe507;" FontFamily="../Font/#iconfont" FontSize="30" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Collapsed"></TextBlock>
+                                </Grid>
                             </Viewbox>
                         </Border>
                         <Border Grid.Row="1" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2,5,5,2" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btn_MotorEnable">
                             <Viewbox>
-                                <StackPanel Orientation="Vertical">
-                                <TextBlock Text="&#xe61e;" FontFamily="../Font/#iconfont" FontSize="36" Foreground="#008AFF" TextAlignment="Center" Height="42"></TextBlock>
-                                <TextBlock TextAlignment="Center">电机使能</TextBlock>
-                            </StackPanel>
+                                <Grid>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="&#xe61e;" FontFamily="../Font/#iconfont" FontSize="36" Foreground="#008AFF" TextAlignment="Center" Height="42"></TextBlock>
+                                        <TextBlock TextAlignment="Center">电机使能</TextBlock>
+                                    </StackPanel>
+                                    <TextBlock Name="tbEnableHand" Text="&#xe507;" FontFamily="../Font/#iconfont" FontSize="30" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Collapsed"></TextBlock>
+                                </Grid>
                             </Viewbox>
                         </Border>
 

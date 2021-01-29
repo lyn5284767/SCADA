@@ -1,0 +1,333 @@
+﻿<UserControl x:Class="Main.Cat.ZY_CatMain"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Main.Cat" xmlns:cl="http://talonzeng.com/ControlLibrary"
+             mc:Ignorable="d" 
+             d:DesignHeight="650" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="bsCatMain">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontFamily" Value="微软雅黑"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+        
+        <Style x:Key="InformButton" TargetType="{x:Type Button}">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontSize" Value="14px"/>
+            <!--<Setter Property="FontWeight" Value="Bold"/>-->
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="FocusVisualStyle" Value="{StaticResource MyFocusVisual}" />
+            <Setter Property="Background" >
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
+                        <GradientStop Color="#FF0EFF1D" Offset="0.059"/>
+                        <GradientStop Color="#FF101010" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" 
+                		BorderThickness="1"
+                		Padding="6,3"   BorderBrush="Black"
+                		CornerRadius="3" Height="Auto" Width="Auto" SnapsToDevicePixels="False" >
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="0" Direction="270" ShadowDepth="2" Opacity="0.425" RenderingBias="Quality"/>
+                            </Border.Effect>
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                    <GradientStop Color="#FF606060" Offset="0.005"/>
+                                    <GradientStop Color="#FF303030" Offset="0.2" />
+                                    <GradientStop Color="#FF202020" Offset="0.9" />
+                                    <GradientStop Color="#FF606060" Offset="1" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Grid >
+                                <ContentPresenter HorizontalAlignment="Left"  
+                				VerticalAlignment="Center"  x:Name="contentShadow" 
+                				Style="{StaticResource ShadowStyle}"/>
+                                <ContentPresenter HorizontalAlignment="Left"  
+                				VerticalAlignment="Center" x:Name="content"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="#FF4788c8" />
+                                <Setter Property="Foreground" Value="#FF4788c8" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" >
+                                    <Setter.Value>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
+                                            <GradientStop Color="#FFFFD190" Offset="0.35"/>
+                                            <GradientStop Color="Orange" Offset="0.95"/>
+                                            <GradientStop Color="#FFFFD190" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+
+                                <Setter TargetName="content" Property="RenderTransform" >
+                                    <Setter.Value>
+                                        <TranslateTransform Y="1.0" />
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsDefaulted" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="#FF282828" />
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="#FF282828" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="border" Property="Opacity" Value="0.7" />
+                                <Setter Property="Foreground" Value="Gray" />
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <Border Background="White" CornerRadius="10" Margin="5,10,5,5" >
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+                </Border.Effect>
+            </Border>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Viewbox Grid.RowSpan="2">
+                    <cl:BasedSwitchButton Name="controlModel" Margin="10" ContentLeft="司钻" ContentDown="控制模式" ContentRight="遥控" UserControlClicked="btn_controlModel"/>
+                </Viewbox>
+                <Border  BorderBrush="Gray" Background="White" BorderThickness="1,0,0,1" Grid.Column="1" Grid.Row="0" Margin="0,10,10,0">
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="10,0,0,0">
+                        <Viewbox>
+                            <TextBlock Text="急停状态" VerticalAlignment="Center" Margin="20,20,0,20"></TextBlock>
+                        </Viewbox>
+                        <Viewbox>
+                            <cl:SymbolMapping Name="smStop" Margin="40,80,40,80" StrContent="" LampType="3"/>
+                        </Viewbox>
+                    </StackPanel>
+                </Border>
+                <Border  BorderBrush="Gray" Background="White" BorderThickness="1,0,0,1" Grid.Column="1" Grid.Row="1" Margin="0,0,10,0">
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="10,5,0,5">
+                        <Viewbox>
+                            <TextBlock Text="溢流阀" VerticalAlignment="Center" Margin="43,20,0,20"></TextBlock>
+                        </Viewbox>
+                        <Viewbox>
+                            <cl:SymbolMapping Name="smReliefValve" Margin="40,80,40,80" StrContent="" LampType="3"/>
+                        </Viewbox>
+                    </StackPanel>
+                </Border>
+                <Border  BorderBrush="Gray" Background="White" BorderThickness="0,1,0,1" Grid.Column="0" Grid.Row="2" Margin="0,0,0,0">
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="10,5,0,5">
+                        <Viewbox>
+                            <TextBlock Text="上料臂出" VerticalAlignment="Center" Margin="20,20,0,20"></TextBlock>
+                        </Viewbox>
+                        <Viewbox>
+                            <cl:SymbolMapping Name="smUpArmOut" Margin="40,80,40,80" StrContent="" LampType="3"/>
+                        </Viewbox>
+                    </StackPanel>
+                </Border>
+                <Border  BorderBrush="Gray" Background="White" BorderThickness="1,0,0,1" Grid.Column="1" Grid.Row="2" Margin="0,0,10,0">
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="10,5,0,5">
+                        <Viewbox>
+                            <TextBlock Text="上料臂回" VerticalAlignment="Center" Margin="20,20,0,20"></TextBlock>
+                        </Viewbox>
+                        <Viewbox>
+                            <cl:SymbolMapping Name="smUpArmBack" Margin="40,80,40,80" StrContent="" LampType="3"/>
+                        </Viewbox>
+                    </StackPanel>
+                </Border>
+                <Border  BorderBrush="Gray" Background="White" BorderThickness="0,1,0,1" Grid.Column="0" Grid.Row="3" Margin="0,0,0,0">
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="10,5,0,5">
+                        <Viewbox>
+                            <TextBlock Text="V型槽摆正" VerticalAlignment="Center" Margin="5,20,0,20"></TextBlock>
+                        </Viewbox>
+                        <Viewbox>
+                            <cl:SymbolMapping Name="smVStraighten" Margin="40,80,40,80" StrContent="" LampType="3"/>
+                        </Viewbox>
+                    </StackPanel>
+                </Border>
+                <Border  BorderBrush="Gray" Background="White" BorderThickness="1,0,0,1" Grid.Column="1" Grid.Row="3" Margin="0,0,10,0">
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="10,5,0,5">
+                        <Viewbox>
+                            <TextBlock Text="V型槽翻转" VerticalAlignment="Center" Margin="5,20,0,20"></TextBlock>
+                        </Viewbox>
+                        <Viewbox>
+                            <cl:SymbolMapping Name="smVOverTurn" Margin="40,80,40,80" StrContent="" LampType="3"/>
+                        </Viewbox>
+                    </StackPanel>
+                </Border>
+                <Border  BorderBrush="Gray" Background="White" BorderThickness="0,1,0,1" Grid.Column="0" Grid.Row="4" Margin="0,0,0,0">
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="10,5,0,5">
+                        <Viewbox>
+                            <TextBlock Text="平台上升" VerticalAlignment="Center" Margin="20,20,0,20"></TextBlock>
+                        </Viewbox>
+                        <Viewbox>
+                            <cl:SymbolMapping Name="smPlatRaise" Margin="40,80,40,80" StrContent="" LampType="3"/>
+                        </Viewbox>
+                    </StackPanel>
+                </Border>
+                <Border  BorderBrush="Gray" Background="White" BorderThickness="1,0,0,1" Grid.Column="1" Grid.Row="4" Margin="0,0,10,0">
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="10,5,0,5">
+                        <Viewbox>
+                            <TextBlock Text="平台下降" VerticalAlignment="Center" Margin="20,20,0,20"></TextBlock>
+                        </Viewbox>
+                        <Viewbox>
+                            <cl:SymbolMapping Name="smPlatDown" Margin="40,80,40,80" StrContent="" LampType="3"/>
+                        </Viewbox>
+                    </StackPanel>
+                </Border>
+                <Border  BorderBrush="Gray" Background="White" BorderThickness="0,1,0,1" Grid.Column="0" Grid.Row="5" Margin="0,0,0,0">
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="10,5,0,5">
+                        <Viewbox>
+                            <TextBlock Text="平台前进" VerticalAlignment="Center" Margin="20,20,0,20"></TextBlock>
+                        </Viewbox>
+                        <Viewbox>
+                            <cl:SymbolMapping Name="smPlatForward" Margin="40,80,40,80" StrContent="" LampType="3"/>
+                        </Viewbox>
+                    </StackPanel>
+                </Border>
+                <Border  BorderBrush="Gray" Background="White" BorderThickness="1,0,0,1" Grid.Column="1" Grid.Row="5" Margin="0,0,10,0">
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="10,5,0,5">
+                        <Viewbox>
+                            <TextBlock Text="平台后退" VerticalAlignment="Center" Margin="20,20,0,20"></TextBlock>
+                        </Viewbox>
+                        <Viewbox>
+                            <cl:SymbolMapping Name="smPlatBackOff" Margin="40,80,40,80" StrContent="" LampType="3"/>
+                        </Viewbox>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Border Background="White" CornerRadius="10" Margin="5,10,5,5" >
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+                </Border.Effect>
+            </Border>
+             <Border CornerRadius="5"  Name="keyboard" 
+                            Focusable="False" BorderBrush="{x:Null}" BorderThickness="2">
+
+            <Border BorderThickness="1,1,1,1" CornerRadius="5" Padding="5" Margin="20,50,20,50" >
+                <Border.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0.809">
+                        <GradientStop Color="#FF4E4E4E" Offset="0.638"/>
+                        <GradientStop Color="#FFCCCCCC" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.BorderBrush>
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#302E2E" Offset="0.1"/>
+                            <GradientStop Color="#535151" />
+                            <GradientStop Color="#302E2E" Offset="0.5"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Border BorderThickness="1,10,1,10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Button  Name="cmd1" Grid.Row="0" Grid.Column="0" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
+                                <TextBlock Foreground="White" TextAlignment="Center" Width="100"><Run Text="1"/></TextBlock>
+                            </Button>
+                            <Button  Name="cmd2" Grid.Row="0" Grid.Column="1" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
+                                <TextBlock Foreground="White" TextAlignment="Center" Width="100"><Run Text="2"/></TextBlock>
+                            </Button>
+                            <Button  Name="cmd3" Grid.Row="0" Grid.Column="2" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
+                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Text="3"/></TextBlock>
+                            </Button>
+                            <Button  Name="cmd4" Grid.Row="0" Grid.Column="3" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
+                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Text="4"/></TextBlock>
+                            </Button>
+                            <Button  Name="cmd5" Grid.Row="1" Grid.Column="0" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
+                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Text="1"/></TextBlock>
+                            </Button>
+                            <Button  Name="cmd6" Grid.Row="1" Grid.Column="1" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
+                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Text="2"/></TextBlock>
+                            </Button>
+                            <Button  Name="cmd7" Grid.Row="1" Grid.Column="2" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
+                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Text="3"/></TextBlock>
+                            </Button>
+                            <Button  Name="cmd8" Grid.Row="1" Grid.Column="3" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
+                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Text="4"/></TextBlock>
+                            </Button>
+                            <Button  Name="cmd9" Grid.Row="2" Grid.Column="0" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
+                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Text="1"/></TextBlock>
+                            </Button>
+                            <Button  Name="cmd10" Grid.Row="2" Grid.Column="1" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
+                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Text="2"/></TextBlock>
+                            </Button>
+                            <Button  Name="cmd11" Grid.Row="2" Grid.Column="2" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
+                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Text="3"/></TextBlock>
+                            </Button>
+                            <Button  Name="cmd12" Grid.Row="2" Grid.Column="3" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
+                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Text="4"/></TextBlock>
+                            </Button>
+                            <Button  Name="cmd13" Grid.Row="3" Grid.Column="0" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
+                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Text="1"/></TextBlock>
+                            </Button>
+                            <Button  Name="cmd14" Grid.Row="3" Grid.Column="1" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
+                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Text="2"/></TextBlock>
+                            </Button>
+                            <Button  Name="cmd15" Grid.Row="3" Grid.Column="2" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
+                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Text="3"/></TextBlock>
+                            </Button>
+                            <Button  Name="cmd16" Grid.Row="3" Grid.Column="3" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
+                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Text="4"/></TextBlock>
+                            </Button>
+                            <Button  Name="cmd17" Grid.Row="4" Grid.Column="0" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
+                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Text="1"/></TextBlock>
+                            </Button>
+                            <Button  Name="cmd18" Grid.Row="4" Grid.Column="1" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
+                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Text="2"/></TextBlock>
+                            </Button>
+                            <Button  Name="cmd19" Grid.Row="4" Grid.Column="2" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
+                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Text="3"/></TextBlock>
+                            </Button>
+                            <Button  Name="cmd20" Grid.Row="4" Grid.Column="3" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
+                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Text="4"/></TextBlock>
+                            </Button>
+                        </Grid>
+                </Border>
+            </Border>
+        </Border>
+        </Grid>
+    </Grid>
+</UserControl>

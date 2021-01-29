@@ -2277,7 +2277,7 @@ namespace Main.WellRepair.SecondFloor
         /// </summary>
         private void btn_SPSelect(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = HandyControl.Controls.MessageBox.Show("确认选择特殊指梁", "提示", MessageBoxButton.OKCancel);
+            MessageBoxResult result = System.Windows.MessageBox.Show("确认选择特殊指梁", "提示", MessageBoxButton.OKCancel);
             if (result == MessageBoxResult.OK)
             {
                 byte[] byteToSend = SendByte(new List<byte> { 20, 1, 0, 0, 2 });
@@ -2299,11 +2299,11 @@ namespace Main.WellRepair.SecondFloor
         {
             byte[] byteToSend = SendByte(new List<byte> { 24, 2 });
             GlobalData.Instance.da.SendBytes(byteToSend);
-            UdpModel model = new UdpModel();
-            model.UdpType = UdpType.PlayCamera;
-            model.Content = "172.16.16.120";
-            byte[] bytes = Encoding.UTF8.GetBytes(model.ToJson());
-            GlobalData.Instance.da.SendDataToIPAndPort(bytes, "192.168.137.167", 8050);
+            //UdpModel model = new UdpModel();
+            //model.UdpType = UdpType.PlayCamera;
+            //model.Content = "172.16.16.120";
+            //byte[] bytes = Encoding.UTF8.GetBytes(model.ToJson());
+            //GlobalData.Instance.da.SendDataToIPAndPort(bytes, "192.168.137.167", 8050);
         }
 
 
@@ -2391,6 +2391,27 @@ namespace Main.WellRepair.SecondFloor
         private void btn_SelectDrill2Pipe48(object sender, RoutedEventArgs e)
         {
             byte[] byteToSend = new byte[10] { 80, 1, 3, 48, 0, 0, 1, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+
+        /// <summary>
+        /// 猴道伸出
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_MonkeyReach(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[] { 80, 1, 9, 1, 0, 0, 1, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 猴道缩回
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_MonkeyRetract(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[] { 80, 1, 9, 2, 0, 0, 1, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
     }

@@ -1322,6 +1322,10 @@ namespace DemoDriver
         /// 系统类型 0-钻井 1-修井 
         /// </summary>
         public int SysType { get; set; }
+        /// <summary>
+        /// 是否为集成系统 0-集成系统；1-二层台单机
+        /// </summary>
+        public int IngSystem { get; set; }
     }
 
     /// <summary>

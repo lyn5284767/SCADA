@@ -332,6 +332,8 @@
                                         <MenuItem Header="选择" Click="btn_SPSelect"/>
                                         <MenuItem Header="取消" Click="btn_SPCancel"/>
                                     </MenuItem>
+                                    <MenuItem Header="猴道伸出" FontSize="24" Click="btn_MonkeyReach"/>
+                                    <MenuItem Header="猴道缩回" FontSize="24" Click="btn_MonkeyRetract"/>
                                     <MenuItem Header="取消钻杆" FontSize="24" Click="btn_CancelDrillPipe"/>
                                     <MenuItem Header="设备回收" FontSize="24" Click="btn_EquipRecycling"/>
                                 </MenuItem>

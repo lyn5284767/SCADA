@@ -41,9 +41,9 @@
     <Viewbox>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="70"/>
-                <RowDefinition Height="70"/>
-                <RowDefinition Height="468"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="488"/>
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
@@ -92,7 +92,7 @@
                     <ColumnDefinition Width="300"/>
                     <ColumnDefinition Width="700"/>
                 </Grid.ColumnDefinitions>
-                <Border Grid.Column="0" BorderBrush="Gray" Padding="20" BorderThickness="0 1 1 0">
+                <Border Grid.Column="0" BorderBrush="Gray" Padding="0" BorderThickness="0 1 1 0">
                     <StackPanel>
                         <cl:CustomCheckBox ContentString="机械手大钩互锁" Margin="10" Name="checkBoxBigHookInterLockingOfRobot" UserControlClicked="BoxBigHookInterLockingOfRobot_Clicked"/>
                         <cl:CustomCheckBox ContentString="机械手顶驱互锁" Margin="10" Name="checkBoxManipulatorTopDriveInterlock" UserControlClicked="ManipulatorTopDriverInterlock_Clicked"/>
@@ -103,6 +103,8 @@
                         <cl:CustomCheckBox ContentString="吊卡打开限制解除" Margin="10" Name="checkBoxElevatorOpenLimitCancel" UserControlClicked="ElevatorOpenLimitCancel_Clicked"/>
                         <cl:CustomCheckBox ContentString="机械手检修模式" Margin="10" Name="checkBoxRobotInspectionMode" UserControlClicked="RobotInspectionMode_Clicked"/>
                         <cl:CustomCheckBox ContentString="回转回零限制" Margin="10" Name="checkBoxRoteTurnZero" UserControlClicked="CheckBoxRoteTurnZero_UserControlClicked"/>
+                        <cl:CustomCheckBox ContentString="机械手猴道互锁" Margin="10" Name="cbHandLockMonkey" UserControlClicked="cbHandLockMonkey_Clicked"/>
+
                     </StackPanel>
                 </Border>
                 <Border Grid.Column="1" BorderBrush="Gray" BorderThickness="0 1 0 0" Padding="20">

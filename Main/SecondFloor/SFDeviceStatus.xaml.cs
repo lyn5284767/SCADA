@@ -196,6 +196,7 @@ namespace Main.SecondFloor
                 #endregion
 
                 this.cbDrillDwon.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["103b4"], Mode = BindingMode.OneWay });
+                this.cbVisualAid.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["103b3"], Mode = BindingMode.OneWay });
 
             }
             catch (Exception ex)
@@ -294,6 +295,16 @@ namespace Main.SecondFloor
         private void cbDrillDwon_Clicked(object sender, EventArgs e)
         {
             byte[] byteToSend = SendByte(new List<byte> { 24, 4 });
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 视觉辅助系统开关
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cbVisualAid_Clicked(object sender, EventArgs e)
+        {
+            byte[] byteToSend = SendByte(new List<byte> { 24, 5 });
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
     }

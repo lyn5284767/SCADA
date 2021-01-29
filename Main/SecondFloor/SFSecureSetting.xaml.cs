@@ -86,6 +86,8 @@ namespace Main.SecondFloor
 
                 // 6.15新增
                 this.HookStatus.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["506b4"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.cbHandLockMonkey.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["21b5"], Mode = BindingMode.OneWay});
+
             }
             catch (Exception ex)
             {
@@ -464,6 +466,35 @@ namespace Main.SecondFloor
         {
             byte[] byteToSend = GlobalData.Instance.SFSendToOpr(new List<byte> { 21,14, 1 });
             GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 机械手与猴道互锁
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cbHandLockMonkey_Clicked(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+
+            if (this.cbHandLockMonkey.IsChecked)
+            {
+                MessageBoxResult result = MessageBox.Show("确认解除机械手与猴道互锁？", "提示信息", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
+                {
+                    byteToSend = GlobalData.Instance.SFSendToOpr(new List<byte> { 21, 22, 1 });
+                    GlobalData.Instance.da.SendBytes(byteToSend);
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                byteToSend = GlobalData.Instance.SFSendToOpr(new List<byte> { 21, 22, 2 });
+                GlobalData.Instance.da.SendBytes(byteToSend);
+
+            }
         }
     }
 }

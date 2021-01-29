@@ -197,6 +197,9 @@ namespace Main.SecondFloor
         private bool bPre123b5 = false;
         private bool bPre123b6 = false;
         private bool bPre123b7 = false;
+
+        private int turnZero = 0;
+        private int enable = 0;
         #endregion
         private int iTimeCnt = 0;//用来为时钟计数的变量
  
@@ -210,6 +213,7 @@ namespace Main.SecondFloor
                     if (iTimeCnt > 1000) iTimeCnt = 0;
                     this.Communcation();
                     this.Warnning();
+                    this.HandTips();
                     this.ReportDataUpdate();
                     //amination.LoadFingerBeamDrillPipe(SystemType.SecondFloor);
                     aminationNew.LoadFingerBeamDrillPipe(SystemType.SecondFloor);
@@ -246,6 +250,45 @@ namespace Main.SecondFloor
             catch (Exception ex)
             {
                 Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+            }
+        }
+
+        /// <summary>
+        /// 操作手性指示
+        /// </summary>
+        private void HandTips()
+        {
+            // 电机使能提示
+            if (GlobalData.Instance.da["carMotorWorkStatus"].Value.Boolean || GlobalData.Instance.da["armMotorWorkStatus"].Value.Boolean
+                || GlobalData.Instance.da["rotateMotorWorkStatus"].Value.Boolean)
+            {
+                enable--;
+                if (enable < -100) enable = -1;
+                if (enable < 0)
+                {
+                    if (this.tbEnableHand.Visibility == Visibility.Visible && iTimeCnt / 10 % 2 == 0)
+                        this.tbEnableHand.Visibility = Visibility.Collapsed;
+                    else if (this.tbTurnZeroHand.Visibility == Visibility.Collapsed && iTimeCnt / 10 % 2 != 0)
+                        this.tbEnableHand.Visibility = Visibility.Visible;
+
+                    return;
+                }
+                
+            }
+            // 电机回零提示
+            if (!GlobalData.Instance.da["carMotorRetZeroStatus"].Value.Boolean || !GlobalData.Instance.da["armMotorRetZeroStatus"].Value.Boolean
+                || !GlobalData.Instance.da["rotateMotorRetZeroStatus"].Value.Boolean)
+            {
+                turnZero--;
+                if (turnZero < -100) turnZero = -1;
+                if (turnZero < 0)
+                {
+                    if (this.tbTurnZeroHand.Visibility == Visibility.Visible && iTimeCnt / 10 % 2 == 0)
+                        this.tbTurnZeroHand.Visibility = Visibility.Collapsed;
+                    else if (this.tbTurnZeroHand.Visibility == Visibility.Collapsed && iTimeCnt / 10 % 2 != 0)
+                        this.tbTurnZeroHand.Visibility = Visibility.Visible;
+                    return;
+                }
             }
         }
         /// <summary>
@@ -936,6 +979,74 @@ namespace Main.SecondFloor
             //        WarnInfoThree.Remove("机械手已进入防碰区，请注意防碰！");
             //    }
             //}
+            // 视觉系统提示，1-视觉识别系统通讯断开；2-视觉识别系统无响应；3-识别角度超差；4-识别失败
+            byte visualAidTips = GlobalData.Instance.da["promptInfo"].Value.Byte;
+            if (visualAidTips ==1)
+            {
+                WarnInfoThree.TryGetValue("视觉识别系统通讯断开", out byteKey);
+                if (byteKey == 0)
+                {
+                    WarnInfoThree.Add("视觉识别系统通讯断开", 1);
+                }
+            }
+            else
+            {
+                WarnInfoThree.TryGetValue("视觉识别系统通讯断开", out byteKey);
+                if (byteKey != 0)
+                {
+                    WarnInfoThree.Remove("视觉识别系统通讯断开");
+                }
+            }
+            if (visualAidTips == 2)
+            {
+                WarnInfoThree.TryGetValue("视觉识别系统无响应", out byteKey);
+                if (byteKey == 0)
+                {
+                    WarnInfoThree.Add("视觉识别系统无响应", 1);
+                }
+            }
+            else
+            {
+                WarnInfoThree.TryGetValue("视觉识别系统无响应", out byteKey);
+                if (byteKey != 0)
+                {
+                    WarnInfoThree.Remove("视觉识别系统无响应");
+                }
+            }
+
+            if (visualAidTips == 3)
+            {
+                WarnInfoThree.TryGetValue("识别角度超差", out byteKey);
+                if (byteKey == 0)
+                {
+                    WarnInfoThree.Add("识别角度超差", 1);
+                }
+            }
+            else
+            {
+                WarnInfoThree.TryGetValue("识别角度超差", out byteKey);
+                if (byteKey != 0)
+                {
+                    WarnInfoThree.Remove("识别角度超差");
+                }
+            }
+
+            if (visualAidTips == 4)
+            {
+                WarnInfoThree.TryGetValue("识别失败", out byteKey);
+                if (byteKey == 0)
+                {
+                    WarnInfoThree.Add("识别失败", 1);
+                }
+            }
+            else
+            {
+                WarnInfoThree.TryGetValue("识别失败", out byteKey);
+                if (byteKey != 0)
+                {
+                    WarnInfoThree.Remove("识别失败");
+                }
+            }
 
             switch (GlobalData.Instance.da["promptInfo"].Value.Byte)
             {
@@ -1633,6 +1744,8 @@ namespace Main.SecondFloor
         {
             byte[] byteToSend = SendByte(new List<byte> { 13, 4 });
             GlobalData.Instance.da.SendBytes(byteToSend);
+            turnZero = 100;
+            this.tbTurnZeroHand.Visibility = Visibility.Collapsed;
         }
 
         /// <summary>
@@ -1642,6 +1755,8 @@ namespace Main.SecondFloor
         {
             byte[] byteToSend = SendByte(new List<byte> { 6, 2 });
             GlobalData.Instance.da.SendBytes(byteToSend);
+            enable = 100;
+            this.tbEnableHand.Visibility = Visibility.Collapsed;
         }
 
         #region 管柱类型选择

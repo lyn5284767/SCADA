@@ -234,6 +234,7 @@ namespace Main.DrillFloor
                     aminationNew.LoadFingerBeamDrillPipe(SystemType.DrillFloor);
                     iTimeCnt++;
                     if (iTimeCnt > 1000) iTimeCnt = 0;
+                    this.HandTips();
                     this.Warnning();
                     if (GlobalData.Instance.da["droperationModel"].Value.Byte == 5)
                     {
@@ -258,13 +259,35 @@ namespace Main.DrillFloor
                         if (this.warnTwo.Text == "当前系统为紧急停止状态")
                             this.warnTwo.Text = "";
                     }
-
-                  
                 }));
             }
             catch (Exception ex)
             {
                 Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+            }
+        }
+        /// <summary>
+        /// 操作手性指示
+        /// </summary>
+        private void HandTips()
+        {
+            // 电机使能提示
+            if (!GlobalData.Instance.da["324b1"].Value.Boolean || !GlobalData.Instance.da["324b5"].Value.Boolean)
+            {
+                if (this.tbEnableHand.Visibility == Visibility.Visible && iTimeCnt / 10 % 2 == 0)
+                    this.tbEnableHand.Visibility = Visibility.Collapsed;
+                else if (this.tbTurnZeroHand.Visibility == Visibility.Collapsed && iTimeCnt / 10 % 2 != 0)
+                    this.tbEnableHand.Visibility = Visibility.Visible;
+                return;
+            }
+            // 电机回零提示
+            if (!GlobalData.Instance.da["324b0"].Value.Boolean || !GlobalData.Instance.da["324b4"].Value.Boolean)
+            {
+                if (this.tbTurnZeroHand.Visibility == Visibility.Visible && iTimeCnt / 10 % 2 == 0)
+                    this.tbTurnZeroHand.Visibility = Visibility.Collapsed;
+                else if (this.tbTurnZeroHand.Visibility == Visibility.Collapsed && iTimeCnt / 10 % 2 != 0)
+                    this.tbTurnZeroHand.Visibility = Visibility.Visible;
+                return;
             }
         }
         private int controlHeartTimes = 0; // 控制台心跳次数

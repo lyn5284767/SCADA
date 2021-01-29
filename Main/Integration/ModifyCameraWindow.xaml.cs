@@ -44,6 +44,12 @@ namespace Main.Integration
         private void InitCameraInfo(int camId)
         {
             ICameraFactory cam = GlobalData.Instance.cameraList.Where(w => w.Info.ID == camId).FirstOrDefault();
+            if (camId == 1) this.Title = "二层台一";
+            if (camId == 2) this.Title = "二层台二";
+            if (camId == 3) this.Title = "钻台面一";
+            if (camId == 4) this.Title = "钻台面二";
+            if (camId == 5) this.Title = "铁钻工一";
+            if (camId == 6) this.Title = "铁钻工二";
             if (cam != null)
             {
                 this.tbCameraIP.Text = cam.Info.RemoteIP;

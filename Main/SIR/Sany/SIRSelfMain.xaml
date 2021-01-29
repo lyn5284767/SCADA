@@ -218,7 +218,7 @@
                             </Border>
                             <Grid Grid.Column="1">
                                 <Image Source="../../Images/hand.png" Height="140" Width="160"/>
-                                <cl:SymbolMapping Name="smSixLUp" Margin="-55,-69,0,0" StrContent="" LampType="3" Width="30" Height="30"/>
+                                <cl:SymbolMapping Name="smSixLUp" Margin="-55,-69,0,0" StrContent="" LampType="1" Width="30" Height="30"/>
                                 <cl:SymbolMapping Name="smSixLDown" Margin="-55,0,0,0" StrContent="" LampType="3" Width="30" Height="30"/>
                                 <cl:SymbolMapping Name="smSixMidUp" Margin="0,-40,0,0" StrContent="" LampType="3" Width="30" Height="30"/>
                                 <cl:SymbolMapping Name="smSixMidDown" Margin="0,25,0,0" StrContent="" LampType="3" Width="30" Height="30"/>
@@ -232,7 +232,7 @@
                                 <TextBlock Text="卸扣对缺" Margin="225,90,0,0" FontSize="16"></TextBlock>
 
                                 <cl:SymbolMapping Name="smSixEnable" Margin="-105,110,0,0" StrContent="" LampType="3" Width="30" Height="30"/>
-                                <cl:SymbolMapping Name="smSixBack" Margin="105,110,0,0" StrContent="" LampType="3" Width="30" Height="30"/>
+                                <cl:SymbolMapping Name="smSixBack" Margin="105,110,0,0" StrContent="" LampType="1" Width="30" Height="30"/>
                                 <TextBlock Text="底部确认" Margin="-105,160,0,0" FontSize="16"></TextBlock>
                                 <TextBlock Text="背部使能" Margin="105,160,0,0" FontSize="16"></TextBlock>
                             </Grid>
