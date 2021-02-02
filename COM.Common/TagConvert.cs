@@ -3935,6 +3935,28 @@ namespace COM.Common
             throw new NotImplementedException();
         }
     }
+    /// <summary>
+    /// 泵启停
+    /// </summary>
+    public class PumpStartConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null || value == DependencyProperty.UnsetValue)
+            {
+                return "停止";
+            }
+
+            bool val = (bool)value;
+            if (val) return "启动";
+            else return "停止";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 
     public class HotImgConverter : IValueConverter
     {
@@ -4041,6 +4063,7 @@ namespace COM.Common
             throw new NotImplementedException();
         }
     }
+   
     #endregion
 
 
