@@ -35,19 +35,23 @@
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
-    <Grid>
-        <Border Background="White" CornerRadius="10" Margin="10" Grid.Row="2" Grid.Column="0">
+    <Grid Margin="5">
+        <Border Background="White" CornerRadius="10">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
             </Border.Effect>
         </Border>
-        <Grid Margin="10">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
-                <RowDefinition Height="100"/>
-                <RowDefinition Height="100"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="4*"/>
             </Grid.RowDefinitions>
-            <Button Width="325" Height="40" Panel.ZIndex="1" HorizontalAlignment="Center"  
+            <Button Width="600" Height="40" Panel.ZIndex="1" HorizontalAlignment="Center"  
                                  Background="#2B71CA" BorderBrush="#92C202" Grid.ColumnSpan="2">
                 <TextBlock Text="液压站(三一)" Foreground="White" FontSize="24"/>
             </Button>
@@ -56,21 +60,60 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <cl:BasedSwitchButton Name="controlModel" ContentLeft="本地" ContentDown="控制模式" ContentRight="司钻" UserControlClicked="btn_controlModel" Grid.Column="0" />
-                <cl:BasedSwitchButton Name="MainPumpOne" ContentLeft="停止" ContentDown="1#主泵" ContentRight="启动" UserControlClicked="btn_MainPumpOne" Grid.Column="1" />
-                <cl:BasedSwitchButton Name="MainPumpTwo" ContentLeft="停止" ContentDown="2#主泵" ContentRight="启动" UserControlClicked="btn_MainPumpTwo" Grid.Column="2" />
-            </Grid>
+                <Viewbox Grid.Column="0">
+                    <TextBlock Text="1#主泵:" Margin="10"></TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Column="1">
+                    <TextBlock Name="tbMainpumpOne" Text="停止" Margin="10"></TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Column="2">
+                    <TextBlock Text="2#主泵:" Margin="10"></TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Column="3">
+                    <TextBlock Text="停止" Margin="10"></TextBlock>
+                </Viewbox>
+             </Grid>
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <cl:BasedSwitchButton Name="HSConstantVoltagePump" ContentLeft="停止" ContentDown="恒压泵" ContentRight="启动" UserControlClicked="btn_HSConstantVoltagePump" Grid.Column="0" />
-                <cl:BasedSwitchButton Name="HSDissipateHeat" ContentLeft="停止" ContentDown="散热泵" ContentRight="启动" UserControlClicked="btn_HSDissipateHeat" Grid.Column="1" />
-                <cl:BasedSwitchButton Name="HSHot" ContentLeft="停止" ContentDown="加热器" ContentRight="启动" UserControlClicked="btn_HSHot" Grid.Column="2" />
-
+                <Viewbox Grid.Column="0">
+                    <TextBlock Text="恒压泵:" Margin="10"></TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Column="1">
+                    <TextBlock Text="停止" Margin="10"></TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Column="2">
+                    <TextBlock Text="散热泵:" Margin="10"></TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Column="3">
+                    <TextBlock Text="停止" Margin="10"></TextBlock>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Viewbox Grid.Column="0">
+                    <TextBlock Text="油温:" Margin="10"></TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Column="1">
+                    <TextBlock Text="XX(°)" Margin="10"></TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Column="2">
+                    <TextBlock Text="液位:" Margin="10"></TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Column="3">
+                    <TextBlock Text="XX(L)" Margin="10"></TextBlock>
+                </Viewbox>
             </Grid>
         </Grid>
     </Grid>

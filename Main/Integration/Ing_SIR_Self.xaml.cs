@@ -65,18 +65,22 @@ namespace Main.Integration
         {
             try
             {
-                this.siroprModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOperModel"], Mode = BindingMode.OneWay, Converter = new SIRSelfOperationModelConverter() });
-                this.siroprModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOperModel"], Mode = BindingMode.OneWay, Converter = new SIRSelfIsCheckConverter() });
-                this.sirworkModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfWorkModel"], Mode = BindingMode.OneWay, Converter = new SIRSelfWorkModelConverter() });
-                this.sirworkModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfWorkModel"], Mode = BindingMode.OneWay, Converter = new SIRSelfIsCheckConverter() });
-                this.sirPipeTypeModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfPipeType"], Mode = BindingMode.OneWay, Converter = new SIRSelfPipeTypeModelConverter() });
-                this.sirPipeTypeModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfPipeType"], Mode = BindingMode.OneWay, Converter = new SIRSelfPipeTypeIsCheckConverter() });
-                this.locationModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfLocationModel"], Mode = BindingMode.OneWay, Converter = new SIRSelfLocationModelConverter() });
-                this.locationModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfLocationModel"], Mode = BindingMode.OneWay, Converter = new SIRSelfIsCheckConverter() });
-                this.controlModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfLocalOrRemote"], Mode = BindingMode.OneWay, Converter = new SIRSelfLocalOrRemoreCheckConverter() });
-                this.controlModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfLocalOrRemote"], Mode = BindingMode.OneWay, Converter = new SIRSelfLocalOrRemoreConverter() });
-                this.tbRotate.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["SIRSelfRotateEncodePulse"], Mode = BindingMode.OneWay, Converter = new SIRSelfRotateConverter() });
-                this.tbArmPos.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfArmPos"], Mode = BindingMode.OneWay, Converter = new TakeTenConverter() });
+                //this.siroprModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOperModel"], Mode = BindingMode.OneWay, Converter = new SIRSelfOperationModelConverter() });
+                //this.siroprModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfOperModel"], Mode = BindingMode.OneWay, Converter = new SIRSelfIsCheckConverter() });
+                //this.sirworkModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfWorkModel"], Mode = BindingMode.OneWay, Converter = new SIRSelfWorkModelConverter() });
+                //this.sirworkModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfWorkModel"], Mode = BindingMode.OneWay, Converter = new SIRSelfIsCheckConverter() });
+                //this.sirPipeTypeModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfPipeType"], Mode = BindingMode.OneWay, Converter = new SIRSelfPipeTypeModelConverter() });
+                //this.sirPipeTypeModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfPipeType"], Mode = BindingMode.OneWay, Converter = new SIRSelfPipeTypeIsCheckConverter() });
+                //this.locationModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfLocationModel"], Mode = BindingMode.OneWay, Converter = new SIRSelfLocationModelConverter() });
+                //this.locationModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfLocationModel"], Mode = BindingMode.OneWay, Converter = new SIRSelfIsCheckConverter() });
+                //this.controlModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfLocalOrRemote"], Mode = BindingMode.OneWay, Converter = new SIRSelfLocalOrRemoreCheckConverter() });
+                //this.controlModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfLocalOrRemote"], Mode = BindingMode.OneWay, Converter = new SIRSelfLocalOrRemoreConverter() });
+                //this.tbRotate.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["SIRSelfRotateEncodePulse"], Mode = BindingMode.OneWay, Converter = new SIRSelfRotateConverter() });
+                //this.tbArmPos.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SIRSelfArmPos"], Mode = BindingMode.OneWay, Converter = new TakeTenConverter() });
+                this.smInButtonPosOne.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["841b3"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.smInButtonPosTwo.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["841b5"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.smOutButtonPosOne.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["841b4"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.smOutButtonPosTwo.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["841b6"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
 
             }
             catch (Exception ex)
@@ -90,66 +94,66 @@ namespace Main.Integration
         /// </summary>
         private void btn_SIRoprModel(object sender, EventArgs e)
         {
-            byte[] byteToSend;
-            if (this.siroprModel.IsChecked) //当前手动状态
-            {
-                byteToSend = new byte[10] { 23, 17, 1, 2, 0, 0, 0, 0, 0, 0 };
-            }
-            else//当前自动状态
-            {
-                byteToSend = new byte[10] { 23, 17, 1, 1, 0, 0, 0, 0, 0, 0 };
-            }
-            GlobalData.Instance.da.SendBytes(byteToSend);
+            //byte[] byteToSend;
+            //if (this.siroprModel.IsChecked) //当前手动状态
+            //{
+            //    byteToSend = new byte[10] { 23, 17, 1, 2, 0, 0, 0, 0, 0, 0 };
+            //}
+            //else//当前自动状态
+            //{
+            //    byteToSend = new byte[10] { 23, 17, 1, 1, 0, 0, 0, 0, 0, 0 };
+            //}
+            //GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
         /// 工作模式
         /// </summary>
         private void btn_SIRworkModel(object sender, EventArgs e)
         {
-            byte[] byteToSend;
-            if (this.sirworkModel.IsChecked) //当前上扣模式切换卸扣
-            {
-                byteToSend = new byte[10] { 23, 17, 2, 2, 0, 0, 0, 0, 0, 0 };
-            }
-            else//当前卸扣模式切换上扣
-            {
-                byteToSend = new byte[10] { 23, 17, 2, 1, 0, 0, 0, 0, 0, 0 };
-            }
-            GlobalData.Instance.da.SendBytes(byteToSend);
-            this.sirworkModel.ContentDown = "切换中";
-            workModelCheck = true;
+            //byte[] byteToSend;
+            //if (this.sirworkModel.IsChecked) //当前上扣模式切换卸扣
+            //{
+            //    byteToSend = new byte[10] { 23, 17, 2, 2, 0, 0, 0, 0, 0, 0 };
+            //}
+            //else//当前卸扣模式切换上扣
+            //{
+            //    byteToSend = new byte[10] { 23, 17, 2, 1, 0, 0, 0, 0, 0, 0 };
+            //}
+            //GlobalData.Instance.da.SendBytes(byteToSend);
+            //this.sirworkModel.ContentDown = "切换中";
+            //workModelCheck = true;
         }
         /// <summary>
         /// 管柱选择
         /// </summary>
         private void btn_SIRPipeTypeModel(object sender, EventArgs e)
         {
-            byte[] byteToSend;
-            if (this.sirPipeTypeModel.IsChecked) //当前钻杆
-            {
-                byteToSend = new byte[10] { 23, 17, 3, 2, 0, 0, 0, 0, 0, 0 };
-            }
-            else//当前套管
-            {
-                byteToSend = new byte[10] { 23, 17, 3, 1, 0, 0, 0, 0, 0, 0 };
-            }
-            GlobalData.Instance.da.SendBytes(byteToSend);
+            //byte[] byteToSend;
+            //if (this.sirPipeTypeModel.IsChecked) //当前钻杆
+            //{
+            //    byteToSend = new byte[10] { 23, 17, 3, 2, 0, 0, 0, 0, 0, 0 };
+            //}
+            //else//当前套管
+            //{
+            //    byteToSend = new byte[10] { 23, 17, 3, 1, 0, 0, 0, 0, 0, 0 };
+            //}
+            //GlobalData.Instance.da.SendBytes(byteToSend);
         }
 
         private void SIRVariableTimer(object value)
         {
-            if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANY)
-            {
-                if (bworkModel != GlobalData.Instance.da["SIRSelfWorkModel"].Value.Byte && workModelCheck)
-                {
-                    this.sirworkModel.Dispatcher.Invoke(new Action(() =>
-                    {
-                        this.sirworkModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfWorkModel"], Mode = BindingMode.OneWay, Converter = new SIRSelfWorkModelConverter() });
-                    }));
-                    workModelCheck = false;
-                }
-                bworkModel = GlobalData.Instance.da["SIRSelfWorkModel"].Value.Byte;
-            }
+            //if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANY)
+            //{
+            //    if (bworkModel != GlobalData.Instance.da["SIRSelfWorkModel"].Value.Byte && workModelCheck)
+            //    {
+            //        this.sirworkModel.Dispatcher.Invoke(new Action(() =>
+            //        {
+            //            this.sirworkModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SIRSelfWorkModel"], Mode = BindingMode.OneWay, Converter = new SIRSelfWorkModelConverter() });
+            //        }));
+            //        workModelCheck = false;
+            //    }
+            //    bworkModel = GlobalData.Instance.da["SIRSelfWorkModel"].Value.Byte;
+            //}
         }
         #endregion
 
@@ -158,16 +162,16 @@ namespace Main.Integration
         /// </summary>
         private void btn_locationModel(object sender, EventArgs e)
         {
-            byte[] byteToSend;
-            if (this.locationModel.IsChecked) //当前井口
-            {
-                byteToSend = new byte[10] { 23, 17, 4, 2, 0, 0, 0, 0, 0, 0 };
-            }
-            else//当前鼠洞
-            {
-                byteToSend = new byte[10] { 23, 17, 4, 1, 0, 0, 0, 0, 0, 0 };
-            }
-            GlobalData.Instance.da.SendBytes(byteToSend);
+            //byte[] byteToSend;
+            //if (this.locationModel.IsChecked) //当前井口
+            //{
+            //    byteToSend = new byte[10] { 23, 17, 4, 2, 0, 0, 0, 0, 0, 0 };
+            //}
+            //else//当前鼠洞
+            //{
+            //    byteToSend = new byte[10] { 23, 17, 4, 1, 0, 0, 0, 0, 0, 0 };
+            //}
+            //GlobalData.Instance.da.SendBytes(byteToSend);
         }
 
         /// <summary>
@@ -177,26 +181,26 @@ namespace Main.Integration
         /// <param name="e"></param>
         private void btn_controlModel(object sender, EventArgs e)
         {
-            byte[] drbyteToSend;
-            byte[] sirbyteToSend;
-            byte[] sfbyteToSend;
-            if (this.controlModel.IsChecked)
-            {
-                drbyteToSend = new byte[10] { 1, 32, 2, 20, 0, 0, 0, 0, 0, 0 }; // 钻台面-遥控切司钻
-                sirbyteToSend = new byte[10] { 23, 17, 10, 2, 0, 0, 0, 0, 0, 0 }; // 铁钻工-司钻切遥控
-                sfbyteToSend = new byte[10] { 16, 1, 27, 1, 1, 0, 0, 0, 0, 0 };// 二层台-遥控切司钻
-                GlobalData.Instance.da.SendBytes(drbyteToSend);
-                Thread.Sleep(50);
-                GlobalData.Instance.da.SendBytes(sirbyteToSend);
-                Thread.Sleep(50);
-                GlobalData.Instance.da.SendBytes(sfbyteToSend);
-            }
-            else
-            {
-                drbyteToSend = new byte[10] { 23, 17, 10, 1, 0, 0, 0, 0, 0, 0 };// 铁钻工-遥控切司钻
-                GlobalData.Instance.da.SendBytes(drbyteToSend);
+            //byte[] drbyteToSend;
+            //byte[] sirbyteToSend;
+            //byte[] sfbyteToSend;
+            //if (this.controlModel.IsChecked)
+            //{
+            //    drbyteToSend = new byte[10] { 1, 32, 2, 20, 0, 0, 0, 0, 0, 0 }; // 钻台面-遥控切司钻
+            //    sirbyteToSend = new byte[10] { 23, 17, 10, 2, 0, 0, 0, 0, 0, 0 }; // 铁钻工-司钻切遥控
+            //    sfbyteToSend = new byte[10] { 16, 1, 27, 1, 1, 0, 0, 0, 0, 0 };// 二层台-遥控切司钻
+            //    GlobalData.Instance.da.SendBytes(drbyteToSend);
+            //    Thread.Sleep(50);
+            //    GlobalData.Instance.da.SendBytes(sirbyteToSend);
+            //    Thread.Sleep(50);
+            //    GlobalData.Instance.da.SendBytes(sfbyteToSend);
+            //}
+            //else
+            //{
+            //    drbyteToSend = new byte[10] { 23, 17, 10, 1, 0, 0, 0, 0, 0, 0 };// 铁钻工-遥控切司钻
+            //    GlobalData.Instance.da.SendBytes(drbyteToSend);
 
-            }
+            //}
         }
 
         private int iTimeCnt = 0;//用来为时钟计数的变量
@@ -283,7 +287,7 @@ namespace Main.Integration
                 else
                 {
                     //tbSIRAlarm.Visibility = Visibility.Hidden;
-                    tbSIRAlarm.Text = "";
+                    tbSIRAlarm.Text = "暂无告警";
                 }
                 byte oprTips = GlobalData.Instance.da["SIRSelfOprInfo"].Value.Byte;
                 switch (oprTips)
@@ -349,7 +353,7 @@ namespace Main.Integration
                         this.tbSIROpr.Text = "禁止上卸扣";
                         break;
                     default:
-                        this.tbSIROpr.Text = "";
+                        this.tbSIROpr.Text = "暂无操作提示";
                         break;
                 }
                 //上扣指示灯亮，但是未卸扣工作模式 
@@ -360,7 +364,7 @@ namespace Main.Integration
                 }
                 else
                 {
-                    if (this.tbSIRAlarm.Text == "卸扣模式不一致，请切换手/自动") this.tbSIRAlarm.Text = "";
+                    if (this.tbSIRAlarm.Text == "卸扣模式不一致，请切换手/自动") this.tbSIRAlarm.Text = "暂无告警";
                 }
 
                 if (GlobalData.Instance.da["841b4"].Value.Boolean && GlobalData.Instance.da["841b6"].Value.Boolean
@@ -370,7 +374,7 @@ namespace Main.Integration
                 }
                 else
                 {
-                    if (this.tbSIRAlarm.Text == "上扣模式不一致，请切换手/自动") this.tbSIRAlarm.Text = "";
+                    if (this.tbSIRAlarm.Text == "上扣模式不一致，请切换手/自动") this.tbSIRAlarm.Text = "暂无告警";
                 }
             }
             catch (Exception ex)

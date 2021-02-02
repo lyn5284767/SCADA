@@ -1107,6 +1107,12 @@ namespace Main.WellRepair.SecondFloor
                 case 75:
                     warnTwo.Text = "请确认手指开合状态！";
                     break;
+                case 79:
+                    warnTwo.Text = "猴道未缩回，禁止机械手动作！";
+                    break;
+                case 80:
+                    warnTwo.Text = "机械手未缩回，禁止缩回猴道！";
+                    break;
                 case 81:
                     warnTwo.Text = "记录的两点太近！";
                     break;
@@ -2411,8 +2417,12 @@ namespace Main.WellRepair.SecondFloor
         /// <param name="e"></param>
         private void btn_MonkeyRetract(object sender, RoutedEventArgs e)
         {
-            byte[] byteToSend = new byte[] { 80, 1, 9, 2, 0, 0, 1, 0, 0, 0 };
-            GlobalData.Instance.da.SendBytes(byteToSend);
+            MessageBoxResult result = System.Windows.MessageBox.Show("确认猴道缩回", "提示", MessageBoxButton.OKCancel);
+            if (result == MessageBoxResult.OK)
+            {
+                byte[] byteToSend = new byte[] { 80, 1, 9, 2, 0, 0, 1, 0, 0, 0 };
+                GlobalData.Instance.da.SendBytes(byteToSend);
+            }
         }
     }
 }

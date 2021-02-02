@@ -60,12 +60,12 @@ namespace Main.Integration
         {
             try
             {
-                this.sfoperateMode.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay, Converter = new OperationModelConverter() });
-                this.sfoperateMode.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay, Converter = new OperationModelIsCheckConverter() });
-                this.sfworkMode.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["workModel"], Mode = BindingMode.OneWay, Converter = new WorkModelConverter() });
-                this.sfworkMode.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["workModel"], Mode = BindingMode.OneWay, Converter = new WorkModelIsCheckConverter() });
-                this.controlModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SF_Self_Control"], Mode = BindingMode.OneWay, Converter = new SIRSelfLocalOrRemoreCheckConverter() });
-                this.controlModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["SF_Self_Control"], Mode = BindingMode.OneWay, Converter = new SIRSelfLocalOrRemoreConverter() });
+                this.carMotorWorkStatus.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["carMotorWorkStatus"], Mode = BindingMode.OneWay, Converter = new OppositeBoolTagConverter() });
+                this.armMotorWorkStatus.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["armMotorWorkStatus"], Mode = BindingMode.OneWay, Converter = new OppositeBoolTagConverter() });
+                this.rotateMotorWorkStatus.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["rotateMotorWorkStatus"], Mode = BindingMode.OneWay, Converter = new OppositeBoolTagConverter() });
+                this.carMotorRetZero.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["carMotorRetZeroStatus"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.armMotorRetZero.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["armMotorRetZeroStatus"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.rotateMotorRetZero.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["rotateMotorRetZeroStatus"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
 
             }
             catch (Exception ex)
@@ -96,57 +96,57 @@ namespace Main.Integration
         /// <param name="e"></param>
         private void btn_SFOpState(object sender, EventArgs e)
         {
-            byte[] byteToSend;
-            if (this.sfoperateMode.IsChecked)
-            {
-                byteToSend = GlobalData.Instance.SendByte(new List<byte> { 1, 5 });
-            }
-            else
-            {
-                byteToSend = GlobalData.Instance.SendByte(new List<byte> { 1, 4 });
-            }
+            //byte[] byteToSend;
+            //if (this.sfoperateMode.IsChecked)
+            //{
+            //    byteToSend = GlobalData.Instance.SendByte(new List<byte> { 1, 5 });
+            //}
+            //else
+            //{
+            //    byteToSend = GlobalData.Instance.SendByte(new List<byte> { 1, 4 });
+            //}
 
-            GlobalData.Instance.da.SendBytes(byteToSend);
+            //GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
         /// 工作模式
         /// </summary>
         private void btn_SFWorkModel(object sender, EventArgs e)
         {
-            byte[] byteToSend;
-            if (sfworkMode.IsChecked)
-            {
-                byteToSend = GlobalData.Instance.SendByte(new List<byte> { 2, 1 });
-            }
-            else
-            {
-                byteToSend = GlobalData.Instance.SendByte(new List<byte> { 2, 2 });
-            }
-            GlobalData.Instance.da.SendBytes(byteToSend);
+            //byte[] byteToSend;
+            //if (sfworkMode.IsChecked)
+            //{
+            //    byteToSend = GlobalData.Instance.SendByte(new List<byte> { 2, 1 });
+            //}
+            //else
+            //{
+            //    byteToSend = GlobalData.Instance.SendByte(new List<byte> { 2, 2 });
+            //}
+            //GlobalData.Instance.da.SendBytes(byteToSend);
         }
 
         private void btn_controlModel(object sender, EventArgs e)
         {
-            byte[] drbyteToSend;
-            byte[] sirbyteToSend;
-            byte[] sfbyteToSend;
-            if (this.controlModel.IsChecked)
-            {
-                drbyteToSend = new byte[10] { 1, 32, 2, 20, 0, 0, 0, 0, 0, 0 }; // 钻台面-遥控切司钻
-                sirbyteToSend = new byte[10] { 23, 17, 10, 1, 0, 0, 0, 0, 0, 0 }; // 铁钻工-遥控切司钻
-                sfbyteToSend = new byte[10] { 16, 1, 27, 1, 2, 0, 0, 0, 0, 0 };// 二层台-司钻切遥控
-                GlobalData.Instance.da.SendBytes(drbyteToSend);
-                Thread.Sleep(50);
-                GlobalData.Instance.da.SendBytes(sirbyteToSend);
-                Thread.Sleep(50);
-                GlobalData.Instance.da.SendBytes(sfbyteToSend);
-            }
-            else
-            {
-                drbyteToSend = new byte[10] { 16, 1, 27, 1, 1, 0, 0, 0, 0, 0 };// 二层台-遥控切司钻
-                GlobalData.Instance.da.SendBytes(drbyteToSend);
+            //byte[] drbyteToSend;
+            //byte[] sirbyteToSend;
+            //byte[] sfbyteToSend;
+            //if (this.controlModel.IsChecked)
+            //{
+            //    drbyteToSend = new byte[10] { 1, 32, 2, 20, 0, 0, 0, 0, 0, 0 }; // 钻台面-遥控切司钻
+            //    sirbyteToSend = new byte[10] { 23, 17, 10, 1, 0, 0, 0, 0, 0, 0 }; // 铁钻工-遥控切司钻
+            //    sfbyteToSend = new byte[10] { 16, 1, 27, 1, 2, 0, 0, 0, 0, 0 };// 二层台-司钻切遥控
+            //    GlobalData.Instance.da.SendBytes(drbyteToSend);
+            //    Thread.Sleep(50);
+            //    GlobalData.Instance.da.SendBytes(sirbyteToSend);
+            //    Thread.Sleep(50);
+            //    GlobalData.Instance.da.SendBytes(sfbyteToSend);
+            //}
+            //else
+            //{
+            //    drbyteToSend = new byte[10] { 16, 1, 27, 1, 1, 0, 0, 0, 0, 0 };// 二层台-遥控切司钻
+            //    GlobalData.Instance.da.SendBytes(drbyteToSend);
 
-            }
+            //}
         }
         #endregion
 
@@ -295,7 +295,7 @@ namespace Main.Integration
 
             alarmList.Add(new AlarmInfo() { TagName = "carMotorRetZeroStatus", Description = "机械手未回零，位置未知，请注意防碰！", NowType = 0 });
             alarmList.Add(new AlarmInfo() { TagName = "101B7b1", Description = "机械手已进入防碰区，请注意防碰！", NowType = 0 });
-            alarmList.Add(new AlarmInfo() { TagName = "101B7b1", Description = "机械手已进入防碰区，请注意防碰！", NowType = 0 });
+            //alarmList.Add(new AlarmInfo() { TagName = "101B7b1", Description = "机械手已进入防碰区，请注意防碰！", NowType = 0 });
 
         }
 
@@ -371,8 +371,7 @@ namespace Main.Integration
                 }
                 else
                 {
-                    //warnThree.Visibility = Visibility.Hidden;
-                    //warnThree.Text = "";
+                    this.tbSFAlarm.Text = "暂无告警";
                 }
 
          
@@ -435,14 +434,14 @@ namespace Main.Integration
             }
             else
             {
-                if (this.tbSFOpr.Text == "二层台信号中断") this.tbSFOpr.Text = "";
+                if (this.tbSFOpr.Text == "二层台信号中断") this.tbSFOpr.Text = "暂无操作指示";
                 bCommunicationCheck = false;
             }
 
             if (!GlobalData.Instance.ComunciationNormal) this.tbSFOpr.Text = "网络连接失败！";
             else
             {
-                if (this.tbSFOpr.Text == "网络连接失败！") this.tbSFOpr.Text = "";
+                if (this.tbSFOpr.Text == "网络连接失败！") this.tbSFOpr.Text = "暂无操作指示";
             }
             #endregion
         }
@@ -451,7 +450,7 @@ namespace Main.Integration
             switch (GlobalData.Instance.da["promptInfo"].Value.Byte)
             {
                 case 0:
-                    tbSFOpr.Text = "";
+                    tbSFOpr.Text = "暂无操作指示";
                     break;
                 case 1:
                     tbSFOpr.Text = "小车电机报警";
@@ -640,7 +639,7 @@ namespace Main.Integration
                     tbSFOpr.Text = "回转电机动作卡滞！";
                     break;
                 default:
-                    tbSFOpr.Text = "";
+                    tbSFOpr.Text = "暂无操作指示";
                     break;
 
             }

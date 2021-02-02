@@ -1,6 +1,7 @@
 ﻿using COM.Common;
 using ControlLibrary;
 using DatabaseLib;
+using DevExpress.XtraPrinting.Native;
 using HandyControl.Controls;
 using System;
 using System.Collections.Generic;
@@ -551,34 +552,43 @@ namespace Main.Integration
         /// </summary>
         public void InitAllModel()
         {
-            gdList.Add(this.gdModelTwo);
-            gdList.Add(this.gdModelThree);
-            gdList.Add(this.gdModelFour);
-            gdList.Add(this.gdModelFive);
-            gdList.Add(this.gdModelSix);
+            //gdList.Add(this.gdModelTwo);
+            //gdList.Add(this.gdModelThree);
+            //gdList.Add(this.gdModelFour);
+            //gdList.Add(this.gdModelFive);
+            //gdList.Add(this.gdModelSix);
             string sql = "Select * from GlobalModel Order by ID Desc";
             List<GlobalModel> list = DataHelper.Instance.ExecuteList<GlobalModel>(sql);
-            for (int i = 0; i < 5; i++)
+            if (list.Count > 0)
             {
-                if (i<list.Count)
-                {
-                    ModelDetailData data = new ModelDetailData(list[i]);
-                    if(gdList[i].Children[0] is TextBlock)
-                        gdList[i].Children[0].Visibility = Visibility.Collapsed;
-                    data.StartFinishEvent += Data_StartFinishEvent;
-                    gdList[i].Tag = list[i];
-                    gdList[i].Children.Add(data);
-                }
-                else
-                {
-                    if (gdList[i].Children[0] is TextBlock)
-                        gdList[i].Children[0].Visibility = Visibility.Visible;
-                    if (gdList[i].Children.Count == 2)
-                    {
-                        gdList[i].Children.RemoveAt(1);
-                    }
-                }
+                ModelDetailData data = new ModelDetailData(list[0]);
+                if (this.gdModel.Children[0] is TextBlock)
+                    this.gdModel.Children[0].Visibility = Visibility.Collapsed;
+                data.StartFinishEvent += Data_StartFinishEvent;
+                this.gdModel.Tag = list[0];
+                this.gdModel.Children.Add(data);
             }
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    if (i<list.Count)
+            //    {
+            //        ModelDetailData data = new ModelDetailData(list[i]);
+            //        if(gdList[i].Children[0] is TextBlock)
+            //            gdList[i].Children[0].Visibility = Visibility.Collapsed;
+            //        data.StartFinishEvent += Data_StartFinishEvent;
+            //        gdList[i].Tag = list[i];
+            //        gdList[i].Children.Add(data);
+            //    }
+            //    else
+            //    {
+            //        if (gdList[i].Children[0] is TextBlock)
+            //            gdList[i].Children[0].Visibility = Visibility.Visible;
+            //        if (gdList[i].Children.Count == 2)
+            //        {
+            //            gdList[i].Children.RemoveAt(1);
+            //        }
+            //    }
+            //}
             // 修井
             if (GlobalData.Instance.da.GloConfig.SysType == 1)
             {
@@ -605,32 +615,102 @@ namespace Main.Integration
             }
             else // 钻井
             {
-                if (GlobalData.Instance.da.GloConfig.SFType == 0) this.tbsf.Text = "二层台(未配置)";
-                else if (GlobalData.Instance.da.GloConfig.SFType == 1) this.tbsf.Text = "二层台(三一)";
+                if (GlobalData.Instance.da.GloConfig.SFType == 0)
+                {
+                    this.tbsf.Text = "二层台(未配置)";
+                    Ing_Bank ing_Bank = new Ing_Bank("二层台(未配置)");
+                    this.gdSF.Children.Clear();
+                    this.gdSF.Children.Add(ing_Bank);
+                }
+                else if (GlobalData.Instance.da.GloConfig.SFType == 1)
+                {
+                    this.tbsf.Text = "二层台(三一)";
+                    this.gdSF.Children.Clear();
+                    this.gdSF.Children.Add(Ing_SF_Self.Instance);
+                }
                 else this.tbsf.Text = "二层台(错误)";
 
-                if (GlobalData.Instance.da.GloConfig.DRType == 0) this.tbdr.Text = "钻台面(未配置)";
-                else if (GlobalData.Instance.da.GloConfig.DRType == 1) this.tbdr.Text = "钻台面(三一)";
+                if (GlobalData.Instance.da.GloConfig.DRType == 0)
+                {
+                    this.tbdr.Text = "钻台面(未配置)";
+                    Ing_Bank ing_Bank = new Ing_Bank("钻台面(未配置)");
+                    this.gdDR.Children.Clear();
+                    this.gdDR.Children.Add(ing_Bank);
+                }
+                else if (GlobalData.Instance.da.GloConfig.DRType == 1)
+                {
+                    this.tbdr.Text = "钻台面(三一)";
+                    this.gdDR.Children.Clear();
+                    this.gdDR.Children.Add(Ing_DR_Self.Instance);
+                }
                 else if (GlobalData.Instance.da.GloConfig.DRType == 2) this.tbdr.Text = "钻台面(杰瑞)";
                 else this.tbdr.Text = "钻台面(错误)";
 
-                if (GlobalData.Instance.da.GloConfig.SIRType == 0) this.tbIron.Text = "铁钻工(未配置)";
-                else if (GlobalData.Instance.da.GloConfig.SIRType == 1) this.tbIron.Text = "铁钻工(三一)";
-                else if (GlobalData.Instance.da.GloConfig.SIRType == 2) this.tbIron.Text = "铁钻工(JJC)";
-                else if (GlobalData.Instance.da.GloConfig.SIRType == 3) this.tbIron.Text = "铁钻工(宝石)";
+                if (GlobalData.Instance.da.GloConfig.SIRType == 0)
+                {
+                    this.tbIron.Text = "铁钻工(未配置)";
+                    Ing_Bank ing_Bank = new Ing_Bank("铁钻工(未配置)");
+                    this.gdSIR.Children.Clear();
+                    this.gdSIR.Children.Add(ing_Bank);
+                }
+                else if (GlobalData.Instance.da.GloConfig.SIRType == 1)
+                {
+                    this.tbIron.Text = "铁钻工(三一)";
+                    this.gdSIR.Children.Clear();
+                    this.gdSIR.Children.Add(Ing_SIR_Self.Instance);
+                }
+                else if (GlobalData.Instance.da.GloConfig.SIRType == 2)
+                {
+                    this.tbIron.Text = "铁钻工(JJC)";
+                    this.gdSIR.Children.Clear();
+                    this.gdSIR.Children.Add(Ing_SIR_JJC.Instance);
+                }
+                else if (GlobalData.Instance.da.GloConfig.SIRType == 3)
+                {
+                    this.tbIron.Text = "铁钻工(宝石)";
+                    this.gdSIR.Children.Clear();
+                    this.gdSIR.Children.Add(Ing_SIR_BS.Instance);
+                }
                 else if (GlobalData.Instance.da.GloConfig.SIRType == 4) this.tbIron.Text = "铁钻工(江汉)";
                 else if (GlobalData.Instance.da.GloConfig.SIRType == 5) this.tbIron.Text = "铁钻工(轨道)";
                 else this.tbIron.Text = "铁钻工(错误)";
 
-                if (GlobalData.Instance.da.GloConfig.HydType == 0) this.tbHS.Text = "液压站(未配置)";
-                else if (GlobalData.Instance.da.GloConfig.HydType == 1) this.tbHS.Text = "液压站(三一)";
+                if (GlobalData.Instance.da.GloConfig.HydType == 0)
+                {
+                    this.tbHS.Text = "液压站(未配置)";
+                    Ing_Bank ing_Bank = new Ing_Bank("液压站(未配置)");
+                    this.gdHS.Children.Clear();
+                    this.gdHS.Children.Add(ing_Bank);
+                }
+                else if (GlobalData.Instance.da.GloConfig.HydType == 1)
+                {
+                    this.tbHS.Text = "液压站(三一)";
+                    this.gdHS.Children.Clear();
+                    this.gdHS.Children.Add(Ing_HS_Self.Instance);
+                }
                 else if (GlobalData.Instance.da.GloConfig.HydType == 2) this.tbHS.Text = "液压站(宝石)";
-                else if (GlobalData.Instance.da.GloConfig.HydType == 3) this.tbHS.Text = "液压站(JJC)";
+                else if (GlobalData.Instance.da.GloConfig.HydType == 3)
+                {
+                    this.tbHS.Text = "液压站(JJC)";
+                    this.gdHS.Children.Clear();
+                    this.gdHS.Children.Add(Ing_HS_JJC.Instance);
+                }
                 else this.tbHS.Text = "液压站(错误)";
 
-                if (GlobalData.Instance.da.GloConfig.CatType == 0) this.tbCat.Text = "猫道(未配置)";
+                if (GlobalData.Instance.da.GloConfig.CatType == 0)
+                {
+                    this.tbCat.Text = "猫道(未配置)";
+                    Ing_Bank ing_Bank = new Ing_Bank("猫道(未配置)");
+                    this.gdCat.Children.Clear();
+                    this.gdCat.Children.Add(ing_Bank);
+                }
                 else if (GlobalData.Instance.da.GloConfig.CatType == 1) this.tbCat.Text = "猫道(三一)";
-                else if (GlobalData.Instance.da.GloConfig.CatType == 2) this.tbCat.Text = "猫道(宝石)";
+                else if (GlobalData.Instance.da.GloConfig.CatType == 2)
+                {
+                    this.tbCat.Text = "猫道(宝石)";
+                    this.gdCat.Children.Clear();
+                    this.gdCat.Children.Add(Ing_Cat_BS.Instance);
+                }
                 else if (GlobalData.Instance.da.GloConfig.CatType == 3) this.tbCat.Text = "液压站(宏达)";
                 else this.tbCat.Text = "猫道(错误)";
             }
@@ -640,21 +720,21 @@ namespace Main.Integration
         {
             var bc = new BrushConverter();
 
-            foreach (Grid gd in gdList)
-            {
-                if (gd.Children.Count == 2)
+            //foreach (Grid gd in gdList)
+            //{
+                if (gdModel.Children.Count == 2)
                 {
-                    if (gd.Children[1] is ModelDetailData &&
-                        (gd.Tag is GlobalModel) && model!=null && (gd.Tag as GlobalModel).ID == model.ID)
+                    if (gdModel.Children[1] is ModelDetailData &&
+                        (gdModel.Tag is GlobalModel) && model!=null && (gdModel.Tag as GlobalModel).ID == model.ID)
                     {
-                        (gd.Children[1] as ModelDetailData).bdBg.Background = (Brush)bc.ConvertFrom("#72C9F6");
+                        (gdModel.Children[1] as ModelDetailData).bdBg.Background = (Brush)bc.ConvertFrom("#72C9F6");
                     }
                     else
                     {
-                        (gd.Children[1] as ModelDetailData).bdBg.Background = (Brush)bc.ConvertFrom("#FFFFFF");
+                        (gdModel.Children[1] as ModelDetailData).bdBg.Background = (Brush)bc.ConvertFrom("#FFFFFF");
                     }
                 }
-            }
+            //}
                 //gdList.ForEach(o => o.Children[0].Background = (Brush)bc.ConvertFrom("#FFFFFF"));
                 //gd.Background = (Brush)bc.ConvertFrom("#72C9F6");
             

@@ -11,7 +11,7 @@
              d:DesignHeight="650" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="Ing">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="220"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid>
@@ -160,65 +160,55 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Grid Grid.Column="0" Grid.Row="0">
+                    <Grid Margin="5">
+                        <Border Name="bdSF" Background="White" CornerRadius="10" Grid.Row="1" Grid.Column="1">
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+                            </Border.Effect>
+                        </Border>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Button Width="600" Height="40" Panel.ZIndex="1" HorizontalAlignment="Center"  
+                                 Background="#2B71CA" BorderBrush="#92C202" Grid.ColumnSpan="2">
+                                <TextBlock Text="联动设置" Foreground="White" FontSize="24"/>
+                            </Button>
+                            <Grid Grid.Row="1" Name="gdModel">
+                                <TextBlock Name="tbModelBank" Text="&#xe504;" FontFamily="../Font/#iconfont" FontSize="100" MouseLeftButtonDown="tbModel_MouseLeftButtonDown"></TextBlock>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <!--<Grid Grid.Column="0" Grid.Row="0">
                         <Border Background="White" Margin="5" CornerRadius="10" Grid.Row="0">
                             <Border.Effect>
                                 <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0" Direction="280" ShadowDepth="0" />
                             </Border.Effect>
                         </Border>
                         <Grid Margin="5">
-                            <TextBlock Grid.Row="1" Text="非联动模式" FontSize="32"></TextBlock>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Button Width="500" Height="40" Panel.ZIndex="1" HorizontalAlignment="Center"
+                                 Background="#2B71CA" BorderBrush="#92C202" Margin="0,-5,0,0">
+                                <TextBlock Text="联动设置" Foreground="White" FontSize="24"/>
+                            </Button>
+                            <Grid Grid.Row="1" Name="gdModel">
+                                <TextBlock Name="tbModelBank" Text="&#xe504;" FontFamily="../Font/#iconfont" FontSize="100" MouseLeftButtonDown="tbModel_MouseLeftButtonDown"></TextBlock>
+                            </Grid>
                         </Grid>
+                    </Grid>-->
+                    <Grid Grid.Column="1" Grid.Row="0" Name="gdSF">
                     </Grid>
-                    <Grid Grid.Column="1" Grid.Row="0">
-                        <Border Background="White" Margin="5" CornerRadius="10" Grid.Row="0">
-                            <Border.Effect>
-                                <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0" Direction="280" ShadowDepth="0" />
-                            </Border.Effect>
-                        </Border>
-                        <Grid Margin="5" Name="gdModelTwo">
-                            <TextBlock Name="tbModelTwoBank" Text="&#xe504;" FontFamily="../Font/#iconfont" FontSize="100" MouseLeftButtonDown="tbModel_MouseLeftButtonDown"></TextBlock>
-                        </Grid>
+                    <Grid Grid.Column="2" Grid.Row="0" Name="gdDR">
                     </Grid>
-                    <Grid Grid.Column="2" Grid.Row="0">
-                        <Border Background="White" Margin="5" CornerRadius="10" Grid.Row="0">
-                            <Border.Effect>
-                                <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0" Direction="280" ShadowDepth="0" />
-                            </Border.Effect>
-                        </Border>
-                        <Grid Margin="5" Name="gdModelThree">
-                            <TextBlock Grid.Row="1" Name="tbModelThreeBank" Text="&#xe504;" FontFamily="../Font/#iconfont" FontSize="100" MouseLeftButtonDown="tbModel_MouseLeftButtonDown"></TextBlock>
-                        </Grid>
+                    <Grid Grid.Column="0" Grid.Row="1" Name="gdSIR">
                     </Grid>
-                    <Grid Grid.Column="0" Grid.Row="1">
-                        <Border Background="White" Margin="5" CornerRadius="10" Grid.Row="0">
-                            <Border.Effect>
-                                <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0" Direction="280" ShadowDepth="0" />
-                            </Border.Effect>
-                        </Border>
-                        <Grid Margin="5" Name="gdModelFour">
-                            <TextBlock Grid.Row="1" Name="tbModelFourBank" Text="&#xe504;" FontFamily="../Font/#iconfont" FontSize="100" MouseLeftButtonDown="tbModel_MouseLeftButtonDown"></TextBlock>
-                        </Grid>
+                    <Grid Grid.Column="1" Grid.Row="1" Name="gdCat">
                     </Grid>
-                    <Grid Grid.Column="1" Grid.Row="1">
-                        <Border Background="White" Margin="5" CornerRadius="10" Grid.Row="0">
-                            <Border.Effect>
-                                <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0" Direction="280" ShadowDepth="0" />
-                            </Border.Effect>
-                        </Border>
-                        <Grid Margin="5" Name="gdModelFive">
-                            <TextBlock Grid.Row="1" Name="tbModelFiveBank" Text="&#xe504;" FontFamily="../Font/#iconfont" FontSize="100" MouseLeftButtonDown="tbModel_MouseLeftButtonDown"></TextBlock>
-                        </Grid>
-                    </Grid>
-                    <Grid Grid.Column="2" Grid.Row="1">
-                        <Border Background="White" Margin="5" CornerRadius="10" Grid.Row="0">
-                            <Border.Effect>
-                                <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0" Direction="280" ShadowDepth="0" />
-                            </Border.Effect>
-                        </Border>
-                        <Grid Margin="5" Name="gdModelSix">
-                            <TextBlock Grid.Row="1" Name="tbModelSixBank" Text="&#xe504;" FontFamily="../Font/#iconfont" FontSize="100" MouseLeftButtonDown="tbModel_MouseLeftButtonDown"></TextBlock>
-                        </Grid>
+                    <Grid Grid.Column="2" Grid.Row="1" Name="gdHS">
                     </Grid>
                 </Grid>
             </Grid>

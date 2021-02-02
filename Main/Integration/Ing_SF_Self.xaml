@@ -11,6 +11,7 @@
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="18"/>
         </Style>
         <Style TargetType="Label">
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -35,60 +36,61 @@
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
-    <Grid Margin="10,10,10,10">
+    <Grid Margin="5">
         <Border Name="bdSF" Background="White" CornerRadius="10" Grid.Row="1" Grid.Column="1">
         <Border.Effect>
             <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
         </Border.Effect>
         </Border>
         <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="60"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="8*"/>
             </Grid.RowDefinitions>
-            <Button Width="325" Height="40" Panel.ZIndex="1" HorizontalAlignment="Center"  
+            <Button Width="600" Height="40" Panel.ZIndex="1" HorizontalAlignment="Center"  
                                  Background="#2B71CA" BorderBrush="#92C202" Grid.ColumnSpan="2">
                 <TextBlock Text="二层台(三一)" Foreground="White" FontSize="24"/>
             </Button>
 
             <Grid Grid.Row="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                    <cl:BasedSwitchButton Grid.Column="0" Name="sfoperateMode" ContentLeft="手动" ContentDown="操作模式" ContentRight="自动" UserControlClicked="btn_SFOpState"/>
-                    <cl:BasedSwitchButton Grid.Column="1" Name="sfworkMode" ContentLeft="排杆" ContentDown="工作模式" ContentRight="送杆" UserControlClicked="btn_SFWorkModel"/>
-                <cl:BasedSwitchButton Name="controlModel" Grid.Column="2" Margin="5,0,0,0" ContentLeft="司钻" ContentDown="控制模式" ContentRight="遥控" UserControlClicked="btn_controlModel"/>
+                <Viewbox>
+                    <TextBlock Text="电机:" Margin="10"></TextBlock>
+                </Viewbox>
+                <cl:SymbolMapping Name="carMotorWorkStatus" Margin="5" HorizontalAlignment="Center" Grid.Column="1" StrContent="" LampType="3"/>
+                <cl:SymbolMapping Name="armMotorWorkStatus"  Margin="5" HorizontalAlignment="Center" Grid.Column="2" StrContent="" LampType="3"/>
+                <cl:SymbolMapping Name="rotateMotorWorkStatus" Margin="5" HorizontalAlignment="Center" Grid.Column="3" StrContent="" LampType="3"/>
 
             </Grid>
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="5,2,5,2" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btn_SFAllMotorRetZero">
-                    <StackPanel Orientation="Vertical">
-                        <!--<Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Margin="10,5,10,0" Height="45" Width="45">-->
-                        <TextBlock FontSize="28" Foreground="#008AFF" FontWeight="Bold" Text="  0  "></TextBlock>
-                        <!--</Border>-->
-                        <TextBlock>一键回零</TextBlock>
-                    </StackPanel>
-                </Border>
-                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="5,2,5,2" Grid.Column="1" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btn_SFMotorEnable">
-                    <StackPanel Grid.Column="1" Orientation="Vertical">
-                        <!--<Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Margin="10,5,10,0" Height="45" Width="45">-->
-                        <Image Source="../Images/enable.png" Margin="1" Width="35" Height="35"></Image>
-                        <!--</Border>-->
-                        <TextBlock>电机使能</TextBlock>
-                    </StackPanel>
-                </Border>
+                <Viewbox>
+                    <TextBlock Text="回零:" Margin="10"></TextBlock>
+                </Viewbox>
+                <cl:SymbolMapping Name="carMotorRetZero"  Margin="5" HorizontalAlignment="Center" Grid.Column="1" StrContent=""/>
+                <cl:SymbolMapping Name="armMotorRetZero"  Margin="5" HorizontalAlignment="Center" Grid.Column="2" StrContent=""/>
+                <cl:SymbolMapping Name="rotateMotorRetZero"  Margin="5" HorizontalAlignment="Center" Grid.Column="3" StrContent=""/>
             </Grid>
-            <TextBlock x:Name="tbSFAlarm" Grid.Row="3" Text="" FontSize=" 18" Foreground="#E0496D"></TextBlock>
-            <TextBlock x:Name="tbSFOpr" Grid.Row="4" Text="" FontSize=" 18" Foreground="#E0496D"></TextBlock>
+            <Viewbox Grid.Row="3" >
+                <TextBlock x:Name="tbSFAlarm" Text="暂无告警" FontSize=" 18" Foreground="#E0496D" Margin="10"></TextBlock>
+            </Viewbox>
+            <Viewbox Grid.Row="4">
+                <TextBlock x:Name="tbSFOpr" Text="暂无操作" FontSize=" 18" Foreground="#E0496D" Margin="10"></TextBlock>
+            </Viewbox>
         </Grid>
     </Grid>
 </UserControl>

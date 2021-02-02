@@ -6,32 +6,85 @@
              xmlns:local="clr-namespace:Main.Integration" xmlns:hc="https://handyorg.github.io/handycontrol"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="White">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <Style x:Key="ShadowBorder" TargetType="Border">
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="20" Color="Gray" Direction="20" Opacity="0.1" RenderingBias="Quality" ShadowDepth="1"/>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect BlurRadius="20" Color="Gray" Direction="20" Opacity="0.5" RenderingBias="Quality" ShadowDepth="1"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Border Name="bdBg" Background="White" MouseLeftButtonDown="Border_MouseLeftButtonDown">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="100"/>
+                    <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <TextBlock Name="tbTitle" Text="双泵送杆模式" Grid.Row="0" FontSize="32" FontWeight="Bold"></TextBlock>
+                <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+                    <Viewbox>
+                        <TextBlock Text="工作模式：" Margin="0,10,0,10"></TextBlock>
+                    </Viewbox>
+                    <Viewbox>
+                        <TextBlock Name="tbWorkType" Text="送杆模式" Margin="0,10,0,10"></TextBlock>
+                    </Viewbox>
+                </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="10,0,0,0">
-                    <TextBlock Text="管柱类型：" FontSize="24"></TextBlock>
-                    <TextBlock Name="tbPipeType" Text="4.5寸钻杆" FontSize="24" ></TextBlock>
+                    <Viewbox>
+                        <TextBlock Text="管柱类型：" Margin="0,10,0,10"></TextBlock>
+                    </Viewbox>
+                    <Viewbox>
+                        <TextBlock Name="tbPipeType" Text="4.5寸钻杆" Margin="0,10,0,10"></TextBlock>
+                    </Viewbox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="10,0,0,0">
-                    <TextBlock Text="目的地：" FontSize="24" ></TextBlock>
-                    <TextBlock Name="tbDesType" Text="立根盒" FontSize="24" ></TextBlock>
+                    <Viewbox>
+                        <TextBlock Text="目的地：" Margin="0,10,0,10"></TextBlock>
+                    </Viewbox>
+                    <Viewbox>
+                        <TextBlock Name="tbDesType" Text="立根盒" Margin="0,10,0,10"></TextBlock>
+                    </Viewbox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="3" Margin="10,0,0,0">
-                    <TextBlock Text="指梁选择：" FontSize="24"></TextBlock>
-                    <TextBlock Name="tbHandOrAuto" Text="自动" FontSize="24"></TextBlock>
+                    <Viewbox>
+                        <TextBlock Text="指梁选择：" Margin="0,10,0,10"></TextBlock>
+                    </Viewbox>
+                    <Viewbox>
+                        <TextBlock Name="tbHandOrAuto" Text="自动" Margin="0,10,0,10"></TextBlock>
+                    </Viewbox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="4" Margin="10,0,0,0">
-                    <TextBlock Text="已选指梁：" FontSize="24" ></TextBlock>
-                    <TextBlock Name="tbSelectedDrill" Text="自动" FontSize="24" ></TextBlock>
+                    <Viewbox>
+                        <TextBlock Text="已选指梁：" Margin="0,10,0,10"></TextBlock>
+                    </Viewbox>
+                    <Viewbox>
+                        <TextBlock Name="tbSelectedDrill" Text="自动" Margin="0,10,0,10"></TextBlock>
+                    </Viewbox>
                 </StackPanel>
             </Grid>
         </Border>

@@ -37,13 +37,12 @@ namespace Main.Integration
         {
             tmpModel = globalModel;
             string title = string.Empty;
-            if (globalModel.HS_PumpType == 1) title = "1#泵";
-            else if (globalModel.HS_PumpType == 2) title = "2#泵";
-            else if(globalModel.HS_PumpType == 3) title = "双泵";
+            //if (globalModel.HS_PumpType == 1) title = "1#泵";
+            //else if (globalModel.HS_PumpType == 2) title = "2#泵";
+            //else if(globalModel.HS_PumpType == 3) title = "双泵";
 
-            if (globalModel.WorkType == 1) title += "送杆模式";
-            else if(globalModel.WorkType ==2) title += "排杆模式";
-            this.tbTitle.Text = title;
+            if (globalModel.WorkType == 1) this.tbWorkType.Text = "送杆模式";
+            else if(globalModel.WorkType ==2) this.tbWorkType.Text = "排杆模式";
 
             string pipeType = string.Empty;
             if (globalModel.PipeType == 1)
@@ -151,6 +150,7 @@ namespace Main.Integration
             {
                 StartFinishEvent(tmpModel);
                 this.btnStart.Content = "停止";
+                this.bdOpr.Visibility = Visibility.Collapsed;
             }
         }
 

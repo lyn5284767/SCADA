@@ -64,13 +64,10 @@ namespace Main.Integration
         {
             try
             {
-                this.droperateMode.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay, Converter = new OperationModelConverter() });
-                this.droperateMode.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay, Converter = new OperationModelIsCheckConverter() });
-                this.drworkMode.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drworkModel"], Mode = BindingMode.OneWay, Converter = new WorkModelConverter() });
-                this.drworkMode.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drworkModel"], Mode = BindingMode.OneWay, Converter = new WorkModelIsCheckConverter() });
-                this.drTelecontrolModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["325b1"], Mode = BindingMode.OneWay, Converter = new TelecontrolModelConverter() });
-                this.drTelecontrolModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["325b1"], Mode = BindingMode.OneWay, Converter = new TelecontrolModelIsCheckConverter() });
-
+                this.drcarMotorWorkStatus.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["324b1"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.drRotateMotorWorkStatus.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["324b5"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.drcarMotorRetZero.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["324b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.drRotateMotorRetZero.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["324b4"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
             }
             catch (Exception ex)
             {
@@ -105,40 +102,40 @@ namespace Main.Integration
         /// </summary>
         private void btn_DROpState(object sender, EventArgs e)
         {
-            byte[] data = new byte[10] { 80, 33, 0, 0, 0, 0, 0, 0, 30, 30 };
-            GlobalData.Instance.da.SendBytes(data);
-            Thread.Sleep(50);
-            byte[] byteToSend;
-            if (this.droperateMode.IsChecked)
-            {
-                byteToSend = new byte[10] { 1, 32, 3, 31, 0, 0, 0, 0, 0, 0 };
-            }
-            else
-            {
-                byteToSend = new byte[10] { 1, 32, 3, 30, 0, 0, 0, 0, 0, 0 };
-            }
+            //byte[] data = new byte[10] { 80, 33, 0, 0, 0, 0, 0, 0, 30, 30 };
+            //GlobalData.Instance.da.SendBytes(data);
+            //Thread.Sleep(50);
+            //byte[] byteToSend;
+            //if (this.droperateMode.IsChecked)
+            //{
+            //    byteToSend = new byte[10] { 1, 32, 3, 31, 0, 0, 0, 0, 0, 0 };
+            //}
+            //else
+            //{
+            //    byteToSend = new byte[10] { 1, 32, 3, 30, 0, 0, 0, 0, 0, 0 };
+            //}
 
-            GlobalData.Instance.da.SendBytes(byteToSend);
+            //GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
         /// 工作模式
         /// </summary>
         private void btn_DRWorkModel(object sender, EventArgs e)
         {
-            byte[] data = new byte[10] { 80, 33, 0, 0, 0, 0, 0, 0, 30, 30 };
-            GlobalData.Instance.da.SendBytes(data);
-            Thread.Sleep(50);
-            byte[] byteToSend;
-            if (this.drworkMode.IsChecked)
-            {
-                byteToSend = new byte[10] { 1, 32, 4, 41, 0, 0, 0, 0, 0, 0 };
-            }
-            else
-            {
-                byteToSend = new byte[10] { 1, 32, 4, 40, 0, 0, 0, 0, 0, 0 };
-            }
+            //byte[] data = new byte[10] { 80, 33, 0, 0, 0, 0, 0, 0, 30, 30 };
+            //GlobalData.Instance.da.SendBytes(data);
+            //Thread.Sleep(50);
+            //byte[] byteToSend;
+            //if (this.drworkMode.IsChecked)
+            //{
+            //    byteToSend = new byte[10] { 1, 32, 4, 41, 0, 0, 0, 0, 0, 0 };
+            //}
+            //else
+            //{
+            //    byteToSend = new byte[10] { 1, 32, 4, 40, 0, 0, 0, 0, 0, 0 };
+            //}
 
-            GlobalData.Instance.da.SendBytes(byteToSend);
+            //GlobalData.Instance.da.SendBytes(byteToSend);
         }
         #endregion
         /// <summary>
@@ -148,26 +145,26 @@ namespace Main.Integration
         /// <param name="e"></param>
         private void btn_drTelecontrolModel(object sender, EventArgs e)
         {
-            byte[] drbyteToSend;
-            byte[] sirbyteToSend;
-            byte[] sfbyteToSend;
-            if (this.drTelecontrolModel.IsChecked)
-            {
-                drbyteToSend = new byte[10] { 1, 32, 2, 21, 0, 0, 0, 0, 0, 0 }; // 钻台面-司钻切遥控
-                sirbyteToSend = new byte[10] { 23, 17, 10, 1, 0, 0, 0, 0, 0, 0 }; // 铁钻工-遥控切司钻
-                sfbyteToSend = new byte[10] { 16, 1, 27, 1, 1, 0, 0, 0, 0, 0 };// 二层台-遥控切司钻
-                GlobalData.Instance.da.SendBytes(drbyteToSend);
-                Thread.Sleep(50);
-                GlobalData.Instance.da.SendBytes(sirbyteToSend);
-                Thread.Sleep(50);
-                GlobalData.Instance.da.SendBytes(sfbyteToSend);
-            }
-            else 
-            {
-                drbyteToSend = new byte[10] { 1, 32, 2, 20, 0, 0, 0, 0, 0, 0 };// 钻台面-遥控切司钻
-                GlobalData.Instance.da.SendBytes(drbyteToSend);
+            //byte[] drbyteToSend;
+            //byte[] sirbyteToSend;
+            //byte[] sfbyteToSend;
+            //if (this.drTelecontrolModel.IsChecked)
+            //{
+            //    drbyteToSend = new byte[10] { 1, 32, 2, 21, 0, 0, 0, 0, 0, 0 }; // 钻台面-司钻切遥控
+            //    sirbyteToSend = new byte[10] { 23, 17, 10, 1, 0, 0, 0, 0, 0, 0 }; // 铁钻工-遥控切司钻
+            //    sfbyteToSend = new byte[10] { 16, 1, 27, 1, 1, 0, 0, 0, 0, 0 };// 二层台-遥控切司钻
+            //    GlobalData.Instance.da.SendBytes(drbyteToSend);
+            //    Thread.Sleep(50);
+            //    GlobalData.Instance.da.SendBytes(sirbyteToSend);
+            //    Thread.Sleep(50);
+            //    GlobalData.Instance.da.SendBytes(sfbyteToSend);
+            //}
+            //else 
+            //{
+            //    drbyteToSend = new byte[10] { 1, 32, 2, 20, 0, 0, 0, 0, 0, 0 };// 钻台面-遥控切司钻
+            //    GlobalData.Instance.da.SendBytes(drbyteToSend);
 
-            }
+            //}
 
           
         }
@@ -190,7 +187,7 @@ namespace Main.Integration
                     else
                     {
                         if (this.tbDRAlarm.Text == "当前系统为紧急停止状态")
-                            this.tbDRAlarm.Text = "";
+                            this.tbDRAlarm.Text = "暂无告警";
                     }
 
 
@@ -442,7 +439,7 @@ namespace Main.Integration
             }
             else
             {
-                this.tbDROpr.Text = "";
+                this.tbDROpr.Text = "暂无操作提示";
             }
             #endregion
 
@@ -455,7 +452,7 @@ namespace Main.Integration
             else if (warnTwoNO == 11) this.tbDRAlarm.Text = "抓手不允许打开";
             else if (warnTwoNO == 12) this.tbDRAlarm.Text = "抓手不允许关闭";
             else if (warnTwoNO == 13) this.tbDRAlarm.Text = "小车不允许在此位置";
-            else this.tbDRAlarm.Text = "";
+            else this.tbDRAlarm.Text = "暂无告警";
             #endregion
 
             #region 告警3
@@ -491,7 +488,7 @@ namespace Main.Integration
             if (!GlobalData.Instance.ComunciationNormal) this.tbDROpr.Text = "网络连接失败！";
             else
             {
-                if (this.tbDROpr.Text == "网络连接失败！") this.tbDROpr.Text = "";
+                if (this.tbDROpr.Text == "网络连接失败！") this.tbDROpr.Text = "暂无操作提示";
             }
         }
     }

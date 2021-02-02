@@ -77,6 +77,8 @@ namespace Main
         private int sfarmMaxPosistion = 0;
         private bool showLeftOne = true;
         private bool showRightOne = true;
+        private int leftRows = 0;
+        private int rightRows = 0;
         #region 设置行高及列
         public static readonly DependencyProperty WR_SFLeftRowHeightProperty = DependencyProperty.Register("WR_SFLeftRowHeight", typeof(double), typeof(WR_SFAmination), new PropertyMetadata((double)0.0));
         /// <summary>
@@ -492,7 +494,6 @@ namespace Main
             {
                 if (System.IO.File.Exists(configPath))
                 {
-                    GlobalData.Instance.Rows = 10;
                     if (GlobalData.Instance.da.GloConfig.SysType == 1)
                     {
                         rows = GlobalData.Instance.Rows + 1;
@@ -547,6 +548,17 @@ namespace Main
                     showrightone = sb.ToString();
                     if (showrightone == "1") this.showRightOne = true;
                     else this.showRightOne = false;
+                    // 左边行数
+                    string leftrows = string.Empty;
+                    WinAPI.GetPrivateProfileString("SECONDFLOOR", "LeftRows", leftrows, sb, STRINGMAX, configPath);
+                    leftrows = sb.ToString();
+                    this.leftRows = int.Parse(leftrows);
+                    // 右边行数
+                    string rightrows = string.Empty;
+                    WinAPI.GetPrivateProfileString("SECONDFLOOR", "RightRows", rightrows, sb, STRINGMAX, configPath);
+                    rightrows = sb.ToString();
+                    this.rightRows = int.Parse(rightrows);
+
                     return true;
                 }
                 else
@@ -585,9 +597,9 @@ namespace Main
         {
             try
             {
-                int leftrow = rows;
+                int leftrow = this.leftRows;
                 if (this.showLeftOne) leftrow -= 1; // 左边有钻铤，减去一行
-                int rightrow = rows;
+                int rightrow = this.rightRows;
                 if (this.showRightOne) rightrow -= 1; // 左边有钻铤，减去一行
                 #region 隐藏两侧多余行数
                 HiddenTBInSP(this.spOneCol, leftrow); // 隐藏第一列-左边二层台行数
@@ -624,9 +636,9 @@ namespace Main
         {
             try
             {
-                int leftrow = rows;
+                int leftrow = this.leftRows;
                 if (this.showLeftOne) leftrow -= 1; // 左边有钻铤，减去一行
-                int rightrow = rows;
+                int rightrow = this.rightRows;
                 if (this.showRightOne) rightrow -= 1; // 左边有钻铤，减去一行
 
                 double TotalHight = 300.0-8; // 中间台面总高度-最上面横梁高度
@@ -660,12 +672,13 @@ namespace Main
                     this.WR_SFRightRowHeight = rightAvgHeight;
                 }
                 #endregion
-                if (this.WR_SFRightRowHeight < 20)
+                double carHeight = this.WR_SFRightRowHeight > this.WR_SFLeftRowHeight ? this.WR_SFLeftRowHeight : this.WR_SFRightRowHeight;
+                if (carHeight < 20)
                 {
-                    this.RobotCar.Height = WR_SFLeftRowHeight;
-                    this.RobotCar.Width = WR_SFLeftRowHeight;
-                    this.RobotArm.Height = WR_SFLeftRowHeight;
-                    this.RobotArm.Width = WR_SFLeftRowHeight;
+                    this.RobotCar.Height = carHeight;
+                    this.RobotCar.Width = carHeight;
+                    this.RobotArm.Height = carHeight;
+                    this.RobotArm.Width = carHeight;
                 }
                 else
                 {

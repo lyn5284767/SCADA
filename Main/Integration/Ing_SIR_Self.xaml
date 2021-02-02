@@ -35,21 +35,23 @@
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
-    <Grid>
-        <Border Name="bdSIR" Background="White" CornerRadius="10" Margin="10" Grid.Row="2" Grid.Column="0">
+    <Grid Margin="5">
+        <Border Name="bdSIR" Background="White" CornerRadius="10">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
             </Border.Effect>
         </Border>
-        <Grid Margin="10">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
-                <RowDefinition Height="100"/>
-                <RowDefinition Height="100"/>
-                <RowDefinition Height="20"/>
-                <RowDefinition Height="20"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="4*"/>
             </Grid.RowDefinitions>
-            <Button Width="325" Height="40" Panel.ZIndex="1" HorizontalAlignment="Center"  
+            <Button Width="600" Height="40" Panel.ZIndex="1" HorizontalAlignment="Center"  
                                  Background="#2B71CA" BorderBrush="#92C202" Grid.ColumnSpan="2">
                 <TextBlock Text="铁钻工(三一)" Foreground="White" FontSize="24"/>
             </Button>
@@ -58,31 +60,41 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <cl:BasedSwitchButton Name="siroprModel" ContentLeft="手动" ContentDown="操作模式" ContentRight="自动" UserControlClicked="btn_SIRoprModel" Grid.Column="0" />
-                <cl:BasedSwitchButton Name="sirworkModel" ContentLeft="上扣" ContentDown="工作模式" ContentRight="卸扣" UserControlClicked="btn_SIRworkModel" Grid.Column="1"/>
-                <cl:BasedSwitchButton Name="sirPipeTypeModel" ContentLeft="钻杆" ContentDown="钻具选择" ContentRight="套管" UserControlClicked="btn_SIRPipeTypeModel" Grid.Column="3" />
+                <Viewbox>
+                    <TextBlock Text="上扣工位:" Margin="10"></TextBlock>
+                </Viewbox>
+                <cl:SymbolMapping Name="smInButtonPosOne" StrContent="" LampType="3" Grid.Column="1" HorizontalAlignment="Center" Margin="5"/>
+                <cl:SymbolMapping Name="smInButtonPosTwo" StrContent="" LampType="3" Grid.Column="2" HorizontalAlignment="Center" Margin="5"/>
             </Grid>
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <cl:BasedSwitchButton Name="locationModel" Margin="5,0,0,0" ContentLeft="井口" ContentDown="工位选择" ContentRight="鼠洞" UserControlClicked="btn_locationModel"/>
-                <cl:BasedSwitchButton Name="controlModel" Grid.Column="1" Margin="5,0,0,0" ContentLeft="司钻" ContentDown="控制模式" ContentRight="遥控" UserControlClicked="btn_controlModel"/>
-                <StackPanel Grid.Column="2" Margin="0,10,0,0">
-                    <TextBlock Text="旋转角度" FontSize="16" FontWeight="Bold" Foreground="#212121"></TextBlock>
-                    <TextBlock FontSize="16" Name="tbRotate" Text="80" Foreground="#4C80FF"></TextBlock>
-                    <TextBlock FontSize="14" Margin="0,10,0,0">手臂伸缩</TextBlock>
-                    <TextBlock FontSize="16" Text="   0  " Name="tbArmPos"  Foreground="#4C80FF"></TextBlock>
-
-
-                </StackPanel>
+                <Viewbox>
+                    <TextBlock Text="卸扣工位:" Margin="10"></TextBlock>
+                </Viewbox>
+                <cl:SymbolMapping Name="smOutButtonPosOne" StrContent="" LampType="3" Grid.Column="1" HorizontalAlignment="Center" Margin="5"/>
+                <cl:SymbolMapping Name="smOutButtonPosTwo" StrContent="" LampType="3" Grid.Column="2" HorizontalAlignment="Center" Margin="5"/>
             </Grid>
-            <TextBlock x:Name="tbSIRAlarm" Grid.Row="3" Text="" FontSize=" 18" Foreground="#E0496D"></TextBlock>
-            <TextBlock x:Name="tbSIROpr" Grid.Row="4" Text="" FontSize=" 18" Foreground="#E0496D"></TextBlock>
+            <!--<StackPanel Grid.Column="2" Margin="0,10,0,0">
+                <TextBlock Text="旋转角度" FontSize="16" FontWeight="Bold" Foreground="#212121"></TextBlock>
+                <TextBlock FontSize="16" Name="tbRotate" Text="80" Foreground="#4C80FF"></TextBlock>
+                <TextBlock FontSize="14" Margin="0,10,0,0">手臂伸缩</TextBlock>
+                <TextBlock FontSize="16" Text="   0  " Name="tbArmPos"  Foreground="#4C80FF"></TextBlock>
 
+
+            </StackPanel>-->
+            <Viewbox Grid.Row="3">
+                <TextBlock x:Name="tbSIRAlarm" Text="暂无告警" FontSize=" 18" Foreground="#E0496D" Margin="0,10,0,10"></TextBlock>
+            </Viewbox>
+            <Viewbox Grid.Row="4">
+                <TextBlock x:Name="tbSIROpr" Text="暂无操作提示" FontSize=" 18" Foreground="#E0496D" Margin="0,10,0,10"></TextBlock>
+            </Viewbox>
         </Grid>
     </Grid>
 </UserControl>

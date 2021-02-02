@@ -542,7 +542,7 @@ namespace Main
                 this.miDRPosition.Visibility = Visibility.Collapsed;
 
                 this.miSIRSecure.Visibility = Visibility.Collapsed;
-                this.miSIRParam.Visibility = Visibility.Collapsed;
+                //this.miSIRParam.Visibility = Visibility.Collapsed;
                 this.miSIRPosition.Visibility = Visibility.Collapsed;
             }// 管理员
             else if (GlobalData.Instance.systemRole == SystemRole.AdminMan)
@@ -556,7 +556,7 @@ namespace Main
                 this.miDRParam.Visibility = Visibility.Collapsed;
                 this.miDRPosition.Visibility = Visibility.Collapsed;
 
-                this.miSIRParam.Visibility = Visibility.Collapsed;
+                //this.miSIRParam.Visibility = Visibility.Collapsed;
                 this.miSIRPosition.Visibility = Visibility.Collapsed;
             }// 技术员
             else if (GlobalData.Instance.systemRole == SystemRole.TechMan)
@@ -564,7 +564,7 @@ namespace Main
                 this.miIngParam.Visibility = Visibility.Collapsed;
                 this.miSFParam.Visibility = Visibility.Collapsed;
                 this.miDRPosition.Visibility = Visibility.Collapsed;
-                this.miSIRParam.Visibility = Visibility.Collapsed;
+                //this.miSIRParam.Visibility = Visibility.Collapsed;
             }
         }
         /// <summary>
@@ -601,6 +601,28 @@ namespace Main
             {
                 this.bdSIR.Visibility = Visibility.Visible;
                 TotalDeviceNum += 1;
+                // 自研
+                if (GlobalData.Instance.da.GloConfig.SIRType == 1)
+                {
+
+                }// jjc
+                else if (GlobalData.Instance.da.GloConfig.SIRType == 2)
+                {
+                    this.spSIR.Visibility = Visibility.Collapsed;
+                }// 宝石
+                else if (GlobalData.Instance.da.GloConfig.SIRType == 3)
+                {
+                    this.spSIR.Visibility = Visibility.Collapsed;
+                }// 江汉
+                else if (GlobalData.Instance.da.GloConfig.SIRType == 4)
+                {
+                    this.spSIR.Visibility = Visibility.Collapsed;
+                }// 轨道式
+                else if (GlobalData.Instance.da.GloConfig.SIRType == 5)
+                {
+                    this.miSIRRecord.Visibility = Visibility.Collapsed;
+                    this.miSIRSecure.Visibility = Visibility.Collapsed;
+                }
             }
             if (GlobalData.Instance.da.GloConfig.CatType == 0)
             {
@@ -619,8 +641,21 @@ namespace Main
             {
                 this.bdHS.Visibility = Visibility.Visible;
                 TotalDeviceNum += 1;
+                // 自研
+                if (GlobalData.Instance.da.GloConfig.HydType == 1)
+                {
+
+                }// 宝石
+                else if (GlobalData.Instance.da.GloConfig.HydType == 2)
+                {
+
+                }// jjc
+                else if (GlobalData.Instance.da.GloConfig.HydType == 3)
+                {
+                    this.spHS.Visibility = Visibility.Collapsed;
+                }
             }
-            double avgWidth = (TotalWidth-100) / TotalDeviceNum;
+            double avgWidth = (TotalWidth - 100) / TotalDeviceNum;
             this.tbIng.Width = avgWidth;
             if (GlobalData.Instance.da.GloConfig.SFType != 0) this.bdSf.Width = avgWidth;
             if (GlobalData.Instance.da.GloConfig.DRType != 0) this.bdDR.Width = avgWidth;
@@ -2309,7 +2344,7 @@ namespace Main
                 {
                     this.spMain.Children.Clear();
                     this.spMain.Children.Add(IngMain.Instance);
-                    this.spMain.Children.Add(IngMainNew.Instance);
+                    //this.spMain.Children.Add(IngMainNew.Instance);
                     GlobalData.Instance.Ing = true;
                     IngMainNew.Instance.SetNowTechniqueEvent += Instance_SetNowTechniqueEvent;
                     IngMain.Instance.SetNowTechniqueEvent += Instance_SetNowTechniqueEvent;
@@ -2877,18 +2912,18 @@ namespace Main
                     MessageBox.Show("未配置猫道");
                     return;
                 }
-                // 自研
+                //自研
                 else if (GlobalData.Instance.da.GloConfig.CatType == (int)CatType.SANY)
                 {
 
                 }
-                // 宝石
+                //宝石
                 else if (GlobalData.Instance.da.GloConfig.CatType == (int)CatType.BS)
                 {
                     this.spMain.Children.Clear();
                     this.spMain.Children.Add(BSCatMain.Instance);
                 }
-                // 宏达
+                //宏达
                 else if (GlobalData.Instance.da.GloConfig.CatType == (int)CatType.HD)
                 {
 
@@ -2896,7 +2931,7 @@ namespace Main
 
                 GlobalData.Instance.systemType = SystemType.CatRoad;
                 //this.BottomColorSetting(this.bdCat, this.tbCat, this.gdbottom);
-                this.BottomColorSetting(this.bdCat,this.spBottom);
+                this.BottomColorSetting(this.bdCat, this.spBottom);
                 SetBorderBackGround();
                 this.mainTitle.Content = "SYAPS-猫道:主页";
             }
@@ -2969,30 +3004,112 @@ namespace Main
                 this.bdHS.IsDropDownOpen = true;
             }
         }
-
+        /// <summary>
+        /// 主页
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MouseHSMain(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                if (GlobalData.Instance.da.GloConfig.SysType == 1)
+                {
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(WR_HS_Self_Main.Instance);
+                }
+                else
+                {
+                    GlobalData.Instance.Ing = false;
+                    if (GlobalData.Instance.da.GloConfig.HydType == 0)
+                    {
+                        MessageBox.Show("未配置液压站");
+                        return;
+                    }// 自研
+                    if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.SANY)
+                    {
+                        this.spMain.Children.Clear();
+                        this.spMain.Children.Add(HSMain.Instance);
+                    }// 宝石
+                    else if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.BS)
+                    {
 
+                    }// JJC
+                    else if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.JJC)
+                    {
+                        this.spMain.Children.Clear();
+                        this.spMain.Children.Add(JJC_HSMain.Instance);
+                    }
+                    else
+                    {
+                        MessageBox.Show("未配置液压站");
+                        return;
+                    }
+                }
+
+                GlobalData.Instance.systemType = SystemType.HydraulicStation;
+                //this.BottomColorSetting(this.bdHS, this.tbHS, this.gdbottom);
+                this.BottomColorSetting(this.bdHS, this.spBottom);
+                SetBorderBackGround();
+                this.mainTitle.Content = "SYAPS-液压站:主页";
+            }
+            catch (Exception ex)
+            {
+                Log.Log4Net.AddLog(ex.ToString(), Log.InfoLevel.ERROR);
+            }
         }
-
+        /// <summary>
+        /// 设备设置
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MouseHSDrillSet(object sender, RoutedEventArgs e)
         {
-
+            if (GlobalData.Instance.da.GloConfig.HydType == 1)
+            {
+                this.spMain.Children.Clear();
+                this.spMain.Children.Add(HSSetting.Instance);
+                this.mainTitle.Content = "SYAPS-液压站:设备设置";
+            }
         }
-
+        /// <summary>
+        /// 设备状态
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MouseHSDeviceStatus(object sender, RoutedEventArgs e)
         {
-
+            if (GlobalData.Instance.da.GloConfig.HydType == 1)
+            {
+                this.spMain.Children.Clear();
+                this.spMain.Children.Add(HSDeviceStatus.Instance);
+                this.mainTitle.Content = "SYAPS-液压站:设备状态";
+            }
         }
-
+        /// <summary>
+        /// 记录查询
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MouseHSRecord(object sender, RoutedEventArgs e)
         {
-
+            if (GlobalData.Instance.da.GloConfig.HydType == 1)// 自研液压站
+            {
+                this.spMain.Children.Clear();
+                this.spMain.Children.Add(SIRSelfRecord.Instance);
+                this.mainTitle.Content = "SYAPS-液压站:记录查询";
+            }
         }
-
+        /// <summary>
+        /// 报表
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MouseHSReport(object sender, RoutedEventArgs e)
         {
-
+            this.spMain.Children.Clear();
+            this.spMain.Children.Add(HSReport.Instance);
+            this.mainTitle.Content = "SYAPS-液压站:报表";
         }
         #endregion
     }
