@@ -89,10 +89,10 @@
 
 
             </StackPanel>-->
-            <Viewbox Grid.Row="3">
+            <Viewbox Grid.Row="5">
                 <TextBlock x:Name="tbSIRAlarm" Text="暂无告警" FontSize=" 18" Foreground="#000000" Margin="0,10,0,10"></TextBlock>
             </Viewbox>
-            <Viewbox Grid.Row="4">
+            <Viewbox Grid.Row="6">
                 <TextBlock x:Name="tbSIROpr" Text="暂无操作提示" FontSize=" 18" Foreground="#000000" Margin="0,10,0,10"></TextBlock>
             </Viewbox>
         </Grid>

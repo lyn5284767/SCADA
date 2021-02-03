@@ -196,6 +196,8 @@ namespace Main.Integration
                     }
                     if(this.tbDRAlarm.Text == "暂无告警") this.tbDRAlarm.Foreground = (Brush)bc.ConvertFrom("#000000");
                     else this.tbDRAlarm.Foreground = (Brush)bc.ConvertFrom("#E0496D");
+                    if(this.tbDROpr.Text == "暂无操作提示") this.tbDROpr.Foreground = (Brush)bc.ConvertFrom("#000000");
+                    else this.tbDROpr.Foreground = (Brush)bc.ConvertFrom("#E0496D");
 
                 }));
             }

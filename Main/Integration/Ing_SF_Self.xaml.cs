@@ -327,6 +327,10 @@ namespace Main.Integration
                         }
                     }
                     this.Communcation();
+                    if (this.tbSFAlarm.Text == "暂无告警") this.tbSFAlarm.Foreground = (Brush)bc.ConvertFrom("#000000");
+                    else this.tbSFAlarm.Foreground = (Brush)bc.ConvertFrom("#E0496D");
+                    if (this.tbSFOpr.Text == "暂无操作提示") this.tbSFOpr.Foreground = (Brush)bc.ConvertFrom("#000000");
+                    else this.tbSFOpr.Foreground = (Brush)bc.ConvertFrom("#E0496D");
                 }));
 
             }
