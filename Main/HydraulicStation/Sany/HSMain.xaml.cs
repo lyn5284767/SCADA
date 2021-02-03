@@ -328,6 +328,279 @@ namespace Main.HydraulicStation
                     this.tipList.Remove("液压站-油位下降异常，请检查是否漏油");
                 }
             }
+            // 2021.02.02新增告警类型
+            if (GlobalData.Instance.da["773b7"].Value.Boolean)
+            {
+                this.tipList.TryGetValue("液压站-主电机1过载，需消除复位", out key);
+                if (key == 0)
+                {
+                    this.tipList.Add("液压站-主电机1过载，需消除复位", 1);
+                }
+            }
+            else
+            {
+                this.tipList.TryGetValue("液压站-主电机1过载，需消除复位", out key);
+                if (key != 0)
+                {
+                    this.tipList.Remove("液压站-主电机1过载，需消除复位");
+                }
+            }
+            if (GlobalData.Instance.da["774b7"].Value.Boolean)
+            {
+                this.tipList.TryGetValue("液压站-主电机2过载，需消除复位", out key);
+                if (key == 0)
+                {
+                    this.tipList.Add("液压站-主电机2过载，需消除复位", 1);
+                }
+            }
+            else
+            {
+                this.tipList.TryGetValue("液压站-主电机2过载，需消除复位", out key);
+                if (key != 0)
+                {
+                    this.tipList.Remove("液压站-主电机2过载，需消除复位");
+                }
+            }
+            if (GlobalData.Instance.da["792b0"].Value.Boolean)
+            {
+                this.tipList.TryGetValue("液压站-司钻房通信故障", out key);
+                if (key == 0)
+                {
+                    this.tipList.Add("液压站-司钻房通信故障", 1);
+                }
+            }
+            else
+            {
+                this.tipList.TryGetValue("液压站-司钻房通信故障", out key);
+                if (key != 0)
+                {
+                    this.tipList.Remove("液压站-司钻房通信故障");
+                }
+            }
+            if (GlobalData.Instance.da["792b1"].Value.Boolean)
+            {
+                this.tipList.TryGetValue("液压站-分阀箱通信故障", out key);
+                if (key == 0)
+                {
+                    this.tipList.Add("液压站-分阀箱通信故障", 1);
+                }
+            }
+            else
+            {
+                this.tipList.TryGetValue("液压站-分阀箱通信故障", out key);
+                if (key != 0)
+                {
+                    this.tipList.Remove("液压站-分阀箱通信故障");
+                }
+            }
+            if (GlobalData.Instance.da["792b2"].Value.Boolean)
+            {
+                this.tipList.TryGetValue("液压站-卡瓦压力传感器故障", out key);
+                if (key == 0)
+                {
+                    this.tipList.Add("液压站-卡瓦压力传感器故障", 1);
+                }
+            }
+            else
+            {
+                this.tipList.TryGetValue("液压站-卡瓦压力传感器故障", out key);
+                if (key != 0)
+                {
+                    this.tipList.Remove("液压站-卡瓦压力传感器故障");
+                }
+            }
+            if (GlobalData.Instance.da["792b3"].Value.Boolean)
+            {
+                this.tipList.TryGetValue("液压站-LS压力传感器故障", out key);
+                if (key == 0)
+                {
+                    this.tipList.Add("液压站-LS压力传感器故障", 1);
+                }
+            }
+            else
+            {
+                this.tipList.TryGetValue("液压站-LS压力传感器故障", out key);
+                if (key != 0)
+                {
+                    this.tipList.Remove("液压站-LS压力传感器故障");
+                }
+            }
+            if (GlobalData.Instance.da["792b4"].Value.Boolean)
+            {
+                this.tipList.TryGetValue("液压站-平移压力传感器故障", out key);
+                if (key == 0)
+                {
+                    this.tipList.Add("液压站-平移压力传感器故障", 1);
+                }
+            }
+            else
+            {
+                this.tipList.TryGetValue("液压站-平移压力传感器故障", out key);
+                if (key != 0)
+                {
+                    this.tipList.Remove("液压站-平移压力传感器故障");
+                }
+            }
+            if (GlobalData.Instance.da["792b5"].Value.Boolean)
+            {
+                this.tipList.TryGetValue("液压站-油温传感器故障", out key);
+                if (key == 0)
+                {
+                    this.tipList.Add("液压站-油温传感器故障", 1);
+                }
+            }
+            else
+            {
+                this.tipList.TryGetValue("液压站-油温传感器故障", out key);
+                if (key != 0)
+                {
+                    this.tipList.Remove("液压站-油温传感器故障");
+                }
+            }
+            if (GlobalData.Instance.da["792b6"].Value.Boolean)
+            {
+                this.tipList.TryGetValue("液压站-液位传感器故障", out key);
+                if (key == 0)
+                {
+                    this.tipList.Add("液压站-液位传感器故障", 1);
+                }
+            }
+            else
+            {
+                this.tipList.TryGetValue("液压站-液位传感器故障", out key);
+                if (key != 0)
+                {
+                    this.tipList.Remove("液压站-液位传感器故障");
+                }
+            }
+            if (GlobalData.Instance.da["793b0"].Value.Boolean)
+            {
+                this.tipList.TryGetValue("液压站-铁钻工压力传感器故障", out key);
+                if (key == 0)
+                {
+                    this.tipList.Add("液压站-铁钻工压力传感器故障", 1);
+                }
+            }
+            else
+            {
+                this.tipList.TryGetValue("液压站-铁钻工压力传感器故障", out key);
+                if (key != 0)
+                {
+                    this.tipList.Remove("液压站-铁钻工压力传感器故障");
+                }
+            }
+            if (GlobalData.Instance.da["793b1"].Value.Boolean)
+            {
+                this.tipList.TryGetValue("液压站-大钳压力传感器故障", out key);
+                if (key == 0)
+                {
+                    this.tipList.Add("液压站-大钳压力传感器故障", 1);
+                }
+            }
+            else
+            {
+                this.tipList.TryGetValue("液压站-大钳压力传感器故障", out key);
+                if (key != 0)
+                {
+                    this.tipList.Remove("液压站-大钳压力传感器故障");
+                }
+            }
+            if (GlobalData.Instance.da["793b2"].Value.Boolean)
+            {
+                this.tipList.TryGetValue("液压站-钻台面压力传感器故障", out key);
+                if (key == 0)
+                {
+                    this.tipList.Add("液压站-钻台面压力传感器故障", 1);
+                }
+            }
+            else
+            {
+                this.tipList.TryGetValue("液压站-钻台面压力传感器故障", out key);
+                if (key != 0)
+                {
+                    this.tipList.Remove("液压站-钻台面压力传感器故障");
+                }
+            }
+            if (GlobalData.Instance.da["793b3"].Value.Boolean)
+            {
+                this.tipList.TryGetValue("液压站-猫道压力传感器故障", out key);
+                if (key == 0)
+                {
+                    this.tipList.Add("液压站-猫道压力传感器故障", 1);
+                }
+            }
+            else
+            {
+                this.tipList.TryGetValue("液压站-猫道压力传感器故障", out key);
+                if (key != 0)
+                {
+                    this.tipList.Remove("液压站-猫道压力传感器故障");
+                }
+            }
+            if (GlobalData.Instance.da["793b4"].Value.Boolean)
+            {
+                this.tipList.TryGetValue("液压站-主压力传感器故障", out key);
+                if (key == 0)
+                {
+                    this.tipList.Add("液压站-主压力传感器故障", 1);
+                }
+            }
+            else
+            {
+                this.tipList.TryGetValue("液压站-主压力传感器故障", out key);
+                if (key != 0)
+                {
+                    this.tipList.Remove("液压站-主压力传感器故障");
+                }
+            }
+            if (GlobalData.Instance.da["793b5"].Value.Boolean)
+            {
+                this.tipList.TryGetValue("液压站-恒压泵未合闸", out key);
+                if (key == 0)
+                {
+                    this.tipList.Add("液压站-恒压泵未合闸", 1);
+                }
+            }
+            else
+            {
+                this.tipList.TryGetValue("液压站-恒压泵未合闸", out key);
+                if (key != 0)
+                {
+                    this.tipList.Remove("液压站-恒压泵未合闸");
+                }
+            }
+            if (GlobalData.Instance.da["793b6"].Value.Boolean)
+            {
+                this.tipList.TryGetValue("液压站-散热泵未合闸", out key);
+                if (key == 0)
+                {
+                    this.tipList.Add("液压站-散热泵未合闸", 1);
+                }
+            }
+            else
+            {
+                this.tipList.TryGetValue("液压站-散热泵未合闸", out key);
+                if (key != 0)
+                {
+                    this.tipList.Remove("液压站-散热泵未合闸");
+                }
+            }
+            if (GlobalData.Instance.da["793b7"].Value.Boolean)
+            {
+                this.tipList.TryGetValue("液压站-加热泵未合闸", out key);
+                if (key == 0)
+                {
+                    this.tipList.Add("液压站-加热泵未合闸", 1);
+                }
+            }
+            else
+            {
+                this.tipList.TryGetValue("液压站-加热泵未合闸", out key);
+                if (key != 0)
+                {
+                    this.tipList.Remove("液压站-加热泵未合闸");
+                }
+            }
 
             if (iTimeCnt % 10 == 0)
             {
@@ -456,7 +729,7 @@ namespace Main.HydraulicStation
                 cpbLSPumpMultiBind.Bindings.Add(new Binding("Maximum") { Source = this.cpbLSPump, Mode = BindingMode.OneWay });
                 cpbLSPumpMultiBind.NotifyOnSourceUpdated = true;
                 this.cpbLSPump.SetBinding(CircleProgressBar.ForegroundProperty, cpbLSPumpMultiBind);
-                // 平移
+                // 散热泵压力
                 this.cpbMovePump.SetBinding(CircleProgressBar.ValueProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["TPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
                 this.cpbMovePump.SetBinding(CircleProgressBar.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["TPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
                 MultiBinding cpbMovePumpMultiBind = new MultiBinding();

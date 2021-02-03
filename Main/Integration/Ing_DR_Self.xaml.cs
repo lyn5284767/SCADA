@@ -170,7 +170,7 @@ namespace Main.Integration
         }
 
         private int iTimeCnt = 0;//用来为时钟计数的变量
-
+        BrushConverter bc = new BrushConverter();
         private void Timer_Elapsed(object obj)
         {
             try
@@ -179,6 +179,8 @@ namespace Main.Integration
                 {
                     iTimeCnt++;
                     if (iTimeCnt > 1000) iTimeCnt = 0;
+                    this.tbDRAlarm.Foreground = (Brush)bc.ConvertFrom("#E0496D");
+                    this.tbDROpr.Foreground = (Brush)bc.ConvertFrom("#E0496D");
                     this.Warnning();
                     if (GlobalData.Instance.da["droperationModel"].Value.Byte == 1)
                     {
@@ -187,9 +189,13 @@ namespace Main.Integration
                     else
                     {
                         if (this.tbDRAlarm.Text == "当前系统为紧急停止状态")
+                        {
                             this.tbDRAlarm.Text = "暂无告警";
+                            this.tbDRAlarm.Foreground = (Brush)bc.ConvertFrom("#000000");
+                        }
                     }
-
+                    if(this.tbDRAlarm.Text == "暂无告警") this.tbDRAlarm.Foreground = (Brush)bc.ConvertFrom("#000000");
+                    else this.tbDRAlarm.Foreground = (Brush)bc.ConvertFrom("#E0496D");
 
                 }));
             }
@@ -440,6 +446,7 @@ namespace Main.Integration
             else
             {
                 this.tbDROpr.Text = "暂无操作提示";
+                this.tbDROpr.Foreground = (Brush)bc.ConvertFrom("#000000");
             }
             #endregion
 
@@ -452,17 +459,20 @@ namespace Main.Integration
             else if (warnTwoNO == 11) this.tbDRAlarm.Text = "抓手不允许打开";
             else if (warnTwoNO == 12) this.tbDRAlarm.Text = "抓手不允许关闭";
             else if (warnTwoNO == 13) this.tbDRAlarm.Text = "小车不允许在此位置";
-            else this.tbDRAlarm.Text = "暂无告警";
+            else
+            {
+                this.tbDRAlarm.Text = "暂无告警";
+                this.tbDRAlarm.Foreground = (Brush)bc.ConvertFrom("#000000");
+            }
             #endregion
-
             #region 告警3
-                if (!GlobalData.Instance.da["324b0"].Value.Boolean || !GlobalData.Instance.da["324b4"].Value.Boolean) this.tbDRAlarm.Text = "系统还未回零，请注意安全！";
-                else if (GlobalData.Instance.da["337b0"].Value.Boolean) this.tbDRAlarm.Text = "抓手传感器异常";
-                else if (GlobalData.Instance.da["337b1"].Value.Boolean) this.tbDRAlarm.Text = "抓手打开卡滞";
-                else if (GlobalData.Instance.da["337b2"].Value.Boolean) this.tbDRAlarm.Text = "抓手关闭卡滞";
-                else if (GlobalData.Instance.da["337b4"].Value.Boolean) this.tbDRAlarm.Text = "手臂传感器故障";
-                else if (GlobalData.Instance.da["337b5"].Value.Boolean) this.tbDRAlarm.Text = "手臂伸出异常";
-                else if (GlobalData.Instance.da["337b6"].Value.Boolean) this.tbDRAlarm.Text = "手臂缩回异常";
+            if (!GlobalData.Instance.da["324b0"].Value.Boolean || !GlobalData.Instance.da["324b4"].Value.Boolean) this.tbDRAlarm.Text = "系统还未回零，请注意安全！";
+            else if (GlobalData.Instance.da["337b0"].Value.Boolean) this.tbDRAlarm.Text = "抓手传感器异常";
+            else if (GlobalData.Instance.da["337b1"].Value.Boolean) this.tbDRAlarm.Text = "抓手打开卡滞";
+            else if (GlobalData.Instance.da["337b2"].Value.Boolean) this.tbDRAlarm.Text = "抓手关闭卡滞";
+            else if (GlobalData.Instance.da["337b4"].Value.Boolean) this.tbDRAlarm.Text = "手臂传感器故障";
+            else if (GlobalData.Instance.da["337b5"].Value.Boolean) this.tbDRAlarm.Text = "手臂伸出异常";
+            else if (GlobalData.Instance.da["337b6"].Value.Boolean) this.tbDRAlarm.Text = "手臂缩回异常";
             #endregion
 
             //操作台控制器心跳
@@ -488,7 +498,11 @@ namespace Main.Integration
             if (!GlobalData.Instance.ComunciationNormal) this.tbDROpr.Text = "网络连接失败！";
             else
             {
-                if (this.tbDROpr.Text == "网络连接失败！") this.tbDROpr.Text = "暂无操作提示";
+                if (this.tbDROpr.Text == "网络连接失败！")
+                {
+                    this.tbDROpr.Text = "暂无操作提示";
+                    this.tbDROpr.Foreground = (Brush)bc.ConvertFrom("#000000");
+                }
             }
         }
     }

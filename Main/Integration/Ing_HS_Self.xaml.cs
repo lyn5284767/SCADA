@@ -238,7 +238,7 @@ namespace Main.Integration
                 Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
             }
         }
-
+        BrushConverter bc = new BrushConverter();
         /// <summary>
         /// 告警信号
         /// </summary>
@@ -489,14 +489,6 @@ namespace Main.Integration
                 }
             }
 
-            if (iTimeCnt % 10 == 0)
-            {
-                this.tbTips.FontSize = 24;
-            }
-            else
-            {
-                this.tbTips.FontSize = 28;
-            }
             #endregion
 
             //操作台控制器心跳
@@ -568,16 +560,20 @@ namespace Main.Integration
                             break;
                         }
                     }
+                    this.tbTips.Foreground = (Brush)bc.ConvertFrom("#E0496D");
                 }
                 else
                 {
-                    this.tbTips.Visibility = Visibility.Hidden;
-                    this.tbTips.Text = "";
+                    //this.tbTips.Visibility = Visibility.Hidden;
+                    this.tbTips.Text = "暂无提示";
+                    this.tbTips.Foreground = (Brush)bc.ConvertFrom("#000000");
                 }
             }
             else
             {
-                this.tbTips.FontSize = 28;
+                //this.tbTips.Text = "暂无提示";
+                //this.tbTips.Foreground = (Brush)bc.ConvertFrom("#000000");
+                //this.tbTips.FontSize = 28;
             }
 
         }

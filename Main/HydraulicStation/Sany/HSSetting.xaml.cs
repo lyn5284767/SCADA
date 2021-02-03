@@ -74,6 +74,10 @@ namespace Main.HydraulicStation
                 btnRightCatHeadReach.AddHandler(Button.MouseUpEvent, new RoutedEventHandler(btnRightCatHeadReach_MouseUp), true);
                 btnRightCatHeadRetract.AddHandler(Button.MouseDownEvent, new RoutedEventHandler(BtnRightCatRetract_Click), true);
                 btnRightCatHeadRetract.AddHandler(Button.MouseUpEvent, new RoutedEventHandler(btnRightCatHeadRetract_MouseUp), true);
+                btnRotateCatHeadLeft.AddHandler(Button.MouseDownEvent, new RoutedEventHandler(btnRotateCatHeadLeft_Click), true);
+                btnRotateCatHeadLeft.AddHandler(Button.MouseUpEvent, new RoutedEventHandler(btnRotateCatHeadLeft_MouseUp), true);
+                btnRotateCatHeadRight.AddHandler(Button.MouseDownEvent, new RoutedEventHandler(btnRotateCatHeadRight_Click), true);
+                btnRotateCatHeadRight.AddHandler(Button.MouseUpEvent, new RoutedEventHandler(btnRotateCatHeadRight_MouseUp), true);
                 #endregion
 
                 this.controlModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["771b5"], Mode = BindingMode.OneWay});
@@ -98,6 +102,8 @@ namespace Main.HydraulicStation
                 this.constantVoltagePump.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["770b7"], Mode = BindingMode.OneWay });
                 this.dissipateHeat.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["771b1"], Mode = BindingMode.OneWay });
                 this.hot.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["771b3"], Mode = BindingMode.OneWay });
+                this.Arm.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["794b1"], Mode = BindingMode.OneWay });
+                this.SlurryBox.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["794b3"], Mode = BindingMode.OneWay });
 
                 this.cbHotHand.SetBinding(CheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["772b0"], Mode = BindingMode.OneWay });
                 this.cbHotAuto.SetBinding(CheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["772b1"], Mode = BindingMode.OneWay });
@@ -162,12 +168,12 @@ namespace Main.HydraulicStation
                 //this.tbIronTongs.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IRPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
                 //this.tbDFSpThree.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["FPPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
 
-                this.btnMainPumpUnloadOpen.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b0"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.btnMainPumpUnloadClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b1"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.tbMainPumpUnload.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["MPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
-                this.btnKavaUnloadOpen.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b2"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.btnKavaUnloadClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b3"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.tbKavaUnload.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SlipPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                this.btnElevatorOpen.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b0"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnElevatorClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b1"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.tbMainPumpUnload.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["MPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                this.btnCraneOpen.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b2"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnCraneClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b3"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.tbKavaUnload.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SlipPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
                 this.btnWellMoveOpen.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b4"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
                 this.btnWellMoveClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b5"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
                 this.tbWellMove.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["TPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
@@ -185,6 +191,10 @@ namespace Main.HydraulicStation
                 this.btnArmOpen.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["769b6"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
                 this.btnArmClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["769b7"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
                 //this.tbArm.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["FPPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                this.btnLeftCarOpen.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["769b4"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnLeftCarClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["769b5"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnRightCarOpen.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["770b0"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnRightCarClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["770b1"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
 
             }
             catch (Exception ex)
@@ -205,6 +215,26 @@ namespace Main.HydraulicStation
             alarmList.Add(new AlarmInfo() { TagName = "775b4", Description = "距上次更换滤芯已经大于2000小时，请更换滤芯", NowType = 0, NeedCheck = true });
             alarmList.Add(new AlarmInfo() { TagName = "775b5", Description = "距上次更换液压油已经大于2000小时，请更换液压油", NowType = 0, NeedCheck = true });
             alarmList.Add(new AlarmInfo() { TagName = "775b6", Description = "油位下降异常，请检查是否漏油", NowType = 0, NeedCheck = true });
+            // 2021.02.02新增
+            alarmList.Add(new AlarmInfo() { TagName = "773b7", Description = "主电机1过载，需消除复位", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "774b7", Description = "主电机2过载，需消除复位", NowType = 0, NeedCheck = true });
+
+            alarmList.Add(new AlarmInfo() { TagName = "792b0", Description = "司钻房通信故障", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "792b1", Description = "分阀箱通信故障", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "792b2", Description = "卡瓦压力传感器故障", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "792b3", Description = "LS压力传感器故障", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "792b4", Description = "平移压力传感器故障", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "792b5", Description = "油温传感器故障", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "792b6", Description = "液位传感器故障", NowType = 0, NeedCheck = true });
+
+            alarmList.Add(new AlarmInfo() { TagName = "793b0", Description = "铁钻工压力传感器故障", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "793b1", Description = "大钳压力传感器故障", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "793b2", Description = "钻台面压力传感器故障", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "793b3", Description = "猫道压力传感器故障", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "793b4", Description = "主压力传感器故障", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "793b5", Description = "恒压泵未合闸", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "793b6", Description = "散热泵未合闸", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "793b7", Description = "加热泵未合闸", NowType = 0, NeedCheck = true });
         }
 
         /// <summary>
@@ -525,6 +555,8 @@ namespace Main.HydraulicStation
         bool leftCatRetract = false;
         bool rightCatReach = false;
         bool rightCatRetract = false;
+        bool rotateCatLeft = false;
+        bool rotateCatRight = false;
         /// <summary>
         /// 循环发送命令
         /// </summary>
@@ -552,6 +584,17 @@ namespace Main.HydraulicStation
             {
                 //byte[] byteToSend = new byte[10] { 0, 19, 4, 8, 0, 0, 0, 0, 0, 0 };
                 byte[] byteToSend = new byte[10] { 0, 19, 25, 0, 1, 0, 0, 0, 0, 0 };
+                GlobalData.Instance.da.SendBytes(byteToSend);
+            }
+
+            if (rotateCatLeft) // 旋转猫头左转
+            {
+                byte[] byteToSend = new byte[10] { 0, 19, 120, 0, 1, 0, 0, 0, 0, 0 };
+                GlobalData.Instance.da.SendBytes(byteToSend);
+            }
+            if (rotateCatRight) // 旋转猫头右转
+            {
+                byte[] byteToSend = new byte[10] { 0, 19, 121, 0, 1, 0, 0, 0, 0, 0 };
                 GlobalData.Instance.da.SendBytes(byteToSend);
             }
         }
@@ -862,41 +905,41 @@ namespace Main.HydraulicStation
             bMainPumpTwo = GlobalData.Instance.da["770b5"].Value.Boolean;
         }
         /// <summary>
-        /// 主泵卸荷
+        /// 吊卡打开
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnMainPumpUnloadOpen_Click(object sender, RoutedEventArgs e)
+        private void btnElevatorOpen_Click(object sender, RoutedEventArgs e)
         {
             byte[] byteToSend = new byte[10] { 0, 19, 9, 0, 1, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
-        /// 主泵卸荷关闭
+        /// 吊卡关闭
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnMainPumpUnloadClose_Click(object sender, RoutedEventArgs e)
+        private void btnElevatorClose_Click(object sender, RoutedEventArgs e)
         {
             byte[] byteToSend = new byte[10] { 0, 19, 10, 0, 1, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
-        /// 卡瓦卸荷
+        /// 吊机打开
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnKavaUnloadOpen_Click(object sender, RoutedEventArgs e)
+        private void btnCraneOpen_Click(object sender, RoutedEventArgs e)
         {
             byte[] byteToSend = new byte[10] { 0, 19, 11, 0, 1, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
-        /// 卡瓦卸荷关闭
+        /// 吊机关闭
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnKavaUnloadClose_Click(object sender, RoutedEventArgs e)
+        private void btnCraneClose_Click(object sender, RoutedEventArgs e)
         {
             byte[] byteToSend = new byte[10] { 0, 19, 12, 0, 1, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
@@ -996,7 +1039,7 @@ namespace Main.HydraulicStation
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnSpareTwoOpen_Click(object sender, RoutedEventArgs e)
+        private void btnLeftCarOpen_Click(object sender, RoutedEventArgs e)
         {
             byte[] byteToSend = new byte[10] { 0, 19, 29, 0, 1, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
@@ -1006,7 +1049,7 @@ namespace Main.HydraulicStation
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnSpareTwoClose_Click(object sender, RoutedEventArgs e)
+        private void btnLeftCarClose_Click(object sender, RoutedEventArgs e)
         {
             byte[] byteToSend = new byte[10] { 0, 19, 30, 0, 1, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
@@ -1036,7 +1079,7 @@ namespace Main.HydraulicStation
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnSpareThreeOpen_Click(object sender, RoutedEventArgs e)
+        private void btnRightCarOpen_Click(object sender, RoutedEventArgs e)
         {
             byte[] byteToSend = new byte[10] { 0, 19, 33, 0, 1, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
@@ -1046,7 +1089,7 @@ namespace Main.HydraulicStation
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnSpareThreeClose_Click(object sender, RoutedEventArgs e)
+        private void btnRightCarClose_Click(object sender, RoutedEventArgs e)
         {
             byte[] byteToSend = new byte[10] { 0, 19, 34, 0, 1, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
@@ -1069,6 +1112,82 @@ namespace Main.HydraulicStation
         private void BtnCancelTmp_Click(object sender, RoutedEventArgs e)
         {
             byte[] byteToSend = new byte[10] { 0, 19, 101, 0, 1, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 泥浆盒
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SlurryBox_hot(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+            if (this.hot.IsChecked) //当前停止状态
+            {
+                byteToSend = new byte[10] { 0, 19, 56, 0, 1, 0, 0, 0, 0, 0 };
+            }
+            else//当前启动状态
+            {
+                byteToSend = new byte[10] { 0, 19, 57, 0, 1, 0, 0, 0, 0, 0 };
+            }
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 旋转猫头停止
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnRotateCatHeadStop_Click(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 0, 19, 122, 0, 1, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+
+        /// <summary>
+        /// 旋转猫头左转-按下
+        /// </summary>
+        private void btnRotateCatHeadLeft_Click(object sender, RoutedEventArgs e)
+        {
+            rotateCatLeft = true;
+        }
+        /// <summary>
+        /// 旋转猫头左转-抬起
+        /// </summary>
+        private void btnRotateCatHeadLeft_MouseUp(object sender, RoutedEventArgs e)
+        {
+            rotateCatLeft = false;
+        }
+
+        /// <summary>
+        /// 旋转猫头左转-按下
+        /// </summary>
+        private void btnRotateCatHeadRight_Click(object sender, RoutedEventArgs e)
+        {
+            rotateCatRight = true;
+        }
+        /// <summary>
+        /// 旋转猫头左转-抬起
+        /// </summary>
+        private void btnRotateCatHeadRight_MouseUp(object sender, RoutedEventArgs e)
+        {
+            rotateCatRight = false;
+        }
+        /// <summary>
+        /// 缓冲臂启停
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Arm_Click(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+            if (this.hot.IsChecked) //当前停止状态
+            {
+                byteToSend = new byte[10] { 0, 19, 54, 0, 1, 0, 0, 0, 0, 0 };
+            }
+            else//当前启动状态
+            {
+                byteToSend = new byte[10] { 0, 19, 55, 0, 1, 0, 0, 0, 0, 0 };
+            }
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
     }

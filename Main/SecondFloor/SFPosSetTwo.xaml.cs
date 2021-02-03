@@ -96,10 +96,19 @@ namespace Main.SecondFloor
 
         private void Finger_SFSendProtocolEvent(byte[] SetParam)
         {
-            if (FingerSetValue.Length == 2)
+            string strText = this.tbFingerSet.Text;
+            if (strText.Length == 0) strText = "0";
+            short i16Text = Convert.ToInt16(strText);
+            FingerSetValue = BitConverter.GetBytes(i16Text);
+            if (FingerSetValue != null && FingerSetValue.Length == 2)
             {
                 SetParam[4] = FingerSetValue[0];
                 SetParam[5] = FingerSetValue[1];
+                GlobalData.Instance.da.SendBytes(SetParam);
+                this.tbFingerSet.Text = "0";
+            }
+            else
+            {
                 GlobalData.Instance.da.SendBytes(SetParam);
                 this.tbFingerSet.Text = "0";
             }
@@ -107,10 +116,19 @@ namespace Main.SecondFloor
 
         private void SFSendProtocolEvent(byte[] SetParam)
         {
-            if (gripSetValue.Length == 2)
+            string strText = this.tbGripSet.Text;
+            if (strText.Length == 0) strText = "0";
+            short i16Text = Convert.ToInt16(strText);
+            gripSetValue = BitConverter.GetBytes(i16Text);
+            if (gripSetValue != null && gripSetValue.Length == 2)
             {
                 SetParam[4] = gripSetValue[0];
                 SetParam[5] = gripSetValue[1];
+                GlobalData.Instance.da.SendBytes(SetParam);
+                this.tbGripSet.Text = "0";
+            }
+            else
+            {
                 GlobalData.Instance.da.SendBytes(SetParam);
                 this.tbGripSet.Text = "0";
             }

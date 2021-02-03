@@ -298,18 +298,21 @@ namespace Main.Integration
             //alarmList.Add(new AlarmInfo() { TagName = "101B7b1", Description = "机械手已进入防碰区，请注意防碰！", NowType = 0 });
 
         }
-
+        BrushConverter bc = new BrushConverter();
         private void TimerWarning_Elapsed(object obj)
         {
             try
             {
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
+                    this.tbSFAlarm.Foreground = (Brush)bc.ConvertFrom("#E0496D");
+                    this.tbSFOpr.Foreground = (Brush)bc.ConvertFrom("#E0496D");
+
                     iTimeCnt++;
                     if (iTimeCnt > 1000) iTimeCnt = 0;
                     this.Operation();
                     this.Warnning();
-
+                    MonitorAlarmStatus();
 
                     if (GlobalData.Instance.da["operationModel"].Value.Byte == 1)
                     {
@@ -318,7 +321,10 @@ namespace Main.Integration
                     else
                     {
                         if (this.tbSFOpr.Text == "当前系统为紧急停止状态")
-                            this.tbSFOpr.Text = "";
+                        {
+                            this.tbSFOpr.Text = "暂无告警";
+                            this.tbSFOpr.Foreground = (Brush)bc.ConvertFrom("#000000");
+                        }
                     }
                     this.Communcation();
                 }));
@@ -349,8 +355,8 @@ namespace Main.Integration
 
         private void Warnning()
         {
-            if (iTimeCnt % 10 == 0)
-            {
+            //if (iTimeCnt % 10 == 0)
+            //{
                 // 告警列表!=0则有告警 
                 if (alarmList.Where(w=>w.NowType!=0).Count() > 0)
                 {
@@ -372,14 +378,15 @@ namespace Main.Integration
                 else
                 {
                     this.tbSFAlarm.Text = "暂无告警";
+                    this.tbSFAlarm.Foreground = (Brush)bc.ConvertFrom("#000000");
                 }
 
          
-            }
-            else
-            {
-                this.tbSFAlarm.FontSize = 14;
-            }
+            //}
+            //else
+            //{
+            //    this.tbSFAlarm.FontSize = 14;
+            //}
         }
         private int controlHeartTimes = 0; // 控制台心跳次数
         private bool tmpStatus = false; // 控制台心跳临时存储状态
@@ -434,14 +441,22 @@ namespace Main.Integration
             }
             else
             {
-                if (this.tbSFOpr.Text == "二层台信号中断") this.tbSFOpr.Text = "暂无操作指示";
+                if (this.tbSFOpr.Text == "二层台信号中断")
+                {
+                    this.tbSFOpr.Text = "暂无操作指示";
+                    this.tbSFOpr.Foreground = (Brush)bc.ConvertFrom("#000000");
+                }
                 bCommunicationCheck = false;
             }
 
             if (!GlobalData.Instance.ComunciationNormal) this.tbSFOpr.Text = "网络连接失败！";
             else
             {
-                if (this.tbSFOpr.Text == "网络连接失败！") this.tbSFOpr.Text = "暂无操作指示";
+                if (this.tbSFOpr.Text == "网络连接失败！")
+                {
+                    this.tbSFOpr.Text = "暂无操作指示";
+                    this.tbSFOpr.Foreground = (Brush)bc.ConvertFrom("#000000");
+                }
             }
             #endregion
         }
@@ -451,6 +466,7 @@ namespace Main.Integration
             {
                 case 0:
                     tbSFOpr.Text = "暂无操作指示";
+                    this.tbSFOpr.Foreground = (Brush)bc.ConvertFrom("#000000");
                     break;
                 case 1:
                     tbSFOpr.Text = "小车电机报警";

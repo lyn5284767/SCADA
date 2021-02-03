@@ -71,10 +71,19 @@ namespace Main.SecondFloor
 
         private void Arm_SFSendProtocolEvent(byte[] SetParam)
         {
-            if (ArmSetValue.Length == 2)
+            string strText = this.tbArmSet.Text;
+            if (strText.Length == 0) strText = "0";
+            short i16Text = Convert.ToInt16(strText);
+            ArmSetValue = BitConverter.GetBytes(i16Text);
+            if (ArmSetValue != null && ArmSetValue.Length == 2)
             {
                 SetParam[4] = ArmSetValue[0];
                 SetParam[5] = ArmSetValue[1];
+                GlobalData.Instance.da.SendBytes(SetParam);
+                this.tbArmSet.Text = "0";
+            }
+            else
+            {
                 GlobalData.Instance.da.SendBytes(SetParam);
                 this.tbArmSet.Text = "0";
             }

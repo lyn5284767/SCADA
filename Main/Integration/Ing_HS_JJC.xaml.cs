@@ -51,12 +51,12 @@ namespace Main.Integration
         {
             try
             {
-                this.ControlModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["735b0"], Mode = BindingMode.OneWay });
-                this.MainPumpOne.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["733b3"], Mode = BindingMode.OneWay });
-                this.MainPumpTwo.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["733b4"], Mode = BindingMode.OneWay });
-                this.CyclePump.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["733b5"], Mode = BindingMode.OneWay });
-                this.ColdFan.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["733b6"], Mode = BindingMode.OneWay });
-                this.Hot.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["733b7"], Mode = BindingMode.OneWay });
+                //this.ControlModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["735b0"], Mode = BindingMode.OneWay });
+                //this.MainPumpOne.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["733b3"], Mode = BindingMode.OneWay });
+                //this.MainPumpTwo.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["733b4"], Mode = BindingMode.OneWay });
+                //this.CyclePump.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["733b5"], Mode = BindingMode.OneWay });
+                //this.ColdFan.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["733b6"], Mode = BindingMode.OneWay });
+                //this.Hot.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["733b7"], Mode = BindingMode.OneWay });
 
              
             }
@@ -71,16 +71,16 @@ namespace Main.Integration
         /// </summary>
         private void btn_MainPumpOne(object sender, EventArgs e)
         {
-            byte[] byteToSend;
-            if (this.MainPumpOne.IsChecked) //当前启动状态
-            {
-                byteToSend = new byte[10] { 0, 19, 1, 2, 0, 0, 0, 0, 0, 0 };
-            }
-            else//当前停止状态
-            {
-                byteToSend = new byte[10] { 0, 19, 1, 1, 0, 0, 0, 0, 0, 0 };
-            }
-            GlobalData.Instance.da.SendBytes(byteToSend);
+            //byte[] byteToSend;
+            //if (this.MainPumpOne.IsChecked) //当前启动状态
+            //{
+            //    byteToSend = new byte[10] { 0, 19, 1, 2, 0, 0, 0, 0, 0, 0 };
+            //}
+            //else//当前停止状态
+            //{
+            //    byteToSend = new byte[10] { 0, 19, 1, 1, 0, 0, 0, 0, 0, 0 };
+            //}
+            //GlobalData.Instance.da.SendBytes(byteToSend);
         }
 
         /// <summary>
@@ -88,16 +88,16 @@ namespace Main.Integration
         /// </summary>
         private void btn_MainPumpTwo(object sender, EventArgs e)
         {
-            byte[] byteToSend;
-            if (this.MainPumpTwo.IsChecked) //当前启动状态
-            {
-                byteToSend = new byte[10] { 0, 19, 2, 2, 0, 0, 0, 0, 0, 0 };
-            }
-            else//当前停止状态
-            {
-                byteToSend = new byte[10] { 0, 19, 2, 1, 0, 0, 0, 0, 0, 0 };
-            }
-            GlobalData.Instance.da.SendBytes(byteToSend);
+            //byte[] byteToSend;
+            //if (this.MainPumpTwo.IsChecked) //当前启动状态
+            //{
+            //    byteToSend = new byte[10] { 0, 19, 2, 2, 0, 0, 0, 0, 0, 0 };
+            //}
+            //else//当前停止状态
+            //{
+            //    byteToSend = new byte[10] { 0, 19, 2, 1, 0, 0, 0, 0, 0, 0 };
+            //}
+            //GlobalData.Instance.da.SendBytes(byteToSend);
         }
 
         /// <summary>
@@ -105,16 +105,16 @@ namespace Main.Integration
         /// </summary>
         private void btn_ColdFan(object sender, EventArgs e)
         {
-            byte[] byteToSend;
-            if (this.ColdFan.IsChecked) //当前启动状态
-            {
-                byteToSend = new byte[10] { 0, 19, 6, 2, 0, 0, 0, 0, 0, 0 };
-            }
-            else//当前停止状态
-            {
-                byteToSend = new byte[10] { 0, 19, 6, 1, 0, 0, 0, 0, 0, 0 };
-            }
-            GlobalData.Instance.da.SendBytes(byteToSend);
+            //byte[] byteToSend;
+            //if (this.ColdFan.IsChecked) //当前启动状态
+            //{
+            //    byteToSend = new byte[10] { 0, 19, 6, 2, 0, 0, 0, 0, 0, 0 };
+            //}
+            //else//当前停止状态
+            //{
+            //    byteToSend = new byte[10] { 0, 19, 6, 1, 0, 0, 0, 0, 0, 0 };
+            //}
+            //GlobalData.Instance.da.SendBytes(byteToSend);
         }
 
         /// <summary>
@@ -122,16 +122,16 @@ namespace Main.Integration
         /// </summary>
         private void btn_Hot(object sender, EventArgs e)
         {
-            byte[] byteToSend;
-            if (this.Hot.IsChecked) //当前启动状态
-            {
-                byteToSend = new byte[10] { 0, 19, 7, 2, 0, 0, 0, 0, 0, 0 };
-            }
-            else//当前停止状态
-            {
-                byteToSend = new byte[10] { 0, 19, 7, 1, 0, 0, 0, 0, 0, 0 };
-            }
-            GlobalData.Instance.da.SendBytes(byteToSend);
+            //byte[] byteToSend;
+            //if (this.Hot.IsChecked) //当前启动状态
+            //{
+            //    byteToSend = new byte[10] { 0, 19, 7, 2, 0, 0, 0, 0, 0, 0 };
+            //}
+            //else//当前停止状态
+            //{
+            //    byteToSend = new byte[10] { 0, 19, 7, 1, 0, 0, 0, 0, 0, 0 };
+            //}
+            //GlobalData.Instance.da.SendBytes(byteToSend);
         }
 
         /// <summary>
@@ -139,16 +139,16 @@ namespace Main.Integration
         /// </summary>
         private void btn_CyclePump(object sender, EventArgs e)
         {
-            byte[] byteToSend;
-            if (this.CyclePump.IsChecked) //当前启动状态
-            {
-                byteToSend = new byte[10] { 0, 19, 5, 2, 0, 0, 0, 0, 0, 0 };
-            }
-            else//当前停止状态
-            {
-                byteToSend = new byte[10] { 0, 19, 5, 1, 0, 0, 0, 0, 0, 0 };
-            }
-            GlobalData.Instance.da.SendBytes(byteToSend);
+            //byte[] byteToSend;
+            //if (this.CyclePump.IsChecked) //当前启动状态
+            //{
+            //    byteToSend = new byte[10] { 0, 19, 5, 2, 0, 0, 0, 0, 0, 0 };
+            //}
+            //else//当前停止状态
+            //{
+            //    byteToSend = new byte[10] { 0, 19, 5, 1, 0, 0, 0, 0, 0, 0 };
+            //}
+            //GlobalData.Instance.da.SendBytes(byteToSend);
         }
 
         /// <summary>

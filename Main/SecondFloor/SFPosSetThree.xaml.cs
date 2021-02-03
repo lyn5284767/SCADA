@@ -65,10 +65,19 @@ namespace Main.SecondFloor
         /// <param name="SetParam">设置协议</param>
         private void MonkeyRoad_SFSendProtocolEvent(byte[] SetParam)
         {
-            if (monkeyRoadSetValue.Length == 2)
+            string strText = this.tbMonkeyRoadSet.Text;
+            if (strText.Length == 0) strText = "0";
+            short i16Text = Convert.ToInt16(strText);
+            monkeyRoadSetValue = BitConverter.GetBytes(i16Text);
+            if (monkeyRoadSetValue != null && monkeyRoadSetValue.Length == 2)
             {
                 SetParam[4] = monkeyRoadSetValue[0];
                 SetParam[5] = monkeyRoadSetValue[1];
+                GlobalData.Instance.da.SendBytes(SetParam);
+                this.tbMonkeyRoadSet.Text = "0";
+            }
+            else
+            {
                 GlobalData.Instance.da.SendBytes(SetParam);
                 this.tbMonkeyRoadSet.Text = "0";
             }
@@ -79,10 +88,19 @@ namespace Main.SecondFloor
         /// <param name="SetParam">设置协议</param>
         private void Rope_SFSendProtocolEvent(byte[] SetParam)
         {
-            if (ropeSetValue.Length == 2)
+            string strText = this.tbRopeSet.Text;
+            if (strText.Length == 0) strText = "0";
+            short i16Text = Convert.ToInt16(strText);
+            ropeSetValue = BitConverter.GetBytes(i16Text);
+            if (ropeSetValue != null && ropeSetValue.Length == 2)
             {
                 SetParam[4] = ropeSetValue[0];
                 SetParam[5] = ropeSetValue[1];
+                GlobalData.Instance.da.SendBytes(SetParam);
+                this.tbRopeSet.Text = "0";
+            }
+            else
+            {
                 GlobalData.Instance.da.SendBytes(SetParam);
                 this.tbRopeSet.Text = "0";
             }

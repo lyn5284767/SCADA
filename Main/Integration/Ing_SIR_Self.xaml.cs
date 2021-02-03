@@ -221,15 +221,18 @@ namespace Main.Integration
             }
         }
         Dictionary<string, byte> WarnInfo = new Dictionary<string, byte>();
+        BrushConverter bc = new BrushConverter();
         private void Warnning()
         {
             try
             {
 
                 byte alarmTips = GlobalData.Instance.da["SIRSelfAlarm"].Value.Byte;
-                if (iTimeCnt % 10 != 0)
-                {
-                    switch (alarmTips)
+                this.tbSIRAlarm.Foreground = (Brush)bc.ConvertFrom("#E0496D");
+                this.tbSIROpr.Foreground = (Brush)bc.ConvertFrom("#E0496D");
+                //if (iTimeCnt % 10 != 0)
+                //{
+                switch (alarmTips)
                     {
                         case 15:
                             this.tbSIRAlarm.Text = "背钳复位故障";
@@ -282,13 +285,18 @@ namespace Main.Integration
                         case 31:
                             this.tbSIRAlarm.Text = "制动缸气压过低警告";
                             break;
+                        default:
+                            tbSIRAlarm.Text = "暂无告警";
+                            this.tbSIRAlarm.Foreground = (Brush)bc.ConvertFrom("#000000");
+                            break;
                     }
-                }
-                else
-                {
-                    //tbSIRAlarm.Visibility = Visibility.Hidden;
-                    tbSIRAlarm.Text = "暂无告警";
-                }
+                //}
+                //else
+                //{
+                //    //tbSIRAlarm.Visibility = Visibility.Hidden;
+                //    //tbSIRAlarm.Text = "暂无告警";
+                //    //this.tbSIRAlarm.Foreground = (Brush)bc.ConvertFrom("#000000");
+                //}
                 byte oprTips = GlobalData.Instance.da["SIRSelfOprInfo"].Value.Byte;
                 switch (oprTips)
                 {
@@ -354,6 +362,7 @@ namespace Main.Integration
                         break;
                     default:
                         this.tbSIROpr.Text = "暂无操作提示";
+                        this.tbSIROpr.Foreground = (Brush)bc.ConvertFrom("#000000");
                         break;
                 }
                 //上扣指示灯亮，但是未卸扣工作模式 
@@ -364,7 +373,11 @@ namespace Main.Integration
                 }
                 else
                 {
-                    if (this.tbSIRAlarm.Text == "卸扣模式不一致，请切换手/自动") this.tbSIRAlarm.Text = "暂无告警";
+                    if (this.tbSIRAlarm.Text == "卸扣模式不一致，请切换手/自动")
+                    {
+                        this.tbSIRAlarm.Text = "暂无告警";
+                        this.tbSIRAlarm.Foreground = (Brush)bc.ConvertFrom("#000000");
+                    }
                 }
 
                 if (GlobalData.Instance.da["841b4"].Value.Boolean && GlobalData.Instance.da["841b6"].Value.Boolean
@@ -374,7 +387,11 @@ namespace Main.Integration
                 }
                 else
                 {
-                    if (this.tbSIRAlarm.Text == "上扣模式不一致，请切换手/自动") this.tbSIRAlarm.Text = "暂无告警";
+                    if (this.tbSIRAlarm.Text == "上扣模式不一致，请切换手/自动")
+                    {
+                        this.tbSIRAlarm.Text = "暂无告警";
+                        this.tbSIRAlarm.Foreground = (Brush)bc.ConvertFrom("#000000");
+                    }
                 }
             }
             catch (Exception ex)

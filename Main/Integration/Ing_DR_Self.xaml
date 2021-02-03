@@ -48,7 +48,8 @@
                 <RowDefinition Height="4*"/>
                 <RowDefinition Height="4*"/>
                 <RowDefinition Height="4*"/>
-                <RowDefinition Height="8*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="4*"/>
             </Grid.RowDefinitions>
             <Button Width="600" Height="40" Panel.ZIndex="1" HorizontalAlignment="Center"  
                                  Background="#2B71CA" BorderBrush="#92C202" Grid.ColumnSpan="2">
@@ -80,11 +81,11 @@
                 <cl:SymbolMapping Name="drcarMotorRetZero" HorizontalAlignment="Center" Grid.Column="1" StrContent="" Margin="5"/>
                 <cl:SymbolMapping Name="drRotateMotorRetZero" HorizontalAlignment="Center" Grid.Column="2" StrContent="" Margin="5"/>
             </Grid>
-            <Viewbox Grid.Row="3">
-                <TextBlock x:Name="tbDRAlarm" Text="暂无告警" FontSize=" 18" Foreground="#E0496D" Margin="0,10,0,10"></TextBlock>
+            <Viewbox Grid.Row="5">
+                <TextBlock x:Name="tbDRAlarm" Text="暂无告警" FontSize=" 18" Foreground="#000000" Margin="0,10,0,10"></TextBlock>
             </Viewbox>
-            <Viewbox Grid.Row="4">
-                <TextBlock x:Name="tbDROpr" Text="暂无操作提示" FontSize=" 18" Foreground="#E0496D" Margin="0,10,0,10"></TextBlock>
+            <Viewbox Grid.Row="6">
+                <TextBlock x:Name="tbDROpr" Text="暂无操作提示" FontSize=" 18" Foreground="#000000" Margin="0,10,0,10"></TextBlock>
             </Viewbox>
         </Grid>
     </Grid>

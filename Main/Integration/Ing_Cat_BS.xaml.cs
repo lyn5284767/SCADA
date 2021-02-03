@@ -83,10 +83,18 @@ namespace Main.Integration
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
                     Warning();
-                    if (!GlobalData.Instance.ComunciationNormal) this.tbTips.Text = "网络连接失败！";
+                    if (!GlobalData.Instance.ComunciationNormal)
+                    {
+                        this.tbTips.Text = "网络连接失败！";
+                        this.tbTips.Foreground = (Brush)bc.ConvertFrom("#E0496D");
+                    }
                     else
                     {
-                        if (this.tbTips.Text == "网络连接失败！") this.tbTips.Text = "暂无提示";
+                        if (this.tbTips.Text == "网络连接失败！")
+                        {
+                            this.tbTips.Text = "暂无提示";
+                            this.tbTips.Foreground = (Brush)bc.ConvertFrom("#000000");
+                        }
                     }
                 }));
             }
@@ -95,6 +103,7 @@ namespace Main.Integration
                 Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
             }
         }
+        BrushConverter bc = new BrushConverter();
         private void Warning()
         {
             if (GlobalData.Instance.da["504b2"].Value.Boolean) // true为选择猫道
@@ -102,14 +111,17 @@ namespace Main.Integration
                 if (!GlobalData.Instance.da["334b4"].Value.Boolean && !GlobalData.Instance.da["505b7"].Value.Boolean)
                 {
                     this.tbTips.Text = "禁止猫道前进，请先将钻台面回收至安全位置！";
+                    this.tbTips.Foreground = (Brush)bc.ConvertFrom("#E0496D");
                 }
                 else
                 {
                     this.tbTips.Text = "暂无提示";
+                    this.tbTips.Foreground = (Brush)bc.ConvertFrom("#000000");
                 }
             }
             else
             {
+                this.tbTips.Foreground = (Brush)bc.ConvertFrom("#E0496D");
                 this.tbTips.Text = "请先将旋钮选择猫道！";
             }
         }

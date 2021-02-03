@@ -115,8 +115,8 @@ namespace Main.HydraulicStation
         {
             try
             {
-                this.smMainPumpUnLoad.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
-                this.smKavaUnLoad.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b2"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.smElevator.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.smCrane.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b2"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
                 this.smMove.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b4"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
                 this.smSpareOil.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b6"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
                 
@@ -194,16 +194,16 @@ namespace Main.HydraulicStation
                 cpbDFMultiBind.Bindings.Add(new Binding("Maximum") { Source = this.cpbDF, Mode = BindingMode.OneWay });
                 cpbDFMultiBind.NotifyOnSourceUpdated = true;
                 this.cpbDF.SetBinding(CircleProgressBar.ForegroundProperty, cpbDFMultiBind);
-                // 备用
-                this.cpbSpare.SetBinding(CircleProgressBar.ValueProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["DY3BPWM"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
-                this.cpbSpare.SetBinding(CircleProgressBar.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["DY3BPWM"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                // 右绞车
+                this.cpbRightCar.SetBinding(CircleProgressBar.ValueProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["DY3BPWM"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                this.cpbRightCar.SetBinding(CircleProgressBar.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["DY3BPWM"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
                 MultiBinding cpbSpareMultiBind = new MultiBinding();
                 cpbSpareMultiBind.Converter = new ColorCoverter();
                 cpbSpareMultiBind.Bindings.Add(new Binding("ShortTag") { Source = GlobalData.Instance.da["DY3BPWM"], Mode = BindingMode.OneWay });
-                cpbSpareMultiBind.Bindings.Add(new Binding("Minimum") { Source = this.cpbSpare, Mode = BindingMode.OneWay });
-                cpbSpareMultiBind.Bindings.Add(new Binding("Maximum") { Source = this.cpbSpare, Mode = BindingMode.OneWay });
+                cpbSpareMultiBind.Bindings.Add(new Binding("Minimum") { Source = this.cpbRightCar, Mode = BindingMode.OneWay });
+                cpbSpareMultiBind.Bindings.Add(new Binding("Maximum") { Source = this.cpbRightCar, Mode = BindingMode.OneWay });
                 cpbSpareMultiBind.NotifyOnSourceUpdated = true;
-                this.cpbSpare.SetBinding(CircleProgressBar.ForegroundProperty, cpbSpareMultiBind);
+                this.cpbRightCar.SetBinding(CircleProgressBar.ForegroundProperty, cpbSpareMultiBind);
             }
             catch (Exception ex)
             {

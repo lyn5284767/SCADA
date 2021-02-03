@@ -75,10 +75,19 @@ namespace Main.SecondFloor
         /// <param name="SetParam">协议内容</param>
         private void RightDrill_SFSendProtocolEvent(byte[] SetParam)
         {
-            if (rightDrillSetValue.Length == 2)
+            string strText = this.tbRightDrillSet.Text;
+            if (strText.Length == 0) strText = "0";
+            short i16Text = Convert.ToInt16(strText);
+            rightDrillSetValue = BitConverter.GetBytes(i16Text);
+            if (rightDrillSetValue != null && rightDrillSetValue.Length == 2)
             {
                 SetParam[4] = rightDrillSetValue[0];
                 SetParam[5] = rightDrillSetValue[1];
+                GlobalData.Instance.da.SendBytes(SetParam);
+                this.tbRightDrillSet.Text = "0";
+            }
+            else
+            {
                 GlobalData.Instance.da.SendBytes(SetParam);
                 this.tbRightDrillSet.Text = "0";
             }
