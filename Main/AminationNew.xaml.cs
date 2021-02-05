@@ -1211,45 +1211,61 @@ namespace Main
         {
             try
             {
-                // 钻台面指梁绑定
-                byte drSelectDrill = GlobalData.Instance.da["drSelectDrill"].Value.Byte;
-                byte droperationModel = GlobalData.Instance.da["droperationModel"].Value.Byte;
-                if (droperationModel == 4 || droperationModel == 9)
+                if (GlobalData.Instance.systemType == SystemType.DrillFloor)
                 {
-                    Border selectbd = drSelectFingerList.Where(w => w.Num == drSelectDrill).Select(s => s.SelectBorder).FirstOrDefault();
-                    if (selectbd != null && selectbd.Visibility == Visibility.Visible)
+                    if (GlobalData.Instance.da["drSelectDrill"] == null || GlobalData.Instance.da["droperationModel"] == null)
                     {
-                        selectbd.Visibility = Visibility.Hidden;
-                        drSelectFingerList.Where(w => w.Num != drSelectDrill).ForEach(o => o.SelectBorder.Visibility = Visibility.Visible);
+                        Log.Log4Net.AddLog("drSelectDrill或droperationModel为空");
+                        return;
+                    }
+                    // 钻台面指梁绑定
+                    byte drSelectDrill = GlobalData.Instance.da["drSelectDrill"].Value.Byte;
+                    byte droperationModel = GlobalData.Instance.da["droperationModel"].Value.Byte;
+                    if (droperationModel == 4 || droperationModel == 9)
+                    {
+                        Border selectbd = drSelectFingerList.Where(w => w.Num == drSelectDrill).Select(s => s.SelectBorder).FirstOrDefault();
+                        if (selectbd != null && selectbd.Visibility == Visibility.Visible)
+                        {
+                            selectbd.Visibility = Visibility.Hidden;
+                            drSelectFingerList.Where(w => w.Num != drSelectDrill).ForEach(o => o.SelectBorder.Visibility = Visibility.Visible);
+                        }
+                        else
+                        {
+                            drSelectFingerList.ForEach(o => o.SelectBorder.Visibility = Visibility.Visible);
+                        }
                     }
                     else
                     {
                         drSelectFingerList.ForEach(o => o.SelectBorder.Visibility = Visibility.Visible);
                     }
                 }
-                else
+                else if (GlobalData.Instance.systemType == SystemType.SecondFloor)
                 {
-                    drSelectFingerList.ForEach(o => o.SelectBorder.Visibility = Visibility.Visible);
-                }
-                // 二层台指梁绑定
-                byte sfSelectDrill = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"].Value.Byte;
-                byte sfoperationModel = GlobalData.Instance.da["operationModel"].Value.Byte;
-                if (sfoperationModel == 4 || sfoperationModel == 9)
-                {
-                    Border selectbd = sfSelectFingerList.Where(w => w.Num == sfSelectDrill).Select(s => s.SelectBorder).FirstOrDefault();
-                    if (selectbd != null && selectbd.Visibility == Visibility.Visible)
+                    if (GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"] == null || GlobalData.Instance.da["operationModel"] == null)
                     {
-                        selectbd.Visibility = Visibility.Hidden;
-                        sfSelectFingerList.Where(w => w.Num != sfSelectDrill).ForEach(o => o.SelectBorder.Visibility = Visibility.Visible);
+                        Log.Log4Net.AddLog("116E1E2E4RobotPointFingerBeam或operationModel为空");
+                        return;
+                    }
+                    // 二层台指梁绑定
+                    byte sfSelectDrill = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"].Value.Byte;
+                    byte sfoperationModel = GlobalData.Instance.da["operationModel"].Value.Byte;
+                    if (sfoperationModel == 4 || sfoperationModel == 9)
+                    {
+                        Border selectbd = sfSelectFingerList.Where(w => w.Num == sfSelectDrill).Select(s => s.SelectBorder).FirstOrDefault();
+                        if (selectbd != null && selectbd.Visibility == Visibility.Visible)
+                        {
+                            selectbd.Visibility = Visibility.Hidden;
+                            sfSelectFingerList.Where(w => w.Num != sfSelectDrill).ForEach(o => o.SelectBorder.Visibility = Visibility.Visible);
+                        }
+                        else
+                        {
+                            sfSelectFingerList.ForEach(o => o.SelectBorder.Visibility = Visibility.Visible);
+                        }
                     }
                     else
                     {
                         sfSelectFingerList.ForEach(o => o.SelectBorder.Visibility = Visibility.Visible);
                     }
-                }
-                else
-                {
-                    sfSelectFingerList.ForEach(o => o.SelectBorder.Visibility = Visibility.Visible);
                 }
             }
             catch(Exception ex)
@@ -1916,6 +1932,11 @@ namespace Main
                 GlobalData.Instance.DrillLeftTotal = this.drDrillCountList.Where(w => w.LorR == "left").Sum(s => s.Num);
                 if (systemType == SystemType.SecondFloor) // 二层台
                 {
+                    if (GlobalData.Instance.da["Con_Set0"] == null || GlobalData.Instance.da["operationModel"] == null)
+                    {
+                        Log.Log4Net.AddLog("Con_Set0或operationModel为空");
+                        return;
+                    }
                     // 非参数配置界面并且非补偿模式-145-176字节读取指梁钻杆数目
                     if (GlobalData.Instance.da["Con_Set0"].Value.Byte != 23 && GlobalData.Instance.da["operationModel"].Value.Byte != 9)
                     {
@@ -1938,6 +1959,11 @@ namespace Main
                 }
                 else if (systemType == SystemType.DrillFloor) // 钻台面
                 {
+                    if (GlobalData.Instance.da["Con_Set0"] == null || GlobalData.Instance.da["operationModel"] == null)
+                    {
+                        Log.Log4Net.AddLog("drPageNum为空");
+                        return;
+                    }
                     if (GlobalData.Instance.da["drPageNum"].Value.Byte == 30 || GlobalData.Instance.da["drPageNum"].Value.Byte == 33)
                     {
                         foreach (var model in this.drDrillCountList)

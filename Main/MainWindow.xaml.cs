@@ -2017,10 +2017,18 @@ namespace Main
                 {
                     GlobalData.Instance.Ing = false;
                     this.spMain.Children.Clear();
-                    SFMain.Instance.FullScreenEvent -= Instance_FullScreenEvent;
-                    SFMain.Instance.FullScreenEvent += Instance_FullScreenEvent;
+                    //WR_SFMain.Instance.FullScreenEvent -= Instance_FullScreenEvent;
+                    //WR_SFMain.Instance.FullScreenEvent += Instance_FullScreenEvent;
                     this.spMain.Children.Add(WR_SFMain.Instance);
                     GlobalData.Instance.systemType = SystemType.SecondFloor;
+                    if (GlobalData.Instance.da.GloConfig.IngSystem == 0)
+                    {
+                        this.BottomColorSetting(this.bdSf, this.spBottom);
+                    }
+                    else if (GlobalData.Instance.da.GloConfig.IngSystem == 1)
+                    {
+                        this.BottomColorSetting(this.bdSFMain, this.tbSFMain, this.gdbottomSF);
+                    }
 
                     //this.BottomColorSetting(this.bdSf, this.tbSf, this.gdbottom);
                     //this.BottomColorSetting(this.bdSf, this.tbSf, this.spBottom);

@@ -1,6 +1,8 @@
 ﻿using COM.Common;
 using DatabaseLib;
+using DemoDriver;
 using HBGKTest;
+using HBGKTest.YiTongCamera;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -128,12 +130,57 @@ namespace Main.Integration
                         cam.Info.RemoteIP, cam.Info.RemotePort, cam.Info.RemoteUser, cam.Info.RemotePwd, cam.Info.nPlayPort, cam.Info.CameraType,cam.Info.ID);
                     DataHelper.Instance.ExecuteNonQuery(sql);
                 }
+                InitCameraInfo();
                 MessageBox.Show("保存成功");
             }
             catch (Exception ex)
             {
                 MessageBox.Show("保存失败");
                 Log.Log4Net.AddLog(ex.ToString());
+            }
+        }
+
+
+        /// <summary>
+        /// 初始化摄像头信息
+        /// </summary>
+        private void InitCameraInfo()
+        {
+            GlobalData.Instance.cameraList.Clear();
+            string sql = " Select * from CameraInfo";
+            List<CameraInfo> list = DataHelper.Instance.ExecuteList<CameraInfo>(sql);
+            foreach (CameraInfo cameraInfo in list)
+            {
+                ChannelInfo ch1 = new ChannelInfo();
+                ch1.ID = cameraInfo.Id;
+                ch1.ChlID = cameraInfo.ChlId.ToString();
+                ch1.nDeviceType = cameraInfo.NDeviceType;
+                ch1.RemoteChannle = cameraInfo.REMOTECHANNLE.ToString();
+                ch1.RemoteIP = cameraInfo.REMOTEIP;
+                ch1.RemotePort = cameraInfo.REMOTEPORT;
+                ch1.RemoteUser = cameraInfo.REMOTEUSER;
+                ch1.RemotePwd = cameraInfo.REMOTEPWD;
+                ch1.nPlayPort = cameraInfo.NPLAYPORT;
+                ch1.PtzPort = cameraInfo.PTZPORT;
+                ch1.CameraType = cameraInfo.CAMERATYPE;
+                GlobalData.Instance.chList.Add(ch1);
+            }
+            foreach (ChannelInfo info in GlobalData.Instance.chList)
+            {
+                switch (info.CameraType)
+                {
+                    case 0:
+                        {
+                            GlobalData.Instance.cameraList.Add(new UIControl_HBGK1(info));
+                            break;
+                        }
+                    case 1:
+                        {
+                            GlobalData.Instance.cameraList.Add(new YiTongCameraControl(info));
+                            break;
+                        }
+
+                }
             }
         }
         /// <summary>

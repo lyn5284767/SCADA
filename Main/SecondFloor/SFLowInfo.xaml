@@ -97,7 +97,7 @@
                     </StackPanel>
                     <StackPanel Margin="50,10,0,0" Orientation="Horizontal">
                         <Label Content="版本日期:" FontSize="14" Foreground="#919191"/>
-                        <TextBlock Text="2020.08.17" FontSize="14" Foreground="#919191">
+                        <TextBlock Text="2021.02.01" FontSize="14" Foreground="#919191">
                         </TextBlock>
                     </StackPanel>
                 </StackPanel>

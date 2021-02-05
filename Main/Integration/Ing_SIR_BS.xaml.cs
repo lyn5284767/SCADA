@@ -1,4 +1,5 @@
 ﻿using COM.Common;
+using ControlLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,12 +51,15 @@ namespace Main.Integration
         {
             try
             {
-                this.tbInButtonTimeShowValue.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["BSSIRInButtonTime"], Mode = BindingMode.OneWay });
-                this.tbOutButtonTimeShowValue.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["BSSIROutButtonTime"], Mode = BindingMode.OneWay });
-                this.tbInButtonTimesShow.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["BSSIROutButtonTimes"], Mode = BindingMode.OneWay });
+                //this.tbInButtonTimeShowValue.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["BSSIRInButtonTime"], Mode = BindingMode.OneWay });
+                //this.tbOutButtonTimeShowValue.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["BSSIROutButtonTime"], Mode = BindingMode.OneWay });
+                //this.tbInButtonTimesShow.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["BSSIROutButtonTimes"], Mode = BindingMode.OneWay });
 
-                this.cbDRSafeLimit.SetBinding(CheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["505b6"], Mode = BindingMode.OneWay });
-              
+                //this.cbDRSafeLimit.SetBinding(CheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["505b6"], Mode = BindingMode.OneWay });
+                this.smPressSenorError.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["804b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.smRetractOrReachSenorError.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["804b1"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.smSwitchError.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["804b2"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.smEncoderError.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["804b3"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
 
             }
             catch (Exception ex)
@@ -69,57 +73,57 @@ namespace Main.Integration
         /// </summary>
         private void BtnInButtonTime_Click(object sender, RoutedEventArgs e)
         {
-            int val = 0;
-            int.TryParse(this.tbInButtonTimeSetValue.Text, out val);
-            if (val > 0)
-            {
-                int paramOne = val % 256;
-                int paramTwo = val / 256;
-                byte[] data = new byte[10] { 80, 16, 2, 11, (byte)paramOne, (byte)paramTwo, 0, 0, 0, 0 };
-                GlobalData.Instance.da.SendBytes(data);
-            }
-            else
-            {
-                System.Windows.Forms.MessageBox.Show("数据解析错误");
-            }
+            //int val = 0;
+            //int.TryParse(this.tbInButtonTimeSetValue.Text, out val);
+            //if (val > 0)
+            //{
+            //    int paramOne = val % 256;
+            //    int paramTwo = val / 256;
+            //    byte[] data = new byte[10] { 80, 16, 2, 11, (byte)paramOne, (byte)paramTwo, 0, 0, 0, 0 };
+            //    GlobalData.Instance.da.SendBytes(data);
+            //}
+            //else
+            //{
+            //    System.Windows.Forms.MessageBox.Show("数据解析错误");
+            //}
         }
         /// <summary>
         /// 卸扣旋扣时间
         /// </summary>
         private void BtnOutButtonTime_Click(object sender, RoutedEventArgs e)
         {
-            int val = 0;
-            int.TryParse(this.tbOutButtonTimeSetValue.Text, out val);
-            if (val > 0)
-            {
-                int paramOne = val % 256;
-                int paramTwo = val / 256;
-                byte[] data = new byte[10] { 80, 16, 2, 12, (byte)paramOne, (byte)paramTwo, 0, 0, 0, 0 };
-                GlobalData.Instance.da.SendBytes(data);
-            }
-            else
-            {
-                System.Windows.Forms.MessageBox.Show("数据解析错误");
-            }
+            //int val = 0;
+            //int.TryParse(this.tbOutButtonTimeSetValue.Text, out val);
+            //if (val > 0)
+            //{
+            //    int paramOne = val % 256;
+            //    int paramTwo = val / 256;
+            //    byte[] data = new byte[10] { 80, 16, 2, 12, (byte)paramOne, (byte)paramTwo, 0, 0, 0, 0 };
+            //    GlobalData.Instance.da.SendBytes(data);
+            //}
+            //else
+            //{
+            //    System.Windows.Forms.MessageBox.Show("数据解析错误");
+            //}
         }
         /// <summary>
         /// 冲扣次数
         /// </summary>
         private void BtnInButtonTimes_Click(object sender, RoutedEventArgs e)
         {
-            int val = 0;
-            int.TryParse(this.tbInButtonTimesSet.Text, out val);
-            if (val > 0)
-            {
-                int paramOne = val % 256;
-                int paramTwo = val / 256;
-                byte[] data = new byte[10] { 80, 16, 2, 13, (byte)paramOne, (byte)paramTwo, 0, 0, 0, 0 };
-                GlobalData.Instance.da.SendBytes(data);
-            }
-            else
-            {
-                System.Windows.Forms.MessageBox.Show("数据解析错误");
-            }
+            //int val = 0;
+            //int.TryParse(this.tbInButtonTimesSet.Text, out val);
+            //if (val > 0)
+            //{
+            //    int paramOne = val % 256;
+            //    int paramTwo = val / 256;
+            //    byte[] data = new byte[10] { 80, 16, 2, 13, (byte)paramOne, (byte)paramTwo, 0, 0, 0, 0 };
+            //    GlobalData.Instance.da.SendBytes(data);
+            //}
+            //else
+            //{
+            //    System.Windows.Forms.MessageBox.Show("数据解析错误");
+            //}
         }
 
         /// <summary>

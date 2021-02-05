@@ -128,6 +128,11 @@ namespace Main.Integration
         private void ShowTips()
         {
             Thread.Sleep(500);
+            if (GlobalData.Instance.da["155InterlockPromptMessageCode"] == null)
+            {
+                Log.Log4Net.AddLog("155InterlockPromptMessageCode为空");
+                return;
+            }
             string msg = GetMsg(GlobalData.Instance.da["155InterlockPromptMessageCode"].Value.Byte);
             if (msg != string.Empty)
             {

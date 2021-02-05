@@ -787,8 +787,41 @@ namespace COM.Common
                 encode += values[2].ToString();
             }
             string txt = parameter.ToString();
-            string deviceEncode = year + txt + dModel + encode;
+            string deviceEncode = txt + dModel + YearToEncode() + encode;
             return deviceEncode;
+        }
+        /// <summary>
+        /// 根据年份返回编码
+        /// </summary>
+        /// <returns></returns>
+        private string YearToEncode()
+        {
+            string yearEncode = string.Empty;
+            int year = DateTime.Now.Year;
+            int first = year / 10;
+            int second = year - first*10;
+            if (first == 200) yearEncode = "A";
+            else if(first==201) yearEncode = "B";
+            else if (first == 202) yearEncode = "C";
+            else if (first == 203) yearEncode = "D";
+            else if (first == 204) yearEncode = "E";
+            else if (first == 205) yearEncode = "F";
+            else if (first == 206) yearEncode = "G";
+            else if (first == 207) yearEncode = "H";
+            else if (first == 208) yearEncode = "I";
+            else if (first == 209) yearEncode = "J";
+            if (second == 0) yearEncode += "A";
+            else if (second == 1) yearEncode += "B";
+            else if (second == 2) yearEncode += "C";
+            else if (second == 3) yearEncode += "D";
+            else if (second == 4) yearEncode += "E";
+            else if (second == 5) yearEncode += "F";
+            else if (second == 6) yearEncode += "G";
+            else if (second == 7) yearEncode += "H";
+            else if (second == 8) yearEncode += "I";
+            else if (second == 9) yearEncode += "J";
+
+            return yearEncode;
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
@@ -3752,6 +3785,10 @@ namespace COM.Common
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value == null || value == DependencyProperty.UnsetValue)
+            {
+                return 0;
+            }
+            if (GlobalData.Instance.da["SIRSelfWellPosSet"] == null)
             {
                 return 0;
             }

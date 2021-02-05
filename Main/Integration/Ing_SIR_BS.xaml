@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Main.Integration"
+             xmlns:local="clr-namespace:Main.Integration" xmlns:cl="http://talonzeng.com/ControlLibrary"
              mc:Ignorable="d" 
               d:DesignHeight="280" d:DesignWidth="335">
     <UserControl.Resources>
@@ -35,47 +35,57 @@
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
-    <Grid>
-        <Border Name="bdSIR" Background="White" CornerRadius="10" Margin="10" Grid.Row="2" Grid.Column="0">
+    <Grid Margin="5">
+        <Border Name="bdSIR" Background="White" CornerRadius="10">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
             </Border.Effect>
         </Border>
-        <Grid Margin="10">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
-                <RowDefinition Height="200"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="4*"/>
             </Grid.RowDefinitions>
-            <Button Width="325" Height="40" Panel.ZIndex="1" HorizontalAlignment="Center"  
+            <Button Width="600" Height="40" Panel.ZIndex="1" HorizontalAlignment="Center"  
                                  Background="#2B71CA" BorderBrush="#92C202" Grid.ColumnSpan="2">
                 <TextBlock Text="铁钻工(宝石)" Foreground="White" FontSize="24"/>
             </Button>
-            <Grid Grid.Row="1"  Margin="0,10,0,0">
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <StackPanel Orientation="Horizontal" Grid.Row="0">
-                    <TextBlock Text="上扣旋扣时间" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
-                    <TextBox Width="50" Margin="10,0,0,0" Name="tbInButtonTimeShowValue" IsReadOnly="True" Height="35"></TextBox>
-                    <TextBox Width="50" Margin="10,0,0,0" Name="tbInButtonTimeSetValue" Height="35"></TextBox>
-                    <Button Height="36" FontSize="18" Margin="10,0,0,0" Click="BtnInButtonTime_Click">设定</Button>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Row="1">
-                    <TextBlock Text="卸扣旋扣时间" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
-                    <TextBox Width="50" Margin="10,0,0,0" Name="tbOutButtonTimeShowValue" IsReadOnly="True" Height="35"></TextBox>
-                    <TextBox Width="50" Margin="10,0,0,0" Name="tbOutButtonTimeSetValue" Height="35"></TextBox>
-                    <Button Height="36" FontSize="18" Margin="10,0,0,0" Click="BtnOutButtonTime_Click">设定</Button>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Row="2">
-                    <TextBlock Text="冲扣次数" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" Margin="56,0,0,0"></TextBlock>
-                    <TextBox Width="50" Margin="10,0,0,0" Name="tbInButtonTimesShow" IsReadOnly="True" Height="35"></TextBox>
-                    <TextBox Width="50" Margin="10,0,0,0" Name="tbInButtonTimesSet" Height="35"></TextBox>
-                    <Button Height="36" FontSize="18" Margin="10,0,0,0" Click="BtnInButtonTimes_Click">设定</Button>
-                </StackPanel>
-                <CheckBox Name="cbDRSafeLimit" Grid.Row="3"  FontSize="18" FontWeight="Bold" Checked="cbDRSafeLimit_Checked">钻台面安全限制解除</CheckBox>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Viewbox Grid.Column="0">
+                    <TextBlock Text="压力传感器:" Margin="10"></TextBlock>
+                </Viewbox>
+                <cl:SymbolMapping Name="smPressSenorError" HorizontalAlignment="Center" Grid.Column="1" StrContent="" Margin="5"/>
+                <Viewbox Grid.Column="2">
+                    <TextBlock Text="伸缩传感器:" Margin="10"></TextBlock>
+                </Viewbox>
+                <cl:SymbolMapping Name="smRetractOrReachSenorError" HorizontalAlignment="Center" Grid.Column="3" StrContent="" Margin="5"/>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Viewbox Grid.Column="0">
+                    <TextBlock Text="接近开关:" Margin="10"></TextBlock>
+                </Viewbox>
+                <cl:SymbolMapping Name="smSwitchError" HorizontalAlignment="Center" Grid.Column="1" StrContent="" Margin="5"/>
+                <Viewbox Grid.Column="2">
+                    <TextBlock Text="编码器:" Margin="10"></TextBlock>
+                </Viewbox>
+                <cl:SymbolMapping Name="smEncoderError" HorizontalAlignment="Center" Grid.Column="3" StrContent="" Margin="5"/>
             </Grid>
         </Grid>
     </Grid>

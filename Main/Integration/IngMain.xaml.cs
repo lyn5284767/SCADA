@@ -107,8 +107,8 @@ namespace Main.Integration
         public IngMain()
         {
             InitializeComponent();
-            GlobalData.Instance.Rows = GlobalData.Instance.da["DrillNums"].Value.Byte;
-            GlobalData.Instance.DrillNum = GlobalData.Instance.da["103E23B5"].Value.Byte;
+            if(GlobalData.Instance.da["DrillNums"] !=null) GlobalData.Instance.Rows = GlobalData.Instance.da["DrillNums"].Value.Byte;
+            if (GlobalData.Instance.da["103E23B5"] != null) GlobalData.Instance.DrillNum = GlobalData.Instance.da["103E23B5"].Value.Byte;
             InitAlarmKey();
             VariableBinding();
             this.Loaded += IngMain_Loaded;

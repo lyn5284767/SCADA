@@ -29,6 +29,11 @@ namespace Main.Integration
 
         private void AminationNew_SendFingerBeamNumberEvent(byte number)
         {
+            if (GlobalData.Instance.da["operationModel"] == null || GlobalData.Instance.da["droperationModel"] == null)
+            {
+                Log.Log4Net.AddLog("operationModel或droperationModel为空");
+                return;
+            }
             if (GlobalData.Instance.da["operationModel"].Value.Byte == 5 || GlobalData.Instance.da["operationModel"].Value.Byte == 3)
             {
                 byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 5, number });

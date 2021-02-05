@@ -182,7 +182,7 @@ namespace Main.Integration
                     this.tbDRAlarm.Foreground = (Brush)bc.ConvertFrom("#E0496D");
                     this.tbDROpr.Foreground = (Brush)bc.ConvertFrom("#E0496D");
                     this.Warnning();
-                    if (GlobalData.Instance.da["droperationModel"].Value.Byte == 1)
+                    if (GlobalData.Instance.da["droperationModel"] !=null && GlobalData.Instance.da["droperationModel"].Value.Byte == 1)
                     {
                         this.tbDRAlarm.Text = "当前系统为紧急停止状态";
                     }
@@ -215,6 +215,13 @@ namespace Main.Integration
         /// </summary>
         private void Warnning()
         {
+            if (GlobalData.Instance.da["drTipsCode"] == null || GlobalData.Instance.da["drErrorCode"] == null
+                || GlobalData.Instance.da["324b0"] == null || GlobalData.Instance.da["337b0"] == null
+                || GlobalData.Instance.da["508b5"] == null)
+            {
+                Log.Log4Net.AddLog("钻台面告警字段有空值");
+                return;
+            }
             #region 告警1
             int warnOne = GlobalData.Instance.da["drTipsCode"].Value.Int32;
             if (warnOne == 1)

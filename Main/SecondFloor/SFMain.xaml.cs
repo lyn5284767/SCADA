@@ -1230,6 +1230,9 @@ namespace Main.SecondFloor
                 case 85:
                     warnTwo.Text = "即将进入下一次示教循环！";
                     break;
+                case 86:
+                    warnTwo.Text = "小车未进入井口,手臂禁止缩回！";
+                    break;
                 case 96:
                     warnTwo.Text = "小车电机动作卡滞！";
                     break;

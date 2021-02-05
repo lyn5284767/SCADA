@@ -208,6 +208,15 @@ namespace Main.HydraulicStation
         /// </summary>
         private void InitAlarmKey()
         {
+            alarmList.Add(new AlarmInfo() { TagName = "771b7", Description = "液压站急停", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "774b0", Description = "液压油高温报警，请及时降温", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "774b1", Description = "液压油高温预警，请及时降温", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "774b2", Description = "液压油温度过低，请开启加热", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "774b3", Description = "低液位预警，请及时加注液压油", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "774b4", Description = "低液位报警，请及时加注液压油", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "774b5", Description = "液压位异常降低，请检测漏油", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "774b6", Description = "加热效果异常，请检测加热器", NowType = 0, NeedCheck = true });
+
             alarmList.Add(new AlarmInfo() { TagName = "775b0", Description = "主泵1已连续运行500小时，请切换主泵2使用", NowType = 0, NeedCheck = true });
             alarmList.Add(new AlarmInfo() { TagName = "775b1", Description = "主泵2已连续运行500小时，请切换主泵1使用", NowType = 0, NeedCheck = true });
             alarmList.Add(new AlarmInfo() { TagName = "775b2", Description = "主电机1已连续运行600小时，请加注黄油", NowType = 0, NeedCheck = true });
@@ -885,6 +894,11 @@ namespace Main.HydraulicStation
 
         private void VariableTimer(object value)
         {
+            if (GlobalData.Instance.da["770b3"] == null || GlobalData.Instance.da["770b5"] == null)
+            {
+                Log.Log4Net.AddLog("770b3或770b5为空");
+                return;
+            }
             if (this.bMainPumpOne != GlobalData.Instance.da["770b3"].Value.Boolean && this.MainPumpOneCheck)
             {
                 this.MainPumpOne.Dispatcher.Invoke(new Action(() =>

@@ -57,6 +57,7 @@ namespace Main.HydraulicStation
 
             this.VariableBinding();
             timerWarning = new System.Threading.Timer(new TimerCallback(Timer_Elapsed), this, 2000, 50);//改成50ms 的时钟
+            InitAlarmKey();
         }
 
         /// <summary>
@@ -79,538 +80,639 @@ namespace Main.HydraulicStation
             }
         }
 
+        List<AlarmInfo> alarmList = new List<AlarmInfo>();
+        /// <summary>
+        /// 绑定告警变量
+        /// </summary>
+        private void InitAlarmKey()
+        {
+            alarmList.Add(new AlarmInfo() { TagName = "771b7", Description = "液压站急停", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "774b0", Description = "液压油高温报警，请及时降温", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "774b1", Description = "液压油高温预警，请及时降温", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "774b2", Description = "液压油温度过低，请开启加热", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "774b3", Description = "低液位预警，请及时加注液压油", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "774b4", Description = "低液位报警，请及时加注液压油", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "774b5", Description = "液压位异常降低，请检测漏油", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "774b6", Description = "加热效果异常，请检测加热器", NowType = 0, NeedCheck = true });
+
+            alarmList.Add(new AlarmInfo() { TagName = "775b0", Description = "主泵1已连续运行500小时，请切换主泵2使用", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "775b1", Description = "主泵2已连续运行500小时，请切换主泵1使用", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "775b2", Description = "主电机1已连续运行600小时，请加注黄油", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "775b3", Description = "主电机2已连续运行600小时，请加注黄油", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "775b4", Description = "距上次更换滤芯已经大于2000小时，请更换滤芯", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "775b5", Description = "距上次更换液压油已经大于2000小时，请更换液压油", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "775b6", Description = "油位下降异常，请检查是否漏油", NowType = 0, NeedCheck = true });
+            // 2021.02.02新增
+            alarmList.Add(new AlarmInfo() { TagName = "773b7", Description = "主电机1过载，需消除复位", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "774b7", Description = "主电机2过载，需消除复位", NowType = 0, NeedCheck = true });
+
+            alarmList.Add(new AlarmInfo() { TagName = "792b0", Description = "司钻房通信故障", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "792b1", Description = "分阀箱通信故障", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "792b2", Description = "卡瓦压力传感器故障", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "792b3", Description = "LS压力传感器故障", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "792b4", Description = "平移压力传感器故障", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "792b5", Description = "油温传感器故障", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "792b6", Description = "液位传感器故障", NowType = 0, NeedCheck = true });
+
+            alarmList.Add(new AlarmInfo() { TagName = "793b0", Description = "铁钻工压力传感器故障", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "793b1", Description = "大钳压力传感器故障", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "793b2", Description = "钻台面压力传感器故障", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "793b3", Description = "猫道压力传感器故障", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "793b4", Description = "主压力传感器故障", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "793b5", Description = "恒压泵未合闸", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "793b6", Description = "散热泵未合闸", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "793b7", Description = "加热泵未合闸", NowType = 0, NeedCheck = true });
+        }
+
+        /// <summary>
+        /// 监控告警状态
+        /// </summary>
+        private void MonitorAlarmStatus()
+        {
+            foreach (AlarmInfo info in alarmList)
+            {
+                if (GlobalData.Instance.da[info.TagName] != null)
+                {
+                    if (GlobalData.Instance.da[info.TagName].Value.Boolean)//有报警
+                    {
+                        if (info.NowType == 0) info.NowType = 1;// 前状态为未告警
+                    }
+                    else
+                    {
+                        info.NowType = 0;
+                    }
+                }
+            }
+        }
+
         /// <summary>
         /// 告警信号
         /// </summary>
         private void Warnning()
         {
+            //#region 告警
+            //int key = 0;
+            //if (GlobalData.Instance.da["771b7"].Value.Boolean)
+            //{
+            //    this.tipList.TryGetValue("液压站急停", out key);
+            //    if (key == 0)
+            //    {
+            //        this.tipList.Add("液压站急停", 1);
+            //    }
+            //}
+            //else
+            //{
+            //    this.tipList.TryGetValue("液压站急停", out key);
+            //    if (key != 0)
+            //    {
+            //        this.tipList.Remove("液压站急停");
+            //    }
+            //}
+
+            //if (GlobalData.Instance.da["774b0"].Value.Boolean)
+            //{
+            //    this.tipList.TryGetValue("液压油高温报警，请及时降温", out key);
+            //    if (key == 0)
+            //    {
+            //        this.tipList.Add("液压油高温报警，请及时降温", 1);
+            //    }
+            //}
+            //else
+            //{
+            //    this.tipList.TryGetValue("液压油高温报警，请及时降温", out key);
+            //    if (key != 0)
+            //    {
+            //        this.tipList.Remove("液压油高温报警，请及时降温");
+            //    }
+            //}
+
+            //if (GlobalData.Instance.da["774b1"].Value.Boolean)
+            //{
+            //    this.tipList.TryGetValue("液压油高温预警，请及时降温", out key);
+            //    if (key == 0)
+            //    {
+            //        this.tipList.Add("液压油高温预警，请及时降温", 1);
+            //    }
+            //}
+            //else
+            //{
+            //    this.tipList.TryGetValue("液压油高温预警，请及时降温", out key);
+            //    if (key != 0)
+            //    {
+            //        this.tipList.Remove("液压油高温预警，请及时降温");
+            //    }
+            //}
+            //if (GlobalData.Instance.da["774b2"].Value.Boolean)
+            //{
+            //    this.tipList.TryGetValue("液压油温度过低，请开启加热", out key);
+            //    if (key == 0)
+            //    {
+            //        this.tipList.Add("液压油温度过低，请开启加热", 1);
+            //    }
+            //}
+            //else
+            //{
+            //    this.tipList.TryGetValue("液压油温度过低，请开启加热", out key);
+            //    if (key != 0)
+            //    {
+            //        this.tipList.Remove("液压油温度过低，请开启加热");
+            //    }
+            //}
+            //if (GlobalData.Instance.da["774b3"].Value.Boolean)
+            //{
+            //    this.tipList.TryGetValue("低液位预警，请及时加注液压油", out key);
+            //    if (key == 0)
+            //    {
+            //        this.tipList.Add("低液位预警，请及时加注液压油", 1);
+            //    }
+            //}
+            //else
+            //{
+            //    this.tipList.TryGetValue("低液位预警，请及时加注液压油", out key);
+            //    if (key != 0)
+            //    {
+            //        this.tipList.Remove("低液位预警，请及时加注液压油");
+            //    }
+            //}
+            //if (GlobalData.Instance.da["774b4"].Value.Boolean)
+            //{
+            //    this.tipList.TryGetValue("低液位报警，请及时加注液压油", out key);
+            //    if (key == 0)
+            //    {
+            //        this.tipList.Add("低液位报警，请及时加注液压油", 1);
+            //    }
+            //}
+            //else
+            //{
+            //    this.tipList.TryGetValue("低液位报警，请及时加注液压油", out key);
+            //    if (key != 0)
+            //    {
+            //        this.tipList.Remove("低液位报警，请及时加注液压油");
+            //    }
+            //}
+            //if (GlobalData.Instance.da["774b5"].Value.Boolean)
+            //{
+            //    this.tipList.TryGetValue("液压位异常降低，请检测漏油", out key);
+            //    if (key == 0)
+            //    {
+            //        this.tipList.Add("液压位异常降低，请检测漏油", 1);
+            //    }
+            //}
+            //else
+            //{
+            //    this.tipList.TryGetValue("液压位异常降低，请检测漏油", out key);
+            //    if (key != 0)
+            //    {
+            //        this.tipList.Remove("液压位异常降低，请检测漏油");
+            //    }
+            //}
+            //if (GlobalData.Instance.da["774b6"].Value.Boolean)
+            //{
+            //    this.tipList.TryGetValue("加热效果异常，请检测加热器", out key);
+            //    if (key == 0)
+            //    {
+            //        this.tipList.Add("加热效果异常，请检测加热器", 1);
+            //    }
+            //}
+            //else
+            //{
+            //    this.tipList.TryGetValue("加热效果异常，请检测加热器", out key);
+            //    if (key != 0)
+            //    {
+            //        this.tipList.Remove("加热效果异常，请检测加热器");
+            //    }
+            //}
+            //if (GlobalData.Instance.da["775b0"].Value.Boolean)
+            //{
+            //    this.tipList.TryGetValue("液压站-主泵1已连续运行500小时，请切换主泵2使用", out key);
+            //    if (key == 0)
+            //    {
+            //        this.tipList.Add("液压站-主泵1已连续运行500小时，请切换主泵2使用", 1);
+            //    }
+            //}
+            //else
+            //{
+            //    this.tipList.TryGetValue("液压站-主泵1已连续运行500小时，请切换主泵2使用", out key);
+            //    if (key != 0)
+            //    {
+            //        this.tipList.Remove("液压站-主泵1已连续运行500小时，请切换主泵2使用");
+            //    }
+            //}
+            //if (GlobalData.Instance.da["775b1"].Value.Boolean)
+            //{
+            //    this.tipList.TryGetValue("液压站-主泵2已连续运行500小时，请切换主泵1使用", out key);
+            //    if (key == 0)
+            //    {
+            //        this.tipList.Add("液压站-主泵2已连续运行500小时，请切换主泵1使用", 1);
+            //    }
+            //}
+            //else
+            //{
+            //    this.tipList.TryGetValue("液压站-主泵2已连续运行500小时，请切换主泵1使用", out key);
+            //    if (key != 0)
+            //    {
+            //        this.tipList.Remove("液压站-主泵2已连续运行500小时，请切换主泵1使用");
+            //    }
+            //}
+            //if (GlobalData.Instance.da["775b2"].Value.Boolean)
+            //{
+            //    this.tipList.TryGetValue("液压站-主电机1已连续运行600小时，请加注黄油", out key);
+            //    if (key == 0)
+            //    {
+            //        this.tipList.Add("液压站-主电机1已连续运行600小时，请加注黄油", 1);
+            //    }
+            //}
+            //else
+            //{
+            //    this.tipList.TryGetValue("液压站-主电机1已连续运行600小时，请加注黄油", out key);
+            //    if (key != 0)
+            //    {
+            //        this.tipList.Remove("液压站-主电机1已连续运行600小时，请加注黄油");
+            //    }
+            //}
+            //if (GlobalData.Instance.da["775b3"].Value.Boolean)
+            //{
+            //    this.tipList.TryGetValue("液压站-主电机2已连续运行600小时，请加注黄油", out key);
+            //    if (key == 0)
+            //    {
+            //        this.tipList.Add("液压站-主电机2已连续运行600小时，请加注黄油", 1);
+            //    }
+            //}
+            //else
+            //{
+            //    this.tipList.TryGetValue("液压站-主电机2已连续运行600小时，请加注黄油", out key);
+            //    if (key != 0)
+            //    {
+            //        this.tipList.Remove("液压站-主电机2已连续运行600小时，请加注黄油");
+            //    }
+            //}
+            //if (GlobalData.Instance.da["775b4"].Value.Boolean)
+            //{
+            //    this.tipList.TryGetValue("液压站-距上次更换滤芯已经大于2000小时，请更换滤芯", out key);
+            //    if (key == 0)
+            //    {
+            //        this.tipList.Add("液压站-距上次更换滤芯已经大于2000小时，请更换滤芯", 1);
+            //    }
+            //}
+            //else
+            //{
+            //    this.tipList.TryGetValue("液压站-距上次更换滤芯已经大于2000小时，请更换滤芯", out key);
+            //    if (key != 0)
+            //    {
+            //        this.tipList.Remove("液压站-距上次更换滤芯已经大于2000小时，请更换滤芯");
+            //    }
+            //}
+            //if (GlobalData.Instance.da["775b5"].Value.Boolean)
+            //{
+            //    this.tipList.TryGetValue("液压站-距上次更换液压油已经大于2000小时，请更换液压油", out key);
+            //    if (key == 0)
+            //    {
+            //        this.tipList.Add("液压站-距上次更换液压油已经大于2000小时，请更换液压油", 1);
+            //    }
+            //}
+            //else
+            //{
+            //    this.tipList.TryGetValue("液压站-距上次更换液压油已经大于2000小时，请更换液压油", out key);
+            //    if (key != 0)
+            //    {
+            //        this.tipList.Remove("液压站-距上次更换液压油已经大于2000小时，请更换液压油");
+            //    }
+            //}
+            //if (GlobalData.Instance.da["775b6"].Value.Boolean)
+            //{
+            //    this.tipList.TryGetValue("液压站-油位下降异常，请检查是否漏油", out key);
+            //    if (key == 0)
+            //    {
+            //        this.tipList.Add("液压站-油位下降异常，请检查是否漏油", 1);
+            //    }
+            //}
+            //else
+            //{
+            //    this.tipList.TryGetValue("液压站-油位下降异常，请检查是否漏油", out key);
+            //    if (key != 0)
+            //    {
+            //        this.tipList.Remove("液压站-油位下降异常，请检查是否漏油");
+            //    }
+            //}
+            //// 2021.02.02新增告警类型
+            //if (GlobalData.Instance.da["773b7"].Value.Boolean)
+            //{
+            //    this.tipList.TryGetValue("液压站-主电机1过载，需消除复位", out key);
+            //    if (key == 0)
+            //    {
+            //        this.tipList.Add("液压站-主电机1过载，需消除复位", 1);
+            //    }
+            //}
+            //else
+            //{
+            //    this.tipList.TryGetValue("液压站-主电机1过载，需消除复位", out key);
+            //    if (key != 0)
+            //    {
+            //        this.tipList.Remove("液压站-主电机1过载，需消除复位");
+            //    }
+            //}
+            //if (GlobalData.Instance.da["774b7"].Value.Boolean)
+            //{
+            //    this.tipList.TryGetValue("液压站-主电机2过载，需消除复位", out key);
+            //    if (key == 0)
+            //    {
+            //        this.tipList.Add("液压站-主电机2过载，需消除复位", 1);
+            //    }
+            //}
+            //else
+            //{
+            //    this.tipList.TryGetValue("液压站-主电机2过载，需消除复位", out key);
+            //    if (key != 0)
+            //    {
+            //        this.tipList.Remove("液压站-主电机2过载，需消除复位");
+            //    }
+            //}
+            //if (GlobalData.Instance.da["792b0"].Value.Boolean)
+            //{
+            //    this.tipList.TryGetValue("液压站-司钻房通信故障", out key);
+            //    if (key == 0)
+            //    {
+            //        this.tipList.Add("液压站-司钻房通信故障", 1);
+            //    }
+            //}
+            //else
+            //{
+            //    this.tipList.TryGetValue("液压站-司钻房通信故障", out key);
+            //    if (key != 0)
+            //    {
+            //        this.tipList.Remove("液压站-司钻房通信故障");
+            //    }
+            //}
+            //if (GlobalData.Instance.da["792b1"].Value.Boolean)
+            //{
+            //    this.tipList.TryGetValue("液压站-分阀箱通信故障", out key);
+            //    if (key == 0)
+            //    {
+            //        this.tipList.Add("液压站-分阀箱通信故障", 1);
+            //    }
+            //}
+            //else
+            //{
+            //    this.tipList.TryGetValue("液压站-分阀箱通信故障", out key);
+            //    if (key != 0)
+            //    {
+            //        this.tipList.Remove("液压站-分阀箱通信故障");
+            //    }
+            //}
+            //if (GlobalData.Instance.da["792b2"].Value.Boolean)
+            //{
+            //    this.tipList.TryGetValue("液压站-卡瓦压力传感器故障", out key);
+            //    if (key == 0)
+            //    {
+            //        this.tipList.Add("液压站-卡瓦压力传感器故障", 1);
+            //    }
+            //}
+            //else
+            //{
+            //    this.tipList.TryGetValue("液压站-卡瓦压力传感器故障", out key);
+            //    if (key != 0)
+            //    {
+            //        this.tipList.Remove("液压站-卡瓦压力传感器故障");
+            //    }
+            //}
+            //if (GlobalData.Instance.da["792b3"].Value.Boolean)
+            //{
+            //    this.tipList.TryGetValue("液压站-LS压力传感器故障", out key);
+            //    if (key == 0)
+            //    {
+            //        this.tipList.Add("液压站-LS压力传感器故障", 1);
+            //    }
+            //}
+            //else
+            //{
+            //    this.tipList.TryGetValue("液压站-LS压力传感器故障", out key);
+            //    if (key != 0)
+            //    {
+            //        this.tipList.Remove("液压站-LS压力传感器故障");
+            //    }
+            //}
+            //if (GlobalData.Instance.da["792b4"].Value.Boolean)
+            //{
+            //    this.tipList.TryGetValue("液压站-平移压力传感器故障", out key);
+            //    if (key == 0)
+            //    {
+            //        this.tipList.Add("液压站-平移压力传感器故障", 1);
+            //    }
+            //}
+            //else
+            //{
+            //    this.tipList.TryGetValue("液压站-平移压力传感器故障", out key);
+            //    if (key != 0)
+            //    {
+            //        this.tipList.Remove("液压站-平移压力传感器故障");
+            //    }
+            //}
+            //if (GlobalData.Instance.da["792b5"].Value.Boolean)
+            //{
+            //    this.tipList.TryGetValue("液压站-油温传感器故障", out key);
+            //    if (key == 0)
+            //    {
+            //        this.tipList.Add("液压站-油温传感器故障", 1);
+            //    }
+            //}
+            //else
+            //{
+            //    this.tipList.TryGetValue("液压站-油温传感器故障", out key);
+            //    if (key != 0)
+            //    {
+            //        this.tipList.Remove("液压站-油温传感器故障");
+            //    }
+            //}
+            //if (GlobalData.Instance.da["792b6"].Value.Boolean)
+            //{
+            //    this.tipList.TryGetValue("液压站-液位传感器故障", out key);
+            //    if (key == 0)
+            //    {
+            //        this.tipList.Add("液压站-液位传感器故障", 1);
+            //    }
+            //}
+            //else
+            //{
+            //    this.tipList.TryGetValue("液压站-液位传感器故障", out key);
+            //    if (key != 0)
+            //    {
+            //        this.tipList.Remove("液压站-液位传感器故障");
+            //    }
+            //}
+            //if (GlobalData.Instance.da["793b0"].Value.Boolean)
+            //{
+            //    this.tipList.TryGetValue("液压站-铁钻工压力传感器故障", out key);
+            //    if (key == 0)
+            //    {
+            //        this.tipList.Add("液压站-铁钻工压力传感器故障", 1);
+            //    }
+            //}
+            //else
+            //{
+            //    this.tipList.TryGetValue("液压站-铁钻工压力传感器故障", out key);
+            //    if (key != 0)
+            //    {
+            //        this.tipList.Remove("液压站-铁钻工压力传感器故障");
+            //    }
+            //}
+            //if (GlobalData.Instance.da["793b1"].Value.Boolean)
+            //{
+            //    this.tipList.TryGetValue("液压站-大钳压力传感器故障", out key);
+            //    if (key == 0)
+            //    {
+            //        this.tipList.Add("液压站-大钳压力传感器故障", 1);
+            //    }
+            //}
+            //else
+            //{
+            //    this.tipList.TryGetValue("液压站-大钳压力传感器故障", out key);
+            //    if (key != 0)
+            //    {
+            //        this.tipList.Remove("液压站-大钳压力传感器故障");
+            //    }
+            //}
+            //if (GlobalData.Instance.da["793b2"].Value.Boolean)
+            //{
+            //    this.tipList.TryGetValue("液压站-钻台面压力传感器故障", out key);
+            //    if (key == 0)
+            //    {
+            //        this.tipList.Add("液压站-钻台面压力传感器故障", 1);
+            //    }
+            //}
+            //else
+            //{
+            //    this.tipList.TryGetValue("液压站-钻台面压力传感器故障", out key);
+            //    if (key != 0)
+            //    {
+            //        this.tipList.Remove("液压站-钻台面压力传感器故障");
+            //    }
+            //}
+            //if (GlobalData.Instance.da["793b3"].Value.Boolean)
+            //{
+            //    this.tipList.TryGetValue("液压站-猫道压力传感器故障", out key);
+            //    if (key == 0)
+            //    {
+            //        this.tipList.Add("液压站-猫道压力传感器故障", 1);
+            //    }
+            //}
+            //else
+            //{
+            //    this.tipList.TryGetValue("液压站-猫道压力传感器故障", out key);
+            //    if (key != 0)
+            //    {
+            //        this.tipList.Remove("液压站-猫道压力传感器故障");
+            //    }
+            //}
+            //if (GlobalData.Instance.da["793b4"].Value.Boolean)
+            //{
+            //    this.tipList.TryGetValue("液压站-主压力传感器故障", out key);
+            //    if (key == 0)
+            //    {
+            //        this.tipList.Add("液压站-主压力传感器故障", 1);
+            //    }
+            //}
+            //else
+            //{
+            //    this.tipList.TryGetValue("液压站-主压力传感器故障", out key);
+            //    if (key != 0)
+            //    {
+            //        this.tipList.Remove("液压站-主压力传感器故障");
+            //    }
+            //}
+            //if (GlobalData.Instance.da["793b5"].Value.Boolean)
+            //{
+            //    this.tipList.TryGetValue("液压站-恒压泵未合闸", out key);
+            //    if (key == 0)
+            //    {
+            //        this.tipList.Add("液压站-恒压泵未合闸", 1);
+            //    }
+            //}
+            //else
+            //{
+            //    this.tipList.TryGetValue("液压站-恒压泵未合闸", out key);
+            //    if (key != 0)
+            //    {
+            //        this.tipList.Remove("液压站-恒压泵未合闸");
+            //    }
+            //}
+            //if (GlobalData.Instance.da["793b6"].Value.Boolean)
+            //{
+            //    this.tipList.TryGetValue("液压站-散热泵未合闸", out key);
+            //    if (key == 0)
+            //    {
+            //        this.tipList.Add("液压站-散热泵未合闸", 1);
+            //    }
+            //}
+            //else
+            //{
+            //    this.tipList.TryGetValue("液压站-散热泵未合闸", out key);
+            //    if (key != 0)
+            //    {
+            //        this.tipList.Remove("液压站-散热泵未合闸");
+            //    }
+            //}
+            //if (GlobalData.Instance.da["793b7"].Value.Boolean)
+            //{
+            //    this.tipList.TryGetValue("液压站-加热泵未合闸", out key);
+            //    if (key == 0)
+            //    {
+            //        this.tipList.Add("液压站-加热泵未合闸", 1);
+            //    }
+            //}
+            //else
+            //{
+            //    this.tipList.TryGetValue("液压站-加热泵未合闸", out key);
+            //    if (key != 0)
+            //    {
+            //        this.tipList.Remove("液压站-加热泵未合闸");
+            //    }
+            //}
+
+            //if (iTimeCnt % 10 == 0)
+            //{
+            //    this.tbTips.FontSize = 24;
+            //}
+            //else
+            //{
+            //    this.tbTips.FontSize = 28;
+            //}
+            //#endregion
+
+            iTimeCnt++;
+            if (iTimeCnt > 1000) iTimeCnt = 0;
             #region 告警
-            int key = 0;
-            if (GlobalData.Instance.da["771b7"].Value.Boolean)
-            {
-                this.tipList.TryGetValue("液压站急停", out key);
-                if (key == 0)
-                {
-                    this.tipList.Add("液压站急停", 1);
-                }
-            }
-            else
-            {
-                this.tipList.TryGetValue("液压站急停", out key);
-                if (key != 0)
-                {
-                    this.tipList.Remove("液压站急停");
-                }
-            }
-
-            if (GlobalData.Instance.da["774b0"].Value.Boolean)
-            {
-                this.tipList.TryGetValue("液压油高温报警，请及时降温", out key);
-                if (key == 0)
-                {
-                    this.tipList.Add("液压油高温报警，请及时降温", 1);
-                }
-            }
-            else
-            {
-                this.tipList.TryGetValue("液压油高温报警，请及时降温", out key);
-                if (key != 0)
-                {
-                    this.tipList.Remove("液压油高温报警，请及时降温");
-                }
-            }
-
-            if (GlobalData.Instance.da["774b1"].Value.Boolean)
-            {
-                this.tipList.TryGetValue("液压油高温预警，请及时降温", out key);
-                if (key == 0)
-                {
-                    this.tipList.Add("液压油高温预警，请及时降温", 1);
-                }
-            }
-            else
-            {
-                this.tipList.TryGetValue("液压油高温预警，请及时降温", out key);
-                if (key != 0)
-                {
-                    this.tipList.Remove("液压油高温预警，请及时降温");
-                }
-            }
-            if (GlobalData.Instance.da["774b2"].Value.Boolean)
-            {
-                this.tipList.TryGetValue("液压油温度过低，请开启加热", out key);
-                if (key == 0)
-                {
-                    this.tipList.Add("液压油温度过低，请开启加热", 1);
-                }
-            }
-            else
-            {
-                this.tipList.TryGetValue("液压油温度过低，请开启加热", out key);
-                if (key != 0)
-                {
-                    this.tipList.Remove("液压油温度过低，请开启加热");
-                }
-            }
-            if (GlobalData.Instance.da["774b3"].Value.Boolean)
-            {
-                this.tipList.TryGetValue("低液位预警，请及时加注液压油", out key);
-                if (key == 0)
-                {
-                    this.tipList.Add("低液位预警，请及时加注液压油", 1);
-                }
-            }
-            else
-            {
-                this.tipList.TryGetValue("低液位预警，请及时加注液压油", out key);
-                if (key != 0)
-                {
-                    this.tipList.Remove("低液位预警，请及时加注液压油");
-                }
-            }
-            if (GlobalData.Instance.da["774b4"].Value.Boolean)
-            {
-                this.tipList.TryGetValue("低液位报警，请及时加注液压油", out key);
-                if (key == 0)
-                {
-                    this.tipList.Add("低液位报警，请及时加注液压油", 1);
-                }
-            }
-            else
-            {
-                this.tipList.TryGetValue("低液位报警，请及时加注液压油", out key);
-                if (key != 0)
-                {
-                    this.tipList.Remove("低液位报警，请及时加注液压油");
-                }
-            }
-            if (GlobalData.Instance.da["774b5"].Value.Boolean)
-            {
-                this.tipList.TryGetValue("液压位异常降低，请检测漏油", out key);
-                if (key == 0)
-                {
-                    this.tipList.Add("液压位异常降低，请检测漏油", 1);
-                }
-            }
-            else
-            {
-                this.tipList.TryGetValue("液压位异常降低，请检测漏油", out key);
-                if (key != 0)
-                {
-                    this.tipList.Remove("液压位异常降低，请检测漏油");
-                }
-            }
-            if (GlobalData.Instance.da["774b6"].Value.Boolean)
-            {
-                this.tipList.TryGetValue("加热效果异常，请检测加热器", out key);
-                if (key == 0)
-                {
-                    this.tipList.Add("加热效果异常，请检测加热器", 1);
-                }
-            }
-            else
-            {
-                this.tipList.TryGetValue("加热效果异常，请检测加热器", out key);
-                if (key != 0)
-                {
-                    this.tipList.Remove("加热效果异常，请检测加热器");
-                }
-            }
-            if (GlobalData.Instance.da["775b0"].Value.Boolean)
-            {
-                this.tipList.TryGetValue("液压站-主泵1已连续运行500小时，请切换主泵2使用", out key);
-                if (key == 0)
-                {
-                    this.tipList.Add("液压站-主泵1已连续运行500小时，请切换主泵2使用", 1);
-                }
-            }
-            else
-            {
-                this.tipList.TryGetValue("液压站-主泵1已连续运行500小时，请切换主泵2使用", out key);
-                if (key != 0)
-                {
-                    this.tipList.Remove("液压站-主泵1已连续运行500小时，请切换主泵2使用");
-                }
-            }
-            if (GlobalData.Instance.da["775b1"].Value.Boolean)
-            {
-                this.tipList.TryGetValue("液压站-主泵2已连续运行500小时，请切换主泵1使用", out key);
-                if (key == 0)
-                {
-                    this.tipList.Add("液压站-主泵2已连续运行500小时，请切换主泵1使用", 1);
-                }
-            }
-            else
-            {
-                this.tipList.TryGetValue("液压站-主泵2已连续运行500小时，请切换主泵1使用", out key);
-                if (key != 0)
-                {
-                    this.tipList.Remove("液压站-主泵2已连续运行500小时，请切换主泵1使用");
-                }
-            }
-            if (GlobalData.Instance.da["775b2"].Value.Boolean)
-            {
-                this.tipList.TryGetValue("液压站-主电机1已连续运行600小时，请加注黄油", out key);
-                if (key == 0)
-                {
-                    this.tipList.Add("液压站-主电机1已连续运行600小时，请加注黄油", 1);
-                }
-            }
-            else
-            {
-                this.tipList.TryGetValue("液压站-主电机1已连续运行600小时，请加注黄油", out key);
-                if (key != 0)
-                {
-                    this.tipList.Remove("液压站-主电机1已连续运行600小时，请加注黄油");
-                }
-            }
-            if (GlobalData.Instance.da["775b3"].Value.Boolean)
-            {
-                this.tipList.TryGetValue("液压站-主电机2已连续运行600小时，请加注黄油", out key);
-                if (key == 0)
-                {
-                    this.tipList.Add("液压站-主电机2已连续运行600小时，请加注黄油", 1);
-                }
-            }
-            else
-            {
-                this.tipList.TryGetValue("液压站-主电机2已连续运行600小时，请加注黄油", out key);
-                if (key != 0)
-                {
-                    this.tipList.Remove("液压站-主电机2已连续运行600小时，请加注黄油");
-                }
-            }
-            if (GlobalData.Instance.da["775b4"].Value.Boolean)
-            {
-                this.tipList.TryGetValue("液压站-距上次更换滤芯已经大于2000小时，请更换滤芯", out key);
-                if (key == 0)
-                {
-                    this.tipList.Add("液压站-距上次更换滤芯已经大于2000小时，请更换滤芯", 1);
-                }
-            }
-            else
-            {
-                this.tipList.TryGetValue("液压站-距上次更换滤芯已经大于2000小时，请更换滤芯", out key);
-                if (key != 0)
-                {
-                    this.tipList.Remove("液压站-距上次更换滤芯已经大于2000小时，请更换滤芯");
-                }
-            }
-            if (GlobalData.Instance.da["775b5"].Value.Boolean)
-            {
-                this.tipList.TryGetValue("液压站-距上次更换液压油已经大于2000小时，请更换液压油", out key);
-                if (key == 0)
-                {
-                    this.tipList.Add("液压站-距上次更换液压油已经大于2000小时，请更换液压油", 1);
-                }
-            }
-            else
-            {
-                this.tipList.TryGetValue("液压站-距上次更换液压油已经大于2000小时，请更换液压油", out key);
-                if (key != 0)
-                {
-                    this.tipList.Remove("液压站-距上次更换液压油已经大于2000小时，请更换液压油");
-                }
-            }
-            if (GlobalData.Instance.da["775b6"].Value.Boolean)
-            {
-                this.tipList.TryGetValue("液压站-油位下降异常，请检查是否漏油", out key);
-                if (key == 0)
-                {
-                    this.tipList.Add("液压站-油位下降异常，请检查是否漏油", 1);
-                }
-            }
-            else
-            {
-                this.tipList.TryGetValue("液压站-油位下降异常，请检查是否漏油", out key);
-                if (key != 0)
-                {
-                    this.tipList.Remove("液压站-油位下降异常，请检查是否漏油");
-                }
-            }
-            // 2021.02.02新增告警类型
-            if (GlobalData.Instance.da["773b7"].Value.Boolean)
-            {
-                this.tipList.TryGetValue("液压站-主电机1过载，需消除复位", out key);
-                if (key == 0)
-                {
-                    this.tipList.Add("液压站-主电机1过载，需消除复位", 1);
-                }
-            }
-            else
-            {
-                this.tipList.TryGetValue("液压站-主电机1过载，需消除复位", out key);
-                if (key != 0)
-                {
-                    this.tipList.Remove("液压站-主电机1过载，需消除复位");
-                }
-            }
-            if (GlobalData.Instance.da["774b7"].Value.Boolean)
-            {
-                this.tipList.TryGetValue("液压站-主电机2过载，需消除复位", out key);
-                if (key == 0)
-                {
-                    this.tipList.Add("液压站-主电机2过载，需消除复位", 1);
-                }
-            }
-            else
-            {
-                this.tipList.TryGetValue("液压站-主电机2过载，需消除复位", out key);
-                if (key != 0)
-                {
-                    this.tipList.Remove("液压站-主电机2过载，需消除复位");
-                }
-            }
-            if (GlobalData.Instance.da["792b0"].Value.Boolean)
-            {
-                this.tipList.TryGetValue("液压站-司钻房通信故障", out key);
-                if (key == 0)
-                {
-                    this.tipList.Add("液压站-司钻房通信故障", 1);
-                }
-            }
-            else
-            {
-                this.tipList.TryGetValue("液压站-司钻房通信故障", out key);
-                if (key != 0)
-                {
-                    this.tipList.Remove("液压站-司钻房通信故障");
-                }
-            }
-            if (GlobalData.Instance.da["792b1"].Value.Boolean)
-            {
-                this.tipList.TryGetValue("液压站-分阀箱通信故障", out key);
-                if (key == 0)
-                {
-                    this.tipList.Add("液压站-分阀箱通信故障", 1);
-                }
-            }
-            else
-            {
-                this.tipList.TryGetValue("液压站-分阀箱通信故障", out key);
-                if (key != 0)
-                {
-                    this.tipList.Remove("液压站-分阀箱通信故障");
-                }
-            }
-            if (GlobalData.Instance.da["792b2"].Value.Boolean)
-            {
-                this.tipList.TryGetValue("液压站-卡瓦压力传感器故障", out key);
-                if (key == 0)
-                {
-                    this.tipList.Add("液压站-卡瓦压力传感器故障", 1);
-                }
-            }
-            else
-            {
-                this.tipList.TryGetValue("液压站-卡瓦压力传感器故障", out key);
-                if (key != 0)
-                {
-                    this.tipList.Remove("液压站-卡瓦压力传感器故障");
-                }
-            }
-            if (GlobalData.Instance.da["792b3"].Value.Boolean)
-            {
-                this.tipList.TryGetValue("液压站-LS压力传感器故障", out key);
-                if (key == 0)
-                {
-                    this.tipList.Add("液压站-LS压力传感器故障", 1);
-                }
-            }
-            else
-            {
-                this.tipList.TryGetValue("液压站-LS压力传感器故障", out key);
-                if (key != 0)
-                {
-                    this.tipList.Remove("液压站-LS压力传感器故障");
-                }
-            }
-            if (GlobalData.Instance.da["792b4"].Value.Boolean)
-            {
-                this.tipList.TryGetValue("液压站-平移压力传感器故障", out key);
-                if (key == 0)
-                {
-                    this.tipList.Add("液压站-平移压力传感器故障", 1);
-                }
-            }
-            else
-            {
-                this.tipList.TryGetValue("液压站-平移压力传感器故障", out key);
-                if (key != 0)
-                {
-                    this.tipList.Remove("液压站-平移压力传感器故障");
-                }
-            }
-            if (GlobalData.Instance.da["792b5"].Value.Boolean)
-            {
-                this.tipList.TryGetValue("液压站-油温传感器故障", out key);
-                if (key == 0)
-                {
-                    this.tipList.Add("液压站-油温传感器故障", 1);
-                }
-            }
-            else
-            {
-                this.tipList.TryGetValue("液压站-油温传感器故障", out key);
-                if (key != 0)
-                {
-                    this.tipList.Remove("液压站-油温传感器故障");
-                }
-            }
-            if (GlobalData.Instance.da["792b6"].Value.Boolean)
-            {
-                this.tipList.TryGetValue("液压站-液位传感器故障", out key);
-                if (key == 0)
-                {
-                    this.tipList.Add("液压站-液位传感器故障", 1);
-                }
-            }
-            else
-            {
-                this.tipList.TryGetValue("液压站-液位传感器故障", out key);
-                if (key != 0)
-                {
-                    this.tipList.Remove("液压站-液位传感器故障");
-                }
-            }
-            if (GlobalData.Instance.da["793b0"].Value.Boolean)
-            {
-                this.tipList.TryGetValue("液压站-铁钻工压力传感器故障", out key);
-                if (key == 0)
-                {
-                    this.tipList.Add("液压站-铁钻工压力传感器故障", 1);
-                }
-            }
-            else
-            {
-                this.tipList.TryGetValue("液压站-铁钻工压力传感器故障", out key);
-                if (key != 0)
-                {
-                    this.tipList.Remove("液压站-铁钻工压力传感器故障");
-                }
-            }
-            if (GlobalData.Instance.da["793b1"].Value.Boolean)
-            {
-                this.tipList.TryGetValue("液压站-大钳压力传感器故障", out key);
-                if (key == 0)
-                {
-                    this.tipList.Add("液压站-大钳压力传感器故障", 1);
-                }
-            }
-            else
-            {
-                this.tipList.TryGetValue("液压站-大钳压力传感器故障", out key);
-                if (key != 0)
-                {
-                    this.tipList.Remove("液压站-大钳压力传感器故障");
-                }
-            }
-            if (GlobalData.Instance.da["793b2"].Value.Boolean)
-            {
-                this.tipList.TryGetValue("液压站-钻台面压力传感器故障", out key);
-                if (key == 0)
-                {
-                    this.tipList.Add("液压站-钻台面压力传感器故障", 1);
-                }
-            }
-            else
-            {
-                this.tipList.TryGetValue("液压站-钻台面压力传感器故障", out key);
-                if (key != 0)
-                {
-                    this.tipList.Remove("液压站-钻台面压力传感器故障");
-                }
-            }
-            if (GlobalData.Instance.da["793b3"].Value.Boolean)
-            {
-                this.tipList.TryGetValue("液压站-猫道压力传感器故障", out key);
-                if (key == 0)
-                {
-                    this.tipList.Add("液压站-猫道压力传感器故障", 1);
-                }
-            }
-            else
-            {
-                this.tipList.TryGetValue("液压站-猫道压力传感器故障", out key);
-                if (key != 0)
-                {
-                    this.tipList.Remove("液压站-猫道压力传感器故障");
-                }
-            }
-            if (GlobalData.Instance.da["793b4"].Value.Boolean)
-            {
-                this.tipList.TryGetValue("液压站-主压力传感器故障", out key);
-                if (key == 0)
-                {
-                    this.tipList.Add("液压站-主压力传感器故障", 1);
-                }
-            }
-            else
-            {
-                this.tipList.TryGetValue("液压站-主压力传感器故障", out key);
-                if (key != 0)
-                {
-                    this.tipList.Remove("液压站-主压力传感器故障");
-                }
-            }
-            if (GlobalData.Instance.da["793b5"].Value.Boolean)
-            {
-                this.tipList.TryGetValue("液压站-恒压泵未合闸", out key);
-                if (key == 0)
-                {
-                    this.tipList.Add("液压站-恒压泵未合闸", 1);
-                }
-            }
-            else
-            {
-                this.tipList.TryGetValue("液压站-恒压泵未合闸", out key);
-                if (key != 0)
-                {
-                    this.tipList.Remove("液压站-恒压泵未合闸");
-                }
-            }
-            if (GlobalData.Instance.da["793b6"].Value.Boolean)
-            {
-                this.tipList.TryGetValue("液压站-散热泵未合闸", out key);
-                if (key == 0)
-                {
-                    this.tipList.Add("液压站-散热泵未合闸", 1);
-                }
-            }
-            else
-            {
-                this.tipList.TryGetValue("液压站-散热泵未合闸", out key);
-                if (key != 0)
-                {
-                    this.tipList.Remove("液压站-散热泵未合闸");
-                }
-            }
-            if (GlobalData.Instance.da["793b7"].Value.Boolean)
-            {
-                this.tipList.TryGetValue("液压站-加热泵未合闸", out key);
-                if (key == 0)
-                {
-                    this.tipList.Add("液压站-加热泵未合闸", 1);
-                }
-            }
-            else
-            {
-                this.tipList.TryGetValue("液压站-加热泵未合闸", out key);
-                if (key != 0)
-                {
-                    this.tipList.Remove("液压站-加热泵未合闸");
-                }
-            }
-
             if (iTimeCnt % 10 == 0)
             {
-                this.tbTips.FontSize = 24;
+                this.tbTips.FontSize = 18;
+                this.tbTips.Visibility = Visibility.Visible;
+                // 告警列表!=0则有告警 
+                if (alarmList.Where(w => w.NowType != 0).Count() > 0)
+                {
+
+                    // 有告警且全部显示完成
+                    if (this.alarmList.Where(w => w.NowType == 1).Count() == 0)
+                    {
+                        this.alarmList.Where(w => w.NowType == 2).ToList().ForEach(w => w.NowType = 1);
+                    }
+                    AlarmInfo tmp = this.alarmList.Where(w => w.NowType == 1).FirstOrDefault();
+                    if (tmp != null)
+                    {
+                        this.tbTips.FontSize = 18;
+                        this.tbTips.Text = tmp.Description;
+                        tmp.NowType = 2;
+                    }
+                }
+                else
+                {
+                    this.tbTips.Text = "暂无告警";
+                }
             }
             else
             {
-                this.tbTips.FontSize = 28;
+                this.tbTips.FontSize = 20;
             }
             #endregion
+            MonitorAlarmStatus();
 
             //操作台控制器心跳
             if (GlobalData.Instance.da["504b7"].Value.Boolean == this.tmpStatus)
@@ -618,19 +720,21 @@ namespace Main.HydraulicStation
                 this.controlHeartTimes += 1;
                 if (this.controlHeartTimes > 60)
                 {
-                    this.tipList.TryGetValue("液压站与操作台信号中断", out key);
-                    if (key == 0)
-                    {
-                        this.tipList.Add("液压站与操作台信号中断", 1);
-                    }
+                    //this.tipList.TryGetValue("液压站与操作台信号中断", out key);
+                    //if (key == 0)
+                    //{
+                    //    this.tipList.Add("液压站与操作台信号中断", 1);
+                    //}
+                    this.tbTips.Text = "液压站与操作台信号中断";
                 }
                 else
                 {
-                    this.tipList.TryGetValue("液压站与操作台信号中断", out key);
-                    if (key != 0)
-                    {
-                        this.tipList.Remove("液压站与操作台信号中断");
-                    }
+                    //this.tipList.TryGetValue("液压站与操作台信号中断", out key);
+                    //if (key != 0)
+                    //{
+                    //    this.tipList.Remove("液压站与操作台信号中断");
+                    //}
+                    if (this.tbTips.Text == "液压站与操作台信号中断") this.tbTips.Text = "暂无告警";
                 }
                 if (!bCommunicationCheck && controlHeartTimes > 60)
                 {
@@ -645,53 +749,55 @@ namespace Main.HydraulicStation
 
             if (!GlobalData.Instance.ComunciationNormal)
             {
-                this.tipList.TryGetValue("网络连接失败", out key);
-                if (key == 0)
-                {
-                    this.tipList.Add("网络连接失败", 1);
-                }
+                //this.tipList.TryGetValue("网络连接失败", out key);
+                //if (key == 0)
+                //{
+                //    this.tipList.Add("网络连接失败", 1);
+                //}
+                this.tbTips.Text = "网络连接失败";
             }
             else
             {
-                this.tipList.TryGetValue("网络连接失败", out key);
-                if (key != 0)
-                {
-                    this.tipList.Remove("网络连接失败");
-                }
+                //this.tipList.TryGetValue("网络连接失败", out key);
+                //if (key != 0)
+                //{
+                //    this.tipList.Remove("网络连接失败");
+                //}
+                if (this.tbTips.Text == "网络连接失败") this.tbTips.Text = "暂无告警";
             }
 
-            if (iTimeCnt % 10 == 0)
-            {
-                if (this.tipList.Count > 0)
-                {
-                    this.tbTips.FontSize = 20;
-                    this.tbTips.Visibility = Visibility.Visible;
+            //if (iTimeCnt % 10 == 0)
+            //{
+            //    if (this.tipList.Count > 0)
+            //    {
+            //        this.tbTips.FontSize = 20;
+            //        this.tbTips.Visibility = Visibility.Visible;
 
-                    if (!this.tipList.ContainsValue(1))
-                    {
-                        this.tipList.Keys.ToList().ForEach(k => this.tipList[k] = 1);
-                    }
+            //        if (!this.tipList.ContainsValue(1))
+            //        {
+            //            this.tipList.Keys.ToList().ForEach(k => this.tipList[k] = 1);
+            //        }
 
-                    foreach (var tkey in this.tipList.Keys.ToList())
-                    {
-                        if (this.tipList[tkey] == 1)
-                        {
-                            this.tbTips.Text = tkey;
-                            this.tipList[tkey] = 2;
-                            break;
-                        }
-                    }
-                }
-                else
-                {
-                    this.tbTips.Visibility = Visibility.Hidden;
-                    this.tbTips.Text = "";
-                }
-            }
-            else
-            {
-                this.tbTips.FontSize = 28;
-            }
+            //        foreach (var tkey in this.tipList.Keys.ToList())
+            //        {
+            //            if (this.tipList[tkey] == 1)
+            //            {
+            //                this.tbTips.Text = tkey;
+            //                this.tipList[tkey] = 2;
+            //                break;
+            //            }
+            //        }
+            //    }
+            //    else
+            //    {
+            //        this.tbTips.Visibility = Visibility.Hidden;
+            //        this.tbTips.Text = "";
+            //    }
+            //}
+            //else
+            //{
+            //    this.tbTips.FontSize = 28;
+            //}
 
         }
 

@@ -169,7 +169,7 @@ namespace Main.Cat
                 this.smSixBack.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["517b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
                 this.smSixEnable.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["518b6"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
 
-                if (GlobalData.Instance.da["172RightHandleConfigurationInformation"].Value.Byte == 9)
+                if (GlobalData.Instance.da["172RightHandleConfigurationInformation"] != null&& GlobalData.Instance.da["172RightHandleConfigurationInformation"].Value.Byte == 9)
                 {
                     this.gdSixHand.Visibility = Visibility.Visible;
                     this.gdOldHand.Visibility = Visibility.Collapsed;
@@ -208,9 +208,10 @@ namespace Main.Cat
         }
         private void Warning()
         {
-            if (GlobalData.Instance.da["504b2"].Value.Boolean) // true为选择猫道
+            if (GlobalData.Instance.da["504b2"]!=null &&  GlobalData.Instance.da["504b2"].Value.Boolean) // true为选择猫道
             {
-                if (!GlobalData.Instance.da["334b4"].Value.Boolean && !GlobalData.Instance.da["505b7"].Value.Boolean)
+                if (GlobalData.Instance.da["334b4"] !=null && GlobalData.Instance.da["505b7"]!=null && 
+                    !GlobalData.Instance.da["334b4"].Value.Boolean && !GlobalData.Instance.da["505b7"].Value.Boolean)
                 {
                     this.tbTips.Text = "禁止猫道前进，请先将钻台面回收至安全位置！";
                 }

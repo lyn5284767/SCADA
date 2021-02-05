@@ -106,6 +106,11 @@ namespace Main.Integration
         BrushConverter bc = new BrushConverter();
         private void Warning()
         {
+            if (GlobalData.Instance.da["504b2"] == null || GlobalData.Instance.da["334b4"] == null || GlobalData.Instance.da["505b7"] == null)
+            {
+                Log.Log4Net.AddLog("504b2或334b4或505b7为空");
+                return;
+            }
             if (GlobalData.Instance.da["504b2"].Value.Boolean) // true为选择猫道
             {
                 if (!GlobalData.Instance.da["334b4"].Value.Boolean && !GlobalData.Instance.da["505b7"].Value.Boolean)

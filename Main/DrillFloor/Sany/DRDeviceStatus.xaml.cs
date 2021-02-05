@@ -80,7 +80,7 @@ namespace Main.DrillFloor
         private void PageChange_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             sendCount++;
-            if (GlobalData.Instance.da["drPageNum"].Value.Byte == 36 || sendCount>5 || GlobalData.Instance.DRNowPage != "deviceStatus")
+            if (GlobalData.Instance.da["drPageNum"] !=null && GlobalData.Instance.da["drPageNum"].Value.Byte == 36 || sendCount>5 || GlobalData.Instance.DRNowPage != "deviceStatus")
             {
                 pageChange.Stop();
             }

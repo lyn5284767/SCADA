@@ -170,7 +170,7 @@ namespace Main.Integration
                     else
                     {
                         this.tbCurTip.Text = "液压站处于待机状态，正在启用";
-                        byte[] byteToSend = new byte[10] { 0, 19, 9, 0, 0, 0, 0, 0, 0, 0 }; 
+                        byte[] byteToSend = new byte[10] { 0, 19, 52, 0, 1, 0, 0, 0, 0, 0 };
                         string tips = "液压站启用超时，正在重新启动";
                         CheckOverTime(byteToSend, tips, 5);
                     }
@@ -213,7 +213,7 @@ namespace Main.Integration
                         }
                         else
                         {
-                            byte[] byteToSend = new byte[10] { 0, 19, 3, 1, 0, 0, 0, 0, 0, 0 }; // 1#泵启动协议
+                            byte[] byteToSend = new byte[10] { 0, 19, 42, 0, 1, 0, 0, 0, 0, 0 }; ; // 1#泵启动协议
                             string tips = "1#泵启动超时，重新启动";
                             CheckOverTime(byteToSend, tips,5);
                         }
@@ -228,7 +228,7 @@ namespace Main.Integration
                         }
                         else
                         {
-                            byte[] byteToSend = new byte[10] { 0, 19, 3, 3, 0, 0, 0, 0, 0, 0 }; // 2#泵启动协议
+                            byte[] byteToSend = new byte[10] { 0, 19, 44, 0, 1, 0, 0, 0, 0, 0 }; // 2#泵启动协议
                             string tips = "2#泵启动超时，重新启动";
                             CheckOverTime(byteToSend, tips,5);
                         }
@@ -245,7 +245,7 @@ namespace Main.Integration
                             }
                             else
                             {
-                                byte[] byteToSend = new byte[10] { 0, 19, 3, 1, 0, 0, 0, 0, 0, 0 }; // 1#泵启动协议
+                                byte[] byteToSend = new byte[10] { 0, 19, 42, 0, 1, 0, 0, 0, 0, 0 };  // 1#泵启动协议
                                 string tips = "1#泵启动超时，重新启动";
                                 CheckOverTime(byteToSend, tips,5);
                             }
@@ -260,7 +260,7 @@ namespace Main.Integration
                             }
                             else
                             {
-                                byte[] byteToSend = new byte[10] { 0, 19, 3, 3, 0, 0, 0, 0, 0, 0 }; // 2#泵启动协议
+                                byte[] byteToSend = new byte[10] { 0, 19, 44, 0, 1, 0, 0, 0, 0, 0 }; // 2#泵启动协议
                                 string tips = "2#泵启动超时，重新启动";
                                 CheckOverTime(byteToSend, tips,5);
                             }
@@ -380,22 +380,22 @@ namespace Main.Integration
                 DRMonitorEnable();
                 return true;
             }
-            // 3.检查铁钻工系统压力
-            if (this.pbper.Value == 40)
-            {
-                if (GlobalData.Instance.da["SIRSelfSysPress"].Value.Int16 / 10 < 1)
-                {
-                    this.tbCurTip.Text = "铁钻工压力过低，请检查液压站运行状态，再启动";
-                }
-                else
-                {
-                    this.tbCurTip.Text = "铁钻工系统压力正常";
-                    this.pbper.Value = 45;
-                }
-                return true;
-            }
+            //// 3.检查铁钻工系统压力
+            //if (this.pbper.Value == 40)
+            //{
+            //    if (GlobalData.Instance.da["SIRSelfSysPress"].Value.Int16 / 10 < 1)
+            //    {
+            //        this.tbCurTip.Text = "铁钻工压力过低，请检查液压站运行状态，再启动";
+            //    }
+            //    else
+            //    {
+            //        this.tbCurTip.Text = "铁钻工系统压力正常";
+            //        this.pbper.Value = 45;
+            //    }
+            //    return true;
+            //}
             // 4.检查二层台/钻台面回零情况
-            if (this.pbper.Value == 45)
+            if (this.pbper.Value == 40)
             {
                 SFAndDRTurnToZero();
                 return true;
@@ -659,21 +659,27 @@ namespace Main.Integration
             bool drAuto = false;
             bool sirAuto = false;
             if (GlobalData.Instance.da.GloConfig.SFType == 0)
-            { }
+            {
+                sfAuto = true;
+            }
             else if (GlobalData.Instance.da.GloConfig.SFType == 1)
             {
                 sfAuto = GlobalData.Instance.da["operationModel"].Value.Byte == 5 ? true : false;
             }
 
             if (GlobalData.Instance.da.GloConfig.DRType == 0)
-            { }
+            {
+                drAuto = true;
+            }
             else if (GlobalData.Instance.da.GloConfig.DRType == 1)
             {
                 drAuto = GlobalData.Instance.da["droperationModel"].Value.Byte == 5 ? true : false;
             }
 
             if (GlobalData.Instance.da.GloConfig.SIRType == 0)
-            { }
+            {
+                sirAuto = true;
+            }
             else if (GlobalData.Instance.da.GloConfig.SIRType == 1)
             {
                 sirAuto = GlobalData.Instance.da["SIRSelfOperModel"].Value.Byte == 2 ? true : false;
@@ -683,11 +689,17 @@ namespace Main.Integration
                 sirAuto = true;
             }
             else if (GlobalData.Instance.da.GloConfig.SIRType == 3)
-            { }
+            {
+                sirAuto = true;
+            }
             else if (GlobalData.Instance.da.GloConfig.SIRType == 4)
-            { }
+            {
+                sirAuto = true;
+            }
             else if (GlobalData.Instance.da.GloConfig.SIRType == 5)
-            { }
+            {
+                sirAuto = true;
+            }
 
             if (sfAuto && drAuto && sirAuto)
             {

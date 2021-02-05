@@ -1,4 +1,5 @@
 ﻿using COM.Common;
+using ControlLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,19 +52,23 @@ namespace Main.Integration
         /// </summary>
         private void VariableBinding()
         {
-            SIRRealTimePressureCoverter sIRRealTimePressureCoverter = new SIRRealTimePressureCoverter();
-            MultiBinding RealTimePressureMultiBind = new MultiBinding();
-            RealTimePressureMultiBind.Converter = sIRRealTimePressureCoverter;
-            RealTimePressureMultiBind.Bindings.Add(new Binding("ShortTag") { Source = GlobalData.Instance.da["IDUpButtonPressure"], Mode = BindingMode.OneWay });
-            RealTimePressureMultiBind.Bindings.Add(new Binding("Text") { Source = this.tbUnitOne, Mode = BindingMode.OneWay });
-            RealTimePressureMultiBind.NotifyOnSourceUpdated = true;
-            this.tbRealTimePressure.SetBinding(TextBlock.TextProperty, RealTimePressureMultiBind);
-            MultiBinding PressureSetMultiBind = new MultiBinding();
-            PressureSetMultiBind.Converter = sIRRealTimePressureCoverter;
-            PressureSetMultiBind.Bindings.Add(new Binding("ShortTag") { Source = GlobalData.Instance.da["IDUpButtonPressureSet"], Mode = BindingMode.OneWay });
-            PressureSetMultiBind.Bindings.Add(new Binding("Text") { Source = this.tbUnitOne, Mode = BindingMode.OneWay });
-            PressureSetMultiBind.NotifyOnSourceUpdated = true;
-            this.tbPressureSet.SetBinding(TextBlock.TextProperty, PressureSetMultiBind);         
+            //SIRRealTimePressureCoverter sIRRealTimePressureCoverter = new SIRRealTimePressureCoverter();
+            //MultiBinding RealTimePressureMultiBind = new MultiBinding();
+            //RealTimePressureMultiBind.Converter = sIRRealTimePressureCoverter;
+            //RealTimePressureMultiBind.Bindings.Add(new Binding("ShortTag") { Source = GlobalData.Instance.da["IDUpButtonPressure"], Mode = BindingMode.OneWay });
+            //RealTimePressureMultiBind.Bindings.Add(new Binding("Text") { Source = this.tbUnitOne, Mode = BindingMode.OneWay });
+            //RealTimePressureMultiBind.NotifyOnSourceUpdated = true;
+            //this.tbRealTimePressure.SetBinding(TextBlock.TextProperty, RealTimePressureMultiBind);
+            //MultiBinding PressureSetMultiBind = new MultiBinding();
+            //PressureSetMultiBind.Converter = sIRRealTimePressureCoverter;
+            //PressureSetMultiBind.Bindings.Add(new Binding("ShortTag") { Source = GlobalData.Instance.da["IDUpButtonPressureSet"], Mode = BindingMode.OneWay });
+            //PressureSetMultiBind.Bindings.Add(new Binding("Text") { Source = this.tbUnitOne, Mode = BindingMode.OneWay });
+            //PressureSetMultiBind.NotifyOnSourceUpdated = true;
+            //this.tbPressureSet.SetBinding(TextBlock.TextProperty, PressureSetMultiBind);         
+            this.smHeart.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["504b1"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.smUpButtonPressure.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.smAllowIron.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["802b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.smDFAntiCollision.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["308b1"], Mode = BindingMode.OneWay, Converter = new OppositeBoolTagConverter() });
         }
 
         /// <summary>
@@ -71,10 +76,10 @@ namespace Main.Integration
         /// </summary>
         private void SwichUnit_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (this.tbUnitOne.Text == "KN.M") this.tbUnitOne.Text = "kft.lbs";
-            else this.tbUnitOne.Text = "KN.M";
-            if (this.tbUnitTwo.Text == "KN.M") this.tbUnitTwo.Text = "kft.lbs";
-            else this.tbUnitOne.Text = "kft.lbs";
+            //if (this.tbUnitOne.Text == "KN.M") this.tbUnitOne.Text = "kft.lbs";
+            //else this.tbUnitOne.Text = "KN.M";
+            //if (this.tbUnitTwo.Text == "KN.M") this.tbUnitTwo.Text = "kft.lbs";
+            //else this.tbUnitOne.Text = "kft.lbs";
         }
 
         /// <summary>

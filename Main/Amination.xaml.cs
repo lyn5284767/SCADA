@@ -862,7 +862,7 @@ namespace Main
                 if (systemType == SystemType.SecondFloor) // 二层台
                 {
                     // 非参数配置界面并且非补偿模式-145-176字节读取指梁钻杆数目
-                    if (GlobalData.Instance.da["Con_Set0"].Value.Byte != 23 && GlobalData.Instance.da["operationModel"].Value.Byte != 9)
+                    if (GlobalData.Instance.da["Con_Set0"] != null && GlobalData.Instance.da["operationModel"] != null && GlobalData.Instance.da["Con_Set0"].Value.Byte != 23 && GlobalData.Instance.da["operationModel"].Value.Byte != 9)
                     {
                         foreach (var model in FingerBeamDrillPipeCountList)
                         {
@@ -883,7 +883,7 @@ namespace Main
                 }
                 else if (systemType == SystemType.DrillFloor) // 钻台面
                 {
-                    if (GlobalData.Instance.da["drPageNum"].Value.Byte == 30 || GlobalData.Instance.da["drPageNum"].Value.Byte == 33)
+                    if (GlobalData.Instance.da["drPageNum"]!=null && GlobalData.Instance.da["drPageNum"].Value.Byte == 30 || GlobalData.Instance.da["drPageNum"].Value.Byte == 33)
                     {
                         foreach (var model in this.drDrillCountList)
                         {

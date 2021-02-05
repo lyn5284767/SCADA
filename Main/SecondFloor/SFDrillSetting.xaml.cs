@@ -41,13 +41,23 @@ namespace Main.SecondFloor
         private Regex regexFingerBeam = new Regex(@"(\d+)$", RegexOptions.Compiled | RegexOptions.CultureInvariant);
         //public Amination amination = new Amination();
         public AminationNew aminationNew = new AminationNew();
+        public WR_SFAmination wr_aminationNew = new WR_SFAmination();
         System.Threading.Timer timer;
         public SFDrillSetting()
         {
             InitializeComponent();
             //this.gdMain.Children.Add(amination);
-            this.gdMain.Children.Add(aminationNew);
-            aminationNew.SetDrillNumEvent += AminationNew_SetDrillNumEvent;
+            if (GlobalData.Instance.da.GloConfig.SysType == 0)
+            {
+                this.gdMain.Children.Add(aminationNew);
+                aminationNew.SetDrillNumEvent += AminationNew_SetDrillNumEvent;
+            }
+            else
+            {
+                this.gdMain.Children.Add(wr_aminationNew);
+                wr_aminationNew.SetDrillNumEvent += AminationNew_SetDrillNumEvent;
+                wr_aminationNew.InitRowsColoms();
+            }
             timer = new System.Threading.Timer(new TimerCallback(Timer_Elapsed), this, 2000, 100);//改成50ms 的时钟
 
             this.carPosistion.SetBinding(TextBox.TextProperty,new Binding("ShortTag") { Source = GlobalData.Instance.da["carRealPosition"], Mode = BindingMode.OneWay ,Converter = new CarPosCoverter()});//小车实际位置
@@ -102,6 +112,7 @@ namespace Main.SecondFloor
                 {
                     //amination.LoadFingerBeamDrillPipe(systemType);
                     aminationNew.LoadFingerBeamDrillPipe(systemType);
+                    wr_aminationNew.LoadFingerBeamDrillPipe();
                 }));
             }
             catch (Exception ex)
