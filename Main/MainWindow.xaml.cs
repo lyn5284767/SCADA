@@ -2565,7 +2565,7 @@ namespace Main
         private void MouseSFSafe(object sender, RoutedEventArgs e)
         {
             this.spMain.Children.Clear();
-            this.spMain.Children.Add(IngSecureMain.Instance);
+            this.spMain.Children.Add(SFSecureSetting.Instance);
             this.mainTitle.Content = "SYAPS-集成系统:安全设置";
             return;
         }
