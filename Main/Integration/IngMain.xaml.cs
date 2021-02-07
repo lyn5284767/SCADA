@@ -672,7 +672,12 @@ namespace Main.Integration
                     this.gdSIR.Children.Add(Ing_SIR_BS.Instance);
                 }
                 else if (GlobalData.Instance.da.GloConfig.SIRType == 4) this.tbIron.Text = "铁钻工(江汉)";
-                else if (GlobalData.Instance.da.GloConfig.SIRType == 5) this.tbIron.Text = "铁钻工(轨道)";
+                else if (GlobalData.Instance.da.GloConfig.SIRType == 5)
+                {
+                    this.tbIron.Text = "铁钻工(轨道)";
+                    this.gdSIR.Children.Clear();
+                    this.gdSIR.Children.Add(Ing_SIR_RailWay.Instance);
+                }
                 else this.tbIron.Text = "铁钻工(错误)";
 
                 if (GlobalData.Instance.da.GloConfig.HydType == 0)

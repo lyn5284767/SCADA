@@ -195,6 +195,13 @@ namespace Main.HydraulicStation
                 this.btnLeftCarClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["769b5"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
                 this.btnRightCarOpen.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["770b0"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
                 this.btnRightCarClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["770b1"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnRotateCatHeadLeft.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["794b4"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnRotateCatHeadStop.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["794b6"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnRotateCatHeadRight.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["794b5"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.tbCancelLevel.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["795b0"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.tbCancelTmp.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["795b1"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.tbSysTurnZero.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["772b4"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.tbAlarmClear.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["772b5"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
 
             }
             catch (Exception ex)
@@ -580,30 +587,30 @@ namespace Main.HydraulicStation
             if (leftCatRetract) // 左猫头缩
             {
                 //byte[] byteToSend = new byte[10] { 0, 19, 4, 5, 0, 0, 0, 0, 0, 0 };
-                byte[] byteToSend = new byte[10] { 0, 19, 22, 0, 1, 0, 0, 0, 0, 0 };
+                byte[] byteToSend = new byte[10] { 0, 19, 21, 0, 2, 0, 0, 0, 0, 0 };
                 GlobalData.Instance.da.SendBytes(byteToSend);
             }
             if (rightCatReach) // 右猫头伸
             {
                 //byte[] byteToSend = new byte[10] { 0, 19, 4, 7, 0, 0, 0, 0, 0, 0 };
-                byte[] byteToSend = new byte[10] { 0, 19, 24, 0, 1, 0, 0, 0, 0, 0 };
+                byte[] byteToSend = new byte[10] { 0, 19, 22, 0, 1, 0, 0, 0, 0, 0 };
                 GlobalData.Instance.da.SendBytes(byteToSend);
             }
             if (rightCatRetract) // 右猫头缩
             {
                 //byte[] byteToSend = new byte[10] { 0, 19, 4, 8, 0, 0, 0, 0, 0, 0 };
-                byte[] byteToSend = new byte[10] { 0, 19, 25, 0, 1, 0, 0, 0, 0, 0 };
+                byte[] byteToSend = new byte[10] { 0, 19, 22, 0, 2, 0, 0, 0, 0, 0 };
                 GlobalData.Instance.da.SendBytes(byteToSend);
             }
 
             if (rotateCatLeft) // 旋转猫头左转
             {
-                byte[] byteToSend = new byte[10] { 0, 19, 120, 0, 1, 0, 0, 0, 0, 0 };
+                byte[] byteToSend = new byte[10] { 0, 19, 23, 0, 1, 0, 0, 0, 0, 0 };
                 GlobalData.Instance.da.SendBytes(byteToSend);
             }
             if (rotateCatRight) // 旋转猫头右转
             {
-                byte[] byteToSend = new byte[10] { 0, 19, 121, 0, 1, 0, 0, 0, 0, 0 };
+                byte[] byteToSend = new byte[10] { 0, 19, 23, 0, 2, 0, 0, 0, 0, 0 };
                 GlobalData.Instance.da.SendBytes(byteToSend);
             }
         }
@@ -651,7 +658,7 @@ namespace Main.HydraulicStation
         private void BtnLeftCatClose_Click(object sender, RoutedEventArgs e)
         {
             //byte[] byteToSend = new byte[10] { 0, 19, 4, 5, 0, 0, 0, 0, 0, 0 };
-            byte[] byteToSend = new byte[10] { 0, 19, 23, 0, 1, 0, 0, 0, 0, 0 };
+            byte[] byteToSend = new byte[10] { 0, 19, 21, 0, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
@@ -692,7 +699,7 @@ namespace Main.HydraulicStation
         private void BtnRightCatClose_Click(object sender, RoutedEventArgs e)
         {
             //byte[] byteToSend = new byte[10] { 0, 19, 4, 9, 0, 0, 0, 0, 0, 0 };
-            byte[] byteToSend = new byte[10] { 0, 19, 26, 0, 1, 0, 0, 0, 0, 0 };
+            byte[] byteToSend = new byte[10] { 0, 19, 22, 0, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
@@ -1136,7 +1143,7 @@ namespace Main.HydraulicStation
         private void SlurryBox_hot(object sender, EventArgs e)
         {
             byte[] byteToSend;
-            if (this.hot.IsChecked) //当前停止状态
+            if (this.SlurryBox.IsChecked) //当前停止状态
             {
                 byteToSend = new byte[10] { 0, 19, 56, 0, 1, 0, 0, 0, 0, 0 };
             }
@@ -1153,7 +1160,7 @@ namespace Main.HydraulicStation
         /// <param name="e"></param>
         private void btnRotateCatHeadStop_Click(object sender, RoutedEventArgs e)
         {
-            byte[] byteToSend = new byte[10] { 0, 19, 122, 0, 1, 0, 0, 0, 0, 0 };
+            byte[] byteToSend = new byte[10] { 0, 19, 23, 0, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
 
@@ -1194,7 +1201,7 @@ namespace Main.HydraulicStation
         private void Arm_Click(object sender, EventArgs e)
         {
             byte[] byteToSend;
-            if (this.hot.IsChecked) //当前停止状态
+            if (this.Arm.IsChecked) //当前停止状态
             {
                 byteToSend = new byte[10] { 0, 19, 54, 0, 1, 0, 0, 0, 0, 0 };
             }

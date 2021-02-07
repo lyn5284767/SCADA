@@ -143,10 +143,10 @@
                                             <ColumnDefinition Width="15*"/>
                                             <ColumnDefinition Width="15*"/>
                                         </Grid.ColumnDefinitions>
-                                        <Button Grid.Column="0" Style="{StaticResource ButtonPrimary}" FontSize="18" Height="40" Click="BtnSysTurnZero_Click">系统复位</Button>
-                                        <Button Grid.Column="1" Style="{StaticResource ButtonPrimary}" FontSize="18" Height="40" Click="BtnAlarmClear_Click">报警消除</Button>
-                                        <Button Grid.Column="2" Style="{StaticResource ButtonPrimary}" FontSize="18" Height="40" Click="BtnCancelWaterLevel_Click">取消液位限制</Button>
-                                        <Button Grid.Column="3" Style="{StaticResource ButtonPrimary}" FontSize="18" Height="40" Click="BtnCancelTmp_Click">取消温度限制</Button>
+                                        <Button Grid.Column="0" Name="tbSysTurnZero" FontSize="18" Height="40" Click="BtnSysTurnZero_Click">系统复位</Button>
+                                        <Button Grid.Column="1" Name="tbAlarmClear"  FontSize="18" Height="40" Click="BtnAlarmClear_Click">报警消除</Button>
+                                        <Button Grid.Column="2" Name="tbCancelLevel" FontSize="18" Height="40" Click="BtnCancelWaterLevel_Click">取消液位限制</Button>
+                                        <Button Grid.Column="3" Name="tbCancelTmp" FontSize="18" Height="40" Click="BtnCancelTmp_Click">取消温度限制</Button>
 
                                     </Grid>
                                 </Grid>

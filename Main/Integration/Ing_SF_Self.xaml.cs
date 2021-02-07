@@ -469,7 +469,7 @@ namespace Main.Integration
             switch (GlobalData.Instance.da["promptInfo"].Value.Byte)
             {
                 case 0:
-                    tbSFOpr.Text = "暂无操作指示";
+                    tbSFOpr.Text = "暂无操作提示";
                     this.tbSFOpr.Foreground = (Brush)bc.ConvertFrom("#000000");
                     break;
                 case 1:
@@ -659,7 +659,7 @@ namespace Main.Integration
                     tbSFOpr.Text = "回转电机动作卡滞！";
                     break;
                 default:
-                    tbSFOpr.Text = "暂无操作指示";
+                    tbSFOpr.Text = "暂无操作提示";
                     break;
 
             }

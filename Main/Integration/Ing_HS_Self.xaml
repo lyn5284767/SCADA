@@ -121,7 +121,7 @@
                     </StackPanel>
                 </Viewbox>
             </Grid>
-            <Viewbox Grid.Row="4">
+            <Viewbox Grid.Row="5">
                 <TextBlock Name="tbTips" Text="暂无提示" FontSize=" 18" Foreground="#000000" Margin="0,10,0,10"/>
             </Viewbox>
         </Grid>
