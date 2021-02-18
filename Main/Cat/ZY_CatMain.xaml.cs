@@ -51,7 +51,7 @@ namespace Main.Cat
         /// </summary>
         private void VariableBinding()
         {
-            this.controlModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["703b0"], Mode = BindingMode.OneWay});
+            this.controlModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["703b0"], Mode = BindingMode.OneWay});
             this.smStop.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["702b1"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
             this.smReliefValve.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["702b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
             this.smUpArmOut.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["701b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });

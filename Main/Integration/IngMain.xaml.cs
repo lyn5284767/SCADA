@@ -716,7 +716,13 @@ namespace Main.Integration
                     this.gdCat.Children.Clear();
                     this.gdCat.Children.Add(Ing_Cat_BS.Instance);
                 }
-                else if (GlobalData.Instance.da.GloConfig.CatType == 3) this.tbCat.Text = "液压站(宏达)";
+                else if (GlobalData.Instance.da.GloConfig.CatType == 3) this.tbCat.Text = "猫道(宏达)";
+                else if (GlobalData.Instance.da.GloConfig.CatType == 4)
+                {
+                    this.tbCat.Text = "猫道(宝石)";
+                    this.gdCat.Children.Clear();
+                    this.gdCat.Children.Add(Ing_Cat_SL.Instance);
+                }
                 else this.tbCat.Text = "猫道(错误)";
             }
         }

@@ -265,6 +265,12 @@ KeyboardNavigation.DirectionalNavigation="Cycle" Width="100"/>
                     </StackPanel>
                 </hc:SplitButton.DropDownContent>
             </hc:SplitButton>
+            <hc:SplitButton Name="bdScrewThread" Content="丝扣防喷" HorizontalAlignment="Stretch" Foreground="#1F7AFF" Height="55" FontSize="16" FontWeight="Bold" Click="ScrewThread_MouseLeftButtonDown">
+                <hc:SplitButton.DropDownContent>
+                    <StackPanel>
+                    </StackPanel>
+                </hc:SplitButton.DropDownContent>
+            </hc:SplitButton>
             <hc:SplitButton Name="bdHS" Content="液压站" HorizontalAlignment="Stretch" Foreground="#1F7AFF" Height="55" FontSize="16" FontWeight="Bold" Click="MouseHS">
                 <hc:SplitButton.DropDownContent>
                     <StackPanel Name="spHS">

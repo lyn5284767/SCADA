@@ -4728,7 +4728,19 @@ namespace COM.Common
                 return string.Empty;
             }
             Dictionary<int, string> keyValues = (Dictionary<int, string>)parameter;
-            int val = (byte)value;
+            int val = 0;
+            if (value.GetType().Name == "Int32")
+            {
+                val = (int)value;
+            }
+            else if (value.GetType().Name == "Int16")
+            {
+                val = (short)value;
+            }
+            else if (value.GetType().Name == "Byte")
+            {
+                val = (byte)value;
+            }
             string str = string.Empty;
             bool hasVal = keyValues.TryGetValue(val, out str);
             if (hasVal) return str;
@@ -6387,5 +6399,37 @@ namespace COM.Common
             throw new NotImplementedException();
         }
     }
+    #endregion
+
+    #region 猫道
+
+    #region 胜利猫道
+    /// <summary>
+    /// 胜利猫道-上/甩钻
+    /// </summary>
+    public class SLCatDrillOprCoverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null)
+                || (values[1] == DependencyProperty.UnsetValue) || (values[1] == null))
+            {
+                return false;
+            }
+            bool tagOne = (bool)values[0];
+            bool tagTwo = (bool)values[1];
+            if (tagOne) return true;
+            else if (tagTwo) return false;
+
+            return false;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    #endregion
+
     #endregion
 }

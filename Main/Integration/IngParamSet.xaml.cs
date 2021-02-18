@@ -138,6 +138,7 @@ namespace Main.Integration
                 this.twt8.dicNumToValue.Add(1, "三一");
                 this.twt8.dicNumToValue.Add(2, "宝石");
                 this.twt8.dicNumToValue.Add(3, "宏达");
+                this.twt8.dicNumToValue.Add(4, "胜利");
                 this.twt8.SetBinding(TextWithCombox.ShowTxtWithCBProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["CatType"], Mode = BindingMode.OneWay, ConverterParameter = this.twt8.dicNumToValue, Converter = new NumToTextConverter() });
                 // 液压站厂家
                 this.twt9.dicNumToValue = new Dictionary<int, string>();
@@ -260,9 +261,16 @@ namespace Main.Integration
             else if (GlobalData.Instance.SetParam[3] == 85)// 二层台配置
             {
                 int sfType = GlobalData.Instance.SetParam[4];
-                string sql = string.Format("update GloConfig Set DRType='{0}'", sfType);
+                string sql = string.Format("update GloConfig Set SFType='{0}'", sfType);
                 DataHelper.Instance.ExecuteNonQuery(sql);
                 GlobalData.Instance.da.GloConfig.SFType = sfType;
+            }
+            else if (GlobalData.Instance.SetParam[3] == 88)// 防喷盒配置
+            {
+                int preventBoxType = GlobalData.Instance.SetParam[4];
+                string sql = string.Format("update GloConfig Set PreventBoxType='{0}'", preventBoxType);
+                DataHelper.Instance.ExecuteNonQuery(sql);
+                GlobalData.Instance.da.GloConfig.PreventBoxType = preventBoxType;
             }
         }
         /// <summary>

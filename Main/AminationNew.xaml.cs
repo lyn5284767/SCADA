@@ -46,7 +46,9 @@ namespace Main
             }
         }
         private List<BorderNum> drSelectFingerList = new List<BorderNum>(); // 钻台面对准指梁
-        private List<BorderNum> sfSelectFingerList = new List<BorderNum>(); // 钻台面对准指梁
+        private List<BorderNum> sfSelectFingerList = new List<BorderNum>(); // 二层台对准指梁
+        private List<ImageNum> drSelectImageList = new List<ImageNum>(); // 钻台面对准指梁图片
+        private List<ImageNum> sfSelectImageList = new List<ImageNum>(); // 二层台对准指梁图片
         private string configPath = System.Environment.CurrentDirectory + @"\Config.ini";
         //private bool bLoaded = false;
         const int STRINGMAX = 255;
@@ -407,6 +409,38 @@ namespace Main
                 drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow30, Num = 30 });
                 drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow31, Num = 31 });
 
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow1, Num = 1 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow2, Num = 2 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow3, Num = 3 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow4, Num = 4 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow5, Num = 5 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow6, Num = 6 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow7, Num = 7 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow8, Num = 8 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow9, Num = 9 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow10, Num = 10 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow11, Num = 11 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow12, Num = 12 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow13, Num = 13 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow14, Num = 14 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow15, Num = 15 });
+
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow17, Num = 17 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow18, Num = 18 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow19, Num = 19 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow20, Num = 20 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow21, Num = 21 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow22, Num = 22 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow23, Num = 23 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow24, Num = 24 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow25, Num = 25 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow26, Num = 26 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow27, Num = 27 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow28, Num = 28 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow29, Num = 29 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow30, Num = 30 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow31, Num = 31 });
+
                 #endregion
 
                 #region 二层台所有指梁
@@ -441,6 +475,38 @@ namespace Main
                 sfSelectFingerList.Add(new BorderNum { SelectBorder = this.FingerBeamArrow29, Num = 29 });
                 sfSelectFingerList.Add(new BorderNum { SelectBorder = this.FingerBeamArrow30, Num = 30 });
                 sfSelectFingerList.Add(new BorderNum { SelectBorder = this.FingerBeamArrow31, Num = 31 });
+
+                sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow1, Num = 1 });
+                sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow2, Num = 2 });
+                sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow3, Num = 3 });
+                sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow4, Num = 4 });
+                sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow5, Num = 5 });
+                sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow6, Num = 6 });
+                sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow7, Num = 7 });
+                sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow8, Num = 8 });
+                sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow9, Num = 9 });
+                sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow10, Num = 10 });
+                sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow11, Num = 11 });
+                sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow12, Num = 12 });
+                sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow13, Num = 13 });
+                sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow14, Num = 14 });
+                sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow15, Num = 15 });
+
+                sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow17, Num = 17 });
+                sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow18, Num = 18 });
+                sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow19, Num = 19 });
+                sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow20, Num = 20 });
+                sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow21, Num = 21 });
+                sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow22, Num = 22 });
+                sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow23, Num = 23 });
+                sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow24, Num = 24 });
+                sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow25, Num = 25 });
+                sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow26, Num = 26 });
+                sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow27, Num = 27 });
+                sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow28, Num = 28 });
+                sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow29, Num = 29 });
+                sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow30, Num = 30 });
+                sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow31, Num = 31 });
                 #endregion
                 this.imageElevatorStatus.SetBinding(Image.SourceProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["164ElevatorStatus"], Mode = BindingMode.OneWay, Converter = new ElevatorStatusConverter() });
                 this.SetBinding(OperationModelProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });//操作模式   
@@ -1268,7 +1334,7 @@ namespace Main
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
             }
@@ -1553,7 +1619,25 @@ namespace Main
 
                 if (SetDrillNumEvent != null)
                 {
-                    //(sender as Image)
+                    string path = "/Images/A_5.png";
+                    if (GlobalData.Instance.systemType == SystemType.DrillFloor)
+                        drSelectImageList.ForEach(o => o.SelectImage.Source = new BitmapImage(new Uri("/Images/A_5.png", UriKind.Relative)));
+                    else if(GlobalData.Instance.systemType == SystemType.SecondFloor)
+                        sfSelectImageList.ForEach(o => o.SelectImage.Source = new BitmapImage(new Uri("/Images/A_5.png", UriKind.Relative)));
+                    if (fingerBeamNumber >= 17 && fingerBeamNumber <= 32)
+                    {
+                        path = "/Images/A_Y_3.png";
+                    }
+                    else if (fingerBeamNumber >= 1 && fingerBeamNumber <= 16)
+                    {
+                        path = "/Images/A_Y_1.png";
+                    }
+                    else
+                    {
+                        path = "/Images/A_5.png";
+                    }
+                    var uriSource = new Uri(path, UriKind.Relative);
+                    (sender as Image).Source = new BitmapImage(uriSource);
                     SetDrillNumEvent(fingerBeamNumber);
                 }
             }
@@ -1595,11 +1679,11 @@ namespace Main
                     {
                         rows = GlobalData.Instance.Rows;
                     }
-                   
+
 
                     WinAPI.GetPrivateProfileString("SECONDFLOOR", "COLOMS", strColoms, sb, STRINGMAX, configPath);
                     strColoms = sb.ToString();
-                    int.TryParse(strColoms, out coloms); 
+                    int.TryParse(strColoms, out coloms);
                     drillCnt = GlobalData.Instance.DrillNum; // 最大钻铤数量
 
                     if (coloms == 0) coloms = 17;
@@ -1787,7 +1871,7 @@ namespace Main
             try
             {
                 double TotalHight = 300.0 - 8.0; // 中间台面总高度-最上面横梁高度
-                double avgHeight = (TotalHight-5) / (rows + 1); // 平均高度为(总高度-钻铤行多的高度)/(指梁行数+钻铤行)
+                double avgHeight = (TotalHight - 5) / (rows + 1); // 平均高度为(总高度-钻铤行多的高度)/(指梁行数+钻铤行)
                 this.TBRowHeight = avgHeight;
                 this.TBFirstRowHeight = avgHeight + 5;
                 this.RowHeight = avgHeight - 3;
@@ -1818,7 +1902,7 @@ namespace Main
                     this.DRRobotArm.Width = 20;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
             }
@@ -2177,5 +2261,17 @@ namespace Main
         /// 待显示或者隐藏指梁
         /// </summary>
         public Border SelectBorder { get; set; }
+    }
+
+    public class ImageNum
+    {
+        /// <summary>
+        /// 指梁号
+        /// </summary>
+        public int Num { get; set; }
+        /// <summary>
+        /// 待显示或者隐藏指梁
+        /// </summary>
+        public Image SelectImage { get; set; }
     }
 }

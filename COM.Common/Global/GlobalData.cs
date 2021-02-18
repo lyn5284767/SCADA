@@ -276,6 +276,10 @@ namespace COM.Common
         /// </summary>
         HydraulicStation = 5,
         /// <summary>
+        /// 防喷/丝扣油
+        /// </summary>
+        ScrewThread = 6,
+        /// <summary>
         /// 未知类型
         /// </summary>
         Unknow = 99
@@ -360,15 +364,19 @@ namespace COM.Common
         /// <summary>
         /// 三一
         /// </summary>
-        SANY=1,
+        SANY = 1,
         /// <summary>
         /// 宝石
         /// </summary>
-        BS=2,
+        BS = 2,
         /// <summary>
         /// 宏达
         /// </summary>
-        HD=3
+        HD = 3,
+        /// <summary>
+        /// 宏达
+        /// </summary>
+        SL = 4
     }
 
     public enum Technique

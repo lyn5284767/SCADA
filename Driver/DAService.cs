@@ -1283,7 +1283,7 @@ namespace DemoDriver
         /// </summary>
         public int SIRType { get; set; }
         /// <summary>
-        /// 猫道类型 0-无猫道 1-自研 2-宝石猫道 3-宏达猫道
+        /// 猫道类型 0-无猫道 1-自研 2-宝石猫道 3-宏达猫道 4-胜利猫道
         /// </summary>
         public int CatType { get; set; }
         /// <summary>

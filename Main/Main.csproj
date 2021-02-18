@@ -150,6 +150,9 @@
     <Compile Include="Cat\BSCatMain.xaml.cs">
       <DependentUpon>BSCatMain.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Cat\SL_CatMain.xaml.cs">
+      <DependentUpon>SL_CatMain.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Cat\ZY_CatMain.xaml.cs">
       <DependentUpon>ZY_CatMain.xaml</DependentUpon>
     </Compile>
@@ -255,6 +258,9 @@
     <Compile Include="Integration\Ing_Cat_BS.xaml.cs">
       <DependentUpon>Ing_Cat_BS.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Integration\Ing_Cat_SL.xaml.cs">
+      <DependentUpon>Ing_Cat_SL.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Integration\Ing_DR_Self.xaml.cs">
       <DependentUpon>Ing_DR_Self.xaml</DependentUpon>
     </Compile>
@@ -296,6 +302,9 @@
     </Compile>
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ScrewThread\SL_ScrewThreadMain.xaml.cs">
+      <DependentUpon>SL_ScrewThreadMain.xaml</DependentUpon>
     </Compile>
     <Compile Include="SecondFloor\SFCameraFullScreen.xaml.cs">
       <DependentUpon>SFCameraFullScreen.xaml</DependentUpon>
@@ -518,6 +527,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Cat\SL_CatMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Cat\ZY_CatMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -650,6 +663,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Integration\Ing_Cat_SL.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Integration\Ing_DR_Self.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -710,6 +727,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ScrewThread\SL_ScrewThreadMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SecondFloor\SFCameraFullScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1236,6 +1257,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\WR_SIR.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ButtonBlue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Background.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -11,6 +11,7 @@ using Main.DrillFloor.Sany;
 using Main.HydraulicStation;
 using Main.HydraulicStation.JJC;
 using Main.Integration;
+using Main.ScrewThread;
 using Main.SecondFloor;
 using Main.SIR;
 using Main.SIR.Sany;
@@ -655,6 +656,15 @@ namespace Main
                     this.spHS.Visibility = Visibility.Collapsed;
                 }
             }
+            if (GlobalData.Instance.da.GloConfig.PreventBoxType == 0)
+            {
+                this.bdScrewThread.Visibility = Visibility.Collapsed;
+            }
+            else if (GlobalData.Instance.da.GloConfig.PreventBoxType == 1)
+            {
+                this.bdScrewThread.Visibility = Visibility.Visible;
+                TotalDeviceNum += 1;
+            }
             double avgWidth = (TotalWidth - 100) / TotalDeviceNum;
             this.tbIng.Width = avgWidth;
             if (GlobalData.Instance.da.GloConfig.SFType != 0) this.bdSf.Width = avgWidth;
@@ -662,6 +672,7 @@ namespace Main
             if (GlobalData.Instance.da.GloConfig.SIRType != 0) this.bdSIR.Width = avgWidth;
             if (GlobalData.Instance.da.GloConfig.CatType != 0) this.bdCat.Width = avgWidth;
             if (GlobalData.Instance.da.GloConfig.HydType != 0) this.bdHS.Width = avgWidth;
+            if (GlobalData.Instance.da.GloConfig.PreventBoxType != 0) this.bdScrewThread.Width = avgWidth;
         }
 
 
@@ -2936,6 +2947,12 @@ namespace Main
                 {
 
                 }
+                //胜利
+                else if (GlobalData.Instance.da.GloConfig.CatType == (int)CatType.SL)
+                {
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(SL_CatMain.Instance);
+                }
 
                 GlobalData.Instance.systemType = SystemType.CatRoad;
                 //this.BottomColorSetting(this.bdCat, this.tbCat, this.gdbottom);
@@ -3120,5 +3137,37 @@ namespace Main
             this.mainTitle.Content = "SYAPS-液压站:报表";
         }
         #endregion
+        /// <summary>
+        /// 丝扣防喷
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ScrewThread_MouseLeftButtonDown(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                nowSystemType = SystemType.ScrewThread;
+                GlobalData.Instance.Ing = false;
+                if (GlobalData.Instance.da.GloConfig.PreventBoxType == 0)
+                {
+                    MessageBox.Show("未配置丝扣防喷装置");
+                    return;
+                }
+                else if (GlobalData.Instance.da.GloConfig.PreventBoxType == 1)
+                {
+                    this.spMain.Children.Clear();
+                    this.spMain.Children.Add(SL_ScrewThreadMain.Instance);
+                }
+
+                GlobalData.Instance.systemType = SystemType.ScrewThread;
+                this.BottomColorSetting(this.bdScrewThread, this.spBottom);
+                SetBorderBackGround();
+                this.mainTitle.Content = "SYAPS-丝扣防喷:主页";
+            }
+            catch (Exception ex)
+            {
+                Log.Log4Net.AddLog(ex.ToString(), Log.InfoLevel.ERROR);
+            }
+        }
     }
 }
