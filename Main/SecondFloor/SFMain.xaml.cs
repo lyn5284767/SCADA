@@ -262,33 +262,41 @@ namespace Main.SecondFloor
             if (GlobalData.Instance.da["carMotorWorkStatus"].Value.Boolean || GlobalData.Instance.da["armMotorWorkStatus"].Value.Boolean
                 || GlobalData.Instance.da["rotateMotorWorkStatus"].Value.Boolean)
             {
-                enable--;
-                if (enable < -100) enable = -1;
-                if (enable < 0)
-                {
-                    if (this.tbEnableHand.Visibility == Visibility.Visible && iTimeCnt / 10 % 2 == 0)
-                        this.tbEnableHand.Visibility = Visibility.Collapsed;
-                    else if (this.tbTurnZeroHand.Visibility == Visibility.Collapsed && iTimeCnt / 10 % 2 != 0)
-                        this.tbEnableHand.Visibility = Visibility.Visible;
+                //enable--;
+                //if (enable < -100) enable = -1;
+                //if (enable < 0)
+                //{
+                if (this.tbEnableHand.Visibility == Visibility.Visible && iTimeCnt / 10 % 2 == 0)
+                    this.tbEnableHand.Visibility = Visibility.Collapsed;
+                else if (this.tbEnableHand.Visibility == Visibility.Collapsed && iTimeCnt / 10 % 2 != 0)
+                    this.tbEnableHand.Visibility = Visibility.Visible;
 
-                    return;
-                }
-                
+                //    return;
+                //}
+
+            }
+            else
+            {
+                this.tbEnableHand.Visibility = Visibility.Collapsed;
             }
             // 电机回零提示
             if (!GlobalData.Instance.da["carMotorRetZeroStatus"].Value.Boolean || !GlobalData.Instance.da["armMotorRetZeroStatus"].Value.Boolean
                 || !GlobalData.Instance.da["rotateMotorRetZeroStatus"].Value.Boolean)
             {
-                turnZero--;
-                if (turnZero < -100) turnZero = -1;
-                if (turnZero < 0)
-                {
-                    if (this.tbTurnZeroHand.Visibility == Visibility.Visible && iTimeCnt / 10 % 2 == 0)
-                        this.tbTurnZeroHand.Visibility = Visibility.Collapsed;
-                    else if (this.tbTurnZeroHand.Visibility == Visibility.Collapsed && iTimeCnt / 10 % 2 != 0)
-                        this.tbTurnZeroHand.Visibility = Visibility.Visible;
-                    return;
-                }
+                //turnZero--;
+                //if (turnZero < -100) turnZero = -1;
+                //if (turnZero < 0)
+                //{
+                if (this.tbTurnZeroHand.Visibility == Visibility.Visible && iTimeCnt / 10 % 2 == 0)
+                    this.tbTurnZeroHand.Visibility = Visibility.Collapsed;
+                else if (this.tbTurnZeroHand.Visibility == Visibility.Collapsed && iTimeCnt / 10 % 2 != 0)
+                    this.tbTurnZeroHand.Visibility = Visibility.Visible;
+                //return;
+                //}
+            }
+            else
+            {
+                this.tbTurnZeroHand.Visibility = Visibility.Collapsed;
             }
         }
         /// <summary>

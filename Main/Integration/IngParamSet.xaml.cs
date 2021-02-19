@@ -173,7 +173,8 @@ namespace Main.Integration
                 // 防喷盒厂家
                 this.twt14.dicNumToValue = new Dictionary<int, string>();
                 this.twt14.dicNumToValue.Add(0, "无");
-                this.twt14.dicNumToValue.Add(1, "有");
+                this.twt14.dicNumToValue.Add(1, "三一");
+                this.twt14.dicNumToValue.Add(2, "胜利");
                 this.twt14.SetBinding(TextWithCombox.ShowTxtWithCBProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["PreventBoxType"], Mode = BindingMode.OneWay, ConverterParameter = this.twt14.dicNumToValue, Converter = new NumToTextConverter() });
                 // 大钩厂家
                 this.twt15.dicNumToValue = new Dictionary<int, string>();

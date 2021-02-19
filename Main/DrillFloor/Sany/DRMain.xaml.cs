@@ -276,9 +276,13 @@ namespace Main.DrillFloor
             {
                 if (this.tbEnableHand.Visibility == Visibility.Visible && iTimeCnt / 10 % 2 == 0)
                     this.tbEnableHand.Visibility = Visibility.Collapsed;
-                else if (this.tbTurnZeroHand.Visibility == Visibility.Collapsed && iTimeCnt / 10 % 2 != 0)
+                else if (this.tbEnableHand.Visibility == Visibility.Collapsed && iTimeCnt / 10 % 2 != 0)
                     this.tbEnableHand.Visibility = Visibility.Visible;
                 return;
+            }
+            else
+            {
+                this.tbEnableHand.Visibility = Visibility.Collapsed;
             }
             // 电机回零提示
             if (!GlobalData.Instance.da["324b0"].Value.Boolean || !GlobalData.Instance.da["324b4"].Value.Boolean)
@@ -288,6 +292,10 @@ namespace Main.DrillFloor
                 else if (this.tbTurnZeroHand.Visibility == Visibility.Collapsed && iTimeCnt / 10 % 2 != 0)
                     this.tbTurnZeroHand.Visibility = Visibility.Visible;
                 return;
+            }
+            else
+            {
+                this.tbTurnZeroHand.Visibility = Visibility.Collapsed;
             }
         }
         private int controlHeartTimes = 0; // 控制台心跳次数

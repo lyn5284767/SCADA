@@ -2773,7 +2773,7 @@
                                 <StackPanel Width="170" Name="drDrillL4" Orientation="Horizontal" Tag="4"></StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Height="15" DockPanel.Dock="Right">
-                                <StackPanel Width="170" Name="drDrillR4" Orientation="Horizontal" Tag="15" FlowDirection ="RightToLeft"></StackPanel>
+                                <StackPanel Width="170" Name="drDrillR4" Orientation="Horizontal" Tag="20" FlowDirection ="RightToLeft"></StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Grid>

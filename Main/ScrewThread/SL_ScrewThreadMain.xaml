@@ -487,8 +487,10 @@
                             <StackPanel Orientation="Horizontal" Name="stackPanel" Margin="10,0,10,0">
                                 <TextBlock Name="tbk" Text="设置值" HorizontalAlignment="Center" Foreground="Black" VerticalAlignment="Center" Margin="1" FontFamily="微软雅黑" FontWeight="Bold"  Width="120" TextAlignment="Center">
                                 </TextBlock>
-                                <TextBox x:Name="textBoxShow" IsReadOnly="True" Foreground="Black" Text="XX" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="18" FontFamily="微软雅黑" FontWeight="Bold" Width="140" TextAlignment="Center"/>
+                                <TextBox x:Name="textBoxShow" IsReadOnly="True" Foreground="Black" Text="XX" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="18" FontFamily="微软雅黑" FontWeight="Bold" Width="120" TextAlignment="Center"/>
                                 <ComboBox x:Name="cbSet" Width="180" Foreground="Black" FontSize="18" Margin="5,7,5,7" Height="33"></ComboBox>
+                                <TextBox x:Name="tbInput" IsReadOnly="True" Foreground="Black" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="18" FontFamily="微软雅黑" FontWeight="Bold" Width="120" TextAlignment="Center"/>
+
                                 <Button Margin="5,0,0,0" FontWeight="Bold" FontSize="18" Height="40" Width="95" Click="SetConfirm_Click">确认</Button>
                             </StackPanel>
                         </Viewbox>
