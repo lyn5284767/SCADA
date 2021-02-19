@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Main.Cat" xmlns:cl="http://talonzeng.com/ControlLibrary"
              mc:Ignorable="d" 
-             d:DesignHeight="650" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="bsCatMain">
+             d:DesignHeight="650" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#D3E3FF" Margin="1" Name="bsCatMain">
     <UserControl.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -13,7 +13,7 @@
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontFamily" Value="微软雅黑"/>
-            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Foreground" Value="#37384B"/>
         </Style>
         <Style TargetType="TextBox">
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -94,11 +94,11 @@
                 <ColumnDefinition Width="230"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <Border Background="White" CornerRadius="10" Margin="5,10,5,5">
-                    <Border.Effect>
+            <Grid Grid.Column="0" Margin="5">
+                <Border Background="#F6F9FF">
+                    <!--<Border.Effect>
                         <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
-                    </Border.Effect>
+                    </Border.Effect>-->
                 </Border>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -135,11 +135,11 @@
                     </Button>
                 </Grid>
             </Grid>
-            <Grid Height="200" Grid.Column="1">
-                <Border Background="White" CornerRadius="10" Margin="5,10,5,5" >
-                    <Border.Effect>
+            <Grid Height="200" Grid.Column="1" Margin="5">
+                <Border Background="#F6F9FF">
+                    <!--<Border.Effect>
                         <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
-                    </Border.Effect>
+                    </Border.Effect>-->
                 </Border>
                 <Grid Margin="10">
                     <Grid.RowDefinitions>
@@ -152,11 +152,11 @@
                     <CheckBox Name="cbSelectPipe" Grid.Row="2" FontSize="20" Click="cbSelectPipe_Checked">选择套管</CheckBox>
                 </Grid>
             </Grid>
-            <Grid Height="200" Grid.Column="2">
-                <Border Background="White" CornerRadius="10" Margin="5,10,5,5" >
-                    <Border.Effect>
+            <Grid Height="200" Grid.Column="2" Margin="5">
+                <Border Background="#F6F9FF">
+                    <!--<Border.Effect>
                         <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
-                    </Border.Effect>
+                    </Border.Effect>-->
                 </Border>
                 <Grid>
                     <Grid.RowDefinitions>
@@ -246,11 +246,11 @@
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid Grid.Row="0" Name="gdSixHand" Visibility="Visible">
-                    <Border Background="White" CornerRadius="10" Margin="5,10,5,0">
-                        <Border.Effect>
+                <Grid Grid.Row="0" Name="gdSixHand" Visibility="Visible" Margin="5">
+                    <Border Background="#F6F9FF">
+                        <!--<Border.Effect>
                             <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
-                        </Border.Effect>
+                        </Border.Effect>-->
                     </Border>
                     <Grid Margin="5,10,5,5">
                         <Grid.ColumnDefinitions>
@@ -264,7 +264,7 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <StackPanel Grid.Row="0" Orientation="Horizontal">
-                                <TextBlock Text="右手柄信号" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,0,0,0" VerticalAlignment="Center"/>
+                                <TextBlock Text=">右手柄信号" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,0,0,0" VerticalAlignment="Center"/>
                             </StackPanel>
                             <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
                                 <TextBlock Text="左 右" Margin="10,0,0,0"></TextBlock>
@@ -305,11 +305,11 @@
                     
                     </Grid>
                 </Grid>
-                <Grid Grid.Row="1">
-                    <Border Background="White" CornerRadius="10" Margin="5,10,5,5">
-                        <Border.Effect>
+                <Grid Grid.Row="1" Margin="5">
+                    <Border Background="#F6F9FF">
+                        <!--<Border.Effect>
                             <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
-                        </Border.Effect>
+                        </Border.Effect>-->
                     </Border>
                     <Grid Margin="5,10,5,5">
                         <Grid.RowDefinitions>
@@ -317,7 +317,7 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0" Orientation="Horizontal">
-                            <TextBlock Text="状态反馈" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,0,0,0" VerticalAlignment="Center"/>
+                            <TextBlock Text=">状态反馈" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,0,0,0" VerticalAlignment="Center"/>
                         </StackPanel>
                         <Grid Grid.Row="1">
                             <Grid.RowDefinitions>
@@ -331,51 +331,51 @@
                                 <ColumnDefinition Width="150"/>
                                 <ColumnDefinition Width="53"/>
                             </Grid.ColumnDefinitions>
-                            <Border Grid.Row="0" Grid.Column="0" BorderBrush="White" BorderThickness="1">
+                            <Border Grid.Row="0" Grid.Column="0" BorderBrush="Gray" BorderThickness="0,1,0,0">
                                 <TextBlock Text="右手柄激活"></TextBlock>
                             </Border>
-                            <Border Grid.Row="1" Grid.Column="0" BorderBrush="White" BorderThickness="1">
+                            <Border Grid.Row="1" Grid.Column="0" Background="#DDE0E5">
                                 <TextBlock Text="大车编码器"></TextBlock>
                             </Border>
-                            <Border Grid.Row="2" Grid.Column="0" BorderBrush="White" BorderThickness="1">
+                            <Border Grid.Row="2" Grid.Column="0">
                                 <TextBlock Text="进入防碰区"></TextBlock>
                             </Border>
-                            <Border Grid.Row="0" Grid.Column="1" BorderBrush="White" BorderThickness="1">
+                            <Border Grid.Row="0" Grid.Column="1" BorderBrush="Gray" BorderThickness="0,1,0,0">
                                 <cl:SymbolMapping Name="smRight" StrContent="" LampType="3" Width="40" Height="40"/>
                             </Border>
-                            <Border Grid.Row="1" Grid.Column="1" BorderBrush="White" BorderThickness="1">
+                            <Border Grid.Row="1" Grid.Column="1" Background="#DDE0E5">
                                 <cl:SymbolMapping Name="smBigCarEncode" StrContent="" LampType="3" Width="40" Height="40"/>
                             </Border>
-                            <Border Grid.Row="2" Grid.Column="1" BorderBrush="White" BorderThickness="1">
+                            <Border Grid.Row="2" Grid.Column="1">
                                 <cl:SymbolMapping Name="smInDangerArea" StrContent="" LampType="3" Width="40" Height="40"/>
                             </Border>
-                            <Border Grid.Row="0" Grid.Column="2" BorderBrush="White" BorderThickness="1">
+                            <Border Grid.Row="0" Grid.Column="2" BorderBrush="Gray" BorderThickness="0,1,0,0">
                                 <TextBlock Text="急停"></TextBlock>
                             </Border>
-                            <Border Grid.Row="1" Grid.Column="2" BorderBrush="White" BorderThickness="1">
+                            <Border Grid.Row="1" Grid.Column="2" Background="#DDE0E5">
                                 <TextBlock Text="小车编码器"></TextBlock>
                             </Border>
-                            <Border Grid.Row="2" Grid.Column="2" BorderBrush="White" BorderThickness="1">
+                            <Border Grid.Row="2" Grid.Column="2">
                                 <TextBlock Text="备用"></TextBlock>
                             </Border>
-                            <Border Grid.Row="0" Grid.Column="3" BorderBrush="White" BorderThickness="1">
+                            <Border Grid.Row="0" Grid.Column="3" BorderBrush="Gray" BorderThickness="0,1,0,0">
                                 <cl:SymbolMapping Name="smStop" StrContent="" LampType="3" Width="40" Height="40"/>
                             </Border>
-                            <Border Grid.Row="1" Grid.Column="3" BorderBrush="White" BorderThickness="1">
+                            <Border Grid.Row="1" Grid.Column="3" Background="#DDE0E5">
                                 <cl:SymbolMapping Name="smSmallCarEncode" StrContent="" LampType="3" Width="40" Height="40"/>
                             </Border>
-                            <Border Grid.Row="2" Grid.Column="3" BorderBrush="White" BorderThickness="1">
+                            <Border Grid.Row="2" Grid.Column="3">
                                 <cl:SymbolMapping Name="smSpare" StrContent="" LampType="3" Width="40" Height="40"/>
                             </Border>
                         </Grid>
                     </Grid>
                 </Grid>
             </Grid>
-            <Grid Grid.Column="1">
-                <Border Background="White" CornerRadius="10" Margin="5,10,5,5">
-                    <Border.Effect>
+            <Grid Grid.Column="1" Margin="5">
+                <Border Background="#F6F9FF">
+                    <!--<Border.Effect>
                         <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
-                    </Border.Effect>
+                    </Border.Effect>-->
                 </Border>
                 <Grid Margin="5,10,5,5">
                     <Grid.RowDefinitions>
@@ -383,7 +383,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" Orientation="Horizontal">
-                        <TextBlock Text="IO反馈" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,0,0,0" VerticalAlignment="Center"/>
+                        <TextBlock Text=">IO反馈" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,0,0,0" VerticalAlignment="Center"/>
                     </StackPanel>
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
@@ -402,100 +402,100 @@
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <Border Grid.Row="0" Grid.Column="0" BorderBrush="White" BorderThickness="1">
+                        <Border Grid.Row="0" Grid.Column="0" BorderBrush="Gray" BorderThickness="0,1,0,0">
                             <TextBlock Text="左右选择"></TextBlock>
                         </Border>
-                        <Border Grid.Row="1" Grid.Column="0" BorderBrush="White" BorderThickness="1">
+                        <Border Grid.Row="1" Grid.Column="0" Background="#DDE0E5">
                             <TextBlock Text="内外选择"></TextBlock>
                         </Border>
-                        <Border Grid.Row="2" Grid.Column="0" BorderBrush="White" BorderThickness="1">
+                        <Border Grid.Row="2" Grid.Column="0">
                             <TextBlock Text="自动上行"></TextBlock>
                         </Border>
-                        <Border Grid.Row="3" Grid.Column="0" BorderBrush="White" BorderThickness="1">
+                        <Border Grid.Row="3" Grid.Column="0" Background="#DDE0E5">
                             <TextBlock Text="自动下行"></TextBlock>
                         </Border>
-                        <Border Grid.Row="4" Grid.Column="0" BorderBrush="White" BorderThickness="1">
+                        <Border Grid.Row="4" Grid.Column="0">
                             <TextBlock Text="自动进入"></TextBlock>
                         </Border>
-                        <Border Grid.Row="5" Grid.Column="0" BorderBrush="White" BorderThickness="1">
+                        <Border Grid.Row="5" Grid.Column="0" Background="#DDE0E5">
                             <TextBlock Text="自动退出"></TextBlock>
                         </Border>
-                        <Border Grid.Row="6" Grid.Column="0" BorderBrush="White" BorderThickness="1">
+                        <Border Grid.Row="6" Grid.Column="0">
                             <TextBlock Text="一键上钻"></TextBlock>
                         </Border>
-                        <Border Grid.Row="7" Grid.Column="0" BorderBrush="White" BorderThickness="1">
+                        <Border Grid.Row="7" Grid.Column="0" Background="#DDE0E5">
                             <TextBlock Text="一键甩钻"></TextBlock>
                         </Border>
-                        <Border Grid.Row="0" Grid.Column="1" BorderBrush="White" BorderThickness="1">
+                        <Border Grid.Row="0" Grid.Column="1" BorderBrush="Gray" BorderThickness="0,1,0,0">
                             <cl:SymbolMapping Name="smLeftOrRight" StrContent="" LampType="3" Width="40" Height="40"/>
                         </Border>
-                        <Border Grid.Row="1" Grid.Column="1" BorderBrush="White" BorderThickness="1">
+                        <Border Grid.Row="1" Grid.Column="1" Background="#DDE0E5">
                             <cl:SymbolMapping Name="smInOrOut" StrContent="" LampType="3" Width="40" Height="40"/>
                         </Border>
-                        <Border Grid.Row="2" Grid.Column="1" BorderBrush="White" BorderThickness="1">
+                        <Border Grid.Row="2" Grid.Column="1">
                             <cl:SymbolMapping Name="smAutoUp" StrContent="" LampType="3" Width="40" Height="40"/>
                         </Border>
-                        <Border Grid.Row="3" Grid.Column="1" BorderBrush="White" BorderThickness="1">
+                        <Border Grid.Row="3" Grid.Column="1" Background="#DDE0E5">
                             <cl:SymbolMapping Name="smAutoDown" StrContent="" LampType="3" Width="40" Height="40"/>
                         </Border>
-                        <Border Grid.Row="4" Grid.Column="1" BorderBrush="White" BorderThickness="1">
+                        <Border Grid.Row="4" Grid.Column="1">
                             <cl:SymbolMapping Name="smAutoIn" StrContent="" LampType="3" Width="40" Height="40"/>
                         </Border>
-                        <Border Grid.Row="5" Grid.Column="1" BorderBrush="White" BorderThickness="1">
+                        <Border Grid.Row="5" Grid.Column="1" Background="#DDE0E5">
                             <cl:SymbolMapping Name="smAutoOut" StrContent="" LampType="3" Width="40" Height="40"/>
                         </Border>
-                        <Border Grid.Row="6" Grid.Column="1" BorderBrush="White" BorderThickness="1">
+                        <Border Grid.Row="6" Grid.Column="1">
                             <cl:SymbolMapping Name="smOnkeyUseDrill" StrContent="" LampType="3" Width="40" Height="40"/>
                         </Border>
-                        <Border Grid.Row="7" Grid.Column="1" BorderBrush="White" BorderThickness="1">
+                        <Border Grid.Row="7" Grid.Column="1" Background="#DDE0E5">
                             <cl:SymbolMapping Name="smOnKeyUnuserDrill" StrContent="" LampType="3" Width="40" Height="40"/>
                         </Border>
-                        <Border Grid.Row="0" Grid.Column="2" BorderBrush="White" BorderThickness="1">
+                        <Border Grid.Row="0" Grid.Column="2" BorderBrush="Gray" BorderThickness="0,1,0,0">
                             <TextBlock Text="排架上升"></TextBlock>
                         </Border>
-                        <Border Grid.Row="1" Grid.Column="2" BorderBrush="White" BorderThickness="1">
+                        <Border Grid.Row="1" Grid.Column="2" Background="#DDE0E5">
                             <TextBlock Text="排架下降"></TextBlock>
                         </Border>
-                        <Border Grid.Row="2" Grid.Column="2" BorderBrush="White" BorderThickness="1">
+                        <Border Grid.Row="2" Grid.Column="2">
                             <TextBlock Text="倾斜上升"></TextBlock>
                         </Border>
-                        <Border Grid.Row="3" Grid.Column="2" BorderBrush="White" BorderThickness="1">
+                        <Border Grid.Row="3" Grid.Column="2" Background="#DDE0E5">
                             <TextBlock Text="倾斜下降"></TextBlock>
                         </Border>
-                        <Border Grid.Row="4" Grid.Column="2" BorderBrush="White" BorderThickness="1">
+                        <Border Grid.Row="4" Grid.Column="2">
                             <TextBlock Text="机构踢出"></TextBlock>
                         </Border>
-                        <Border Grid.Row="5" Grid.Column="2" BorderBrush="White" BorderThickness="1">
+                        <Border Grid.Row="5" Grid.Column="2" Background="#DDE0E5">
                             <TextBlock Text="机构缩回"></TextBlock>
                         </Border>
-                        <Border Grid.Row="6" Grid.Column="2" BorderBrush="White" BorderThickness="1">
+                        <Border Grid.Row="6" Grid.Column="2">
                             <TextBlock Text="备用"></TextBlock>
                         </Border>
-                        <Border Grid.Row="7" Grid.Column="2" BorderBrush="White" BorderThickness="1">
+                        <Border Grid.Row="7" Grid.Column="2" Background="#DDE0E5">
                             <TextBlock Text="备用"></TextBlock>
                         </Border>
-                        <Border Grid.Row="0" Grid.Column="3" BorderBrush="White" BorderThickness="1">
+                        <Border Grid.Row="0" Grid.Column="3" BorderBrush="Gray" BorderThickness="0,1,0,0">
                             <cl:SymbolMapping Name="smBentUp" StrContent="" LampType="3" Width="40" Height="40"/>
                         </Border>
-                        <Border Grid.Row="1" Grid.Column="3" BorderBrush="White" BorderThickness="1">
+                        <Border Grid.Row="1" Grid.Column="3" Background="#DDE0E5">
                             <cl:SymbolMapping Name="smBentDown" StrContent="" LampType="3" Width="40" Height="40"/>
                         </Border>
-                        <Border Grid.Row="2" Grid.Column="3" BorderBrush="White" BorderThickness="1">
+                        <Border Grid.Row="2" Grid.Column="3">
                             <cl:SymbolMapping Name="smTiltUp" StrContent="" LampType="3" Width="40" Height="40"/>
                         </Border>
-                        <Border Grid.Row="3" Grid.Column="3" BorderBrush="White" BorderThickness="1">
+                        <Border Grid.Row="3" Grid.Column="3" Background="#DDE0E5">
                             <cl:SymbolMapping Name="smTiltDown" StrContent="" LampType="3" Width="40" Height="40"/>
                         </Border>
-                        <Border Grid.Row="4" Grid.Column="3" BorderBrush="White" BorderThickness="1">
+                        <Border Grid.Row="4" Grid.Column="3">
                             <cl:SymbolMapping Name="smOrganKickOut" StrContent="" LampType="3" Width="40" Height="40"/>
                         </Border>
-                        <Border Grid.Row="5" Grid.Column="3" BorderBrush="White" BorderThickness="1">
+                        <Border Grid.Row="5" Grid.Column="3" Background="#DDE0E5">
                             <cl:SymbolMapping Name="smOrganRetract" StrContent="" LampType="3" Width="40" Height="40"/>
                         </Border>
-                        <Border Grid.Row="6" Grid.Column="3" BorderBrush="White" BorderThickness="1">
+                        <Border Grid.Row="6" Grid.Column="3">
                             <cl:SymbolMapping StrContent="" LampType="3" Width="40" Height="40"/>
                         </Border>
-                        <Border Grid.Row="7" Grid.Column="3" BorderBrush="White" BorderThickness="1">
+                        <Border Grid.Row="7" Grid.Column="3" Background="#DDE0E5">
                             <cl:SymbolMapping StrContent="" LampType="3" Width="40" Height="40"/>
                         </Border>
                     </Grid>

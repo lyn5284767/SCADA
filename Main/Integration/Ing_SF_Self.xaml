@@ -37,10 +37,10 @@
         </Style>
     </UserControl.Resources>
     <Grid Margin="5">
-        <Border Name="bdSF" Background="White" CornerRadius="10" Grid.Row="1" Grid.Column="1">
-        <Border.Effect>
+        <Border Name="bdSF" Background="#F6F9FF">
+        <!--<Border.Effect>
             <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
-        </Border.Effect>
+        </Border.Effect>-->
         </Border>
         <Grid>
             <Grid.RowDefinitions>

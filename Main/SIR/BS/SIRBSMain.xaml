@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Main.SIR" xmlns:cl="http://talonzeng.com/ControlLibrary" xmlns:hc="https://handyorg.github.io/handycontrol"
              mc:Ignorable="d" 
-             d:DesignHeight="650" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="bsCatMain">
+             d:DesignHeight="650" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#D3E3FF" Margin="1" Name="bsCatMain">
     <UserControl.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -29,16 +29,16 @@
             <ColumnDefinition Width="300"/>
         </Grid.ColumnDefinitions>
         <StackPanel  Grid.Column="0">
-            <Border Style="{StaticResource BorderRegion}">
-                <Border Background="{DynamicResource BorderBrush}">
-                    <Grid>
+            <Grid Margin="5">
+                <Border Background="#F6F9FF"></Border>
+                <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="50"/>
                             <RowDefinition Height="162"/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0" Orientation="Horizontal">
-                            <TextBlock Text="系统参数" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,0,0,0" VerticalAlignment="Center"/>
+                            <TextBlock Text=">系统参数" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,0,0,0" VerticalAlignment="Center"/>
                         </StackPanel>
                         <Grid Grid.Row="1">
                             <Grid.ColumnDefinitions>
@@ -54,7 +54,7 @@
                                 <Label Background="Transparent" FontSize="20" FontWeight="Bold">系统压力</Label>
                             </StackPanel>
                         </Grid>
-                        <Grid Grid.Row="2">
+                        <Grid Grid.Row="2" Margin="5">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
                                 <RowDefinition/>
@@ -67,13 +67,13 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <Border Grid.Row="0" Grid.Column="0" BorderBrush="White" BorderThickness="1"  Height="40">
+                            <Border Grid.Row="0" Grid.Column="0" BorderBrush="Gray" BorderThickness="0,1,0,0"  Height="40">
                                 <TextBlock Text="上扣设定扭矩"></TextBlock>
                             </Border>
-                            <Border Grid.Row="1" Grid.Column="0" BorderBrush="White" BorderThickness="1"  Height="40">
+                        <Border Grid.Row="1" Grid.Column="0" Background="#DDE0E5" Height="40">
                                 <TextBlock Text="伸缩距离"></TextBlock>
                             </Border>
-                            <Border Grid.Row="2" Grid.Column="0" BorderBrush="White" BorderThickness="1"  Height="40">
+                            <Border Grid.Row="2" Grid.Column="0" Height="40">
                                 <TextBlock Text="旋转角度"></TextBlock>
                             </Border>
                             <!--<Border Grid.Row="3" Grid.Column="0" BorderBrush="White" BorderThickness="1"  Height="40">
@@ -82,13 +82,13 @@
                             <Border Grid.Row="4" Grid.Column="0" BorderBrush="White" BorderThickness="1"  Height="40">
                                 <TextBlock Text="卸扣旋扣设定时间"></TextBlock>
                             </Border>-->
-                            <Border Grid.Row="0" Grid.Column="1" BorderBrush="White" BorderThickness="1"  Height="40">
+                        <Border Grid.Row="0" Grid.Column="1" BorderBrush="Gray" BorderThickness="0,1,0,0"  Height="40">
                                 <TextBlock Name="tbInButtonTorqueSet" Text="??"></TextBlock>
                             </Border>
-                            <Border Grid.Row="1" Grid.Column="1" BorderBrush="White" BorderThickness="1"  Height="40">
+                        <Border Grid.Row="1" Grid.Column="1" Background="#DDE0E5" Height="40">
                                 <TextBlock Name="tbReachOrRetractDis" Text="？？"></TextBlock>
                             </Border>
-                            <Border Grid.Row="2" Grid.Column="1" BorderBrush="White" BorderThickness="1"  Height="40">
+                            <Border Grid.Row="2" Grid.Column="1" Height="40">
                                 <TextBlock Name="tbRotateAngle" Text="？？"></TextBlock>
                             </Border>
                             <!--<Border Grid.Row="3" Grid.Column="1" BorderBrush="White" BorderThickness="1"  Height="40">
@@ -97,13 +97,13 @@
                             <Border Grid.Row="4" Grid.Column="1" BorderBrush="White" BorderThickness="1"  Height="40">
                                 <TextBlock Name="tbOutButtonTime" Text="？？"></TextBlock>
                             </Border>-->
-                            <Border Grid.Row="0" Grid.Column="2" BorderBrush="White" BorderThickness="1"  Height="40">
+                        <Border Grid.Row="0" Grid.Column="2" BorderBrush="Gray" BorderThickness="0,1,0,0"  Height="40">
                                 <TextBlock Text="KN.M"></TextBlock>
                             </Border>
-                            <Border Grid.Row="1" Grid.Column="2" BorderBrush="White" BorderThickness="1"  Height="40">
+                        <Border Grid.Row="1" Grid.Column="2" Background="#DDE0E5" Height="40">
                                 <TextBlock Text="mm"></TextBlock>
                             </Border>
-                            <Border Grid.Row="2" Grid.Column="2" BorderBrush="White" BorderThickness="1"  Height="40">
+                            <Border Grid.Row="2" Grid.Column="2" Height="40">
                                 <TextBlock Text="°"></TextBlock>
                             </Border>
                             <!--<Border Grid.Row="3" Grid.Column="2" BorderBrush="White" BorderThickness="1"  Height="40">
@@ -114,176 +114,128 @@
                             </Border>-->
                         </Grid>
                     </Grid>
+            </Grid>
+            <Grid Margin="5">
+                <Border Background="#F6F9FF">
                 </Border>
-            </Border>
-            <Border Style="{StaticResource BorderRegion}">
-                <Border Background="{DynamicResource BorderBrush}">
-                    <Grid>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="238"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <TextBlock Text=">动作选择" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,0,0,0" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="40"/>
-                            <RowDefinition Height="238"/>
-                        </Grid.RowDefinitions>
-                        <StackPanel Grid.Row="0" Orientation="Horizontal">
-                            <TextBlock Text="动作选择" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,0,0,0" VerticalAlignment="Center"/>
-                        </StackPanel>
-                        <Grid Grid.Row="1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                            <cl:CustomCheckBox Grid.Column="0" Grid.Row="0" ContentString="扭矩记忆" Margin="20,5,5,5" Name="cbTorqueMemory" UserControlClicked="cbTorqueMemory_Clicked"/>
-                            <cl:CustomCheckBox Grid.Column="0" Grid.Row="1" ContentString="钳头复位" Margin="20,5,5,5" Name="cbTongsReset" UserControlClicked="cbTongsReset_Clicked"/>
-                            <cl:CustomCheckBox Grid.Column="0" Grid.Row="2" ContentString="旋扣钳夹紧" Margin="20,5,5,5" Name="cbRotateBtnClose" UserControlClicked="cbRotateBtnClose_Clicked"/>
-                            <cl:CustomCheckBox Grid.Column="0" Grid.Row="3" ContentString="旋扣钳松开" Margin="20,5,5,5" Name="cbRotateBtnOpen" UserControlClicked="cbRotateBtnOpen_Clicked"/>
-                            <cl:CustomCheckBox Grid.Column="0" Grid.Row="4" ContentString="上钳夹紧" Margin="20,5,5,5" Name="cbUpBtnClose" UserControlClicked="cbUpBtnClose_Clicked"/>
-                            <cl:CustomCheckBox Grid.Column="0" Grid.Row="5" ContentString="上钳松开" Margin="20,5,5,5" Name="cbUpBtnOpen" UserControlClicked="cbUpBtnOpen_Clicked"/>
-                            <cl:CustomCheckBox Grid.Column="1" Grid.Row="0" ContentString="下钳夹紧" Margin="20,5,5,5" Name="cbDownBtnClose" UserControlClicked="cbDownBtnClose_Clicked"/>
-                            <cl:CustomCheckBox Grid.Column="1" Grid.Row="1" ContentString="下钳松开" Margin="20,5,5,5" Name="cbDownBtnOpen" UserControlClicked="cbDownBtnOpen_Clicked"/>
-                            <cl:CustomCheckBox Grid.Column="1" Grid.Row="2" ContentString="井口标定" Margin="20,5,5,5" Name="cbWellSet" UserControlClicked="cbWellSet_Clicked"/>
-                            <cl:CustomCheckBox Grid.Column="1" Grid.Row="3" ContentString="鼠洞标定" Margin="20,5,5,5" Name="cbMouseSet" UserControlClicked="cbMouseSet_Clicked"/>
-                            <cl:CustomCheckBox Grid.Column="1" Grid.Row="4" ContentString="待命标定" Margin="20,5,5,5" Name="cbStaySet" UserControlClicked="cbStaySet_Clicked"/>
-                        </Grid>
-                  </Grid>
-                    <!--<Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="40"/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <StackPanel Grid.Row="0" Orientation="Horizontal">
-                            <TextBlock Text="右手柄信号" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,0,0,0" VerticalAlignment="Center"/>
-                        </StackPanel>
-                        <Grid Grid.Row="1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <StackPanel Grid.Column="0">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="左 右" VerticalAlignment="Center" Margin="20,10,5,5" />
-                                    --><!--<Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">--><!--
-                                    <TextBlock Text="0" Name="tbHandleX" VerticalAlignment="Center" Margin="5,10,5,5" />
-                                    --><!--</Border>--><!--
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="前 后" VerticalAlignment="Center" Margin="20,10,5,5"/>
-                                    --><!--<Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">--><!--
-                                    <TextBlock Text="0" Name="tbHandleY" VerticalAlignment="Center" Margin="5"/>
-                                    --><!--</Border>--><!--
-                                </StackPanel>
-
-                                <StackPanel Height="60" Orientation="Horizontal" Margin="20,10,5,5">
-                                    --><!--左手柄，控制二层台和钻台面--><!--
-                                    <StackPanel Height="60" Width="140" Orientation="Horizontal">
-                                        <cl:SymbolMappingV StrContent="L" LampType="3" Width="25" Name="smL"/>
-                                        <cl:SymbolMappingV StrContent="R" LampType="3" Width="25" Name="smR"/>
-                                        <cl:SymbolMappingV StrContent="E" LampType="3" Width="25" Name="smEnable"/>
-                                        <cl:SymbolMappingV StrContent="Q" LampType="3" Width="25" Name="smQ"/>
-                                        <cl:SymbolMappingV StrContent="B" LampType="3" Width="25" Name="smB"/>
-                                    </StackPanel>
-                                </StackPanel>
-                            </StackPanel>
-
-                            <Grid Grid.Column="1">
-                                <Image Source="/Images/arrow.png" Name="Arrow_EquiptStatus"  Width="140" Height="140"/>
-                            </Grid>
-                        </Grid>
-                    </Grid>-->
-                </Border>
-            </Border>
+                        <cl:CustomCheckBox Grid.Column="0" Grid.Row="0" ContentString="扭矩记忆" Margin="20,5,5,5" Name="cbTorqueMemory" UserControlClicked="cbTorqueMemory_Clicked"/>
+                        <cl:CustomCheckBox Grid.Column="0" Grid.Row="1" ContentString="钳头复位" Margin="20,5,5,5" Name="cbTongsReset" UserControlClicked="cbTongsReset_Clicked"/>
+                        <cl:CustomCheckBox Grid.Column="0" Grid.Row="2" ContentString="旋扣钳夹紧" Margin="20,5,5,5" Name="cbRotateBtnClose" UserControlClicked="cbRotateBtnClose_Clicked"/>
+                        <cl:CustomCheckBox Grid.Column="0" Grid.Row="3" ContentString="旋扣钳松开" Margin="20,5,5,5" Name="cbRotateBtnOpen" UserControlClicked="cbRotateBtnOpen_Clicked"/>
+                        <cl:CustomCheckBox Grid.Column="0" Grid.Row="4" ContentString="上钳夹紧" Margin="20,5,5,5" Name="cbUpBtnClose" UserControlClicked="cbUpBtnClose_Clicked"/>
+                        <cl:CustomCheckBox Grid.Column="0" Grid.Row="5" ContentString="上钳松开" Margin="20,5,5,5" Name="cbUpBtnOpen" UserControlClicked="cbUpBtnOpen_Clicked"/>
+                        <cl:CustomCheckBox Grid.Column="1" Grid.Row="0" ContentString="下钳夹紧" Margin="20,5,5,5" Name="cbDownBtnClose" UserControlClicked="cbDownBtnClose_Clicked"/>
+                        <cl:CustomCheckBox Grid.Column="1" Grid.Row="1" ContentString="下钳松开" Margin="20,5,5,5" Name="cbDownBtnOpen" UserControlClicked="cbDownBtnOpen_Clicked"/>
+                        <cl:CustomCheckBox Grid.Column="1" Grid.Row="2" ContentString="井口标定" Margin="20,5,5,5" Name="cbWellSet" UserControlClicked="cbWellSet_Clicked"/>
+                        <cl:CustomCheckBox Grid.Column="1" Grid.Row="3" ContentString="鼠洞标定" Margin="20,5,5,5" Name="cbMouseSet" UserControlClicked="cbMouseSet_Clicked"/>
+                        <cl:CustomCheckBox Grid.Column="1" Grid.Row="4" ContentString="待命标定" Margin="20,5,5,5" Name="cbStaySet" UserControlClicked="cbStaySet_Clicked"/>
+                    </Grid>
+                </Grid>
+            </Grid>
         </StackPanel>
         <StackPanel  Grid.Column="1">
-            <Border Style="{StaticResource BorderRegion}">
-                <Border Background="{DynamicResource BorderBrush}">
-                    <Grid Height="220">
+            <Grid Margin="5">
+                <Border Background="#F6F9FF"></Border>
+                <Grid Height="240">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <TextBlock Text=">参数设置" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,0,0,0" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <Grid Grid.Row="1"  Margin="0,10,0,0">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="40"/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <StackPanel Grid.Row="0" Orientation="Horizontal">
-                            <TextBlock Text="参数设置" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,0,0,0" VerticalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal" Grid.Row="0">
+                            <TextBlock Text="上扣旋扣时间" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
+                            <TextBox Width="50" Margin="10,0,0,0" Name="tbInButtonTimeShowValue" IsReadOnly="True"></TextBox>
+                            <TextBox Width="50" Margin="10,0,0,0" Name="tbInButtonTimeSetValue"></TextBox>
+                            <Button Height="36" FontSize="18" Margin="10,0,0,0" Click="BtnInButtonTime_Click">设定</Button>
                         </StackPanel>
-                        <Grid Grid.Row="1"  Margin="0,10,0,0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                            <StackPanel Orientation="Horizontal" Grid.Row="0">
-                                <TextBlock Text="上扣旋扣时间" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
-                                <TextBox Width="50" Margin="10,0,0,0" Name="tbInButtonTimeShowValue" IsReadOnly="True"></TextBox>
-                                <TextBox Width="50" Margin="10,0,0,0" Name="tbInButtonTimeSetValue"></TextBox>
-                                <Button Height="36" FontSize="18" Margin="10,0,0,0" Click="BtnInButtonTime_Click">设定</Button>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Grid.Row="1">
-                                <TextBlock Text="卸扣旋扣时间" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
-                                <TextBox Width="50" Margin="10,0,0,0" Name="tbOutButtonTimeShowValue" IsReadOnly="True"></TextBox>
-                                <TextBox Width="50" Margin="10,0,0,0" Name="tbOutButtonTimeSetValue"></TextBox>
-                                <Button Height="36" FontSize="18" Margin="10,0,0,0" Click="BtnOutButtonTime_Click">设定</Button>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Grid.Row="2">
-                                <TextBlock Text="冲扣次数" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" Margin="56,0,0,0"></TextBlock>
-                                <TextBox Width="50" Margin="10,0,0,0" Name="tbInButtonTimesShow" IsReadOnly="True"></TextBox>
-                                <TextBox Width="50" Margin="10,0,0,0" Name="tbInButtonTimesSet"></TextBox>
-                                <Button Height="36" FontSize="18" Margin="10,0,0,0" Click="BtnInButtonTimes_Click">设定</Button>
-                            </StackPanel>
-                            <CheckBox Name="cbDRSafeLimit" Grid.Row="3"  FontSize="18" FontWeight="Bold" Checked="cbDRSafeLimit_Checked">钻台面安全限制解除</CheckBox>
-                        </Grid>
+                        <StackPanel Orientation="Horizontal" Grid.Row="1">
+                            <TextBlock Text="卸扣旋扣时间" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
+                            <TextBox Width="50" Margin="10,0,0,0" Name="tbOutButtonTimeShowValue" IsReadOnly="True"></TextBox>
+                            <TextBox Width="50" Margin="10,0,0,0" Name="tbOutButtonTimeSetValue"></TextBox>
+                            <Button Height="36" FontSize="18" Margin="10,0,0,0" Click="BtnOutButtonTime_Click">设定</Button>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="2">
+                            <TextBlock Text="冲扣次数" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" Margin="56,0,0,0"></TextBlock>
+                            <TextBox Width="50" Margin="10,0,0,0" Name="tbInButtonTimesShow" IsReadOnly="True"></TextBox>
+                            <TextBox Width="50" Margin="10,0,0,0" Name="tbInButtonTimesSet"></TextBox>
+                            <Button Height="36" FontSize="18" Margin="10,0,0,0" Click="BtnInButtonTimes_Click">设定</Button>
+                        </StackPanel>
+                        <CheckBox Name="cbDRSafeLimit" Grid.Row="3"  FontSize="18" FontWeight="Bold" Checked="cbDRSafeLimit_Checked">钻台面安全限制解除</CheckBox>
                     </Grid>
-                </Border>
-            </Border>
-            <Border Style="{StaticResource BorderRegion}">
-                <Border Background="{DynamicResource BorderBrush}">
-                    <Grid Height="380">
+                </Grid>
+            </Grid>
+            <Grid Margin="5">
+                <Border Background="#F6F9FF"></Border>
+                <Grid Height="380">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <TextBlock Text=">操作/选择" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,0,0,0" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <Grid Grid.Row="1" Margin="0,10,0,0">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <StackPanel Grid.Row="0" Orientation="Horizontal">
-                            <TextBlock Text="操作/选择" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,0,0,0" VerticalAlignment="Center"/>
-                        </StackPanel>
-                        <Grid Grid.Row="1" Margin="0,10,0,0">
+                        <Button Grid.Row="0" Width="250" Height="36" FontSize="18" Click="BtnDrillerOpr_Click" Name="btnDrillerOpr">司钻操作</Button>
+                        <Button Grid.Row="1" Width="250" Height="36" FontSize="18" Click="BtnStart_Click" Name="btnStart">启动</Button>
+                        <Button Grid.Row="2" Width="250" Height="36" FontSize="18" Click="BtnInButtonModel_Click" Name="btnInbuttonModel" Content="上扣模式:全自动"></Button>
+                        <Grid Grid.Row="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="50"/>
                                 <RowDefinition Height="50"/>
                                 <RowDefinition Height="50"/>
-                                <RowDefinition/>
                             </Grid.RowDefinitions>
-                            <Button Grid.Row="0" Width="250" Height="36" FontSize="18" Click="BtnDrillerOpr_Click" Name="btnDrillerOpr">司钻操作</Button>
-                            <Button Grid.Row="1" Width="250" Height="36" FontSize="18" Click="BtnStart_Click" Name="btnStart">启动</Button>
-                            <Button Grid.Row="2" Width="250" Height="36" FontSize="18" Click="BtnInButtonModel_Click" Name="btnInbuttonModel" Content="上扣模式:全自动"></Button>
-                            <Grid Grid.Row="3">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="50"/>
-                                    <RowDefinition Height="50"/>
-                                    <RowDefinition Height="50"/>
-                                </Grid.RowDefinitions>
-                                <Button Grid.Column="0" Grid.Row="0" Width="120" Height="36" FontSize="18" Click="BtnAutoInButton_Click" Name="btnAutoInButton">自动上扣</Button>
-                                <Button Grid.Column="1" Grid.Row="0" Width="120" Height="36" FontSize="18" Click="BtnAutoOutButton_Click" Name="btnAutoOutButton">自动卸扣</Button>
-                                <Button Grid.Column="0" Grid.Row="1" Width="120" Height="36" FontSize="18" Click="BtnAutoToWell_Click" Name="btnAutoToWell">自动去井口</Button>
-                                <Button Grid.Column="1" Grid.Row="1" Width="120" Height="36" FontSize="18" Click="BtnAutoToMouse_Click" Name="btnAutoToMouse">自动去鼠洞</Button>
-                                <Button Grid.Column="0" Grid.Row="2" Width="120" Height="36" FontSize="18" Click="BtnAutoBack_Click" Name="btnAutoBack">自动返回</Button>
-                                <Button Grid.Column="1" Grid.Row="2" Width="120" Height="36" FontSize="18" Click="BtnAutoToStay_Click" Name="btnAutoToStay">自动待命位</Button>
-                            </Grid>
-                            <!--<Button Grid.Column="0" Grid.Row="1" Width="150" Height="36" FontSize="18" Click="BtnInButtonModel_Click" Name="btnInButtonModel">上扣模式</Button>
+                            <Button Grid.Column="0" Grid.Row="0" Width="120" Height="36" FontSize="18" Click="BtnAutoInButton_Click" Name="btnAutoInButton">自动上扣</Button>
+                            <Button Grid.Column="1" Grid.Row="0" Width="120" Height="36" FontSize="18" Click="BtnAutoOutButton_Click" Name="btnAutoOutButton">自动卸扣</Button>
+                            <Button Grid.Column="0" Grid.Row="1" Width="120" Height="36" FontSize="18" Click="BtnAutoToWell_Click" Name="btnAutoToWell">自动去井口</Button>
+                            <Button Grid.Column="1" Grid.Row="1" Width="120" Height="36" FontSize="18" Click="BtnAutoToMouse_Click" Name="btnAutoToMouse">自动去鼠洞</Button>
+                            <Button Grid.Column="0" Grid.Row="2" Width="120" Height="36" FontSize="18" Click="BtnAutoBack_Click" Name="btnAutoBack">自动返回</Button>
+                            <Button Grid.Column="1" Grid.Row="2" Width="120" Height="36" FontSize="18" Click="BtnAutoToStay_Click" Name="btnAutoToStay">自动待命位</Button>
+                        </Grid>
+                        <!--<Button Grid.Column="0" Grid.Row="1" Width="150" Height="36" FontSize="18" Click="BtnInButtonModel_Click" Name="btnInButtonModel">上扣模式</Button>
                             <Button Grid.Column="1" Grid.Row="1" Width="150" Height="36" FontSize="18" Click="BtnButtonMemory_Click" Name="btnButtonMemory">扭扣记忆</Button>-->
-                        </Grid>
                     </Grid>
-                </Border>
-            </Border>
+                </Grid>
+            </Grid>
             <!--<Border Style="{StaticResource BorderRegion}">
                 <Border Background="{DynamicResource BorderBrush}">
                     <Grid>
@@ -377,118 +329,116 @@
             </Border>-->
         </StackPanel>
         <StackPanel  Grid.Column="2">
-            <Border Style="{StaticResource BorderRegion}">
-                <Border Background="{DynamicResource BorderBrush}">
-                    <Grid>
+            <Grid Margin="5">
+                <Border Background="#F6F9FF"></Border>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <TextBlock Text=">状态反馈" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,0,0,0" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <Grid Grid.Row="1" Margin="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="34"/>
+                            <RowDefinition Height="34"/>
+                            <RowDefinition Height="34"/>
+                            <RowDefinition Height="34"/>
+                            <RowDefinition Height="34"/>
+                            <RowDefinition Height="34"/>
+                            <RowDefinition Height="34"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="180"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Row="0" Grid.Column="0" BorderBrush="Gray" BorderThickness="0,1,0,0">
+                            <TextBlock Text="软急停"></TextBlock>
+                        </Border>
+                        <Border Grid.Row="1" Grid.Column="0" Background="#DDE0E5">
+                            <TextBlock Text="压力传感器错误"></TextBlock>
+                        </Border>
+                        <Border Grid.Row="2" Grid.Column="0">
+                            <TextBlock Text="伸缩传感器错误"></TextBlock>
+                        </Border>
+                        <Border Grid.Row="3" Grid.Column="0" Background="#DDE0E5">
+                            <TextBlock Text="接近开关失效"></TextBlock>
+                        </Border>
+                        <Border Grid.Row="4" Grid.Column="0">
+                            <TextBlock Text="编码器错误"></TextBlock>
+                        </Border>
+                        <Border Grid.Row="5" Grid.Column="0" Background="#DDE0E5">
+                            <TextBlock Text="请求供油"></TextBlock>
+                        </Border>
+                        <Border Grid.Row="6" Grid.Column="0">
+                            <TextBlock Text="右手柄激活"></TextBlock>
+                        </Border>
+                        <Border Grid.Row="0" Grid.Column="1" BorderBrush="Gray" BorderThickness="0,1,0,0">
+                            <cl:SymbolMapping Name="smStop" StrContent="" LampType="3" Width="30"/>
+                        </Border>
+                        <Border Grid.Row="1" Grid.Column="1" Background="#DDE0E5">
+                            <cl:SymbolMapping Name="smPressSenorError" StrContent="" LampType="3" Width="30" Height="30"/>
+                        </Border>
+                        <Border Grid.Row="2" Grid.Column="1">
+                            <cl:SymbolMapping Name="smRetractOrReachSenorError" StrContent="" LampType="3" Width="30" Height="30"/>
+                        </Border>
+                        <Border Grid.Row="3" Grid.Column="1" Background="#DDE0E5">
+                            <cl:SymbolMapping Name="smSwitchError" StrContent="" LampType="3" Width="30" Height="30"/>
+                        </Border>
+                        <Border Grid.Row="4" Grid.Column="1">
+                            <cl:SymbolMapping Name="smEncoderError" StrContent="" LampType="3" Width="30" Height="30"/>
+                        </Border>
+                        <Border Grid.Row="5" Grid.Column="1" Background="#DDE0E5">
+                            <cl:SymbolMapping Name="smGetOil" StrContent="" LampType="3" Width="30" Height="30"/>
+                        </Border>
+                        <Border Grid.Row="6" Grid.Column="1">
+                            <cl:SymbolMapping Name="smRightHandleActive" StrContent="" LampType="3" Width="30" Height="30"/>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </Grid>
+            <Grid Margin="5">
+                <Border Background="#F6F9FF"></Border>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <TextBlock Text=">当前动作" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,0,0,0" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <Grid Grid.Row="1">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40"/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <StackPanel Grid.Row="0" Orientation="Horizontal">
-                            <TextBlock Text="状态反馈" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,0,0,0" VerticalAlignment="Center"/>
-                        </StackPanel>
-                        <Grid Grid.Row="1">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="34"/>
-                                <RowDefinition Height="34"/>
-                                <RowDefinition Height="34"/>
-                                <RowDefinition Height="34"/>
-                                <RowDefinition Height="34"/>
-                                <RowDefinition Height="34"/>
-                                <RowDefinition Height="34"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="180"/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <Border Grid.Row="0" Grid.Column="0" BorderBrush="White" BorderThickness="1">
-                                <TextBlock Text="软急停"></TextBlock>
-                            </Border>
-                            <Border Grid.Row="1" Grid.Column="0" BorderBrush="White" BorderThickness="1">
-                                <TextBlock Text="压力传感器错误"></TextBlock>
-                            </Border>
-                            <Border Grid.Row="2" Grid.Column="0" BorderBrush="White" BorderThickness="1">
-                                <TextBlock Text="伸缩传感器错误"></TextBlock>
-                            </Border>
-                            <Border Grid.Row="3" Grid.Column="0" BorderBrush="White" BorderThickness="1">
-                                <TextBlock Text="接近开关失效"></TextBlock>
-                            </Border>
-                            <Border Grid.Row="4" Grid.Column="0" BorderBrush="White" BorderThickness="1">
-                                <TextBlock Text="编码器错误"></TextBlock>
-                            </Border>
-                            <Border Grid.Row="5" Grid.Column="0" BorderBrush="White" BorderThickness="1">
-                                <TextBlock Text="请求供油"></TextBlock>
-                            </Border>
-                            <Border Grid.Row="6" Grid.Column="0" BorderBrush="White" BorderThickness="1">
-                                <TextBlock Text="右手柄激活"></TextBlock>
-                            </Border>
-                            <Border Grid.Row="0" Grid.Column="1" BorderBrush="White" BorderThickness="1">
-                                <cl:SymbolMapping Name="smStop" StrContent="" LampType="3" Width="30"/>
-                            </Border>
-                            <Border Grid.Row="1" Grid.Column="1" BorderBrush="White" BorderThickness="1">
-                                <cl:SymbolMapping Name="smPressSenorError" StrContent="" LampType="3" Width="30" Height="30"/>
-                            </Border>
-                            <Border Grid.Row="2" Grid.Column="1" BorderBrush="White" BorderThickness="1">
-                                <cl:SymbolMapping Name="smRetractOrReachSenorError" StrContent="" LampType="3" Width="30" Height="30"/>
-                            </Border>
-                            <Border Grid.Row="3" Grid.Column="1" BorderBrush="White" BorderThickness="1">
-                                <cl:SymbolMapping Name="smSwitchError" StrContent="" LampType="3" Width="30" Height="30"/>
-                            </Border>
-                            <Border Grid.Row="4" Grid.Column="1" BorderBrush="White" BorderThickness="1">
-                                <cl:SymbolMapping Name="smEncoderError" StrContent="" LampType="3" Width="30" Height="30"/>
-                            </Border>
-                            <Border Grid.Row="5" Grid.Column="1" BorderBrush="White" BorderThickness="1">
-                                <cl:SymbolMapping Name="smGetOil" StrContent="" LampType="3" Width="30" Height="30"/>
-                            </Border>
-                            <Border Grid.Row="6" Grid.Column="1" BorderBrush="White" BorderThickness="1">
-                                <cl:SymbolMapping Name="smRightHandleActive" StrContent="" LampType="3" Width="30" Height="30"/>
-                            </Border>
-                        </Grid>
-                    </Grid>
-                </Border>
-            </Border>
-            <Border Style="{StaticResource BorderRegion}">
-                <Border Background="{DynamicResource BorderBrush}">
-                    <Grid>
-                        <Grid.RowDefinitions>
                             <RowDefinition Height="40"/>
-                            <RowDefinition/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
                         </Grid.RowDefinitions>
-                        <StackPanel Grid.Row="0" Orientation="Horizontal">
-                            <TextBlock Text="当前动作" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,0,0,0" VerticalAlignment="Center"/>
-                        </StackPanel>
-                        <Grid Grid.Row="1">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="40"/>
-                                <RowDefinition Height="40"/>
-                                <RowDefinition Height="40"/>
-                                <RowDefinition Height="40"/>
-                                <RowDefinition Height="40"/>
-                                <RowDefinition Height="40"/>
-                                <RowDefinition Height="40"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <Button Grid.Column="0" Grid.Row="0" Width="150" Height="36" FontSize="18" Name="btnTorqueMemory">扭矩记忆</Button>
-                            <Button Grid.Column="1" Grid.Row="0" Width="150" Height="36" FontSize="18" Name="btnTongsReset">钳头复位</Button>
-                            <Button Grid.Column="0" Grid.Row="1" Width="150" Height="36" FontSize="18" Name="btnRotateBtnClose">旋扣钳夹紧</Button>
-                            <Button Grid.Column="1" Grid.Row="1" Width="150" Height="36" FontSize="18" Name="btnRotateBtnOpen">旋扣钳松开</Button>
-                            <Button Grid.Column="0" Grid.Row="2" Width="150" Height="36" FontSize="18" Name="btnUpBtnClose">上钳夹紧</Button>
-                            <Button Grid.Column="1" Grid.Row="2" Width="150" Height="36" FontSize="18" Name="btnUpBtnOpen">上钳松开</Button>
-                            <Button Grid.Column="0" Grid.Row="3" Width="150" Height="36" FontSize="18" Name="btnDownBtnClose">下钳夹紧</Button>
-                            <Button Grid.Column="1" Grid.Row="3" Width="150" Height="36" FontSize="18" Name="btnDownBtnOpen">下钳松开</Button>
-                            <Button Grid.Column="0" Grid.Row="4" Width="150" Height="36" FontSize="18" Name="btnInBtn">紧扣</Button>
-                            <Button Grid.Column="1" Grid.Row="4" Width="150" Height="36" FontSize="18" Name="btnOutBtn">松扣</Button>
-                            <Button Grid.Column="0" Grid.Row="5" Width="150" Height="36" FontSize="18" Name="btnRotateIn">旋进</Button>
-                            <Button Grid.Column="1" Grid.Row="5" Width="150" Height="36" FontSize="18" Name="btnRotateOut">旋出</Button>
-                            <Button Grid.Column="0" Grid.Row="6" Width="150" Height="36" FontSize="18" Name="btnUp">上升</Button>
-                            <Button Grid.Column="1" Grid.Row="6" Width="150" Height="36" FontSize="18" Name="btnDown">旋出</Button>
-                        </Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Grid.Row="0" Width="140" Height="36" FontSize="18" Name="btnTorqueMemory">扭矩记忆</Button>
+                        <Button Grid.Column="1" Grid.Row="0" Width="140" Height="36" FontSize="18" Name="btnTongsReset">钳头复位</Button>
+                        <Button Grid.Column="0" Grid.Row="1" Width="140" Height="36" FontSize="18" Name="btnRotateBtnClose">旋扣钳夹紧</Button>
+                        <Button Grid.Column="1" Grid.Row="1" Width="140" Height="36" FontSize="18" Name="btnRotateBtnOpen">旋扣钳松开</Button>
+                        <Button Grid.Column="0" Grid.Row="2" Width="140" Height="36" FontSize="18" Name="btnUpBtnClose">上钳夹紧</Button>
+                        <Button Grid.Column="1" Grid.Row="2" Width="140" Height="36" FontSize="18" Name="btnUpBtnOpen">上钳松开</Button>
+                        <Button Grid.Column="0" Grid.Row="3" Width="140" Height="36" FontSize="18" Name="btnDownBtnClose">下钳夹紧</Button>
+                        <Button Grid.Column="1" Grid.Row="3" Width="140" Height="36" FontSize="18" Name="btnDownBtnOpen">下钳松开</Button>
+                        <Button Grid.Column="0" Grid.Row="4" Width="140" Height="36" FontSize="18" Name="btnInBtn">紧扣</Button>
+                        <Button Grid.Column="1" Grid.Row="4" Width="140" Height="36" FontSize="18" Name="btnOutBtn">松扣</Button>
+                        <Button Grid.Column="0" Grid.Row="5" Width="140" Height="36" FontSize="18" Name="btnRotateIn">旋进</Button>
+                        <Button Grid.Column="1" Grid.Row="5" Width="140" Height="36" FontSize="18" Name="btnRotateOut">旋出</Button>
+                        <Button Grid.Column="0" Grid.Row="6" Width="140" Height="36" FontSize="18" Name="btnUp">上升</Button>
+                        <Button Grid.Column="1" Grid.Row="6" Width="140" Height="36" FontSize="18" Name="btnDown">旋出</Button>
                     </Grid>
-                </Border>
-            </Border>
+                </Grid>
+            </Grid>
             <!--<Border Style="{StaticResource BorderRegion}">
                 <Border Background="{DynamicResource BorderBrush}">
                     <Grid>

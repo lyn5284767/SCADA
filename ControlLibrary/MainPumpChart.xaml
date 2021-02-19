@@ -9,7 +9,7 @@
              d:DesignHeight="250" d:DesignWidth="500"
              DataContext="{dxmvvm:ViewModelSource  Type={x:Type local:RealtimeViewModel}}">
     <Grid>
-        <dxc:ChartControl Name="chart" BorderThickness="0" Background="#E0E0E0" AutoLayout="False" CrosshairEnabled="False" IsHitTestVisible="False">
+        <dxc:ChartControl Name="chart" BorderThickness="0" Background="#F6F9FF" AutoLayout="False" CrosshairEnabled="False" IsHitTestVisible="False">
             <dxc:ChartControl.Legend>
                 <dxc:Legend HorizontalPosition="Left" VerticalPosition="TopOutside" Orientation="Horizontal" />
             </dxc:ChartControl.Legend>
@@ -45,7 +45,7 @@
                 </dxc:LineSeries2D>
             </dxc:XYDiagram2D>
             <dxc:ChartControl.Titles>
-                <dxc:Title Dock="Top" HorizontalAlignment="Left" Content="主泵压力曲线" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black"/>
+                <dxc:Title Dock="Top" HorizontalAlignment="Left" Content=">主泵压力曲线" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black"/>
             </dxc:ChartControl.Titles>
         </dxc:ChartControl>
     </Grid>

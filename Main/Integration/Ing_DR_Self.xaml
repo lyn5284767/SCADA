@@ -36,10 +36,10 @@
         </Style>
     </UserControl.Resources>
     <Grid Margin="5">
-        <Border Name="bdDR" Background="White" CornerRadius="10">
-            <Border.Effect>
+        <Border Name="bdDR" Background="#F6F9FF">
+            <!--<Border.Effect>
                 <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
-            </Border.Effect>
+            </Border.Effect>-->
         </Border>
         <Grid  Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
