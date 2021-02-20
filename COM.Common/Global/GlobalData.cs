@@ -117,6 +117,7 @@ namespace COM.Common
                     return;
                 PostMessage(TouchhWnd, WM_SYSCOMMAND, SC_RESTORE, 0);
             }
+
         }
 
         public const Int32 WM_SYSCOMMAND = 274;

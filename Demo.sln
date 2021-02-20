@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "COM.Common", "COM.Common\CO
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Model", "Com.Model\Com.Model.csproj", "{08DE74C3-FE63-40B2-98DA-685D8017113A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyBoard", "KeyBoard\KeyBoard.csproj", "{136F1A97-98C3-41CE-8822-50058BC780EE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -259,6 +261,26 @@ Global
 		{08DE74C3-FE63-40B2-98DA-685D8017113A}.Release|x64.Build.0 = Release|Any CPU
 		{08DE74C3-FE63-40B2-98DA-685D8017113A}.Release|x86.ActiveCfg = Release|Any CPU
 		{08DE74C3-FE63-40B2-98DA-685D8017113A}.Release|x86.Build.0 = Release|Any CPU
+		{136F1A97-98C3-41CE-8822-50058BC780EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{136F1A97-98C3-41CE-8822-50058BC780EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{136F1A97-98C3-41CE-8822-50058BC780EE}.Debug|Itanium.ActiveCfg = Debug|Any CPU
+		{136F1A97-98C3-41CE-8822-50058BC780EE}.Debug|Itanium.Build.0 = Debug|Any CPU
+		{136F1A97-98C3-41CE-8822-50058BC780EE}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{136F1A97-98C3-41CE-8822-50058BC780EE}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{136F1A97-98C3-41CE-8822-50058BC780EE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{136F1A97-98C3-41CE-8822-50058BC780EE}.Debug|x64.Build.0 = Debug|Any CPU
+		{136F1A97-98C3-41CE-8822-50058BC780EE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{136F1A97-98C3-41CE-8822-50058BC780EE}.Debug|x86.Build.0 = Debug|Any CPU
+		{136F1A97-98C3-41CE-8822-50058BC780EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{136F1A97-98C3-41CE-8822-50058BC780EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{136F1A97-98C3-41CE-8822-50058BC780EE}.Release|Itanium.ActiveCfg = Release|Any CPU
+		{136F1A97-98C3-41CE-8822-50058BC780EE}.Release|Itanium.Build.0 = Release|Any CPU
+		{136F1A97-98C3-41CE-8822-50058BC780EE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{136F1A97-98C3-41CE-8822-50058BC780EE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{136F1A97-98C3-41CE-8822-50058BC780EE}.Release|x64.ActiveCfg = Release|Any CPU
+		{136F1A97-98C3-41CE-8822-50058BC780EE}.Release|x64.Build.0 = Release|Any CPU
+		{136F1A97-98C3-41CE-8822-50058BC780EE}.Release|x86.ActiveCfg = Release|Any CPU
+		{136F1A97-98C3-41CE-8822-50058BC780EE}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

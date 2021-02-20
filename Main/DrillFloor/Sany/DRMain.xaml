@@ -213,8 +213,8 @@
                                 <MenuItem Header="设备回收" FontSize="24" Click="btnDeviceBack" />
                             </MenuItem>
                         </Menu>
-                        <TextBlock Grid.Row="1" Grid.Column="1" Text="未选择目的地" Name="drDestination" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        <TextBlock Grid.Row="1" Grid.Column="3" Text="未选择管柱类型" Name="tubeType" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="未选择目的地" Name="drDestination" Foreground="#4C80FF" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <TextBlock Grid.Row="1" Grid.Column="3" Text="未选择管柱类型" Name="tubeType" Foreground="#4C80FF" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
 
                         <Menu Grid.Row="1" Grid.Column="2" Background="Transparent" Height="40" Width="100"  FontSize="16" FontWeight="Bold" Foreground="#008AFF">
                             <MenuItem >
@@ -234,6 +234,7 @@
                                     <MenuItem Header="11''钻铤" Click="btn_SelectDrillPipe"  TabIndex="110"/>
                                 </MenuItem>
                                 <MenuItem Header="钻杆"  FontSize="24">
+                                    <MenuItem Header="2 7/8''钻杆" Click="btn_SelectDrillPipe" TabIndex="28"/>
                                     <MenuItem Header="3''钻杆" Click="btn_SelectDrillPipe" TabIndex="30"/>
                                     <MenuItem Header="3.5''钻杆" Click="btn_SelectDrillPipe" TabIndex="35"/>
                                     <MenuItem Header="4''钻杆" Click="btn_SelectDrillPipe" TabIndex="40"/>
@@ -312,7 +313,7 @@
                     <Grid Grid.Row="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="3*"/>
-                            <ColumnDefinition Width="62*"/>
+                            <ColumnDefinition Width="50*"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Text="{Binding ElementName=drworkMode,Path=IsChecked,Converter={StaticResource workModeFlowCvt}}" FontSize="16" Margin="2,0,0,0"></TextBlock>
 

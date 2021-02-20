@@ -215,8 +215,9 @@ namespace Main.SIR
         {
             byte[] data = new byte[10] { 80, 16, 23, 1, 0, 0, 1, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(data);
-            this.effRotateSelect.Opacity = 0.5;
-            this.effInOutSelect.Opacity = 0;
+            this.effRotateSelect.BorderBrush = new SolidColorBrush(Colors.Blue);
+            var bc = new BrushConverter();
+            this.effInOutSelect.BorderBrush = (Brush)bc.ConvertFrom("#F6F9FF");
         }
         /// <summary>
         /// 伸缩标定请求
@@ -225,8 +226,9 @@ namespace Main.SIR
         {
             byte[] data = new byte[10] { 80, 16, 23, 2, 0, 0, 1, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(data);
-            this.effRotateSelect.Opacity = 0;
-            this.effInOutSelect.Opacity = 0.5;
+            this.effInOutSelect.BorderBrush = new SolidColorBrush(Colors.Blue);
+            var bc = new BrushConverter();
+            this.effRotateSelect.BorderBrush = (Brush)bc.ConvertFrom("#F6F9FF");
         }
         /// <summary>
         /// 切换单位

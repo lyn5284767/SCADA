@@ -124,7 +124,7 @@
                                 <inputcontrol:SetControl Name="twt129" Head="80,1,12,129,0,0" TbkText="左手指最小值" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
                                 <inputcontrol:SetControl Name="twt130" Head="80,1,12,130,0,0" TbkText="左手指最大值" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
                                 <inputcontrol:SetControl Name="twt131" Head="80,1,12,131,0,0" TbkText="右手指最小值" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                                <inputcontrol:SetControl Name="twt132" Head="80,1,12,72,0,0" TbkText="右手指最大值" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt132" Head="80,1,12,132,0,0" TbkText="右手指最大值" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
                             </StackPanel>
                         </StackPanel>
                     </Border>

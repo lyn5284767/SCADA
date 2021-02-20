@@ -353,7 +353,7 @@
                             </StackPanel>
                         </Viewbox>
                     </Border>-->
-                    <Border Grid.Row="1" Grid.Column="0" BorderBrush="Gray" BorderThickness="0,1,0,0">
+                    <Border Grid.Row="1" Grid.Column="0" BorderBrush="Gray" BorderThickness="0,1,0,0" Visibility="Collapsed">
                         <Viewbox>
                             <StackPanel Orientation="Horizontal" Margin="10,0,10,0">
                                 <Menu Background="Transparent" Height="40" Width="120"  FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Foreground="#008AFF">
@@ -402,7 +402,7 @@
                             </StackPanel>
                         </Viewbox>
                     </Border>
-                    <Border Grid.Row="2" Grid.Column="0" BorderBrush="Gray" BorderThickness="0,1,0,0">
+                    <Border Grid.Row="1" Grid.Column="0" BorderBrush="Gray" BorderThickness="0,1,0,0">
                         <Viewbox>
                             <Grid Margin="10,0,10,0">
                                 <Grid.ColumnDefinitions>
@@ -438,7 +438,7 @@
                             </Grid>
                         </Viewbox>
                     </Border>-->
-                    <Border Grid.Row="3" Grid.Column="0" BorderBrush="Gray" BorderThickness="0,1,0,0">
+                    <Border Grid.Row="3" Grid.Column="0" BorderBrush="Gray" BorderThickness="0,1,0,0" Visibility="Collapsed">
                         <Viewbox>
                             <Grid Margin="10,0,10,0">
                                 <Grid.ColumnDefinitions>
@@ -482,16 +482,23 @@
                             </Grid>
                         </Viewbox>
                     </Border>-->
-                    <Border Grid.Row="6"  BorderBrush="Gray" BorderThickness="0,1,0,0">
+                    <Border Grid.Row="2"  BorderBrush="Gray" BorderThickness="0,1,0,0">
                         <Viewbox>
-                            <StackPanel Orientation="Horizontal" Name="stackPanel" Margin="10,0,10,0">
-                                <TextBlock Name="tbk" Text="设置值" HorizontalAlignment="Center" Foreground="Black" VerticalAlignment="Center" Margin="1" FontFamily="微软雅黑" FontWeight="Bold"  Width="120" TextAlignment="Center">
-                                </TextBlock>
-                                <TextBox x:Name="textBoxShow" IsReadOnly="True" Foreground="Black" Text="XX" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="18" FontFamily="微软雅黑" FontWeight="Bold" Width="120" TextAlignment="Center"/>
-                                <ComboBox x:Name="cbSet" Width="180" Foreground="Black" FontSize="18" Margin="5,7,5,7" Height="33"></ComboBox>
-                                <TextBox x:Name="tbInput" IsReadOnly="True" Foreground="Black" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="18" FontFamily="微软雅黑" FontWeight="Bold" Width="120" TextAlignment="Center"/>
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="10,0,10,0">
+                                    <TextBlock Text="选择参数" Margin="180,0,0,0"></TextBlock>
+                                    <TextBlock Text="当前值" Margin="80,0,0,0"></TextBlock>
+                                    <TextBlock Text="设置值" Margin="60,0,0,0"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Name="stackPanel" Margin="10,0,10,0">
+                                    <TextBlock Name="tbk" Text="参数设置" HorizontalAlignment="Center" Foreground="Black" VerticalAlignment="Center" Margin="1" FontFamily="微软雅黑" FontWeight="Bold"  Width="120" TextAlignment="Center">
+                                    </TextBlock>
+                                    <ComboBox x:Name="cbSet" Width="180" Foreground="Black" FontSize="18" Margin="5,7,5,7" Height="33" SelectionChanged="cbSet_SelectionChanged"></ComboBox>
+                                    <TextBox x:Name="textBoxShow" IsReadOnly="True" Foreground="Black" Text="XX" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="18" FontFamily="微软雅黑" FontWeight="Bold" Width="120" TextAlignment="Center"/>
+                                    <TextBox x:Name="tbInput" Foreground="Black" PreviewMouseDown="tb_ParameterConfig_Focus" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="18" FontFamily="微软雅黑" FontWeight="Bold" Width="120" TextAlignment="Center"/>
 
-                                <Button Margin="5,0,0,0" FontWeight="Bold" FontSize="18" Height="40" Width="95" Click="SetConfirm_Click">确认</Button>
+                                    <Button Margin="5,0,0,0" FontWeight="Bold" FontSize="18" Height="40" Width="95" Click="SetConfirm_Click">确认</Button>
+                                </StackPanel>
                             </StackPanel>
                         </Viewbox>
                     </Border>

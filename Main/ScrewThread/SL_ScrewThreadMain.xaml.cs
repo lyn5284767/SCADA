@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -91,6 +92,9 @@ namespace Main.ScrewThread
             dicNumToValue.Add(13, "自动伸缩慢速");
             dicNumToValue.Add(14, "自动旋转速度");
             dicNumToValue.Add(15, "自动旋转慢速");
+            dicNumToValue.Add(16, "下降时间");
+            dicNumToValue.Add(17, "注脂时间");
+            dicNumToValue.Add(18, "上升时间");
             this.cbSet.ItemsSource = dicNumToValue;
             this.cbSet.SelectedValuePath = "Key";
             this.cbSet.DisplayMemberPath = "Value";
@@ -205,13 +209,17 @@ namespace Main.ScrewThread
         /// <param name="e"></param>
         private void SetConfirm_Click(object sender, RoutedEventArgs e)
         {
-            string strText = string.Empty;
-            if (this.cbSet.SelectedValue != null) strText = this.cbSet.SelectedValue.ToString();
-            if (strText.Length == 0) strText = "0";
-            short i16Text = Convert.ToInt16(strText);
-            byte[] tempByte = BitConverter.GetBytes(i16Text);
-            byte[] byteToSend = new byte[10] { 80, 64, 7, 1, tempByte[0], tempByte[1], 0, 0, 0, 0 };
-            GlobalData.Instance.da.SendBytes(byteToSend);
+            Regex regexParameterConfigurationConfirm = new Regex(@"^[0-9]+$");
+            string strInputText = this.tbInput.Text;
+            if (strInputText.Length == 0) strInputText = "0";
+            int setValue = this.cbSet.SelectedIndex;
+            if ((regexParameterConfigurationConfirm.Match(strInputText)).Success)
+            {
+                short i16Text = Convert.ToInt16(strInputText);
+                byte[] tempByte = BitConverter.GetBytes(i16Text);
+                byte[] byteToSend = new byte[10] { 80, 64, 3, (byte)setValue, tempByte[0], tempByte[1], 0, 0, 0, 0 };
+                GlobalData.Instance.da.SendBytes(byteToSend);
+            }
         }
         /// <summary>
         /// 缩回偏差位移
@@ -362,6 +370,34 @@ namespace Main.ScrewThread
         {
             byte[] byteToSend = new byte[10] { 80, 64, 3, 9, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 切换读取索引值
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cbSet_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string strText = string.Empty;
+            if (this.cbSet.SelectedValue != null) strText = this.cbSet.SelectedValue.ToString();
+            if (strText.Length == 0) strText = "0";
+            short i16Text = Convert.ToInt16(strText);
+            byte[] tempByte = BitConverter.GetBytes(i16Text);
+            byte[] byteToSend = new byte[10] { 80, 64, 7, 1, tempByte[0], tempByte[1], 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+
+        }
+        /// <summary>
+        /// 获取键盘
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tb_ParameterConfig_Focus(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                GlobalData.Instance.GetKeyBoard();
+            }
         }
     }
 }

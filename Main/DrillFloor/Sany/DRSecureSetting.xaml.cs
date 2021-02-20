@@ -1,5 +1,6 @@
 ﻿using COM.Common;
 using ControlLibrary;
+using HandyControl.Tools.Extension;
 using System;
 using System.Collections.Generic;
 using System.Linq;

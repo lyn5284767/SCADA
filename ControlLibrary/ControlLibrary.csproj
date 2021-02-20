@@ -168,6 +168,9 @@
     <Compile Include="InputControl\TwoTextWithInput.xaml.cs">
       <DependentUpon>TwoTextWithInput.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Keybord.xaml.cs">
+      <DependentUpon>Keybord.xaml</DependentUpon>
+    </Compile>
     <Compile Include="KeyWindow.xaml.cs">
       <DependentUpon>KeyWindow.xaml</DependentUpon>
     </Compile>
@@ -328,6 +331,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="InputControl\TwoTextWithInput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Keybord.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
