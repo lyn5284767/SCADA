@@ -44,6 +44,8 @@ namespace Main.Integration
 
         private void ModelStartWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            byte[] data = new byte[10] { 80, 33, 0, 0, 0, 0, 0, 0, 30, 30 };
+            GlobalData.Instance.da.SendBytes(data);
             StartModel(tmpModel);
         }
         /// <summary>
@@ -151,7 +153,7 @@ namespace Main.Integration
                     }
                     else // 分阀箱模式
                     {
-                        byte[] byteToSend = new byte[10] { 0, 19, 1, 9, 0, 0, 0, 0, 0, 0 }; // 切换司钻房协议
+                        byte[] byteToSend = new byte[10] { 0, 19, 52, 0, 1, 0, 0, 0, 0, 0 }; // 切换司钻房协议
                         string tips = "液压站模式切换超时，重新启动";
                         CheckOverTime(byteToSend, tips, 5);
                     }
@@ -717,15 +719,18 @@ namespace Main.Integration
                 drbyteToSend = new byte[10] { 1, 32, 3, 31, 0, 0, 0, 0, 0, 0 };
                 
                 string tips = "切换自动模式超时，正在重新切换";
+                if(!sfAuto) tips = "二层台切换自动模式失败，请确认二层台模式";
+                else if(!drAuto) tips = "铁钻工切换自动模式失败，请确认二层台模式";
                 if (GlobalData.Instance.da.GloConfig.SIRType == 1)
                 {
                     sirbyteToSend = new byte[10] { 23, 17, 1, 2, 0, 0, 0, 0, 0, 0 };
                     CheckOverTime(sfbyteToSend, drbyteToSend, sirbyteToSend, tips, 5);
                 }
-                else if (GlobalData.Instance.da.GloConfig.SIRType == 2)
+                else
                 {
                     CheckOverTime(sfbyteToSend, drbyteToSend, tips, 5);
                 }
+                
             }
         }
         #endregion
@@ -760,7 +765,7 @@ namespace Main.Integration
 
             if (GlobalData.Instance.da.GloConfig.DRType == 0)
             {
-                
+                drWorkModel = this.tmpModel.WorkType;
             }
             else if (GlobalData.Instance.da.GloConfig.DRType == 1)
             {
@@ -770,7 +775,9 @@ namespace Main.Integration
             { }
 
             if (GlobalData.Instance.da.GloConfig.SIRType == 0)
-            { }
+            {
+                sirWorkModel = this.tmpModel.WorkType;
+            }
             else if (GlobalData.Instance.da.GloConfig.SIRType == 1)
             {
                 if (GlobalData.Instance.da["SIRSelfWorkModel"].Value.Byte == 1)
@@ -847,7 +854,7 @@ namespace Main.Integration
                         sirbyteToSend = new byte[10] { 23, 17, 2, 1, 0, 0, 0, 0, 0, 0 };
                         CheckOverTime(sfbyteToSend, drbyteToSend, sirbyteToSend, tips, 10);
                     }
-                    else if (GlobalData.Instance.da.GloConfig.SIRType == 2)
+                    else
                     {
                         CheckOverTime(sfbyteToSend, drbyteToSend, tips, 10);
                     }
@@ -861,7 +868,7 @@ namespace Main.Integration
                         sirbyteToSend = new byte[10] { 23, 17, 2, 2, 0, 0, 0, 0, 0, 0 };
                         CheckOverTime(sfbyteToSend, drbyteToSend, sirbyteToSend, tips, 10);
                     }
-                    else if (GlobalData.Instance.da.GloConfig.SIRType == 2)
+                    else
                     {
                         CheckOverTime(sfbyteToSend, drbyteToSend, tips, 10);
                     }

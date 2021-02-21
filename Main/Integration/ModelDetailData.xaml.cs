@@ -107,6 +107,14 @@ namespace Main.Integration
         private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.bdOpr.Visibility = Visibility.Visible;
+            if (GlobalData.Instance.da["460b0"].Value.Boolean)
+            {
+                this.btnStart.Content = "停止";
+            }
+            else
+            {
+                this.btnStart.Content = "启动";
+            }
         }
         /// <summary>
         /// 隐藏操作项

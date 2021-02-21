@@ -90,7 +90,7 @@
                             <TextBlock Name="tbLinkStatus" Text="未知" Margin="5,0,0,0" FontSize="18" FontWeight="Bold" Foreground="#4C80FF" VerticalAlignment="Center"></TextBlock>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Grid.Row="2">
-                            <TextBlock Text="当前工序:" Margin="30,0,0,0" FontSize="18" FontWeight="Bold" Foreground="#212121" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Text="工作模式:" Margin="30,0,0,0" FontSize="18" FontWeight="Bold" Foreground="#212121" VerticalAlignment="Center"></TextBlock>
                             <TextBlock Name="tbCurWork" Text="未知" Margin="5,0,0,0" FontSize="18" FontWeight="Bold" Foreground="#4C80FF" VerticalAlignment="Center"></TextBlock>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Grid.Row="3">

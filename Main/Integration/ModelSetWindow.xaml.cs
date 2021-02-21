@@ -66,23 +66,23 @@ namespace Main.Integration
                 this.btnPre.Visibility = Visibility.Collapsed;
                 if (globalModel.HS_PumpType == 1)
                 {
-                    this.btnPumpOne.Background = (Brush)bc.ConvertFrom("#72C9F6");
-                    this.btnPumpTwo.Background = (Brush)bc.ConvertFrom("#FFFFFF");
-                    this.btnPumpBoth.Background = (Brush)bc.ConvertFrom("#FFFFFF");
+                    this.btnPumpOne.Foreground = (Brush)bc.ConvertFrom("#2B71CA");
+                    this.btnPumpTwo.Foreground = (Brush)bc.ConvertFrom("#000000");
+                    this.btnPumpBoth.Foreground = (Brush)bc.ConvertFrom("#000000");
                     this.tbConfirmHS.Text = "液压站:1#主泵";
                 }
                 else if (globalModel.HS_PumpType == 2)
                 {
-                    this.btnPumpOne.Background = (Brush)bc.ConvertFrom("#FFFFFF");
-                    this.btnPumpTwo.Background = (Brush)bc.ConvertFrom("#72C9F6");
-                    this.btnPumpBoth.Background = (Brush)bc.ConvertFrom("#FFFFFF");
+                    this.btnPumpOne.Foreground = (Brush)bc.ConvertFrom("#000000");
+                    this.btnPumpTwo.Foreground = (Brush)bc.ConvertFrom("#2B71CA");
+                    this.btnPumpBoth.Foreground = (Brush)bc.ConvertFrom("#000000");
                     this.tbConfirmHS.Text = "液压站:2#主泵";
                 }
                 else if (globalModel.HS_PumpType == 3)
                 {
-                    this.btnPumpOne.Background = (Brush)bc.ConvertFrom("#FFFFFF");
-                    this.btnPumpTwo.Background = (Brush)bc.ConvertFrom("#FFFFFF");
-                    this.btnPumpBoth.Background = (Brush)bc.ConvertFrom("#72C9F6");
+                    this.btnPumpOne.Foreground = (Brush)bc.ConvertFrom("#000000");
+                    this.btnPumpTwo.Foreground = (Brush)bc.ConvertFrom("#000000");
+                    this.btnPumpBoth.Foreground = (Brush)bc.ConvertFrom("#2B71CA");
                     this.tbConfirmHS.Text = "液压站:双泵";
                 }
             }
@@ -93,14 +93,14 @@ namespace Main.Integration
                 this.gdWorkModel.Visibility = Visibility.Visible;
                 if (globalModel.WorkType == 1)
                 {
-                    this.btnDrillUp.Background = (Brush)bc.ConvertFrom("#72C9F6");
-                    this.btnDrillDown.Background = (Brush)bc.ConvertFrom("#FFFFFF");
+                    this.btnDrillUp.Foreground = (Brush)bc.ConvertFrom("#000000");
+                    this.btnDrillDown.Foreground = (Brush)bc.ConvertFrom("#2B71CA");
                     this.tbConfirmWorkModel.Text = "工况:送杆";
                 }
                 else if (globalModel.WorkType == 2)
                 {
-                    this.btnDrillUp.Background = (Brush)bc.ConvertFrom("#FFFFFF");
-                    this.btnDrillDown.Background = (Brush)bc.ConvertFrom("#72C9F6");
+                    this.btnDrillUp.Foreground = (Brush)bc.ConvertFrom("#2B71CA");
+                    this.btnDrillDown.Foreground = (Brush)bc.ConvertFrom("#000000");
                     this.tbConfirmWorkModel.Text = "工况:排杆";
                 }
             }
@@ -111,13 +111,13 @@ namespace Main.Integration
                 this.gdPipeOrCollar.Visibility = Visibility.Visible;
                 if (globalModel.PipeType == 1)
                 {
-                    this.btnPipe.Background = (Brush)bc.ConvertFrom("#72C9F6");
-                    this.btnCollar.Background = (Brush)bc.ConvertFrom("#FFFFFF");
+                    this.btnPipe.Foreground = (Brush)bc.ConvertFrom("#2B71CA");
+                    this.btnCollar.Foreground = (Brush)bc.ConvertFrom("#000000");
                 }
                 else if (globalModel.PipeType == 2)
                 {
-                    this.btnPipe.Background = (Brush)bc.ConvertFrom("#FFFFFF");
-                    this.btnCollar.Background = (Brush)bc.ConvertFrom("#72C9F6");
+                    this.btnPipe.Foreground = (Brush)bc.ConvertFrom("#000000");
+                    this.btnCollar.Foreground = (Brush)bc.ConvertFrom("#2B71CA");
                 }
             }
             else if (step == 3)
@@ -131,11 +131,11 @@ namespace Main.Integration
                     {
                         if (btn.Tag.ToString() == globalModel.PipeSize.ToString())
                         {
-                            btn.Background = (Brush)bc.ConvertFrom("#72C9F6");
+                            btn.Foreground = (Brush)bc.ConvertFrom("#2B71CA");
                         }
                         else
                         {
-                            btn.Background = (Brush)bc.ConvertFrom("#FFFFFF");
+                            btn.Foreground = (Brush)bc.ConvertFrom("#000000");
                         }
                     }
                 }
@@ -148,11 +148,11 @@ namespace Main.Integration
                     {
                         if (btn.Tag.ToString() == globalModel.PipeSize.ToString())
                         {
-                            btn.Background = (Brush)bc.ConvertFrom("#72C9F6");
+                            btn.Foreground = (Brush)bc.ConvertFrom("#2B71CA");
                         }
                         else
                         {
-                            btn.Background = (Brush)bc.ConvertFrom("#FFFFFF");
+                            btn.Foreground = (Brush)bc.ConvertFrom("#000000");
                         }
                     }
                 }
@@ -169,21 +169,21 @@ namespace Main.Integration
                 this.gdDesType.Visibility = Visibility.Visible;
                 if (globalModel.DesType == 1)
                 {
-                    this.btnRooting.Background = (Brush)bc.ConvertFrom("#72C9F6");
-                    this.btnCatToWell.Background = (Brush)bc.ConvertFrom("#FFFFFF");
-                    this.btnCatToMouse.Background = (Brush)bc.ConvertFrom("#FFFFFF");
+                    this.btnRooting.Foreground = (Brush)bc.ConvertFrom("#2B71CA");
+                    this.btnCatToWell.Foreground = (Brush)bc.ConvertFrom("#000000");
+                    this.btnCatToMouse.Foreground = (Brush)bc.ConvertFrom("#000000");
                 }
                 else if (globalModel.DesType == 2)
                 {
-                    this.btnRooting.Background = (Brush)bc.ConvertFrom("#FFFFFF");
-                    this.btnCatToWell.Background = (Brush)bc.ConvertFrom("#72C9F6");
-                    this.btnCatToMouse.Background = (Brush)bc.ConvertFrom("#FFFFFF");
+                    this.btnRooting.Foreground = (Brush)bc.ConvertFrom("#000000");
+                    this.btnCatToWell.Foreground = (Brush)bc.ConvertFrom("#2B71CA");
+                    this.btnCatToMouse.Foreground = (Brush)bc.ConvertFrom("#000000");
                 }
                 else if (globalModel.DesType == 3)
                 {
-                    this.btnRooting.Background = (Brush)bc.ConvertFrom("#FFFFFF");
-                    this.btnCatToWell.Background = (Brush)bc.ConvertFrom("#FFFFFF");
-                    this.btnCatToMouse.Background = (Brush)bc.ConvertFrom("#72C9F6");
+                    this.btnRooting.Foreground = (Brush)bc.ConvertFrom("#000000");
+                    this.btnCatToWell.Foreground = (Brush)bc.ConvertFrom("#000000");
+                    this.btnCatToMouse.Foreground = (Brush)bc.ConvertFrom("#2B71CA");
                 }
             }
             else if (step == 5)
@@ -193,13 +193,13 @@ namespace Main.Integration
                 this.gdSelectedAutoOrHand.Visibility = Visibility.Visible;
                 if (globalModel.SelectDrill == -1)
                 {
-                    this.btnAutoSelected.Background = (Brush)bc.ConvertFrom("#72C9F6");
-                    this.btnHandSelected.Background = (Brush)bc.ConvertFrom("#FFFFFF");
+                    this.btnAutoSelected.Foreground = (Brush)bc.ConvertFrom("#2B71CA");
+                    this.btnHandSelected.Foreground = (Brush)bc.ConvertFrom("#000000");
                 }
                 else if(globalModel.SelectDrill>0)
                 {
-                    this.btnAutoSelected.Background = (Brush)bc.ConvertFrom("#FFFFFF");
-                    this.btnHandSelected.Background = (Brush)bc.ConvertFrom("#72C9F6");
+                    this.btnAutoSelected.Foreground = (Brush)bc.ConvertFrom("#000000");
+                    this.btnHandSelected.Foreground = (Brush)bc.ConvertFrom("#2B71CA");
                 }
             }
             else if (step == 6)
@@ -214,8 +214,8 @@ namespace Main.Integration
                 else if (globalModel.HS_PumpType == 3) this.tbConfirmHS.Text = "液压站:双泵";
                 else this.tbConfirmHS.Text = "液压站:未选择";
 
-                if (globalModel.WorkType == 1) this.tbConfirmWorkModel.Text = "工况:排杆";
-                else if (globalModel.WorkType == 2) this.tbConfirmWorkModel.Text = "工况:送杆";
+                if (globalModel.WorkType == 1) this.tbConfirmWorkModel.Text = "工况:送杆";
+                else if (globalModel.WorkType == 2) this.tbConfirmWorkModel.Text = "工况:排杆";
                 else this.tbConfirmWorkModel.Text = "工况:未选择";
 
                 if (globalModel.PipeType == 1)

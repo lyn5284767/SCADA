@@ -243,6 +243,25 @@ namespace Main.Integration
                     this.Warnning();
                     this.Communcation();
                     this.MonitorSysStatus();
+                    var bc = new BrushConverter();
+                    if (GlobalData.Instance.da["460b0"].Value.Boolean)
+                    {
+                        if (gdModel.Children.Count == 2)
+                        {
+                            if (gdModel.Children[1] is ModelDetailData &&
+                                (gdModel.Tag is GlobalModel) )
+                            {
+                                (gdModel.Children[1] as ModelDetailData).bdBg.Background = (Brush)bc.ConvertFrom("#72C9F6");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (gdModel.Children.Count == 2)
+                        {
+                            (gdModel.Children[1] as ModelDetailData).bdBg.Background = (Brush)bc.ConvertFrom("#FFFFFF");
+                        }
+                    }
                 }));
             }
             catch (Exception ex)
@@ -566,7 +585,13 @@ namespace Main.Integration
                     this.gdModel.Children[0].Visibility = Visibility.Collapsed;
                 data.StartFinishEvent += Data_StartFinishEvent;
                 this.gdModel.Tag = list[0];
-                this.gdModel.Children.Add(data);
+                if (this.gdModel.Children.Count == 2)
+                {
+                    this.gdModel.Children.RemoveAt(1);
+                    this.gdModel.Children.Add(data);
+                }
+                else
+                { this.gdModel.Children.Add(data); }
             }
             //for (int i = 0; i < 5; i++)
             //{
