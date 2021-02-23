@@ -375,7 +375,7 @@ namespace COM.Common
         /// </summary>
         HD = 3,
         /// <summary>
-        /// 宏达
+        /// 胜利
         /// </summary>
         SL = 4
     }

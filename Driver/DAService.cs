@@ -1311,7 +1311,7 @@ namespace DemoDriver
         /// </summary>
         public int ClearBtnType { get; set; }
         /// <summary>
-        /// 防喷盒厂家类型 0：无，1.有
+        /// 防喷盒厂家类型 0：无，1.三一;2.胜利
         /// </summary>
         public int PreventBoxType { get; set; }
         /// <summary>
