@@ -593,6 +593,15 @@ namespace Main.Integration
                 else
                 { this.gdModel.Children.Add(data); }
             }
+            else
+            {
+                if (this.gdModel.Children[0] is TextBlock)
+                    this.gdModel.Children[0].Visibility = Visibility.Visible;
+                if (this.gdModel.Children.Count == 2)
+                {
+                    this.gdModel.Children.RemoveAt(1);
+                }
+            }
             //for (int i = 0; i < 5; i++)
             //{
             //    if (i<list.Count)
@@ -744,7 +753,7 @@ namespace Main.Integration
                 else if (GlobalData.Instance.da.GloConfig.CatType == 3) this.tbCat.Text = "猫道(宏达)";
                 else if (GlobalData.Instance.da.GloConfig.CatType == 4)
                 {
-                    this.tbCat.Text = "猫道(宝石)";
+                    this.tbCat.Text = "猫道(胜利)";
                     this.gdCat.Children.Clear();
                     this.gdCat.Children.Add(Ing_Cat_SL.Instance);
                 }

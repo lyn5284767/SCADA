@@ -3155,6 +3155,11 @@ namespace Main
                 }
                 else if (GlobalData.Instance.da.GloConfig.PreventBoxType == 1)
                 {
+                    //this.spMain.Children.Clear();
+                    //this.spMain.Children.Add(SL_ScrewThreadMain.Instance);
+                }
+                else if (GlobalData.Instance.da.GloConfig.PreventBoxType == 2)
+                {
                     this.spMain.Children.Clear();
                     this.spMain.Children.Add(SL_ScrewThreadMain.Instance);
                 }
