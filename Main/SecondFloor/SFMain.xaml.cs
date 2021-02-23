@@ -2441,7 +2441,7 @@ namespace Main.SecondFloor
             byte[] byteToSend = SendByte(new List<byte> { 24, 2 });
             GlobalData.Instance.da.SendBytes(byteToSend);
             UdpModel model = new UdpModel();
-            model.UdpType = UdpType.PlayCamera;
+            model.UdpType = UdpType.StartLink;
             model.Content = "172.16.16.120";
             byte[] bytes = Encoding.UTF8.GetBytes(model.ToJson());
             GlobalData.Instance.da.SendDataToIPAndPort(bytes, "192.168.137.167", 8050);

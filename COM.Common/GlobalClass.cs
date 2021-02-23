@@ -111,7 +111,8 @@ namespace COM.Common
 
     public enum UdpType
     {
-        PlayCamera = 0
+        StartLink = 0,
+        PlayCamera = 1
     }
 
     public class DateBaseReport
