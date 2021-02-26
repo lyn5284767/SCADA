@@ -1326,6 +1326,14 @@ namespace DemoDriver
         /// 是否为集成系统 0-集成系统；1-二层台单机
         /// </summary>
         public int IngSystem { get; set; }
+        /// <summary>
+        /// 大钩类型 1-单控制编码器 2-双控制编码器 3-外部信号 4-盛特模拟器
+        /// </summary>
+        public int HookType { get; set; }
+        /// <summary>
+        /// 顶驱类型 0-无 1-有
+        /// </summary>
+        public int TopType { get; set; }
     }
 
     /// <summary>

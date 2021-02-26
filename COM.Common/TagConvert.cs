@@ -831,6 +831,87 @@ namespace COM.Common
     }
 
     /// <summary>
+    /// 设备编码绑定-73，75-78
+    /// </summary>
+    public class DRDeviceEncodeMultiConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+
+            if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null) || (values[1] == DependencyProperty.UnsetValue) || (values[1] == null) || (values[2] == DependencyProperty.UnsetValue) || (values[2] == null))
+            {
+                return "";
+            }
+            string year = string.Empty;
+            if (values[0].ToString().Length == 1) year = "0" + values[0].ToString();
+            else year = values[0].ToString();
+            int deviceModel = int.Parse(values[1].ToString());
+            string dModel = string.Empty;
+            if (GlobalData.Instance.da.GloConfig.SysType == 1) // 修井
+            {
+                if (deviceModel < 2000) dModel = "0073";
+                else dModel = "0089";
+            }
+            else
+            {
+                if (deviceModel >= 2700) dModel = "5280";
+                else dModel = "7172";
+            }
+            string encode = string.Empty;
+            if (values[2].ToString().Length < 4)
+            {
+                int tmpLen = 4 - values[2].ToString().Length;
+                for (int i = 0; i < tmpLen; i++)
+                {
+                    encode += "0";
+                }
+                encode += values[2].ToString();
+            }
+            string txt = parameter.ToString();
+            string deviceEncode = txt + dModel + YearToEncode() + encode;
+            return deviceEncode;
+        }
+        /// <summary>
+        /// 根据年份返回编码
+        /// </summary>
+        /// <returns></returns>
+        private string YearToEncode()
+        {
+            string yearEncode = string.Empty;
+            int year = DateTime.Now.Year;
+            int first = year / 10;
+            int second = year - first * 10;
+            if (first == 200) yearEncode = "A";
+            else if (first == 201) yearEncode = "B";
+            else if (first == 202) yearEncode = "C";
+            else if (first == 203) yearEncode = "D";
+            else if (first == 204) yearEncode = "E";
+            else if (first == 205) yearEncode = "F";
+            else if (first == 206) yearEncode = "G";
+            else if (first == 207) yearEncode = "H";
+            else if (first == 208) yearEncode = "I";
+            else if (first == 209) yearEncode = "J";
+            if (second == 0) yearEncode += "A";
+            else if (second == 1) yearEncode += "B";
+            else if (second == 2) yearEncode += "C";
+            else if (second == 3) yearEncode += "D";
+            else if (second == 4) yearEncode += "E";
+            else if (second == 5) yearEncode += "F";
+            else if (second == 6) yearEncode += "G";
+            else if (second == 7) yearEncode += "H";
+            else if (second == 8) yearEncode += "I";
+            else if (second == 9) yearEncode += "J";
+
+            return yearEncode;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
     /// 二层台版本信息绑定
     /// </summary>
     public class SecondVersionMultiConverter : IMultiValueConverter
@@ -4937,6 +5018,34 @@ namespace COM.Common
             if (sfType == 2 && drType == 2 && sirType == 2) return true;
 
             return false;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 左手柄
+    /// </summary>
+    public class LeftHandMultiConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+
+            if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null) || (values[1] == DependencyProperty.UnsetValue) || (values[1] == null))
+            {
+                return "未知";
+            }
+            string retTxt = "未知";
+            bool valOne = (bool)values[0];
+            bool valTwo = (bool)values[1];
+            if (valOne) retTxt = "钻台面";
+            else if (valTwo) retTxt = "缓冲臂";
+            else if (!valOne && !valTwo) retTxt = "铁架工";
+            else retTxt = "未知";
+            return retTxt;
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
