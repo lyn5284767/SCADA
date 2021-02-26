@@ -102,6 +102,7 @@ namespace Main.Integration
         private bool IsSirAllLock = false;
         private bool IsPreventBoxAllLock = false;
         private bool IsCatAllLock = false;
+        private bool TotalLock = false;
         #endregion
 
         public IngMainNew()
@@ -1529,7 +1530,11 @@ namespace Main.Integration
         /// <param name="e"></param>
         private void btnTurnToZore_Click(object sender, RoutedEventArgs e)
         {
-            CheckDeviceStatus();
+            if (this.btnTurnToZore.Background.ToString() == "#FFF5C244")
+            {
+                //MessageBox.Show("二层台和钻台面准备回零，注意安全!", "提示", MessageBoxButton.YesNo);
+                CheckDeviceStatus();
+            }
         }
         /// <summary>
         /// 检查电机使能/回零
@@ -1624,6 +1629,517 @@ namespace Main.Integration
         #endregion
 
         #region Step 4 互锁确认
+        /// <summary>
+        /// 互锁确认
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnLockConfirm_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.btnTurnToZore.Background.ToString() == "#FFF5C244")
+            {
+                if (this.pbper == 50)
+                {
+                    string msg = string.Empty;
+                    if (!IsTopAllLock) msg += "顶驱,";
+                    if (!IsElevatorAllLock) msg += "吊卡,";
+                    if (!IsHookAllLock) msg += "大钩,";
+                    if (!IsSfAllLock) msg += "二层台,";
+                    if (!IsDrAllLock) msg += "钻台面,";
+                    if (!IsSirAllLock) msg += "铁钻工,";
+                    if (!IsCatAllLock) msg += "猫道,";
+                    if (!IsPreventBoxAllLock) msg += "防喷盒,";
+                    if (!IsKavaAllLock) msg += "卡瓦,";
+                    if (msg != string.Empty)
+                    {
+                        msg = "系统中存在" + msg + "互锁已解除，可能存在安全问题，确认继续开启联动?";
+                        MessageBoxResult result = MessageBox.Show(msg, "提示", MessageBoxButton.YesNo);
+                        if (result == MessageBoxResult.Yes)
+                        {
+                            TotalLock = true;
+                            this.pbper = 60;
+                        }
+                        else TotalLock = false;
+                    }
+                    else
+                    {
+                        this.pbper = 60;
+                    }
+                }
+            }
+        }
+        private bool CheckLock()
+        {
+            bool lockSuccess = true;
+            if ((IsTopAllLock && IsElevatorAllLock && IsHookAllLock && IsSfAllLock && IsDrAllLock
+                && IsSirAllLock && IsCatAllLock && IsPreventBoxAllLock && IsKavaAllLock) || TotalLock)
+            {
+                lockSuccess = true;
+            }
+            else
+            {
+                lockSuccess = false;
+            }
+            return lockSuccess;
+        }
+        #endregion
+
+        #region Step5 参数确认
+        /// <summary>
+        /// Step 4 选择目的地和钻杆类型
+        /// </summary>
+        private bool StartPipeTypeAndDes()
+        {
+            int pipeType = -1;
+            // 尺寸>60，标志为特殊 或 尺寸<60,标志为普通 为钻杆
+            if ((GlobalData.Instance.da["drillPipeType"].Value.Byte >= 60 && GlobalData.Instance.da["103b7"].Value.Boolean)
+                || (GlobalData.Instance.da["drillPipeType"].Value.Byte < 60 && !GlobalData.Instance.da["103b7"].Value.Boolean))
+            {
+                pipeType = 1;
+            }
+            // 尺寸小于60，标志为特殊 或 尺寸>60,标志为普通 为钻铤
+            if ((GlobalData.Instance.da["drillPipeType"].Value.Byte < 60 && GlobalData.Instance.da["103b7"].Value.Boolean)
+                || (GlobalData.Instance.da["drillPipeType"].Value.Byte >= 60 && !GlobalData.Instance.da["103b7"].Value.Boolean))
+            {
+                pipeType = 2;
+            }
+            // 1.设置二层台钻杆
+            if (this.pbper == 60)
+            {
+                SFPipeSet(pipeType);
+                return true;
+            }
+            // 2.设置钻台面管柱类型
+            if (this.pbper == 65)
+            {
+                DRPipeSet();
+                return true;
+            }
+            // 3.设置钻台面的目的地
+            if (this.pbper == 70)
+            {
+                DRDesTypeSet();
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// 设置二层台管柱类型
+        /// </summary>
+        /// <param name="pipeType"></param>
+        private void SFPipeSet(int pipeType)
+        {
+            if (GlobalData.Instance.da.GloConfig.SFType == 0)
+            { }
+            else if (GlobalData.Instance.da.GloConfig.SFType == 1)
+            {
+                // 管柱类型和管柱尺寸都正确
+                if (this.model.PipeType == pipeType && this.model.PipeSize == GlobalData.Instance.da["drillPipeType"].Value.Byte)
+                {
+                    this.tbOpr.Text = "二层台管柱类型设置成功，准备设置钻台面管柱类型";
+                    this.pbper = 65;
+                    IsSend = false;
+                }
+                else
+                {
+                    byte[] byteToSend;
+                    if ((this.model.PipeType == 1 && this.model.PipeSize >= 60) || (this.model.PipeType == 2 && this.model.PipeSize < 60))
+                    {
+                        byteToSend = new byte[] { 80, 1, 3, (byte)this.model.PipeSize, 0, 0, 1, 0, 0, 0 };
+                    }
+                    else
+                    {
+                        byteToSend = new byte[] { 80, 1, 3, (byte)this.model.PipeSize, 0, 0, 0, 0, 0, 0 };
+                    }
+                    string tips = "二层台管柱设置超时，正在重新设置";
+                    CheckOverTime(byteToSend, tips, 5);
+                }
+            }
+        }
+        /// <summary>
+        /// 设置钻台面管柱类型
+        /// </summary>
+        private void DRPipeSet()
+        {
+            if (GlobalData.Instance.da.GloConfig.DRType == 0)
+            { }
+            else if (GlobalData.Instance.da.GloConfig.DRType == 1)
+            {
+                if (GlobalData.Instance.da["drdrillPipeType"].Value.Byte == this.model.PipeSize)
+                {
+                    this.tbOpr.Text = "钻台面管柱类型设置成功，准备设置目的地";
+                    this.pbper = 70;
+                    IsSend = false;
+                }
+                else
+                {
+                    byte[] byteToSend = GlobalData.Instance.SendToDR(new List<byte>() { 3, (byte)this.model.PipeSize });
+                    string tips = "钻台面管柱设置超时，正在重新设置";
+                    CheckOverTime(byteToSend, tips, 5);
+                }
+            }
+        }
+        /// <summary>
+        /// 设置目的地
+        /// </summary>
+        private void DRDesTypeSet()
+        {
+            if (GlobalData.Instance.da.GloConfig.DRType == 0)
+            { }
+            else if (GlobalData.Instance.da.GloConfig.DRType == 1)
+            {
+                if (this.model.DesType == GlobalData.Instance.da["drDes"].Value.Byte)
+                {
+                    this.tbOpr.Text = "目的地设置成功，准备设置操作模式";
+                    this.pbper = 75;
+                    IsSend = false;
+                }
+                else
+                {
+                    byte[] byteToSend = { 80, 33, 11, (byte)this.model.DesType, 0, 0, 0, 0, 0, 0 };
+                    string tips = "设置目的地超时，正在重新设置";
+                    CheckOverTime(byteToSend, tips, 5);
+                }
+            }
+        }
+        /// <summary>
+        /// step 5 切换到自动模式
+        /// </summary>
+        private bool TurnToAuto()
+        {
+            if (this.pbper == 75)
+            {
+                AutoSet();
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// 设置自动模式
+        /// </summary>
+        private void AutoSet()
+        {
+            bool sfAuto = false;
+            bool drAuto = false;
+            bool sirAuto = false;
+            if (GlobalData.Instance.da.GloConfig.SFType == 0)
+            {
+                sfAuto = true;
+            }
+            else if (GlobalData.Instance.da.GloConfig.SFType == 1)
+            {
+                sfAuto = GlobalData.Instance.da["operationModel"].Value.Byte == 5 ? true : false;
+            }
+
+            if (GlobalData.Instance.da.GloConfig.DRType == 0)
+            {
+                drAuto = true;
+            }
+            else if (GlobalData.Instance.da.GloConfig.DRType == 1)
+            {
+                drAuto = GlobalData.Instance.da["droperationModel"].Value.Byte == 5 ? true : false;
+            }
+
+            if (GlobalData.Instance.da.GloConfig.SIRType == 0)
+            {
+                sirAuto = true;
+            }
+            else if (GlobalData.Instance.da.GloConfig.SIRType == 1)
+            {
+                sirAuto = GlobalData.Instance.da["SIRSelfOperModel"].Value.Byte == 2 ? true : false;
+            }
+            else if (GlobalData.Instance.da.GloConfig.SIRType == 2)
+            {
+                sirAuto = true;
+            }
+            else if (GlobalData.Instance.da.GloConfig.SIRType == 3)
+            {
+                sirAuto = true;
+            }
+            else if (GlobalData.Instance.da.GloConfig.SIRType == 4)
+            {
+                sirAuto = true;
+            }
+            else if (GlobalData.Instance.da.GloConfig.SIRType == 5)
+            {
+                sirAuto = true;
+            }
+
+            if (sfAuto && drAuto && sirAuto)
+            {
+                this.tbOpr.Text = "设备已出于自动模式，准备设置工作模式";
+                this.pbper = 80;
+                IsSend = false;
+            }
+            else
+            {
+                this.tbOpr.Text = "切换自动模式中";
+                byte[] sfbyteToSend;// 二层台
+                byte[] drbyteToSend;// 钻台面
+                byte[] sirbyteToSend;// 铁钻工
+                sfbyteToSend = GlobalData.Instance.SendByte(new List<byte> { 1, 5 });
+                drbyteToSend = new byte[10] { 1, 32, 3, 31, 0, 0, 0, 0, 0, 0 };
+
+                string tips = "切换自动模式超时，正在重新切换";
+                if (!sfAuto) tips = "二层台切换自动模式失败，请确认二层台模式";
+                else if (!drAuto) tips = "铁钻工切换自动模式失败，请确认二层台模式";
+                if (GlobalData.Instance.da.GloConfig.SIRType == 1)
+                {
+                    sirbyteToSend = new byte[10] { 23, 17, 1, 2, 0, 0, 0, 0, 0, 0 };
+                    CheckOverTime(sfbyteToSend, drbyteToSend, sirbyteToSend, tips, 5);
+                }
+                else
+                {
+                    CheckOverTime(sfbyteToSend, drbyteToSend, tips, 5);
+                }
+            }
+        }
+        /// <summary>
+        ///  step 6 选择工作模式
+        /// </summary>
+        private bool SelectWorkModel()
+        {
+            if (this.pbper == 80)
+            {
+                WorkModelSet();
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// 工作模式设备
+        /// </summary>
+        private void WorkModelSet()
+        {
+            int sfWorkModel = 0;
+            int drWorkModel = 0;
+            int sirWorkModel = 0;
+            if (GlobalData.Instance.da.GloConfig.SFType == 0)
+            { }
+            else if (GlobalData.Instance.da.GloConfig.SFType == 1)
+            {
+                sfWorkModel = GlobalData.Instance.da["workModel"].Value.Byte;
+            }
+
+            if (GlobalData.Instance.da.GloConfig.DRType == 0)
+            {
+                drWorkModel = this.model.WorkType;
+            }
+            else if (GlobalData.Instance.da.GloConfig.DRType == 1)
+            {
+                drWorkModel = GlobalData.Instance.da["drworkModel"].Value.Byte;
+            }
+            else if (GlobalData.Instance.da.GloConfig.DRType == 2)
+            { }
+
+            if (GlobalData.Instance.da.GloConfig.SIRType == 0)
+            {
+                sirWorkModel = this.model.WorkType;
+            }
+            else if (GlobalData.Instance.da.GloConfig.SIRType == 1)
+            {
+                if (GlobalData.Instance.da["SIRSelfWorkModel"].Value.Byte == 1)
+                {
+                    if (GlobalData.Instance.da["841b3"].Value.Boolean
+                    && GlobalData.Instance.da["841b5"].Value.Boolean)
+                    {
+                        sirWorkModel = 1;
+                    }
+                    else
+                    {
+                        sirWorkModel = 0;
+                        this.tbOpr.Text = "铁钻工远程切换上扣模式失败，请去本地切换";
+                        return;
+                    }
+
+                }
+                else if (GlobalData.Instance.da["SIRSelfWorkModel"].Value.Byte == 2)
+                {
+                    if (GlobalData.Instance.da["841b4"].Value.Boolean
+                    && GlobalData.Instance.da["841b6"].Value.Boolean)
+                    {
+                        sirWorkModel = 2;
+                    }
+                    else
+                    {
+                        sirWorkModel = 0;
+                        this.tbOpr.Text = "铁钻工远程切换卸扣模式失败，请去本地切换";
+                        return;
+                    }
+                }
+                else
+                {
+                    sirWorkModel = 0;
+                }
+            }
+            else if (GlobalData.Instance.da.GloConfig.SIRType == 2)
+            {
+                sirWorkModel = this.model.WorkType;
+            }
+            else if (GlobalData.Instance.da.GloConfig.SIRType == 3)
+            { }
+            else if (GlobalData.Instance.da.GloConfig.SIRType == 4)
+            { }
+            else if (GlobalData.Instance.da.GloConfig.SIRType == 5)
+            { }
+
+            if (this.model.WorkType == 1 && sfWorkModel == 1 && drWorkModel == 1 && sirWorkModel == 1) // 送杆
+            {
+                this.tbOpr.Text = "工作模式设置完成，准备选择指梁";
+                this.pbper = 85;
+                IsSend = false;
+                return;
+            }
+            else if (this.model.WorkType == 2 && sfWorkModel == 2 && drWorkModel == 2 && sirWorkModel == 2) //排杆
+            {
+                this.tbOpr.Text = "工作模式设置完成，准备选择指梁";
+                this.pbper = 85;
+                IsSend = false;
+                return;
+            }
+            else
+            {
+                string tips = "工作模式切换超时，重新切换中";
+                byte[] sfbyteToSend;// 二层台
+                byte[] drbyteToSend;// 钻台面
+                byte[] sirbyteToSend;// 铁钻工
+                if (this.model.WorkType == 1)
+                {
+                    sfbyteToSend = GlobalData.Instance.SendByte(new List<byte> { 2, 1 });
+                    drbyteToSend = new byte[10] { 1, 32, 4, 41, 0, 0, 0, 0, 0, 0 };
+                    if (GlobalData.Instance.da.GloConfig.SIRType == 1)
+                    {
+                        sirbyteToSend = new byte[10] { 23, 17, 2, 1, 0, 0, 0, 0, 0, 0 };
+                        CheckOverTime(sfbyteToSend, drbyteToSend, sirbyteToSend, tips, 10);
+                    }
+                    else
+                    {
+                        CheckOverTime(sfbyteToSend, drbyteToSend, tips, 10);
+                    }
+                }
+                else if (this.model.WorkType == 2)
+                {
+                    sfbyteToSend = GlobalData.Instance.SendByte(new List<byte> { 2, 2 });
+                    drbyteToSend = new byte[10] { 1, 32, 4, 40, 0, 0, 0, 0, 0, 0 };
+                    if (GlobalData.Instance.da.GloConfig.SIRType == 1)
+                    {
+                        sirbyteToSend = new byte[10] { 23, 17, 2, 2, 0, 0, 0, 0, 0, 0 };
+                        CheckOverTime(sfbyteToSend, drbyteToSend, sirbyteToSend, tips, 10);
+                    }
+                    else
+                    {
+                        CheckOverTime(sfbyteToSend, drbyteToSend, tips, 10);
+                    }
+                }
+                else
+                {
+                    this.tbOpr.Text = "工作模式设置有误，请返回模式设置中重新设置";
+                }
+
+            }
+        }
+        /// <summary>
+        ///  step 7 选择指梁
+        /// </summary>
+        private bool SelectedDrill()
+        {
+            if (this.pbper == 85)
+            {
+                SelectDrillSet();
+                return true;
+            }
+            return false;
+        }
+        int autoSelectDrill = 1; // 自动选择指梁，默认选择左1
+        /// <summary>
+        /// 设置选择的指梁
+        /// </summary>
+        private void SelectDrillSet()
+        {
+            int sfSelectDrillNum = 0;
+            int drSelectDrillNum = 0;
+            if (GlobalData.Instance.da.GloConfig.SFType == 0)
+            { }
+            else if (GlobalData.Instance.da.GloConfig.SFType == 1)
+            {
+                sfSelectDrillNum = GlobalData.Instance.da["pcFingerBeamNumberFeedback"].Value.Byte;
+            }
+
+            if (GlobalData.Instance.da.GloConfig.DRType == 0)
+            { }
+            else if (GlobalData.Instance.da.GloConfig.DRType == 1)
+            {
+                drSelectDrillNum = GlobalData.Instance.da["drPCSelectDrill"].Value.Byte;
+            }
+            else if (GlobalData.Instance.da.GloConfig.DRType == 2)
+            { }
+
+            if (this.model.SelectDrill > 0) // 手动选择指梁
+            {
+                if (this.model.SelectDrill == sfSelectDrillNum && this.model.SelectDrill == drSelectDrillNum)
+                {
+                    if (sfSelectDrillNum < 16) this.tbOpr.Text = "自动选择左" + sfSelectDrillNum + "指梁";
+                    else if (sfSelectDrillNum == 16) this.tbOpr.Text = "自动选择左钻铤";
+                    else if (sfSelectDrillNum > 16 && sfSelectDrillNum < 32) this.tbOpr.Text = "自动选择右" + (sfSelectDrillNum - 16) + "指梁";
+                    else this.tbOpr.Text = "自动选择右钻铤";
+                    this.pbper = 90;
+                    IsSend = false;
+                }
+                else
+                {
+                    string tips = "选择指梁失败，正在重新选择";
+                    if (!IsSend)
+                    {
+                        protocolSendTime = DateTime.Now;
+                        IsSend = true;
+                        overtime = 1;
+                        byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 5, (byte)this.model.SelectDrill });
+                        GlobalData.Instance.da.SendBytes(byteToSend);
+                        Thread.Sleep(50);
+                        byteToSend = GlobalData.Instance.SendToDR(new List<byte> { 5, (byte)this.model.SelectDrill });
+                        GlobalData.Instance.da.SendBytes(byteToSend);
+                        //if (this.model.PipeType == 1)
+                        //{
+                        //    autoSelectDrill++;
+                        //    if (autoSelectDrill == 32)
+                        //    {
+                        //        this.tbOpr.Text = "自动选择指梁失败，请人工选择";
+                        //    }
+                        //    if (autoSelectDrill > GlobalData.Instance.Rows && autoSelectDrill < 17) autoSelectDrill = 17;
+                        //    //if (autoSelectDrill > 31) autoSelectDrill = 31;
+                        //}
+                        //else if (this.model.PipeType == 2)
+                        //{
+                        //    if (autoSelectDrill == 32)
+                        //    {
+                        //        this.tbOpr.Text = "自动选择指梁失败，请人工选择";
+                        //    }
+                        //    autoSelectDrill = 32;
+                        //}
+                    }
+                    else
+                    {
+                        if ((DateTime.Now.Ticks - protocolSendTime.Ticks) / 10000000 >= overtime)
+                        {
+                            IsSend = false;
+                            this.tbOpr.Text = tips;
+                        }
+                    }
+                }
+            }
+        }
+        /// <summary>
+        /// 参数确认
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnParamConfirm_Click(object sender, RoutedEventArgs e)
+        {
+            StartPipeTypeAndDes();
+            AutoSet();
+            SelectWorkModel();
+            SelectedDrill();
+        }
         #endregion
         /// <summary>
         /// 显示联动启动情况
@@ -1633,9 +2149,12 @@ namespace Main.Integration
             // 液压站情况
             if(CheckHS()) this.btnStartHS.Background = (Brush)bc.ConvertFrom("#5DBADC");
             else this.btnStartHS.Background = (Brush)bc.ConvertFrom("#F5C244");
-            // 电机情况
+            // 电机回零/使能情况
             if (CheckMonitor()) this.btnTurnToZore.Background = (Brush)bc.ConvertFrom("#5DBADC");
             else this.btnTurnToZore.Background = (Brush)bc.ConvertFrom("#F5C244");
+            // 互锁情况
+            if (CheckLock()) this.btnLockConfirm.Background = (Brush)bc.ConvertFrom("#5DBADC");
+            else this.btnLockConfirm.Background = (Brush)bc.ConvertFrom("#F5C244");
         }
 
         /// <summary>

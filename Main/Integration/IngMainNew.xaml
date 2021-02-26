@@ -358,8 +358,8 @@
                                 <Grid>
                                     <Button Style="{StaticResource ButtonBaseStyle}" Name="btnStartHS" Foreground="Black" FontWeight="Bold" Background="#F5C244" Margin="-230,0,0,60" Width="80" Height="26" Click="btnStartHS_Click">启动泵</Button>
                                     <Button Style="{StaticResource ButtonBaseStyle}" Name="btnTurnToZore" Foreground="Black" FontWeight="Bold" Background="#F5C244" Margin="-200,50,0,0" Width="80" Height="26" Click="btnTurnToZore_Click">回零</Button>
-                                    <Button Style="{StaticResource ButtonBaseStyle}" Name="btnLockConfirm" Foreground="Black" FontWeight="Bold" Background="#F5C244" Margin="-10,0,0,60" Width="80" Height="26">互锁确认</Button>
-                                    <Button Style="{StaticResource ButtonBaseStyle}" Name="btnParamConfirm" Foreground="Black" FontWeight="Bold" Background="#F5C244" Margin="10,50,0,0" Width="80" Height="26">参数设置</Button>
+                                    <Button Style="{StaticResource ButtonBaseStyle}" Name="btnLockConfirm" Foreground="Black" FontWeight="Bold" Background="#F5C244" Margin="-10,0,0,60" Width="80" Height="26" Click="btnLockConfirm_Click">互锁确认</Button>
+                                    <Button Style="{StaticResource ButtonBaseStyle}" Name="btnParamConfirm" Foreground="Black" FontWeight="Bold" Background="#F5C244" Margin="10,50,0,0" Width="80" Height="26" Click="btnParamConfirm_Click">参数设置</Button>
                                     <Button Style="{StaticResource ButtonBaseStyle}" Name="btnLinkOpen" Foreground="Black" FontWeight="Bold" Background="#F5C244" Margin="200,0,0,10" Width="80">开启联动</Button>
                                     <Line X1="35" Y1="20" X2="200" Y2="20" Stroke="Gray" StrokeThickness="3" Margin="0,20,0,0"></Line>
                                     <Line X1="65" Y1="5" X2="100" Y2="20" Stroke="Gray" StrokeThickness="2" Margin="0,20,0,0"></Line>
