@@ -142,7 +142,7 @@ namespace Main.SecondFloor
                 MessageBoxResult result = MessageBox.Show("确认解除指梁锁打开确认？", "提示信息", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
-                    byteToSend = SendByte(new List<byte> { 21, 1, 1 });
+                    byteToSend = new byte[10] { 80, 1, 21, 1, 1, 0, 0, 0, 0, 0 }; 
                 }
                 else
                 {
@@ -151,7 +151,7 @@ namespace Main.SecondFloor
             }
             else
             {
-                byteToSend = SendByte(new List<byte> { 21, 1, 2 });
+                byteToSend = new byte[10] { 80, 1, 21, 1, 1, 0, 0, 0, 0, 0 };
             }
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
@@ -173,7 +173,7 @@ namespace Main.SecondFloor
                 MessageBoxResult result = MessageBox.Show("确认解除伺服电机过载限制？", "提示信息", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
-                    byteToSend = SendByte(new List<byte> { 21, 3, 1 });
+                    byteToSend = new byte[10] { 80, 1, 21, 3, 1, 0, 0, 0, 0, 0 };
                 }
                 else
                 {
@@ -182,7 +182,7 @@ namespace Main.SecondFloor
             }
             else
             {
-                byteToSend = SendByte(new List<byte> { 21, 3, 2 });
+                byteToSend = new byte[10] { 80, 1, 21, 3, 2, 0, 0, 0, 0, 0 };
             }
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
@@ -481,7 +481,7 @@ namespace Main.SecondFloor
                 MessageBoxResult result = MessageBox.Show("确认解除机械手与猴道互锁？", "提示信息", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
-                    byteToSend = GlobalData.Instance.SFSendToOpr(new List<byte> { 21, 22, 1 });
+                    byteToSend = new byte[10] { 80, 1, 21, 22, 1, 0, 0, 0, 0, 0 };
                     GlobalData.Instance.da.SendBytes(byteToSend);
                 }
                 else
@@ -491,7 +491,7 @@ namespace Main.SecondFloor
             }
             else
             {
-                byteToSend = GlobalData.Instance.SFSendToOpr(new List<byte> { 21, 22, 2 });
+                byteToSend = new byte[10] { 80, 1, 21, 22, 2, 0, 0, 0, 0, 0 }; 
                 GlobalData.Instance.da.SendBytes(byteToSend);
 
             }

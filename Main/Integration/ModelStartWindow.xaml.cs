@@ -730,7 +730,6 @@ namespace Main.Integration
                 {
                     CheckOverTime(sfbyteToSend, drbyteToSend, tips, 5);
                 }
-                
             }
         }
         #endregion
