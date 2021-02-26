@@ -70,7 +70,7 @@
                             <RowDefinition Height="224*"/>
                         </Grid.RowDefinitions>
                         <StackPanel Orientation="Vertical" Grid.RowSpan="4">
-                            <cl:TextBlockWithTextBox Name="twtL1" ControlTag="3"  TbkText="伺服电机极性"/>
+                            <cl:TextBlockWithTextBox Name="twtL1" ControlTag="3"  TbkText="电机极性"/>
                             <cl:TextBlockWithTextBox Name="twtL2" ControlTag="1"  TbkText="设备型号"/>
                             <cl:TextBlockWithTextBox Name="twtL3" ControlTag="2"  TbkText="驱动器型号"/>
                             <cl:TextBlockWithTextBox Name="twtL4" ControlTag="45"  TbkText="臂架型号"/>

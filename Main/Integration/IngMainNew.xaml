@@ -5,17 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:cl="http://talonzeng.com/ControlLibrary"
              mc:Ignorable="d" 
-             d:DesignHeight="650" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#F5F6FA" Name="IngNew" FontFamily="微软雅黑">
+             d:DesignHeight="650" d:DesignWidth="1024" Foreground="#525252" FontSize="14" Background="#D3E3FF" Name="IngNew" FontFamily="微软雅黑">
     <UserControl.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="18"/>
         </Style>
         <Style TargetType="Label">
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="Black"/>
         </Style>
 
         <Style x:Key="ShadowBorder" TargetType="Border">
@@ -37,232 +38,448 @@
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="80"/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid Grid.Row="0" Grid.ColumnSpan="3">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="420"/>
-                <ColumnDefinition Width="290"/>
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <Border Background="#FF7000" Margin="50 20 50 20">
-                    <Border.Effect>
-                        <DropShadowEffect Color="#FF7000" ShadowDepth="30" BlurRadius="50" Opacity="0.8" Direction="270"/>
-                    </Border.Effect>
-                </Border>
-
-                <Border CornerRadius="10" Margin="10 5 5 10" Background="#FF7000">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <Border BorderThickness="1" Height="1" BorderBrush="#EBEBEB" VerticalAlignment="Center" Grid.RowSpan="2"/>
-                        <StackPanel Orientation="Horizontal" Grid.Row="0">
-                            <TextBlock Text="联动状态:" Margin="10,0,0,0" Foreground="White" FontSize="16" Width="70"></TextBlock>
-                            <TextBlock Name="tbLinkStatus" Text="未知" Foreground="#EDEBEB" Width="60"></TextBlock>
-                            <TextBlock Text="当前工序:" Margin="10,0,0,0" Foreground="White" FontSize="16" Width="70"></TextBlock>
-                            <TextBlock Name="tbCurWork" Text="未知" Foreground="#EDEBEB" Width="50"></TextBlock>
-                            <TextBlock Text="操作模式:" Margin="10,0,0,0" Foreground="White" FontSize="16" Width="70"></TextBlock>
-                            <TextBlock Name="tbCurOpr" Text="未知" Foreground="#EDEBEB" Width="50"></TextBlock>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Grid.Row="1">
-                            <TextBlock Text="管柱类型:" Margin="10,0,0,0" Foreground="White" FontSize="16" Width="70"></TextBlock>
-                            <TextBlock Name="tbCurTubesType" Text="未选择" Foreground="#EDEBEB" Width="60"></TextBlock>
-                            <TextBlock Text="目  的 地:" Margin="10,0,0,0" Foreground="White" FontSize="16" Width="70"></TextBlock>
-                            <TextBlock Name="tbCurDes" Text="未选择" Foreground="#EDEBEB" Width="50"></TextBlock>
-                            <TextBlock Text="选择指梁:" Margin="10,0,0,0" Foreground="White" FontSize="16" Width="70"></TextBlock>
-                            <TextBlock Name="tbCurSelectDrill" Text="未知" Foreground="#EDEBEB" Width="50"></TextBlock>
-                        </StackPanel>
-                    </Grid>
-                </Border>
-            </Grid>
-            <Grid Grid.Column="1">
-                <Border Background="#59E6B5" Margin="50 20 50 20">
-                    <Border.Effect>
-                        <DropShadowEffect Color="#59E6B5" ShadowDepth="30" BlurRadius="50" Opacity="0.8" Direction="270"/>
-                    </Border.Effect>
-                </Border>
-
-                <Border CornerRadius="10" Margin="5 5 5 10" Background="#59E6B5">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <Border BorderThickness="1" Height="1" BorderBrush="#EBEBEB" VerticalAlignment="Center" Grid.RowSpan="2"/>
-                        <StackPanel Orientation="Horizontal" Grid.Row="0">
-                            <TextBlock Text="二层台" Margin="10,0,0,0" Foreground="White" FontSize="16"></TextBlock>
-                            <cl:SymbolMapping Name="sfStatus" StrContent="" LampType="3" Margin="2,5,2,5"/>
-                            <TextBlock Text="钻台面" Margin="10,0,0,0" Foreground="White" FontSize="16"></TextBlock>
-                            <cl:SymbolMapping Name="drStatus" StrContent="" LampType="3" Margin="2,5,2,5"/>
-                            <TextBlock Text="铁钻工" Margin="10,0,0,0" Foreground="White" FontSize="16"></TextBlock>
-                            <cl:SymbolMapping Name="sirStatus" StrContent="" LampType="1" Margin="2,5,2,5"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Grid.Row="1">
-                            <TextBlock Text="液压站" Margin="10,0,0,0" Foreground="White" FontSize="16"></TextBlock>
-                            <cl:SymbolMapping Name="hsStatus" StrContent="" LampType="1" Margin="2,5,2,5"/>
-                            <TextBlock Text="猫   道" Margin="10,0,0,0" Foreground="White" FontSize="16"></TextBlock>
-                            <cl:SymbolMapping Name="catStatus" StrContent="" LampType="1" Margin="4,5,2,5"/>
-                        </StackPanel>
-                    </Grid>
-                </Border>
-            </Grid>
-            <Grid Grid.Column="2">
-                <Border Background="#FFC100" Margin="50 20 50 20">
-                    <Border.Effect>
-                        <DropShadowEffect Color="#FFC100" ShadowDepth="30" BlurRadius="50" Opacity="0.8" Direction="270"/>
-                    </Border.Effect>
-                </Border>
-
-                <Border CornerRadius="10" Margin="5 5 10 10" Background="#FFC100">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <Border BorderThickness="1" Height="1" BorderBrush="#EBEBEB" VerticalAlignment="Center" Grid.RowSpan="2"/>
-                        <StackPanel Orientation="Horizontal" Grid.Row="1">
-                            <Border Background="#ffffff" Opacity="0.2" Width="30" Height="30" CornerRadius="30" Margin="10,0,0,0"/>
-                            <TextBlock Text="&#xe685;" Margin="-30,0,0,0" FontFamily="../Font/#iconfont" FontSize="24" Foreground="Red"></TextBlock>
-                            <TextBlock Name="LinkError" Text="无联动告警" Foreground="Red" Margin="5,0,0,0"></TextBlock>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Grid.Row="0">
-                            <Border Background="#ffffff" Opacity="0.2" Width="30" Height="30" CornerRadius="30" Margin="10,0,0,0"/>
-                            <TextBlock Text="&#xe603;" Margin="-30,0,0,0" FontFamily="../Font/#iconfont" FontSize="24" Foreground="Red"></TextBlock>
-                            <TextBlock Name="tbAlarm" Text="暂无" Foreground="Red" Margin="5,0,0,0"></TextBlock>
-                        </StackPanel>
-                    </Grid>
-                </Border>
-            </Grid>
-        </Grid>
-        <Border Background="White" Margin="10,10,10,10" CornerRadius="10" Grid.Column="0" Grid.Row="1">
-            <Border.Effect>
-                <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
-            </Border.Effect>
+        <Grid Grid.Row="0">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="46*"/>
-                    <ColumnDefinition Width="61*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="120"/>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="30"/>
-                  
-                </Grid.RowDefinitions>
-                <Button Width="325" Height="40" Panel.ZIndex="1" HorizontalAlignment="Center"
-                                 Background="#2B71CA" BorderBrush="#92C202" Grid.ColumnSpan="2">
-                    <TextBlock Text="联动设置" Foreground="White" FontSize="24"/>
-                </Button>
-                <Grid Grid.Row="1" Grid.ColumnSpan="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-
-                    </Grid.ColumnDefinitions>
-                    <cl:BasedSwitchButton Grid.Column="0" Name="operateMode" ContentLeft="手动" ContentDown="操作模式" ContentRight="自动" UserControlClicked="btn_OpState"/>
-                    <cl:BasedSwitchButton Grid.Column="1" Name="workMode" ContentLeft="排杆" ContentDown="工作模式" ContentRight="送杆" UserControlClicked="btn_WorkModel"/>
-                    <Grid Grid.Column="2">
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <Menu Background="Transparent" Height="35" Width="120"  FontSize="16" FontWeight="Bold" Foreground="#008AFF">
-                            <MenuItem>
-                                <MenuItem.Header>
-                                    <StackPanel Orientation="Horizontal">
-                                        <ContentPresenter Content="管 柱 选 择" Width="80"/>
-                                        <Image Margin="0,2,0,0"  Width="15" Source="..\Images\downTrangle.png" />
-                                    </StackPanel>
-                                </MenuItem.Header>
-                                <MenuItem Header="钻铤">
-                                    <MenuItem Header="6''钻铤" Click="btn_SelectDrillPipe" TabIndex="60"/>
-                                    <MenuItem Header="6.5''钻铤" Click="btn_SelectDrillPipe" TabIndex="65"/>
-                                    <MenuItem Header="7''钻铤" Click="btn_SelectDrillPipe" TabIndex="70"/>
-                                    <MenuItem Header="7.5''钻铤" Click="btn_SelectDrillPipe" TabIndex="75"/>
-                                    <MenuItem Header="8''钻铤" Click="btn_SelectDrillPipe" TabIndex="80"/>
-                                    <MenuItem Header="9''钻铤" Click="btn_SelectDrillPipe" TabIndex="90"/>
-                                    <MenuItem Header="10''钻铤" Click="btn_SelectDrillPipe" TabIndex="100"/>
-                                    <MenuItem Header="11''钻铤" Click="btn_SelectDrillPipe" TabIndex="110"/>
-                                </MenuItem>
-                                <MenuItem Header="钻杆">
-                                    <MenuItem Header="3 1/2''钻杆" Click="btn_SelectDrillPipe" TabIndex="35"/>
-                                    <MenuItem Header="4''钻杆" Click="btn_SelectDrillPipe" TabIndex="40"/>
-                                    <MenuItem Header="4 1/2''钻杆" Click="btn_SelectDrillPipe" TabIndex="45"/>
-                                    <MenuItem Header="5''钻杆" Click="btn_SelectDrillPipe" TabIndex="50"/>
-                                    <MenuItem Header="5.5''钻杆" Click="btn_SelectDrillPipe" TabIndex="55"/>
-                                    <MenuItem Header="5 7/8''钻杆" Click="btn_SelectDrillPipe" TabIndex="57"/>
-                                    <MenuItem Header="6 5/8''钻杆" Click="btn_SelectDrillPipe" TabIndex="68"/>
-                                </MenuItem>
-                            </MenuItem>
-                        </Menu>
-                        <Menu Grid.Row="2" Background="Transparent" Height="35" Width="120"  FontSize="16" FontWeight="Bold" Foreground="#008AFF">
-                            <MenuItem>
-                                <MenuItem.Header>
-                                    <StackPanel Orientation="Horizontal">
-                                        <ContentPresenter Content="目的地选择" />
-                                        <Image Margin="0,2,0,0"  Width="15" Source="..\Images\downTrangle.png" />
-                                    </StackPanel>
-                                </MenuItem.Header>
-                                <MenuItem Header="立根盒" Click="btn_SelectDes" TabIndex="1"/>
-                                <MenuItem Header="猫道-井口" Click="btn_SelectDes" TabIndex="2"/>
-                                <MenuItem Header="猫道-鼠洞" Click="btn_SelectDes" TabIndex="3"/>
-                            </MenuItem>
-                        </Menu>
-                        <TextBlock Grid.Row="1" Text="未选择管柱类型" Name="tubeType" FontSize="14" FontWeight="Bold" VerticalAlignment="Center" />
-                        <TextBlock Grid.Row="3" Text="未选择目的地" Name="drDestination" FontSize="14" FontWeight="Bold" VerticalAlignment="Center"  />
-
-                    </Grid>
+                <Grid Grid.Column="0" Margin="5">
+                    <Border Background="#F6F9FF">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="5"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition Height="0.5"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+                                <Viewbox>
+                                    <TextBlock Text="&#xe9a1;" FontFamily="../Font/#iconfont" FontSize="36" Foreground="#008AFF" VerticalAlignment="Center" Margin="5,10,0,10" Width="45" Height="45"></TextBlock>
+                                </Viewbox>
+                                <StackPanel Margin="0,0,10,0" VerticalAlignment="Center">
+                                    <TextBlock FontSize="18">联动状态</TextBlock>
+                                    <TextBlock Name="tbLinkStatus" Text="未知" FontSize="18" Foreground="#4280FF"></TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal">
+                                <Viewbox>
+                                    <TextBlock Text="&#xe6b0;" FontFamily="../Font/#iconfont" FontSize="36" Foreground="#008AFF" VerticalAlignment="Center" Margin="5,10,0,10" Width="45" Height="45"></TextBlock>
+                                </Viewbox>
+                                <StackPanel Margin="0,0,10,0" VerticalAlignment="Center">
+                                    <TextBlock FontSize="18">工作模式</TextBlock>
+                                    <TextBlock FontSize="18" Text="未知" Name="tbCurWork" Foreground="#4C80FF"></TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Grid.Row="0" Grid.Column="3" Orientation="Horizontal">
+                                <Viewbox>
+                                    <TextBlock Text="&#xe612;" FontFamily="../Font/#iconfont" FontSize="36" Foreground="#008AFF" VerticalAlignment="Center" Margin="5,10,0,10" Width="45" Height="45"></TextBlock>
+                                </Viewbox>
+                                <StackPanel Margin="0,0,10,0" VerticalAlignment="Center">
+                                    <TextBlock FontSize="18">操作模式</TextBlock>
+                                    <TextBlock FontSize="18" Text="未知" Name="tbCurOpr"  Foreground="#4C80FF"></TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                            <Grid Grid.Row="1" Grid.Column="1" Background="Black"></Grid>
+                            <Grid Grid.Row="1" Grid.Column="2" Background="Black"></Grid>
+                            <Grid Grid.Row="1" Grid.Column="3" Background="Black"></Grid>
+                            <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+                                <Viewbox>
+                                    <TextBlock Text="&#xe501;" FontFamily="../Font/#iconfont" FontSize="36" Foreground="#008AFF" VerticalAlignment="Center" Margin="5,10,0,10" Width="45" Height="45"></TextBlock>
+                                </Viewbox>
+                                <StackPanel Margin="-5,0,10,0" VerticalAlignment="Center">
+                                    <TextBlock FontSize="18">管柱类型</TextBlock>
+                                    <TextBlock FontSize="18" Name="tbCurTubesType" Text="未知"  Foreground="#4C80FF"></TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal">
+                                <Viewbox>
+                                    <TextBlock Text="&#xe614;" FontFamily="../Font/#iconfont" FontSize="36" Foreground="#008AFF" VerticalAlignment="Center" Margin="5,10,0,10" Width="45" Height="45"></TextBlock>
+                                </Viewbox>
+                                <StackPanel Margin="-5,0,10,0" VerticalAlignment="Center">
+                                    <TextBlock FontSize="18">目的地</TextBlock>
+                                    <TextBlock FontSize="18" Name="tbCurDes" Text="未知"  Foreground="#4C80FF"></TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Grid.Row="2" Grid.Column="3" Orientation="Horizontal">
+                                <Viewbox>
+                                    <TextBlock Text="&#xe53e;" FontFamily="../Font/#iconfont" FontSize="36" Foreground="#008AFF" VerticalAlignment="Center" Margin="5,10,0,10" Width="45" Height="45"></TextBlock>
+                                </Viewbox>
+                                <StackPanel Margin="0,0,10,0" VerticalAlignment="Center">
+                                    <TextBlock FontSize="18">选择指梁</TextBlock>
+                                    <TextBlock FontSize="18" Name="tbCurSelectDrill" Text="未知" Foreground="#4C80FF"></TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
                 </Grid>
-                <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2">
-                    <TextBlock Text="联 动 开 关:" Width="100" Margin="12,0,0,0" FontSize="16" FontWeight="Bold" Foreground="#212121" TextAlignment="Justify"></TextBlock>
-                    <cl:CustomCheckBox Name="cbLink" UserControlClicked="cbLink_Clicked"/>
-                    <TextBlock x:Name="tbLink"/>
-                </StackPanel>
-                <Grid  Grid.Row="3" Grid.ColumnSpan="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Text="大钩高度" Margin="5,0,0,0" FontSize="16" FontWeight="Bold" Foreground="#212121" TextAlignment="Justify"></TextBlock>
-                    <TextBlock Grid.Column="1" FontSize="18" Text="1111.1" Name="bigHookRealTimeValue" Foreground="#4C80FF"></TextBlock>
-                    <TextBlock Text="卡瓦" Grid.Column="2" Margin="5,0,0,0" FontSize="16" FontWeight="Bold" Foreground="#212121" TextAlignment="Justify"></TextBlock>
-                    <TextBlock x:Name="tbKava" Text="未知" Grid.Column="3" Margin="5,0,0,0" FontSize="16" FontWeight="Bold" Foreground="#4C80FF" TextAlignment="Justify"></TextBlock>
-                </Grid>
-                <Grid Grid.Row="4" Grid.ColumnSpan="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" FontSize="14" FontWeight="Bold" Click="btn_SetDrillNum" Width="100" >指梁选择</Button>
-                    <Button Name="tbZeroSet"  Grid.Column="1" Content="零位标定" FontSize="18" FontWeight="Bold" Margin="15,0,0,0" Width="100" Click="tbZeroSet_Checked" Height="50"></Button>
-                    <Button Name="tbZeroUnSet"  Grid.Column="2" Content="取消标定" FontSize="18" FontWeight="Bold" Margin="5,0,0,0" Width="100"  Click="tbZeroUnSet_Checked" Height="50"></Button>
+                <Grid Grid.Column="1" Margin="5">
+                    <Border Background="#F6F9FF">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition Height="0.5"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="5"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition Width="5"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+                                    <Viewbox>
+                                        <TextBlock Name="tbsf" Text="二层台:" Margin="0,15,0,15"></TextBlock>
+                                    </Viewbox>
+                                    <cl:SymbolMapping Name="sfStatus" StrContent="" LampType="3" Margin="0,20,0,20"/>
+                                </StackPanel>
+                                <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal">
+                                    <Viewbox>
+                                        <TextBlock Name="tbdr" Text="钻台面:" Margin="0,15,0,15"></TextBlock>
+                                    </Viewbox>
+                                    <cl:SymbolMapping Name="drStatus" StrContent="" LampType="3" Margin="0,20,0,20"/>
 
+                                </StackPanel>
+                                <StackPanel Grid.Row="0" Grid.Column="3" Orientation="Horizontal">
+                                    <Viewbox>
+                                        <TextBlock Name="tbIron" Text="铁钻工:" Margin="0,15,0,15"></TextBlock>
+                                    </Viewbox>
+                                    <cl:SymbolMapping Name="sirStatus" StrContent="" LampType="1" Margin="0,20,0,20"/>
+                                </StackPanel>
+                                <StackPanel Grid.Row="0" Grid.Column="4" Orientation="Horizontal">
+                                    <Viewbox>
+                                        <TextBlock Name="tbHS" Text="液压站:" Margin="0,15,0,15"></TextBlock>
+                                    </Viewbox>
+                                    <cl:SymbolMapping Name="hsStatus" StrContent="" LampType="1" Margin="0,20,0,20"/>
+                                </StackPanel>
+                            </Grid>
+                            <Grid Grid.Row="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="5"></ColumnDefinition>
+                                    <ColumnDefinition Width="12*"></ColumnDefinition>
+                                    <ColumnDefinition Width="20*"></ColumnDefinition>
+                                    <ColumnDefinition Width="16*"></ColumnDefinition>
+                                    <ColumnDefinition Width="5"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+                                    <Viewbox>
+                                        <TextBlock Name="tbCat" Text="猫   道:" Margin="0,15,0,15"></TextBlock>
+                                    </Viewbox>
+                                    <cl:SymbolMapping Name="catStatus" StrContent="" LampType="1" Margin="0,20,0,20"/>
+                                </StackPanel>
+                                <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal">
+                                    <Viewbox>
+                                        <TextBlock Text="大钩高度:" Margin="0,15,0,15"></TextBlock>
+                                    </Viewbox>
+                                    <Viewbox>
+                                        <TextBlock Grid.Column="1" FontSize="18" Text="1111.1" Name="bigHookRealTimeValue" Margin="0,15,0,15" FontWeight="Bold" Foreground="#4C80FF" VerticalAlignment="Center"></TextBlock>
+                                    </Viewbox>
+                                </StackPanel>
+                                <StackPanel Grid.Row="2" Grid.Column="3" Orientation="Horizontal">
+                                    <Viewbox>
+                                        <TextBlock Text="卡瓦状态:" Grid.Column="2" Margin="0,15,0,15" ></TextBlock>
+                                    </Viewbox>
+                                    <Viewbox>
+                                        <TextBlock x:Name="tbKava" Text="未知" Grid.Column="3" Margin="0,15,0,15" FontSize="18" FontWeight="Bold" Foreground="#4C80FF" VerticalAlignment="Center"></TextBlock>
+                                    </Viewbox>
+                                 </StackPanel>
+                            </Grid>
+                            <Grid Grid.Row="1" Grid.Column="1" Background="Black"></Grid>
+                            <Grid Grid.Row="1" Grid.Column="2" Background="Black"></Grid>
+                            <Grid Grid.Row="1" Grid.Column="3" Background="Black"></Grid>
+                        </Grid>
+                    </Border>
                 </Grid>
             </Grid>
-        </Border>
-        <Grid Name="gdSF" Grid.Row="1" Grid.Column="1"></Grid>
-        <Grid Name="gdDR" Grid.Row="1" Grid.Column="2"></Grid>
-        <Grid Name="gdSIR" Grid.Row="2" Grid.Column="0"></Grid>
-        <Grid Name="gdHS" Grid.Row="2" Grid.Column="1"></Grid>
-        <Grid Name="gdCat" Grid.Row="2" Grid.Column="2"></Grid>
-
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="7*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Margin="5" Grid.Column="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2.5*"/>
+                        <RowDefinition Height="4*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Border Background="#F6F9FF"></Border>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                <Viewbox>
+                                    <TextBlock Text=">联动设置" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,5,5,5" VerticalAlignment="Center"/>
+                                </Viewbox>
+                            </StackPanel>
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0" MouseDown="HSSet_MouseDown">
+                                    <Grid.Background>
+                                        <ImageBrush ImageSource="../Images/bgd.png"/>
+                                    </Grid.Background>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Viewbox>
+                                        <TextBlock Grid.Column="0" Text="液&#x0a;压&#x0a;站" VerticalAlignment="Center" Margin="30,15,5,5"></TextBlock>
+                                    </Viewbox>
+                                    <Viewbox Grid.Column="1">
+                                        <TextBlock Name="tbHSSet" Text="未设置" Width="60" VerticalAlignment="Center" Margin="0,40,10,35" Foreground="#4C80FF"></TextBlock>
+                                    </Viewbox>
+                                    <Viewbox Grid.ColumnSpan="2">
+                                        <TextBlock Name="tbHSSetHand" Text="&#xe507;" FontFamily="../Font/#iconfont" Margin="15" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"></TextBlock>
+                                    </Viewbox>
+                                 </Grid>
+                                <Grid Grid.Column="1" MouseDown="WorkModel_MouseDown">
+                                    <Grid.Background>
+                                        <ImageBrush ImageSource="../Images/bgd.png"/>
+                                    </Grid.Background>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Viewbox>
+                                        <TextBlock Grid.Column="0" Text="工&#x0a;&#x0a;况" VerticalAlignment="Center" Margin="30,15,5,5"></TextBlock>
+                                    </Viewbox>
+                                    <Viewbox Grid.Column="1">
+                                        <TextBlock Name="tbWorkModelSet" Text="未设置" Width="60" VerticalAlignment="Center" Margin="0,40,10,35" Foreground="#4C80FF"></TextBlock>
+                                    </Viewbox>
+                                    <Viewbox Grid.ColumnSpan="2">
+                                        <TextBlock Name="tbWorkModelSetHand" Margin="15" Text="&#xe507;" FontFamily="../Font/#iconfont" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"></TextBlock>
+                                    </Viewbox>
+                                </Grid>
+                                <Grid Grid.Column="2" MouseDown="PipeType_MouseDown">
+                                    <Grid.Background>
+                                        <ImageBrush ImageSource="../Images/bgd.png"/>
+                                    </Grid.Background>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Viewbox>
+                                        <TextBlock Grid.Column="0" Text="管&#x0a;&#x0a;柱" VerticalAlignment="Center" Margin="30,15,5,5"></TextBlock>
+                                    </Viewbox>
+                                    <Viewbox Grid.Column="1">
+                                        <TextBlock Name="tbPipeType" Text="未设置" Width="60" VerticalAlignment="Center" Margin="0,40,10,35" Foreground="#4C80FF"></TextBlock>
+                                    </Viewbox>
+                                    <Viewbox Grid.ColumnSpan="2">
+                                        <TextBlock Name="tbPipeSetHand" Text="&#xe507;" FontFamily="../Font/#iconfont" Margin="15" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"></TextBlock>
+                                    </Viewbox>
+                                 </Grid>
+                                <Grid Grid.Column="3" MouseDown="Des_MouseDown">
+                                    <Grid.Background>
+                                        <ImageBrush ImageSource="../Images/bgd.png"/>
+                                    </Grid.Background>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Viewbox>
+                                        <TextBlock Grid.Column="0" Text="目&#x0a;的&#x0a;地" VerticalAlignment="Center" Margin="30,15,5,5"></TextBlock>
+                                    </Viewbox>
+                                    <Viewbox Grid.Column="1">
+                                        <TextBlock Name="tbDesSet" Text="未设置" Width="60" VerticalAlignment="Center" Margin="0,40,10,35" Foreground="#4C80FF"></TextBlock>
+                                    </Viewbox>
+                                    <Viewbox Grid.ColumnSpan="2">
+                                        <TextBlock Name="tbDesSetHand" Text="&#xe507;" FontFamily="../Font/#iconfont" Margin="15" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"></TextBlock>
+                                    </Viewbox>
+                                </Grid>
+                                <Grid Grid.Column="4" MouseDown="DrillSelect_MouseDown">
+                                    <Grid.Background>
+                                        <ImageBrush ImageSource="../Images/bgd.png"/>
+                                    </Grid.Background>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Viewbox>
+                                        <TextBlock Grid.Column="0" Text="指&#x0a;&#x0a;梁" VerticalAlignment="Center" Margin="30,15,5,5"></TextBlock>
+                                    </Viewbox>
+                                    <Viewbox Grid.Column="1">
+                                        <TextBlock Name="tbDrillSelectSet" Text="未设置" Width="60" VerticalAlignment="Center" Margin="0,40,10,35" Foreground="#4C80FF"></TextBlock>
+                                    </Viewbox>
+                                    <Viewbox Grid.ColumnSpan="2">
+                                        <TextBlock Name="tbDrillSetHand" Text="&#xe507;" FontFamily="../Font/#iconfont" Margin="15" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"></TextBlock>
+                                    </Viewbox>
+                                </Grid>
+                                
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="1" Margin="0,5,0,0">
+                        <Border Background="#F6F9FF"></Border>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                <Viewbox>
+                                    <TextBlock Text=">联动启动" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,5,5,5" VerticalAlignment="Center"/>
+                                </Viewbox>
+                            </StackPanel>
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Viewbox Grid.Column="0">
+                                    <TextBlock Text="无告警信息" Name="tbAlarm" Margin="0,10,0,5" Foreground="Gray"></TextBlock>
+                                </Viewbox>
+                                <Viewbox Grid.Column="1">
+                                    <TextBlock Text="无操作提示" Name="tbOpr" Margin="0,10,0,5" Foreground="Gray"></TextBlock>
+                                </Viewbox>
+                            </Grid>
+                            <Viewbox Grid.Row="2">
+                                <Grid>
+                                    <Button Style="{StaticResource ButtonBaseStyle}" Name="btnStartHS" Foreground="Black" FontWeight="Bold" Background="#F5C244" Margin="-230,0,0,60" Width="80" Height="26" Click="btnStartHS_Click">启动泵</Button>
+                                    <Button Style="{StaticResource ButtonBaseStyle}" Name="btnTurnToZore" Foreground="Black" FontWeight="Bold" Background="#F5C244" Margin="-200,50,0,0" Width="80" Height="26" Click="btnTurnToZore_Click">回零</Button>
+                                    <Button Style="{StaticResource ButtonBaseStyle}" Name="btnLockConfirm" Foreground="Black" FontWeight="Bold" Background="#F5C244" Margin="-10,0,0,60" Width="80" Height="26">互锁确认</Button>
+                                    <Button Style="{StaticResource ButtonBaseStyle}" Name="btnParamConfirm" Foreground="Black" FontWeight="Bold" Background="#F5C244" Margin="10,50,0,0" Width="80" Height="26">参数设置</Button>
+                                    <Button Style="{StaticResource ButtonBaseStyle}" Name="btnLinkOpen" Foreground="Black" FontWeight="Bold" Background="#F5C244" Margin="200,0,0,10" Width="80">开启联动</Button>
+                                    <Line X1="35" Y1="20" X2="200" Y2="20" Stroke="Gray" StrokeThickness="3" Margin="0,20,0,0"></Line>
+                                    <Line X1="65" Y1="5" X2="100" Y2="20" Stroke="Gray" StrokeThickness="2" Margin="0,20,0,0"></Line>
+                                    <Line X1="80" Y1="35" X2="120" Y2="20" Stroke="Gray" StrokeThickness="2" Margin="0,20,0,0"></Line>
+                                    <Line X1="155" Y1="5" X2="195" Y2="20" Stroke="Gray" StrokeThickness="2" Margin="0,20,0,0"></Line>
+                                    <Line X1="155" Y1="35" X2="195" Y2="20" Stroke="Gray" StrokeThickness="2" Margin="0,20,0,0"></Line>
+                                    <TextBlock Name="tbStartHSHand" Margin="-180,-50,0,0" Text="&#xe507;" FontFamily="../Font/#iconfont" FontSize="20" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"></TextBlock>
+                                    <TextBlock Name="tbSTurnZeroHand" Margin="-160,60,0,0" Text="&#xe507;" FontFamily="../Font/#iconfont" FontSize="20" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"></TextBlock>
+                                    <TextBlock Name="tbLockConfirmHand" Margin="50,-50,0,0" Text="&#xe507;" FontFamily="../Font/#iconfont" FontSize="20" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"></TextBlock>
+                                    <TextBlock Name="tbParamConfirmHand" Margin="70,60,0,0" Text="&#xe507;" FontFamily="../Font/#iconfont" FontSize="20" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"></TextBlock>
+                                    <TextBlock Name="tbStartLinkHand" Margin="260,0,0,0" Text="&#xe507;" FontFamily="../Font/#iconfont" FontSize="20" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"></TextBlock>
+                                </Grid>
+                            </Viewbox>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
+            <Grid Margin="5" Grid.Column="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Border Background="#F6F9FF"></Border>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                <Viewbox>
+                                    <TextBlock Text=">互锁状态" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,5,5,5" VerticalAlignment="Center"/>
+                                </Viewbox>
+                            </StackPanel>
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+                                    <Viewbox>
+                                        <TextBlock Text="顶   驱:" Margin="25,5,5,5"></TextBlock>
+                                    </Viewbox>
+                                    <cl:SymbolMapping Name="TopLock" StrContent="" LampType="3" Margin="2,5,0,5"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
+                                    <Viewbox>
+                                        <TextBlock Text="吊   卡:" Margin="25,5,5,5"></TextBlock>
+                                    </Viewbox>
+                                    <cl:SymbolMapping Name="ElevatorLock" StrContent="" LampType="3" Margin="2,5,0,5"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0">
+                                    <Viewbox>
+                                        <TextBlock Text="大   钩:" Margin="25,5,5,5"></TextBlock>
+                                    </Viewbox>
+                                    <cl:SymbolMapping Name="BigHookLock" StrContent="" LampType="3" Margin="2,5,0,5"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0">
+                                    <Viewbox>
+                                        <TextBlock Text="二层台:" Margin="25,5,5,5"></TextBlock>
+                                    </Viewbox>
+                                    <cl:SymbolMapping Name="sfLock" StrContent="" LampType="3" Margin="0,5,0,5"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0">
+                                    <Viewbox>
+                                        <TextBlock Text="钻台面:" Margin="25,5,5,5"></TextBlock>
+                                    </Viewbox>
+                                    <cl:SymbolMapping Name="drLock" StrContent="" LampType="3" Margin="0,5,0,5"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
+                                    <Viewbox>
+                                        <TextBlock Text="铁钻工:" Margin="25,5,5,5"></TextBlock>
+                                    </Viewbox>
+                                    <cl:SymbolMapping Name="sirLock" StrContent="" LampType="3" Margin="0,5,0,5"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+                                    <Viewbox>
+                                        <TextBlock Text="防喷盒:" Margin="25,5,5,5"></TextBlock>
+                                    </Viewbox>
+                                    <cl:SymbolMapping Name="PreventBoxLock" StrContent="" LampType="3" Margin="0,5,0,5"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
+                                    <Viewbox>
+                                        <TextBlock Text="卡   瓦:" Margin="25,5,5,5"></TextBlock>
+                                    </Viewbox>
+                                    <cl:SymbolMapping Name="KavaLock" StrContent="" LampType="3" Margin="2,5,0,5"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1">
+                                    <Viewbox>
+                                        <TextBlock Text="猫   道:" Margin="25,5,5,5"></TextBlock>
+                                    </Viewbox>
+                                    <cl:SymbolMapping Name="catLock" StrContent="" LampType="3" Margin="2,5,0,5"/>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="1" Margin="0,5,0,0">
+                        <Border Background="#F6F9FF"></Border>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                <Viewbox>
+                                    <TextBlock Text=">设备信息" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,5,5,5" VerticalAlignment="Center"/>
+                                </Viewbox>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
     </Grid>
 </UserControl>

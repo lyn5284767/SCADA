@@ -89,6 +89,12 @@ namespace Main.SecondFloor
             GlobalData.Instance.DrillNum = GlobalData.Instance.da["103E23B5"].Value.Byte;
             //amination.InitRowsColoms(SystemType.SecondFloor);
             aminationNew.InitRowsColoms(SystemType.SecondFloor);
+            // 其他厂家集成我们设备发送
+            if (GlobalData.Instance.da["IngSetting"] != null && GlobalData.Instance.da["IngSetting"].Value.Byte != 0)
+            {
+                byte[] data = new byte[10] { 1, 32, 1, 11, 0, 0, 0, 0, 0, 0 };
+                GlobalData.Instance.da.SendBytes(data);
+            }
             PlayCameraInThread();
         }
 
@@ -1549,6 +1555,14 @@ namespace Main.SecondFloor
             this.rightFinger.SetBinding(TextBlock.TextProperty, rightFingerStatusCoverterMultiBind);
 
             #endregion
+
+            LeftHandMultiConverter leftHandMultiConverter = new LeftHandMultiConverter();
+            MultiBinding leftHand = new MultiBinding();
+            leftHand.Converter = leftHandMultiConverter;
+            leftHand.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["503b5"], Mode = BindingMode.OneWay });
+            leftHand.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["535b0"], Mode = BindingMode.OneWay });
+            leftHand.NotifyOnSourceUpdated = true;
+            this.tbLeftHand.SetBinding(TextBlock.TextProperty, leftHand);
         }
         const byte bHeadFirst = 0x50;
         const byte bHeadTwo = 0x01;
@@ -2440,11 +2454,11 @@ namespace Main.SecondFloor
         {
             byte[] byteToSend = SendByte(new List<byte> { 24, 2 });
             GlobalData.Instance.da.SendBytes(byteToSend);
-            UdpModel model = new UdpModel();
-            model.UdpType = UdpType.StartLink;
-            model.Content = "172.16.16.120";
-            byte[] bytes = Encoding.UTF8.GetBytes(model.ToJson());
-            GlobalData.Instance.da.SendDataToIPAndPort(bytes, "192.168.137.167", 8050);
+            //UdpModel model = new UdpModel();
+            //model.UdpType = UdpType.StartLink;
+            //model.Content = "172.16.16.120";
+            //byte[] bytes = Encoding.UTF8.GetBytes(model.ToJson());
+            //GlobalData.Instance.da.SendDataToIPAndPort(bytes, "192.168.137.167", 8050);
         }
 
 
@@ -2455,6 +2469,11 @@ namespace Main.SecondFloor
         {
             byte[] byteToSend = SendByte(new List<byte> { 24, 3 });
             GlobalData.Instance.da.SendBytes(byteToSend);
+            //UdpModel model = new UdpModel();
+            //model.UdpType = UdpType.PlayCamera;
+            //model.Content = "172.16.16.120";
+            //byte[] bytes = Encoding.UTF8.GetBytes(model.ToJson());
+            //GlobalData.Instance.da.SendDataToIPAndPort(bytes, "192.168.137.167", 8050);
         }
         /// <summary>
         /// 自动选择指梁:手动
@@ -2463,6 +2482,11 @@ namespace Main.SecondFloor
         {
             byte[] byteToSend = SendByte(new List<byte> { 24, 1 });
             GlobalData.Instance.da.SendBytes(byteToSend);
+            //UdpModel model = new UdpModel();
+            //model.UdpType = UdpType.PlayCamera;
+            //model.Content = "172.16.16.130";
+            //byte[] bytes = Encoding.UTF8.GetBytes(model.ToJson());
+            //GlobalData.Instance.da.SendDataToIPAndPort(bytes, "192.168.137.167", 8050);
         }
         /// <summary>
         /// 小车回零

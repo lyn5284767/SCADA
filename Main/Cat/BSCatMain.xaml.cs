@@ -230,7 +230,7 @@ namespace Main.Cat
         /// </summary>
         private void btn_controlModel(object sender, EventArgs e)
         {
-            byte[] byteToSend = new byte[10] { 80, 48, 8, 1, 0, 0, 0, 0, 0, 0 };
+            byte[] byteToSend = new byte[10] { 16, 1, 2, 0, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>

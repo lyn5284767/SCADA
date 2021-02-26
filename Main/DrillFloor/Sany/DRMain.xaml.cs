@@ -95,6 +95,12 @@ namespace Main.DrillFloor
             //this.amination.InitRowsColoms(SystemType.DrillFloor);
             this.aminationNew.InitRowsColoms(SystemType.DrillFloor);
             PlayCameraInThread();
+            // 其他厂家集成我们设备发送
+            if (GlobalData.Instance.da["IngSetting"]!=null && GlobalData.Instance.da["IngSetting"].Value.Byte != 0)
+            {
+                data = new byte[10] { 1, 32, 1, 10, 0, 0, 0, 0, 0, 0 };
+                GlobalData.Instance.da.SendBytes(data);
+            }
         }
         /// <summary>
         /// 切换页面发送指令
@@ -196,8 +202,21 @@ namespace Main.DrillFloor
                 //this.stepTxt.SetBinding(TextBlock.TextProperty, stepTxtMultiBind);
 
                 this.drDestination.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drDes"], Mode = BindingMode.OneWay, Converter = new DesTypeConverter() });// 目的地选择
-                this.tubeType.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drdrillPipeType"], Mode = BindingMode.OneWay, Converter = new DrillPipeTypeConverter() });// 管柱选择
+                //this.tubeType.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drdrillPipeType"], Mode = BindingMode.OneWay, Converter = new DrillPipeTypeConverter() });// 管柱选择
+                MultiBinding drillTypeSelectMultiBind = new MultiBinding();
+                drillTypeSelectMultiBind.Converter = new DrillTypeSelectCoverter();
+                drillTypeSelectMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drdrillPipeType"], Mode = BindingMode.OneWay });
+                drillTypeSelectMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["103b7"], Mode = BindingMode.OneWay });
+                drillTypeSelectMultiBind.NotifyOnSourceUpdated = true;
+                this.tubeType.SetBinding(TextBlock.TextProperty, drillTypeSelectMultiBind);
 
+                LeftHandMultiConverter leftHandMultiConverter = new LeftHandMultiConverter();
+                MultiBinding leftHand = new MultiBinding();
+                leftHand.Converter = leftHandMultiConverter;
+                leftHand.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["503b5"], Mode = BindingMode.OneWay });
+                leftHand.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["535b0"], Mode = BindingMode.OneWay });
+                leftHand.NotifyOnSourceUpdated = true;
+                this.tbLeftHand.SetBinding(TextBlock.TextProperty, leftHand);
                 InitCameraInfo();
 
                 //cameraTimer = new System.Timers.Timer(2 * 1000);

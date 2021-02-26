@@ -154,7 +154,16 @@
                                 <cl:SymbolMapping Name="drcarMotorRetZero" Grid.Column="1" StrContent="" Margin="5"/>
                                     <cl:SymbolMapping Name="drRotateMotorRetZero"  Grid.Column="2" StrContent="" Margin="5"/>
                                 </Grid>
-                                
+                            <Grid Grid.Row="2">
+                                <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left">
+                                    <Viewbox>
+                                        <Label Margin="10,0,5,0" FontSize="18">左手柄:</Label>
+                                    </Viewbox>
+                                    <Viewbox>
+                                        <TextBlock Name="tbLeftHand" Margin="0,5,0,5" Text="未知" VerticalAlignment="Center" Foreground="#4C80FF"></TextBlock>
+                                    </Viewbox>
+                                </StackPanel>
+                            </Grid>
                             </Grid>
                         </Grid>
                 </Grid>
@@ -226,7 +235,7 @@
                                 </MenuItem.Header>
                                 <MenuItem Header="钻铤"  FontSize="24">
                                     <MenuItem Header="6''钻铤" Click="btn_SelectDrillPipe"  TabIndex="60"/>
-                                    <MenuItem Header="6.5''钻铤" Click="btn_SelectDrillPipe"  TabIndex="65"/>
+                                    <MenuItem Header="6 1/2''钻铤" Click="btn_SelectDrillPipe"  TabIndex="65"/>
                                     <MenuItem Header="7''钻铤" Click="btn_SelectDrillPipe"  TabIndex="70"/>
                                     <MenuItem Header="8''钻铤" Click="btn_SelectDrillPipe"  TabIndex="80"/>
                                     <MenuItem Header="9''钻铤" Click="btn_SelectDrillPipe"  TabIndex="90"/>
@@ -236,11 +245,11 @@
                                 <MenuItem Header="钻杆"  FontSize="24">
                                     <MenuItem Header="2 7/8''钻杆" Click="btn_SelectDrillPipe" TabIndex="28"/>
                                     <MenuItem Header="3''钻杆" Click="btn_SelectDrillPipe" TabIndex="30"/>
-                                    <MenuItem Header="3.5''钻杆" Click="btn_SelectDrillPipe" TabIndex="35"/>
+                                    <MenuItem Header="3 1/2''钻杆" Click="btn_SelectDrillPipe" TabIndex="35"/>
                                     <MenuItem Header="4''钻杆" Click="btn_SelectDrillPipe" TabIndex="40"/>
-                                    <MenuItem Header="4.5''钻杆" Click="btn_SelectDrillPipe" TabIndex="45"/>
+                                    <MenuItem Header="4 1/2''钻杆" Click="btn_SelectDrillPipe" TabIndex="45"/>
                                     <MenuItem Header="5''钻杆" Click="btn_SelectDrillPipe" TabIndex="50"/>
-                                    <MenuItem Header="5.5''钻杆" Click="btn_SelectDrillPipe" TabIndex="55"/>
+                                    <MenuItem Header="5 1/2''钻杆" Click="btn_SelectDrillPipe" TabIndex="55"/>
                                 </MenuItem>
                             </MenuItem>
                         </Menu>

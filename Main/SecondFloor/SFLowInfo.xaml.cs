@@ -111,7 +111,7 @@ namespace Main.SecondFloor
 
 
                 // 钻台面设备编码
-                DeviceEncodeMultiConverter drDeviceEncodeMultiConverter = new DeviceEncodeMultiConverter();
+                DRDeviceEncodeMultiConverter drDeviceEncodeMultiConverter = new DRDeviceEncodeMultiConverter();
                 MultiBinding drDeviceEncodeMultiBind = new MultiBinding();
                 drDeviceEncodeMultiBind.Converter = drDeviceEncodeMultiConverter;
                 drDeviceEncodeMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drDeviceYear"], Mode = BindingMode.OneWay });

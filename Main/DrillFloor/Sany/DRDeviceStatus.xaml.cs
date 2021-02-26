@@ -58,6 +58,10 @@ namespace Main.DrillFloor
             InitializeComponent();
             VariableBinding();
             this.Loaded += DRDeviceStatus_Loaded;
+            if (GlobalData.Instance.da.GloConfig.SysType == 1)
+            {
+                this.bdForce.Visibility = Visibility.Visible;
+            }
         }
 
         System.Timers.Timer pageChange;

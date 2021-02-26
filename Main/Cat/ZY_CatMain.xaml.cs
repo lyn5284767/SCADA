@@ -70,7 +70,7 @@ namespace Main.Cat
         /// <param name="e"></param>
         private void btn_controlModel(object sender, EventArgs e)
         {
-            byte[] byteToSend = new byte[10] { 80, 48, 9, 0, 0, 0, 0, 0, 0, 0 };
+            byte[] byteToSend = new byte[10] { 16, 1, 2, 0, 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
     }

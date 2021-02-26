@@ -226,12 +226,21 @@ namespace Main.Integration
             //    byte[] byteToSend = GlobalData.Instance.SFSendToOpr(new List<byte> { 23, bConfigParameter[0], bConfigParameter[1], bConfigParameter[2] });
             //    GlobalData.Instance.da.SendBytes(byteToSend);
             //}
+
             if (GlobalData.Instance.SetParam[0] != 0)
             {
                 byte[] byteToSend = GlobalData.Instance.SetParam;
                 GlobalData.Instance.da.SendBytes(byteToSend);
             }
-            if (GlobalData.Instance.SetParam[3] == 81)// 铁钻工配置
+
+            if (GlobalData.Instance.SetParam[3] == 80)// 卡瓦配置
+            {
+                int kavaType = GlobalData.Instance.SetParam[4];
+                string sql = string.Format("update GloConfig Set KavaType='{0}'", kavaType);
+                DataHelper.Instance.ExecuteNonQuery(sql);
+                GlobalData.Instance.da.GloConfig.KavaType = kavaType;
+            }
+            else if (GlobalData.Instance.SetParam[3] == 81)// 铁钻工配置
             {
                 int sirType = GlobalData.Instance.SetParam[4];
                 string sql = string.Format("update GloConfig Set SIRType='{0}'", sirType);
@@ -266,12 +275,40 @@ namespace Main.Integration
                 DataHelper.Instance.ExecuteNonQuery(sql);
                 GlobalData.Instance.da.GloConfig.SFType = sfType;
             }
+            else if (GlobalData.Instance.SetParam[3] == 86)// 吊卡配置
+            {
+                int elevatorType = GlobalData.Instance.SetParam[4];
+                string sql = string.Format("update GloConfig Set ElevatorType='{0}'", elevatorType);
+                DataHelper.Instance.ExecuteNonQuery(sql);
+                GlobalData.Instance.da.GloConfig.ElevatorType = elevatorType;
+            }
+            else if (GlobalData.Instance.SetParam[3] == 87)// 清扣配置
+            {
+                int clearBtnType = GlobalData.Instance.SetParam[4];
+                string sql = string.Format("update GloConfig Set ClearBtnType='{0}'", clearBtnType);
+                DataHelper.Instance.ExecuteNonQuery(sql);
+                GlobalData.Instance.da.GloConfig.ClearBtnType = clearBtnType;
+            }
             else if (GlobalData.Instance.SetParam[3] == 88)// 防喷盒配置
             {
                 int preventBoxType = GlobalData.Instance.SetParam[4];
                 string sql = string.Format("update GloConfig Set PreventBoxType='{0}'", preventBoxType);
                 DataHelper.Instance.ExecuteNonQuery(sql);
                 GlobalData.Instance.da.GloConfig.PreventBoxType = preventBoxType;
+            }
+            else if (GlobalData.Instance.SetParam[3] == 89)// 大钩配置
+            {
+                int hookType = GlobalData.Instance.SetParam[4];
+                string sql = string.Format("update GloConfig Set HookType='{0}'", hookType);
+                DataHelper.Instance.ExecuteNonQuery(sql);
+                GlobalData.Instance.da.GloConfig.HookType = hookType;
+            }
+            else if (GlobalData.Instance.SetParam[3] == 90)// 顶驱配置
+            {
+                int topType = GlobalData.Instance.SetParam[4];
+                string sql = string.Format("update GloConfig Set TopType='{0}'", topType);
+                DataHelper.Instance.ExecuteNonQuery(sql);
+                GlobalData.Instance.da.GloConfig.TopType = topType;
             }
         }
         /// <summary>
