@@ -2362,8 +2362,8 @@ namespace Main
                 if (GlobalData.Instance.systemType != SystemType.CIMS)
                 {
                     this.spMain.Children.Clear();
-                    this.spMain.Children.Add(IngMain.Instance);
-                    //this.spMain.Children.Add(IngMainNew.Instance);
+                    //this.spMain.Children.Add(IngMain.Instance);
+                    this.spMain.Children.Add(IngMainNew.Instance);
                     GlobalData.Instance.Ing = true;
                     IngMainNew.Instance.SetNowTechniqueEvent += Instance_SetNowTechniqueEvent;
                     IngMain.Instance.SetNowTechniqueEvent += Instance_SetNowTechniqueEvent;
@@ -2393,7 +2393,8 @@ namespace Main
         private void MouseDownIng(object sender, RoutedEventArgs e)
         {
             this.spMain.Children.Clear();
-            this.spMain.Children.Add(IngMain.Instance);
+            //this.spMain.Children.Add(IngMain.Instance);
+            this.spMain.Children.Add(IngMainNew.Instance);
             GlobalData.Instance.Ing = true;
             IngMain.Instance.SetNowTechniqueEvent += Instance_SetNowTechniqueEvent;
             GlobalData.Instance.systemType = SystemType.CIMS;

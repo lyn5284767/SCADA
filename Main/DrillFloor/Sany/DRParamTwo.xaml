@@ -71,7 +71,7 @@
                                 <cl:TextBlockWithTextBox Name="twtL52" ControlTag="52"  TbkText="伸出最小电流(mA)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
                                 <cl:TextBlockWithTextBox Name="twtL53" ControlTag="53"  TbkText="伸出加速度" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
                                 <cl:TextBlockWithTextBox Name="twtL54" ControlTag="54"  TbkText="伸出减速度" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
-                                <cl:TextBlockWithTextBox Name="twtL55" ControlTag="55"  TbkText="伸出加减速周期(m/s)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+                                <cl:TextBlockWithTextBox Name="twtL55" ControlTag="55"  TbkText="伸出加减速周期(ms)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
                                 <cl:TextBlockWithTextBox Name="twtL56" ControlTag="56"  TbkText="伸出缓存距离(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
                                 <cl:TextBlockWithTextBox Name="twtL65" ControlTag="65"  TbkText="伸出缓冲电流(mA)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
                                 <cl:TextBlockWithTextBox Name="twtL57" ControlTag="57"  TbkText="缩回最大电流(mA)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>

@@ -97,6 +97,7 @@ namespace Main.Integration
                 Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
             }
         }
+
         #region step 2 启动液压站
         /// <summary>
         /// step 2 启动液压站

@@ -1,0 +1,151 @@
+﻿<Window x:Class="Main.Integration.LinkSetWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Main.Integration" xmlns:main="clr-namespace:Main"
+        mc:Ignorable="d"
+               Title="联动设置" Height="520" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <TextBlock Name="tbNowStep" Grid.Row="0" Text="***设置" FontSize="32" TextAlignment="Center" FontWeight="Bold"></TextBlock>
+        <Grid Grid.Row="1" Name="gdHSSet" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Name="btnPumpOne" Grid.Column="0" FontSize="32" Height="200" Width="150" Click="SelectedPumpOne_Click">1#主泵</Button>
+            <Button Name="btnPumpTwo" Grid.Column="1" FontSize="32" Height="200" Width="150" Click="SelectedPumpTwo_Click">2#主泵</Button>
+            <Button Name="btnPumpBoth" Grid.Column="2" FontSize="32" Height="200" Width="150" Click="SelectedPumpBoth_Click">双泵</Button>
+        </Grid>
+        <Grid Grid.Row="1" Name="gdWorkModel" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Name="btnDrillUp" Grid.Column="0" FontSize="32" Height="200" Width="180" Click="DrillUp_Click">排杆</Button>
+            <Button Name="btnDrillDown" Grid.Column="1" FontSize="32" Height="200" Width="180" Click="DrillDown_Click">送杆</Button>
+        </Grid>
+        <Grid Grid.Row="1" Name="gdPipeOrCollar" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Name="btnPipe" Grid.Column="0" FontSize="32" Height="200" Width="150" Click="Pipe_Click">钻杆</Button>
+            <Button Name="btnCollar" Grid.Column="1" FontSize="32" Height="200" Width="150" Click="Collar_Click">钻铤</Button>
+        </Grid>
+        <Grid Grid.Row="1" Name="gdCollarType" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Button Name="btnCollar35" Grid.Column="0" Grid.Row="0" FontSize="32" Height="150" Width="150" Tag="35" Click="CollarSize_Click">3.5寸</Button>
+            <Button Name="btnCollar45" Grid.Column="1" Grid.Row="0" FontSize="32" Height="150" Width="150" Tag="45" Click="CollarSize_Click">4.5寸</Button>
+            <Button Name="btnCollar60" Grid.Column="2" Grid.Row="0" FontSize="32" Height="150" Width="150" Tag="60" Click="CollarSize_Click">6寸</Button>
+            <Button Name="btnCollar65" Grid.Column="3" Grid.Row="0" FontSize="32" Height="150" Width="150" Tag="65" Click="CollarSize_Click">6.5寸</Button>
+            <Button Name="btnCollar70" Grid.Column="4" Grid.Row="0" FontSize="32" Height="150" Width="150" Tag="70" Click="CollarSize_Click">7寸</Button>
+            <Button Name="btnCollar75" Grid.Column="0" Grid.Row="1" FontSize="32" Height="150" Width="150" Tag="75" Click="CollarSize_Click">7.5寸</Button>
+            <Button Name="btnCollar80" Grid.Column="1" Grid.Row="1" FontSize="32" Height="150" Width="150" Tag="80" Click="CollarSize_Click">8寸</Button>
+            <Button Name="btnCollar90" Grid.Column="2" Grid.Row="1" FontSize="32" Height="150" Width="150" Tag="90" Click="CollarSize_Click">9寸</Button>
+            <Button Name="btnCollar100" Grid.Column="3" Grid.Row="1" FontSize="32" Height="150" Width="150" Tag="100" Click="CollarSize_Click">10寸</Button>
+            <Button Name="btnCollar110" Grid.Column="4" Grid.Row="1" FontSize="32" Height="150" Width="150" Tag="110" Click="CollarSize_Click">11寸</Button>
+        </Grid>
+        <Grid Grid.Row="1" Name="gdPipeType" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Button Name="btnPipe28" Grid.Column="0" Grid.Row="0" FontSize="32" Height="150" Width="150" Tag="28" Click="PipeSize_Click">2 7/8寸</Button>
+            <Button Name="btnPipe35" Grid.Column="1" Grid.Row="0" FontSize="32" Height="150" Width="150" Tag="35" Click="PipeSize_Click">3.5寸</Button>
+            <Button Name="btnPipe40" Grid.Column="2" Grid.Row="0" FontSize="32" Height="150" Width="150" Tag="40" Click="PipeSize_Click">4寸</Button>
+            <Button Name="btnPipe45" Grid.Column="3" Grid.Row="0" FontSize="32" Height="150" Width="150" Tag="45" Click="PipeSize_Click">4.5寸</Button>
+            <Button Name="btnPipe50" Grid.Column="0" Grid.Row="1" FontSize="32" Height="150" Width="150" Tag="50" Click="PipeSize_Click">5寸</Button>
+            <Button Name="btnPipe55" Grid.Column="1" Grid.Row="1" FontSize="32" Height="150" Width="150" Tag="55" Click="PipeSize_Click">5.5寸</Button>
+            <Button Name="btnPipe57" Grid.Column="2" Grid.Row="1" FontSize="32" Height="150" Width="150" Tag="57" Click="PipeSize_Click">5 7/8寸</Button>
+            <Button Name="btnPipe68" Grid.Column="3" Grid.Row="1" FontSize="32" Height="150" Width="150" Tag="68" Click="PipeSize_Click">6 5/8寸</Button>
+        </Grid>
+        <Grid Grid.Row="1" Name="gdDesType" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Name="btnRooting" Grid.Column="0" FontSize="32" Height="200" Width="180" Click="Rooting_Click">立根盒</Button>
+            <Button Name="btnCatToWell" Grid.Column="1" FontSize="32" Height="200" Width="180" Click="CatToWell_Click">猫道-井口</Button>
+            <Button Name="btnCatToMouse" Grid.Column="2" FontSize="32" Height="200" Width="180" Click="CatToMouse_Click">猫道-鼠洞</Button>
+        </Grid>
+        <Grid Grid.Row="1" Name="gdSelectedAutoOrHand" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Name="btnHandSelected" Grid.Column="0" FontSize="32" Height="200" Width="180" Click="Hand_Click">手动选择</Button>
+            <Button Name="btnAutoSelected" Grid.Column="1" FontSize="32" Height="200" Width="180" Click="Auto_Click">自动选择</Button>
+        </Grid>
+        <Grid Grid.Row="1" Name="gdSelectedDrill" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="650"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <main:AminationNew Grid.Column="0" x:Name="aminationNew"/>
+            <StackPanel Grid.Column="1">
+                <TextBlock Text="选择指梁:" FontSize="24" FontWeight="Bold"></TextBlock>
+                <TextBlock Name="tbSelectedDrill" Text="未选择" FontSize="24">
+                </TextBlock>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1" Name="gdConfirm">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Border BorderThickness="1" BorderBrush="Gray" Grid.Row="0" Grid.Column="0">
+                <TextBlock Name="tbConfirmHS" FontSize="32" Text="液压站:双泵" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+            </Border>
+            <Border BorderThickness="1" BorderBrush="Gray" Grid.Row="0" Grid.Column="1">
+                <TextBlock Name="tbConfirmWorkModel" FontSize="32" Text="工况:排杆" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+            </Border>
+            <Border BorderThickness="1" BorderBrush="Gray" Grid.Row="1" Grid.Column="0">
+                <TextBlock Name="tbConfirmPipe" FontSize="32" Text="管柱:4.5寸钻杆" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+            </Border>
+            <Border BorderThickness="1" BorderBrush="Gray" Grid.Row="1" Grid.Column="1">
+                <TextBlock Name="tbConfirmDes" FontSize="32" Text="目的地:立根盒" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+            </Border>
+            <Border BorderThickness="1" BorderBrush="Gray" Grid.Row="2" Grid.Column="0">
+                <TextBlock Name="tbConfirmHandOrAuto" FontSize="32" Text="指梁选择:手动" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+            </Border>
+            <Border BorderThickness="1" BorderBrush="Gray" Grid.Row="2" Grid.Column="1">
+                <TextBlock Name="tbConfirmSelectedDrill" FontSize="32" Text="已选指梁:左1" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+            </Border>
+        </Grid>
+        <TextBlock Name="tbTips" Grid.Row="1" Text="提示信息" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="32" FontWeight="Bold" Foreground="Red" Visibility="Collapsed"></TextBlock>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right">
+
+            <Button Name="btnPre" FontSize="24" Height="45" Margin="10,0,0,0" FontWeight="Bold" Click="btnPre_Click">确认</Button>
+            <Button Name="btnNext" FontSize="24" Height="45" Margin="10,0,10,0" FontWeight="Bold" Click="btnNext_Click">取消</Button>
+        </StackPanel>
+    </Grid>
+</Window>

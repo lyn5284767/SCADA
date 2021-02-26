@@ -1648,6 +1648,43 @@ namespace Main
             }
         }
 
+        public void ShwoSelectDrill(byte number)
+        {
+
+            if (number == 0) return;
+            byte fingerBeamNumber = number;
+
+            string path = "/Images/A_5.png";
+            if (GlobalData.Instance.systemType == SystemType.DrillFloor)
+                drSelectImageList.ForEach(o => o.SelectImage.Source = new BitmapImage(new Uri("/Images/A_5.png", UriKind.Relative)));
+            else if (GlobalData.Instance.systemType == SystemType.SecondFloor)
+                sfSelectImageList.ForEach(o => o.SelectImage.Source = new BitmapImage(new Uri("/Images/A_5.png", UriKind.Relative)));
+            else
+            {
+                drSelectImageList.ForEach(o => o.SelectImage.Source = new BitmapImage(new Uri("/Images/A_5.png", UriKind.Relative)));
+                sfSelectImageList.ForEach(o => o.SelectImage.Source = new BitmapImage(new Uri("/Images/A_5.png", UriKind.Relative)));
+            }
+            if (fingerBeamNumber >= 17 && fingerBeamNumber <= 32)
+            {
+                path = "/Images/A_Y_3.png";
+            }
+            else if (fingerBeamNumber >= 1 && fingerBeamNumber <= 16)
+            {
+                path = "/Images/A_Y_1.png";
+            }
+            else
+            {
+                path = "/Images/A_5.png";
+            }
+            Image img = sfSelectImageList.Where(w => w.Num == fingerBeamNumber).FirstOrDefault().SelectImage;
+            if (img != null)
+            {
+                var uriSource = new Uri(path, UriKind.Relative);
+                img.Source = new BitmapImage(uriSource);
+            }
+
+        }
+
         /// <summary>
         /// 初始化钻台信息
         /// </summary>

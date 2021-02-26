@@ -285,6 +285,9 @@
     <Compile Include="Integration\Ing_SIR_Self.xaml.cs">
       <DependentUpon>Ing_SIR_Self.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Integration\LinkSetWindow.xaml.cs">
+      <DependentUpon>LinkSetWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Integration\ModelDetailData.xaml.cs">
       <DependentUpon>ModelDetailData.xaml</DependentUpon>
     </Compile>
@@ -696,6 +699,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Integration\Ing_SIR_Self.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Integration\LinkSetWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1263,6 +1270,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\ButtonBlue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bgd.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
