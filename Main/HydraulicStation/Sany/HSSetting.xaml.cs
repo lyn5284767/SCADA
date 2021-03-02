@@ -2,6 +2,7 @@
 using ControlLibrary;
 using DataService;
 using Log;
+using Main.HydraulicStation.Sany;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -66,18 +67,18 @@ namespace Main.HydraulicStation
             try
             {
                 #region 处理与mouse与click事件冲突
-                btnLeftCatHeadReach.AddHandler(Button.MouseDownEvent, new RoutedEventHandler(BtnLeftCatReach_Click), true);
-                btnLeftCatHeadReach.AddHandler(Button.MouseUpEvent, new RoutedEventHandler(btnLeftCatHeadReach_MouseUp), true);
-                btnLeftCatHeadRetract.AddHandler(Button.MouseDownEvent, new RoutedEventHandler(BtnLeftCatRetract_Click), true);
-                btnLeftCatHeadRetract.AddHandler(Button.MouseUpEvent, new RoutedEventHandler(btnLeftCatHeadRetract_MouseUp), true);
-                btnRightCatHeadReach.AddHandler(Button.MouseDownEvent, new RoutedEventHandler(BtnRightCatReach_Click), true);
-                btnRightCatHeadReach.AddHandler(Button.MouseUpEvent, new RoutedEventHandler(btnRightCatHeadReach_MouseUp), true);
-                btnRightCatHeadRetract.AddHandler(Button.MouseDownEvent, new RoutedEventHandler(BtnRightCatRetract_Click), true);
-                btnRightCatHeadRetract.AddHandler(Button.MouseUpEvent, new RoutedEventHandler(btnRightCatHeadRetract_MouseUp), true);
-                btnRotateCatHeadLeft.AddHandler(Button.MouseDownEvent, new RoutedEventHandler(btnRotateCatHeadLeft_Click), true);
-                btnRotateCatHeadLeft.AddHandler(Button.MouseUpEvent, new RoutedEventHandler(btnRotateCatHeadLeft_MouseUp), true);
-                btnRotateCatHeadRight.AddHandler(Button.MouseDownEvent, new RoutedEventHandler(btnRotateCatHeadRight_Click), true);
-                btnRotateCatHeadRight.AddHandler(Button.MouseUpEvent, new RoutedEventHandler(btnRotateCatHeadRight_MouseUp), true);
+                //btnLeftCatHeadReach.AddHandler(Button.MouseDownEvent, new RoutedEventHandler(BtnLeftCatReach_Click), true);
+                //btnLeftCatHeadReach.AddHandler(Button.MouseUpEvent, new RoutedEventHandler(btnLeftCatHeadReach_MouseUp), true);
+                //btnLeftCatHeadRetract.AddHandler(Button.MouseDownEvent, new RoutedEventHandler(BtnLeftCatRetract_Click), true);
+                //btnLeftCatHeadRetract.AddHandler(Button.MouseUpEvent, new RoutedEventHandler(btnLeftCatHeadRetract_MouseUp), true);
+                //btnRightCatHeadReach.AddHandler(Button.MouseDownEvent, new RoutedEventHandler(BtnRightCatReach_Click), true);
+                //btnRightCatHeadReach.AddHandler(Button.MouseUpEvent, new RoutedEventHandler(btnRightCatHeadReach_MouseUp), true);
+                //btnRightCatHeadRetract.AddHandler(Button.MouseDownEvent, new RoutedEventHandler(BtnRightCatRetract_Click), true);
+                //btnRightCatHeadRetract.AddHandler(Button.MouseUpEvent, new RoutedEventHandler(btnRightCatHeadRetract_MouseUp), true);
+                //btnRotateCatHeadLeft.AddHandler(Button.MouseDownEvent, new RoutedEventHandler(btnRotateCatHeadLeft_Click), true);
+                //btnRotateCatHeadLeft.AddHandler(Button.MouseUpEvent, new RoutedEventHandler(btnRotateCatHeadLeft_MouseUp), true);
+                //btnRotateCatHeadRight.AddHandler(Button.MouseDownEvent, new RoutedEventHandler(btnRotateCatHeadRight_Click), true);
+                //btnRotateCatHeadRight.AddHandler(Button.MouseUpEvent, new RoutedEventHandler(btnRotateCatHeadRight_MouseUp), true);
                 #endregion
 
                 this.controlModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["771b5"], Mode = BindingMode.OneWay});
@@ -117,14 +118,14 @@ namespace Main.HydraulicStation
                 //this.DF.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["769b3"], Mode = BindingMode.OneWay });
                 //this.BufferArm.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["769b7"], Mode = BindingMode.OneWay });
 
-                this.btnLeftCatHeadRetract.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["768b5"], Mode = BindingMode.OneWay,Converter = new BtnColorCoverter() });
-                this.btnLeftCatHeadClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["768b6"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.btnLeftCatHeadReach.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["768b4"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnLeftCatHeadRetract.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["768b5"], Mode = BindingMode.OneWay,Converter = new BtnColorCoverter() });
+                //this.btnLeftCatHeadClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["768b6"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnLeftCatHeadReach.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["768b4"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
                
-                this.btnRightCatHeadRetract.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["769b0"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.btnRightCatHeadClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["769b1"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.btnRightCatHeadReach.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["768b7"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-               
+                //this.btnRightCatHeadRetract.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["769b0"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnRightCatHeadClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["769b1"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnRightCatHeadReach.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["768b7"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+
                 //this.btnIron.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["768b0"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
                 BtnColorMuilCoverter btnIronCloseMultiConverter = new BtnColorMuilCoverter();
                 MultiBinding btnIronCloseMultiBind = new MultiBinding();
@@ -155,49 +156,49 @@ namespace Main.HydraulicStation
                 //this.btnWellBufferClose.SetBinding(Button.BackgroundProperty, btnWellBufferCloseMultiBind);
                 //this.btnSpaceFour.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["770b0"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
 
-                this.btnTurnMainOne.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["773b1"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.btnTurnMainTwo.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["773b0"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.btnMonitorOneGetOil.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["773b2"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.btnMonitorTwoGetOil.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["773b3"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.btnFilterReplace.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["773b4"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.btnOilReplace.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["773b5"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.btnOilLeakage.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["773b6"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnTurnMainOne.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["773b1"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnTurnMainTwo.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["773b0"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnMonitorOneGetOil.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["773b2"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnMonitorTwoGetOil.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["773b3"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnFilterReplace.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["773b4"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnOilReplace.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["773b5"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnOilLeakage.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["773b6"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
             
-                this.tbLeftCatHead.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["CatPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
-                this.tbRightCatHead.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["CatPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                //this.tbLeftCatHead.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["CatPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                //this.tbRightCatHead.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["CatPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
                 //this.tbIronTongs.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IRPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
                 //this.tbDFSpThree.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["FPPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
 
-                this.btnElevatorOpen.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b0"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.btnElevatorClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b1"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                //this.tbMainPumpUnload.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["MPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
-                this.btnCraneOpen.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b2"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.btnCraneClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b3"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                //this.tbKavaUnload.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SlipPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
-                this.btnWellMoveOpen.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b4"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.btnWellMoveClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b5"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.tbWellMove.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["TPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
-                this.btnSpareOneOpen.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b6"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.btnSpareOneClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b7"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.btnIronOpen.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["768b0"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.btnIronClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["768b1"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.tbIron.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IRPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
-                this.btnTongsOpen.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["768b2"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.btnTongsClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["768b3"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.tbTongs.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["TongPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
-                this.btnDROpen.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["769b2"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.btnDRClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["769b3"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.tbDR.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["FPPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
-                this.btnArmOpen.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["769b6"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.btnArmClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["769b7"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnElevatorOpen.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b0"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnElevatorClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b1"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                ////this.tbMainPumpUnload.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["MPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                //this.btnCraneOpen.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b2"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnCraneClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b3"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                ////this.tbKavaUnload.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SlipPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                //this.btnWellMoveOpen.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b4"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnWellMoveClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b5"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.tbWellMove.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["TPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                //this.btnSpareOneOpen.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b6"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnSpareOneClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["767b7"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnIronOpen.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["768b0"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnIronClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["768b1"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.tbIron.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IRPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                //this.btnTongsOpen.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["768b2"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnTongsClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["768b3"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.tbTongs.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["TongPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                //this.btnDROpen.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["769b2"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnDRClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["769b3"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.tbDR.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["FPPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                //this.btnArmOpen.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["769b6"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnArmClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["769b7"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
                 //this.tbArm.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["FPPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
-                this.btnLeftCarOpen.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["769b4"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.btnLeftCarClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["769b5"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.btnRightCarOpen.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["770b0"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.btnRightCarClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["770b1"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.btnRotateCatHeadLeft.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["794b4"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.btnRotateCatHeadStop.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["794b6"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
-                this.btnRotateCatHeadRight.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["794b5"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnLeftCarOpen.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["769b4"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnLeftCarClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["769b5"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnRightCarOpen.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["770b0"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnRightCarClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["770b1"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnRotateCatHeadLeft.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["794b4"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnRotateCatHeadStop.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["794b6"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                //this.btnRotateCatHeadRight.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["794b5"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
                 this.tbCancelLevel.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["795b0"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
                 this.tbCancelTmp.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["795b1"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
                 this.tbSysTurnZero.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["772b4"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
@@ -1210,6 +1211,24 @@ namespace Main.HydraulicStation
                 byteToSend = new byte[10] { 0, 19, 55, 0, 1, 0, 0, 0, 0, 0 };
             }
             GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+
+        private void btnOilOne_Click(object sender, RoutedEventArgs e)
+        {
+            OilOneWindow oneWindow = new OilOneWindow();
+            oneWindow.ShowDialog();
+        }
+
+        private void btnOilTwo_Click(object sender, RoutedEventArgs e)
+        {
+            OilTwoWindow oilTwoWindow = new OilTwoWindow();
+            oilTwoWindow.ShowDialog();
+        }
+
+        private void Maintain_Click(object sender, MouseButtonEventArgs e)
+        {
+            MaintainWindow maintainWindow = new MaintainWindow();
+            maintainWindow.ShowDialog();
         }
     }
 }

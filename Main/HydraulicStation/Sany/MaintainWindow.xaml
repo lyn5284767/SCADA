@@ -1,0 +1,33 @@
+﻿<Window x:Class="Main.HydraulicStation.Sany.MaintainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Main.HydraulicStation.Sany"
+        mc:Ignorable="d"
+        Title="MaintainWindow" Height="450" Width="600">
+    <Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Button Grid.Column="0" Grid.Row="0" Width="240" Height="60" FontSize="18" Click="BtnTurnMainOne_Click" Name="btnTurnMainOne">主泵1已切换</Button>
+            <Button Grid.Column="1" Grid.Row="0" Width="240" Height="60" FontSize="18" Click="BtnTurnMainTwo_Click" Name="btnTurnMainTwo">主泵2已切换</Button>
+            <Button Grid.Column="0" Grid.Row="1" Width="240" Height="60" FontSize="18" Click="BtnMonitorOneGetOil_Click" Name="btnMonitorOneGetOil">主电机1已加注黄油</Button>
+            <Button Grid.Column="1" Grid.Row="1" Width="240" Height="60" FontSize="18" Click="BtnMonitorTwoGetOil_Click" Name="btnMonitorTwoGetOil">主电机2已加注黄油</Button>
+            <Button Grid.Column="0" Grid.Row="2" Width="240" Height="60" FontSize="18" Click="BtnFilterReplace_Click" Name="btnFilterReplace">滤芯已更换</Button>
+            <Button Grid.Column="1" Grid.Row="2" Width="240" Height="60" FontSize="18" Click="BtnOilReplace_Click" Name="btnOilReplace">液压油已更换</Button>
+            <Button Grid.Column="0" Grid.Row="3" Width="240" Height="60" FontSize="18" Click="BtnOilLeakage_Click" Name="btnOilLeakage">液位已确认正常</Button>
+            <Button Grid.Column="1" Grid.Row="3" Width="240" Height="60" FontSize="18">备用</Button>
+            <Button Grid.Column="1" Grid.Row="4" Width="240" Height="60" FontSize="18" Click="btn_close">关闭窗口</Button>
+        </Grid>
+    </Grid>
+</Window>

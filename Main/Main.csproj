@@ -222,6 +222,15 @@
     <Compile Include="HydraulicStation\Sany\HSSetting.xaml.cs">
       <DependentUpon>HSSetting.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HydraulicStation\Sany\MaintainWindow.xaml.cs">
+      <DependentUpon>MaintainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HydraulicStation\Sany\OilOneWindow.xaml.cs">
+      <DependentUpon>OilOneWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HydraulicStation\Sany\OilTwoWindow.xaml.cs">
+      <DependentUpon>OilTwoWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Integration\DrillSetWindow.xaml.cs">
       <DependentUpon>DrillSetWindow.xaml</DependentUpon>
     </Compile>
@@ -615,6 +624,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="HydraulicStation\Sany\HSSetting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HydraulicStation\Sany\MaintainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HydraulicStation\Sany\OilOneWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HydraulicStation\Sany\OilTwoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
