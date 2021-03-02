@@ -69,11 +69,71 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0">
+                <Grid Grid.Column="0" Margin="5">
+                <Border Background="#F6F9FF"></Border>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="260"/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
+                    <GroupBox Grid.Column="0" Grid.Row="0" Header="主泵压力" FontSize="18">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Name="cpbMainPump" Text="00.2" FontSize="48" Foreground="Red"></TextBlock>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Grid.Column="1" Grid.Row="0" Header="铁钻工压力" FontSize="18">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Name="cpbIronPump" Text="00.2" FontSize="48" Foreground="Red"></TextBlock>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Grid.Column="0" Grid.Row="1" Header="钻台面压力" FontSize="18">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Name="cpbFPPump" Text="00.2" FontSize="48" Foreground="Red"></TextBlock>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Grid.Column="1" Grid.Row="1" Header="大钳压力" FontSize="18">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Name="cpbTongPump" Text="00.2" FontSize="48" Foreground="Red"></TextBlock>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Grid.Column="0" Grid.Row="2" Header="卡瓦压力" FontSize="18">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Name="cpbKavaPump" Text="00.2" FontSize="48" Foreground="Red"></TextBlock>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Grid.Column="1" Grid.Row="2" Header="猫头压力" FontSize="18">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Name="cpbCatHeadPump" Text="00.2" FontSize="48" Foreground="Red"></TextBlock>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Grid.Column="0" Grid.Row="3" Header="散热泵压力" FontSize="18">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Name="cpbMovePump" Text="00.2" FontSize="48" Foreground="Red"></TextBlock>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Grid.Column="1" Grid.Row="3" Header="散热泵压力" FontSize="18">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Name="cpbLSPump" Text="00.2" FontSize="48" Foreground="Red"></TextBlock>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Grid.Column="0" Grid.Row="4" Header="油温" FontSize="18">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Name="wpbOil" Text="00.2" FontSize="48" Foreground="Red"></TextBlock>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Grid.Column="1" Grid.Row="4" Header="液位" FontSize="18">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Name="wpbHeight" Text="00.2" FontSize="48" Foreground="Red"></TextBlock>
+                        </StackPanel>
+                    </GroupBox>
+                </Grid>
                 <!--<Grid Grid.Row="0" Margin="5">
                     <Border Background="#F6F9FF"></Border>
                     <Grid>
