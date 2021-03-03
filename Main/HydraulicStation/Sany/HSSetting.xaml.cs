@@ -204,6 +204,19 @@ namespace Main.HydraulicStation
                 this.tbSysTurnZero.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["772b4"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
                 this.tbAlarmClear.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["772b5"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
 
+                #region 设备状态
+                this.cpbMainPump.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["MPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                this.cpbKavaPump.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["SlipPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                this.cpbLSPump.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["LSPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                this.cpbMovePump.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["TPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                this.cpbIronPump.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IRPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                this.cpbTongPump.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["TongPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                this.cpbCatHeadPump.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["CatPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                this.cpbFPPump.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["FPPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                this.wpbOil.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["OilTemAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                this.wpbHeight.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["OilLevelAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+
+                #endregion
             }
             catch (Exception ex)
             {

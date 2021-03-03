@@ -275,7 +275,7 @@ KeyboardNavigation.DirectionalNavigation="Cycle" Width="100"/>
                 <hc:SplitButton.DropDownContent>
                     <StackPanel Name="spHS">
                         <MenuItem Header="主页" Click="MouseHSMain"/>
-                        <MenuItem Header="设备设置" Click="MouseHSDrillSet"/>
+                        <!--<MenuItem Header="设备设置" Click="MouseHSDrillSet"/>-->
                         <MenuItem Header="设备状态" Click="MouseHSDeviceStatus"/>
                         <MenuItem Header="记录查询" Click="MouseHSRecord"/>
                         <MenuItem Header="报表" Click="MouseHSReport"/>

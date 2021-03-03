@@ -19,7 +19,7 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Border Grid.Row="0" Grid.Column="0" Background="#DDE0E5">
+            <Border Grid.Row="0" Grid.Column="0">
                 <StackPanel VerticalAlignment="Center">
                     <StackPanel Orientation="Horizontal" >
                         <TextBlock FontSize="18" Text="左猫头:" FontWeight="Bold" Foreground="Black"></TextBlock>
@@ -33,7 +33,7 @@
                     </StackPanel>
                 </StackPanel>
             </Border>
-            <Border Grid.Row="0" Grid.Column="1" Background="#DDE0E5">
+            <Border Grid.Row="0" Grid.Column="1">
                 <StackPanel VerticalAlignment="Center">
                     <StackPanel Orientation="Horizontal" >
                         <TextBlock FontSize="18" Text="右猫头:" FontWeight="Bold" Foreground="Black"></TextBlock>
@@ -59,7 +59,7 @@
                                     <TextBlock FontSize="18" Text="Mpa"></TextBlock>
                                 </StackPanel>
                             </StackPanel>-->
-            <Border Grid.Row="1" Grid.Column="0">
+            <Border Grid.Row="1" Grid.Column="0" Background="#DDE0E5">
                 <StackPanel VerticalAlignment="Center">
                     <StackPanel Orientation="Horizontal" >
                         <TextBlock FontSize="18" Text="吊卡:" FontWeight="Bold" Foreground="Black"></TextBlock>
@@ -72,7 +72,7 @@
                     </StackPanel>
                 </StackPanel>
             </Border>
-            <Border Grid.Row="1" Grid.Column="1">
+            <Border Grid.Row="1" Grid.Column="1" Background="#DDE0E5">
                 <StackPanel VerticalAlignment="Center">
                     <StackPanel Orientation="Horizontal" >
                         <TextBlock FontSize="18" Text="吊机:" FontWeight="Bold" Foreground="Black"></TextBlock>
@@ -85,7 +85,7 @@
                     </StackPanel>
                 </StackPanel>
             </Border>
-            <Border Grid.Row="2" Grid.Column="0" Background="#DDE0E5">
+            <Border Grid.Row="2" Grid.Column="0">
                 <StackPanel VerticalAlignment="Center">
                     <StackPanel Orientation="Horizontal" >
                         <TextBlock FontSize="18" Text="井架平移:" FontWeight="Bold" Foreground="Black"></TextBlock>
@@ -98,7 +98,7 @@
                     </StackPanel>
                 </StackPanel>
             </Border>
-            <Border Grid.Row="2" Grid.Column="1" Background="#DDE0E5">
+            <Border Grid.Row="2" Grid.Column="1">
                 <StackPanel VerticalAlignment="Center">
                     <StackPanel Orientation="Horizontal" >
                         <TextBlock FontSize="18" Text="备用油源1:" FontWeight="Bold" Foreground="Black"></TextBlock>
@@ -111,7 +111,7 @@
                     </StackPanel>
                 </StackPanel>
             </Border>
-            <Border Grid.Row="3" Grid.Column="0">
+            <Border Grid.Row="3" Grid.Column="0" Background="#DDE0E5">
                 <StackPanel VerticalAlignment="Center">
                     <StackPanel Orientation="Horizontal" >
                         <TextBlock FontSize="18" Text="左绞车:" FontWeight="Bold" Foreground="Black"></TextBlock>
@@ -124,7 +124,7 @@
                     </StackPanel>
                 </StackPanel>
             </Border>
-            <Border Grid.Row="3" Grid.Column="1">
+            <Border Grid.Row="3" Grid.Column="1" Background="#DDE0E5">
                 <StackPanel VerticalAlignment="Center">
                     <StackPanel Orientation="Horizontal" >
                         <TextBlock FontSize="18" Text="右绞车:" FontWeight="Bold" Foreground="Black"></TextBlock>
@@ -137,7 +137,7 @@
                     </StackPanel>
                 </StackPanel>
             </Border>
-            <Border Grid.Row="4" Grid.Column="0" Background="#DDE0E5">
+            <Border Grid.Row="4" Grid.Column="0">
                 <StackPanel VerticalAlignment="Center">
                     <StackPanel Orientation="Horizontal" >
                         <TextBlock FontSize="18" Text="旋转猫头:" FontWeight="Bold" Foreground="Black"></TextBlock>
@@ -151,7 +151,7 @@
                     </StackPanel>
                 </StackPanel>
             </Border>
-            <Border Grid.Row="4" Grid.Column="1" Background="#DDE0E5">
+            <Border Grid.Row="4" Grid.Column="1">
                 <Button FontSize="18" FontWeight="Bold" Height="50" Width="100" Click="btnClose_Click">关闭窗口</Button>
             </Border>
             <!--<StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">

@@ -24,465 +24,254 @@
         </Style>
     </UserControl.Resources>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1.5*"/>
-            <ColumnDefinition Width="2*"/>
-        </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="25*"/>
-                <RowDefinition Height="25*"/>
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="0" Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="16*"/>
+            <RowDefinition Height="51*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50*"/>
+                <ColumnDefinition Width="40*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" Margin="5">
                 <Border Background="#F6F9FF">
                     <!--<Border.Effect>
                         <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
                     </Border.Effect>-->
                 </Border>
-                <Grid Margin="5,10,5,5">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0" Orientation="Horizontal">
-                        <Viewbox>
-                            <TextBlock Text="位置反馈>" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,5,5,5" VerticalAlignment="Center"/>
-                        </Viewbox>
-                    </StackPanel>
-                    <Grid Grid.Row="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
+                <Viewbox>
+                    <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="15*"/>
-                            <ColumnDefinition Width="5*"/>
-                            <ColumnDefinition Width="15*"/>
-                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="5"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="5"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Border Grid.Row="0" Grid.Column="0" BorderBrush="Gray" BorderThickness="0,1,0,0">
-                            <Viewbox>
-                                <TextBlock Text="当前角度" Margin="5"></TextBlock>
-                            </Viewbox>
-                        </Border>
-                        <Border Grid.Row="1" Grid.Column="0" Background="#DDE0E5">
-                            <Viewbox>
-                                <TextBlock Text="井口角度" Margin="5"></TextBlock>
-                            </Viewbox>
-                        </Border>
-                        <Border Grid.Row="2" Grid.Column="0">
-                            <Viewbox>
-                                <TextBlock Text="鼠洞角度" Margin="5"></TextBlock>
-                            </Viewbox>
-                        </Border>
-                        <Border Grid.Row="3" Grid.Column="0" Background="#DDE0E5">
-                            <Viewbox>
-                                <TextBlock Text="原点角度" Margin="5"></TextBlock>
-                            </Viewbox>
-                        </Border>
-                        <Border Grid.Row="4" Grid.Column="0">
-                            <Viewbox>
-                                <TextBlock Text="下降时间" Margin="5"></TextBlock>
-                            </Viewbox>
-                        </Border>
-                        <Border Grid.Row="5" Grid.Column="0" Background="#DDE0E5">
-                            <Viewbox>
-                                <TextBlock Text="上升时间" Margin="5"></TextBlock>
-                            </Viewbox>
-                        </Border>
-                        <Border Grid.Row="0" Grid.Column="1" BorderBrush="Gray" BorderThickness="0,1,0,0">
-                            <TextBlock Name="tbCurAngle" Text="XX" Foreground="#008AFF"></TextBlock>
-                        </Border>
-                        <Border Grid.Row="1" Grid.Column="1" Background="#DDE0E5">
-                            <TextBlock Name="tbWellAngle" Text="XX" Foreground="#008AFF"></TextBlock>
-                        </Border>
-                        <Border Grid.Row="2" Grid.Column="1">
-                            <TextBlock Name="tbMouseAngle" Text="XX" Foreground="#008AFF"></TextBlock>
-                        </Border>
-                        <Border Grid.Row="3" Grid.Column="1" Background="#DDE0E5">
-                            <TextBlock Name="tbPointAngle" Text="XX" Foreground="#008AFF"></TextBlock>
-                        </Border>
-                        <Border Grid.Row="4" Grid.Column="1">
-                            <TextBlock Name="tbDownTime" Text="XX" Foreground="#008AFF"></TextBlock>
-                        </Border>
-                        <Border Grid.Row="5" Grid.Column="1" Background="#DDE0E5">
-                            <TextBlock Name="tbUpTime" Text="XX" Foreground="#008AFF"></TextBlock>
-                        </Border>
-                        <Border Grid.Row="0" Grid.Column="2" BorderBrush="Gray" BorderThickness="0,1,0,0">
-                            <Viewbox>
-                                <TextBlock Text="当前位移" Margin="5"></TextBlock>
-                            </Viewbox>
-                        </Border>
-                        <Border Grid.Row="1" Grid.Column="2" Background="#DDE0E5">
-                            <Viewbox>
-                                <TextBlock Text="井口位移" Margin="5"></TextBlock>
-                            </Viewbox>
-                        </Border>
-                        <Border Grid.Row="2" Grid.Column="2">
-                            <Viewbox>
-                                <TextBlock Text="鼠洞位移" Margin="5"></TextBlock>
-                            </Viewbox>
-                        </Border>
-                        <Border Grid.Row="3" Grid.Column="2" Background="#DDE0E5">
-                            <Viewbox>
-                                <TextBlock Text="原点位移" Margin="5"></TextBlock>
-                            </Viewbox>
-                        </Border>
-                        <Border Grid.Row="4" Grid.Column="2">
-                            <Viewbox>
-                                <TextBlock Text="注脂时间" Margin="5"></TextBlock>
-                            </Viewbox>
-                        </Border>
-                        <Border Grid.Row="5" Grid.Column="2" Background="#DDE0E5">
-
-                        </Border>
-                        <Border Grid.Row="0" Grid.Column="3" BorderBrush="Gray" BorderThickness="0,1,0,0">
-                            <TextBlock Name="tbCurPos" Text="XX" Foreground="#008AFF"></TextBlock>
-                        </Border>
-                        <Border Grid.Row="1" Grid.Column="3" Background="#DDE0E5">
-                            <TextBlock Name="tbWellPos" Text="XX" Foreground="#008AFF"></TextBlock>
-                        </Border>
-                        <Border Grid.Row="2" Grid.Column="3">
-                            <TextBlock Name="tbMousePos" Text="XX" Foreground="#008AFF"></TextBlock>
-                        </Border>
-                        <Border Grid.Row="3" Grid.Column="3" Background="#DDE0E5">
-                            <TextBlock Name="tbPointPos" Text="XX" Foreground="#008AFF"></TextBlock>
-                        </Border>
-                        <Border Grid.Row="4" Grid.Column="3">
-                            <TextBlock Name="tbInTime" Text="XX" Foreground="#008AFF"></TextBlock>
-                        </Border>
-                        <Border Grid.Row="5" Grid.Column="3" Background="#DDE0E5">
-                        </Border>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition Height="0.5"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="&#xe82a;" FontFamily="../Font/#iconfont" FontSize="36" Foreground="#008AFF" TextAlignment="Center" Margin="2,10,2,10" Width="45" Height="45"></TextBlock>
+                            <StackPanel Margin="0,20,10,0">
+                                <TextBlock FontSize="14">当前角度</TextBlock>
+                                <TextBlock FontSize="16" Text="   0   " Name="tbCurAngle" Foreground="#4C80FF"></TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal">
+                            <TextBlock Text="&#xe60b;" FontFamily="../Font/#iconfont" FontSize="36" Foreground="#008AFF" TextAlignment="Center" Margin="2,10,2,10" Width="45" Height="45"></TextBlock>
+                            <StackPanel Margin="0,20,10,0">
+                                <TextBlock FontSize="14">井口角度</TextBlock>
+                                <TextBlock FontSize="16" Name="tbWellAngle" Text="80" Foreground="#4C80FF"></TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Grid.Row="0" Grid.Column="3" Orientation="Horizontal">
+                            <TextBlock Text="&#xe645;" FontFamily="../Font/#iconfont" FontSize="36" Foreground="#008AFF" TextAlignment="Center" Margin="5,10,2,10" Width="45" Height="45"></TextBlock>
+                            <StackPanel Margin="0,20,10,0">
+                                <TextBlock FontSize="14">鼠洞角度</TextBlock>
+                                <TextBlock FontSize="16" Text="   0  " Name="tbMouseAngle"  Foreground="#4C80FF"></TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Grid.Row="0" Grid.Column="4" Orientation="Horizontal">
+                            <TextBlock Text="&#xe657;" FontFamily="../Font/#iconfont" FontSize="36" Foreground="#008AFF" TextAlignment="Center" Margin="5,10,2,10" Width="45" Height="45"></TextBlock>
+                            <StackPanel Margin="0,20,10,0">
+                                <TextBlock FontSize="14">原点角度</TextBlock>
+                                <TextBlock FontSize="16" Text="   0  " Name="tbPointAngle"  Foreground="#4C80FF"></TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                        <Grid Grid.Row="1" Grid.Column="1" Background="Black"></Grid>
+                        <Grid Grid.Row="1" Grid.Column="2" Background="Black"></Grid>
+                        <Grid Grid.Row="1" Grid.Column="3" Background="Black"></Grid>
+                        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="&#xe785;" FontFamily="../Font/#iconfont" FontSize="36" Foreground="#008AFF" TextAlignment="Center" Margin="2,10,2,10" Width="45" Height="45"></TextBlock>
+                            <StackPanel Margin="0,20,10,0">
+                                <TextBlock FontSize="14">当前位移</TextBlock>
+                                <TextBlock FontSize="16" Name="tbCurPos" Text="   0 "  Foreground="#4C80FF"></TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal">
+                            <TextBlock Text="&#xe788;" FontFamily="../Font/#iconfont" FontSize="36" Foreground="#008AFF" TextAlignment="Center" Margin="5,10,5,10" Width="45" Height="45"></TextBlock>
+                            <StackPanel Margin="0,20,10,0">
+                                <TextBlock FontSize="14">井口位移</TextBlock>
+                                <TextBlock FontSize="16" Name="tbWellPos" Text="   0 "  Foreground="#4C80FF"></TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Grid.Row="2" Grid.Column="3" Orientation="Horizontal">
+                            <TextBlock Text="&#xe789;" FontFamily="../Font/#iconfont" FontSize="36" Foreground="#008AFF" TextAlignment="Center" Margin="5,10,5,10" Width="45" Height="45"></TextBlock>
+                            <StackPanel Margin="0,20,10,0">
+                                <TextBlock FontSize="14">鼠洞位移</TextBlock>
+                                <TextBlock FontSize="16" Name="tbMousePos" Text="   0 "  Foreground="#4C80FF"></TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Grid.Row="2" Grid.Column="4" Orientation="Horizontal">
+                            <TextBlock Text="&#xe786;" FontFamily="../Font/#iconfont" FontSize="36" Foreground="#008AFF" TextAlignment="Center" Margin="5,10,5,10" Width="45" Height="45"></TextBlock>
+                            <StackPanel Margin="0,20,10,0">
+                                <TextBlock FontSize="14">原点位移</TextBlock>
+                                <TextBlock FontSize="16" Name="tbPointPos" Text="   0 "  Foreground="#4C80FF"></TextBlock>
+                            </StackPanel>
+                        </StackPanel>
                     </Grid>
-                </Grid>
+                </Viewbox>
             </Grid>
-            <Grid Grid.Row="1" Margin="5">
+            <Grid Grid.Column="1" Margin="5">
                 <Border Background="#F6F9FF">
                     <!--<Border.Effect>
-                        <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
-                    </Border.Effect>-->
+                            <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+                        </Border.Effect>-->
                 </Border>
-                <Grid Margin="5,10,5,5">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0" Orientation="Horizontal">
-                        <Viewbox>
-                            <TextBlock Text="IO反馈>" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,5,5,5" VerticalAlignment="Center"/>
-                        </Viewbox>
-                    </StackPanel>
-                    <Grid Grid.Row="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="15*"/>
-                            <ColumnDefinition Width="5*"/>
-                            <ColumnDefinition Width="15*"/>
-                            <ColumnDefinition Width="5*"/>
-                        </Grid.ColumnDefinitions>
+                <Viewbox>
+                    <Grid Margin="5" >
                         <Grid.RowDefinitions>
                             <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <Border Grid.Row="0" Grid.Column="0" BorderBrush="Gray" BorderThickness="0,1,0,0">
-                            <Viewbox>
-                                <TextBlock Text="编码器屏蔽" Margin="0,15,0,15"></TextBlock>
-                            </Viewbox>
-                        </Border>
-                        <Border Grid.Row="1" Grid.Column="0" Background="#DDE0E5">
-                            <Viewbox>
-                                <TextBlock Text="左转超范围" Margin="0,15,0,15"></TextBlock>
-                            </Viewbox>
-                        </Border>
-                        <Border Grid.Row="2" Grid.Column="0">
-                            <Viewbox>
-                                <TextBlock Text="右转超范围" Margin="0,15,0,15"></TextBlock>
-                            </Viewbox>
-                        </Border>
-                        <Border Grid.Row="3" Grid.Column="0" Background="#DDE0E5">
-                            <Viewbox>
-                                <TextBlock Text="井口复位指示" Margin="0,15,0,15"></TextBlock>
-                            </Viewbox>
-                        </Border>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">
+                            <TextBlock Text="编码器屏蔽:" FontSize="16" VerticalAlignment="Center" Margin="10,5,0,5"></TextBlock>
+                            <cl:SymbolMapping Name="smEncoder"  StrContent="" LampType="3" Width="30" Height="30" Margin="5,0,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
+                            <TextBlock Text="井口复位指示:" VerticalAlignment="Center" FontSize="16" Margin="10,5,0,5"></TextBlock>
+                            <cl:SymbolMapping Name="smWellReturn"  StrContent="" LampType="3" Width="30" Height="30" Margin="3,0,0,0"/>
+                        </StackPanel>
 
-                        <Border Grid.Row="0" Grid.Column="1" BorderBrush="Gray" BorderThickness="0,1,0,0">
-                            <cl:SymbolMapping Name="smEncoder" StrContent="" LampType="3" Margin="0,15,0,15"/>
-                        </Border>
-                        <Border Grid.Row="1" Grid.Column="1" Background="#DDE0E5">
-                            <cl:SymbolMapping Name="smLeftBeyond" StrContent="" LampType="3" Margin="0,15,0,15"/>
-                        </Border>
-                        <Border Grid.Row="2" Grid.Column="1">
-                            <cl:SymbolMapping Name="smRightBeyond" StrContent="" LampType="3" Margin="0,15,0,15"/>
-                        </Border>
-                        <Border Grid.Row="3" Grid.Column="1" Background="#DDE0E5">
-                            <cl:SymbolMapping Name="smWellReturn" StrContent="" LampType="3" Margin="0,15,0,15"/>
-                        </Border>
-
-                        <Border Grid.Row="0" Grid.Column="2" BorderBrush="Gray" BorderThickness="0,1,0,0">
-                            <Viewbox>
-                                <TextBlock Text="鼠洞复位指示" Margin="0,15,0,15"></TextBlock>
-                            </Viewbox>
-                        </Border>
-                        <Border Grid.Row="1" Grid.Column="2" Background="#DDE0E5">
-                            <Viewbox>
-                                <TextBlock Text="原点复位指示" Margin="0,15,0,15"></TextBlock>
-                            </Viewbox>
-                        </Border>
-                        <Border Grid.Row="2" Grid.Column="2">
-                            <Viewbox>
-                                <TextBlock Text="运行指示" Margin="0,15,0,15"></TextBlock>
-                            </Viewbox>
-                        </Border>
-                        <Border Grid.Row="3" Grid.Column="2" Background="#DDE0E5">
-                            <Viewbox>
-                                <TextBlock Text="丝扣油自动" Margin="0,15,0,15"></TextBlock>
-                            </Viewbox>
-                        </Border>
-
-                        <Border Grid.Row="0" Grid.Column="3" BorderBrush="Gray" BorderThickness="0,1,0,0">
-                            <cl:SymbolMapping Name="smMouseReturn" StrContent="" LampType="3" Margin="0,15,0,15"/>
-                        </Border>
-                        <Border Grid.Row="1" Grid.Column="3" Background="#DDE0E5">
-                            <cl:SymbolMapping Name="smOrginReturn" StrContent="" LampType="3" Margin="0,15,0,15"/>
-                        </Border>
-                        <Border Grid.Row="2" Grid.Column="3">
-                            <cl:SymbolMapping Name="smRun" StrContent="" LampType="3" Margin="0,15,0,15"/>
-                        </Border>
-                        <Border Grid.Row="3" Grid.Column="3" Background="#DDE0E5">
-                            <cl:SymbolMapping Name="smAuto" StrContent="" LampType="3" Margin="0,15,0,15"/>
-                        </Border>
-
+                        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">
+                            <TextBlock Text="左转超范围:" FontSize="16" VerticalAlignment="Center" Margin="10,5,0,5"></TextBlock>
+                            <cl:SymbolMapping Name="smLeftBeyond" StrContent="" LampType="3" Width="30" Height="30" Margin="5,0,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
+                            <TextBlock Text="鼠洞复位指示:" VerticalAlignment="Center" FontSize="16" Margin="10,5,0,5"></TextBlock>
+                            <cl:SymbolMapping Name="smMouseReturn" StrContent="" LampType="3" Width="30" Height="30" Margin="3,0,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="2" VerticalAlignment="Center">
+                            <TextBlock Text="右转超范围:" FontSize="16" Margin="10,5,0,5"></TextBlock>
+                            <cl:SymbolMapping Name="smRightBeyond" StrContent="" LampType="3" Width="30" Height="30" Margin="5,0,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center">
+                            <TextBlock Text="原点复位指示:" VerticalAlignment="Center" FontSize="16" Margin="10,5,0,5"></TextBlock>
+                            <cl:SymbolMapping Name="smOrginReturn"  StrContent="" LampType="3" Width="30" Height="30" Margin="3,0,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="3" VerticalAlignment="Center">
+                            <TextBlock Text="丝扣油自动:" FontSize="16" Margin="10,5,0,5"></TextBlock>
+                            <cl:SymbolMapping Name="smAuto" StrContent="" LampType="3" Width="30" Height="30" Margin="5,0,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center">
+                            <TextBlock Text="运行指示:" FontSize="16" Margin="10,5,0,5"></TextBlock>
+                            <cl:SymbolMapping Name="smRun" StrContent="" LampType="3" Width="30" Height="30" Margin="35,0,0,0"/>
+                        </StackPanel>
                     </Grid>
-                </Grid>
+                </Viewbox>
             </Grid>
         </Grid>
-        <Grid Grid.Column="1" Margin="5">
-            <Border Background="#F6F9FF">
-                <!--<Border.Effect>
-                    <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
-                </Border.Effect>-->
-            </Border>
-            <Grid Margin="5,10,5,5">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0" Orientation="Horizontal">
-                    <Viewbox>
-                        <TextBlock Text="操作>" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,5,5,5" VerticalAlignment="Center"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60*"/>
+                <ColumnDefinition Width="40*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" Margin="5">
+                <Border Background="#F6F9FF">
+                    <!--<Border.Effect>
+                        <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+                    </Border.Effect>-->
+                </Border>
+                <Grid Margin="5">
+                    <Viewbox Grid.Row="1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text=">记忆位置" HorizontalAlignment="Left" Margin="5,5,0,5"></TextBlock>
+                                <StackPanel Orientation="Horizontal" Grid.Row="1">
+                                    <Button Click="btnWellMemory_Click" Margin="5">井口位置</Button>
+                                    <Button Click="btnMouseMemory_Click" Margin="5">鼠洞位置</Button>
+                                    <Button Click="btnOrignMemory_Click" Margin="5">原点位置</Button>
+                                </StackPanel>
+                                <TextBlock Text=">一键返回" Grid.Row="2" HorizontalAlignment="Left" Margin="5,5,0,5"></TextBlock>
+                                <StackPanel Orientation="Horizontal" Grid.Row="3">
+                                    <Button Click="btnBackWell_Click" Margin="5">返回井口</Button>
+                                    <Button Click="btnBackMouse_Click" Margin="5">返回鼠洞</Button>
+                                    <Button Click="btnBackOrgin_Click" Margin="5">返回原点</Button>
+                                </StackPanel>
+                                <TextBlock Text=">操作模式" Grid.Row="4" HorizontalAlignment="Left" Margin="5,5,0,5"></TextBlock>
+                                <StackPanel Orientation="Horizontal" Grid.Row="5">
+                                    <Button Click="btnPreventBox_Click" Margin="5">防喷盒模式</Button>
+                                    <Button Click="btnScrew_Click" Margin="5">丝扣油模式</Button>
+                                </StackPanel>
+                                <TextBlock Text=">控制模式" Grid.Row="6" HorizontalAlignment="Left" Margin="5,5,0,5"></TextBlock>
+                                <StackPanel Orientation="Horizontal" Grid.Row="7">
+                                    <Button Click="btnAuto_Click" Margin="5">丝扣油自动</Button>
+                                    <Button Click="btnMove_Click" Margin="5">注油泵动作</Button>
+                                </StackPanel>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Viewbox>
+                                    <TextBlock Text="&#xe69a;" FontFamily="../Font/#iconfont" FontSize="150" Foreground="#008AFF" TextAlignment="Center" Margin="5,10,5,10" Width="150" Height="150"></TextBlock>
+                                </Viewbox>
+                            </Grid>
+                        </Grid>
                     </Viewbox>
-                 </StackPanel>
-                <Grid Grid.Row="1">
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="1" Margin="5">
+                <Border Background="#F6F9FF">
+                    <!--<Border.Effect>
+                        <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+                    </Border.Effect>-->
+                </Border>
+                <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
                         <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <!--<RowDefinition />
-                        <RowDefinition/>-->
-                        <!--<RowDefinition/>
-                        <RowDefinition/>-->
                     </Grid.RowDefinitions>
-                    <Border Grid.Row="0" Grid.Column="0" BorderBrush="Gray" BorderThickness="0,1,0,0">
-                        <Viewbox>
-                            <StackPanel Orientation="Horizontal" Margin="10,0,10,0">
-                                <Menu Background="Transparent" Height="40" Width="120"  FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Foreground="#008AFF">
-                                    <MenuItem>
-                                        <MenuItem.Header>
-                                            <StackPanel Orientation="Horizontal">
-                                                <ContentPresenter Content="记忆位置" />
-                                                <Image Margin="0,2,0,0" Width="15" Source="..\Images\downTrangle.png" />
-                                            </StackPanel>
-                                        </MenuItem.Header>
-                                        <MenuItem Header="井口位置" FontSize="24" Click="btnWellMemory_Click"/>
-                                        <MenuItem Header="鼠洞位置" FontSize="24" Click="btnMouseMemory_Click"/>
-                                        <MenuItem Header="原点位置" FontSize="24" Click="btnOrignMemory_Click"/>
-                                    </MenuItem>
-                                </Menu>
-                                <Menu Background="Transparent" Height="40" Width="120"  FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Foreground="#008AFF">
-                                    <MenuItem>
-                                        <MenuItem.Header>
-                                            <StackPanel Orientation="Horizontal">
-                                                <ContentPresenter Content="一键返回" />
-                                                <Image Margin="0,2,0,0" Width="15" Source="..\Images\downTrangle.png" />
-                                            </StackPanel>
-                                        </MenuItem.Header>
-                                        <MenuItem Header="返回井口" FontSize="24" Click="btnBackWell_Click"/>
-                                        <MenuItem Header="返回鼠洞" FontSize="24" Click="btnBackMouse_Click"/>
-                                        <MenuItem Header="返回原点" FontSize="24" Click="btnBackOrgin_Click"/>
-                                    </MenuItem>
-                                </Menu>
-                                <Menu Background="Transparent" Height="40" Width="120"  FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Foreground="#008AFF">
-                                    <MenuItem>
-                                        <MenuItem.Header>
-                                            <StackPanel Orientation="Horizontal">
-                                                <ContentPresenter Content="操作模式" />
-                                                <Image Margin="0,2,0,0" Width="15" Source="..\Images\downTrangle.png" />
-                                            </StackPanel>
-                                        </MenuItem.Header>
-                                        <MenuItem Header="防喷盒模式" FontSize="24" Click="btnPreventBox_Click"/>
-                                        <MenuItem Header="丝扣油模式" FontSize="24" Click="btnScrew_Click"/>
-
-                                    </MenuItem>
-                                </Menu>
+                    <Viewbox>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <StackPanel Margin="10,20,10,0">
+                                    <TextBlock FontSize="14">下降时间</TextBlock>
+                                    <TextBlock FontSize="16" Text="   0   " Name="tbDownTime" Foreground="#4C80FF"></TextBlock>
+                                </StackPanel>
                             </StackPanel>
-                        </Viewbox>
-                    </Border>
-                    <!--<Border Grid.Row="1" Grid.Column="0" BorderBrush="Gray" BorderThickness="1">
-                        <Viewbox>
-                            <StackPanel Orientation="Horizontal" Margin="10,0,10,0">
-                                <TextBlock Text="一键返回" Margin="20,0,10,0"></TextBlock>
-                                <Button Name="btnBackWell" Grid.Column="1" Margin="5,0,0,0" FontWeight="Bold" FontSize="18" Height="40" Width="145" Click="btnBackWell_Click">返回井口</Button>
-                                <Button Name="btnBackMouse" Grid.Column="2" Margin="5,0,0,0" FontWeight="Bold" FontSize="18" Height="40" Width="145" Click="btnBackMouse_Click">返回鼠洞</Button>
-                                <Button Name="btnBackOrgin" Grid.Column="3" Margin="5,0,0,0" FontWeight="Bold" FontSize="18" Height="40" Width="145" Click="btnBackOrgin_Click">返回原点</Button>
+                            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <StackPanel Margin="10,20,10,0">
+                                    <TextBlock FontSize="14">注脂时间</TextBlock>
+                                    <TextBlock FontSize="16" Text="   0   " Name="tbInTime" Foreground="#4C80FF"></TextBlock>
+                                </StackPanel>
                             </StackPanel>
-                        </Viewbox>
-                    </Border>
-                    <Border Grid.Row="2" Grid.Column="0" BorderBrush="Gray" BorderThickness="1">
-                        <Viewbox>
-                            <StackPanel Orientation="Horizontal" Margin="10,0,10,0">
-                                <TextBlock Text="操作模式" Margin="20,0,10,0"></TextBlock>
-                                <Button Name="btnPreventBox" Grid.Column="1" Margin="5,0,0,0" FontWeight="Bold" FontSize="18" Height="40" Width="220" Click="btnPreventBox_Click">防喷盒模式</Button>
-                                <Button Name="btnScrew" Grid.Column="2" Margin="5,0,0,0" FontWeight="Bold" FontSize="18" Height="40" Width="220" Click="btnScrew_Click">丝扣油模式</Button>
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <StackPanel Margin="10,20,10,0">
+                                    <TextBlock FontSize="14">上升时间</TextBlock>
+                                    <TextBlock FontSize="16" Text="   0   " Name="tbUpTime" Foreground="#4C80FF"></TextBlock>
+                                </StackPanel>
                             </StackPanel>
-                        </Viewbox>
-                    </Border>-->
-                    <Border Grid.Row="1" Grid.Column="0" BorderBrush="Gray" BorderThickness="0,1,0,0" Visibility="Collapsed">
-                        <Viewbox>
-                            <StackPanel Orientation="Horizontal" Margin="10,0,10,0">
-                                <Menu Background="Transparent" Height="40" Width="120"  FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Foreground="#008AFF">
-                                    <MenuItem>
-                                        <MenuItem.Header>
-                                            <StackPanel Orientation="Horizontal">
-                                                <ContentPresenter Content="缩回设置" />
-                                                <Image Margin="0,2,0,0" Width="15" Source="..\Images\downTrangle.png" />
-                                            </StackPanel>
-                                        </MenuItem.Header>
-                                        <MenuItem Header="缩回偏差位移" FontSize="24" Click="btnRetractErrorMove_Click"/>
-                                        <MenuItem Header="缩回减速位置" FontSize="24" Click="btnRetractSlowPos_Click"/>
-                                        <MenuItem Header="缩回减速速度" FontSize="24" Click="btnRtetactSlowSpeed_Click"/>
-                                        <MenuItem Header="回缩减速提前量" FontSize="24" Click="btnRetractSlowLeadTime_Click"/>
-                                        <MenuItem Header="回缩停止位置" FontSize="24" Click="btnRetractStopPos_Click"/>
-                                    </MenuItem>
-                                </Menu>
-                                <Menu Background="Transparent" Height="40" Width="120"  FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Foreground="#008AFF">
-                                    <MenuItem>
-                                        <MenuItem.Header>
-                                            <StackPanel Orientation="Horizontal">
-                                                <ContentPresenter Content="伸展设置" />
-                                                <Image Margin="0,2,0,0" Width="15" Source="..\Images\downTrangle.png" />
-                                            </StackPanel>
-                                        </MenuItem.Header>
-                                        <MenuItem Header="伸展最大距离" FontSize="24" Click="btnReachMaxDis_Click"/>
-                                        <MenuItem Header="伸展减速位置" FontSize="24" Click="btnReachSlowPos_Click"/>
-                                        <MenuItem Header="伸展减速速度" FontSize="24" Click="btnReachSlowSpeed_Click"/>
-                                        <MenuItem Header="前伸减速提前量" FontSize="24" Click="btnReachSlowLeadTime_Click"/>
-                                    </MenuItem>
-                                </Menu>
-                                <Menu Background="Transparent" Height="40" Width="120"  FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Foreground="#008AFF">
-                                    <MenuItem>
-                                        <MenuItem.Header>
-                                            <StackPanel Orientation="Horizontal">
-                                                <ContentPresenter Content="自动速度" />
-                                                <Image Margin="0,2,0,0" Width="15" Source="..\Images\downTrangle.png" />
-                                            </StackPanel>
-                                        </MenuItem.Header>
-                                        <MenuItem Header="自动伸缩速度" FontSize="24" Click="btnAutoStretchSpeed_Click"/>
-                                        <MenuItem Header="自动伸缩慢速" FontSize="24" Click="btnAutoStretchSlowSpeed_Click"/>
-                                        <MenuItem Header="自动旋转速度" FontSize="24" Click="btnAutoRotateSpeed_Click"/>
-                                        <MenuItem Header="自动旋转慢速" FontSize="24" Click="btnAutoRotateSlowSpeed_Click"/>
-                                    </MenuItem>
-                                </Menu>
-                            </StackPanel>
-                        </Viewbox>
-                    </Border>
-                    <Border Grid.Row="1" Grid.Column="0" BorderBrush="Gray" BorderThickness="0,1,0,0">
-                        <Viewbox>
-                            <Grid Margin="10,0,10,0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <Button Name="btnAuto" Grid.Column="0" Margin="5,0,0,0" FontWeight="Bold" FontSize="18" Height="40" Width="250" Click="btnAuto_Click">丝扣油自动</Button>
-                                <!--<Button Style="{StaticResource ButtonBaseStyle}" Width="100">
-                                    <Button.Background>
-                                        <ImageBrush ImageSource="../Images/ButtonBlue.png"/>
-                                    </Button.Background>
-                                    <Button.Content>
-                                        <TextBlock></TextBlock>
-                                    </Button.Content>
-                                </Button>-->
-                                <Button Name="btnMove" Grid.Column="1" Margin="5,0,0,0" FontWeight="Bold" FontSize="18" Height="40" Width="250" Click="btnMove_Click">注油泵动作</Button>
-                            </Grid>
-                        </Viewbox>
-                    </Border>
-                    <!--<Border Grid.Row="2" Grid.Column="0" BorderBrush="Gray" BorderThickness="1">
-                        <Viewbox>
-                            <Grid Margin="10,0,10,0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <Button Name="btnRetractErrorMove" Grid.Column="0" Margin="5,0,0,0" FontWeight="Bold" FontSize="18" Height="40" Width="130" Click="btnRetractErrorMove_Click">缩回偏差位移</Button>
-                                <Button Name="btnReachMaxDis" Grid.Column="1" Margin="5,0,0,0" FontWeight="Bold" FontSize="18" Height="40" Width="130" Click="btnReachMaxDis_Click">伸展最大距离</Button>
-                                <Button Name="btnReachSlowPos" Grid.Column="2" Margin="5,0,0,0" FontWeight="Bold" FontSize="18" Height="40" Width="130" Click="btnReachSlowPos_Click">伸展减速位置</Button>
-                                <Button Name="btnRetractSlowPos" Grid.Column="3" Margin="5,0,0,0" FontWeight="Bold" FontSize="18" Height="40" Width="130" Click="btnRetractSlowPos_Click">缩回减速位置</Button>
-                            </Grid>
-                        </Viewbox>
-                    </Border>-->
-                    <Border Grid.Row="3" Grid.Column="0" BorderBrush="Gray" BorderThickness="0,1,0,0" Visibility="Collapsed">
-                        <Viewbox>
-                            <Grid Margin="10,0,10,0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <!--<Button Name="btnReachSlowSpeed" Grid.Column="0" Margin="5,0,0,0" FontWeight="Bold" FontSize="18" Height="40" Width="130" Click="btnReachSlowSpeed_Click">伸展减速速度</Button>
-                                <Button Name="btnRtetactSlowSpeed" Grid.Column="1" Margin="5,0,0,0" FontWeight="Bold" FontSize="18" Height="40" Width="130" Click="btnRtetactSlowSpeed_Click">缩回减速速度</Button>-->
-                                <Button Name="btnAngleError" Grid.Column="0" Margin="5,0,0,0" FontWeight="Bold" FontSize="18" Height="40" Width="250" Click="btnAngleError_Click">角度误差</Button>
-                                <Button Name="btnMoveError" Grid.Column="1" Margin="5,0,0,0" FontWeight="Bold" FontSize="18" Height="40" Width="250" Click="btnMoveError_Click">位移误差</Button>
-                            </Grid>
-                        </Viewbox>
-                    </Border>
-                    <!--<Border Grid.Row="4" Grid.Column="0" BorderBrush="Gray" BorderThickness="1">
-                        <Viewbox>
-                            <Grid Margin="10,0,10,0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <Button Name="btnAutoStretchSpeed" Grid.Column="0" Margin="5,0,0,0" FontWeight="Bold" FontSize="18" Height="40" Width="130" Click="btnAutoStretchSpeed_Click">自动伸缩速度</Button>
-                                <Button Name="btnAutoStretchSlowSpeed" Grid.Column="1" Margin="5,0,0,0" FontWeight="Bold" FontSize="18" Height="40" Width="130" Click="btnAutoStretchSlowSpeed_Click">自动伸缩慢速</Button>
-                                <Button Name="btnAutoRotateSpeed" Grid.Column="2" Margin="5,0,0,0" FontWeight="Bold" FontSize="18" Height="40" Width="130" Click="btnAutoRotateSpeed_Click">自动旋转速度</Button>
-                                <Button Name="btnAutoRotateSlowSpeed" Grid.Column="3" Margin="5,0,0,0" FontWeight="Bold" FontSize="18" Height="40" Width="130" Click="btnAutoRotateSlowSpeed_Click">自动旋转慢速</Button>
-                            </Grid>
-                        </Viewbox>
-                    </Border>-->
-                    <!--<Border Grid.Row="5" Grid.Column="0" BorderBrush="Gray" BorderThickness="1">
-                        <Viewbox>
-                            <Grid Margin="10,0,10,0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <Button Name="btnRetractSlowLeadTime" Grid.Column="0" Margin="5,0,0,0" FontWeight="Bold" FontSize="18" Height="40" Width="175" Click="btnRetractSlowLeadTime_Click">回缩减速提前量</Button>
-                                <Button Name="btnReachSlowLeadTime" Grid.Column="1" Margin="5,0,0,0" FontWeight="Bold" FontSize="18" Height="40" Width="175" Click="btnReachSlowLeadTime_Click">前伸减速提前量</Button>
-                                <Button Name="btnRetractStopPos" Grid.Column="2" Margin="5,0,0,0" FontWeight="Bold" FontSize="18" Height="40" Width="175" Click="btnRetractStopPos_Click">回缩停止位置</Button>
-                            </Grid>
-                        </Viewbox>
-                    </Border>-->
-                    <Border Grid.Row="2"  BorderBrush="Gray" BorderThickness="0,1,0,0">
+                        </Grid>
+                    </Viewbox>
+                    <Border Grid.Row="1"  BorderBrush="Gray" BorderThickness="0,1,0,0">
                         <Viewbox>
                             <StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="10,0,10,0">

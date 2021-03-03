@@ -189,11 +189,11 @@
                     <RowDefinition Height="250"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Grid Grid.Row="0" Name="gdOldHand" Visibility="Collapsed">
-                    <Border Background="White" CornerRadius="10" Margin="5,10,5,5">
-                        <Border.Effect>
+                <Grid Grid.Row="0" Name="gdOldHand" Visibility="Collapsed" Margin="5">
+                    <Border Background="#F6F9FF">
+                        <!--<Border.Effect>
                             <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
-                        </Border.Effect>
+                        </Border.Effect>-->
                     </Border>
                     <Grid Margin="5,10,5,5">
                         <Grid.RowDefinitions>
@@ -259,7 +259,7 @@
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="40"/>
                                 <RowDefinition Height="30"/>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
@@ -267,10 +267,10 @@
                                 <TextBlock Text=">右手柄信号" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,0,0,0" VerticalAlignment="Center"/>
                             </StackPanel>
                             <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-                                <TextBlock Text="左 右" Margin="10,0,0,0"></TextBlock>
-                                <TextBox Name="tbSixLeftOrRight" Width="60" Margin="10,0,0,0"  Text="0" TextAlignment="Center"/>
-                                <TextBlock Text="前 后" Margin="10,0,0,0"></TextBlock>
-                                <TextBox Name="tbSixFrontOrBehind" Width="60" Margin="10,0,0,0" Text="0" TextAlignment="Center"/>
+                                <TextBlock Text="左 右" Margin="5,0,0,0"></TextBlock>
+                                <TextBox Name="tbSixLeftOrRight" Width="60" Margin="5,0,0,0"  Text="0" TextAlignment="Center"/>
+                                <TextBlock Text="前 后" Margin="5,0,0,0"></TextBlock>
+                                <TextBox Name="tbSixFrontOrBehind" Width="60" Margin="5,0,0,0" Text="0" TextAlignment="Center"/>
 
                             </StackPanel>
                             <Grid Grid.Row="2">
@@ -326,10 +326,10 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="150"/>
-                                <ColumnDefinition Width="53"/>
-                                <ColumnDefinition Width="150"/>
-                                <ColumnDefinition Width="53"/>
+                                <ColumnDefinition Width="15*"/>
+                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="15*"/>
+                                <ColumnDefinition Width="5*"/>
                             </Grid.ColumnDefinitions>
                             <Border Grid.Row="0" Grid.Column="0" BorderBrush="Gray" BorderThickness="0,1,0,0">
                                 <TextBlock Text="右手柄激活"></TextBlock>
@@ -387,10 +387,10 @@
                     </StackPanel>
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="150"/>
-                            <ColumnDefinition Width="50"/>
-                            <ColumnDefinition Width="150"/>
-                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="15*"/>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="15*"/>
+                            <ColumnDefinition Width="5*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition/>

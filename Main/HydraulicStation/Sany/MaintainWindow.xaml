@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Main.HydraulicStation.Sany"
         mc:Ignorable="d"
-        Title="MaintainWindow" Height="450" Width="600">
+        Title="维保确认" Height="450" Width="600" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>

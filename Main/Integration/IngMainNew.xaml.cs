@@ -3,6 +3,7 @@ using DatabaseLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -2140,6 +2141,246 @@ namespace Main.Integration
             SelectWorkModel();
             SelectedDrill();
         }
+
+        private bool CheckParam()
+        {
+            bool lockSuccess = true;
+            #region 钻杆类型是否正确
+            int pipeType = -1;
+            // 尺寸>60，标志为特殊 或 尺寸<60,标志为普通 为钻杆
+            if ((GlobalData.Instance.da["drillPipeType"].Value.Byte >= 60 && GlobalData.Instance.da["103b7"].Value.Boolean)
+                || (GlobalData.Instance.da["drillPipeType"].Value.Byte < 60 && !GlobalData.Instance.da["103b7"].Value.Boolean))
+            {
+                pipeType = 1;
+            }
+            // 尺寸小于60，标志为特殊 或 尺寸>60,标志为普通 为钻铤
+            if ((GlobalData.Instance.da["drillPipeType"].Value.Byte < 60 && GlobalData.Instance.da["103b7"].Value.Boolean)
+                || (GlobalData.Instance.da["drillPipeType"].Value.Byte >= 60 && !GlobalData.Instance.da["103b7"].Value.Boolean))
+            {
+                pipeType = 2;
+            }
+            if (GlobalData.Instance.da.GloConfig.SFType == 0)
+            {
+                lockSuccess = true;
+            }
+            else if (GlobalData.Instance.da.GloConfig.SFType == 1)
+            {
+                // 管柱类型和管柱尺寸都正确
+                if (this.model.PipeType == pipeType && this.model.PipeSize == GlobalData.Instance.da["drillPipeType"].Value.Byte)
+                {
+                    lockSuccess = true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            if (GlobalData.Instance.da.GloConfig.DRType == 0)
+            {
+                lockSuccess = true;
+            }
+            else if (GlobalData.Instance.da.GloConfig.DRType == 1)
+            {
+                if (GlobalData.Instance.da["drdrillPipeType"].Value.Byte == this.model.PipeSize)
+                {
+                    lockSuccess = true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            #endregion
+            #region 目的地是否正确
+            if (GlobalData.Instance.da.GloConfig.DRType == 0)
+            {
+                lockSuccess = true;
+            }
+            else if (GlobalData.Instance.da.GloConfig.DRType == 1)
+            {
+                if (this.model.DesType == GlobalData.Instance.da["drDes"].Value.Byte)
+                {
+                    lockSuccess = true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            #endregion
+            #region 是否处于自动模式
+            bool sfAuto = false;
+            bool drAuto = false;
+            bool sirAuto = false;
+            if (GlobalData.Instance.da.GloConfig.SFType == 0)
+            {
+                sfAuto = true;
+            }
+            else if (GlobalData.Instance.da.GloConfig.SFType == 1)
+            {
+                sfAuto = GlobalData.Instance.da["operationModel"].Value.Byte == 5 ? true : false;
+            }
+
+            if (GlobalData.Instance.da.GloConfig.DRType == 0)
+            {
+                drAuto = true;
+            }
+            else if (GlobalData.Instance.da.GloConfig.DRType == 1)
+            {
+                drAuto = GlobalData.Instance.da["droperationModel"].Value.Byte == 5 ? true : false;
+            }
+
+            if (GlobalData.Instance.da.GloConfig.SIRType == 0)
+            {
+                sirAuto = true;
+            }
+            else if (GlobalData.Instance.da.GloConfig.SIRType == 1)
+            {
+                sirAuto = GlobalData.Instance.da["SIRSelfOperModel"].Value.Byte == 2 ? true : false;
+            }
+            else if (GlobalData.Instance.da.GloConfig.SIRType == 2)
+            {
+                sirAuto = true;
+            }
+            else if (GlobalData.Instance.da.GloConfig.SIRType == 3)
+            {
+                sirAuto = true;
+            }
+            else if (GlobalData.Instance.da.GloConfig.SIRType == 4)
+            {
+                sirAuto = true;
+            }
+            else if (GlobalData.Instance.da.GloConfig.SIRType == 5)
+            {
+                sirAuto = true;
+            }
+
+            if (sfAuto && drAuto && sirAuto)
+            {
+                lockSuccess = true;
+            }
+            else
+            {
+                return false;
+            }
+            #endregion
+            #region 工作模式是否正确
+            int sfWorkModel = 0;
+            int drWorkModel = 0;
+            int sirWorkModel = 0;
+            if (GlobalData.Instance.da.GloConfig.SFType == 0)
+            { }
+            else if (GlobalData.Instance.da.GloConfig.SFType == 1)
+            {
+                sfWorkModel = GlobalData.Instance.da["workModel"].Value.Byte;
+            }
+
+            if (GlobalData.Instance.da.GloConfig.DRType == 0)
+            {
+                drWorkModel = this.model.WorkType;
+            }
+            else if (GlobalData.Instance.da.GloConfig.DRType == 1)
+            {
+                drWorkModel = GlobalData.Instance.da["drworkModel"].Value.Byte;
+            }
+            else if (GlobalData.Instance.da.GloConfig.DRType == 2)
+            { }
+
+            if (GlobalData.Instance.da.GloConfig.SIRType == 0)
+            {
+                sirWorkModel = this.model.WorkType;
+            }
+            else if (GlobalData.Instance.da.GloConfig.SIRType == 1)
+            {
+                if (GlobalData.Instance.da["SIRSelfWorkModel"].Value.Byte == 1)
+                {
+                    if (GlobalData.Instance.da["841b3"].Value.Boolean
+                    && GlobalData.Instance.da["841b5"].Value.Boolean)
+                    {
+                        sirWorkModel = 1;
+                    }
+                    else
+                    {
+                        sirWorkModel = 0;
+                    }
+
+                }
+                else if (GlobalData.Instance.da["SIRSelfWorkModel"].Value.Byte == 2)
+                {
+                    if (GlobalData.Instance.da["841b4"].Value.Boolean
+                    && GlobalData.Instance.da["841b6"].Value.Boolean)
+                    {
+                        sirWorkModel = 2;
+                    }
+                    else
+                    {
+                        sirWorkModel = 0;
+                    }
+                }
+                else
+                {
+                    sirWorkModel = 0;
+                }
+            }
+            else if (GlobalData.Instance.da.GloConfig.SIRType == 2)
+            {
+                sirWorkModel = this.model.WorkType;
+            }
+            else if (GlobalData.Instance.da.GloConfig.SIRType == 3)
+            { }
+            else if (GlobalData.Instance.da.GloConfig.SIRType == 4)
+            { }
+            else if (GlobalData.Instance.da.GloConfig.SIRType == 5)
+            { }
+
+            if (this.model.WorkType == 1 && sfWorkModel == 1 && drWorkModel == 1 && sirWorkModel == 1) // 送杆
+            {
+                lockSuccess = true;
+            }
+            else if (this.model.WorkType == 2 && sfWorkModel == 2 && drWorkModel == 2 && sirWorkModel == 2) //排杆
+            {
+                lockSuccess = true;
+            }
+            else
+            {
+                return false;
+
+            }
+            #endregion
+            #region 指梁是否正确
+            int sfSelectDrillNum = 0;
+            int drSelectDrillNum = 0;
+            if (GlobalData.Instance.da.GloConfig.SFType == 0)
+            { }
+            else if (GlobalData.Instance.da.GloConfig.SFType == 1)
+            {
+                sfSelectDrillNum = GlobalData.Instance.da["pcFingerBeamNumberFeedback"].Value.Byte;
+            }
+
+            if (GlobalData.Instance.da.GloConfig.DRType == 0)
+            { }
+            else if (GlobalData.Instance.da.GloConfig.DRType == 1)
+            {
+                drSelectDrillNum = GlobalData.Instance.da["drPCSelectDrill"].Value.Byte;
+            }
+            else if (GlobalData.Instance.da.GloConfig.DRType == 2)
+            { }
+
+            if (this.model.SelectDrill > 0) // 手动选择指梁
+            {
+                if (this.model.SelectDrill == sfSelectDrillNum && this.model.SelectDrill == drSelectDrillNum)
+                {
+                    lockSuccess = true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            #endregion
+
+            return lockSuccess;
+        }
         #endregion
         /// <summary>
         /// 显示联动启动情况
@@ -2155,6 +2396,12 @@ namespace Main.Integration
             // 互锁情况
             if (CheckLock()) this.btnLockConfirm.Background = (Brush)bc.ConvertFrom("#5DBADC");
             else this.btnLockConfirm.Background = (Brush)bc.ConvertFrom("#F5C244");
+            // 参数情况
+            if (CheckParam()) this.btnParamConfirm.Background = (Brush)bc.ConvertFrom("#5DBADC");
+            else this.btnParamConfirm.Background = (Brush)bc.ConvertFrom("#F5C244");
+            // 联动情况
+            if (GlobalData.Instance.da["460b0"].Value.Boolean) this.btnLinkOpen.Background = (Brush)bc.ConvertFrom("#5DBADC");
+            else this.btnLinkOpen.Background = (Brush)bc.ConvertFrom("#F5C244");
         }
 
         /// <summary>
@@ -2550,6 +2797,25 @@ namespace Main.Integration
             else
             {
                 this.tbStartLinkHand.Visibility = Visibility.Collapsed;
+            }
+        }
+        /// <summary>
+        /// 开启联动
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnLinkOpen_Click(object sender, RoutedEventArgs e)
+        {
+            string msg = "确认开启联动?";
+            MessageBoxResult result = MessageBox.Show(msg, "提示", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                byte[] byteToSend = new byte[10] { 1, 32, 10, 1, 0, 0, 0, 0, 0, 0 };
+                GlobalData.Instance.da.SendBytes(byteToSend);
+                UdpModel model = new UdpModel();
+                model.UdpType = UdpType.StartLink;
+                byte[] bytes = Encoding.UTF8.GetBytes(model.ToJson());
+                GlobalData.Instance.da.SendDataToIPAndPort(bytes, GlobalData.Instance.da.GloConfig.UdpSendIP, GlobalData.Instance.da.GloConfig.UdpSendPort);
             }
         }
     }

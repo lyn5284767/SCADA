@@ -258,6 +258,7 @@ namespace Main
             {
                 this.GetNowDevice();
                 GloAlarm();
+                CameraControlByUDP();
             }));
           
         }
@@ -288,11 +289,18 @@ namespace Main
 
             if (inter > 500) inter = 0;
         }
+        /// <summary>
+        /// udp控制摄像头画面
+        /// </summary>
+        private void CameraControlByUDP()
+        {
+            
+        }
 
         int timeTick = 0;
         List<string> sqlList = new List<string>();
         /// <summary>
-        /// 报表数据记录
+        /// 报表数据记录/UDP控制摄像头
         /// </summary>
         private void ReportTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
@@ -359,6 +367,59 @@ namespace Main
                     }
                     timeTick++;
                     if (timeTick > 60) timeTick = 0;
+                }
+                // 联动开启控制摄像头
+                if (GlobalData.Instance.da["460b0"].Value.Boolean)
+                {
+                    // 送杆
+                    if (GlobalData.Instance.da["droperationModel"].Value.Byte == 1 && GlobalData.Instance.da["operationModel"].Value.Byte == 1)
+                    {
+                        #region 钻台面-送杆
+                        byte drstep = GlobalData.Instance.da["drAutoStep"].Value.Byte;
+                        // 1-7 || 12-17步抓手摄像头
+                        if ((drstep > 1 && drstep <= 7) || (drstep > 11 && drstep <= 17))
+                        {
+                            UdpModel model = new UdpModel();
+                            model.UdpType = UdpType.PlayCamera;
+                            model.Content = "172.16.16.130";
+                            byte[] bytes = Encoding.UTF8.GetBytes(model.ToJson());
+                            GlobalData.Instance.da.SendDataToIPAndPort(bytes, GlobalData.Instance.da.GloConfig.UdpSendIP, GlobalData.Instance.da.GloConfig.UdpSendPort);
+                        }// 8-11 || 8-20步钻台摄像头
+                        else if ((drstep > 7 && drstep <= 11) || (drstep > 17 && drstep <= 20))
+                        {
+                            UdpModel model = new UdpModel();
+                            model.UdpType = UdpType.PlayCamera;
+                            model.Content = "172.16.16.131";
+                            byte[] bytes = Encoding.UTF8.GetBytes(model.ToJson());
+                            GlobalData.Instance.da.SendDataToIPAndPort(bytes, GlobalData.Instance.da.GloConfig.UdpSendIP, GlobalData.Instance.da.GloConfig.UdpSendPort);
+
+                        }
+                        #endregion
+                    }// 排杆
+                    else if (GlobalData.Instance.da["droperationModel"].Value.Byte == 2 && GlobalData.Instance.da["operationModel"].Value.Byte == 2)
+                    {
+                        #region 钻台面-送杆
+                        byte drstep = GlobalData.Instance.da["drAutoStep"].Value.Byte;
+                        // 1-10步抓手摄像头
+                        if (drstep > 1 && drstep <= 10)
+                        {
+                            UdpModel model = new UdpModel();
+                            model.UdpType = UdpType.PlayCamera;
+                            model.Content = "172.16.16.130";
+                            byte[] bytes = Encoding.UTF8.GetBytes(model.ToJson());
+                            GlobalData.Instance.da.SendDataToIPAndPort(bytes, GlobalData.Instance.da.GloConfig.UdpSendIP, GlobalData.Instance.da.GloConfig.UdpSendPort);
+                        }// 11-21步钻台摄像头
+                        else if (drstep > 10 && drstep <= 21)
+                        {
+                            UdpModel model = new UdpModel();
+                            model.UdpType = UdpType.PlayCamera;
+                            model.Content = "172.16.16.131";
+                            byte[] bytes = Encoding.UTF8.GetBytes(model.ToJson());
+                            GlobalData.Instance.da.SendDataToIPAndPort(bytes, GlobalData.Instance.da.GloConfig.UdpSendIP, GlobalData.Instance.da.GloConfig.UdpSendPort);
+
+                        }
+                        #endregion
+                    }
                 }
             }
             catch (Exception ex)
@@ -660,7 +721,7 @@ namespace Main
             {
                 this.bdScrewThread.Visibility = Visibility.Collapsed;
             }
-            else if (GlobalData.Instance.da.GloConfig.PreventBoxType == 1)
+            else
             {
                 this.bdScrewThread.Visibility = Visibility.Visible;
                 TotalDeviceNum += 1;
@@ -2996,7 +3057,8 @@ namespace Main
                         if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.SANY)
                         {
                             this.spMain.Children.Clear();
-                            this.spMain.Children.Add(HSMain.Instance);
+                            //this.spMain.Children.Add(HSMain.Instance);
+                            this.spMain.Children.Add(HSSetting.Instance);
                         }// 宝石
                         else if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.BS)
                         {
@@ -3055,7 +3117,8 @@ namespace Main
                     if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.SANY)
                     {
                         this.spMain.Children.Clear();
-                        this.spMain.Children.Add(HSMain.Instance);
+                        //this.spMain.Children.Add(HSMain.Instance);
+                        this.spMain.Children.Add(HSSetting.Instance);
                     }// 宝石
                     else if (GlobalData.Instance.da.GloConfig.HydType == (int)HSType.BS)
                     {
