@@ -61,6 +61,7 @@
                         <cl:CustomCheckBox ContentString="机械手大钩互锁" Margin="15" Name="cbBigHookInterLockingOfRobot" UserControlClicked="CBBigHookInterLockingOfRobot_Clicked"/>
                         <cl:CustomCheckBox ContentString="机械手顶驱互锁" Margin="15" Name="cbManipulatorTopDriveInterlock" UserControlClicked="CBManipulatorTopDriverInterlock_Clicked"/>
                         <cl:CustomCheckBox ContentString="伺服电机安全互锁" Margin="15" Name="cbMotorSaveLock" UserControlClicked="CBMotorSaveLock_Clicked"/>
+                        <cl:CustomCheckBox ContentString="行车联动互锁互锁" Margin="15" Name="cbCarLinkLock" UserControlClicked="CBCarLinkLock_Clicked"/>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="大钩互锁角度" Margin="15,15,2,15" FontSize="16" VerticalAlignment="Center"/>
                             <TextBox Width="60" Text="0" Margin="15,15,2,15" FontSize="16" IsReadOnly="True" TextAlignment="Center" Name="BigHookInterLockingAngleOfRobotShowValue"/>

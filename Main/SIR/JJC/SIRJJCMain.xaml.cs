@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -42,10 +43,30 @@ namespace Main.SIR
                 return _instance;
             }
         }
+        System.Threading.Timer timerWarning;
         public SIRJJCMain()
         {
             InitializeComponent();
             VariableBinding();
+            timerWarning = new System.Threading.Timer(new TimerCallback(Timer_Elapsed), this, 2000, 50);//改成50ms 的时钟
+        }
+
+        private void Timer_Elapsed(object obj)
+        {
+            try
+            {
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    if (GlobalData.Instance.da["843b0"].Value.Boolean) this.tbTips.Text = "当前自动任务完成";
+                    else if(GlobalData.Instance.da["843b1"].Value.Boolean) this.tbTips.Text = "自动上扣完成";
+                    else if (GlobalData.Instance.da["843b2"].Value.Boolean) this.tbTips.Text = "自动卸扣完成";
+                    else if (GlobalData.Instance.da["843b3"].Value.Boolean) this.tbTips.Text = "请求集成供油";
+                }));
+            }
+            catch (Exception ex)
+            {
+                Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+            }
         }
         /// <summary>
         /// 变量绑定
@@ -60,6 +81,38 @@ namespace Main.SIR
 
             this.operateMode.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["IDOperModel"], Mode = BindingMode.OneWay, Converter = new SIROprModelCoverter() });
             this.operateMode.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["IDOperModel"], Mode = BindingMode.OneWay, Converter = new SIROprModelSelectCoverter() });
+            this.workModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["842b0"], Mode = BindingMode.OneWay, Converter = new SIROprModelCoverter() });
+            this.workModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["842b0"], Mode = BindingMode.OneWay});
+            JJC_SIRInorOutCheckCoverter jjc_SIRInorOutCheckCoverter = new JJC_SIRInorOutCheckCoverter();
+            MultiBinding jjc_SIRInorOutCheckBind = new MultiBinding();
+            jjc_SIRInorOutCheckBind.Converter = jjc_SIRInorOutCheckCoverter;
+            jjc_SIRInorOutCheckBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["842b4"], Mode = BindingMode.OneWay });
+            jjc_SIRInorOutCheckBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["842b5"], Mode = BindingMode.OneWay });
+            jjc_SIRInorOutCheckBind.NotifyOnSourceUpdated = true;
+            this.InOrOutBtnModel.SetBinding(BasedSwitchButton.IsCheckedProperty, jjc_SIRInorOutCheckBind);
+            JJC_SIRInorOutTEXTCoverter jjc_SIRInorOutTEXTCoverter = new JJC_SIRInorOutTEXTCoverter();
+            MultiBinding jjc_SIRInorOutTEXTBind = new MultiBinding();
+            jjc_SIRInorOutTEXTBind.Converter = jjc_SIRInorOutTEXTCoverter;
+            jjc_SIRInorOutTEXTBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["842b4"], Mode = BindingMode.OneWay });
+            jjc_SIRInorOutTEXTBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["842b5"], Mode = BindingMode.OneWay });
+            jjc_SIRInorOutTEXTBind.NotifyOnSourceUpdated = true;
+            this.InOrOutBtnModel.SetBinding(BasedSwitchButton.ContentDownProperty, jjc_SIRInorOutTEXTBind);
+
+            JJC_SIRDesCheckCoverter jjc_SIRDesCheckCoverter = new JJC_SIRDesCheckCoverter();
+            MultiBinding jjc_SIRDesCheckBind = new MultiBinding();
+            jjc_SIRDesCheckBind.Converter = jjc_SIRDesCheckCoverter;
+            jjc_SIRDesCheckBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["842b6"], Mode = BindingMode.OneWay });
+            jjc_SIRDesCheckBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["842b7"], Mode = BindingMode.OneWay });
+            jjc_SIRDesCheckBind.NotifyOnSourceUpdated = true;
+            this.Des.SetBinding(BasedSwitchButton.IsCheckedProperty, jjc_SIRDesCheckBind);
+            JJC_SIRDesCoverter jjc_SIRDesCoverter = new JJC_SIRDesCoverter();
+            MultiBinding jjc_SIRDesBind = new MultiBinding();
+            jjc_SIRDesBind.Converter = jjc_SIRDesCoverter;
+            jjc_SIRDesBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["842b6"], Mode = BindingMode.OneWay });
+            jjc_SIRDesBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["842b7"], Mode = BindingMode.OneWay });
+            jjc_SIRDesBind.NotifyOnSourceUpdated = true;
+            this.Des.SetBinding(BasedSwitchButton.ContentDownProperty, jjc_SIRDesBind);
+
             this.smUpButtonPressure.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
             SIRRealTimePressureCoverter sIRRealTimePressureCoverter = new SIRRealTimePressureCoverter();
             MultiBinding RealTimePressureMultiBind = new MultiBinding();
@@ -75,24 +128,24 @@ namespace Main.SIR
             PressureSetMultiBind.NotifyOnSourceUpdated = true;
             this.tbPressureSet.SetBinding(TextBlock.TextProperty, PressureSetMultiBind);
 
-            this.tbCalibrationStatus.SetBinding(TextBlock.TextProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b3"], Mode = BindingMode.OneWay, Converter = new SIRCalibrationStatusCoverter() });
-            this.tbRealTimeRatate.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDRotate"], Mode = BindingMode.OneWay});
-            this.tbCylinderTrip.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDCylinderTrip"], Mode = BindingMode.OneWay });
-            this.tbCylinderZero.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDCylinderZero"], Mode = BindingMode.OneWay });
-            this.tbZeroAngleOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDRotateZero"], Mode = BindingMode.OneWay });
-            this.tbRotateWaitOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDRotateWait"], Mode = BindingMode.OneWay });
-            this.tbWellLocationOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDWellLocation"], Mode = BindingMode.OneWay });
-            this.tbMouseLocationOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDMouseLocatio"], Mode = BindingMode.OneWay });
+            //this.tbCalibrationStatus.SetBinding(TextBlock.TextProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b3"], Mode = BindingMode.OneWay, Converter = new SIRCalibrationStatusCoverter() });
+            //this.tbRealTimeRatate.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDRotate"], Mode = BindingMode.OneWay});
+            //this.tbCylinderTrip.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDCylinderTrip"], Mode = BindingMode.OneWay });
+            //this.tbCylinderZero.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDCylinderZero"], Mode = BindingMode.OneWay });
+            //this.tbZeroAngleOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDRotateZero"], Mode = BindingMode.OneWay });
+            //this.tbRotateWaitOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDRotateWait"], Mode = BindingMode.OneWay });
+            //this.tbWellLocationOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDWellLocation"], Mode = BindingMode.OneWay });
+            //this.tbMouseLocationOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDMouseLocatio"], Mode = BindingMode.OneWay });
 
-            this.tbInOutStatus.SetBinding(TextBlock.TextProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b4"], Mode = BindingMode.OneWay, Converter = new SIRCalibrationStatusCoverter() });
-            this.tbInOutCylinderTrip.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDInOutCylinderTrip"], Mode = BindingMode.OneWay });
-            this.tbFlowRateValve.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDFlowRateValve"], Mode = BindingMode.OneWay });
-            this.tbPressureRateValve.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDPressureRateValve"], Mode = BindingMode.OneWay });
-            this.tbInOutMaxSpeedOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDInOutMaxSpeed"], Mode = BindingMode.OneWay });
-            this.tbInOutCrawlSpeedOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDInOutCrawlSpeed"], Mode = BindingMode.OneWay });
-            this.tbWellRetractLengthOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDWellRetractLength"], Mode = BindingMode.OneWay });
-            this.tbMouseRetractLengthOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDMouseRetractLength"], Mode = BindingMode.OneWay });
-            this.tbInOutCylinderZeroOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDInOutCylinderZero"], Mode = BindingMode.OneWay });
+            //this.tbInOutStatus.SetBinding(TextBlock.TextProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b4"], Mode = BindingMode.OneWay, Converter = new SIRCalibrationStatusCoverter() });
+            //this.tbInOutCylinderTrip.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDInOutCylinderTrip"], Mode = BindingMode.OneWay });
+            //this.tbFlowRateValve.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDFlowRateValve"], Mode = BindingMode.OneWay });
+            //this.tbPressureRateValve.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDPressureRateValve"], Mode = BindingMode.OneWay });
+            //this.tbInOutMaxSpeedOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDInOutMaxSpeed"], Mode = BindingMode.OneWay });
+            //this.tbInOutCrawlSpeedOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDInOutCrawlSpeed"], Mode = BindingMode.OneWay });
+            //this.tbWellRetractLengthOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDWellRetractLength"], Mode = BindingMode.OneWay });
+            //this.tbMouseRetractLengthOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDMouseRetractLength"], Mode = BindingMode.OneWay });
+            //this.tbInOutCylinderZeroOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDInOutCylinderZero"], Mode = BindingMode.OneWay });
 
             this.tbHandleX.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["RgihtHandLeftOrRight"], Mode = BindingMode.OneWay});
             this.tbHandleY.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["RgihtHandFrontOrBehind"], Mode = BindingMode.OneWay });
@@ -156,14 +209,17 @@ namespace Main.SIR
             this.smButtonImple.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b6"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
             this.smButtonCancel.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b7"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
             this.smLockHook.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b5"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
-            this.smRotate.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b7"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
-            this.smInOut.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b6"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            //this.smRotate.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b7"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            //this.smInOut.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b6"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
 
             this.tubeType.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["IDDrillType"], Mode = BindingMode.OneWay, Converter = new SIR_JJC_DrillTypeConverter() });
 
             this.cbSafeLimit.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["535b6"], Mode = BindingMode.OneWay });
             this.smAllowIron.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["802b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
             this.smDFAntiCollision.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["308b1"], Mode = BindingMode.OneWay, Converter = new OppositeBoolTagConverter() });
+            this.smAutoConfirm.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["842b2"], Mode = BindingMode.OneWay, Converter = new OppositeBoolTagConverter() });
+            this.smAutoEnable.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["842b3"], Mode = BindingMode.OneWay, Converter = new OppositeBoolTagConverter() });
+
         }
 
         /// <summary>
@@ -213,22 +269,22 @@ namespace Main.SIR
         /// </summary>
         private void spRotateSetMouseDown(object sender, MouseButtonEventArgs e)
         {
-            byte[] data = new byte[10] { 80, 16, 23, 1, 0, 0, 1, 0, 0, 0 };
-            GlobalData.Instance.da.SendBytes(data);
-            this.effRotateSelect.BorderBrush = new SolidColorBrush(Colors.Blue);
-            var bc = new BrushConverter();
-            this.effInOutSelect.BorderBrush = (Brush)bc.ConvertFrom("#F6F9FF");
+            //byte[] data = new byte[10] { 80, 16, 23, 1, 0, 0, 1, 0, 0, 0 };
+            //GlobalData.Instance.da.SendBytes(data);
+            //this.effRotateSelect.BorderBrush = new SolidColorBrush(Colors.Blue);
+            //var bc = new BrushConverter();
+            //this.effInOutSelect.BorderBrush = (Brush)bc.ConvertFrom("#F6F9FF");
         }
         /// <summary>
         /// 伸缩标定请求
         /// </summary>
         private void InOutSetMouseDown(object sender, MouseButtonEventArgs e)
         {
-            byte[] data = new byte[10] { 80, 16, 23, 2, 0, 0, 1, 0, 0, 0 };
-            GlobalData.Instance.da.SendBytes(data);
-            this.effInOutSelect.BorderBrush = new SolidColorBrush(Colors.Blue);
-            var bc = new BrushConverter();
-            this.effRotateSelect.BorderBrush = (Brush)bc.ConvertFrom("#F6F9FF");
+            //byte[] data = new byte[10] { 80, 16, 23, 2, 0, 0, 1, 0, 0, 0 };
+            //GlobalData.Instance.da.SendBytes(data);
+            //this.effInOutSelect.BorderBrush = new SolidColorBrush(Colors.Blue);
+            //var bc = new BrushConverter();
+            //this.effRotateSelect.BorderBrush = (Brush)bc.ConvertFrom("#F6F9FF");
         }
         /// <summary>
         /// 切换单位
@@ -321,6 +377,62 @@ namespace Main.SIR
                     GlobalData.Instance.da.SendBytes(byteToSend);
                 }
             }
+        }
+        /// <summary>
+        /// 手动/自动模式
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_workModel(object sender, EventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 80, 16, 4, 0, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 上扣/卸扣
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_InOrOutBtnModel(object sender, EventArgs e)
+        {
+            if (this.InOrOutBtnModel.IsChecked) // 当前上扣转卸扣
+            {
+                byte[] byteToSend = new byte[10] { 80, 16, 1, 2, 0, 0, 0, 0, 0, 0 };
+                GlobalData.Instance.da.SendBytes(byteToSend);
+            }
+            else //当前卸扣转上扣
+            {
+                byte[] byteToSend = new byte[10] { 80, 16, 1, 1, 0, 0, 0, 0, 0, 0 };
+                GlobalData.Instance.da.SendBytes(byteToSend);
+            }
+        }
+        /// <summary>
+        /// 目的地 井口/鼠洞
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_Des(object sender, EventArgs e)
+        {
+            if (this.InOrOutBtnModel.IsChecked) // 当前井口转鼠洞
+            {
+                byte[] byteToSend = new byte[10] { 80, 16, 2, 2, 0, 0, 0, 0, 0, 0 };
+                GlobalData.Instance.da.SendBytes(byteToSend);
+            }
+            else //当前鼠洞转井口
+            {
+                byte[] byteToSend = new byte[10] { 80, 16, 2, 1, 0, 0, 0, 0, 0, 0 };
+                GlobalData.Instance.da.SendBytes(byteToSend);
+            }
+        }
+        /// <summary>
+        /// 系统复位
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_Reset(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 80, 16, 5, 0, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
         }
     }
 }

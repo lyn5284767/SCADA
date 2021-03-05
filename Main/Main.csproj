@@ -429,6 +429,9 @@
     <Compile Include="SIR\BS\SIRBSMain.xaml.cs">
       <DependentUpon>SIRBSMain.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SIR\JJC\SIR_JJC_ParamSet.xaml.cs">
+      <DependentUpon>SIR_JJC_ParamSet.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SIR\SanyRail\SIRRailWayIO.xaml.cs">
       <DependentUpon>SIRRailWayIO.xaml</DependentUpon>
     </Compile>
@@ -904,6 +907,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SIR\BS\SIRBSMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SIR\JJC\SIR_JJC_ParamSet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

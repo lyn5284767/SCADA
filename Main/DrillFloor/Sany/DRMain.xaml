@@ -213,6 +213,7 @@
                                     <MenuItem Header="立根盒" Click="btn_SelectDes" TabIndex="1"/>
                                     <MenuItem Header="猫道-井口" Click="btn_SelectDes" TabIndex="2"/>
                                     <MenuItem Header="猫道-鼠洞" Click="btn_SelectDes" TabIndex="3"/>
+                                    <MenuItem Header="猫道-立根" Click="btn_SelectDes" TabIndex="4"/>
                                 </MenuItem>
                                 <MenuItem Header="回零"  FontSize="24">
                                     <MenuItem Header="小车回零" Click="btn_CarToZero"/>
@@ -326,7 +327,7 @@
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Text="{Binding ElementName=drworkMode,Path=IsChecked,Converter={StaticResource workModeFlowCvt}}" FontSize="16" Margin="2,0,0,0"></TextBlock>
 
-                        <hc:StepBar Grid.Column="1" FontSize="14" Name="sbDrillDown" Grid.Row="1">
+                        <hc:StepBar Grid.Column="1" FontSize="14" Name="sbDrillDown" Grid.Row="1" Visibility="Visible">
                             <hc:StepBarItem Content="送杆启动"/>
                             <hc:StepBarItem Content="台面定位"/>
                             <hc:StepBarItem Content="抓手夹紧"/>
@@ -343,6 +344,24 @@
                             <hc:StepBarItem Content="抓手松开"/>
                             <hc:StepBarItem Content="手臂回位"/>
                             <hc:StepBarItem Content="台面完成"/>
+                        </hc:StepBar>
+                        <hc:StepBar Grid.Column="1" FontSize="14" Name="sbDrillDownWithNumFour" Grid.Row="1" Visibility="Collapsed">
+                            <hc:StepBarItem Content="送杆启动"/>
+                            <hc:StepBarItem Content="台面定位"/>
+                            <hc:StepBarItem Content="抓手夹紧"/>
+                            <hc:StepBarItem Content="猫道定位"/>
+                            <hc:StepBarItem Content="猫道送杆"/>
+                            <hc:StepBarItem Content="回送杆位"/>
+                            <hc:StepBarItem Content="送杆结束"/>
+                        </hc:StepBar>
+                        <hc:StepBar Grid.Column="1" FontSize="14" Name="sbDrillUpWithNumFour" Grid.Row="1" Visibility="Collapsed">
+                            <hc:StepBarItem Content="排杆启动"/>
+                            <hc:StepBarItem Content="猫道定位"/>
+                            <hc:StepBarItem Content="猫道抓杆"/>
+                            <hc:StepBarItem Content="台面定位"/>
+                            <hc:StepBarItem Content="抓手送开"/>
+                            <hc:StepBarItem Content="回排杆位"/>
+                            <hc:StepBarItem Content="排杆结束"/>
                         </hc:StepBar>
                     </Grid>
                     <Grid Grid.Row="0" Name="Am" >

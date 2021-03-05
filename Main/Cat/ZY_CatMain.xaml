@@ -265,64 +265,64 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Button  Name="cmd1" Grid.Row="0" Grid.Column="0" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
-                                <TextBlock Foreground="White" TextAlignment="Center" Width="100"><Run Text="1"/></TextBlock>
+                                <TextBlock Foreground="White" TextAlignment="Center" Width="100"><Run Name="runFingerClose" Text="手指&#x0a;关闭"/></TextBlock>
                             </Button>
                             <Button  Name="cmd2" Grid.Row="0" Grid.Column="1" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
-                                <TextBlock Foreground="White" TextAlignment="Center" Width="100"><Run Text="2"/></TextBlock>
+                                <TextBlock Foreground="White" TextAlignment="Center" Width="100"><Run Name="runFingerOpen" Text="手指&#x0a;打开"/></TextBlock>
                             </Button>
                             <Button  Name="cmd3" Grid.Row="0" Grid.Column="2" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
-                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Text="3"/></TextBlock>
+                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Name="runDrillClose" Text="指梁&#x0a;关闭"/></TextBlock>
                             </Button>
                             <Button  Name="cmd4" Grid.Row="0" Grid.Column="3" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
-                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Text="4"/></TextBlock>
+                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Name="runDrillOpen" Text="指梁&#x0a;打开"/></TextBlock>
                             </Button>
                             <Button  Name="cmd5" Grid.Row="1" Grid.Column="0" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
-                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Text="1"/></TextBlock>
+                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Name="runElevtorClose" Text="吊卡&#x0a;关闭"/></TextBlock>
                             </Button>
                             <Button  Name="cmd6" Grid.Row="1" Grid.Column="1" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
-                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Text="2"/></TextBlock>
+                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Name="runElevtorOpen" Text="吊卡&#x0a;打开"/></TextBlock>
                             </Button>
                             <Button  Name="cmd7" Grid.Row="1" Grid.Column="2" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
-                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Text="3"/></TextBlock>
+                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Name="runElevtorHor" Text="吊卡&#x0a;水平"/></TextBlock>
                             </Button>
                             <Button  Name="cmd8" Grid.Row="1" Grid.Column="3" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
-                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Text="4"/></TextBlock>
+                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Name="runElevtorVer" Text="吊卡&#x0a;垂直"/></TextBlock>
                             </Button>
                             <Button  Name="cmd9" Grid.Row="2" Grid.Column="0" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
-                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Text="1"/></TextBlock>
+                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Name="runAutoUp" Text="自动升"/></TextBlock>
                             </Button>
                             <Button  Name="cmd10" Grid.Row="2" Grid.Column="1" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
-                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Text="2"/></TextBlock>
+                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Name="runAutoDown" Text="自动降"/></TextBlock>
                             </Button>
                             <Button  Name="cmd11" Grid.Row="2" Grid.Column="2" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
-                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Text="3"/></TextBlock>
+                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Text="预留"/></TextBlock>
                             </Button>
                             <Button  Name="cmd12" Grid.Row="2" Grid.Column="3" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
-                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Text="4"/></TextBlock>
+                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Text="预留"/></TextBlock>
                             </Button>
                             <Button  Name="cmd13" Grid.Row="3" Grid.Column="0" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
-                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Text="1"/></TextBlock>
+                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Name="runKavaClose" Text="卡瓦&#x0a;关闭"/></TextBlock>
                             </Button>
                             <Button  Name="cmd14" Grid.Row="3" Grid.Column="1" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
-                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Text="2"/></TextBlock>
+                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Name="runKavaOpen" Text="卡瓦&#x0a;打开"/></TextBlock>
                             </Button>
                             <Button  Name="cmd15" Grid.Row="3" Grid.Column="2" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
-                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Text="3"/></TextBlock>
+                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Name="runRingsRunOut" Text="吊环&#x0a;偏摆"/></TextBlock>
                             </Button>
                             <Button  Name="cmd16" Grid.Row="3" Grid.Column="3" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
-                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Text="4"/></TextBlock>
+                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Name="runRingsReturn" Text="吊环&#x0a;复位"/></TextBlock>
                             </Button>
                             <Button  Name="cmd17" Grid.Row="4" Grid.Column="0" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
-                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Text="1"/></TextBlock>
+                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Name="runUpHandMove" Text="上料&#x0a;臂动"/></TextBlock>
                             </Button>
                             <Button  Name="cmd18" Grid.Row="4" Grid.Column="1" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
-                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Text="2"/></TextBlock>
+                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Name="runUpHandReturn" Text="上料&#x0a;臂回"/></TextBlock>
                             </Button>
                             <Button  Name="cmd19" Grid.Row="4" Grid.Column="2" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
-                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Text="3"/></TextBlock>
+                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Name="runVLeft" Text="V槽&#x0a;左转"/></TextBlock>
                             </Button>
                             <Button  Name="cmd20" Grid.Row="4" Grid.Column="3" Focusable="False"  Style="{StaticResource InformButton}" Margin="5">
-                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Text="4"/></TextBlock>
+                                <TextBlock Foreground="White"  TextAlignment="Center" Width="100"><Run Name="runVRight" Text="V槽&#x0a;右转"/></TextBlock>
                             </Button>
                         </Grid>
                 </Border>

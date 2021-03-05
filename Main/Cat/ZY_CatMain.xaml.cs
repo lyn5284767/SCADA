@@ -62,6 +62,28 @@ namespace Main.Cat
             this.smPlatDown.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["701b5"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
             this.smPlatForward.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["701b6"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
             this.smPlatBackOff.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["701b7"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+
+            #region 键盘
+            this.runFingerClose.SetBinding(Run.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["708b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.runFingerOpen.SetBinding(Run.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["708b1"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.runDrillClose.SetBinding(Run.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["708b2"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.runDrillOpen.SetBinding(Run.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["708b3"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.runElevtorClose.SetBinding(Run.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["708b4"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.runElevtorOpen.SetBinding(Run.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["708b5"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.runElevtorHor.SetBinding(Run.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["708b6"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.runElevtorVer.SetBinding(Run.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["708b7"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.runAutoUp.SetBinding(Run.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["709b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.runAutoDown.SetBinding(Run.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["709b1"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.runKavaClose.SetBinding(Run.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["709b4"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.runKavaOpen.SetBinding(Run.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["709b5"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.runRingsRunOut.SetBinding(Run.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["709b6"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.runRingsReturn.SetBinding(Run.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["709b7"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.runUpHandMove.SetBinding(Run.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["710b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.runUpHandReturn.SetBinding(Run.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["710b1"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.runVLeft.SetBinding(Run.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["710b2"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.runVRight.SetBinding(Run.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["710b3"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+
+            #endregion
         }
         /// <summary>
         /// 遥控/司钻

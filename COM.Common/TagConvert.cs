@@ -1233,6 +1233,8 @@ namespace COM.Common
                     return "猫道-井口";
                 case 3:
                     return "猫道-鼠道";
+                case 4:
+                    return "猫道-立根";
             }
 
             return "未设置目的地";
@@ -3666,6 +3668,8 @@ namespace COM.Common
         }
     }
 
+
+
     /// <summary>
     /// 铁钻工-工作位置
     /// </summary>
@@ -3809,6 +3813,130 @@ namespace COM.Common
             throw new NotImplementedException();
         }
     }
+
+    #region JJC铁钻工
+    /// <summary>
+    /// JJC铁钻工-操作模式
+    /// </summary>
+    public class JJC_SIRWorkModelCoverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == DependencyProperty.UnsetValue || value == null)
+            {
+                return "未知";
+            }
+            bool val = (bool)value;
+            if (val) return "自动模式";
+            else return "手动模式";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// JJC铁钻工-上扣/卸扣CHECK
+    /// </summary>
+    public class JJC_SIRInorOutCheckCoverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (values[0] == DependencyProperty.UnsetValue || values[0] == null
+                || values[1] == DependencyProperty.UnsetValue || values[1] == null)
+            {
+                return false;
+            }
+            bool valone = (bool)values[0];
+            bool valTwo = (bool)values[1];
+            if (valone) return true;
+            else if (valTwo) return false;
+            else return false;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// JJC铁钻工-上扣/卸扣
+    /// </summary>
+    public class JJC_SIRInorOutTEXTCoverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (values[0] == DependencyProperty.UnsetValue || values[0] == null
+                || values[1] == DependencyProperty.UnsetValue || values[1] == null)
+            {
+                return "未知";
+            }
+            bool valone = (bool)values[0];
+            bool valTwo = (bool)values[1];
+            if (valone) return "上扣";
+            else if (valTwo) return "卸扣";
+            else return "未知";
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// JJC铁钻工-目的地CHECK
+    /// </summary>
+    public class JJC_SIRDesCheckCoverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (values[0] == DependencyProperty.UnsetValue || values[0] == null
+                || values[1] == DependencyProperty.UnsetValue || values[1] == null)
+            {
+                return false;
+            }
+            bool valone = (bool)values[0];
+            bool valTwo = (bool)values[1];
+            if (valone) return true;
+            else if (valTwo) return false;
+            else return false;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// JJC铁钻工-目的地
+    /// </summary>
+    public class JJC_SIRDesCoverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (values[0] == DependencyProperty.UnsetValue || values[0] == null
+                || values[1] == DependencyProperty.UnsetValue || values[1] == null)
+            {
+                return "未知";
+            }
+            bool valone = (bool)values[0];
+            bool valTwo = (bool)values[1];
+            if (valone) return "井口";
+            else if (valTwo) return "鼠洞";
+            else return "未知";
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    #endregion
     #endregion
 
     #region 液压站
@@ -6534,6 +6662,28 @@ namespace COM.Common
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    #endregion
+
+    #region 泽元猫道
+
+    /// <summary>
+    /// 排杆/送杆步骤
+    /// </summary>
+    public class Cat_ZY_BackgroudColorCoverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var bc = new BrushConverter();
+            bool val = (bool)value;
+            if(val) return (Brush)bc.ConvertFrom("#FC0303");
+            else return (Brush)bc.ConvertFrom("#00FFFFFF");
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

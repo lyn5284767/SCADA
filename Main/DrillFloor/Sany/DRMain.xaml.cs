@@ -259,13 +259,37 @@ namespace Main.DrillFloor
                     {
                         if (GlobalData.Instance.da["drworkModel"].Value.Byte == 2)
                         {
-                            this.sbDrillUp.Visibility = Visibility.Visible;
-                            this.sbDrillDown.Visibility = Visibility.Collapsed;
+                            if (GlobalData.Instance.da["drDes"] != null && GlobalData.Instance.da["drDes"].Value.Byte == 4)
+                            {
+                                this.sbDrillUp.Visibility = Visibility.Collapsed;
+                                this.sbDrillDown.Visibility = Visibility.Collapsed;
+                                this.sbDrillDownWithNumFour.Visibility = Visibility.Collapsed;
+                                this.sbDrillUpWithNumFour.Visibility = Visibility.Visible;
+                            }
+                            else
+                            {
+                                this.sbDrillUp.Visibility = Visibility.Visible;
+                                this.sbDrillDown.Visibility = Visibility.Collapsed;
+                                this.sbDrillDownWithNumFour.Visibility = Visibility.Collapsed;
+                                this.sbDrillUpWithNumFour.Visibility = Visibility.Collapsed;
+                            }
                         }
                         else
                         {
-                            this.sbDrillUp.Visibility = Visibility.Collapsed;
-                            this.sbDrillDown.Visibility = Visibility.Visible;
+                            if (GlobalData.Instance.da["drDes"] != null && GlobalData.Instance.da["drDes"].Value.Byte == 4)
+                            {
+                                this.sbDrillUp.Visibility = Visibility.Collapsed;
+                                this.sbDrillDown.Visibility = Visibility.Collapsed;
+                                this.sbDrillUpWithNumFour.Visibility = Visibility.Collapsed;
+                                this.sbDrillDownWithNumFour.Visibility = Visibility.Visible;
+                            }
+                            else
+                            {
+                                this.sbDrillUp.Visibility = Visibility.Collapsed;
+                                this.sbDrillDown.Visibility = Visibility.Visible;
+                                this.sbDrillUpWithNumFour.Visibility = Visibility.Collapsed;
+                                this.sbDrillDownWithNumFour.Visibility = Visibility.Collapsed;
+                            }
                         }
                     }
 
@@ -540,6 +564,14 @@ namespace Main.DrillFloor
             {
                 this.warnOne.Text = "回转补偿超出范围";
             }
+            else if (warnOne == 94)
+            {
+                this.warnOne.Text = "行车正在右移...";
+            }
+            else if (warnOne == 95)
+            {
+                this.warnOne.Text = "行车正在左移...";
+            }
             else if (warnOne == 101)
             {
                 this.warnOne.Text = "盖板未打开，无法向右平移";
@@ -555,6 +587,14 @@ namespace Main.DrillFloor
             else if (warnOne == 104)
             {
                 this.warnOne.Text = "机械手在右侧，无法向右平移";
+            }
+            else if (warnOne == 106)
+            {
+                this.warnOne.Text = "行车未左移到位";
+            }
+            else if (warnOne == 107)
+            {
+                this.warnOne.Text = "行车未右移到位";
             }
             else
             {

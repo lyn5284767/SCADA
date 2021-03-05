@@ -910,7 +910,7 @@ namespace Main.Integration
                 if (model.PipeType == 1)
                 {
                     if (model.PipeSize == 28) this.tbPipeType.Text = "2 7/8" + Environment.NewLine + "寸钻杆";
-                    else if (model.PipeSize == 35) this.tbPipeType.Text = "3 1/2"+ Environment.NewLine+ "寸钻杆";
+                    else if (model.PipeSize == 35) this.tbPipeType.Text = "3 1/2" + Environment.NewLine + "寸钻杆";
                     else if (model.PipeSize == 40) this.tbPipeType.Text = "4寸" + Environment.NewLine + "钻杆";
                     else if (model.PipeSize == 45) this.tbPipeType.Text = "4 1/2" + Environment.NewLine + "寸钻杆";
                     else if (model.PipeSize == 50) this.tbPipeType.Text = "5寸" + Environment.NewLine + "钻杆";
@@ -936,7 +936,7 @@ namespace Main.Integration
                 else if (model.DesType == 2) this.tbDesSet.Text = "猫道-" + Environment.NewLine + "井口";
                 else if (model.DesType == 3) this.tbDesSet.Text = "猫道-" + Environment.NewLine + "鼠洞";
 
-                if (model.SelectDrill < 16 && model.SelectDrill>0)
+                if (model.SelectDrill < 16 && model.SelectDrill > 0)
                 {
                     this.tbDrillSelectSet.Text = "左" + model.SelectDrill.ToString();
                 }
@@ -952,6 +952,10 @@ namespace Main.Integration
                 {
                     this.tbDrillSelectSet.Text = "右钻铤";
                 }
+            }
+            else
+            {
+                model = new GlobalModel();
             }
         }
 

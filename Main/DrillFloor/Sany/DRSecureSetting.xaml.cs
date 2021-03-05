@@ -66,6 +66,8 @@ namespace Main.DrillFloor
                 this.cbPliersForbid.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["441b0"], Mode = BindingMode.OneWay, Converter = new InterLockingOppConverter() });
                 this.cbForbidToWell.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["441b1"], Mode = BindingMode.OneWay, Converter = new InterLockingOppConverter() });
                 this.cbForbidRetract.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["441b2"], Mode = BindingMode.OneWay, Converter = new InterLockingOppConverter() });
+                this.cbCarLinkLock.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["336b5"], Mode = BindingMode.OneWay, Converter = new InterLockingOppConverter() });
+
             }
             catch (Exception ex)
             {
@@ -298,6 +300,28 @@ namespace Main.DrillFloor
             else
             {
                 byte[] byteToSend = new byte[10] { 2, 32, 33, 1, 0, 0, 0, 0, 0, 0 };
+                GlobalData.Instance.da.SendBytes(byteToSend);
+            }
+        }
+        /// <summary>
+        /// 行车联动互锁
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CBCarLinkLock_Clicked(object sender, EventArgs e)
+        {
+            if (this.cbCarLinkLock.IsChecked)
+            {
+                MessageBoxResult result = MessageBox.Show("确认屏蔽猫道行车联动互锁", "提示", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
+                {
+                    byte[] byteToSend = new byte[10] { 80, 33, 21, 5, 1, 0, 0, 0, 0, 0 };
+                    GlobalData.Instance.da.SendBytes(byteToSend);
+                }
+            }
+            else
+            {
+                byte[] byteToSend = new byte[10] { 80, 33, 21, 5, 2, 0, 0, 0, 0, 0 };
                 GlobalData.Instance.da.SendBytes(byteToSend);
             }
         }

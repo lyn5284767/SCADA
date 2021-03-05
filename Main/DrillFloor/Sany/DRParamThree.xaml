@@ -83,7 +83,7 @@
                     </Border>
                 </StackPanel>
                 <StackPanel Grid.Column="1">
-                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="240">
+                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="280">
                         <StackPanel Orientation="Horizontal">
                             <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
                                 <TextBlock Text="选&#x0a;配&#x0a;设&#x0a;置&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
@@ -95,6 +95,8 @@
                                 <cl:TextBlockWithTextBox Name="twtL4" ControlTag="4"  TbkText="系统延时" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
                                 <cl:TextBlockWithTextBox Name="twtL5" ControlTag="5"  TbkText="时间修正" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
                                 <cl:TextBlockWithTextBox Name="twtL6" ControlTag="6"  TbkText="遥控器配置" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
+                                <cl:TextBlockWithTextBox Name="twtL7" ControlTag="7"  TbkText="猫道配置" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
+
                                 <!--<Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,10" Width="150" Height="40" Style="{StaticResource ShadowBorder}">
                                 <TextBlock FontSize="20" Foreground="#008AFF" MouseDown="ParamTwoSet2" HorizontalAlignment="Center" VerticalAlignment="Center" Text="    确定配置    "></TextBlock>
                             </Border>-->

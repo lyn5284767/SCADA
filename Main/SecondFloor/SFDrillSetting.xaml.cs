@@ -381,7 +381,7 @@ namespace Main.SecondFloor
                 {
                     byteText = 32;
                 }
-                else if (byteText >= 1 && byteText <= 10)
+                else if (byteText >= 1 && byteText <= 15)
                 {
                     byteText = (byte)(byteText + 16);
                 }
@@ -398,7 +398,7 @@ namespace Main.SecondFloor
                 {
                     byteText = 16;
                 }
-                else if (byteText >= 1 && byteText <= 10)
+                else if (byteText >= 1 && byteText <= 15)
                 {
                     //byteText = byteText;
                 }

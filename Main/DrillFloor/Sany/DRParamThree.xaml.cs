@@ -86,6 +86,7 @@ namespace Main.DrillFloor
                 this.twtL4.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drSysDelay"], Mode = BindingMode.OneWay }); // 系统延时
                 this.twtL5.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drTimeFix"], Mode = BindingMode.OneWay }); // 时间修正
                 this.twtL6.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["WR_RemoteControl"], Mode = BindingMode.OneWay }); // 遥控器配置
+                this.twtL7.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["DR_CatSet"], Mode = BindingMode.OneWay }); // 猫道配置
 
             }
             catch (Exception ex)
