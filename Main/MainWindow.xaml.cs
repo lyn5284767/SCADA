@@ -2988,32 +2988,40 @@ namespace Main
             {
                 nowSystemType = SystemType.CatRoad;
                 GlobalData.Instance.Ing = false;
-                if (GlobalData.Instance.da.GloConfig.CatType == 0)
+                if (GlobalData.Instance.da.GloConfig.SysType == 0)
                 {
-                    MessageBox.Show("未配置猫道");
-                    return;
-                }
-                //自研
-                else if (GlobalData.Instance.da.GloConfig.CatType == (int)CatType.SANY)
-                {
+                    if (GlobalData.Instance.da.GloConfig.CatType == 0)
+                    {
+                        MessageBox.Show("未配置猫道");
+                        return;
+                    }
+                    //自研
+                    else if (GlobalData.Instance.da.GloConfig.CatType == (int)CatType.SANY)
+                    {
 
+                    }
+                    //宝石
+                    else if (GlobalData.Instance.da.GloConfig.CatType == (int)CatType.BS)
+                    {
+                        this.spMain.Children.Clear();
+                        this.spMain.Children.Add(BSCatMain.Instance);
+                    }
+                    //宏达
+                    else if (GlobalData.Instance.da.GloConfig.CatType == (int)CatType.HD)
+                    {
+
+                    }
+                    //胜利
+                    else if (GlobalData.Instance.da.GloConfig.CatType == (int)CatType.SL)
+                    {
+                        this.spMain.Children.Clear();
+                        this.spMain.Children.Add(SL_CatMain.Instance);
+                    }
                 }
-                //宝石
-                else if (GlobalData.Instance.da.GloConfig.CatType == (int)CatType.BS)
+                else
                 {
                     this.spMain.Children.Clear();
-                    this.spMain.Children.Add(BSCatMain.Instance);
-                }
-                //宏达
-                else if (GlobalData.Instance.da.GloConfig.CatType == (int)CatType.HD)
-                {
-
-                }
-                //胜利
-                else if (GlobalData.Instance.da.GloConfig.CatType == (int)CatType.SL)
-                {
-                    this.spMain.Children.Clear();
-                    this.spMain.Children.Add(SL_CatMain.Instance);
+                    this.spMain.Children.Add(ZY_CatMain.Instance);
                 }
 
                 GlobalData.Instance.systemType = SystemType.CatRoad;

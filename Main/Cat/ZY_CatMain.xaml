@@ -53,7 +53,7 @@
                             <Grid >
                                 <ContentPresenter HorizontalAlignment="Left"  
                 				VerticalAlignment="Center"  x:Name="contentShadow" 
-                				Style="{StaticResource ShadowStyle}"/>
+                				/>
                                 <ContentPresenter HorizontalAlignment="Left"  
                 				VerticalAlignment="Center" x:Name="content"/>
                             </Grid>

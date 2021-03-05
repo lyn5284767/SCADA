@@ -1637,7 +1637,7 @@ namespace Main.Integration
         /// <param name="e"></param>
         private void btnLockConfirm_Click(object sender, RoutedEventArgs e)
         {
-            if (this.btnTurnToZore.Background.ToString() == "#FFF5C244")
+            if (this.btnTurnToZore.Background.ToString() == "#FF5DBADC")
             {
                 if (this.pbper == 50)
                 {
@@ -2388,16 +2388,32 @@ namespace Main.Integration
         private void ShowLinkStatus()
         {
             // 液压站情况
-            if(CheckHS()) this.btnStartHS.Background = (Brush)bc.ConvertFrom("#5DBADC");
+            if (CheckHS())
+            {
+                this.btnStartHS.Background = (Brush)bc.ConvertFrom("#5DBADC");
+                this.pbper = 30;
+            }
             else this.btnStartHS.Background = (Brush)bc.ConvertFrom("#F5C244");
             // 电机回零/使能情况
-            if (CheckMonitor()) this.btnTurnToZore.Background = (Brush)bc.ConvertFrom("#5DBADC");
+            if (CheckMonitor())
+            {
+                this.btnTurnToZore.Background = (Brush)bc.ConvertFrom("#5DBADC");
+                this.pbper = 50;
+            }
             else this.btnTurnToZore.Background = (Brush)bc.ConvertFrom("#F5C244");
             // 互锁情况
-            if (CheckLock()) this.btnLockConfirm.Background = (Brush)bc.ConvertFrom("#5DBADC");
+            if (CheckLock())
+            {
+                this.btnLockConfirm.Background = (Brush)bc.ConvertFrom("#5DBADC");
+                this.pbper = 60;
+            }
             else this.btnLockConfirm.Background = (Brush)bc.ConvertFrom("#F5C244");
             // 参数情况
-            if (CheckParam()) this.btnParamConfirm.Background = (Brush)bc.ConvertFrom("#5DBADC");
+            if (CheckParam())
+            {
+                this.btnParamConfirm.Background = (Brush)bc.ConvertFrom("#5DBADC");
+                this.pbper = 85;
+            }
             else this.btnParamConfirm.Background = (Brush)bc.ConvertFrom("#F5C244");
             // 联动情况
             if (GlobalData.Instance.da["460b0"].Value.Boolean) this.btnLinkOpen.Background = (Brush)bc.ConvertFrom("#5DBADC");
