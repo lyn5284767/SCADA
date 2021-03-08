@@ -342,7 +342,7 @@ namespace Main.WellRepair.SecondFloor
             if (GlobalData.Instance.da["506b7"].Value.Boolean && !bPre506b7)
             {
                 bPre506b7 = GlobalData.Instance.da["506b7"].Value.Boolean;
-                GlobalData.Instance.reportData.RobotElevatorInterlock += 1;
+                GlobalData.Instance.reportData.ElevatorClose += 1;
             }
             else
             {

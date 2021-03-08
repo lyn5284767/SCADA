@@ -40,9 +40,9 @@ namespace COM.Common
         /// </summary>
         public int RobotTopDriveInterlock;
         /// <summary>
-        /// 机械手吊卡互锁
+        /// 吊卡关门信号屏蔽
         /// </summary>
-        public int RobotElevatorInterlock;
+        public int ElevatorClose;
         /// <summary>
         /// 吊卡与大钩
         /// </summary>

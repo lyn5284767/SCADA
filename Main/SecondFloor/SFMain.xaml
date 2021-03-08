@@ -491,38 +491,37 @@
                         <!--6.15新增-->
                         <Grid Grid.Row="0">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="11*"/>
-                                <ColumnDefinition Width="94*"/>
+                                <ColumnDefinition Width="124*"/>
                                 <ColumnDefinition Width="104*"/>
                                 <ColumnDefinition Width="104*"/>
                                 <ColumnDefinition Width="104*"/>
                                 <ColumnDefinition Width="104*"/>
                                 <ColumnDefinition Width="104*"/>
                             </Grid.ColumnDefinitions>
-                            <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center" Grid.ColumnSpan="2" Margin="4,0,5,0">
-                                <Label Margin="0,0,5,0" FontSize="18">左手柄:</Label>
+                            <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="4,0,5,0">
+                                <Label Margin="0,0,5,0" FontSize="16">左手柄:</Label>
                                 <TextBlock Name="tbLeftHand" FontSize="16" Text="未知" VerticalAlignment="Center" Foreground="#4C80FF"></TextBlock>
                             </StackPanel>
-                            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="1,0">
-                                <Label Margin="0,0,5,0" FontSize="18">左手指:</Label>
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="1,0">
+                                <Label Margin="0,0,5,0" FontSize="16">左手指:</Label>
                                 <TextBlock Name="tbLeftFinger" FontSize="16" Text="0000" VerticalAlignment="Center" Foreground="#4C80FF"></TextBlock>
                             </StackPanel>
-                            <StackPanel Grid.Column="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="1,0">
+                            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="1,0">
                                 <Label Margin="0,0,5,0" FontSize="16">右手指:</Label>
                                 <TextBlock Name="tbRightFinger" FontSize="18" Text="0000" VerticalAlignment="Center" Foreground="#4C80FF"></TextBlock>
                             </StackPanel>
-                            <StackPanel Grid.Column="4" Orientation="Horizontal" HorizontalAlignment="Center" Margin="9,0">
-                                <Label Margin="0,0,5,0" FontSize="18">抓手:</Label>
+                            <StackPanel Grid.Column="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="9,0">
+                                <Label Margin="0,0,5,0" FontSize="16">抓手:</Label>
                                 <TextBlock Name="tbFingerOpen" FontSize="16" Text="0000" VerticalAlignment="Center" Foreground="#4C80FF"></TextBlock>
                             </StackPanel>
-                            <StackPanel Grid.Column="5" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5,0">
-                                <Label Margin="0,0,5,0" FontSize="18">X:</Label>
+                            <StackPanel Grid.Column="4" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5,0">
+                                <Label Margin="0,0,5,0" FontSize="16">X:</Label>
                                 <TextBlock Name="tbX" FontSize="16" Text="0000" VerticalAlignment="Center" Foreground="#4C80FF"></TextBlock>
                                 <Label Margin="5,0,0,0">mm</Label>
                             </StackPanel>
-                            <StackPanel Grid.Column="6" Orientation="Horizontal" HorizontalAlignment="Center" Margin="3,0">
-                                <Label Margin="0,0,5,0" FontSize="18">Y:</Label>
-                                <TextBlock Name="tbY" FontSize="18" Text="0006" VerticalAlignment="Center" Foreground="#4C80FF"></TextBlock>
+                            <StackPanel Grid.Column="5" Orientation="Horizontal" HorizontalAlignment="Center" Margin="3,0">
+                                <Label Margin="0,0,5,0" FontSize="16">Y:</Label>
+                                <TextBlock Name="tbY" FontSize="16" Text="0006" VerticalAlignment="Center" Foreground="#4C80FF"></TextBlock>
                                 <Label Margin="5,0,0,0">mm</Label>
                             </StackPanel>
                         </Grid>

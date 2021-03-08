@@ -80,10 +80,10 @@ namespace Main.SecondFloor
                 this.textBlockReportDrillUpCount.Text = "自动起钻次数：" + GlobalData.Instance.reportData.DrillUpCount.ToString();
                 this.textBlockReportRobotBigHookInterLock.Text = "机械手与大钩互锁解除：" + GlobalData.Instance.reportData.RobotBigHookInterLock.ToString();
                 this.textBlockReportRobotTopDriveInterlock.Text = "机械手与顶驱互锁解除：" + GlobalData.Instance.reportData.RobotTopDriveInterlock.ToString();
-                this.textBlockReportRobotElevatorInterlock.Text = "机械手与吊卡互锁解除：" + GlobalData.Instance.reportData.RobotElevatorInterlock.ToString();
-                this.textBlockReportElevatorBigHookInterlock.Text = "吊卡与大钩互锁解除：" + GlobalData.Instance.reportData.ElevatorBigHookInterlock.ToString();
+                this.textBlockReportRobotElevatorInterlock.Text = "吊卡关门信号屏蔽：" + GlobalData.Instance.reportData.ElevatorClose.ToString();
+                //this.textBlockReportElevatorBigHookInterlock.Text = "吊卡与大钩互锁解除：" + GlobalData.Instance.reportData.ElevatorBigHookInterlock.ToString();
                 this.textBlockReportRobotRetainingRopeInterlock.Text = "机械手与挡绳互锁解除：" + GlobalData.Instance.reportData.RobotRetainingRopeInterlock.ToString();
-                this.textBlockReportRobotFingerBeamLockInterlock.Text = "机械手与指梁锁互锁解除：" + GlobalData.Instance.reportData.RobotFingerBeamLockInterlock.ToString();
+                this.textBlockReportRobotFingerBeamLockInterlock.Text = "指梁锁打开确认：" + GlobalData.Instance.reportData.RobotFingerBeamLockInterlock.ToString();
                 this.textBlockReportSecondFloorCommunication.Text = "二层台通讯中断：" + GlobalData.Instance.reportData.SecondFloorCommunication.ToString();
                 this.textBlockReportOperationFloorCommunication.Text = "操作台通讯中断：" + GlobalData.Instance.reportData.OperationFloorCommunication.ToString();
                 this.textBlockReportCarMotorAlarm.Text = "小车电机报警：" + GlobalData.Instance.reportData.CarMotorAlarm.ToString();
@@ -137,7 +137,7 @@ namespace Main.SecondFloor
                 report.InsertValue("BookMark_DrillUpCount", rD.DrillUpCount.ToString());
                 report.InsertValue("BookMark_RobotBigHookInterLock", rD.RobotBigHookInterLock.ToString());
                 report.InsertValue("BookMark_RobotTopDriveInterlock", rD.RobotTopDriveInterlock.ToString());
-                report.InsertValue("BookMark_RobotElevatorInterlock", rD.RobotElevatorInterlock.ToString());
+                report.InsertValue("BookMark_RobotElevatorInterlock", rD.ElevatorClose.ToString());
                 report.InsertValue("BookMark_ElevatorBigHookInterlock", rD.ElevatorBigHookInterlock.ToString());
                 report.InsertValue("BookMark_RobotRetainingRopeInterlock", rD.RobotRetainingRopeInterlock.ToString());
                 report.InsertValue("BookMark_RobotFingerBeamLockInterlock", rD.RobotFingerBeamLockInterlock.ToString());

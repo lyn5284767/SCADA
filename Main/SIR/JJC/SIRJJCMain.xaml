@@ -163,16 +163,16 @@
                         </Grid.RowDefinitions>
                         <StackPanel Orientation="Horizontal">
                             <Viewbox>
-                                <cl:BasedSwitchButton Name="operateMode" Margin="5,35,0,35" ContentLeft="司钻" ContentDown="遥控模式" ContentRight="遥控" UserControlClicked="btn_OpState"/>
+                                <cl:BasedSwitchButton Name="operateMode" Margin="55,35,0,35" ContentLeft="司钻" ContentDown="遥控模式" ContentRight="遥控" UserControlClicked="btn_OpState"/>
                             </Viewbox>
                             <Viewbox>
-                                <cl:BasedSwitchButton Name="workModel" Margin="5,35,0,35" ContentLeft="自动" ContentDown="操作模式" ContentRight="手动" UserControlClicked="btn_workModel"/>
+                                <cl:BasedSwitchButton Name="workModel" Margin="55,35,0,35" ContentLeft="自动" ContentDown="操作模式" ContentRight="手动" UserControlClicked="btn_workModel"/>
                             </Viewbox>
                             <Viewbox>
-                                <cl:BasedSwitchButton Name="InOrOutBtnModel" Margin="5,35,0,35" ContentLeft="上扣" ContentDown="工作模式" ContentRight="卸扣" UserControlClicked="btn_InOrOutBtnModel"/>
+                                <cl:BasedSwitchButton Name="InOrOutBtnModel" Margin="55,35,0,35" ContentLeft="上扣" ContentDown="工作模式" ContentRight="卸扣" UserControlClicked="btn_InOrOutBtnModel"/>
                             </Viewbox>
                             <Viewbox>
-                                <cl:BasedSwitchButton Name="Des" Margin="5,35,0,35" ContentLeft="井口" ContentDown="目的地" ContentRight="鼠洞" UserControlClicked="btn_Des"/>
+                                <cl:BasedSwitchButton Name="Des" Margin="55,35,0,35" ContentLeft="井口" ContentDown="目的地" ContentRight="鼠洞" UserControlClicked="btn_Des"/>
                             </Viewbox>
                         </StackPanel>
                         <Grid Grid.Row="1">

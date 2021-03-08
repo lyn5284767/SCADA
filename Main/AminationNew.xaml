@@ -1678,7 +1678,7 @@
                                             <Binding Path="OperationModel"  ElementName="uc"/>
                                         </MultiBinding>
                                     </Border.BorderThickness>
-                                    <Image x:Name="fingerBeamArrow16" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                    <Image x:Name="BeamArrow16" MouseLeftButtonDown="btn_SendFingerBeamNumber">
                                         <Image.Source>
                                             <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
                                                 <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>
@@ -1697,7 +1697,7 @@
                                             <Binding Path="OperationModel"  ElementName="uc"/>
                                         </MultiBinding>
                                     </Border.BorderThickness>
-                                    <Image x:Name="fingerBeamArrow32" MouseLeftButtonDown="btn_SendFingerBeamNumber">
+                                    <Image x:Name="BeamArrow32" MouseLeftButtonDown="btn_SendFingerBeamNumber">
                                         <Image.Source>
                                             <MultiBinding Converter="{StaticResource AnimationFingerBeamNumberSelectCvt}">
                                                 <Binding Path="PCFingerBeamNumberFeedBack" ElementName="uc"/>

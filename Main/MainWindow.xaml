@@ -252,7 +252,7 @@ KeyboardNavigation.DirectionalNavigation="Cycle" Width="100"/>
                     <StackPanel Name="spSIR">
                         <MenuItem Header="主页" Click="MouseSIRMain"/>
                         <MenuItem Header="记录查询" Name="miSIRRecord" Click="MouseSIRRecord"/>
-                        <MenuItem Header="IO查询" Click="MouseSIRIO"/>
+                        <MenuItem Header="IO查询" Name="miSIRIO" Click="MouseSIRIO"/>
                         <MenuItem Header="安全配置" Name="miSIRSecure" Click="MouseSIRSecure"/>
                         <MenuItem Header="参数配置" Name="miSIRParam" Click="MouseSIRParam"/>
                         <MenuItem Header="位置标定" Name="miSIRPosition" Click="MouseSIRPosition"/>

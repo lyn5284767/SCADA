@@ -81,7 +81,7 @@ namespace Main.SIR
 
             this.operateMode.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["IDOperModel"], Mode = BindingMode.OneWay, Converter = new SIROprModelCoverter() });
             this.operateMode.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["IDOperModel"], Mode = BindingMode.OneWay, Converter = new SIROprModelSelectCoverter() });
-            this.workModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["842b0"], Mode = BindingMode.OneWay, Converter = new SIROprModelCoverter() });
+            this.workModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["842b0"], Mode = BindingMode.OneWay, Converter = new JJC_SIRWorkModelCoverter() });
             this.workModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["842b0"], Mode = BindingMode.OneWay});
             JJC_SIRInorOutCheckCoverter jjc_SIRInorOutCheckCoverter = new JJC_SIRInorOutCheckCoverter();
             MultiBinding jjc_SIRInorOutCheckBind = new MultiBinding();
@@ -293,8 +293,8 @@ namespace Main.SIR
         {
             if (this.tbUnitOne.Text == "KN.M") this.tbUnitOne.Text = "kft.lbs";
             else this.tbUnitOne.Text = "KN.M";
-            if (this.tbUnitTwo.Text == "KN.M") this.tbUnitTwo.Text = "kft.lbs";
-            else this.tbUnitOne.Text = "kft.lbs";
+            if (this.tbUnitOne.Text == "KN.M") this.tbUnitTwo.Text = "kft.lbs";
+            else this.tbUnitTwo.Text = "kft.lbs";
         }
         /// <summary>
         /// 零位角度标定

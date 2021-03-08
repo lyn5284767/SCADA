@@ -151,7 +151,7 @@ namespace Main.SecondFloor
             }
             else
             {
-                byteToSend = new byte[10] { 80, 1, 21, 1, 1, 0, 0, 0, 0, 0 };
+                byteToSend = new byte[10] { 80, 1, 21, 1, 2, 0, 0, 0, 0, 0 };
             }
             GlobalData.Instance.da.SendBytes(byteToSend);
         }

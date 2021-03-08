@@ -14,6 +14,7 @@ using Main.Integration;
 using Main.ScrewThread;
 using Main.SecondFloor;
 using Main.SIR;
+using Main.SIR.JJC;
 using Main.SIR.Sany;
 using Main.SIR.SanyRail;
 using Main.WellRepair.DrillFloor;
@@ -666,11 +667,21 @@ namespace Main
                 // 自研
                 if (GlobalData.Instance.da.GloConfig.SIRType == 1)
                 {
-
+                    this.spSIR.Visibility = Visibility.Visible;
+                    this.miSIRRecord.Visibility = Visibility.Visible;
+                    this.miSIRIO.Visibility = Visibility.Visible;
+                    this.miSIRParam.Visibility = Visibility.Visible;
+                    this.miSIRSecure.Visibility = Visibility.Visible;
+                    this.miSIRPosition.Visibility = Visibility.Visible;
                 }// jjc
                 else if (GlobalData.Instance.da.GloConfig.SIRType == 2)
                 {
-                    this.spSIR.Visibility = Visibility.Collapsed;
+                    this.spSIR.Visibility = Visibility.Visible;
+                    this.miSIRRecord.Visibility = Visibility.Collapsed;
+                    this.miSIRIO.Visibility = Visibility.Collapsed;
+                    this.miSIRParam.Visibility = Visibility.Collapsed;
+                    this.miSIRSecure.Visibility = Visibility.Collapsed;
+                    this.miSIRPosition.Visibility = Visibility.Visible;
                 }// 宝石
                 else if (GlobalData.Instance.da.GloConfig.SIRType == 3)
                 {
@@ -2966,6 +2977,13 @@ namespace Main
                 this.mainTitle.Content = "SYAPS-铁钻工:位置标定";
                 return;
             }
+            else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.JJC)
+            {
+                this.spMain.Children.Clear();
+                this.spMain.Children.Add(SIR_JJC_ParamSet.Instance);
+                this.mainTitle.Content = "SYAPS-铁钻工:位置标定";
+                return;
+            }
             else if (GlobalData.Instance.da.GloConfig.SIRType == (int)SIRType.SANYRailway)
             {
                 this.spMain.Children.Clear();
@@ -3246,5 +3264,6 @@ namespace Main
                 Log.Log4Net.AddLog(ex.ToString(), Log.InfoLevel.ERROR);
             }
         }
+
     }
 }

@@ -27,8 +27,8 @@
                         <TextBlock FontSize="18" Text="Mpa"></TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Button Name="btnIronOpen" FontSize="18" Width="120" Height="40" Click="btnIronOpen_Click">打开</Button>
-                        <Button Name="btnIronClose" FontSize="18" Width="120" Height="40" Click="BtnIronClose_Click">关闭</Button>
+                        <Button Name="btnIronOpen" FontSize="18" Width="120" Height="40" Click="btnIronOpen_Click" FontWeight="Bold">打开</Button>
+                        <Button Name="btnIronClose" FontSize="18" Width="120" Height="40" Click="BtnIronClose_Click" FontWeight="Bold">关闭</Button>
                     </StackPanel>
                 </StackPanel>
             </Border>
@@ -40,8 +40,8 @@
                         <TextBlock FontSize="18" Text="Mpa"></TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Button Name="btnTongsOpen" FontSize="18" Width="120" Height="40" Click="btnTongsOpen_Click">打开</Button>
-                        <Button Name="btnTongsClose" FontSize="18" Width="120" Height="40" Click="btnTongsClose_Click">关闭</Button>
+                        <Button Name="btnTongsOpen" FontSize="18" Width="120" Height="40" Click="btnTongsOpen_Click" FontWeight="Bold">打开</Button>
+                        <Button Name="btnTongsClose" FontSize="18" Width="120" Height="40" Click="btnTongsClose_Click" FontWeight="Bold">关闭</Button>
                     </StackPanel>
                 </StackPanel>
             </Border>
@@ -53,8 +53,8 @@
                         <TextBlock FontSize="18" Text="Mpa"></TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Button Name="btnDROpen" FontSize="18" Width="120" Height="40" Click="btnDROpen_Click">打开</Button>
-                        <Button Name="btnDRClose" FontSize="18" Width="120" Height="40" Click="btnDRClose_Click">关闭</Button>
+                        <Button Name="btnDROpen" FontSize="18" Width="120" Height="40" Click="btnDROpen_Click" FontWeight="Bold">打开</Button>
+                        <Button Name="btnDRClose" FontSize="18" Width="120" Height="40" Click="btnDRClose_Click" FontWeight="Bold">关闭</Button>
                     </StackPanel>
                 </StackPanel>
             </Border>
@@ -66,8 +66,8 @@
                                         <TextBlock FontSize="18" Text="Mpa"></TextBlock>-->
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Button Name="btnArmOpen" FontSize="18" Width="120" Height="40" Click="btnArmOpen_Click">打开</Button>
-                        <Button Name="btnArmClose" FontSize="18" Width="120" Height="40" Click="btnArmClose_Click">关闭</Button>
+                        <Button Name="btnArmOpen" FontSize="18" Width="120" Height="40" Click="btnArmOpen_Click" FontWeight="Bold">打开</Button>
+                        <Button Name="btnArmClose" FontSize="18" Width="120" Height="40" Click="btnArmClose_Click" FontWeight="Bold">关闭</Button>
                     </StackPanel>
                 </StackPanel>
             </Border>

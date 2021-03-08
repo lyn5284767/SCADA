@@ -424,6 +424,7 @@ namespace Main
                 drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow13, Num = 13 });
                 drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow14, Num = 14 });
                 drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow15, Num = 15 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow16, Num = 16 });
 
                 drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow17, Num = 17 });
                 drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow18, Num = 18 });
@@ -440,7 +441,7 @@ namespace Main
                 drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow29, Num = 29 });
                 drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow30, Num = 30 });
                 drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow31, Num = 31 });
-
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow32, Num = 32 });
                 #endregion
 
                 #region 二层台所有指梁
@@ -491,6 +492,7 @@ namespace Main
                 sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow13, Num = 13 });
                 sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow14, Num = 14 });
                 sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow15, Num = 15 });
+                sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow16, Num = 16 });
 
                 sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow17, Num = 17 });
                 sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow18, Num = 18 });
@@ -507,6 +509,7 @@ namespace Main
                 sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow29, Num = 29 });
                 sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow30, Num = 30 });
                 sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow31, Num = 31 });
+                sfSelectImageList.Add(new ImageNum { SelectImage = this.BeamArrow32, Num = 16 });
                 #endregion
                 this.imageElevatorStatus.SetBinding(Image.SourceProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["164ElevatorStatus"], Mode = BindingMode.OneWay, Converter = new ElevatorStatusConverter() });
                 this.SetBinding(OperationModelProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });//操作模式   

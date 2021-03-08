@@ -256,6 +256,42 @@ namespace Main
             try
             {
                 #region 钻台面所有指梁
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow1, Num = 1 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow2, Num = 2 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow3, Num = 3 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow4, Num = 4 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow5, Num = 5 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow6, Num = 6 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow7, Num = 7 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow8, Num = 8 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow9, Num = 9 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow10, Num = 10 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow11, Num = 11 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow12, Num = 12 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow13, Num = 13 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow14, Num = 14 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow15, Num = 15 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow16, Num = 16 });
+
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow17, Num = 17 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow18, Num = 18 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow19, Num = 19 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow20, Num = 20 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow21, Num = 21 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow22, Num = 22 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow23, Num = 23 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow24, Num = 24 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow25, Num = 25 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow26, Num = 26 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow27, Num = 27 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow28, Num = 28 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow29, Num = 29 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow30, Num = 30 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow31, Num = 31 });
+                drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow32, Num = 32 });
+                #endregion
+
+                #region 钻台面所有指梁
                 drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow1, Num = 1 });
                 drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow2, Num = 2 });
                 drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow3, Num = 3 });
@@ -978,7 +1014,8 @@ namespace Main
                 Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
             }
         }
-
+        private List<ImageNum> drSelectImageList = new List<ImageNum>(); // 钻台面对准指梁图片
+        private List<ImageNum> sfSelectImageList = new List<ImageNum>(); // 二层台对准指梁图片
         private void btn_SendFingerBeamNumber(object sender, MouseButtonEventArgs e)
         {
             string strImageName = ((Image)sender).Name;

@@ -277,7 +277,7 @@ namespace Main.SecondFloor
                 else if (this.tbEnableHand.Visibility == Visibility.Collapsed && iTimeCnt / 10 % 2 != 0)
                     this.tbEnableHand.Visibility = Visibility.Visible;
 
-                //    return;
+                return;
                 //}
 
             }
@@ -297,7 +297,7 @@ namespace Main.SecondFloor
                     this.tbTurnZeroHand.Visibility = Visibility.Collapsed;
                 else if (this.tbTurnZeroHand.Visibility == Visibility.Collapsed && iTimeCnt / 10 % 2 != 0)
                     this.tbTurnZeroHand.Visibility = Visibility.Visible;
-                //return;
+                return;
                 //}
             }
             else
@@ -338,6 +338,7 @@ namespace Main.SecondFloor
             {
                 this.controlHeartTimes = 0;
                 bCheckTwo = false;
+                if (this.warnOne.Text == "操作台信号中断") this.warnOne.Text = "";
             }
             this.tmpStatus = GlobalData.Instance.da["508b6"].Value.Boolean;
 
@@ -396,7 +397,7 @@ namespace Main.SecondFloor
             if (GlobalData.Instance.da["506b7"].Value.Boolean && !bPre506b7)
             {
                 bPre506b7 = GlobalData.Instance.da["506b7"].Value.Boolean;
-                GlobalData.Instance.reportData.RobotElevatorInterlock += 1;
+                GlobalData.Instance.reportData.ElevatorClose += 1;
             }
             else
             {
@@ -404,38 +405,38 @@ namespace Main.SecondFloor
             }
 
 
-            if (GlobalData.Instance.da["130b0"].Value.Boolean && GlobalData.Instance.da["130b1"].Value.Boolean && !(bPre130b0 && bPre130b1))
-            {
-                bPre130b0 = GlobalData.Instance.da["130b0"].Value.Boolean;
-                bPre130b1 = GlobalData.Instance.da["130b1"].Value.Boolean;
-                GlobalData.Instance.reportData.ElevatorBigHookInterlock += 1;
-            }
-            else
-            {
-                bPre130b0 = GlobalData.Instance.da["130b0"].Value.Boolean;
-                bPre130b1 = GlobalData.Instance.da["130b1"].Value.Boolean;
-            }
+            //if (GlobalData.Instance.da["130b0"].Value.Boolean && GlobalData.Instance.da["130b1"].Value.Boolean && !(bPre130b0 && bPre130b1))
+            //{
+            //    bPre130b0 = GlobalData.Instance.da["130b0"].Value.Boolean;
+            //    bPre130b1 = GlobalData.Instance.da["130b1"].Value.Boolean;
+            //    GlobalData.Instance.reportData.ElevatorBigHookInterlock += 1;
+            //}
+            //else
+            //{
+            //    bPre130b0 = GlobalData.Instance.da["130b0"].Value.Boolean;
+            //    bPre130b1 = GlobalData.Instance.da["130b1"].Value.Boolean;
+            //}
 
 
-            if (GlobalData.Instance.da["operationModel"].Value.Byte != 8 && !GlobalData.Instance.da["116E1E2E4B5b1"].Value.Boolean && bPre116B5b1)
+            if (GlobalData.Instance.da["operationModel"].Value.Byte != 8 && !GlobalData.Instance.da["116E1E2E4B5b3"].Value.Boolean && bPre116B5b1)
             {
-                bPre116B5b1 = GlobalData.Instance.da["116E1E2E4B5b1"].Value.Boolean;
+                bPre116B5b1 = GlobalData.Instance.da["116E1E2E4B5b3"].Value.Boolean;
                 GlobalData.Instance.reportData.RobotRetainingRopeInterlock += 1;
             }
             else
             {
-                bPre116B5b1 = GlobalData.Instance.da["116E1E2E4B5b1"].Value.Boolean;
+                bPre116B5b1 = GlobalData.Instance.da["116E1E2E4B5b3"].Value.Boolean;
             }
 
 
-            if (GlobalData.Instance.da["operationModel"].Value.Byte != 8 && !GlobalData.Instance.da["116E1E2E4B5b3"].Value.Boolean && bPre116B5b3)
+            if (GlobalData.Instance.da["operationModel"].Value.Byte != 8 && !GlobalData.Instance.da["116E1E2E4B5b0"].Value.Boolean && bPre116B5b3)
             {
-                bPre116B5b3 = GlobalData.Instance.da["116E1E2E4B5b3"].Value.Boolean;
+                bPre116B5b3 = GlobalData.Instance.da["116E1E2E4B5b0"].Value.Boolean;
                 GlobalData.Instance.reportData.RobotFingerBeamLockInterlock += 1;
             }
             else
             {
-                bPre116B5b3 = GlobalData.Instance.da["116E1E2E4B5b3"].Value.Boolean;
+                bPre116B5b3 = GlobalData.Instance.da["116E1E2E4B5b0"].Value.Boolean;
             }
 
             if (GlobalData.Instance.da["motorAlarmPrompt"].Value.Byte == 1 && GlobalData.Instance.da["motorAlarmPrompt"].Value.Byte != bPreMotorAlarmPrompt)

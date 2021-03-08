@@ -27,9 +27,9 @@
                         <TextBlock FontSize="18" Text="Mpa"></TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Button Name="btnLeftCatHeadRetract" FontSize="18" Width="80" Height="40">缩</Button>
-                        <Button Name="btnLeftCatHeadClose"  FontSize="18" Width="80" Height="40" Click="BtnLeftCatClose_Click">关</Button>
-                        <Button Name="btnLeftCatHeadReach" FontSize="18" Width="80" Height="40">伸</Button>
+                        <Button Name="btnLeftCatHeadRetract" FontSize="18" Width="80" Height="40" FontWeight="Bold">缩</Button>
+                        <Button Name="btnLeftCatHeadClose"  FontSize="18" Width="80" Height="40" Click="BtnLeftCatClose_Click" FontWeight="Bold">关</Button>
+                        <Button Name="btnLeftCatHeadReach" FontSize="18" Width="80" Height="40" FontWeight="Bold">伸</Button>
                     </StackPanel>
                 </StackPanel>
             </Border>
@@ -41,9 +41,9 @@
                         <TextBlock FontSize="18" Text="Mpa"></TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Button Name="btnRightCatHeadRetract" FontSize="18" Width="80" Height="40">缩</Button>
-                        <Button Name="btnRightCatHeadClose" FontSize="18" Width="80" Height="40" Click="BtnRightCatClose_Click">关</Button>
-                        <Button Name="btnRightCatHeadReach" FontSize="18" Width="80" Height="40">伸</Button>
+                        <Button Name="btnRightCatHeadRetract" FontSize="18" Width="80" Height="40" FontWeight="Bold">缩</Button>
+                        <Button Name="btnRightCatHeadClose" FontSize="18" Width="80" Height="40" Click="BtnRightCatClose_Click" FontWeight="Bold">关</Button>
+                        <Button Name="btnRightCatHeadReach" FontSize="18" Width="80" Height="40" FontWeight="Bold">伸</Button>
                     </StackPanel>
                 </StackPanel>
             </Border>
@@ -67,8 +67,8 @@
                                             <TextBlock FontSize="18" Text="Mpa"></TextBlock>-->
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Button Name="btnElevatorOpen" FontSize="18" Width="120" Height="40" Click="btnElevatorOpen_Click">打开</Button>
-                        <Button Name="btnElevatorClose" FontSize="18" Width="120" Height="40" Click="btnElevatorClose_Click">关闭</Button>
+                        <Button Name="btnElevatorOpen" FontSize="18" Width="120" Height="40" Click="btnElevatorOpen_Click" FontWeight="Bold">打开</Button>
+                        <Button Name="btnElevatorClose" FontSize="18" Width="120" Height="40" Click="btnElevatorClose_Click" FontWeight="Bold">关闭</Button>
                     </StackPanel>
                 </StackPanel>
             </Border>
@@ -80,8 +80,8 @@
                                             <TextBlock FontSize="18" Text="Mpa"></TextBlock>-->
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Button Name="btnCraneOpen" FontSize="18" Width="120" Height="40" Click="btnCraneOpen_Click">打开</Button>
-                        <Button Name="btnCraneClose" FontSize="18" Width="120" Height="40" Click="btnCraneClose_Click">关闭</Button>
+                        <Button Name="btnCraneOpen" FontSize="18" Width="120" Height="40" Click="btnCraneOpen_Click" FontWeight="Bold">打开</Button>
+                        <Button Name="btnCraneClose" FontSize="18" Width="120" Height="40" Click="btnCraneClose_Click" FontWeight="Bold">关闭</Button>
                     </StackPanel>
                 </StackPanel>
             </Border>
@@ -93,8 +93,8 @@
                         <TextBlock FontSize="18" Text="Mpa"></TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Button Name="btnWellMoveOpen" FontSize="18" Width="120" Height="40" Click="btnWellMoveOpen_Click">打开</Button>
-                        <Button Name="btnWellMoveClose" FontSize="18" Width="120" Height="40" Click="btnWellMoveClose_Click">关闭</Button>
+                        <Button Name="btnWellMoveOpen" FontSize="18" Width="120" Height="40" Click="btnWellMoveOpen_Click" FontWeight="Bold">打开</Button>
+                        <Button Name="btnWellMoveClose" FontSize="18" Width="120" Height="40" Click="btnWellMoveClose_Click" FontWeight="Bold">关闭</Button>
                     </StackPanel>
                 </StackPanel>
             </Border>
@@ -106,8 +106,8 @@
                                         <TextBlock FontSize="18" Text="Mpa"></TextBlock>-->
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Button Name="btnSpareOneOpen" FontSize="18" Width="120" Height="40" Click="btnSpareOneOpen_Click">打开</Button>
-                        <Button Name="btnSpareOneClose" FontSize="18" Width="120" Height="40" Click="btnSpareOneClose_Click">关闭</Button>
+                        <Button Name="btnSpareOneOpen" FontSize="18" Width="120" Height="40" Click="btnSpareOneOpen_Click" FontWeight="Bold">打开</Button>
+                        <Button Name="btnSpareOneClose" FontSize="18" Width="120" Height="40" Click="btnSpareOneClose_Click" FontWeight="Bold">关闭</Button>
                     </StackPanel>
                 </StackPanel>
             </Border>
@@ -119,8 +119,8 @@
                                         <TextBlock FontSize="18" Text="Mpa"></TextBlock>-->
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Button Name="btnLeftCarOpen" FontSize="18" Width="120" Height="40" Click="btnLeftCarOpen_Click">打开</Button>
-                        <Button Name="btnLeftCarClose" FontSize="18" Width="120" Height="40" Click="btnLeftCarClose_Click">关闭</Button>
+                        <Button Name="btnLeftCarOpen" FontSize="18" Width="120" Height="40" Click="btnLeftCarOpen_Click" FontWeight="Bold">打开</Button>
+                        <Button Name="btnLeftCarClose" FontSize="18" Width="120" Height="40" Click="btnLeftCarClose_Click" FontWeight="Bold">关闭</Button>
                     </StackPanel>
                 </StackPanel>
             </Border>
@@ -132,8 +132,8 @@
                                         <TextBlock FontSize="18" Text="Mpa"></TextBlock>-->
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Button Name="btnRightCarOpen" FontSize="18" Width="120" Height="40" Click="btnRightCarOpen_Click">打开</Button>
-                        <Button Name="btnRightCarClose" FontSize="18" Width="120" Height="40" Click="btnRightCarClose_Click">关闭</Button>
+                        <Button Name="btnRightCarOpen" FontSize="18" Width="120" Height="40" Click="btnRightCarOpen_Click" FontWeight="Bold">打开</Button>
+                        <Button Name="btnRightCarClose" FontSize="18" Width="120" Height="40" Click="btnRightCarClose_Click" FontWeight="Bold">关闭</Button>
                     </StackPanel>
                 </StackPanel>
             </Border>
@@ -145,9 +145,9 @@
                                         <TextBlock FontSize="18" Text="Mpa"></TextBlock>-->
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Button Name="btnRotateCatHeadLeft" FontSize="18" Width="80" Height="40">左转</Button>
-                        <Button Name="btnRotateCatHeadStop"  FontSize="18" Width="80" Height="40" Click="btnRotateCatHeadStop_Click">停止</Button>
-                        <Button Name="btnRotateCatHeadRight" FontSize="18" Width="80" Height="40">右转</Button>
+                        <Button Name="btnRotateCatHeadLeft" FontSize="18" Width="80" Height="40" FontWeight="Bold">左转</Button>
+                        <Button Name="btnRotateCatHeadStop"  FontSize="18" Width="80" Height="40" Click="btnRotateCatHeadStop_Click" FontWeight="Bold">停止</Button>
+                        <Button Name="btnRotateCatHeadRight" FontSize="18" Width="80" Height="40" FontWeight="Bold">右转</Button>
                     </StackPanel>
                 </StackPanel>
             </Border>
