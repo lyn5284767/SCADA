@@ -383,7 +383,7 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Grid Grid.Row="0">
+                    <Grid Grid.RowSpan="2">
                         <Border Background="#F6F9FF"></Border>
                         <Grid>
                             <Grid.RowDefinitions>
@@ -409,62 +409,62 @@
                                 </Grid.RowDefinitions>
                                 <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
                                     <Viewbox>
-                                        <TextBlock Text="顶   驱:" Margin="25,5,5,5"></TextBlock>
+                                        <TextBlock Text="顶   驱:" Margin="5,20,5,20"></TextBlock>
                                     </Viewbox>
-                                    <cl:SymbolMapping Name="TopLock" StrContent="" LampType="3" Margin="2,5,0,5"/>
+                                    <cl:SymbolMapping Name="TopLock" StrContent="" LampType="3" Margin="2,20,0,20"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
                                     <Viewbox>
-                                        <TextBlock Text="吊   卡:" Margin="25,5,5,5"></TextBlock>
+                                        <TextBlock Text="吊   卡:" Margin="5,20,5,20"></TextBlock>
                                     </Viewbox>
-                                    <cl:SymbolMapping Name="ElevatorLock" StrContent="" LampType="3" Margin="2,5,0,5"/>
+                                    <cl:SymbolMapping Name="ElevatorLock" StrContent="" LampType="3" Margin="2,20,0,20"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0">
                                     <Viewbox>
-                                        <TextBlock Text="大   钩:" Margin="25,5,5,5"></TextBlock>
+                                        <TextBlock Text="大   钩:" Margin="5,20,5,20"></TextBlock>
                                     </Viewbox>
-                                    <cl:SymbolMapping Name="BigHookLock" StrContent="" LampType="3" Margin="2,5,0,5"/>
+                                    <cl:SymbolMapping Name="BigHookLock" StrContent="" LampType="3" Margin="2,20,0,20"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0">
                                     <Viewbox>
-                                        <TextBlock Text="二层台:" Margin="25,5,5,5"></TextBlock>
+                                        <TextBlock Text="二层台:" Margin="5,20,5,20"></TextBlock>
                                     </Viewbox>
-                                    <cl:SymbolMapping Name="sfLock" StrContent="" LampType="3" Margin="0,5,0,5"/>
+                                    <cl:SymbolMapping Name="sfLock" StrContent="" LampType="3" Margin="0,20,0,20"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0">
                                     <Viewbox>
-                                        <TextBlock Text="钻台面:" Margin="25,5,5,5"></TextBlock>
+                                        <TextBlock Text="钻台面:" Margin="5,20,5,20"></TextBlock>
                                     </Viewbox>
-                                    <cl:SymbolMapping Name="drLock" StrContent="" LampType="3" Margin="0,5,0,5"/>
+                                    <cl:SymbolMapping Name="drLock" StrContent="" LampType="3" Margin="0,20,0,20"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
                                     <Viewbox>
-                                        <TextBlock Text="铁钻工:" Margin="25,5,5,5"></TextBlock>
+                                        <TextBlock Text="铁钻工:" Margin="5,20,5,20"></TextBlock>
                                     </Viewbox>
-                                    <cl:SymbolMapping Name="sirLock" StrContent="" LampType="3" Margin="0,5,0,5"/>
+                                    <cl:SymbolMapping Name="sirLock" StrContent="" LampType="3" Margin="0,20,0,20"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
                                     <Viewbox>
-                                        <TextBlock Text="防喷盒:" Margin="25,5,5,5"></TextBlock>
+                                        <TextBlock Text="防喷盒:" Margin="5,20,5,20"></TextBlock>
                                     </Viewbox>
-                                    <cl:SymbolMapping Name="PreventBoxLock" StrContent="" LampType="3" Margin="0,5,0,5"/>
+                                    <cl:SymbolMapping Name="PreventBoxLock" StrContent="" LampType="3" Margin="0,20,0,20"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
                                     <Viewbox>
-                                        <TextBlock Text="卡   瓦:" Margin="25,5,5,5"></TextBlock>
+                                        <TextBlock Text="卡   瓦:" Margin="5,20,5,20"></TextBlock>
                                     </Viewbox>
-                                    <cl:SymbolMapping Name="KavaLock" StrContent="" LampType="3" Margin="2,5,0,5"/>
+                                    <cl:SymbolMapping Name="KavaLock" StrContent="" LampType="3" Margin="2,20,0,20"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1">
                                     <Viewbox>
-                                        <TextBlock Text="猫   道:" Margin="25,5,5,5"></TextBlock>
+                                        <TextBlock Text="猫   道:" Margin="5,20,5,20"></TextBlock>
                                     </Viewbox>
-                                    <cl:SymbolMapping Name="catLock" StrContent="" LampType="3" Margin="2,5,0,5"/>
+                                    <cl:SymbolMapping Name="catLock" StrContent="" LampType="3" Margin="2,20,0,20"/>
                                 </StackPanel>
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid Grid.Row="1" Margin="0,5,0,0">
+                    <Grid Grid.Row="1" Margin="0,5,0,0" Visibility="Collapsed">
                         <Border Background="#F6F9FF"></Border>
                         <Grid>
                             <Grid.RowDefinitions>
