@@ -50,17 +50,35 @@ namespace Main.SIR
             VariableBinding();
             timerWarning = new System.Threading.Timer(new TimerCallback(Timer_Elapsed), this, 2000, 50);//改成50ms 的时钟
         }
-
+        bool heart = false;
+        int controlHeartTimes = 0;
         private void Timer_Elapsed(object obj)
         {
             try
             {
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
-                    if (GlobalData.Instance.da["843b0"].Value.Boolean) this.tbTips.Text = "当前自动任务完成";
-                    else if(GlobalData.Instance.da["843b1"].Value.Boolean) this.tbTips.Text = "自动上扣完成";
-                    else if (GlobalData.Instance.da["843b2"].Value.Boolean) this.tbTips.Text = "自动卸扣完成";
-                    else if (GlobalData.Instance.da["843b3"].Value.Boolean) this.tbTips.Text = "请求集成供油";
+                    //操作台控制器心跳
+                    if (GlobalData.Instance.da["508b5"].Value.Boolean == this.heart)
+                    {
+                        this.controlHeartTimes += 1;
+                        if (this.controlHeartTimes > 600)
+                        {
+                            this.smHeart.LampType = 3;
+                        }
+                    }
+                    else
+                    {
+                        this.controlHeartTimes = 0;
+                        heart = false;
+                        this.smHeart.LampType = 1;
+                    }
+                    this.heart = GlobalData.Instance.da["508b6"].Value.Boolean;
+                 
+                    //if (GlobalData.Instance.da["843b0"].Value.Boolean) this.tbTips.Text = "当前自动任务完成";
+                    //else if(GlobalData.Instance.da["843b1"].Value.Boolean) this.tbTips.Text = "自动上扣完成";
+                    //else if (GlobalData.Instance.da["843b2"].Value.Boolean) this.tbTips.Text = "自动卸扣完成";
+                    //else if (GlobalData.Instance.da["843b3"].Value.Boolean) this.tbTips.Text = "请求集成供油";
                 }));
             }
             catch (Exception ex)
@@ -77,7 +95,7 @@ namespace Main.SIR
             this.tbWorkStatus.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["IDWorkModel"], Mode = BindingMode.OneWay, Converter = new SIRWorkModelCoverter() });
             this.tbOprModel.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["IDOperModel"], Mode = BindingMode.OneWay, Converter = new SIROprModelCoverter() });
             this.tbWorkLocation.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["IDWorkLocation"], Mode = BindingMode.OneWay, Converter = new SIRWorkLocationCoverter() });
-            this.smHeart.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["504b1"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            //this.smHeart.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["504b1"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
 
             this.operateMode.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["IDOperModel"], Mode = BindingMode.OneWay, Converter = new SIROprModelCoverter() });
             this.operateMode.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["IDOperModel"], Mode = BindingMode.OneWay, Converter = new SIROprModelSelectCoverter() });
@@ -147,23 +165,23 @@ namespace Main.SIR
             //this.tbMouseRetractLengthOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDMouseRetractLength"], Mode = BindingMode.OneWay });
             //this.tbInOutCylinderZeroOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDInOutCylinderZero"], Mode = BindingMode.OneWay });
 
-            this.tbHandleX.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["RgihtHandLeftOrRight"], Mode = BindingMode.OneWay});
-            this.tbHandleY.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["RgihtHandFrontOrBehind"], Mode = BindingMode.OneWay });
-            this.smL.SetBinding(SymbolMappingV.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["518b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
-            this.smR.SetBinding(SymbolMappingV.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["518b1"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
-            this.smQ.SetBinding(SymbolMappingV.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["518b2"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
-            this.smB.SetBinding(SymbolMappingV.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["518b3"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
-            this.smEnable.SetBinding(SymbolMappingV.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["517b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            //this.tbHandleX.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["RgihtHandLeftOrRight"], Mode = BindingMode.OneWay});
+            //this.tbHandleY.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["RgihtHandFrontOrBehind"], Mode = BindingMode.OneWay });
+            //this.smL.SetBinding(SymbolMappingV.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["518b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            //this.smR.SetBinding(SymbolMappingV.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["518b1"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            //this.smQ.SetBinding(SymbolMappingV.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["518b2"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            //this.smB.SetBinding(SymbolMappingV.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["518b3"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            //this.smEnable.SetBinding(SymbolMappingV.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["517b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
             //7.28 修改
-            ArrowDirectionMultiConverter arrowDirectionMultiConverter = new ArrowDirectionMultiConverter();
-            MultiBinding ArrowMultiBind = new MultiBinding();
-            ArrowMultiBind.Converter = arrowDirectionMultiConverter;
-            ArrowMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["517b4"], Mode = BindingMode.OneWay });
-            ArrowMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["517b5"], Mode = BindingMode.OneWay });
-            ArrowMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["517b2"], Mode = BindingMode.OneWay });
-            ArrowMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["517b3"], Mode = BindingMode.OneWay });
-            ArrowMultiBind.NotifyOnSourceUpdated = true;
-            this.Arrow_EquiptStatus.SetBinding(Image.SourceProperty, ArrowMultiBind);
+            //ArrowDirectionMultiConverter arrowDirectionMultiConverter = new ArrowDirectionMultiConverter();
+            //MultiBinding ArrowMultiBind = new MultiBinding();
+            //ArrowMultiBind.Converter = arrowDirectionMultiConverter;
+            //ArrowMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["517b4"], Mode = BindingMode.OneWay });
+            //ArrowMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["517b5"], Mode = BindingMode.OneWay });
+            //ArrowMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["517b2"], Mode = BindingMode.OneWay });
+            //ArrowMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["517b3"], Mode = BindingMode.OneWay });
+            //ArrowMultiBind.NotifyOnSourceUpdated = true;
+            //this.Arrow_EquiptStatus.SetBinding(Image.SourceProperty, ArrowMultiBind);
             //ArrowDirectionMultiConverter arrowDirectionMultiConverter = new ArrowDirectionMultiConverter();
             //MultiBinding upArrowMultiBind = new MultiBinding();
             //upArrowMultiBind.Converter = arrowDirectionMultiConverter;
@@ -203,7 +221,7 @@ namespace Main.SIR
             this.smPliersDown.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b3"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
             this.smButtonIn.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["802b6"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
             this.smButtonOut.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["802b7"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
-            this.smHot.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b2"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            //this.smHot.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b2"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
             this.smArmLeft.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b4"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
             this.smArmRight.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b5"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
             this.smButtonImple.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b6"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
@@ -216,9 +234,18 @@ namespace Main.SIR
 
             this.cbSafeLimit.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["535b6"], Mode = BindingMode.OneWay });
             this.smAllowIron.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["802b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
-            this.smDFAntiCollision.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["308b1"], Mode = BindingMode.OneWay, Converter = new OppositeBoolTagConverter() });
-            this.smAutoConfirm.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["842b2"], Mode = BindingMode.OneWay, Converter = new OppositeBoolTagConverter() });
-            this.smAutoEnable.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["842b3"], Mode = BindingMode.OneWay, Converter = new OppositeBoolTagConverter() });
+            this.smDFAntiCollision.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["308b1"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.smAutoConfirm.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["842b2"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.smAutoEnable.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["842b3"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+
+            this.smSixLUp.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["518b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.smSixLDown.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["518b1"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.smSixRUp.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["518b2"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.smSixRDown.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["518b3"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.smSixMidUp.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["518b4"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.smSixMidDown.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["518b5"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.smSixBack.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["517b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.smSixEnable.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["518b6"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
 
         }
 
@@ -371,7 +398,7 @@ namespace Main.SIR
             }
             else
             {
-                if (MessageBox.Show("确认解除钻台面对铁钻工的安全设置", "提示", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                if (MessageBox.Show("确认解除扶杆臂对铁钻工的安全设置", "提示", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
                 {
                     byteToSend = new byte[10] { 80, 16, 1, 24, 1, 0, 0, 0, 0, 0 };
                     GlobalData.Instance.da.SendBytes(byteToSend);

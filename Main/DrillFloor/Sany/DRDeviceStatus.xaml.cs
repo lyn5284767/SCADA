@@ -46,7 +46,7 @@ namespace Main.DrillFloor
         private int controlHeartTimes = 0; // 控制台心跳次数
         private bool tmpStatus = false; // 控制台心跳临时存储状态
 
-        public static readonly DependencyProperty CommunicationProperty = DependencyProperty.Register("Communication", typeof(byte), typeof(DRDeviceStatus), new PropertyMetadata((byte)0));//1代表通讯正常，2 代表人机界面--操作台通讯异常 3 操作台--二层台通讯异常
+        public static readonly DependencyProperty CommunicationProperty = DependencyProperty.Register("Communication", typeof(byte), typeof(DRDeviceStatus), new PropertyMetadata((byte)0));//1代表通讯正常，2 代表人机界面--操作台通讯异常 3 操作台--铁架工通讯异常
         public byte Communication
         {
             get { return (byte)GetValue(CommunicationProperty); }
@@ -206,7 +206,7 @@ namespace Main.DrillFloor
         private void Communcation()
         {
             #region 通信
-            // UDP通信，操作台/二层台心跳都正常，通信正常
+            // UDP通信，操作台/铁架工心跳都正常，通信正常
             if (GlobalData.Instance.da.NetStatus && !GlobalData.Instance.da["508b6"].Value.Boolean && !GlobalData.Instance.da["508b5"].Value.Boolean)
             {
                 Communication = 1;
@@ -233,7 +233,7 @@ namespace Main.DrillFloor
             }
             this.tmpStatus = GlobalData.Instance.da["508b6"].Value.Boolean;
 
-            //钻台面心跳 --疑问
+            //扶杆臂心跳 --疑问
             if (GlobalData.Instance.da["508b6"].Value.Boolean)
             {
                 Communication = 3;

@@ -57,6 +57,8 @@ namespace Main.Cat
         {
             this.controlModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["702b7"], Mode = BindingMode.OneWay });
             this.oprModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["703b0"], Mode = BindingMode.OneWay });
+            this.LeftOrRight.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["701b6"], Mode = BindingMode.OneWay });
+
             //上/甩钻
             MultiBinding slCatDrillOprCoverterMultiBind = new MultiBinding();
             slCatDrillOprCoverterMultiBind.Converter = new SLCatDrillOprCoverter();
@@ -81,7 +83,8 @@ namespace Main.Cat
             this.tbTwoPumpPress.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["Cat_SL_PumpTwoPress"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
             this.tbBigCarPos.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["Cat_SL_WinchPos"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
             this.tbPushCarPos.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["Cat_SL_CartPos"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
-            this.tbOilTmp.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["Cat_SL_OilTmp"], Mode = BindingMode.OneWay });
+            this.tbOilTmp.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["Cat_SL_OilTmp"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+            this.tbDrillType.SetBinding(TextBlock.TextProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["701b5"], Mode = BindingMode.OneWay ,Converter = new SLCatDrillTypeConverter()});
         }
 
         List<AlarmInfo> alarmList = new List<AlarmInfo>();
@@ -183,19 +186,19 @@ namespace Main.Cat
             if (GlobalData.Instance.da["Cat_SL_Tag"] == null) return;
             if (GlobalData.Instance.da["Cat_SL_Tag"].Value.Byte == 1)
             {
-                this.tbInseideUpDownCarValue.Text = GlobalData.Instance.da["Cat_SL_CasingWinchLastValue"].Value.Byte.ToString();
-                this.tbInseidePushCarValue.Text = GlobalData.Instance.da["Cat_SL_CasingCartLastValue"].Value.Byte.ToString();
-                this.tbOutseideUpDownCarValue.Text = GlobalData.Instance.da["Cat_SL_PipeWinchLastValue"].Value.Byte.ToString();
-                this.tbOutseidePushCarValue.Text = GlobalData.Instance.da["Cat_SL_PipeCartLastValue"].Value.Byte.ToString();
-                this.tbUpDownCarUpMaxValue.Text = GlobalData.Instance.da["Cat_SL_WinchUpMax"].Value.Byte.ToString();
-                this.tbCarTurnFlowValue.Text = GlobalData.Instance.da["Cat_SL_WinchSlowFlow"].Value.Int16.ToString();
+                this.tbInseideUpDownCarValue.Text = (GlobalData.Instance.da["Cat_SL_CasingWinchLastValue"].Value.Byte/10.0).ToString();
+                this.tbInseidePushCarValue.Text = (GlobalData.Instance.da["Cat_SL_CasingCartLastValue"].Value.Byte / 10.0).ToString();
+                this.tbOutseideUpDownCarValue.Text = (GlobalData.Instance.da["Cat_SL_PipeWinchLastValue"].Value.Byte / 10.0).ToString();
+                this.tbOutseidePushCarValue.Text = (GlobalData.Instance.da["Cat_SL_PipeCartLastValue"].Value.Byte / 10.0).ToString();
+                this.tbUpDownCarUpMaxValue.Text = (GlobalData.Instance.da["Cat_SL_WinchUpMax"].Value.Byte/10.0).ToString();
+                this.tbCarTurnFlowValue.Text = (GlobalData.Instance.da["Cat_SL_WinchSlowFlow"].Value.Int16 / 10.0).ToString();
             }
             else if (GlobalData.Instance.da["Cat_SL_Tag"].Value.Byte == 2)
             {
-                this.tbUpDownCarBackValue.Text = GlobalData.Instance.da["Cat_SL_WinchBackLimit"].Value.Byte.ToString();
-                this.tbPushCarFrontValue.Text = GlobalData.Instance.da["Cat_SL_CartFrontLimit"].Value.Byte.ToString();
-                this.tbDrillCarBackValue.Text = GlobalData.Instance.da["Cat_SL_DrillCarBackLimit"].Value.Byte.ToString();
-                this.tbPipeCarBackValue.Text = GlobalData.Instance.da["Cat_SL_PipeCarBackLimit"].Value.Byte.ToString();
+                this.tbUpDownCarBackValue.Text = (GlobalData.Instance.da["Cat_SL_WinchBackLimit"].Value.Byte / 10.0).ToString();
+                this.tbPushCarFrontValue.Text = (GlobalData.Instance.da["Cat_SL_CartFrontLimit"].Value.Byte / 10.0).ToString();
+                this.tbDrillCarBackValue.Text = (GlobalData.Instance.da["Cat_SL_DrillCarBackLimit"].Value.Byte / 10.0).ToString();
+                this.tbPipeCarBackValue.Text = (GlobalData.Instance.da["Cat_SL_PipeCarBackLimit"].Value.Byte / 10.0).ToString();
             }
         }
         /// <summary>
@@ -265,6 +268,44 @@ namespace Main.Cat
             }
 
             GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 泵启动
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_PumpSet(object sender, EventArgs e)
+        {
+            //byte[] byteToSend;
+            //if (this.PumpSet.IsChecked)  // 当前停止转启动
+            //{
+            //    byteToSend = new byte[10] { 80, 48, 5, 1, 0, 0, 0, 0, 0, 0 };
+            //}
+            //else //当前停止转启动
+            //{
+            //    byteToSend = new byte[10] { 80, 48, 5, 2, 0, 0, 0, 0, 0, 0 };
+            //}
+
+            //GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        int page = 1;
+        /// <summary>
+        /// 上一页
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Left_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            
+        }
+        /// <summary>
+        /// 下一页
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Right_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

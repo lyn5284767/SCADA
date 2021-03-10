@@ -84,7 +84,7 @@ namespace Main.SecondFloor
                 //this.textBlockReportElevatorBigHookInterlock.Text = "吊卡与大钩互锁解除：" + GlobalData.Instance.reportData.ElevatorBigHookInterlock.ToString();
                 this.textBlockReportRobotRetainingRopeInterlock.Text = "机械手与挡绳互锁解除：" + GlobalData.Instance.reportData.RobotRetainingRopeInterlock.ToString();
                 this.textBlockReportRobotFingerBeamLockInterlock.Text = "指梁锁打开确认：" + GlobalData.Instance.reportData.RobotFingerBeamLockInterlock.ToString();
-                this.textBlockReportSecondFloorCommunication.Text = "二层台通讯中断：" + GlobalData.Instance.reportData.SecondFloorCommunication.ToString();
+                this.textBlockReportSecondFloorCommunication.Text = "铁架工通讯中断：" + GlobalData.Instance.reportData.SecondFloorCommunication.ToString();
                 this.textBlockReportOperationFloorCommunication.Text = "操作台通讯中断：" + GlobalData.Instance.reportData.OperationFloorCommunication.ToString();
                 this.textBlockReportCarMotorAlarm.Text = "小车电机报警：" + GlobalData.Instance.reportData.CarMotorAlarm.ToString();
                 this.textBlockReportArmMotorAlarm.Text = "手臂电机报警：" + GlobalData.Instance.reportData.ArmMotorAlarm.ToString();

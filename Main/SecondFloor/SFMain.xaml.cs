@@ -50,7 +50,7 @@ namespace Main.SecondFloor
         public event FullScreenHandler FullScreenEvent;
 
         System.Threading.Timer timerWarning;
-        public static readonly DependencyProperty CommunicationProperty = DependencyProperty.Register("Communication", typeof(byte), typeof(SFMain), new PropertyMetadata((byte)0));//1代表通讯正常，2 代表人机界面--操作台通讯异常 3 操作台--二层台通讯异常
+        public static readonly DependencyProperty CommunicationProperty = DependencyProperty.Register("Communication", typeof(byte), typeof(SFMain), new PropertyMetadata((byte)0));//1代表通讯正常，2 代表人机界面--操作台通讯异常 3 操作台--铁架工通讯异常
         public byte Communication
         {
             get { return (byte)GetValue(CommunicationProperty); }
@@ -311,7 +311,7 @@ namespace Main.SecondFloor
         private void Communcation()
         {
             #region 通信
-            // UDP通信，操作台/二层台心跳都正常，通信正常
+            // UDP通信，操作台/铁架工心跳都正常，通信正常
             if (GlobalData.Instance.da.NetStatus && !GlobalData.Instance.da["508b6"].Value.Boolean && !GlobalData.Instance.da["508b5"].Value.Boolean)
             {
                 //Communication = 1;
@@ -342,11 +342,11 @@ namespace Main.SecondFloor
             }
             this.tmpStatus = GlobalData.Instance.da["508b6"].Value.Boolean;
 
-            //二层台控制器心跳
+            //铁架工控制器心跳
             if (GlobalData.Instance.da["508b6"].Value.Boolean)
             {
                 //Communication = 3;
-                this.warnOne.Text = "二层台信号中断";
+                this.warnOne.Text = "铁架工信号中断";
                 if (!bCommunicationCheck)
                 {
                     GlobalData.Instance.reportData.OperationFloorCommunication += 1;//the report
@@ -355,7 +355,7 @@ namespace Main.SecondFloor
             }
             else
             {
-                if (this.warnOne.Text == "二层台信号中断") this.warnOne.Text = "";
+                if (this.warnOne.Text == "铁架工信号中断") this.warnOne.Text = "";
                 bCommunicationCheck = false;
             }
 
@@ -1162,7 +1162,7 @@ namespace Main.SecondFloor
                     warnTwo.Text = "抓手正在打开……";
                     break;
                 case 49:
-                    warnTwo.Text = "请确认吊卡是否在二层台上方！";
+                    warnTwo.Text = "请确认吊卡是否在铁架工上方！";
                     break;
                 case 50:
                     warnTwo.Text = "请确认吊卡已经打开！";
@@ -2095,67 +2095,69 @@ namespace Main.SecondFloor
                 return null;//出现异常情况
             }
         }
-        /// <summary>
-        /// 摄像头1播放
-        /// </summary>
-        private void Button_CameraStart(object sender, RoutedEventArgs e)
-        {
-            gridCamera1.Children.Clear();
-            ICameraFactory cameraOne = GlobalData.Instance.cameraList.Where(w => w.Info.ID == 1).FirstOrDefault();
-            CameraVideoStop1();
-            ChannelInfo info = GlobalData.Instance.chList.Where(w => w.ID == 1).FirstOrDefault();
-            cameraOne.InitCamera(info);
-            CameraVideoStart1();
-            cameraOne.SetSize(300, 400);
-            if (cameraOne is UIControl_HBGK1)
-            {
-                gridCamera1.Children.Add(cameraOne as UIControl_HBGK1);
-                //(cameraOne as UIControl_HBGK1).SetValue(Grid.RowProperty, 0);
-                //(cameraOne as UIControl_HBGK1).SetValue(Grid.ColumnProperty, 0);
-            }
-            else if (cameraOne is YiTongCameraControl)
-            {
-                gridCamera1.Children.Add(cameraOne as YiTongCameraControl);
-                //(cameraOne as YiTongCameraControl).SetValue(Grid.RowProperty, 0);
-                //(cameraOne as YiTongCameraControl).SetValue(Grid.ColumnProperty, 0);
-            }
-            else
-            {
-                gridCamera1.Children.Add(cameraInitImage1);
-            }
-            viewboxCameral1.Height = 300;
-            viewboxCameral1.Width = 403;
-        }
-        private void Button_CameraStart2(object sender, RoutedEventArgs e)
-        {
-            if (gridCamera2.Children.Count > 0)
-            {
-                ICameraFactory cameraTwo = GlobalData.Instance.cameraList.Where(w => w.Info.ID == 2).FirstOrDefault();
-                CameraVideoStop2();
-                gridCamera2.Children.Clear();
-                ChannelInfo info = GlobalData.Instance.chList.Where(w => w.ID == 2).FirstOrDefault();
-                cameraTwo.InitCamera(info);
-                CameraVideoStart2();
-                cameraTwo.SetSize(288, 352);
-                if (cameraTwo is UIControl_HBGK1)
-                {
-                    gridCamera2.Children.Add(cameraTwo as UIControl_HBGK1);
-                    //(cameraTwo as UIControl_HBGK1).SetValue(Grid.RowProperty, 0);
-                    //(cameraTwo as UIControl_HBGK1).SetValue(Grid.ColumnProperty, 0);
-                }
-                else if (cameraTwo is YiTongCameraControl)
-                {
-                    gridCamera2.Children.Add(cameraTwo as YiTongCameraControl);
-                    //(cameraTwo as YiTongCameraControl).SetValue(Grid.RowProperty, 0);
-                    //(cameraTwo as YiTongCameraControl).SetValue(Grid.ColumnProperty, 0);
-                }
-                else
-                {
-                    gridCamera2.Children.Add(cameraInitImage1);
-                }
-            }
+        #region 弃用，改为线程播放
+        ///// <summary>
+        ///// 摄像头1播放
+        ///// </summary>
+        //private void Button_CameraStart(object sender, RoutedEventArgs e)
+        //{
+        //    gridCamera1.Children.Clear();
+        //    ICameraFactory cameraOne = GlobalData.Instance.cameraList.Where(w => w.Info.ID == 1).FirstOrDefault();
+        //    CameraVideoStop1();
+        //    ChannelInfo info = GlobalData.Instance.chList.Where(w => w.ID == 1).FirstOrDefault();
+        //    cameraOne.InitCamera(info);
+        //    CameraVideoStart1();
+        //    cameraOne.SetSize(300, 400);
+        //    if (cameraOne is UIControl_HBGK1)
+        //    {
+        //        gridCamera1.Children.Add(cameraOne as UIControl_HBGK1);
+        //        //(cameraOne as UIControl_HBGK1).SetValue(Grid.RowProperty, 0);
+        //        //(cameraOne as UIControl_HBGK1).SetValue(Grid.ColumnProperty, 0);
+        //    }
+        //    else if (cameraOne is YiTongCameraControl)
+        //    {
+        //        gridCamera1.Children.Add(cameraOne as YiTongCameraControl);
+        //        //(cameraOne as YiTongCameraControl).SetValue(Grid.RowProperty, 0);
+        //        //(cameraOne as YiTongCameraControl).SetValue(Grid.ColumnProperty, 0);
+        //    }
+        //    else
+        //    {
+        //        gridCamera1.Children.Add(cameraInitImage1);
+        //    }
+        //    viewboxCameral1.Height = 300;
+        //    viewboxCameral1.Width = 403;
+        //}
+        //private void Button_CameraStart2(object sender, RoutedEventArgs e)
+        //{
+        //    if (gridCamera2.Children.Count > 0)
+        //    {
+        //        ICameraFactory cameraTwo = GlobalData.Instance.cameraList.Where(w => w.Info.ID == 2).FirstOrDefault();
+        //        CameraVideoStop2();
+        //        gridCamera2.Children.Clear();
+        //        ChannelInfo info = GlobalData.Instance.chList.Where(w => w.ID == 2).FirstOrDefault();
+        //        cameraTwo.InitCamera(info);
+        //        CameraVideoStart2();
+        //        cameraTwo.SetSize(288, 352);
+        //        if (cameraTwo is UIControl_HBGK1)
+        //        {
+        //            gridCamera2.Children.Add(cameraTwo as UIControl_HBGK1);
+        //            //(cameraTwo as UIControl_HBGK1).SetValue(Grid.RowProperty, 0);
+        //            //(cameraTwo as UIControl_HBGK1).SetValue(Grid.ColumnProperty, 0);
+        //        }
+        //        else if (cameraTwo is YiTongCameraControl)
+        //        {
+        //            gridCamera2.Children.Add(cameraTwo as YiTongCameraControl);
+        //            //(cameraTwo as YiTongCameraControl).SetValue(Grid.RowProperty, 0);
+        //            //(cameraTwo as YiTongCameraControl).SetValue(Grid.ColumnProperty, 0);
+        //        }
+        //        else
+        //        {
+        //            gridCamera2.Children.Add(cameraInitImage1);
+        //        }
+        //    }
 
-        }
+        //}
+        #endregion
 
         private void CameraVideoStop1()
         {
@@ -2527,9 +2529,9 @@ namespace Main.SecondFloor
             byte[] sfbyteToSend;
             if (this.controlModel.IsChecked)
             {
-                drbyteToSend = new byte[10] { 1, 32, 2, 20, 0, 0, 0, 0, 0, 0 }; // 钻台面-遥控切司钻
+                drbyteToSend = new byte[10] { 1, 32, 2, 20, 0, 0, 0, 0, 0, 0 }; // 扶杆臂-遥控切司钻
                 sirbyteToSend = new byte[10] { 23, 17, 10, 1, 0, 0, 0, 0, 0, 0 }; // 铁钻工-遥控切司钻
-                sfbyteToSend = new byte[10] { 16, 1, 27, 1, 2, 0, 0, 0, 0, 0 };// 二层台-司钻切遥控
+                sfbyteToSend = new byte[10] { 16, 1, 27, 1, 2, 0, 0, 0, 0, 0 };// 铁架工-司钻切遥控
                 GlobalData.Instance.da.SendBytes(drbyteToSend);
                 Thread.Sleep(50);
                 GlobalData.Instance.da.SendBytes(sirbyteToSend);
@@ -2538,7 +2540,7 @@ namespace Main.SecondFloor
             }
             else
             {
-                sfbyteToSend = new byte[10] { 16, 1, 27, 1, 1, 0, 0, 0, 0, 0 };// 二层台-遥控切司钻
+                sfbyteToSend = new byte[10] { 16, 1, 27, 1, 1, 0, 0, 0, 0, 0 };// 铁架工-遥控切司钻
                 GlobalData.Instance.da.SendBytes(sfbyteToSend);
 
             }

@@ -186,9 +186,9 @@ namespace Main.Integration
             //byte[] sfbyteToSend;
             //if (this.controlModel.IsChecked)
             //{
-            //    drbyteToSend = new byte[10] { 1, 32, 2, 20, 0, 0, 0, 0, 0, 0 }; // 钻台面-遥控切司钻
+            //    drbyteToSend = new byte[10] { 1, 32, 2, 20, 0, 0, 0, 0, 0, 0 }; // 扶杆臂-遥控切司钻
             //    sirbyteToSend = new byte[10] { 23, 17, 10, 2, 0, 0, 0, 0, 0, 0 }; // 铁钻工-司钻切遥控
-            //    sfbyteToSend = new byte[10] { 16, 1, 27, 1, 1, 0, 0, 0, 0, 0 };// 二层台-遥控切司钻
+            //    sfbyteToSend = new byte[10] { 16, 1, 27, 1, 1, 0, 0, 0, 0, 0 };// 铁架工-遥控切司钻
             //    GlobalData.Instance.da.SendBytes(drbyteToSend);
             //    Thread.Sleep(50);
             //    GlobalData.Instance.da.SendBytes(sirbyteToSend);

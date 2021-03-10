@@ -46,7 +46,7 @@ namespace Main
         private string configPath = System.Environment.CurrentDirectory + @"\Config.ini";
         //private bool bLoaded = false;
         const int STRINGMAX = 255;
-        #region 二层台参数
+        #region 铁架工参数
         private int rows;//行数
         private int coloms;//列数 
         private int drillCnt;//钻铤的个数
@@ -62,9 +62,9 @@ namespace Main
 
         public event SendFingerBeamNumber SendFingerBeamNumberEvent;
 
-        // 二层台指梁
+        // 铁架工指梁
         List<StackPanel> spSF = new List<StackPanel>();
-        // 钻台面指梁
+        // 扶杆臂指梁
         List<StackPanel> spDR = new List<StackPanel>();
         /// <summary>
         /// 中间间距
@@ -90,8 +90,8 @@ namespace Main
         public static readonly DependencyProperty RobotArmPositionProperty = DependencyProperty.Register("RobotArmPosition", typeof(short), typeof(Amination), new PropertyMetadata((short)0)); // 手臂位置
         public static readonly DependencyProperty WorkAnimationWidthProperty = DependencyProperty.Register("WorkAnimationWidth", typeof(double), typeof(Amination), new PropertyMetadata((double)0.0)); // 手臂最大位移
 
-        public static readonly DependencyProperty SFProperty = DependencyProperty.Register("SFType", typeof(SystemType), typeof(Amination), new PropertyMetadata(SystemType.SecondFloor)); // 二层台显示
-        public static readonly DependencyProperty DRProperty = DependencyProperty.Register("DRType", typeof(SystemType), typeof(Amination), new PropertyMetadata(SystemType.SecondFloor)); // 钻台面台显示
+        public static readonly DependencyProperty SFProperty = DependencyProperty.Register("SFType", typeof(SystemType), typeof(Amination), new PropertyMetadata(SystemType.SecondFloor)); // 铁架工显示
+        public static readonly DependencyProperty DRProperty = DependencyProperty.Register("DRType", typeof(SystemType), typeof(Amination), new PropertyMetadata(SystemType.SecondFloor)); // 扶杆臂台显示
 
         /// <summary>
         /// 钻杆行高
@@ -239,7 +239,7 @@ namespace Main
             set { SetValue(DRProperty, value); }
         }
 
-        #region 钻台面参数
+        #region 扶杆臂参数
         List<DrillModel> drDrillCountList = new List<DrillModel>();// 各个指梁所拥有的钻杆数目
         private int drFirstHeight = 25;// 第一行高度
         private int drHeight = 20; // 每行高度
@@ -264,7 +264,7 @@ namespace Main
         public static readonly DependencyProperty DRWorkAnimationWidthProperty = DependencyProperty.Register("DRWorkAnimationWidth", typeof(double), typeof(Amination), new PropertyMetadata((double)0.0)); // 手臂最大位移
 
         /// <summary>
-        /// 钻台面-钻杆行高
+        /// 扶杆臂-钻杆行高
         /// </summary>
         public double DRRowHeight
         {
@@ -272,7 +272,7 @@ namespace Main
             set { SetValue(DRRowHeightProperty, value); }
         }
         /// <summary>
-        /// 钻台面-钻铤行高
+        /// 扶杆臂-钻铤行高
         /// </summary>
         public double DRFirstRowHeight
         {
@@ -280,7 +280,7 @@ namespace Main
             set { SetValue(DRFirstRowHeightProperty, value); }
         }
         /// <summary>
-        /// 钻台面-间距
+        /// 扶杆臂-间距
         /// </summary>
         public int DRSpace
         {
@@ -288,7 +288,7 @@ namespace Main
             set { SetValue(DRSpaceProperty, value); }
         }
         /// <summary>
-        /// 钻台面-当前指梁号
+        /// 扶杆臂-当前指梁号
         /// </summary>
         public byte DRCurrentPointFingerBeamNumber
         {
@@ -296,7 +296,7 @@ namespace Main
             set { SetValue(DRCurrentPointFingerBeamNumberProperty, value); }
         }
         /// <summary>
-        /// 钻台面-操作模式
+        /// 扶杆臂-操作模式
         /// </summary>
         public byte DROperationModel
         {
@@ -304,7 +304,7 @@ namespace Main
             set { SetValue(DROperationModelProperty, value); }
         }
         /// <summary>
-        /// 钻台面-上位机选择的指梁
+        /// 扶杆臂-上位机选择的指梁
         /// </summary>
         public byte DRPCFingerBeamNumberFeedBack
         {
@@ -312,7 +312,7 @@ namespace Main
             set { SetValue(DRPCFingerBeamNumberFeedBackProperty, value); }
         }
         /// <summary>
-        /// 钻台面-小车位置
+        /// 扶杆臂-小车位置
         /// </summary>
         public short DRRobotCarPosition
         {
@@ -320,7 +320,7 @@ namespace Main
             set { SetValue(DRRobotCarPositionProperty, value); }
         }
         ///<summary>
-        /// 钻台面-小车位移实际高度
+        /// 扶杆臂-小车位移实际高度
         /// </summary>
         public double DRRealHeight
         {
@@ -329,7 +329,7 @@ namespace Main
         }
 
         ///<summary>
-        /// 钻台面-中间高度--减去用于置于零点
+        /// 扶杆臂-中间高度--减去用于置于零点
         /// </summary>
         public double DRMiddleHeight
         {
@@ -337,7 +337,7 @@ namespace Main
             set { SetValue(DRMiddleHeightProperty, value); }
         }
         /// <summary>
-        /// 钻台面-抓手状态
+        /// 扶杆臂-抓手状态
         /// </summary>
         public byte DRRobotGripStatus
         {
@@ -345,7 +345,7 @@ namespace Main
             set { SetValue(DRRobotGripStatusProperty, value); }
         }
         /// <summary>
-        /// 钻台面-手臂旋转角度
+        /// 扶杆臂-手臂旋转角度
         /// </summary>
         public short DRRobotArmRotateAngle
         {
@@ -353,7 +353,7 @@ namespace Main
             set { SetValue(DRRobotArmRotateAngleProperty, value); }
         }
         /// <summary>
-        /// 钻台面-手臂位置
+        /// 扶杆臂-手臂位置
         /// </summary>
         public short DRRobotArmPositon
         {
@@ -361,7 +361,7 @@ namespace Main
             set { SetValue(DRRobotArmPositionProperty, value); }
         }
         /// <summary>
-        /// 钻台面-手臂最大位移
+        /// 扶杆臂-手臂最大位移
         /// </summary>
         public double DRWorkAnimationWidth
         {
@@ -452,7 +452,7 @@ namespace Main
                 this.tbrow10RightRP.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["114N2N22N9FingerBeamDrillPipeCount26"], Mode = BindingMode.OneWay });
                 this.tbrow0RightRP.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["114N2N22N9FingerBeamDrillPipeCount32"], Mode = BindingMode.OneWay });
 
-                #region 初始化二层台钻杆/钻铤数量
+                #region 初始化铁架工钻杆/钻铤数量
                 FingerBeamDrillPipeCountList.Clear();
                 FingerBeamDrillPipeCountList.Add(new DrillModel() { Name = "111N2N22N9FingerBeamDrillPipeCount1", Num = 0 });
                 FingerBeamDrillPipeCountList.Add(new DrillModel() { Name = "111N2N22N9FingerBeamDrillPipeCount2", Num = 0 });
@@ -490,7 +490,7 @@ namespace Main
                 FingerBeamDrillPipeCountList.Add(new DrillModel() { Name = "114N2N22N9FingerBeamDrillPipeCount31", Num = 0 });
                 FingerBeamDrillPipeCountList.Add(new DrillModel() { Name = "114N2N22N9FingerBeamDrillPipeCount32", Num = 0 });
                 #endregion
-                #region 初始化钻台面钻杆/钻铤数量
+                #region 初始化扶杆臂钻杆/钻铤数量
                 this.drDrillCountList.Clear();
                 this.drDrillCountList.Add(new DrillModel() { Name = "drDrillNum1", Num = 0, LorR = "left" });
                 this.drDrillCountList.Add(new DrillModel() { Name = "drDrillNum2", Num = 0, LorR = "left" });
@@ -526,7 +526,7 @@ namespace Main
                 this.drDrillCountList.Add(new DrillModel() { Name = "drDrillNum32", Num = 0, LorR = "right" });
                 #endregion
 
-                #region 钻台面参数绑定
+                #region 扶杆臂参数绑定
                 this.SetBinding(DROperationModelProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });//操作模式  
                 this.SetBinding(DRRobotCarPositionProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["drCarPos"], Mode = BindingMode.OneWay });//小车实际位置
                 this.SetBinding(DRRobotGripStatusProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drgripStatus"], Mode = BindingMode.OneWay });//抓手的18种状态
@@ -620,7 +620,7 @@ namespace Main
         public void InitRowsColoms(SystemType systemType)
         {
             GetConfigPara(systemType);//读取配置文件
-            ReCalLayoutSize(systemType); // 重画二层台/钻台面
+            ReCalLayoutSize(systemType); // 重画铁架工/扶杆臂
         }
 
         public int RowsCnt
@@ -697,7 +697,7 @@ namespace Main
                     // X轴最大位移 指梁长度 + 间距+中间厚度
                     WorkAnimationWidth = 170 + space + 5;
 
-                    #region 读取钻台面
+                    #region 读取扶杆臂
                     string drstrHeight = "20";
                     string drstrFirstHeight = "25";
                     string drstrSpace = "45";
@@ -766,7 +766,7 @@ namespace Main
             }
         }
         /// <summary>
-        /// 计算二层台/钻台面元素尺寸
+        /// 计算铁架工/扶杆臂元素尺寸
         /// </summary>
         private void ReCalLayoutSize(SystemType systemType)
         {
@@ -791,13 +791,13 @@ namespace Main
             }
         }
         /// <summary>
-        /// 二层台加载行数
+        /// 铁架工加载行数
         /// </summary>
         private void LoadRows(SystemType systemType)
         {
             try
             {
-                #region 显示二层台/钻台面行数
+                #region 显示铁架工/扶杆臂行数
                 foreach (TextBlock tb in FindVisualChildren<TextBlock>(this.spMain))
                 {
                     if (tb.Name.Contains("row"))
@@ -850,7 +850,7 @@ namespace Main
         }
 
         /// <summary>
-        /// 二层台加载钻杆
+        /// 铁架工加载钻杆
         /// </summary>
         public void LoadFingerBeamDrillPipe(SystemType systemType)
         {
@@ -859,7 +859,7 @@ namespace Main
                 int fingerBeamNumber = 0;
                 int fingerBeamDrillPipeCount = 0;
                 GlobalData.Instance.DrillLeftTotal = this.drDrillCountList.Where(w => w.LorR == "left").Sum(s => s.Num);
-                if (systemType == SystemType.SecondFloor) // 二层台
+                if (systemType == SystemType.SecondFloor) // 铁架工
                 {
                     // 非参数配置界面并且非补偿模式-145-176字节读取指梁钻杆数目
                     if (GlobalData.Instance.da["Con_Set0"] != null && GlobalData.Instance.da["operationModel"] != null && GlobalData.Instance.da["Con_Set0"].Value.Byte != 23 && GlobalData.Instance.da["operationModel"].Value.Byte != 9)
@@ -881,7 +881,7 @@ namespace Main
                         }
                     }
                 }
-                else if (systemType == SystemType.DrillFloor) // 钻台面
+                else if (systemType == SystemType.DrillFloor) // 扶杆臂
                 {
                     if (GlobalData.Instance.da["drPageNum"]!=null && GlobalData.Instance.da["drPageNum"].Value.Byte == 30 || GlobalData.Instance.da["drPageNum"].Value.Byte == 33)
                     {
@@ -1111,7 +1111,7 @@ namespace Main
             this.DRType = systemType;
             if (systemType == SystemType.SecondFloor)
             {
-                #region 显示二层台
+                #region 显示铁架工
                 this.rplbLeft.Visibility = Visibility.Visible;
                 this.rplbLeft.Margin = new Thickness(20, 0, 0, 0);
                 this.rplbRight.Visibility = Visibility.Visible;
@@ -1121,7 +1121,7 @@ namespace Main
                 this.rpbdLeft.Visibility = Visibility.Visible;
                 this.rpbdRight.Visibility = Visibility.Visible;
                 #endregion
-                #region 隐藏钻台面
+                #region 隐藏扶杆臂
                 this.fplbLeft.Visibility = Visibility.Hidden;
                 this.fplbRight.Visibility = Visibility.Hidden;
                 this.tbFPLeft.Visibility = Visibility.Hidden;
@@ -1137,7 +1137,7 @@ namespace Main
             }
             else if (systemType == SystemType.DrillFloor)
             {
-                #region 显示钻台面
+                #region 显示扶杆臂
                 this.fplbLeft.Visibility = Visibility.Visible;
                 this.fplbRight.Visibility = Visibility.Visible;
                 this.rplbLeft.Margin = new Thickness(20, 0, 0, 0);
@@ -1147,7 +1147,7 @@ namespace Main
                 this.fpbdLeft.Visibility = Visibility.Visible;
                 this.fpbdRight.Visibility = Visibility.Visible;
                 #endregion
-                #region 隐藏二层台
+                #region 隐藏铁架工
                 this.rplbLeft.Visibility = Visibility.Hidden;
                 this.rplbRight.Visibility = Visibility.Hidden;
                 this.tbRPLeft.Visibility = Visibility.Hidden;

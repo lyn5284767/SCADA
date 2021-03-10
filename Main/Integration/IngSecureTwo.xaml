@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Main.Integration" xmlns:cl="http://talonzeng.com/ControlLibrary"
              mc:Ignorable="d" 
-             d:DesignHeight="650" d:DesignWidth="860" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="ingSecureOne">
+             d:DesignHeight="680" d:DesignWidth="860" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="ingSecureOne">
     <UserControl.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="FontWeight" Value="Bold"/>
@@ -57,49 +57,49 @@
                 <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,5,2,5" Width="420">
                 <StackPanel>
                     <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,0,1" Margin="5" Padding="3">
-                        <Label HorizontalAlignment="Center" FontFamily="微软雅黑" Foreground="#E0496D" FontSize="24">二层台设置</Label>
+                        <Label HorizontalAlignment="Center" FontFamily="微软雅黑" Foreground="#E0496D" FontSize="24">铁架工设置</Label>
                     </Border>
                     <StackPanel Orientation="Horizontal">
                         <cl:SymbolMapping Name="smFingerLockElevator" Width="40" Height="40" StrContent="" Margin="10,2,2,2"/>
-                            <TextBlock Text="吊卡关门允许抓手打开" FontSize="20"></TextBlock>
+                            <TextBlock Text="吊卡开门禁止抓手打开" FontSize="20"></TextBlock>
                             <cl:CustomCheckBox ContentString="解锁" Margin="90,5,15,5" IsChecked="True"  Name="cbFingerLockElevator" UserControlClicked="CBFingerLockElevator_Clicked"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <cl:SymbolMapping Name="smHandLockElevator" Width="40" Height="40" StrContent="" Margin="10,2,2,2"/>
-                            <TextBlock Text="吊卡开门允许手臂回收" FontSize="20"></TextBlock>
+                            <TextBlock Text="吊卡关门禁止手臂回收" FontSize="20"></TextBlock>
                             <cl:CustomCheckBox ContentString="解锁" Margin="90,5,15,5"  IsChecked="True" Name="cbHandLockElevator" UserControlClicked="CBHandLockElevator_Clicked"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <cl:SymbolMapping Name="smHandLockHook" Width="40" Height="40" StrContent="" Margin="10,2,2,2"/>
-                            <TextBlock Text="大钩高位允许机械手井口移动" FontSize="20"></TextBlock>
+                            <TextBlock Text="大钩高位禁止机械手井口移动" FontSize="20"></TextBlock>
                             <cl:CustomCheckBox ContentString="解锁" Margin="30,5,15,5"  IsChecked="True" Name="cbHandLockHook" UserControlClicked="CBHandLockHook_Clicked"/>
                     </StackPanel>
                    
                 </StackPanel>
             </Border>
-                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,5,2,5" Width="420" Height="355">
+                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,0,2,5" Width="420">
                     <StackPanel>
                         <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,0,1" Margin="5" Padding="3">
-                            <Label HorizontalAlignment="Center" FontFamily="微软雅黑" Foreground="#E0496D" FontSize="24">钻台面设置</Label>
+                            <Label HorizontalAlignment="Center" FontFamily="微软雅黑" Foreground="#E0496D" FontSize="24">扶杆臂设置</Label>
                         </Border>
                         <StackPanel Orientation="Horizontal">
                             <cl:SymbolMapping Name="smDRFingerLockElevator" Width="40" Height="40" StrContent="" Margin="10,2,2,2"/>
-                            <TextBlock Text="吊卡关门允许抓手打开" FontSize="20"></TextBlock>
+                            <TextBlock Text="吊卡打开禁止抓手打开" FontSize="20"></TextBlock>
                             <cl:CustomCheckBox ContentString="解锁" Margin="90,5,15,5"  IsChecked="True" Name="cbDRFingerLockElevator" UserControlClicked="CBDRFingerLockElevator_Clicked"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <cl:SymbolMapping Name="smDRHandLockHook" Width="40" Height="40" StrContent="" Margin="10,2,2,2"/>
-                            <TextBlock Text="大钩低位允许机械手井口移动" FontSize="20"></TextBlock>
+                            <TextBlock Text="大钩低位禁止机械手井口移动" FontSize="20"></TextBlock>
                             <cl:CustomCheckBox ContentString="解锁" Margin="30,5,15,5"  IsChecked="True" Name="cbDRHandLockHook" UserControlClicked="CBDRHandLockHook_Clicked"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <cl:SymbolMapping Name="smIronLockDR" Width="40" Height="40" StrContent="" Margin="10,2,2,2"/>
-                            <TextBlock Text="铁钻工井口禁止钻台面井口移动" FontSize="20"></TextBlock>
+                            <TextBlock Text="铁钻工井口禁止扶杆臂井口移动" FontSize="20"></TextBlock>
                             <cl:CustomCheckBox ContentString="解锁" Margin="10,5,15,5" IsChecked="True"  Name="cbIronLockDR" UserControlClicked="CBIronLockDR_Clicked"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <cl:SymbolMapping Name="smPreventBoxLockDR" Width="40" Height="40" StrContent="" Margin="10,2,2,2"/>
-                            <TextBlock Text="防喷盒井口禁止钻台面井口移动" FontSize="20"></TextBlock>
+                            <TextBlock Text="防喷盒井口禁止扶杆臂井口移动" FontSize="20"></TextBlock>
                             <cl:CustomCheckBox ContentString="解锁" Margin="10,5,15,5" IsChecked="True"  Name="cbPreventBoxLockDR" UserControlClicked="CBPreventBoxLockDR_Clicked"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
@@ -109,6 +109,20 @@
                         </StackPanel>
                     </StackPanel>
                 </Border>
+                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,0,2,5" Width="420">
+                    <StackPanel>
+                        <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,0,1" Margin="5" Padding="3">
+                            <Label HorizontalAlignment="Center" FontFamily="微软雅黑" Foreground="#E0496D" FontSize="24">缓冲臂设置</Label>
+                        </Border>
+                        <StackPanel Orientation="Horizontal">
+                            <cl:SymbolMapping Name="smHookLockHand" Width="40" Height="40" StrContent="" Margin="10,2,2,2"/>
+                            <TextBlock Text="大钩低位禁止缓冲臂井口移动" FontSize="20"></TextBlock>
+                            <cl:CustomCheckBox ContentString="解锁" Margin="30,5,15,5"  IsChecked="False" Name="cbHookLockHand" UserControlClicked="cbHookLockHand_Clicked"/>
+                        </StackPanel>
+                        
+                    </StackPanel>
+                </Border>
+
             </StackPanel>
             <StackPanel>
                 <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,5,2,5" Width="420">
@@ -123,7 +137,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <cl:SymbolMapping Name="smDRLockIron" Width="40" Height="40" StrContent="" Margin="10,2,2,2"/>
-                            <TextBlock Text="钻台面井口禁止铁钻工井口移动" FontSize="20"></TextBlock>
+                            <TextBlock Text="扶杆臂井口禁止铁钻工井口移动" FontSize="20"></TextBlock>
                             <cl:CustomCheckBox ContentString="解锁" Margin="10,5,15,5"  IsChecked="True" Name="cbDRLockIron" UserControlClicked="CBDRLockIron_Clicked"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
@@ -133,7 +147,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <cl:SymbolMapping Name="smIronInOutBtnLock" Width="40" Height="40" StrContent="" Margin="10,2,2,2"/>
-                            <TextBlock Text="卡瓦关门允许铁钻工上卸扣" FontSize="20"></TextBlock>
+                            <TextBlock Text="卡瓦开门禁止铁钻工上卸扣" FontSize="20"></TextBlock>
                             <cl:CustomCheckBox ContentString="解锁" Margin="50,5,15,5" IsChecked="True" Name="cbIronInOutBtnLock" UserControlClicked="CBIronInOutBtnLock_Clicked"/>
                         </StackPanel>
                     </StackPanel>
@@ -150,7 +164,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <cl:SymbolMapping Name="smDRLockPreventBox" Width="40" Height="40" StrContent="" Margin="10,2,2,2"/>
-                            <TextBlock Text="钻台面井口禁止防喷盒井口移动" FontSize="20"></TextBlock>
+                            <TextBlock Text="扶杆臂井口禁止防喷盒井口移动" FontSize="20"></TextBlock>
                             <cl:CustomCheckBox ContentString="解锁" Margin="10,5,15,5" IsChecked="True"  Name="cbDRLockPreventBox" UserControlClicked="CBDRLockPreventBox_Clicked"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
@@ -167,7 +181,7 @@
                         </Border>
                         <StackPanel Orientation="Horizontal">
                             <cl:SymbolMapping Name="smCatToDRLock" Width="40" Height="40" StrContent="" Margin="10,2,2,2"/>
-                            <TextBlock Text="钻台面中位禁止推管柱上钻台" FontSize="20"></TextBlock>
+                            <TextBlock Text="扶杆臂中位禁止推管柱上钻台" FontSize="20"></TextBlock>
                             <cl:CustomCheckBox ContentString="解锁" Margin="30,5,15,5"  IsChecked="True" Name="cbCatToDRLock" UserControlClicked="CBCatToDRLock_Clicked"/>
                         </StackPanel>
                     </StackPanel>

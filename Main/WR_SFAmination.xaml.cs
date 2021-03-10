@@ -44,13 +44,13 @@ namespace Main
                 return _instance;
             }
         }
-        private List<BorderNum> sfSelectFingerList = new List<BorderNum>(); // 钻台面对准指梁
+        private List<BorderNum> sfSelectFingerList = new List<BorderNum>(); // 扶杆臂对准指梁
         List<DrillModel> FingerBeamDrillPipeCountList = new List<DrillModel>();// 各个指梁所拥有的钻杆数目
         private string configPath = System.Environment.CurrentDirectory + @"\Config.ini";
         //private bool bLoaded = false;
         const int STRINGMAX = 255;
         System.Threading.Timer timer;
-        #region 二层台参数
+        #region 铁架工参数
 
         public delegate void SendFingerBeamNumber(byte number);
 
@@ -60,7 +60,7 @@ namespace Main
 
         public event SetDrillNum SetDrillNumEvent;
 
-        // 二层台指梁,用于显示钻杆/钻铤数目
+        // 铁架工指梁,用于显示钻杆/钻铤数目
         List<StackPanel> spSF = new List<StackPanel>();
 
         #endregion
@@ -227,7 +227,7 @@ namespace Main
         {
             try
             {
-                #region 二层台所有指梁
+                #region 铁架工所有指梁
                 sfSelectFingerList.Add(new BorderNum { SelectBorder = this.sfFingerBeamArrow1, Num = 1 });
                 sfSelectFingerList.Add(new BorderNum { SelectBorder = this.sfFingerBeamArrow2, Num = 2 });
                 sfSelectFingerList.Add(new BorderNum { SelectBorder = this.sfFingerBeamArrow3, Num = 3 });
@@ -261,7 +261,7 @@ namespace Main
                 sfSelectFingerList.Add(new BorderNum { SelectBorder = this.sfFingerBeamArrow31, Num = 31 });
 
                 #endregion
-                #region 初始化二层台钻杆/钻铤数量
+                #region 初始化铁架工钻杆/钻铤数量
                 FingerBeamDrillPipeCountList.Clear();
                 FingerBeamDrillPipeCountList.Add(new DrillModel() { Name = "111N2N22N9FingerBeamDrillPipeCount1", Num = 0 });
                 FingerBeamDrillPipeCountList.Add(new DrillModel() { Name = "111N2N22N9FingerBeamDrillPipeCount2", Num = 0 });
@@ -299,7 +299,7 @@ namespace Main
                 FingerBeamDrillPipeCountList.Add(new DrillModel() { Name = "114N2N22N9FingerBeamDrillPipeCount31", Num = 0 });
                 FingerBeamDrillPipeCountList.Add(new DrillModel() { Name = "114N2N22N9FingerBeamDrillPipeCount32", Num = 0 });
                 #endregion
-                #region 二层台钻杆数读取
+                #region 铁架工钻杆数读取
                 this.tbrow0LeftRP.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["112N2N22N9FingerBeamDrillPipeCount16"], Mode = BindingMode.OneWay });
                 this.tbrow1LeftRP.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["111N2N22N9FingerBeamDrillPipeCount1"], Mode = BindingMode.OneWay });
                 this.tbrow2LeftRP.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["111N2N22N9FingerBeamDrillPipeCount2"], Mode = BindingMode.OneWay });
@@ -336,7 +336,7 @@ namespace Main
                 leftDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["112N2N22N9FingerBeamDrillPipeCount14"], Mode = BindingMode.OneWay });
                 leftDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["112N2N22N9FingerBeamDrillPipeCount15"], Mode = BindingMode.OneWay });
                 leftDrillMultiBind.NotifyOnSourceUpdated = true;
-                leftDrillMultiBind.ConverterParameter = "二层台 左:";
+                leftDrillMultiBind.ConverterParameter = "铁架工 左:";
                 this.tbRPLeft.SetBinding(TextBlock.TextProperty, leftDrillMultiBind);
 
                 RightDrillCoverter rightDrillCoverter = new RightDrillCoverter();
@@ -408,7 +408,7 @@ namespace Main
         {
             try
             {
-                // 二层台指梁绑定
+                // 铁架工指梁绑定
                 byte sfSelectDrill = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"].Value.Byte;
                 byte sfoperationModel = GlobalData.Instance.da["operationModel"].Value.Byte;
                 if (sfoperationModel == 4 || sfoperationModel == 9)
@@ -602,10 +602,10 @@ namespace Main
                 int rightrow = this.rightRows;
                 if (this.showRightOne) rightrow -= 1; // 左边有钻铤，减去一行
                 #region 隐藏两侧多余行数
-                HiddenTBInSP(this.spOneCol, leftrow); // 隐藏第一列-左边二层台行数
+                HiddenTBInSP(this.spOneCol, leftrow); // 隐藏第一列-左边铁架工行数
                 HiddenTBInSP(this.spThreeCol, leftrow); // 隐藏第三列-左边行数
                 HiddenTBInSP(this.spFourCol, rightrow); // 隐藏第四列-右边行数
-                HiddenTBInSP(this.spSixCol, rightrow); // 隐藏第六列-右边二层台行数
+                HiddenTBInSP(this.spSixCol, rightrow); // 隐藏第六列-右边铁架工行数
                 #endregion
                 #region 隐藏指梁数
                 HiddenLeftDrillInSP(this.spLeftDrill, leftrow);

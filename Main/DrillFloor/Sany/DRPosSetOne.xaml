@@ -56,7 +56,10 @@
                         <StackPanel Orientation="Horizontal">
                             <StackPanel>
                                 <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5,0,5,5" Padding="3">
-                                    <TextBlock Text="手臂电机"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="手臂电机"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"/>
+                                        <TextBlock FontSize="18" Name="armPos" Text="****" Foreground="#4C80FF"></TextBlock>
+                                    </StackPanel> 
                                 </Border>
                                 <inputcontrol:SetControl Name="twt33" Head="80, 33, 12, 33, 0, 0" TbkText="最小收缩位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
                                 <inputcontrol:SetControl Name="twt34" Head="80, 33, 12, 34, 0, 0" TbkText="最大伸展位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>

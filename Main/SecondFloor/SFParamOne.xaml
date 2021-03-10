@@ -145,7 +145,7 @@
                             <cl:TextBlockWithTextBox Name="twtR18" ControlTag="52"  TbkText="右手柄"/>
                             <cl:TextBlockWithTextBox Name="twtR19" ControlTag="53"  TbkText="按键面板"/>
                             <cl:TextBlockWithTextBox Name="twtR20" ControlTag="54"  TbkText="操作面板"/>
-                            <cl:TextBlockWithTextBox Name="twtR21" ControlTag="71"  TbkText="钻台面遥控器"/>-->
+                            <cl:TextBlockWithTextBox Name="twtR21" ControlTag="71"  TbkText="扶杆臂遥控器"/>-->
                             <!--6.15新增-->
                         </StackPanel>
                     </Grid>

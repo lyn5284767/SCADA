@@ -37,6 +37,52 @@ namespace COM.Common
         }
     }
 
+    public class BoolTagLockConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return string.Empty;
+            }
+
+            if ((bool)value)
+            {
+                return 0;
+            }
+
+            return 3;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class OppositeBoolTagLockConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return string.Empty;
+            }
+
+            if ((bool)value)
+            {
+                return 3;
+            }
+
+            return 0;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     // SymbolMapping变量
     public class OppositeBoolTagConverter : IValueConverter
     {
@@ -113,7 +159,7 @@ namespace COM.Common
     }
 
     /// <summary>
-    /// 钻台面回转角度值 
+    /// 扶杆臂回转角度值 
     /// </summary>
     public class DRCallAngleConverter : IValueConverter
     {
@@ -181,7 +227,7 @@ namespace COM.Common
                 case 2:
                     return "工控机与操作台通信断开，请检查连接！";
                 case 3:
-                    return "二层台与操作台通信断开，请检查连接！";
+                    return "铁架工与操作台通信断开，请检查连接！";
             }
 
             return "程序初始化";
@@ -266,7 +312,7 @@ namespace COM.Common
     }
 
     /// <summary>
-    /// 钻台面-工作模式
+    /// 扶杆臂-工作模式
     /// </summary>
     public class DRWorkModelConverter : IValueConverter
     {
@@ -425,7 +471,7 @@ namespace COM.Common
         }
     }
     /// <summary>
-    /// 钻台面-安全设置-大钩标定状态
+    /// 扶杆臂-安全设置-大钩标定状态
     /// </summary>
     public class HookSetStatusConverter : IValueConverter
     {
@@ -437,8 +483,8 @@ namespace COM.Common
             }
 
             int status = (byte)value;
-            if (status == 1) return "二层台已标定";
-            else if (status == 2) return "钻台面已标定";
+            if (status == 1) return "铁架工已标定";
+            else if (status == 2) return "扶杆臂已标定";
             else if (status == 3) return "大钩已标定";
 
             return "未标定";
@@ -912,7 +958,7 @@ namespace COM.Common
     }
 
     /// <summary>
-    /// 二层台版本信息绑定
+    /// 铁架工版本信息绑定
     /// </summary>
     public class SecondVersionMultiConverter : IMultiValueConverter
     {
@@ -934,7 +980,7 @@ namespace COM.Common
     }
 
     /// <summary>
-    /// 二层台版本年月日绑定-100-103
+    /// 铁架工版本年月日绑定-100-103
     /// </summary>
     public class SecondVersionDateMultiConverter : IMultiValueConverter
     {
@@ -1213,7 +1259,7 @@ namespace COM.Common
         }
     }
     /// <summary>
-    /// 钻台面-目的地设置
+    /// 扶杆臂-目的地设置
     /// </summary>
     public class DesTypeConverter : IValueConverter
     {
@@ -1862,7 +1908,7 @@ namespace COM.Common
     }
 
     /// <summary>
-    /// 钻台面-小车在轨道上面的 Y 轴的移动函数
+    /// 扶杆臂-小车在轨道上面的 Y 轴的移动函数
     /// </summary>
     public class DRAnimationCarTranslateTransformYCoverter : IMultiValueConverter
     {
@@ -2383,7 +2429,7 @@ namespace COM.Common
     }
 
     /// <summary>
-    /// 钻台面-手臂Y轴移动
+    /// 扶杆臂-手臂Y轴移动
     /// </summary>
     public class DRAnimationArmTranslateTransformYCoverter : IMultiValueConverter
     {
@@ -2761,7 +2807,7 @@ namespace COM.Common
     }
 
     /// <summary>
-    /// 二层台是否显示
+    /// 铁架工是否显示
     /// </summary>
     public class SecondFloorVisConverter : IValueConverter
     {
@@ -2915,7 +2961,7 @@ namespace COM.Common
     }
 
     /// <summary>
-    /// 钻台面-行车
+    /// 扶杆臂-行车
     /// </summary>
     public class CarMoveModelCoverter : IMultiValueConverter
     {
@@ -2940,7 +2986,7 @@ namespace COM.Common
     }
 
     /// <summary>
-    /// 钻台面-行车
+    /// 扶杆臂-行车
     /// </summary>
     public class CarMoveModelIsCheckCoverter : IMultiValueConverter
     {
@@ -2965,7 +3011,34 @@ namespace COM.Common
     }
 
     /// <summary>
-    /// 钻台面/二层台切换
+    /// 扶杆臂-行车
+    /// </summary>
+    public class DR_GripCoverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (values[0] == null || values[1] == null || values[2] == null
+                || values[0] == DependencyProperty.UnsetValue || values[1] == DependencyProperty.UnsetValue || values[2] == DependencyProperty.UnsetValue)
+            {
+                return "未知";
+            }
+            bool valone = (bool)values[0];
+            bool valtwo = (bool)values[1];
+            bool valthree = (bool)values[2];
+            if (valone) return "全关";
+            if (valtwo) return "关1级";
+            if (valthree) return "全开";
+            return "未知";
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 扶杆臂/铁架工切换
     /// </summary>
     public class SelectTypeConverter : IValueConverter
     {
@@ -2977,8 +3050,8 @@ namespace COM.Common
             }
 
             bool type = (bool)value;
-            if (type) return "二层台";
-            else return "钻台面";
+            if (type) return "铁架工";
+            else return "扶杆臂";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -2987,7 +3060,7 @@ namespace COM.Common
         }
     }
     /// <summary>
-    /// 钻台面/二层台切换
+    /// 扶杆臂/铁架工切换
     /// </summary>
     public class SelectTypeIsCheckConverter : IValueConverter
     {
@@ -3032,7 +3105,7 @@ namespace COM.Common
         }
     }
     /// <summary>
-    /// 钻台面/二层台切换
+    /// 扶杆臂/铁架工切换
     /// </summary>
     public class TelecontrolModelIsCheckConverter : IValueConverter
     {
@@ -3056,7 +3129,7 @@ namespace COM.Common
 
 
     /// <summary>
-    /// 钻台面-排杆/送杆步骤
+    /// 扶杆臂-排杆/送杆步骤
     /// </summary>
     public class DRStepCoverter : IMultiValueConverter
     {
@@ -3106,7 +3179,7 @@ namespace COM.Common
     }
 
     /// <summary>
-    /// 钻台面-排杆/送杆步骤 文字显示
+    /// 扶杆臂-排杆/送杆步骤 文字显示
     /// </summary>
     public class DRStepTxtCoverter : IMultiValueConverter
     {
@@ -3156,7 +3229,7 @@ namespace COM.Common
     }
 
     /// <summary>
-    /// 钻台面-抓手错误状态
+    /// 扶杆臂-抓手错误状态
     /// </summary>
     public class GridErrorMultiConverter : IMultiValueConverter
     {
@@ -3199,11 +3272,11 @@ namespace COM.Common
             else if (error == 24) return "目标指梁不一致，无法开启联动";
             else if (error == 25) return "非立根模式，无法开启联动";
             else if (error == 26) return "非自动模式，无法开启联动";
-            else if (error == 40) return "请切换至二层台";
-            else if (error == 41) return "钻台面非初始位";
-            else if (error == 42) return "二层台钳头禁止打开";
-            else if (error == 45) return "请切换至钻台面";
-            else if (error == 46) return "钻台面钳头禁止打开";
+            else if (error == 40) return "请切换至铁架工";
+            else if (error == 41) return "扶杆臂非初始位";
+            else if (error == 42) return "铁架工钳头禁止打开";
+            else if (error == 45) return "请切换至扶杆臂";
+            else if (error == 46) return "扶杆臂钳头禁止打开";
             else if (error == 47) return "清扣不在初始位";
             else if (error == 50) return "请切换至涂抹丝扣盒清扣";
             else if (error == 51) return "清扣盒涂抹禁止收回";
@@ -3213,18 +3286,18 @@ namespace COM.Common
             else if (error == 61) return "防喷盒不在初始位";
             else if (error == 62) return "请切换至防喷盒";
             else if (error == 63) return "防喷盒禁止缩回";
-            else if (error == 64) return "二层台不在初始位";
-            else if (error == 65) return "钻台面禁止缩回";
-            else if (error == 66) return "二层台禁止缩回";
+            else if (error == 64) return "铁架工不在初始位";
+            else if (error == 65) return "扶杆臂禁止缩回";
+            else if (error == 66) return "铁架工禁止缩回";
             else if (error == 67) return "有解除互锁，禁止开启联动";
-            else if (error == 120) return "二层台或钻台面不处于自动，无法开启";
-            else if (error == 121) return "二层台或钻台面不处于初始步，无法开启";
-            else if (error == 122) return "二层台或钻台面抓手有钻杆，无法开启";
-            else if (error == 123) return "二层台或钻台面模式不一致，无法开启";
-            else if (error == 124) return "二层台或钻台面目标指梁不一致，无法开启";
-            else if (error == 125) return "钻台面目的非立根盒，无法开启";
-            else if (error == 130) return "二层台或钻台面不处于自动，联动关闭";
-            else if (error == 131) return "二层台或钻台面模式不一致，联动关闭";
+            else if (error == 120) return "铁架工或扶杆臂不处于自动，无法开启";
+            else if (error == 121) return "铁架工或扶杆臂不处于初始步，无法开启";
+            else if (error == 122) return "铁架工或扶杆臂抓手有钻杆，无法开启";
+            else if (error == 123) return "铁架工或扶杆臂模式不一致，无法开启";
+            else if (error == 124) return "铁架工或扶杆臂目标指梁不一致，无法开启";
+            else if (error == 125) return "扶杆臂目的非立根盒，无法开启";
+            else if (error == 130) return "铁架工或扶杆臂不处于自动，联动关闭";
+            else if (error == 131) return "铁架工或扶杆臂模式不一致，联动关闭";
             else if (error == 132) return "检测到联动流程调整异常，请确认并重新开启";
             else if (error == 140) return "手柄及旋转功能禁止使用";
 
@@ -3233,9 +3306,9 @@ namespace COM.Common
             bool b2 = (bool)values[3];
             if (b0)
             {
-                if (b1 && b2) return "联动已开启，二层台/钻台面使能";
-                else if (b1) return "联动已开启，二层台使能";
-                else if (b2) return "联动已开启，钻台面使能";
+                if (b1 && b2) return "联动已开启，铁架工/扶杆臂使能";
+                else if (b1) return "联动已开启，铁架工使能";
+                else if (b2) return "联动已开启，扶杆臂使能";
             }
             return "暂无";
         }
@@ -3413,7 +3486,7 @@ namespace COM.Common
                     else if (sfstep >= 19 && sfstep <= 25) return "井口等待";
                     else if (sfstep == 26) return "井口送杆";
                     else if (sfstep >= 27 && sfstep <= 34) return "吊卡确认";
-                    else if (sfstep == 35) return "二层台完成";
+                    else if (sfstep == 35) return "铁架工完成";
                 }
                 else
                 {
@@ -3656,8 +3729,8 @@ namespace COM.Common
                 return "false";
             }
             byte val = (byte)value;
-            if (val == 1) return true;
-            else if (val == 2) return false;
+            if (val == 1) return false;
+            else if (val == 2) return true;
 
             else return "false";
         }
@@ -5047,21 +5120,21 @@ namespace COM.Common
             byte sirType = (byte)values[2];
             if (sfType == 4 && drType == 4 && sirType == 1) return "手动";
             if (sfType == 5 && drType == 5 && sirType == 2) return "自动";
-            if (sfType ==1) return "二层台急停";
-            if (drType == 1) return "钻台面急停";
+            if (sfType ==1) return "铁架工急停";
+            if (drType == 1) return "扶杆臂急停";
             if (sirType == 5) return "铁钻工急停";
-            if (sfType == 2) return "二层台调试";
-            if (drType == 2) return "钻台面调试";
-            if (sfType == 3) return "二层台回零";
-            if (drType == 3) return "钻台面回零";
-            if (sfType == 6) return "二层台回收";
-            if (drType == 6) return "钻台面回收";
-            if (sfType == 7) return "二层台运输";
-            if (drType == 7) return "钻台面运输";
-            if (sfType == 8) return "二层台实验";
-            if (drType == 8) return "钻台面实验";
-            if (sfType == 9) return "二层台补偿";
-            if (drType == 9) return "钻台面补偿";
+            if (sfType == 2) return "铁架工调试";
+            if (drType == 2) return "扶杆臂调试";
+            if (sfType == 3) return "铁架工回零";
+            if (drType == 3) return "扶杆臂回零";
+            if (sfType == 6) return "铁架工回收";
+            if (drType == 6) return "扶杆臂回收";
+            if (sfType == 7) return "铁架工运输";
+            if (drType == 7) return "扶杆臂运输";
+            if (sfType == 8) return "铁架工实验";
+            if (drType == 8) return "扶杆臂实验";
+            if (sfType == 9) return "铁架工补偿";
+            if (drType == 9) return "扶杆臂补偿";
 
             return "操作模式";
         }
@@ -5169,7 +5242,7 @@ namespace COM.Common
             string retTxt = "未知";
             bool valOne = (bool)values[0];
             bool valTwo = (bool)values[1];
-            if (valOne) retTxt = "钻台面";
+            if (valOne) retTxt = "扶杆臂";
             else if (valTwo) retTxt = "缓冲臂";
             else if (!valOne && !valTwo) retTxt = "铁架工";
             else retTxt = "未知";
@@ -5764,10 +5837,10 @@ namespace COM.Common
     }
     #endregion
 
-    #region 修井钻台面
+    #region 修井扶杆臂
 
     /// <summary>
-    /// 钻台面-目的地设置
+    /// 扶杆臂-目的地设置
     /// </summary>
     public class WR_MemoryPos : IValueConverter
     {
@@ -5801,7 +5874,7 @@ namespace COM.Common
     }
 
     /// <summary>
-    /// 修井钻台面-强制是否存在
+    /// 修井扶杆臂-强制是否存在
     /// </summary>
     public class WR_ForceCoverter : IMultiValueConverter
     {
@@ -5828,7 +5901,7 @@ namespace COM.Common
     }
 
     /// <summary>
-    /// 钻台面-目的地设置
+    /// 扶杆臂-目的地设置
     /// </summary>
     public class WR_DesTypeConverter : IValueConverter
     {
@@ -5862,7 +5935,7 @@ namespace COM.Common
     }
 
     /// <summary>
-    /// 修井钻台面-小车在轨道上X 轴的移动函数
+    /// 修井扶杆臂-小车在轨道上X 轴的移动函数
     /// </summary>
     public class WR_DRAnimationCarXCoverter : IMultiValueConverter
     {
@@ -5946,7 +6019,7 @@ namespace COM.Common
     }
 
     /// <summary>
-    /// 钻台面-手臂Y轴移动
+    /// 扶杆臂-手臂Y轴移动
     /// </summary>
     public class WR_DRAnimationArmTranslateTransformXCoverter : IMultiValueConverter
     {
@@ -6120,7 +6193,7 @@ namespace COM.Common
     }
 
     /// <summary>
-    /// 钻台面回转角度值 
+    /// 扶杆臂回转角度值 
     /// </summary>
     public class WR_DRCallAngleConverter : IValueConverter
     {
@@ -6179,7 +6252,7 @@ namespace COM.Common
     }
 
     /// <summary>
-    /// 修井钻台面-排杆/送杆步骤
+    /// 修井扶杆臂-排杆/送杆步骤
     /// </summary>
     public class WR_DRStepCoverter : IMultiValueConverter
     {
@@ -6231,7 +6304,7 @@ namespace COM.Common
     }
 
     /// <summary>
-    /// 修井钻台面-管柱类型
+    /// 修井扶杆臂-管柱类型
     /// </summary>
     public class WR_DRPipeTypeCoverter : IMultiValueConverter
     {
@@ -6662,6 +6735,25 @@ namespace COM.Common
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class SLCatDrillTypeConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null || value == DependencyProperty.UnsetValue)
+            {
+                return "未知";
+            }
+            bool val = (bool)value;
+            if (val) return "钻杆";
+            else return "钻铤";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

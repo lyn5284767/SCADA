@@ -75,7 +75,7 @@ namespace Main.DrillFloor
         int count = 0; // 进入页面发送协议次数
         private void DRMain_Loaded(object sender, RoutedEventArgs e)
         {
-            // 钻台面主界面
+            // 扶杆臂主界面
             //byte[] data = new byte[10] { 80, 33, 0, 0, 0, 0, 0, 0, 0, 30 };
             byte[] data = new byte[10] { 80, 33, 0, 0, 0, 0, 0, 0, 30, 30 };
             GlobalData.Instance.da.SendBytes(data);
@@ -140,8 +140,23 @@ namespace Main.DrillFloor
                                                                                                                                                                    //this.armPos.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["drArmPos"], Mode = BindingMode.OneWay, Converter = new ArmPosCoverter() });//手臂实际位置
                 this.armPos.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["drArmPos"], Mode = BindingMode.OneWay });//手臂实际位置
                 this.rotatePos.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["drRotePos"], Mode = BindingMode.OneWay, Converter = new DRCallAngleConverter() });//回转角度
-                this.gripMotor.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drgripStatus"], Mode = BindingMode.OneWay, Converter = new GripConverter() });//抓手状态
+                if (GlobalData.Instance.da["DR_DeviceType"] != null &&
+                    (GlobalData.Instance.da["DR_DeviceType"].Value.Int32 == 5100 || GlobalData.Instance.da["DR_DeviceType"].Value.Int32 == 7100
+                     || GlobalData.Instance.da["DR_DeviceType"].Value.Int32 == 8100 || GlobalData.Instance.da["DR_DeviceType"].Value.Int32 == 9100))
+                {
+                    MultiBinding dr_GripMultiBind = new MultiBinding();
+                    dr_GripMultiBind.Converter = new DR_GripCoverter();
+                    dr_GripMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["320b0"], Mode = BindingMode.OneWay });
+                    dr_GripMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["320b1"], Mode = BindingMode.OneWay });
+                    dr_GripMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["320b2"], Mode = BindingMode.OneWay });
+                    dr_GripMultiBind.NotifyOnSourceUpdated = true;
+                    this.gripMotor.SetBinding(TextBlock.TextProperty, dr_GripMultiBind);
 
+                }
+                else
+                {
+                    this.gripMotor.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drgripStatus"], Mode = BindingMode.OneWay, Converter = new GripConverter() });//抓手状态
+                }
                 this.drcarMotorWorkStatus.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["324b1"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
                 this.drRotateMotorWorkStatus.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["324b5"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
                 this.drcarMotorRetZero.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["324b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
@@ -217,6 +232,9 @@ namespace Main.DrillFloor
                 leftHand.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["535b0"], Mode = BindingMode.OneWay });
                 leftHand.NotifyOnSourceUpdated = true;
                 this.tbLeftHand.SetBinding(TextBlock.TextProperty, leftHand);
+
+                this.tbMemoryPos.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["WR_DR_MemoryPos"], Mode = BindingMode.OneWay, Converter = new WR_MemoryPos() });// 目的地选择
+
                 InitCameraInfo();
 
                 //cameraTimer = new System.Timers.Timer(2 * 1000);
@@ -662,7 +680,7 @@ namespace Main.DrillFloor
         }
 
         /// <summary>
-        /// 钻台面-一键回零
+        /// 扶杆臂-一键回零
         /// </summary>
         private void btn_drAllMotorRetZero(object sender, MouseButtonEventArgs e)
         {
@@ -670,7 +688,7 @@ namespace Main.DrillFloor
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
-        /// 钻台面-电机使能
+        /// 扶杆臂-电机使能
         /// </summary>
         private void btn_drMotorEnable(object sender, MouseButtonEventArgs e)
         {
@@ -679,7 +697,7 @@ namespace Main.DrillFloor
         }
 
         /// <summary>
-        /// 钻台面-操作模式
+        /// 扶杆臂-操作模式
         /// </summary>
         private void btn_drOpState(object sender, EventArgs e)
         {
@@ -696,7 +714,7 @@ namespace Main.DrillFloor
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
-        /// 钻台面-工作模式
+        /// 扶杆臂-工作模式
         /// </summary>
         private void btn_drWorkModel(object sender, EventArgs e)
         {
@@ -713,7 +731,7 @@ namespace Main.DrillFloor
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
-        /// 钻台面-行车模式
+        /// 扶杆臂-行车模式
         /// </summary>
         private void btn_drCarMoveModel(object sender, EventArgs e)
         {
@@ -761,9 +779,9 @@ namespace Main.DrillFloor
             if (this.drTelecontrolModel.IsChecked) // 司钻切遥控
             {
                
-                drbyteToSend = new byte[10] { 1, 32, 2, 21, 0, 0, 0, 0, 0, 0 }; // 钻台面-司钻切遥控
+                drbyteToSend = new byte[10] { 1, 32, 2, 21, 0, 0, 0, 0, 0, 0 }; // 扶杆臂-司钻切遥控
                 sirbyteToSend = new byte[10] { 23, 17, 10, 1, 0, 0, 0, 0, 0, 0 }; // 铁钻工-遥控切司钻
-                sfbyteToSend = new byte[10] { 16, 1, 27, 1, 1, 0, 0, 0, 0, 0 };// 二层台-遥控切司钻
+                sfbyteToSend = new byte[10] { 16, 1, 27, 1, 1, 0, 0, 0, 0, 0 };// 铁架工-遥控切司钻
                 GlobalData.Instance.da.SendBytes(drbyteToSend);
                 Thread.Sleep(50);
                 GlobalData.Instance.da.SendBytes(sirbyteToSend);
@@ -780,7 +798,7 @@ namespace Main.DrillFloor
         }
 
         /// <summary>
-        /// 钻台面-发送目的地设置
+        /// 扶杆臂-发送目的地设置
         /// </summary>
         private void btn_SelectDes(object sender, RoutedEventArgs e)
         {
@@ -1394,6 +1412,36 @@ namespace Main.DrillFloor
         private void btnDeviceBack(object sender, RoutedEventArgs e)
         {
             byte[] byteToSend = new byte[10] { 80, 33, 1, 6, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 井口记忆
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnWellMemory(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 80, 33, 16, 2, 1, 1, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 记忆清除
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnMemoryClear(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 80, 33, 16, 2, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 记忆恢复
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnWellMemoryRecovery(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 80, 33, 16, 2, 0, 1, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
     }

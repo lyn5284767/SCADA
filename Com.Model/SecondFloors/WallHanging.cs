@@ -6,7 +6,7 @@ using System.Text;
 namespace Com.Model
 {
     /// <summary>
-    /// 二层台挂壁
+    /// 铁架工挂壁
     /// </summary>
     public class WallHanging
     {

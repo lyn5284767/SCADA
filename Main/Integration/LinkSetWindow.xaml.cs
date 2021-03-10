@@ -496,5 +496,19 @@ namespace Main.Integration
         {
             this.Close();
         }
+
+        private void btnVoltagePump_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.btnVoltagePump.Background.ToString() == "FF2B71CA")
+            {
+                globalModel.HS_VoltagePump = 0;
+                this.btnVoltagePump.Background = (Brush)bc.ConvertFrom("#FFFFFF");
+            }
+            else
+            {
+                globalModel.HS_VoltagePump = 1;
+                this.btnVoltagePump.Background = (Brush)bc.ConvertFrom("#2B71CA");
+            }
+        }
     }
 }

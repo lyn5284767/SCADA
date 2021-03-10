@@ -114,6 +114,10 @@ namespace KeyBoard
                 this.Width = 10;
                 this.WindowState = WindowState.Minimized;
             }
+            else if (keybtn.Name == "cmdminus")//负号
+            {
+                addNumkeyINput(0x2D);
+            }
         }
 
         public const Int32 WM_SYSCOMMAND = 274;
@@ -150,7 +154,7 @@ namespace KeyBoard
             this.Left = (width - 960) / 2; this.Top = height - 400;
             this.WindowStartupLocation = WindowStartupLocation.Manual;
             this.ShowInTaskbar = false;
-            int x = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Size.Width - 210;
+            int x = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Size.Width - 280;
             int y = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Size.Height - 300;
             this.Left = x;
             this.Top = y;
@@ -240,7 +244,7 @@ namespace KeyBoard
             if (this.WindowState == WindowState.Maximized || this.WindowState == WindowState.Normal)
             {
                 this.Height = 280;
-                this.Width = 210;
+                this.Width = 280;
                 //this.Show();
             }
         }

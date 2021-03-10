@@ -115,7 +115,7 @@ namespace Main.Integration
             {
                 if (!GlobalData.Instance.da["334b4"].Value.Boolean && !GlobalData.Instance.da["505b7"].Value.Boolean)
                 {
-                    this.tbTips.Text = "禁止猫道前进，请先将钻台面回收至安全位置！";
+                    this.tbTips.Text = "禁止猫道前进，请先将扶杆臂回收至安全位置！";
                     this.tbTips.Foreground = (Brush)bc.ConvertFrom("#E0496D");
                 }
                 else
@@ -189,7 +189,7 @@ namespace Main.Integration
         }
 
         /// <summary>
-        /// 钻台面安全限制解除
+        /// 扶杆臂安全限制解除
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -203,7 +203,7 @@ namespace Main.Integration
             }
             else
             {
-                MessageBoxResult result = System.Windows.MessageBox.Show("确认解除钻台面对猫道得安全设置?", "提示", MessageBoxButton.OKCancel);
+                MessageBoxResult result = System.Windows.MessageBox.Show("确认解除扶杆臂对猫道得安全设置?", "提示", MessageBoxButton.OKCancel);
                 if (result == MessageBoxResult.OK)
                 {
                     byte[] byteToSend = new byte[10] { 80, 48, 9, 0, 1, 0, 0, 0, 0, 0 };

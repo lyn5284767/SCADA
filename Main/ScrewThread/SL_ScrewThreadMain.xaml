@@ -85,6 +85,7 @@
                         <Grid Grid.Row="1" Grid.Column="1" Background="Black"></Grid>
                         <Grid Grid.Row="1" Grid.Column="2" Background="Black"></Grid>
                         <Grid Grid.Row="1" Grid.Column="3" Background="Black"></Grid>
+                        <Grid Grid.Row="1" Grid.Column="4" Background="Black"></Grid>
                         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
                             <TextBlock Text="&#xe785;" FontFamily="../Font/#iconfont" FontSize="36" Foreground="#008AFF" TextAlignment="Center" Margin="2,10,2,10" Width="45" Height="45"></TextBlock>
                             <StackPanel Margin="0,20,10,0">
@@ -208,14 +209,14 @@
                                 </StackPanel>
                                 <TextBlock Text=">一键返回" Grid.Row="2" HorizontalAlignment="Left" Margin="5,5,0,5"></TextBlock>
                                 <StackPanel Orientation="Horizontal" Grid.Row="3">
-                                    <Button Click="btnBackWell_Click" Margin="5">返回井口</Button>
-                                    <Button Click="btnBackMouse_Click" Margin="5">返回鼠洞</Button>
-                                    <Button Click="btnBackOrgin_Click" Margin="5">返回原点</Button>
+                                    <Button Click="btnBackWell_Click" Margin="5,5,5,5">一键回井口</Button>
+                                    <Button Click="btnBackMouse_Click" Margin="5">一键回鼠洞</Button>
+                                    <Button Click="btnBackOrgin_Click" Margin="5">一键回原点</Button>
                                 </StackPanel>
                                 <TextBlock Text=">操作模式" Grid.Row="4" HorizontalAlignment="Left" Margin="5,5,0,5"></TextBlock>
                                 <StackPanel Orientation="Horizontal" Grid.Row="5">
-                                    <Button Click="btnPreventBox_Click" Margin="5">防喷盒模式</Button>
-                                    <Button Click="btnScrew_Click" Margin="5">丝扣油模式</Button>
+                                    <Button x:Name="btnPreventBox" Click="btnPreventBox_Click" Margin="5">防喷盒模式</Button>
+                                    <Button x:Name="btnScrew" Click="btnScrew_Click" Margin="5">丝扣油模式</Button>
                                 </StackPanel>
                                 <TextBlock Text=">控制模式" Grid.Row="6" HorizontalAlignment="Left" Margin="5,5,0,5"></TextBlock>
                                 <StackPanel Orientation="Horizontal" Grid.Row="7">
@@ -240,9 +241,8 @@
                 </Border>
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="2*"/>
                     </Grid.RowDefinitions>
                     <Viewbox>
                         <Grid Grid.Row="0">
@@ -272,8 +272,42 @@
                         </Grid>
                     </Viewbox>
                     <Border Grid.Row="1"  BorderBrush="Gray" BorderThickness="0,1,0,0">
-                        <Viewbox>
-                            <StackPanel>
+                        <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50"/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Viewbox HorizontalAlignment="Left">
+                                <TextBlock Text=">参数设置"></TextBlock>
+                            </Viewbox>
+                            <Viewbox Grid.Row="1" x:Name="vbParamSet">
+                                <StackPanel Orientation="Horizontal" Margin="5">
+                                    <TextBlock Text="选择参数" Width="80"></TextBlock>
+                                    <ComboBox x:Name="cbSet" Width="180" Foreground="Black" FontSize="18" Margin="5,7,5,7" Height="33" SelectionChanged="cbSet_SelectionChanged" MaxDropDownHeight="500"></ComboBox>
+                                </StackPanel>
+                            </Viewbox>
+                            <Viewbox Grid.Row="2">
+                                <StackPanel Orientation="Horizontal" Margin="5">
+                                    <TextBlock Text="当 前 值" Width="80"></TextBlock>
+                                    <TextBox x:Name="textBoxShow" Width="180" Foreground="Black" FontSize="18" Margin="5,7,5,7" Height="33" IsReadOnly="True"></TextBox>
+                                </StackPanel>
+                            </Viewbox>
+                            <Viewbox Grid.Row="3" Margin="6">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="设 置 值" Width="80"></TextBlock>
+                                    <TextBox x:Name="tbInput" Width="180" Foreground="Black" FontSize="18" Margin="5,7,5,7" Height="33" PreviewMouseDown="tb_ParameterConfig_Focus"></TextBox>
+                                </StackPanel>
+                            </Viewbox>
+                            <StackPanel Orientation="Horizontal" Grid.Row="4" HorizontalAlignment="Center">
+                                <Button Grid.Row="4" Margin="5,0,0,0" FontWeight="Bold" FontSize="18" Height="40" Width="95" Click="SetConfirm_Click">设置</Button>
+                                <Button Grid.Row="4" Margin="5,0,0,0" FontWeight="Bold" FontSize="18" Height="40" Width="95" Click="Read_Click">读取</Button>
+                            </StackPanel>
+                            <Grid Grid.Row="1" Grid.RowSpan="4"></Grid>
+                          </Grid>
+                            <!--<StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="10,0,10,0">
                                     <TextBlock Text="选择参数" Margin="180,0,0,0"></TextBlock>
                                     <TextBlock Text="当前值" Margin="80,0,0,0"></TextBlock>
@@ -288,8 +322,7 @@
 
                                     <Button Margin="5,0,0,0" FontWeight="Bold" FontSize="18" Height="40" Width="95" Click="SetConfirm_Click">确认</Button>
                                 </StackPanel>
-                            </StackPanel>
-                        </Viewbox>
+                            </StackPanel>-->
                     </Border>
                 </Grid>
             </Grid>

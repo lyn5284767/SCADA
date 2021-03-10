@@ -76,7 +76,7 @@
                                     <TextBlock Text="&#xe6b0;" FontFamily="../Font/#iconfont" FontSize="36" Foreground="#008AFF" VerticalAlignment="Center" Margin="5,10,0,10" Width="45" Height="45"></TextBlock>
                                 </Viewbox>
                                 <StackPanel Margin="0,0,10,0" VerticalAlignment="Center">
-                                    <TextBlock FontSize="18">工作模式</TextBlock>
+                                    <TextBlock FontSize="18">作业模式</TextBlock>
                                     <TextBlock FontSize="18" Text="未知" Name="tbCurWork" Foreground="#4C80FF"></TextBlock>
                                 </StackPanel>
                             </StackPanel>
@@ -141,13 +141,13 @@
                                 </Grid.ColumnDefinitions>
                                 <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
                                     <Viewbox>
-                                        <TextBlock Name="tbsf" Text="二层台:" Margin="0,15,0,15"></TextBlock>
+                                        <TextBlock Name="tbsf" Text="铁架工:" Margin="0,15,0,15"></TextBlock>
                                     </Viewbox>
                                     <cl:SymbolMapping Name="sfStatus" StrContent="" LampType="3" Margin="0,20,0,20"/>
                                 </StackPanel>
                                 <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal">
                                     <Viewbox>
-                                        <TextBlock Name="tbdr" Text="钻台面:" Margin="0,15,0,15"></TextBlock>
+                                        <TextBlock Name="tbdr" Text="扶杆臂:" Margin="0,15,0,15"></TextBlock>
                                     </Viewbox>
                                     <cl:SymbolMapping Name="drStatus" StrContent="" LampType="3" Margin="0,20,0,20"/>
 
@@ -262,7 +262,7 @@
                                         <ColumnDefinition Width="2*"/>
                                     </Grid.ColumnDefinitions>
                                     <Viewbox>
-                                        <TextBlock Grid.Column="0" Text="工&#x0a;&#x0a;况" VerticalAlignment="Center" Margin="30,15,5,5"></TextBlock>
+                                        <TextBlock Grid.Column="0" Text="作&#x0a;业&#x0a;模&#x0a;式" VerticalAlignment="Center" Margin="30,15,5,5"></TextBlock>
                                     </Viewbox>
                                     <Viewbox Grid.Column="1">
                                         <TextBlock Name="tbWorkModelSet" Text="未设置" Width="60" VerticalAlignment="Center" Margin="0,40,10,35" Foreground="#4C80FF"></TextBlock>
@@ -427,13 +427,13 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0">
                                     <Viewbox>
-                                        <TextBlock Text="二层台:" Margin="5,20,5,20"></TextBlock>
+                                        <TextBlock Text="铁架工:" Margin="5,20,5,20"></TextBlock>
                                     </Viewbox>
                                     <cl:SymbolMapping Name="sfLock" StrContent="" LampType="3" Margin="0,20,0,20"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0">
                                     <Viewbox>
-                                        <TextBlock Text="钻台面:" Margin="5,20,5,20"></TextBlock>
+                                        <TextBlock Text="扶杆臂:" Margin="5,20,5,20"></TextBlock>
                                     </Viewbox>
                                     <cl:SymbolMapping Name="drLock" StrContent="" LampType="3" Margin="0,20,0,20"/>
                                 </StackPanel>

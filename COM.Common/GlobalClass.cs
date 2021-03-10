@@ -56,7 +56,7 @@ namespace COM.Common
         /// </summary>
         public int RobotFingerBeamLockInterlock;
         /// <summary>
-        /// 二层台通信中断
+        /// 铁架工通信中断
         /// </summary>
         public int SecondFloorCommunication;
         /// <summary>
@@ -418,6 +418,10 @@ namespace COM.Common
         /// 液压站启动泵 0-不启动/未知；1-启动1主泵；2-启动2主泵；3-启动双泵
         /// </summary>
         public int HS_PumpType { get; set; }
+        /// <summary>
+        /// 恒压泵是否启动 0-不启动；1-启动
+        /// </summary>
+        public int HS_VoltagePump { get; set; }
         /// <summary>
         /// 工作模式 0-未知；1-送杆；2-排杆
         /// </summary>

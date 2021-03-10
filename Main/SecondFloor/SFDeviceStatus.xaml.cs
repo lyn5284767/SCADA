@@ -174,7 +174,7 @@ namespace Main.SecondFloor
                 deviceEncodeMultiBind.NotifyOnSourceUpdated = true;
                 deviceEncodeMultiBind.ConverterParameter = "RP";
                 this.tbDeviceEncode.SetBinding(TextBlock.TextProperty, deviceEncodeMultiBind);
-                // 二层台版本
+                // 铁架工版本
                 SecondVersionMultiConverter secondVersionMultiConverter = new SecondVersionMultiConverter();
                 MultiBinding secondVersionMultiBind = new MultiBinding();
                 secondVersionMultiBind.Converter = secondVersionMultiConverter;
@@ -184,7 +184,7 @@ namespace Main.SecondFloor
                 secondVersionMultiBind.NotifyOnSourceUpdated = true;
                 secondVersionMultiBind.ConverterParameter = "SRP-V";
                 this.tbSecondVersion.SetBinding(TextBlock.TextProperty, secondVersionMultiBind);
-                // 二层台版本日期
+                // 铁架工版本日期
                 SecondVersionDateMultiConverter secondVersionDateMultiConverter = new SecondVersionDateMultiConverter();
                 MultiBinding secondVersionDateMultiBind = new MultiBinding();
                 secondVersionDateMultiBind.Converter = secondVersionDateMultiConverter;
@@ -196,7 +196,8 @@ namespace Main.SecondFloor
                 #endregion
 
                 this.cbDrillDwon.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["103b4"], Mode = BindingMode.OneWay });
-                this.cbVisualAid.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["103b3"], Mode = BindingMode.OneWay });
+                this.cbVisualAid.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["252b1"], Mode = BindingMode.OneWay });
+                this.cbDrillUp.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["103b3"], Mode = BindingMode.OneWay });
 
             }
             catch (Exception ex)
@@ -304,7 +305,13 @@ namespace Main.SecondFloor
         /// <param name="e"></param>
         private void cbVisualAid_Clicked(object sender, EventArgs e)
         {
-            byte[] byteToSend = SendByte(new List<byte> { 24, 5 });
+            byte[] byteToSend = SendByte(new List<byte> { 24, 7 });
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+
+        private void cbDrillUp_Clicked(object sender, EventArgs e)
+        {
+            byte[] byteToSend = SendByte(new List<byte> { 24, 6 });
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
     }

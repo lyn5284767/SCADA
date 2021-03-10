@@ -52,9 +52,9 @@ namespace Main.Integration
         }
 
 
-        #region 二层台操作
+        #region 铁架工操作
         /// <summary>
-        /// 二层台变量
+        /// 铁架工变量
         /// </summary>
         private void SFVariableBinding()
         {
@@ -132,9 +132,9 @@ namespace Main.Integration
             //byte[] sfbyteToSend;
             //if (this.controlModel.IsChecked)
             //{
-            //    drbyteToSend = new byte[10] { 1, 32, 2, 20, 0, 0, 0, 0, 0, 0 }; // 钻台面-遥控切司钻
+            //    drbyteToSend = new byte[10] { 1, 32, 2, 20, 0, 0, 0, 0, 0, 0 }; // 扶杆臂-遥控切司钻
             //    sirbyteToSend = new byte[10] { 23, 17, 10, 1, 0, 0, 0, 0, 0, 0 }; // 铁钻工-遥控切司钻
-            //    sfbyteToSend = new byte[10] { 16, 1, 27, 1, 2, 0, 0, 0, 0, 0 };// 二层台-司钻切遥控
+            //    sfbyteToSend = new byte[10] { 16, 1, 27, 1, 2, 0, 0, 0, 0, 0 };// 铁架工-司钻切遥控
             //    GlobalData.Instance.da.SendBytes(drbyteToSend);
             //    Thread.Sleep(50);
             //    GlobalData.Instance.da.SendBytes(sirbyteToSend);
@@ -143,14 +143,14 @@ namespace Main.Integration
             //}
             //else
             //{
-            //    drbyteToSend = new byte[10] { 16, 1, 27, 1, 1, 0, 0, 0, 0, 0 };// 二层台-遥控切司钻
+            //    drbyteToSend = new byte[10] { 16, 1, 27, 1, 1, 0, 0, 0, 0, 0 };// 铁架工-遥控切司钻
             //    GlobalData.Instance.da.SendBytes(drbyteToSend);
 
             //}
         }
         #endregion
 
-        #region 二层台告警
+        #region 铁架工告警
         private int iTimeCnt = 0;//用来为时钟计数的变量
         Dictionary<string, byte> alarmKey = new Dictionary<string, byte>();
         List<AlarmInfo> alarmList = new List<AlarmInfo>();
@@ -402,7 +402,7 @@ namespace Main.Integration
         private void Communcation()
         {
             #region 通信
-            // UDP通信，操作台/二层台心跳都正常，通信正常
+            // UDP通信，操作台/铁架工心跳都正常，通信正常
             if (GlobalData.Instance.da.NetStatus && !GlobalData.Instance.da["508b6"].Value.Boolean && !GlobalData.Instance.da["508b5"].Value.Boolean)
             {
                 //Communication = 1;
@@ -432,11 +432,11 @@ namespace Main.Integration
             }
             this.tmpStatus = GlobalData.Instance.da["508b6"].Value.Boolean;
 
-            //二层台控制器心跳
+            //铁架工控制器心跳
             if (GlobalData.Instance.da["508b6"].Value.Boolean)
             {
                 //Communication = 3;
-                this.tbSFOpr.Text = "二层台信号中断";
+                this.tbSFOpr.Text = "铁架工信号中断";
                 if (!bCommunicationCheck)
                 {
                     GlobalData.Instance.reportData.OperationFloorCommunication += 1;//the report
@@ -445,7 +445,7 @@ namespace Main.Integration
             }
             else
             {
-                if (this.tbSFOpr.Text == "二层台信号中断")
+                if (this.tbSFOpr.Text == "铁架工信号中断")
                 {
                     this.tbSFOpr.Text = "暂无操作指示";
                     this.tbSFOpr.Foreground = (Brush)bc.ConvertFrom("#000000");
@@ -566,7 +566,7 @@ namespace Main.Integration
                     tbSFOpr.Text = "抓手正在打开……";
                     break;
                 case 49:
-                    tbSFOpr.Text = "请确认吊卡是否在二层台上方！";
+                    tbSFOpr.Text = "请确认吊卡是否在铁架工上方！";
                     break;
                 case 50:
                     tbSFOpr.Text = "请确认吊卡已经打开！";

@@ -56,11 +56,11 @@ namespace Main.Integration
         private int controlHeartTimes = 0; // 控制台心跳次数
         private bool bCheckTwo = false;
         /// <summary>
-        /// 二层台工作模式 1：送杆；2排杆
+        /// 铁架工工作模式 1：送杆；2排杆
         /// </summary>
         private int sfWorkModel { get; set; }
         /// <summary>
-        /// 钻台面工作模式 1：送杆；2排杆
+        /// 扶杆臂工作模式 1：送杆；2排杆
         /// </summary>
         private int drWorkModel { get; set; }
         /// <summary>
@@ -68,11 +68,11 @@ namespace Main.Integration
         /// </summary>
         private int sirWorkModel { get; set; }
         /// <summary>
-        /// 二层台操作模式 1：送杆；2排杆
+        /// 铁架工操作模式 1：送杆；2排杆
         /// </summary>
         private int sfOprModel { get; set; }
         /// <summary>
-        /// 钻台面操作模式 1：送杆；2排杆
+        /// 扶杆臂操作模式 1：送杆；2排杆
         /// </summary>
         private int drOprModel { get; set; }
         /// <summary>
@@ -80,23 +80,23 @@ namespace Main.Integration
         /// </summary>
         private int sirOprModel { get; set; }
         /// <summary>
-        /// 二层台钻杆类型
+        /// 铁架工钻杆类型
         /// </summary>
         public int sfTubesType { get; set; }
         /// <summary>
-        /// 钻台面钻杆类型
+        /// 扶杆臂钻杆类型
         /// </summary>
         public int drTubesType { get; set; }
         /// <summary>
-        /// 钻台面目的地
+        /// 扶杆臂目的地
         /// </summary>
         public int drDes { get; set; }
         /// <summary>
-        /// 二层台当前选择指梁
+        /// 铁架工当前选择指梁
         /// </summary>
         public int sfSelectDrill { get; set; }
         /// <summary>
-        /// 钻台面当前选择指梁
+        /// 扶杆臂当前选择指梁
         /// </summary>
         public int drSelectDrill { get; set; }
 
@@ -158,8 +158,8 @@ namespace Main.Integration
             alarmKey.Add("设备工作模式不一致", 0);
             alarmKey.Add("设备操作模式不一致", 0);
             alarmKey.Add("管柱类型不一致", 0);
-            alarmKey.Add("二层台电机未使能或回零", 0);
-            alarmKey.Add("钻台面电机未使能或回零", 0);
+            alarmKey.Add("铁架工电机未使能或回零", 0);
+            alarmKey.Add("扶杆臂电机未使能或回零", 0);
         }
         bool b459b0 = false; bool b459b1 = false;
         private void TotalVariableTimer(object value)
@@ -170,7 +170,7 @@ namespace Main.Integration
                 {
                     iTimeCnt++;
                     if (iTimeCnt > 1000) iTimeCnt = 0;
-                    if (GlobalData.Instance.da.GloConfig.SFType == 1) // 二层台选择
+                    if (GlobalData.Instance.da.GloConfig.SFType == 1) // 铁架工选择
                     {
                         if (GlobalData.Instance.da["workModel"] != null)
                             this.sfWorkModel = GlobalData.Instance.da["workModel"].Value.Byte;
@@ -181,14 +181,14 @@ namespace Main.Integration
                         if (GlobalData.Instance.da["pcFingerBeamNumberFeedback"] != null)
                             this.sfSelectDrill = GlobalData.Instance.da["pcFingerBeamNumberFeedback"].Value.Byte;
                     }
-                    else // 没有二层台
+                    else // 没有铁架工
                     {
                         this.sfWorkModel = -1;
                         this.sfOprModel = -1;
                         this.sfTubesType = -1;
                         this.sfSelectDrill = -1;
                     }
-                    if (GlobalData.Instance.da.GloConfig.DRType == (int)DRType.SANY) // 钻台面选择
+                    if (GlobalData.Instance.da.GloConfig.DRType == (int)DRType.SANY) // 扶杆臂选择
                     {
                         if (GlobalData.Instance.da["drworkModel"] != null)
                             this.drWorkModel = GlobalData.Instance.da["drworkModel"].Value.Byte;
@@ -201,7 +201,7 @@ namespace Main.Integration
                         if (GlobalData.Instance.da["drSelectDrill"] != null)
                             this.drSelectDrill = GlobalData.Instance.da["drSelectDrill"].Value.Byte;
                     }
-                    else // 没有钻台面
+                    else // 没有扶杆臂
                     {
                         this.drWorkModel = -1;
                         this.drOprModel = -1;
@@ -417,14 +417,14 @@ namespace Main.Integration
                     if (alarmKey["设备操作模式不一致"] == 0) alarmKey["设备操作模式不一致"] = 1;
                 }
 
-                //二层台，钻台面都钻杆相同，或者有一个设备没配置
+                //铁架工，扶杆臂都钻杆相同，或者有一个设备没配置
                 if (this.sfTubesType == this.drTubesType || this.sfTubesType == -1 || this.drTubesType == -1)
                 {
                     int bType = -1;
                     if (this.sfTubesType == this.drTubesType) bType = this.sfTubesType;
                     else if (this.sfTubesType == -1) bType = this.drTubesType;
                     else if (this.drTubesType == -1) bType = this.sfTubesType;
-                    else this.tbCurTubesType.Text = "二层台/钻台面都未配置";
+                    else this.tbCurTubesType.Text = "铁架工/扶杆臂都未配置";
                     switch (bType)
                     {
                         case 35:
@@ -482,11 +482,11 @@ namespace Main.Integration
                 if (this.drDes == 1) this.tbCurDes.Text = "立根区";
                 else if (drDes == 2) this.tbCurDes.Text = "猫道-井口";
                 else if (drDes == 3) this.tbCurDes.Text = "猫道-鼠道";
-                else if (drDes == -1) this.tbCurDes.Text = "未配置钻台面";
+                else if (drDes == -1) this.tbCurDes.Text = "未配置扶杆臂";
                 else this.tbCurDes.Text = "未知";
                 // 选择指梁
 
-                if (sfSelectDrill == -1)// 二层台未配置
+                if (sfSelectDrill == -1)// 铁架工未配置
                 {
                     if (drSelectDrill <= 16 && drSelectDrill >= 1)
                     {
@@ -526,29 +526,29 @@ namespace Main.Integration
                 //    tmpTechnique = nowTechnique;
                 //}
 
-                // 二层台电机回零使能状态
+                // 铁架工电机回零使能状态
                 if (GlobalData.Instance.da["carMotorRetZeroStatus"].Value.Boolean && GlobalData.Instance.da["armMotorRetZeroStatus"].Value.Boolean
                     && GlobalData.Instance.da["rotateMotorRetZeroStatus"].Value.Boolean && !GlobalData.Instance.da["carMotorWorkStatus"].Value.Boolean
                     && !GlobalData.Instance.da["armMotorWorkStatus"].Value.Boolean && !GlobalData.Instance.da["rotateMotorWorkStatus"].Value.Boolean)
                 {
                     this.sfStatus.LampType = 1;
-                    alarmKey["二层台电机未使能或回零"] = 0;
+                    alarmKey["铁架工电机未使能或回零"] = 0;
                 }
                 else
                 {
                     this.sfStatus.LampType = 3;
-                    if (alarmKey["二层台电机未使能或回零"] == 0) alarmKey["二层台电机未使能或回零"] = 1;
+                    if (alarmKey["铁架工电机未使能或回零"] == 0) alarmKey["铁架工电机未使能或回零"] = 1;
                 }
                 if (GlobalData.Instance.da["324b1"].Value.Boolean && GlobalData.Instance.da["324b5"].Value.Boolean
                     && GlobalData.Instance.da["324b0"].Value.Boolean && GlobalData.Instance.da["324b4"].Value.Boolean)
                 {
                     this.drStatus.LampType = 1;
-                    alarmKey["钻台面电机未使能或回零"] = 0;
+                    alarmKey["扶杆臂电机未使能或回零"] = 0;
                 }
                 else
                 {
                     this.drStatus.LampType = 3;
-                    if (alarmKey["钻台面电机未使能或回零"] == 0) alarmKey["钻台面电机未使能或回零"] = 1;
+                    if (alarmKey["扶杆臂电机未使能或回零"] == 0) alarmKey["扶杆臂电机未使能或回零"] = 1;
                 }
             }
             catch (Exception ex)
@@ -626,13 +626,13 @@ namespace Main.Integration
             // 修井
             if (GlobalData.Instance.da.GloConfig.SysType == 1)
             {
-                if (GlobalData.Instance.da.GloConfig.SFType == 0) this.tbsf.Text = "二层台(未配置)";
-                else if (GlobalData.Instance.da.GloConfig.SFType == 1) this.tbsf.Text = "二层台(三一)";
-                else this.tbsf.Text = "二层台(错误)";
+                if (GlobalData.Instance.da.GloConfig.SFType == 0) this.tbsf.Text = "铁架工(未配置)";
+                else if (GlobalData.Instance.da.GloConfig.SFType == 1) this.tbsf.Text = "铁架工(三一)";
+                else this.tbsf.Text = "铁架工(错误)";
 
-                if (GlobalData.Instance.da.GloConfig.DRType == 0) this.tbdr.Text = "钻台面(未配置)";
-                else if (GlobalData.Instance.da.GloConfig.DRType == 1) this.tbdr.Text = "钻台面(三一)";
-                else this.tbdr.Text = "钻台面(错误)";
+                if (GlobalData.Instance.da.GloConfig.DRType == 0) this.tbdr.Text = "扶杆臂(未配置)";
+                else if (GlobalData.Instance.da.GloConfig.DRType == 1) this.tbdr.Text = "扶杆臂(三一)";
+                else this.tbdr.Text = "扶杆臂(错误)";
 
                 if (GlobalData.Instance.da.GloConfig.SIRType == 0) this.tbIron.Text = "铁钻工(未配置)";
                 else if (GlobalData.Instance.da.GloConfig.SIRType == 1) this.tbIron.Text = "铁钻工(三一)";
@@ -651,34 +651,34 @@ namespace Main.Integration
             {
                 if (GlobalData.Instance.da.GloConfig.SFType == 0)
                 {
-                    this.tbsf.Text = "二层台(未配置)";
-                    Ing_Bank ing_Bank = new Ing_Bank("二层台(未配置)");
+                    this.tbsf.Text = "铁架工(未配置)";
+                    Ing_Bank ing_Bank = new Ing_Bank("铁架工(未配置)");
                     this.gdSF.Children.Clear();
                     this.gdSF.Children.Add(ing_Bank);
                 }
                 else if (GlobalData.Instance.da.GloConfig.SFType == 1)
                 {
-                    this.tbsf.Text = "二层台(三一)";
+                    this.tbsf.Text = "铁架工(三一)";
                     this.gdSF.Children.Clear();
                     this.gdSF.Children.Add(Ing_SF_Self.Instance);
                 }
-                else this.tbsf.Text = "二层台(错误)";
+                else this.tbsf.Text = "铁架工(错误)";
 
                 if (GlobalData.Instance.da.GloConfig.DRType == 0)
                 {
-                    this.tbdr.Text = "钻台面(未配置)";
-                    Ing_Bank ing_Bank = new Ing_Bank("钻台面(未配置)");
+                    this.tbdr.Text = "扶杆臂(未配置)";
+                    Ing_Bank ing_Bank = new Ing_Bank("扶杆臂(未配置)");
                     this.gdDR.Children.Clear();
                     this.gdDR.Children.Add(ing_Bank);
                 }
                 else if (GlobalData.Instance.da.GloConfig.DRType == 1)
                 {
-                    this.tbdr.Text = "钻台面(三一)";
+                    this.tbdr.Text = "扶杆臂(三一)";
                     this.gdDR.Children.Clear();
                     this.gdDR.Children.Add(Ing_DR_Self.Instance);
                 }
-                else if (GlobalData.Instance.da.GloConfig.DRType == 2) this.tbdr.Text = "钻台面(杰瑞)";
-                else this.tbdr.Text = "钻台面(错误)";
+                else if (GlobalData.Instance.da.GloConfig.DRType == 2) this.tbdr.Text = "扶杆臂(杰瑞)";
+                else this.tbdr.Text = "扶杆臂(错误)";
 
                 if (GlobalData.Instance.da.GloConfig.SIRType == 0)
                 {

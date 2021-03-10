@@ -92,8 +92,8 @@ namespace Main.SecondFloor
             dicNumToValue.Add(736, "互锁提示");
             dicNumToValue.Add(698, "大钩标定状态");
             dicNumToValue.Add(701, "关门信号屏蔽");
-            dicNumToValue.Add(700, "二层台与顶驱互锁");
-            dicNumToValue.Add(699, "二层台与大钩互锁");
+            dicNumToValue.Add(700, "铁架工与顶驱互锁");
+            dicNumToValue.Add(699, "铁架工与大钩互锁");
             dicNumToValue.Add(75, "左挡绳伸出");
             dicNumToValue.Add(76, "左挡绳缩回");
             dicNumToValue.Add(77, "右挡绳伸出");

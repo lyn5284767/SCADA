@@ -111,7 +111,7 @@ namespace Main.Integration
                 this.twt4.dicNumToValue.Add(3, "SDCH280C");
                 this.twt4.dicNumToValue.Add(4, "PX2230C.11");
                 this.twt4.SetBinding(TextWithCombox.ShowTxtWithCBProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["OperPanelSetting"], Mode = BindingMode.OneWay, ConverterParameter = this.twt4.dicNumToValue, Converter = new NumToTextConverter() });
-                // 钻台面遥控器
+                // 扶杆臂遥控器
                 this.twt5.dicNumToValue = new Dictionary<int, string>();
                 this.twt5.dicNumToValue.Add(0, "无");
                 this.twt5.dicNumToValue.Add(1, "遥感");
@@ -148,13 +148,13 @@ namespace Main.Integration
                 this.twt9.dicNumToValue.Add(3, "JJC");
                 this.twt9.dicNumToValue.Add(11, "修井液压站");
                 this.twt9.SetBinding(TextWithCombox.ShowTxtWithCBProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["HSType"], Mode = BindingMode.OneWay, ConverterParameter = this.twt9.dicNumToValue, Converter = new NumToTextConverter() });
-                // 钻台面厂家
+                // 扶杆臂厂家
                 this.twt10.dicNumToValue = new Dictionary<int, string>();
                 this.twt10.dicNumToValue.Add(0, "无");
                 this.twt10.dicNumToValue.Add(1, "三一");
                 this.twt10.dicNumToValue.Add(2, "杰瑞");
                 this.twt10.SetBinding(TextWithCombox.ShowTxtWithCBProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["DRType"], Mode = BindingMode.OneWay, ConverterParameter = this.twt10.dicNumToValue, Converter = new NumToTextConverter() });
-                // 二层台厂家
+                // 铁架工厂家
                 this.twt11.dicNumToValue = new Dictionary<int, string>();
                 this.twt11.dicNumToValue.Add(0, "无");
                 this.twt11.dicNumToValue.Add(1, "三一");
@@ -261,14 +261,14 @@ namespace Main.Integration
                 DataHelper.Instance.ExecuteNonQuery(sql);
                 GlobalData.Instance.da.GloConfig.HydType = hydType;
             }
-            else if (GlobalData.Instance.SetParam[3] == 84)// 钻台面配置
+            else if (GlobalData.Instance.SetParam[3] == 84)// 扶杆臂配置
             {
                 int drType = GlobalData.Instance.SetParam[4];
                 string sql = string.Format("update GloConfig Set DRType='{0}'", drType);
                 DataHelper.Instance.ExecuteNonQuery(sql);
                 GlobalData.Instance.da.GloConfig.DRType = drType;
             }
-            else if (GlobalData.Instance.SetParam[3] == 85)// 二层台配置
+            else if (GlobalData.Instance.SetParam[3] == 85)// 铁架工配置
             {
                 int sfType = GlobalData.Instance.SetParam[4];
                 string sql = string.Format("update GloConfig Set SFType='{0}'", sfType);

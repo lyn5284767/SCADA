@@ -53,60 +53,63 @@ namespace Main.Integration
             {
                 #region 卡瓦锁
                 // 吊卡关门与卡瓦互锁
-                this.smElevatorLockKava.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["576b1"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.smElevatorLockKava.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["576b1"], Mode = BindingMode.OneWay, Converter = new BoolTagLockConverter() });
                 this.cbElevatorLockKava.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["576b0"], Mode = BindingMode.OneWay, Converter = new InterLockingOppConverter() });
                 // 铁钻工与卡瓦互锁
-                this.smIronLockKava.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["576b3"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.smIronLockKava.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["576b3"], Mode = BindingMode.OneWay, Converter = new BoolTagLockConverter() });
                 this.cbIronLockKava.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["576b2"], Mode = BindingMode.OneWay, Converter = new InterLockingOppConverter() });
                 // 大钩与卡瓦互锁
-                this.smHookLockKava.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["576b5"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.smHookLockKava.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["576b5"], Mode = BindingMode.OneWay, Converter = new BoolTagLockConverter() });
                 this.cbHookLockKava.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["576b4"], Mode = BindingMode.OneWay, Converter = new InterLockingOppConverter() });
                 // 顶驱与卡瓦互锁
-                this.smTopLockKava.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["583b1"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.smTopLockKava.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["583b1"], Mode = BindingMode.OneWay, Converter = new BoolTagLockConverter() });
                 this.cbTopLockKava.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["583b0"], Mode = BindingMode.OneWay, Converter = new InterLockingOppConverter() });
                 #endregion
                 #region 吊卡锁
                 // 机械手在井口与吊卡互锁
-                this.smHandLockElevaltor.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["576b7"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.smHandLockElevaltor.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["576b7"], Mode = BindingMode.OneWay, Converter = new BoolTagLockConverter() });
                 this.cbHandLockElevaltor.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["576b6"], Mode = BindingMode.OneWay, Converter = new InterLockingOppConverter() });
                 // 卡瓦与吊卡互锁
-                this.smKavaLockElevator.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["577b1"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.smKavaLockElevator.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["577b1"], Mode = BindingMode.OneWay, Converter = new BoolTagLockConverter() });
                 this.cbKavaLockElevator.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["577b0"], Mode = BindingMode.OneWay, Converter = new InterLockingOppConverter() });
                 // 顶驱与吊卡互锁
-                this.smTopLockElevator.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["583b3"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.smTopLockElevator.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["583b3"], Mode = BindingMode.OneWay, Converter = new BoolTagLockConverter() });
                 this.cbTopLockElevator.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["583b2"], Mode = BindingMode.OneWay, Converter = new InterLockingOppConverter() });
 
                 #endregion
-                // 二层台与顶驱互锁
-                this.smSFLockTop.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["577b3"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
-                this.cbSFLockTop.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["577b2"], Mode = BindingMode.OneWay, Converter = new InterLockingOppConverter() });
-                // 顶驱与吊卡互锁
-                this.smKavaLockTop.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["583b5"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
-                this.cbKavaLockTop.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["583b4"], Mode = BindingMode.OneWay, Converter = new InterLockingOppConverter() });
-                // 顶驱与吊卡互锁
-                this.smElevatorLockTop.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["583b7"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
-                this.cbElevatorLockTop.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["583b6"], Mode = BindingMode.OneWay, Converter = new InterLockingOppConverter() });
                 #region 大钩锁
                 // 吊卡关门锁大钩
-                this.smElevatorLockHook.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["577b5"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.smElevatorLockHook.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["577b5"], Mode = BindingMode.OneWay, Converter = new OppositeBoolTagLockConverter() });
                 this.cbElevatorLockHook.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["577b4"], Mode = BindingMode.OneWay, Converter = new InterLockingOppConverter() });
                 // 顶驱与大钩互锁
-                this.smTopLockHook.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["577b7"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.smTopLockHook.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["577b7"], Mode = BindingMode.OneWay, Converter = new OppositeBoolTagLockConverter() });
                 this.cbTopLockHook.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["577b6"], Mode = BindingMode.OneWay, Converter = new InterLockingOppConverter() });
-                // 二层台机械手与大钩互锁
-                this.smSFLockHook.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["578b1"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                // 铁架工机械手与大钩互锁
+                this.smSFLockHook.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["578b1"], Mode = BindingMode.OneWay, Converter = new OppositeBoolTagLockConverter() });
                 this.cbSFLockHook.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["578b0"], Mode = BindingMode.OneWay, Converter = new InterLockingOppConverter() });
-                // 钻台面机械手与大钩互锁
-                this.smDRLockHook.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["578b3"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                // 扶杆臂机械手与大钩互锁
+                this.smDRLockHook.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["578b3"], Mode = BindingMode.OneWay, Converter = new OppositeBoolTagLockConverter() });
                 this.cbDRLockHook.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["578b2"], Mode = BindingMode.OneWay, Converter = new InterLockingOppConverter() });
                 // 铁钻工与大钩互锁
-                this.smIronLockHook.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["578b5"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.smIronLockHook.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["578b5"], Mode = BindingMode.OneWay, Converter = new OppositeBoolTagLockConverter() });
                 this.cbIronLockHook.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["578b4"], Mode = BindingMode.OneWay, Converter = new InterLockingOppConverter() });
                 // 铁钻工与大钩互锁
-                this.smPreventBoxLockHook.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["578b7"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+                this.smPreventBoxLockHook.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["578b7"], Mode = BindingMode.OneWay, Converter = new OppositeBoolTagLockConverter() });
                 this.cbPreventBoxLockHook.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["578b6"], Mode = BindingMode.OneWay, Converter = new InterLockingOppConverter() });
+                // 缓冲臂与大钩互锁
+                this.smHandLockHook.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["584b1"], Mode = BindingMode.OneWay, Converter = new OppositeBoolTagLockConverter() });
+                this.cbHandLockHook.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["584b0"], Mode = BindingMode.OneWay, Converter = new InterLockingOppConverter() });
 
                 #endregion
+                // 铁架工与顶驱互锁
+                this.smSFLockTop.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["577b3"], Mode = BindingMode.OneWay, Converter = new OppositeBoolTagLockConverter() });
+                this.cbSFLockTop.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["577b2"], Mode = BindingMode.OneWay, Converter = new InterLockingOppConverter() });
+                // 顶驱与吊卡互锁
+                this.smKavaLockTop.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["583b5"], Mode = BindingMode.OneWay, Converter = new BoolTagLockConverter() });
+                this.cbKavaLockTop.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["583b4"], Mode = BindingMode.OneWay, Converter = new InterLockingOppConverter() });
+                // 顶驱与吊卡互锁
+                this.smElevatorLockTop.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["583b7"], Mode = BindingMode.OneWay, Converter = new BoolTagLockConverter() });
+                this.cbElevatorLockTop.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["583b6"], Mode = BindingMode.OneWay, Converter = new InterLockingOppConverter() });
 
             }
             catch (Exception ex)
@@ -125,6 +128,11 @@ namespace Main.Integration
 
             if (!this.cbElevatorLockKava.IsChecked)
             {
+                if (GlobalData.Instance.systemRole == SystemRole.OperMan)
+                {
+                    MessageBox.Show("您不具备取消权限！", "提示信息", MessageBoxButton.OK);
+                    return;
+                }
                 MessageBoxResult result = MessageBox.Show("确认解除吊卡允许卡瓦打开？", "提示信息", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
@@ -151,6 +159,11 @@ namespace Main.Integration
 
             if (!this.cbIronLockKava.IsChecked)
             {
+                if (GlobalData.Instance.systemRole == SystemRole.OperMan)
+                {
+                    MessageBox.Show("您不具备取消权限！", "提示信息", MessageBoxButton.OK);
+                    return;
+                }
                 MessageBoxResult result = MessageBox.Show("确认解除铁钻工允许卡瓦打开？", "提示信息", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
@@ -177,6 +190,11 @@ namespace Main.Integration
 
             if (!this.cbHookLockKava.IsChecked)
             {
+                if (GlobalData.Instance.systemRole == SystemRole.OperMan)
+                {
+                    MessageBox.Show("您不具备取消权限！", "提示信息", MessageBoxButton.OK);
+                    return;
+                }
                 MessageBoxResult result = MessageBox.Show("确认解除大钩允许卡瓦关闭？", "提示信息", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
@@ -201,6 +219,11 @@ namespace Main.Integration
 
             if (!this.cbTopLockKava.IsChecked)
             {
+                if (GlobalData.Instance.systemRole == SystemRole.OperMan)
+                {
+                    MessageBox.Show("您不具备取消权限！", "提示信息", MessageBoxButton.OK);
+                    return;
+                }
                 MessageBoxResult result = MessageBox.Show("确认解除顶驱卡扣允许卡瓦打开？", "提示信息", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
@@ -230,6 +253,11 @@ namespace Main.Integration
 
             if (!this.cbHandLockElevaltor.IsChecked)
             {
+                if (GlobalData.Instance.systemRole == SystemRole.OperMan)
+                {
+                    MessageBox.Show("您不具备取消权限！", "提示信息", MessageBoxButton.OK);
+                    return;
+                }
                 MessageBoxResult result = MessageBox.Show("确认解除抓手禁止吊卡打开？", "提示信息", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
@@ -256,6 +284,11 @@ namespace Main.Integration
 
             if (!this.cbKavaLockElevator.IsChecked)
             {
+                if (GlobalData.Instance.systemRole == SystemRole.OperMan)
+                {
+                    MessageBox.Show("您不具备取消权限！", "提示信息", MessageBoxButton.OK);
+                    return;
+                }
                 MessageBoxResult result = MessageBox.Show("确认解除卡瓦禁止吊卡打开？", "提示信息", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
@@ -282,6 +315,11 @@ namespace Main.Integration
 
             if (!this.cbTopLockElevator.IsChecked)
             {
+                if (GlobalData.Instance.systemRole == SystemRole.OperMan)
+                {
+                    MessageBox.Show("您不具备取消权限！", "提示信息", MessageBoxButton.OK);
+                    return;
+                }
                 MessageBoxResult result = MessageBox.Show("确认解除顶驱卡扣允许吊卡打开？", "提示信息", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
@@ -302,7 +340,7 @@ namespace Main.Integration
         #endregion
         #region 顶驱互锁
         /// <summary>
-        /// 二层台与顶驱互锁
+        /// 铁架工与顶驱互锁
         /// </summary>
         private void CBSFLockTop_Clicked(object sender, EventArgs e)
         {
@@ -310,7 +348,12 @@ namespace Main.Integration
 
             if (!this.cbSFLockTop.IsChecked)
             {
-                MessageBoxResult result = MessageBox.Show("确认解除二层台与顶驱互锁？", "提示信息", MessageBoxButton.YesNo);
+                if (GlobalData.Instance.systemRole == SystemRole.OperMan)
+                {
+                    MessageBox.Show("您不具备取消权限！", "提示信息", MessageBoxButton.OK);
+                    return;
+                }
+                MessageBoxResult result = MessageBox.Show("确认解除铁架工与顶驱互锁？", "提示信息", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
                     byteToSend = new byte[] { 16, 1, 26, 21, 1, 0, 0, 0, 0, 0 };
@@ -336,6 +379,11 @@ namespace Main.Integration
 
             if (!this.cbKavaLockTop.IsChecked)
             {
+                if (GlobalData.Instance.systemRole == SystemRole.OperMan)
+                {
+                    MessageBox.Show("您不具备取消权限！", "提示信息", MessageBoxButton.OK);
+                    return;
+                }
                 MessageBoxResult result = MessageBox.Show("确认卡瓦与顶驱解扣输出？", "提示信息", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
@@ -362,6 +410,11 @@ namespace Main.Integration
 
             if (!this.cbElevatorLockTop.IsChecked)
             {
+                if (GlobalData.Instance.systemRole == SystemRole.OperMan)
+                {
+                    MessageBox.Show("您不具备取消权限！", "提示信息", MessageBoxButton.OK);
+                    return;
+                }
                 MessageBoxResult result = MessageBox.Show("确认吊卡与顶驱解扣输出？", "提示信息", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
@@ -390,6 +443,11 @@ namespace Main.Integration
 
             if (!this.cbElevatorLockHook.IsChecked)
             {
+                if (GlobalData.Instance.systemRole == SystemRole.OperMan)
+                {
+                    MessageBox.Show("您不具备取消权限！", "提示信息", MessageBoxButton.OK);
+                    return;
+                }
                 MessageBoxResult result = MessageBox.Show("确认解除吊卡关门锁大钩？", "提示信息", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
@@ -416,6 +474,11 @@ namespace Main.Integration
 
             if (!this.cbTopLockHook.IsChecked)
             {
+                if (GlobalData.Instance.systemRole == SystemRole.OperMan)
+                {
+                    MessageBox.Show("您不具备取消权限！", "提示信息", MessageBoxButton.OK);
+                    return;
+                }
                 MessageBoxResult result = MessageBox.Show("确认解除顶驱与大钩互锁？", "提示信息", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
@@ -434,7 +497,7 @@ namespace Main.Integration
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// </summary>
-        /// 二层台机械手与大钩互锁
+        /// 铁架工机械手与大钩互锁
         /// </summary>
         private void CBSFLockHook_Clicked(object sender, EventArgs e)
         {
@@ -442,7 +505,12 @@ namespace Main.Integration
 
             if (!this.cbSFLockHook.IsChecked)
             {
-                MessageBoxResult result = MessageBox.Show("确认解除二层台机械手与大钩互锁？", "提示信息", MessageBoxButton.YesNo);
+                if (GlobalData.Instance.systemRole == SystemRole.OperMan)
+                {
+                    MessageBox.Show("您不具备取消权限！", "提示信息", MessageBoxButton.OK);
+                    return;
+                }
+                MessageBoxResult result = MessageBox.Show("确认解除铁架工机械手与大钩互锁？", "提示信息", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
                     byteToSend = new byte[] { 16, 1, 26, 33, 1, 0, 0, 0, 0, 0 };
@@ -460,7 +528,7 @@ namespace Main.Integration
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// </summary>
-        /// 钻台面机械手与大钩互锁
+        /// 扶杆臂机械手与大钩互锁
         /// </summary>
         private void CBDRLockHook_Clicked(object sender, EventArgs e)
         {
@@ -468,7 +536,12 @@ namespace Main.Integration
 
             if (!this.cbDRLockHook.IsChecked)
             {
-                MessageBoxResult result = MessageBox.Show("确认解除钻台面机械手与大钩互锁？", "提示信息", MessageBoxButton.YesNo);
+                if (GlobalData.Instance.systemRole == SystemRole.OperMan)
+                {
+                    MessageBox.Show("您不具备取消权限！", "提示信息", MessageBoxButton.OK);
+                    return;
+                }
+                MessageBoxResult result = MessageBox.Show("确认解除扶杆臂机械手与大钩互锁？", "提示信息", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
                     byteToSend = new byte[] { 16, 1, 26, 34, 1, 0, 0, 0, 0, 0 };
@@ -494,6 +567,11 @@ namespace Main.Integration
 
             if (!this.cbIronLockHook.IsChecked)
             {
+                if (GlobalData.Instance.systemRole == SystemRole.OperMan)
+                {
+                    MessageBox.Show("您不具备取消权限！", "提示信息", MessageBoxButton.OK);
+                    return;
+                }
                 MessageBoxResult result = MessageBox.Show("确认解除铁钻工与大钩互锁？", "提示信息", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
@@ -520,6 +598,11 @@ namespace Main.Integration
 
             if (!this.cbPreventBoxLockHook.IsChecked)
             {
+                if (GlobalData.Instance.systemRole == SystemRole.OperMan)
+                {
+                    MessageBox.Show("您不具备取消权限！", "提示信息", MessageBoxButton.OK);
+                    return;
+                }
                 MessageBoxResult result = MessageBox.Show("确认解除防喷盒与大钩互锁？", "提示信息", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
@@ -550,6 +633,39 @@ namespace Main.Integration
         private void Unlock_Click(object sender, RoutedEventArgs e)
         {
             byte[] byteToSend = new byte[] { 16, 1, 21, 31, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 缓冲臂在井口禁止大钩动作
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cbHandLockHook_Clicked(object sender, EventArgs e)
+        {
+            byte[] byteToSend;
+
+            if (!this.cbHandLockHook.IsChecked)
+            {
+                if (GlobalData.Instance.systemRole == SystemRole.OperMan)
+                {
+                    MessageBox.Show("您不具备取消权限！", "提示信息", MessageBoxButton.OK);
+                    return;
+                }
+                MessageBoxResult result = MessageBox.Show("确认解除缓冲臂在井口禁止大钩动作？", "提示信息", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
+                {
+                    byteToSend = new byte[] { 16, 1, 26, 37, 1, 0, 0, 0, 0, 0 };
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                byteToSend = new byte[] { 16, 1, 26, 37, 2, 0, 0, 0, 0, 0 };
+            }
+
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
     }

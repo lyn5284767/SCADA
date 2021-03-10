@@ -59,7 +59,7 @@ namespace Main.Integration
             GlobalData.Instance.da.SendBytes(data);
         }
 
-        #region 钻台面
+        #region 扶杆臂
         private void DRVariableBinding()
         {
             try
@@ -139,7 +139,7 @@ namespace Main.Integration
         }
         #endregion
         /// <summary>
-        /// 司钻/遥控切换，二层台，钻台面，铁钻工只允许一个设备为遥控模式
+        /// 司钻/遥控切换，铁架工，扶杆臂，铁钻工只允许一个设备为遥控模式
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -150,9 +150,9 @@ namespace Main.Integration
             //byte[] sfbyteToSend;
             //if (this.drTelecontrolModel.IsChecked)
             //{
-            //    drbyteToSend = new byte[10] { 1, 32, 2, 21, 0, 0, 0, 0, 0, 0 }; // 钻台面-司钻切遥控
+            //    drbyteToSend = new byte[10] { 1, 32, 2, 21, 0, 0, 0, 0, 0, 0 }; // 扶杆臂-司钻切遥控
             //    sirbyteToSend = new byte[10] { 23, 17, 10, 1, 0, 0, 0, 0, 0, 0 }; // 铁钻工-遥控切司钻
-            //    sfbyteToSend = new byte[10] { 16, 1, 27, 1, 1, 0, 0, 0, 0, 0 };// 二层台-遥控切司钻
+            //    sfbyteToSend = new byte[10] { 16, 1, 27, 1, 1, 0, 0, 0, 0, 0 };// 铁架工-遥控切司钻
             //    GlobalData.Instance.da.SendBytes(drbyteToSend);
             //    Thread.Sleep(50);
             //    GlobalData.Instance.da.SendBytes(sirbyteToSend);
@@ -161,7 +161,7 @@ namespace Main.Integration
             //}
             //else 
             //{
-            //    drbyteToSend = new byte[10] { 1, 32, 2, 20, 0, 0, 0, 0, 0, 0 };// 钻台面-遥控切司钻
+            //    drbyteToSend = new byte[10] { 1, 32, 2, 20, 0, 0, 0, 0, 0, 0 };// 扶杆臂-遥控切司钻
             //    GlobalData.Instance.da.SendBytes(drbyteToSend);
 
             //}
@@ -219,7 +219,7 @@ namespace Main.Integration
                 || GlobalData.Instance.da["324b0"] == null || GlobalData.Instance.da["337b0"] == null
                 || GlobalData.Instance.da["508b5"] == null)
             {
-                Log.Log4Net.AddLog("钻台面告警字段有空值");
+                Log.Log4Net.AddLog("扶杆臂告警字段有空值");
                 return;
             }
             #region 告警1

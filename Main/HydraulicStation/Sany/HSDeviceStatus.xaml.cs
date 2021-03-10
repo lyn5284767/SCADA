@@ -184,7 +184,7 @@ namespace Main.HydraulicStation
                 cpbBufferArmMultiBind.Bindings.Add(new Binding("Maximum") { Source = this.cpbBufferArm, Mode = BindingMode.OneWay });
                 cpbBufferArmMultiBind.NotifyOnSourceUpdated = true;
                 this.cpbBufferArm.SetBinding(CircleProgressBar.ForegroundProperty, cpbBufferArmMultiBind);
-                // 钻台面
+                // 扶杆臂
                 this.cpbDF.SetBinding(CircleProgressBar.ValueProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["DY3APWM"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
                 this.cpbDF.SetBinding(CircleProgressBar.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["DY3APWM"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
                 MultiBinding cpbDFMultiBind = new MultiBinding();

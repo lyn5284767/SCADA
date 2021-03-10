@@ -60,7 +60,7 @@ namespace Main.Integration
             this.btnNext.Content = "下一步";
             if (step == 0)
             {
-                this.tbNowStep.Text = "液压站设置";
+                this.tbNowStep.Text = "液压站启动设置";
                 this.tbFinishStep.Text = "第1项，共6项";
                 this.gdHSSet.Visibility = Visibility.Visible;
                 this.btnPre.Visibility = Visibility.Collapsed;
@@ -84,6 +84,15 @@ namespace Main.Integration
                     this.btnPumpTwo.Foreground = (Brush)bc.ConvertFrom("#000000");
                     this.btnPumpBoth.Foreground = (Brush)bc.ConvertFrom("#2B71CA");
                     this.tbConfirmHS.Text = "液压站:双泵";
+                }
+
+                if (globalModel.HS_VoltagePump == 0)
+                {
+                    this.btnVoltagePump.Foreground = (Brush)bc.ConvertFrom("#000000");
+                }
+                else if(globalModel.HS_VoltagePump == 1) {
+                    this.btnVoltagePump.Foreground = (Brush)bc.ConvertFrom("#2B71CA");
+                    this.tbConfirmHS.Text += "+恒压泵";
                 }
             }
             else if (step == 1)
@@ -467,6 +476,15 @@ namespace Main.Integration
             this.Step += 1;
             if (this.Step > 6) this.Step = 6;
             ShowStep(this.Step);
+        }
+        /// <summary>
+        /// 恒压泵启动
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnVoltagePump_Click(object sender, RoutedEventArgs e)
+        {
+            globalModel.HS_VoltagePump = 1;
         }
     }
 }

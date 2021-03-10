@@ -116,7 +116,7 @@ namespace Main.HydraulicStation
 
             alarmList.Add(new AlarmInfo() { TagName = "793b0", Description = "铁钻工压力传感器故障", NowType = 0, NeedCheck = true });
             alarmList.Add(new AlarmInfo() { TagName = "793b1", Description = "大钳压力传感器故障", NowType = 0, NeedCheck = true });
-            alarmList.Add(new AlarmInfo() { TagName = "793b2", Description = "钻台面压力传感器故障", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "793b2", Description = "扶杆臂压力传感器故障", NowType = 0, NeedCheck = true });
             alarmList.Add(new AlarmInfo() { TagName = "793b3", Description = "猫道压力传感器故障", NowType = 0, NeedCheck = true });
             alarmList.Add(new AlarmInfo() { TagName = "793b4", Description = "主压力传感器故障", NowType = 0, NeedCheck = true });
             alarmList.Add(new AlarmInfo() { TagName = "793b5", Description = "恒压泵未合闸", NowType = 0, NeedCheck = true });
@@ -573,18 +573,18 @@ namespace Main.HydraulicStation
             //}
             //if (GlobalData.Instance.da["793b2"].Value.Boolean)
             //{
-            //    this.tipList.TryGetValue("液压站-钻台面压力传感器故障", out key);
+            //    this.tipList.TryGetValue("液压站-扶杆臂压力传感器故障", out key);
             //    if (key == 0)
             //    {
-            //        this.tipList.Add("液压站-钻台面压力传感器故障", 1);
+            //        this.tipList.Add("液压站-扶杆臂压力传感器故障", 1);
             //    }
             //}
             //else
             //{
-            //    this.tipList.TryGetValue("液压站-钻台面压力传感器故障", out key);
+            //    this.tipList.TryGetValue("液压站-扶杆臂压力传感器故障", out key);
             //    if (key != 0)
             //    {
-            //        this.tipList.Remove("液压站-钻台面压力传感器故障");
+            //        this.tipList.Remove("液压站-扶杆臂压力传感器故障");
             //    }
             //}
             //if (GlobalData.Instance.da["793b3"].Value.Boolean)
@@ -875,7 +875,7 @@ namespace Main.HydraulicStation
                 cpbCatHeadPumpMultiBind.Bindings.Add(new Binding("Maximum") { Source = this.cpbCatHeadPump, Mode = BindingMode.OneWay });
                 cpbCatHeadPumpMultiBind.NotifyOnSourceUpdated = true;
                 this.cpbCatHeadPump.SetBinding(CircleProgressBar.ForegroundProperty, cpbCatHeadPumpMultiBind);
-                // 钻台面
+                // 扶杆臂
                 this.cpbFPPump.SetBinding(CircleProgressBar.ValueProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["FPPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
                 this.cpbFPPump.SetBinding(CircleProgressBar.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["FPPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
                 MultiBinding cpbFPPumpMultiBind = new MultiBinding();

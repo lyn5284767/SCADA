@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Main.Integration" xmlns:cl="http://talonzeng.com/ControlLibrary"
              mc:Ignorable="d" 
-            d:DesignHeight="650" d:DesignWidth="860" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="ingSecureOne">
+            d:DesignHeight="680" d:DesignWidth="860" Foreground="#525252" FontSize="14" Background="#F5F6FA" Margin="1" Name="ingSecureOne">
     <UserControl.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="FontWeight" Value="Bold"/>
@@ -62,23 +62,23 @@
                     </Border>
                     <StackPanel Orientation="Horizontal">
                         <cl:SymbolMapping Name="smElevatorLockKava" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
-                            <TextBlock Text="吊卡关门允许卡瓦打开" FontSize="20"></TextBlock>
-                        <cl:CustomCheckBox ContentString="解锁" Margin="70,15,15,15" IsChecked="True" Name="cbElevatorLockKava" UserControlClicked="CBElevatorLockKava_Clicked"/>
+                            <TextBlock Text="吊卡未关闭禁止卡瓦打开" FontSize="20"></TextBlock>
+                        <cl:CustomCheckBox ContentString="解锁" Margin="50,15,15,15" IsChecked="True" Name="cbElevatorLockKava" UserControlClicked="CBElevatorLockKava_Clicked"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <cl:SymbolMapping Name="smIronLockKava" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
-                            <TextBlock Text="铁钻工非上卸扣允许卡瓦打开" FontSize="20"></TextBlock>
-                            <cl:CustomCheckBox ContentString="解锁" Margin="10,15,15,15"  IsChecked="True" Name="cbIronLockKava" UserControlClicked="CBIronLockKava_Clicked"/>
+                            <TextBlock Text="铁钻工上卸扣禁止卡瓦打开" FontSize="20"></TextBlock>
+                            <cl:CustomCheckBox ContentString="解锁" Margin="30,15,15,15"  IsChecked="True" Name="cbIronLockKava" UserControlClicked="CBIronLockKava_Clicked"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <cl:SymbolMapping Name="smHookLockKava" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
-                            <TextBlock Text="大钩静止允许卡瓦关闭" FontSize="20"></TextBlock>
+                            <TextBlock Text="大钩动作禁止卡瓦关闭" FontSize="20"></TextBlock>
                             <cl:CustomCheckBox ContentString="解锁" Margin="70,15,15,15"  IsChecked="True" Name="cbHookLockKava" UserControlClicked="CBHookLockKava_Clicked"/>
                     </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <cl:SymbolMapping Name="smTopLockKava" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
-                            <TextBlock Text="顶驱卡扣允许卡瓦打开" FontSize="20"></TextBlock>
-                            <cl:CustomCheckBox ContentString="解锁" Margin="70,15,15,15"  IsChecked="True" Name="cbTopLockKava" UserControlClicked="CBTopLockKava_Clicked"/>
+                            <TextBlock Text="顶驱未卡扣禁止卡瓦打开" FontSize="20"></TextBlock>
+                            <cl:CustomCheckBox ContentString="解锁" Margin="50,15,15,15"  IsChecked="True" Name="cbTopLockKava" UserControlClicked="CBTopLockKava_Clicked"/>
                         </StackPanel>
                     </StackPanel>
             </Border>
@@ -89,18 +89,18 @@
                         </Border>
                         <StackPanel Orientation="Horizontal">
                             <cl:SymbolMapping Name="smHandLockElevaltor" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
-                            <TextBlock Text="抓手关闭允许吊卡打开" FontSize="20"></TextBlock>
+                            <TextBlock Text="抓手打开禁止吊卡打开" FontSize="20"></TextBlock>
                             <cl:CustomCheckBox ContentString="解锁" Margin="70,15,15,15"  IsChecked="True" Name="cbHandLockElevaltor" UserControlClicked="CBHandLockElevaltor_Clicked"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <cl:SymbolMapping Name="smKavaLockElevator" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
-                            <TextBlock Text="卡瓦关门允许吊卡打开" FontSize="20"></TextBlock>
+                            <TextBlock Text="卡瓦打开禁止吊卡打开" FontSize="20"></TextBlock>
                             <cl:CustomCheckBox ContentString="解锁" Margin="70,15,15,15"  IsChecked="True" Name="cbKavaLockElevator" UserControlClicked="CBKavaLockElevator_Clicked"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <cl:SymbolMapping Name="smTopLockElevator" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
-                            <TextBlock Text="顶驱卡扣允许吊卡打开" FontSize="20"></TextBlock>
-                            <cl:CustomCheckBox ContentString="解锁" Margin="70,15,15,15"  IsChecked="True" Name="cbTopLockElevator" UserControlClicked="CBTopLockElevator_Clicked"/>
+                            <TextBlock Text="顶驱未卡扣禁止吊卡打开" FontSize="20"></TextBlock>
+                            <cl:CustomCheckBox ContentString="解锁" Margin="50,15,15,15"  IsChecked="True" Name="cbTopLockElevator" UserControlClicked="CBTopLockElevator_Clicked"/>
                         </StackPanel>
                     </StackPanel>
                 </Border>
@@ -114,54 +114,59 @@
                         </Border>
                         <StackPanel Orientation="Horizontal">
                             <cl:SymbolMapping Name="smElevatorLockHook" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
-                            <TextBlock Text="吊卡关门进行中锁大钩" FontSize="20"></TextBlock>
-                            <cl:CustomCheckBox ContentString="解锁" Margin="50,5,15,5"  IsChecked="True" Name="cbElevatorLockHook" UserControlClicked="CBElevatorLockHook_Clicked"/>
+                            <TextBlock Text="吊卡关门中禁止大钩动作" FontSize="20"></TextBlock>
+                            <cl:CustomCheckBox ContentString="解锁" Margin="30,5,15,5"  IsChecked="True" Name="cbElevatorLockHook" UserControlClicked="CBElevatorLockHook_Clicked"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <cl:SymbolMapping Name="smTopLockHook" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
-                            <TextBlock Text="顶驱偏摆锁大钩" FontSize="20"></TextBlock>
-                            <cl:CustomCheckBox ContentString="解锁" Margin="110,5,15,5"  IsChecked="True" Name="cbTopLockHook" UserControlClicked="CBTopLockHook_Clicked"/>
+                            <TextBlock Text="顶驱偏摆禁止大钩动作" FontSize="20"></TextBlock>
+                            <cl:CustomCheckBox ContentString="解锁" Margin="50,5,15,5"  IsChecked="True" Name="cbTopLockHook" UserControlClicked="CBTopLockHook_Clicked"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <cl:SymbolMapping Name="smSFLockHook" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
-                            <TextBlock Text="二层台在井口锁大钩" FontSize="20"></TextBlock>
-                            <cl:CustomCheckBox ContentString="解锁" Margin="70,5,15,5"  IsChecked="True" Name="cbSFLockHook" UserControlClicked="CBSFLockHook_Clicked"/>
+                            <TextBlock Text="铁架工在井口禁止大钩动作" FontSize="20"></TextBlock>
+                            <cl:CustomCheckBox ContentString="解锁" Margin="10,5,15,5"  IsChecked="True" Name="cbSFLockHook" UserControlClicked="CBSFLockHook_Clicked"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <cl:SymbolMapping Name="smDRLockHook" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
-                            <TextBlock Text="钻台面在井口锁大钩" FontSize="20"></TextBlock>
-                            <cl:CustomCheckBox ContentString="解锁" Margin="70,5,15,5"  IsChecked="True" Name="cbDRLockHook" UserControlClicked="CBDRLockHook_Clicked"/>
+                            <TextBlock Text="扶杆臂在井口禁止大钩动作" FontSize="20"></TextBlock>
+                            <cl:CustomCheckBox ContentString="解锁" Margin="10,5,15,5"  IsChecked="True" Name="cbDRLockHook" UserControlClicked="CBDRLockHook_Clicked"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <cl:SymbolMapping Name="smIronLockHook" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
-                            <TextBlock Text="铁钻工在井口锁大钩" FontSize="20"></TextBlock>
-                            <cl:CustomCheckBox ContentString="解锁" Margin="70,5,15,5"  IsChecked="True" Name="cbIronLockHook" UserControlClicked="CBIronLockHook_Clicked"/>
+                            <TextBlock Text="铁钻工在井口禁止大钩动作" FontSize="20"></TextBlock>
+                            <cl:CustomCheckBox ContentString="解锁" Margin="10,5,15,5"  IsChecked="True" Name="cbIronLockHook" UserControlClicked="CBIronLockHook_Clicked"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <cl:SymbolMapping Name="smPreventBoxLockHook" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
-                            <TextBlock Text="防喷盒在井口锁大钩" FontSize="20"></TextBlock>
-                            <cl:CustomCheckBox ContentString="解锁" Margin="70,5,15,5"  IsChecked="True" Name="cbPreventBoxLockHook" UserControlClicked="CBPreventBoxLockHook_Clicked"/>
+                            <TextBlock Text="防喷盒在井口禁止大钩动作" FontSize="20"></TextBlock>
+                            <cl:CustomCheckBox ContentString="解锁" Margin="10,5,15,5"  IsChecked="True" Name="cbPreventBoxLockHook" UserControlClicked="CBPreventBoxLockHook_Clicked"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <cl:SymbolMapping Name="smHandLockHook" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
+                            <TextBlock Text="缓冲臂在井口禁止大钩动作" FontSize="20"></TextBlock>
+                            <cl:CustomCheckBox ContentString="解锁" Margin="10,5,15,5"  IsChecked="True" Name="cbHandLockHook" UserControlClicked="cbHandLockHook_Clicked"/>
                         </StackPanel>
                     </StackPanel>
                 </Border>
-                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,5,2,5" Width="420">
+                <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,0,2,5" Width="420">
                     <StackPanel>
                         <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,0,1" Margin="5" Padding="3">
                             <Label HorizontalAlignment="Center" FontFamily="微软雅黑" Foreground="#E0496D" FontSize="24">顶驱设置</Label>
                         </Border>
                         <StackPanel Orientation="Horizontal">
                             <cl:SymbolMapping Name="smSFLockTop" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
-                            <TextBlock Text="二层台在井口禁止顶驱偏摆" FontSize="20"></TextBlock>
+                            <TextBlock Text="铁架工在井口禁止顶驱偏摆" FontSize="20"></TextBlock>
                             <cl:CustomCheckBox ContentString="解锁" Margin="10,5,15,5"  Name="cbSFLockTop" UserControlClicked="CBSFLockTop_Clicked"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <cl:SymbolMapping Name="smKavaLockTop" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
-                            <TextBlock Text="卡瓦关门允许顶驱解扣" FontSize="20"></TextBlock>
+                            <TextBlock Text="卡瓦打开禁止顶驱解扣" FontSize="20"></TextBlock>
                             <cl:CustomCheckBox ContentString="解锁" Margin="50,5,15,5"  Name="cbKavaLockTop" UserControlClicked="CBKavaLockTop_Clicked"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <cl:SymbolMapping Name="smElevatorLockTop" Width="40" Height="40" StrContent="" Margin="20,2,2,2"/>
-                            <TextBlock Text="吊卡关门允许顶驱解扣" FontSize="20"></TextBlock>
+                            <TextBlock Text="吊卡打开禁止顶驱解扣" FontSize="20"></TextBlock>
                             <cl:CustomCheckBox ContentString="解锁" Margin="50,5,15,5"  Name="cbElevatorLockTop" UserControlClicked="CBElevatorLockTop_Clicked"/>
                         </StackPanel>
                     </StackPanel>

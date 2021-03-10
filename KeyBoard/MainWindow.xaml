@@ -7,7 +7,7 @@
         mc:Ignorable="d"
                x:Name="KeyBord"  WindowState="Normal" ShowActivated="False" Focusable="False" Loaded="Window_Loaded"  WindowStyle="None"
         AllowsTransparency="True" ResizeMode="NoResize" Background="Transparent" MouseDown="Window_MouseDown" Topmost="True"    
-        Title="MainWindow" Height="280" Width="210" StateChanged="KeyBord_StateChanged">
+        Title="MainWindow" Height="280" Width="280" StateChanged="KeyBord_StateChanged">
     <Window.Resources>
         <Style x:Key="MyFocusVisual">
             <Setter Property="Control.Template">
@@ -147,13 +147,14 @@
                                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   ><Run Text="3"/></TextBlock>
                                 </StackPanel>
                             </Button>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" >
                             <Button Name="cmd4" Focusable="False" Click="Button_Click" Style="{StaticResource InformButton}"  VerticalContentAlignment="Top" LostFocus="cmd1_LostFocus" HorizontalContentAlignment="Left"  Width="60" Height="60">
                                 <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top"   >
                                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   ><Run Text="4"/></TextBlock>
                                 </StackPanel>
                             </Button>
+
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" >
                             <Button Name="cmd5" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click"  VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="60" Height="60">
                                 <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
                                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   ><Run Text="5"/></TextBlock>
@@ -164,8 +165,6 @@
                                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   ><Run Text="6"/></TextBlock>
                                 </StackPanel>
                             </Button>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" >
                             <Button Name="cmd7" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click"  VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="60" Height="60">
                                 <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
                                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   ><Run Text="7"/></TextBlock>
@@ -177,30 +176,40 @@
                                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   ><Run Text="8"/></TextBlock>
                                 </StackPanel>
                             </Button>
-
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" >
+                          
                             <Button Name="cmd9" Focusable="False" Click="Button_Click" Style="{StaticResource InformButton}"   VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="60" Height="60">
                                 <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
                                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   ><Run Text="9"/></TextBlock>
                                 </StackPanel>
                             </Button>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" >
-                            <Button Name="cmd0" Focusable="False" Click="Button_Click" Style="{StaticResource InformButton}"  VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="28" Height="60">
+                            <Button Name="cmd0" Focusable="False" Click="Button_Click" Style="{StaticResource InformButton}"  VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="60" Height="60">
                                 <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
                                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   ><Run Text="0"/></TextBlock>
                                 </StackPanel>
                             </Button>
-                            <Button Name="cmdpoint" Focusable="False" Click="Button_Click" Style="{StaticResource InformButton}"  VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="28" Height="60">
+                            <Button Name="cmdpoint" Focusable="False" Click="Button_Click" Style="{StaticResource InformButton}"  VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="60" Height="60">
                                 <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
                                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   ><Run Text="."/></TextBlock>
                                 </StackPanel>
                             </Button>
-                            <Button Name="cmdBackspace" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="60" Height="60">
+                            <Button Name="cmdminus" Focusable="False" Click="Button_Click" Style="{StaticResource InformButton}"  VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="60" Height="60">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   ><Run Text="-"/></TextBlock>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" >
+                            
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" >
+                           <Button Name="cmdBackspace" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="125" Height="60">
                                 <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
                                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   ><Run Text="del"/></TextBlock>
                                 </StackPanel>
                             </Button>
-                            <Button Name="CmdClose" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="60" Height="60">
+                            <Button Name="CmdClose" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="125" Height="60">
                                 <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
                                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   ><Run Text="关闭"/></TextBlock>
                                 </StackPanel>

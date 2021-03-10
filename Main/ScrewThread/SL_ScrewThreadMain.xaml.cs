@@ -61,18 +61,20 @@ namespace Main.ScrewThread
             this.tbMousePos.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["Screw_SL_MouseMove"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
             this.tbPointAngle.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["Screw_SL_OrginAngle"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
             this.tbPointPos.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["Screw_SL_OrginMove"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
-            this.tbDownTime.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["Screw_SL_DescendTime"], Mode = BindingMode.OneWay });
-            this.tbInTime.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["Screw_SL_PerfusionTime"], Mode = BindingMode.OneWay });
-            this.tbUpTime.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["Screw_SL_RiseTime"], Mode = BindingMode.OneWay });
+            this.tbDownTime.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["Screw_SL_DescendTime"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+            this.tbInTime.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["Screw_SL_PerfusionTime"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+            this.tbUpTime.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["Screw_SL_RiseTime"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
 
-            this.smEncoder.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["951b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
-            this.smLeftBeyond.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["951b1"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
-            this.smRightBeyond.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["951b2"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
-            this.smWellReturn.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["951b3"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
-            this.smMouseReturn.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["951b4"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
-            this.smOrginReturn.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["951b5"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
-            this.smRun.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["951b6"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
-            this.smAuto.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["951b7"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.smEncoder.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["971b0"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.smLeftBeyond.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["971b1"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.smRightBeyond.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["971b2"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.smWellReturn.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["971b3"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.smMouseReturn.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["971b4"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.smOrginReturn.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["971b5"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.smRun.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["971b6"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.smAuto.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["971b7"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
+            this.btnPreventBox.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["972b0"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+            this.btnScrew.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["972b1"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
 
             // 设置值
             Dictionary<int, string> dicNumToValue = new Dictionary<int, string>();
@@ -99,7 +101,7 @@ namespace Main.ScrewThread
             this.cbSet.SelectedValuePath = "Key";
             this.cbSet.DisplayMemberPath = "Value";
             this.cbSet.SelectedIndex = 0;
-            this.textBoxShow.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["Screw_SL_ParamValue"], Mode = BindingMode.OneWay, ConverterParameter = dicNumToValue, Converter = new NumToTextConverter() });
+            this.textBoxShow.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["Screw_SL_ParamValue"], Mode = BindingMode.OneWay });
 
         }
         /// <summary>
@@ -378,13 +380,13 @@ namespace Main.ScrewThread
         /// <param name="e"></param>
         private void cbSet_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string strText = string.Empty;
-            if (this.cbSet.SelectedValue != null) strText = this.cbSet.SelectedValue.ToString();
-            if (strText.Length == 0) strText = "0";
-            short i16Text = Convert.ToInt16(strText);
-            byte[] tempByte = BitConverter.GetBytes(i16Text);
-            byte[] byteToSend = new byte[10] { 80, 64, 7, 1, tempByte[0], tempByte[1], 0, 0, 0, 0 };
-            GlobalData.Instance.da.SendBytes(byteToSend);
+            //string strText = string.Empty;
+            //if (this.cbSet.SelectedValue != null) strText = this.cbSet.SelectedValue.ToString();
+            //if (strText.Length == 0) strText = "0";
+            //short i16Text = (short)(double.Parse(strText) * 10);
+            //byte[] tempByte = BitConverter.GetBytes(i16Text);
+            //byte[] byteToSend = new byte[10] { 80, 64, 7, 1, tempByte[0], tempByte[1], 0, 0, 0, 0 };
+            //GlobalData.Instance.da.SendBytes(byteToSend);
 
         }
         /// <summary>
@@ -398,6 +400,21 @@ namespace Main.ScrewThread
             {
                 GlobalData.Instance.GetKeyBoard();
             }
+        }
+        /// <summary>
+        /// 读取
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Read_Click(object sender, RoutedEventArgs e)
+        {
+            string strText = string.Empty;
+            if (this.cbSet.SelectedValue != null) strText = this.cbSet.SelectedValue.ToString();
+            if (strText.Length == 0) strText = "0";
+            short i16Text = (short)(double.Parse(strText) * 1);
+            byte[] tempByte = BitConverter.GetBytes(i16Text);
+            byte[] byteToSend = new byte[10] { 80, 64, 7, 1, tempByte[0], tempByte[1], 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
         }
     }
 }

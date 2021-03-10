@@ -27,9 +27,9 @@ namespace Main.Integration
         private void GetLockDevice()
         {
             List<LockInfo> list = new List<LockInfo>();
-            list.Add(new LockInfo() { ID = 1, Content = "钻台面与大钩互锁", Opr = "请解除钻台面锁大钩" });
-            list.Add(new LockInfo() { ID = 2, Content = "钻台面与大钩互锁", Opr = "请解除钻台面锁大钩" });
-            list.Add(new LockInfo() { ID = 3, Content = "钻台面与大钩互锁", Opr = "请解除钻台面锁大钩" });
+            list.Add(new LockInfo() { ID = 1, Content = "扶杆臂与大钩互锁", Opr = "请解除扶杆臂锁大钩" });
+            list.Add(new LockInfo() { ID = 2, Content = "扶杆臂与大钩互锁", Opr = "请解除扶杆臂锁大钩" });
+            list.Add(new LockInfo() { ID = 3, Content = "扶杆臂与大钩互锁", Opr = "请解除扶杆臂锁大钩" });
             this.lvRecord.ItemsSource = list;
         }
     }

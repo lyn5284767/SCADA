@@ -53,7 +53,7 @@
             </Grid.RowDefinitions>
             <Button Width="600" Height="40" Panel.ZIndex="1" HorizontalAlignment="Center"  
                                  Background="#2B71CA" BorderBrush="#92C202" Grid.ColumnSpan="2">
-                <TextBlock Text="钻台面(三一)" Foreground="White" FontSize="24"/>
+                <TextBlock Text="扶杆臂(三一)" Foreground="White" FontSize="24"/>
             </Button>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>

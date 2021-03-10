@@ -45,15 +45,15 @@ namespace Main
                 return _instance;
             }
         }
-        private List<BorderNum> drSelectFingerList = new List<BorderNum>(); // 钻台面对准指梁
-        private List<BorderNum> sfSelectFingerList = new List<BorderNum>(); // 二层台对准指梁
-        private List<ImageNum> drSelectImageList = new List<ImageNum>(); // 钻台面对准指梁图片
-        private List<ImageNum> sfSelectImageList = new List<ImageNum>(); // 二层台对准指梁图片
+        private List<BorderNum> drSelectFingerList = new List<BorderNum>(); // 扶杆臂对准指梁
+        private List<BorderNum> sfSelectFingerList = new List<BorderNum>(); // 铁架工对准指梁
+        private List<ImageNum> drSelectImageList = new List<ImageNum>(); // 扶杆臂对准指梁图片
+        private List<ImageNum> sfSelectImageList = new List<ImageNum>(); // 铁架工对准指梁图片
         private string configPath = System.Environment.CurrentDirectory + @"\Config.ini";
         //private bool bLoaded = false;
         const int STRINGMAX = 255;
         System.Threading.Timer timer;
-        #region 二层台参数
+        #region 铁架工参数
         private int rows;//行数
         private int coloms;//列数 
         private int drillCnt;//钻铤的个数
@@ -73,9 +73,9 @@ namespace Main
 
         public event SetDrillNum SetDrillNumEvent;
 
-        // 二层台指梁
+        // 铁架工指梁
         List<StackPanel> spSF = new List<StackPanel>();
-        // 钻台面指梁
+        // 扶杆臂指梁
         List<StackPanel> spDR = new List<StackPanel>();
         /// <summary>
         /// 中间间距
@@ -99,8 +99,8 @@ namespace Main
         public static readonly DependencyProperty RobotArmPositionProperty = DependencyProperty.Register("RobotArmPosition", typeof(short), typeof(AminationNew), new PropertyMetadata((short)0)); // 手臂位置
         public static readonly DependencyProperty WorkAnimationWidthProperty = DependencyProperty.Register("WorkAnimationWidth", typeof(double), typeof(AminationNew), new PropertyMetadata((double)0.0)); // 手臂最大位移
 
-        public static readonly DependencyProperty SFProperty = DependencyProperty.Register("SFType", typeof(SystemType), typeof(AminationNew), new PropertyMetadata(SystemType.SecondFloor)); // 二层台显示
-        public static readonly DependencyProperty DRProperty = DependencyProperty.Register("DRType", typeof(SystemType), typeof(AminationNew), new PropertyMetadata(SystemType.SecondFloor)); // 钻台面台显示
+        public static readonly DependencyProperty SFProperty = DependencyProperty.Register("SFType", typeof(SystemType), typeof(AminationNew), new PropertyMetadata(SystemType.SecondFloor)); // 铁架工显示
+        public static readonly DependencyProperty DRProperty = DependencyProperty.Register("DRType", typeof(SystemType), typeof(AminationNew), new PropertyMetadata(SystemType.SecondFloor)); // 扶杆臂台显示
 
         /// <summary>
         /// 钻杆行高
@@ -236,7 +236,7 @@ namespace Main
             get { return rows; }
         }
 
-        #region 钻台面参数
+        #region 扶杆臂参数
         List<DrillModel> drDrillCountList = new List<DrillModel>();// 各个指梁所拥有的钻杆数目
         //private int drFirstHeight = 25;// 第一行高度
         //private int drHeight = 20; // 每行高度
@@ -260,7 +260,7 @@ namespace Main
         public static readonly DependencyProperty DRWorkAnimationWidthProperty = DependencyProperty.Register("DRWorkAnimationWidth", typeof(double), typeof(AminationNew), new PropertyMetadata((double)0.0)); // 手臂最大位移
 
         /// <summary>
-        /// 钻台面-钻杆行高
+        /// 扶杆臂-钻杆行高
         /// </summary>
         public double DRRowHeight
         {
@@ -268,7 +268,7 @@ namespace Main
             set { SetValue(DRRowHeightProperty, value); }
         }
         /// <summary>
-        /// 钻台面-钻铤行高
+        /// 扶杆臂-钻铤行高
         /// </summary>
         public double DRFirstRowHeight
         {
@@ -276,7 +276,7 @@ namespace Main
             set { SetValue(DRFirstRowHeightProperty, value); }
         }
         /// <summary>
-        /// 钻台面-当前指梁号
+        /// 扶杆臂-当前指梁号
         /// </summary>
         public byte DRCurrentPointFingerBeamNumber
         {
@@ -284,7 +284,7 @@ namespace Main
             set { SetValue(DRCurrentPointFingerBeamNumberProperty, value); }
         }
         /// <summary>
-        /// 钻台面-操作模式
+        /// 扶杆臂-操作模式
         /// </summary>
         public byte DROperationModel
         {
@@ -292,7 +292,7 @@ namespace Main
             set { SetValue(DROperationModelProperty, value); }
         }
         /// <summary>
-        /// 钻台面-上位机选择的指梁
+        /// 扶杆臂-上位机选择的指梁
         /// </summary>
         public byte DRPCFingerBeamNumberFeedBack
         {
@@ -300,7 +300,7 @@ namespace Main
             set { SetValue(DRPCFingerBeamNumberFeedBackProperty, value); }
         }
         /// <summary>
-        /// 钻台面-小车位置
+        /// 扶杆臂-小车位置
         /// </summary>
         public short DRRobotCarPosition
         {
@@ -308,7 +308,7 @@ namespace Main
             set { SetValue(DRRobotCarPositionProperty, value); }
         }
         ///<summary>
-        /// 钻台面-小车位移实际高度
+        /// 扶杆臂-小车位移实际高度
         /// </summary>
         public double DRRealHeight
         {
@@ -317,7 +317,7 @@ namespace Main
         }
 
         ///<summary>
-        /// 钻台面-中间高度--减去用于置于零点
+        /// 扶杆臂-中间高度--减去用于置于零点
         /// </summary>
         public double DRMiddleHeight
         {
@@ -325,7 +325,7 @@ namespace Main
             set { SetValue(DRMiddleHeightProperty, value); }
         }
         /// <summary>
-        /// 钻台面-抓手状态
+        /// 扶杆臂-抓手状态
         /// </summary>
         public byte DRRobotGripStatus
         {
@@ -333,7 +333,7 @@ namespace Main
             set { SetValue(DRRobotGripStatusProperty, value); }
         }
         /// <summary>
-        /// 钻台面-手臂旋转角度
+        /// 扶杆臂-手臂旋转角度
         /// </summary>
         public short DRRobotArmRotateAngle
         {
@@ -341,7 +341,7 @@ namespace Main
             set { SetValue(DRRobotArmRotateAngleProperty, value); }
         }
         /// <summary>
-        /// 钻台面-手臂位置
+        /// 扶杆臂-手臂位置
         /// </summary>
         public short DRRobotArmPosition
         {
@@ -349,7 +349,7 @@ namespace Main
             set { SetValue(DRRobotArmPositionProperty, value); }
         }
         /// <summary>
-        /// 钻台面-手臂最大位移
+        /// 扶杆臂-手臂最大位移
         /// </summary>
         public double DRWorkAnimationWidth
         {
@@ -376,7 +376,7 @@ namespace Main
         {
             try
             {
-                #region 钻台面所有指梁
+                #region 扶杆臂所有指梁
                 drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow1, Num = 1 });
                 drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow2, Num = 2 });
                 drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow3, Num = 3 });
@@ -444,7 +444,7 @@ namespace Main
                 drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow32, Num = 32 });
                 #endregion
 
-                #region 二层台所有指梁
+                #region 铁架工所有指梁
                 sfSelectFingerList.Add(new BorderNum { SelectBorder = this.FingerBeamArrow1, Num = 1 });
                 sfSelectFingerList.Add(new BorderNum { SelectBorder = this.FingerBeamArrow2, Num = 2 });
                 sfSelectFingerList.Add(new BorderNum { SelectBorder = this.FingerBeamArrow3, Num = 3 });
@@ -519,7 +519,7 @@ namespace Main
                 this.SetBinding(RobotArmPositionProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["armRealPosition"], Mode = BindingMode.OneWay });//手臂的实际位置
                 this.SetBinding(RobotArmRotateAngleProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["callAngle"], Mode = BindingMode.OneWay, Converter = new CallAngleConverter() });//回转电机的角度值
                 this.SetBinding(CurrentPointFingerBeamNumberProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"], Mode = BindingMode.OneWay });//当前所移动到的指梁号反馈
-                #region 二层台参数
+                #region 铁架工参数
                 this.tbrow0LeftRP.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["112N2N22N9FingerBeamDrillPipeCount16"], Mode = BindingMode.OneWay });
                 this.tbrow1LeftRP.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["111N2N22N9FingerBeamDrillPipeCount1"], Mode = BindingMode.OneWay });
                 this.tbrow2LeftRP.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["111N2N22N9FingerBeamDrillPipeCount2"], Mode = BindingMode.OneWay });
@@ -556,7 +556,7 @@ namespace Main
                 leftDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["112N2N22N9FingerBeamDrillPipeCount14"], Mode = BindingMode.OneWay });
                 leftDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["112N2N22N9FingerBeamDrillPipeCount15"], Mode = BindingMode.OneWay });
                 leftDrillMultiBind.NotifyOnSourceUpdated = true;
-                leftDrillMultiBind.ConverterParameter = "二层台 左:";
+                leftDrillMultiBind.ConverterParameter = "铁架工 左:";
                 this.tbRPLeft.SetBinding(TextBlock.TextProperty, leftDrillMultiBind);
 
                 RightDrillCoverter rightDrillCoverter = new RightDrillCoverter();
@@ -599,7 +599,7 @@ namespace Main
                 this.tbrow0RightRP.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["114N2N22N9FingerBeamDrillPipeCount32"], Mode = BindingMode.OneWay });
                 #endregion
 
-                #region 初始化二层台钻杆/钻铤数量
+                #region 初始化铁架工钻杆/钻铤数量
                 FingerBeamDrillPipeCountList.Clear();
                 FingerBeamDrillPipeCountList.Add(new DrillModel() { Name = "111N2N22N9FingerBeamDrillPipeCount1", Num = 0 });
                 FingerBeamDrillPipeCountList.Add(new DrillModel() { Name = "111N2N22N9FingerBeamDrillPipeCount2", Num = 0 });
@@ -637,7 +637,7 @@ namespace Main
                 FingerBeamDrillPipeCountList.Add(new DrillModel() { Name = "114N2N22N9FingerBeamDrillPipeCount31", Num = 0 });
                 FingerBeamDrillPipeCountList.Add(new DrillModel() { Name = "114N2N22N9FingerBeamDrillPipeCount32", Num = 0 });
                 #endregion
-                #region 初始化钻台面钻杆/钻铤数量
+                #region 初始化扶杆臂钻杆/钻铤数量
                 this.drDrillCountList.Clear();
                 this.drDrillCountList.Add(new DrillModel() { Name = "drDrillNum1", Num = 0, LorR = "left" });
                 this.drDrillCountList.Add(new DrillModel() { Name = "drDrillNum2", Num = 0, LorR = "left" });
@@ -673,7 +673,7 @@ namespace Main
                 this.drDrillCountList.Add(new DrillModel() { Name = "drDrillNum32", Num = 0, LorR = "right" });
                 #endregion
 
-                #region 钻台面参数绑定
+                #region 扶杆臂参数绑定
                 this.SetBinding(DROperationModelProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });//操作模式  
                 this.SetBinding(DRRobotCarPositionProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["drCarPos"], Mode = BindingMode.OneWay });//小车实际位置
                 this.SetBinding(DRRobotGripStatusProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drgripStatus"], Mode = BindingMode.OneWay });//抓手的18种状态
@@ -719,7 +719,7 @@ namespace Main
                 leftFPDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drDrillNum14"], Mode = BindingMode.OneWay });
                 leftFPDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drDrillNum15"], Mode = BindingMode.OneWay });
                 leftFPDrillMultiBind.NotifyOnSourceUpdated = true;
-                leftFPDrillMultiBind.ConverterParameter = "钻台面 左:";
+                leftFPDrillMultiBind.ConverterParameter = "扶杆臂 左:";
                 this.tbFPLeft.SetBinding(TextBlock.TextProperty, leftFPDrillMultiBind);
 
                 this.tbrow1RightFP.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drDrillNum17"], Mode = BindingMode.OneWay });
@@ -786,7 +786,7 @@ namespace Main
         /// </summary>
         private void FingerBeamArrowBind()
         {
-            //#region 钻台面
+            //#region 扶杆臂
             //AnimationCurrentFingerBeamVisableCoverter drCurrentFingerBeamCoverter = new AnimationCurrentFingerBeamVisableCoverter();
             //MultiBinding dr15DrillMultiBind = new MultiBinding();
             //dr15DrillMultiBind.Converter = drCurrentFingerBeamCoverter;
@@ -1029,7 +1029,7 @@ namespace Main
             //this.drFingerBeamArrow17.SetBinding(Border.VisibilityProperty, dr17DrillMultiBind);
             //#endregion
 
-            #region 二层台
+            #region 铁架工
             AnimationCurrentFingerBeamVisableCoverter CurrentFingerBeamCoverter = new AnimationCurrentFingerBeamVisableCoverter();
             MultiBinding sf15DrillMultiBind = new MultiBinding();
             sf15DrillMultiBind.Converter = CurrentFingerBeamCoverter;
@@ -1287,7 +1287,7 @@ namespace Main
                         Log.Log4Net.AddLog("drSelectDrill或droperationModel为空");
                         return;
                     }
-                    // 钻台面指梁绑定
+                    // 扶杆臂指梁绑定
                     byte drSelectDrill = GlobalData.Instance.da["drSelectDrill"].Value.Byte;
                     byte droperationModel = GlobalData.Instance.da["droperationModel"].Value.Byte;
                     if (droperationModel == 4 || droperationModel == 9)
@@ -1315,7 +1315,7 @@ namespace Main
                         Log.Log4Net.AddLog("116E1E2E4RobotPointFingerBeam或operationModel为空");
                         return;
                     }
-                    // 二层台指梁绑定
+                    // 铁架工指梁绑定
                     byte sfSelectDrill = GlobalData.Instance.da["116E1E2E4RobotPointFingerBeam"].Value.Byte;
                     byte sfoperationModel = GlobalData.Instance.da["operationModel"].Value.Byte;
                     if (sfoperationModel == 4 || sfoperationModel == 9)
@@ -1342,7 +1342,7 @@ namespace Main
                 Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
             }
 
-            //#region 二层台
+            //#region 铁架工
             //AnimationCurrentFingerBeamVisableCoverter CurrentFingerBeamCoverter = new AnimationCurrentFingerBeamVisableCoverter();
             //MultiBinding sf15DrillMultiBind = new MultiBinding();
             //sf15DrillMultiBind.Converter = CurrentFingerBeamCoverter;
@@ -1695,7 +1695,7 @@ namespace Main
         {
             GetConfigPara(systemType);//读取配置文件
             InitHeightAndWidth(systemType);
-            //ReCalLayoutSize(systemType); // 重画二层台/钻台面
+            //ReCalLayoutSize(systemType); // 重画铁架工/扶杆臂
         }
 
         /// <summary>
@@ -1766,7 +1766,7 @@ namespace Main
                     //// X轴最大位移 指梁长度 + 间距+中间厚度
                     //WorkAnimationWidth = 170 + space + 5;
 
-                    #region 读取钻台面
+                    #region 读取扶杆臂
                     //string drstrHeight = "20";
                     //string drstrFirstHeight = "25";
                     string drstrSpace = "45";
@@ -1862,14 +1862,14 @@ namespace Main
         {
             try
             {
-                // 二层台隐藏钻台面列
+                // 铁架工隐藏扶杆臂列
                 if (systemType == SystemType.SecondFloor)
                 {
                     this.spLeftFPCol.Visibility = Visibility.Collapsed;
                     this.spRightFPCol.Visibility = Visibility.Collapsed;
                     this.spLeftRPCol.Visibility = Visibility.Visible;
                     this.spRightRPCol.Visibility = Visibility.Visible;
-                }//钻台面隐藏二层台列
+                }//扶杆臂隐藏铁架工列
                 else if (systemType == SystemType.DrillFloor)
                 {
                     this.spLeftRPCol.Visibility = Visibility.Collapsed;
@@ -1891,16 +1891,16 @@ namespace Main
             try
             {
                 #region 隐藏两侧多余行数
-                HiddenTBInSP(this.spOneCol); // 隐藏第一列-左边二层台行数
-                HiddenTBInSP(this.spTwoCol); // 隐藏第二列-左边钻台面行数
+                HiddenTBInSP(this.spOneCol); // 隐藏第一列-左边铁架工行数
+                HiddenTBInSP(this.spTwoCol); // 隐藏第二列-左边扶杆臂行数
                 HiddenTBInSP(this.spThreeCol); // 隐藏第三列-左边行数
                 HiddenTBInSP(this.spFourCol); // 隐藏第四列-右边行数
-                HiddenTBInSP(this.spFiveCol); // 隐藏第五列-右边钻台面行数
-                HiddenTBInSP(this.spSixCol); // 隐藏第六列-右边二层台行数
+                HiddenTBInSP(this.spFiveCol); // 隐藏第五列-右边扶杆臂行数
+                HiddenTBInSP(this.spSixCol); // 隐藏第六列-右边铁架工行数
                 #endregion
                 #region 隐藏中间行数
-                HiddenDPInSP(this.spSFMid); // 隐藏二层台行数
-                HiddenDPInSP(this.spDRMid); // 隐藏钻台面行数
+                HiddenDPInSP(this.spSFMid); // 隐藏铁架工行数
+                HiddenDPInSP(this.spDRMid); // 隐藏扶杆臂行数
                 #endregion
             }
             catch (Exception ex)
@@ -2059,7 +2059,7 @@ namespace Main
                 int fingerBeamNumber = 0;
                 int fingerBeamDrillPipeCount = 0;
                 GlobalData.Instance.DrillLeftTotal = this.drDrillCountList.Where(w => w.LorR == "left").Sum(s => s.Num);
-                if (systemType == SystemType.SecondFloor) // 二层台
+                if (systemType == SystemType.SecondFloor) // 铁架工
                 {
                     if (GlobalData.Instance.da["Con_Set0"] == null || GlobalData.Instance.da["operationModel"] == null)
                     {
@@ -2086,7 +2086,7 @@ namespace Main
                         }
                     }
                 }
-                else if (systemType == SystemType.DrillFloor) // 钻台面
+                else if (systemType == SystemType.DrillFloor) // 扶杆臂
                 {
                     if (GlobalData.Instance.da["Con_Set0"] == null || GlobalData.Instance.da["operationModel"] == null)
                     {

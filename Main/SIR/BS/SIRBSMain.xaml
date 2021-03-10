@@ -190,7 +190,7 @@
                             <TextBox Width="50" Margin="10,0,0,0" Name="tbInButtonTimesSet"></TextBox>
                             <Button Height="36" FontSize="18" Margin="10,0,0,0" Click="BtnInButtonTimes_Click">设定</Button>
                         </StackPanel>
-                        <CheckBox Name="cbDRSafeLimit" Grid.Row="3"  FontSize="18" FontWeight="Bold" Checked="cbDRSafeLimit_Checked">钻台面安全限制解除</CheckBox>
+                        <CheckBox Name="cbDRSafeLimit" Grid.Row="3"  FontSize="18" FontWeight="Bold" Checked="cbDRSafeLimit_Checked">扶杆臂安全限制解除</CheckBox>
                     </Grid>
                 </Grid>
             </Grid>

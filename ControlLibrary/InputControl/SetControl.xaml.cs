@@ -21,7 +21,7 @@ namespace ControlLibrary.InputControl
     public partial class SetControl : UserControl
     {
         /// <summary>
-        ///  二层台位置标定事件委托
+        ///  铁架工位置标定事件委托
         /// </summary>
         /// <param name="SetParam"></param>
         public delegate void SFSendProtocol(byte[] SetParam);

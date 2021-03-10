@@ -481,7 +481,7 @@
                             <TextBlock Text="操作台控制器心跳" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14"  FontWeight="Bold"/>
                         </Border>
                         <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
-                            <TextBlock Text="二层台控制器心跳" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14"  FontWeight="Bold"/>
+                            <TextBlock Text="铁架工控制器心跳" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14"  FontWeight="Bold"/>
                         </Border>
                         <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
                             <TextBlock Text="机械手检修模式" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14"  FontWeight="Bold"/>

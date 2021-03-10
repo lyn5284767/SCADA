@@ -113,7 +113,7 @@
                             <StackPanel>
                                 <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5,0,5,5" Padding="3">
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="手指标定"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"/>
+                                        <TextBlock Text="手指点击标定"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"/>
                                         <TextBlock Text="当前值:" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="16" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"/>
                                         <TextBlock Name="tbLeftFinger" Text="**" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"></TextBlock>
                                         <TextBlock Name="tbRightFinger" Text="**" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"></TextBlock>

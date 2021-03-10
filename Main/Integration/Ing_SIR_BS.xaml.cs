@@ -127,7 +127,7 @@ namespace Main.Integration
         }
 
         /// <summary>
-        /// 钻台面安全限制解除
+        /// 扶杆臂安全限制解除
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -141,7 +141,7 @@ namespace Main.Integration
             }
             else
             {
-                MessageBoxResult result = System.Windows.MessageBox.Show("确认解除钻台面对铁钻工的安全设置?", "提示", MessageBoxButton.OKCancel);
+                MessageBoxResult result = System.Windows.MessageBox.Show("确认解除扶杆臂对铁钻工的安全设置?", "提示", MessageBoxButton.OKCancel);
                 if (result == MessageBoxResult.OK)
                 {
                     byte[] byteToSend = new byte[10] { 80, 16, 1, 24, 1, 0, 0, 0, 0, 0 };

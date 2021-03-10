@@ -147,7 +147,7 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <CheckBox Name="cbDRSafeLimit" Grid.Row="0" FontSize="20" Click="cbDRSafeLimit_Checked">钻台面限制解除</CheckBox>
+                    <CheckBox Name="cbDRSafeLimit" Grid.Row="0" FontSize="20" Click="cbDRSafeLimit_Checked">扶杆臂限制解除</CheckBox>
                     <CheckBox Name="cbIgnoreLimit" Grid.Row="1" FontSize="20" Click="cbIgnoreLimit_Checked">忽略限制</CheckBox>
                     <CheckBox Name="cbSelectPipe" Grid.Row="2" FontSize="20" Click="cbSelectPipe_Checked">选择套管</CheckBox>
                 </Grid>

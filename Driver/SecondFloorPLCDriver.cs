@@ -10,7 +10,7 @@ using DatabaseLib;
 
 namespace DemoDriver
 {
-    [Description("二层台机械手UDP协议")]
+    [Description("铁架工机械手UDP协议")]
     public sealed class SecondFloorPLCDriver : IPLCDriver, IMultiReadWrite
     {
         IConnect con = new UDPConnect(DataHelper.LocalIP, DataHelper.LocalPort, DataHelper.RemoteIP, DataHelper.RemotePort,true);

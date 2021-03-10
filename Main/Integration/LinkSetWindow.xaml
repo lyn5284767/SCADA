@@ -18,10 +18,12 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Button Name="btnPumpOne" Grid.Column="0" FontSize="32" Height="200" Width="150" Click="SelectedPumpOne_Click">1#主泵</Button>
             <Button Name="btnPumpTwo" Grid.Column="1" FontSize="32" Height="200" Width="150" Click="SelectedPumpTwo_Click">2#主泵</Button>
             <Button Name="btnPumpBoth" Grid.Column="2" FontSize="32" Height="200" Width="150" Click="SelectedPumpBoth_Click">双泵</Button>
+            <Button Name="btnVoltagePump" Grid.Column="3" FontSize="32" Height="200" Width="150" Click="btnVoltagePump_Click">恒压泵</Button>
         </Grid>
         <Grid Grid.Row="1" Name="gdWorkModel" Visibility="Collapsed">
             <Grid.ColumnDefinitions>

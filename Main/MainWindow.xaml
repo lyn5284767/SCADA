@@ -99,10 +99,10 @@ KeyboardNavigation.DirectionalNavigation="Cycle" Width="100"/>
                 <TextBlock Name="tbMidDeviceOne" FontSize="16" Foreground="#BDBDBD" FontWeight="Bold">防喷筒</TextBlock>
             </Border>
             <Border Background="White" BorderThickness="1" CornerRadius="4" Grid.Column="4" Name="bdDR" MouseLeftButtonDown="MouseDR">
-                <TextBlock FontSize="16" Foreground="#1F7AFF" FontWeight="Bold" Name="tbDR">钻台面</TextBlock>
+                <TextBlock FontSize="16" Foreground="#1F7AFF" FontWeight="Bold" Name="tbDR">扶杆臂</TextBlock>
             </Border>
             <Border Name="bdSf" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="5" MouseLeftButtonDown="MouseDownSF">
-                <TextBlock Name="tbSf" Foreground="#1F7AFF" FontSize="16" FontWeight="Bold">二层台</TextBlock>
+                <TextBlock Name="tbSf" Foreground="#1F7AFF" FontSize="16" FontWeight="Bold">铁架工</TextBlock>
             </Border>
             <Border Name="bdCat" Background="White" BorderThickness="1" CornerRadius="5" Grid.Column="6"  MouseLeftButtonDown="Cat_MouseLeftButtonDown">
                 <TextBlock Name="tbCat" FontSize="16" Foreground="#1F7AFF" FontWeight="Bold">猫道</TextBlock>
@@ -219,7 +219,7 @@ KeyboardNavigation.DirectionalNavigation="Cycle" Width="100"/>
                     </StackPanel>
                 </hc:SplitButton.DropDownContent>
             </hc:SplitButton>
-            <hc:SplitButton Name="bdSf" Content="二层台" HorizontalAlignment="Stretch" Foreground="#1F7AFF" Height="55" FontSize="16" FontWeight="Bold" Click="MouseDownSF">
+            <hc:SplitButton Name="bdSf" Content="铁架工" HorizontalAlignment="Stretch" Foreground="#1F7AFF" Height="55" FontSize="16" FontWeight="Bold" Click="MouseDownSF">
                 <hc:SplitButton.DropDownContent>
                     <StackPanel>
                         <MenuItem Header="主页" Click="MouseSFMain"/>
@@ -235,7 +235,7 @@ KeyboardNavigation.DirectionalNavigation="Cycle" Width="100"/>
                     </StackPanel>
                 </hc:SplitButton.DropDownContent>
             </hc:SplitButton>
-            <hc:SplitButton Name="bdDR" Content="钻台面" HorizontalAlignment="Stretch" Foreground="#1F7AFF" Height="55" FontSize="16" FontWeight="Bold" Click="MouseDR">
+            <hc:SplitButton Name="bdDR" Content="扶杆臂" HorizontalAlignment="Stretch" Foreground="#1F7AFF" Height="55" FontSize="16" FontWeight="Bold" Click="MouseDR">
                 <hc:SplitButton.DropDownContent>
                     <StackPanel>
                         <MenuItem Header="主页" Click="MouseDRMain"/>

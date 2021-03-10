@@ -441,6 +441,11 @@ namespace Main.SecondFloor
 
             if (this.checkBoxElevatorOpenLimitCancel.IsChecked)
             {
+                if (GlobalData.Instance.systemRole == SystemRole.OperMan)
+                {
+                    MessageBox.Show("您不具备取消权限！", "提示信息", MessageBoxButton.OK);
+                    return;
+                }
                 MessageBoxResult result = MessageBox.Show("确认取消吊卡打开限制解除？", "提示信息", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
@@ -478,6 +483,11 @@ namespace Main.SecondFloor
 
             if (this.cbHandLockMonkey.IsChecked)
             {
+                if (GlobalData.Instance.systemRole == SystemRole.OperMan)
+                {
+                    MessageBox.Show("您不具备取消权限！", "提示信息", MessageBoxButton.OK);
+                    return;
+                }
                 MessageBoxResult result = MessageBox.Show("确认解除机械手与猴道互锁？", "提示信息", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {

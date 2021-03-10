@@ -170,9 +170,9 @@
                         <TextBlock Name="tbrow0Left"  Text="T" Height="{Binding Path=TBFirstRowHeight, ElementName=uc}" Margin="5"/>
                     </StackPanel>
                 </Border>
-                <!--二层台中心-->
+                <!--铁架工中心-->
                 <Grid Grid.Column="3">
-                    <!--二层台架子-->
+                    <!--铁架工架子-->
                     <StackPanel Width="460" Name="spSFMid" Visibility="{Binding Path=SFType,ElementName=uc,Converter={StaticResource SecondFloorVisCVT}}">
                         <!--第10行-->
                         <Border Height="8" BorderBrush="#6D6F72" BorderThickness="0,10,0,0"></Border>

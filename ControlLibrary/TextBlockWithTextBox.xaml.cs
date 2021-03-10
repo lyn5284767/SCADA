@@ -89,8 +89,8 @@ namespace ControlLibrary
             Regex regexParameterConfigurationConfirm = new Regex(@"^[0-9]+$");
             string strText = this.textBoxSet.Text;
             if (strText.Length == 0) strText = "0";
-            if ((regexParameterConfigurationConfirm.Match(strText)).Success)
-            {
+            //if ((regexParameterConfigurationConfirm.Match(strText)).Success)
+            //{
                 try
                 {
                     if (GlobalData.Instance.systemType == SystemType.SIR)
@@ -117,12 +117,12 @@ namespace ControlLibrary
                     this.textBoxSet.Text = "0";
                 }
 
-            }
-            else
-            {
-                MessageBox.Show("参数为非数字");
-                this.textBoxSet.Text = "0";
-            }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("参数为非数字");
+            //    this.textBoxSet.Text = "0";
+            //}
         }
 
         private void tb_ParameterConfig_Focus(object sender, MouseButtonEventArgs e)

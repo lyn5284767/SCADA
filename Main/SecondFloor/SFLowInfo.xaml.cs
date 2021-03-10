@@ -71,7 +71,7 @@ namespace Main.SecondFloor
                 deviceEncodeMultiBind.NotifyOnSourceUpdated = true;
                 deviceEncodeMultiBind.ConverterParameter = "RP";
                 this.tbDeviceEncode.SetBinding(TextBlock.TextProperty, deviceEncodeMultiBind);
-                // 二层台版本
+                // 铁架工版本
                 SecondVersionMultiConverter secondVersionMultiConverter = new SecondVersionMultiConverter();
                 MultiBinding secondVersionMultiBind = new MultiBinding();
                 secondVersionMultiBind.Converter = secondVersionMultiConverter;
@@ -81,7 +81,7 @@ namespace Main.SecondFloor
                 secondVersionMultiBind.NotifyOnSourceUpdated = true;
                 secondVersionMultiBind.ConverterParameter = "SRP-V";
                 this.tbSecondVersion.SetBinding(TextBlock.TextProperty, secondVersionMultiBind);
-                // 二层台版本日期
+                // 铁架工版本日期
                 SecondVersionDateMultiConverter secondVersionDateMultiConverter = new SecondVersionDateMultiConverter();
                 MultiBinding secondVersionDateMultiBind = new MultiBinding();
                 secondVersionDateMultiBind.Converter = secondVersionDateMultiConverter;
@@ -110,7 +110,7 @@ namespace Main.SecondFloor
                 this.tbOperVersionDate.SetBinding(TextBlock.TextProperty, operVersionDateMultiBind);
 
 
-                // 钻台面设备编码
+                // 扶杆臂设备编码
                 DRDeviceEncodeMultiConverter drDeviceEncodeMultiConverter = new DRDeviceEncodeMultiConverter();
                 MultiBinding drDeviceEncodeMultiBind = new MultiBinding();
                 drDeviceEncodeMultiBind.Converter = drDeviceEncodeMultiConverter;
@@ -121,7 +121,7 @@ namespace Main.SecondFloor
                 drDeviceEncodeMultiBind.ConverterParameter = "FP";
                 this.drDeviceEncode.SetBinding(TextBlock.TextProperty, drDeviceEncodeMultiBind);
 
-                // 钻台面版本
+                // 扶杆臂版本
                 SecondVersionMultiConverter drVersionMultiConverter = new SecondVersionMultiConverter();
                 MultiBinding drVersionMultiBind = new MultiBinding();
                 drVersionMultiBind.Converter = drVersionMultiConverter;
@@ -131,7 +131,7 @@ namespace Main.SecondFloor
                 drVersionMultiBind.NotifyOnSourceUpdated = true;
                 drVersionMultiBind.ConverterParameter = "SFP-V";
                 this.drVersion.SetBinding(TextBlock.TextProperty, drVersionMultiBind);
-                // 钻台面版本日期
+                // 扶杆臂版本日期
                 OperVersionDateMultiConverter drVersionDateMultiConverter = new OperVersionDateMultiConverter();
                 MultiBinding drVersionDateMultiBind = new MultiBinding();
                 drVersionDateMultiBind.Converter = drVersionDateMultiConverter;

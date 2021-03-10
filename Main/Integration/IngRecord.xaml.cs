@@ -68,8 +68,8 @@ namespace Main.Integration
             dicNumToValue.Add(2, "吊卡互锁");
             dicNumToValue.Add(3, "大钩互锁");
             dicNumToValue.Add(4, "顶驱互锁");
-            dicNumToValue.Add(5, "二层台互锁");
-            dicNumToValue.Add(6, "钻台面互锁");
+            dicNumToValue.Add(5, "铁架工互锁");
+            dicNumToValue.Add(6, "扶杆臂互锁");
             dicNumToValue.Add(7, "铁钻工互锁");
             dicNumToValue.Add(8, "防喷盒互锁");
             dicNumToValue.Add(9, "猫道互锁");
@@ -129,11 +129,11 @@ namespace Main.Integration
             else if (id == 1475) return "大钩静止允许卡瓦关闭";
             else if (id == 1477) return "抓手关闭允许吊卡打开";
             else if (id == 1479) return "卡瓦关门允许吊卡打开";
-            else if (id == 1481) return "二层台在井口禁止顶驱偏摆";
+            else if (id == 1481) return "铁架工在井口禁止顶驱偏摆";
             else if (id == 1483) return "吊卡关门进行中锁大钩";
             else if (id == 1485) return "顶驱偏摆锁大钩";
-            else if (id == 1487) return "二层台在井口锁大钩";
-            else if (id == 1489) return "钻台面在井口锁大钩";
+            else if (id == 1487) return "铁架工在井口锁大钩";
+            else if (id == 1489) return "扶杆臂在井口锁大钩";
             else if (id == 1491) return "铁钻工在井口锁大钩";
             else if (id == 1493) return "防喷盒在井口锁大钩";
             else if (id == 1495) return "吊卡关门允许抓手打开";
@@ -141,17 +141,17 @@ namespace Main.Integration
             else if (id == 1499) return "大钩高位允许机械手井口移动";
             else if (id == 1501) return "吊卡关门允许抓手打开";
             else if (id == 1503) return "大钩低位允许机械手井口移动";
-            else if (id == 1505) return "铁钻工井口禁止钻台面井口移动";
-            else if (id == 1507) return "防喷盒井口禁止钻台面井口移动";
+            else if (id == 1505) return "铁钻工井口禁止扶杆臂井口移动";
+            else if (id == 1507) return "防喷盒井口禁止扶杆臂井口移动";
             else if (id == 1509) return "猫道防碰区禁止行车移动";
             else if (id == 1511) return "大钩低位禁止铁钻工井口移动";
-            else if (id == 1513) return "钻台面井口禁止铁钻工井口移动";
+            else if (id == 1513) return "扶杆臂井口禁止铁钻工井口移动";
             else if (id == 1515) return "防喷盒井口禁止铁钻工井口移动";
             else if (id == 1517) return "卡瓦关门允许铁钻工上卸扣";
             else if (id == 1519) return "大钩低位禁止防喷盒井口移动";
-            else if (id == 1521) return "钻台面井口禁止防喷盒井口移动";
+            else if (id == 1521) return "扶杆臂井口禁止防喷盒井口移动";
             else if (id == 1523) return "铁钻工井口禁止防喷盒井口移动";
-            else if (id == 1525) return "钻台面中位禁止推管柱上钻台";
+            else if (id == 1525) return "扶杆臂中位禁止推管柱上钻台";
             else if (id == 1529) return "顶驱卡扣允许卡瓦打开";
             else if (id == 1531) return "顶驱卡扣允许吊卡打开";
             else if (id == 1533) return "卡瓦关门允许顶驱解扣";
@@ -165,8 +165,8 @@ namespace Main.Integration
             else if (id == 1477 || id == 1479 || id == 1531) return "吊卡互锁";
             else if (id == 1483 || id == 1485 || id == 1487 || id == 1489 || id == 1491 || id == 1493) return "大钩互锁";
             else if (id == 1481 || id == 1533 || id == 1535) return "顶驱互锁";
-            else if (id == 1495 || id == 1497 || id == 1499) return "二层台互锁";
-            else if (id == 1501 || id == 1503 || id == 1505 || id == 1507 || id == 1509) return "钻台面互锁";
+            else if (id == 1495 || id == 1497 || id == 1499) return "铁架工互锁";
+            else if (id == 1501 || id == 1503 || id == 1505 || id == 1507 || id == 1509) return "扶杆臂互锁";
             else if (id == 1511 || id == 1513 || id == 1515 || id == 1517) return "铁钻工互锁";
             else if (id == 1519 || id == 1521 || id == 1523) return "防喷盒互锁";
             else if (id == 1525) return "猫道互锁";
@@ -242,9 +242,9 @@ namespace Main.Integration
                     return "1483,1485,1487,1489,1491,1493";
                 case "4":// 顶驱
                     return "1481,1533,1535";
-                case "5":// 二层台
+                case "5":// 铁架工
                     return "1495,1497,1499";
-                case "6":// 钻台面
+                case "6":// 扶杆臂
                     return "1501,1503,1505,1507,1509";
                 case "7":// 铁钻工
                     return "1511,1513,1515,1517";

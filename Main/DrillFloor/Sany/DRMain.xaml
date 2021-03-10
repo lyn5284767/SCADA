@@ -129,6 +129,7 @@
                                 <RowDefinition></RowDefinition>
                                 <RowDefinition></RowDefinition>
                                 <RowDefinition></RowDefinition>
+                                
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
                                 <Grid.ColumnDefinitions>
@@ -164,7 +165,9 @@
                                     </Viewbox>
                                 </StackPanel>
                             </Grid>
-                            </Grid>
+                            <TextBlock Grid.Row="3" Text="记忆位置" Name="tbMemoryPos" FontSize="16" Margin="10,-4,0,0" VerticalAlignment="Center" />
+
+                        </Grid>
                         </Grid>
                 </Grid>
                 <Grid Grid.Column="2" Margin="5">
@@ -187,7 +190,7 @@
                             <!--<ColumnDefinition/>-->
                         </Grid.ColumnDefinitions>
                         <Viewbox>
-                            <cl:BasedSwitchButton Name="SelectType" ContentLeft="钻台面" ContentDown="机械手" ContentRight="二层台" UserControlClicked="btn_SelectType" Grid.Column="0" Visibility="Collapsed"/>
+                            <cl:BasedSwitchButton Name="SelectType" ContentLeft="扶杆臂" ContentDown="机械手" ContentRight="铁架工" UserControlClicked="btn_SelectType" Grid.Column="0" Visibility="Collapsed"/>
                         </Viewbox>
                         <Viewbox Grid.Column="0" >
                             <cl:BasedSwitchButton Name="droperateMode" ContentLeft="手动" ContentDown="操作模式" ContentRight="自动" UserControlClicked="btn_drOpState" Margin="5"/>
@@ -218,6 +221,11 @@
                                 <MenuItem Header="回零"  FontSize="24">
                                     <MenuItem Header="小车回零" Click="btn_CarToZero"/>
                                     <MenuItem Header="旋转回零" Click="btn_RotateToZero"/>
+                                </MenuItem>
+                                <MenuItem Header="记忆位置"  FontSize="24">
+                                    <MenuItem Header="井口记忆" FontSize="24" Click="btnWellMemory" />
+                                    <MenuItem Header="记忆清除" FontSize="24" Click="btnMemoryClear" />
+                                    <MenuItem Header="记忆恢复" FontSize="24" Click="btnWellMemoryRecovery" />
                                 </MenuItem>
                                 <MenuItem Header="清除钻杆" FontSize="24" Click="btnClearDrill" />
                                 <MenuItem Header="设备回收" FontSize="24" Click="btnDeviceBack" />

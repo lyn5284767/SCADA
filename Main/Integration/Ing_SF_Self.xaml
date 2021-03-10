@@ -54,7 +54,7 @@
             </Grid.RowDefinitions>
             <Button Width="600" Height="40" Panel.ZIndex="1" HorizontalAlignment="Center"  
                                  Background="#2B71CA" BorderBrush="#92C202" Grid.ColumnSpan="2">
-                <TextBlock Text="二层台(三一)" Foreground="White" FontSize="24"/>
+                <TextBlock Text="铁架工(三一)" Foreground="White" FontSize="24"/>
             </Button>
 
             <Grid Grid.Row="1">

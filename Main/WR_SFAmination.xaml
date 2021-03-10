@@ -929,7 +929,7 @@
                             </StackPanel>
                             <Border Grid.Column="2"  BorderBrush="#6D6F72" BorderThickness="5,0,5,0" Height="300"></Border>
                         </Grid>
-                        <!--二层台-->
+                        <!--铁架工-->
                    <local1:AnimationButton Width="20" Height="20" Style="{StaticResource CircleButton}" x:Name="RobotCar">
                         <Button.Background>
                             <ImageBrush ImageSource="Images\RobotCar.bmp"/>

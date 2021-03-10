@@ -326,7 +326,7 @@ namespace Main.HydraulicStation
 
             alarmList.Add(new AlarmInfo() { TagName = "793b0", Description = "铁钻工压力传感器故障", NowType = 0, NeedCheck = true });
             alarmList.Add(new AlarmInfo() { TagName = "793b1", Description = "大钳压力传感器故障", NowType = 0, NeedCheck = true });
-            alarmList.Add(new AlarmInfo() { TagName = "793b2", Description = "钻台面压力传感器故障", NowType = 0, NeedCheck = true });
+            alarmList.Add(new AlarmInfo() { TagName = "793b2", Description = "扶杆臂压力传感器故障", NowType = 0, NeedCheck = true });
             alarmList.Add(new AlarmInfo() { TagName = "793b3", Description = "猫道压力传感器故障", NowType = 0, NeedCheck = true });
             alarmList.Add(new AlarmInfo() { TagName = "793b4", Description = "主压力传感器故障", NowType = 0, NeedCheck = true });
             alarmList.Add(new AlarmInfo() { TagName = "793b5", Description = "恒压泵未合闸", NowType = 0, NeedCheck = true });
@@ -828,7 +828,7 @@ namespace Main.HydraulicStation
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
-        /// 钻台面打开
+        /// 扶杆臂打开
         /// </summary>
         private void BtnDF_Click(object sender, RoutedEventArgs e)
         {
@@ -836,7 +836,7 @@ namespace Main.HydraulicStation
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
-        /// 钻台面/备用3关闭
+        /// 扶杆臂/备用3关闭
         /// </summary>
         private void BtnDFClose_Click(object sender, RoutedEventArgs e)
         {
@@ -1121,7 +1121,7 @@ namespace Main.HydraulicStation
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
-        /// 钻台面打开
+        /// 扶杆臂打开
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

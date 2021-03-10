@@ -34,7 +34,7 @@
             </Grid.ColumnDefinitions>
             <Border Grid.Column="0" Grid.Row="0" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,5,10">
                 <StackPanel>
-                    <Label Margin="10,20,0,0" FontSize="16">二层台信息</Label>
+                    <Label Margin="10,20,0,0" FontSize="16">铁架工信息</Label>
                     <StackPanel Margin="50,20,0,0" Orientation="Horizontal">
                         <Label Content="设备编码:" Grid.Row="1" FontSize="14" Foreground="#919191"/>
                         <TextBlock Name="tbDeviceEncode" Grid.Row="2" FontSize="14" Foreground="#919191">
@@ -54,7 +54,7 @@
             </Border>
             <Border Grid.Column="0" Grid.Row="1" Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" Margin="5,10,5,10">
                 <StackPanel>
-                    <Label Margin="10,20,0,0" FontSize="16">钻台面信息</Label>
+                    <Label Margin="10,20,0,0" FontSize="16">扶杆臂信息</Label>
                     <StackPanel Margin="50,20,0,0" Orientation="Horizontal">
                         <Label Content="设备编码:" FontSize="14" Foreground="#919191"/>
                         <TextBlock Name="drDeviceEncode" FontSize="14" Text="" Foreground="#919191">

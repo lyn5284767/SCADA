@@ -39,7 +39,7 @@
                         </Grid.RowDefinitions>
                         <TextBlock Text=">部件状态" Foreground="Black" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,0,0,0"/>
                         <StackPanel Orientation="Horizontal" Grid.Row="1">
-                            <TextBlock Name="tbsf" Width="120" Text="二层台(未配置):" Margin="30,0,0,0" FontSize="18" FontWeight="Bold" Foreground="#212121" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Name="tbsf" Width="120" Text="铁架工(未配置):" Margin="30,0,0,0" FontSize="18" FontWeight="Bold" Foreground="#212121" VerticalAlignment="Center"></TextBlock>
                             <cl:SymbolMapping Name="sfStatus" StrContent="" LampType="3" Margin="2,5,2,5"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Grid.Row="2">

@@ -93,7 +93,7 @@
                             <TextBlock Name="cpbIronPump" Text="00.2" FontSize="48" Foreground="Red"></TextBlock>
                         </StackPanel>
                     </GroupBox>
-                    <GroupBox Grid.Column="0" Grid.Row="1" Header="钻台面压力" FontSize="18">
+                    <GroupBox Grid.Column="0" Grid.Row="1" Header="扶杆臂压力" FontSize="18">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <TextBlock Name="cpbFPPump" Text="00.2" FontSize="48" Foreground="Red"></TextBlock>
                         </StackPanel>
@@ -423,7 +423,7 @@
                         <Border Grid.Row="4" Grid.Column="0" Background="#DDE0E5">
                             <StackPanel VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal" >
-                                    <TextBlock FontSize="18" Text="钻台面:" FontWeight="Bold" Foreground="Black"></TextBlock>
+                                    <TextBlock FontSize="18" Text="扶杆臂:" FontWeight="Bold" Foreground="Black"></TextBlock>
                                     <TextBlock Name="tbDR" FontSize="18" Width="60" Text="8888.8"></TextBlock>
                                     <TextBlock FontSize="18" Text="Mpa"></TextBlock>
                                 </StackPanel>
@@ -740,7 +740,7 @@
                         <Border Grid.Row="5" Grid.Column="0" Background="#DDE0E5">
                             <StackPanel VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal" >
-                                    <TextBlock FontSize="18" Text="钻台面:" FontWeight="Bold" Foreground="Black"></TextBlock>
+                                    <TextBlock FontSize="18" Text="扶杆臂:" FontWeight="Bold" Foreground="Black"></TextBlock>
                                     <TextBlock Name="tbDR" FontSize="18" Width="60" Text="8888.8"></TextBlock>
                                     <TextBlock FontSize="18" Text="Mpa"></TextBlock>
                                 </StackPanel>
@@ -782,12 +782,12 @@
                         </Border>
                         <!--<StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Button Name="btnDF" FontSize="18" Width="80" Height="50" Click="BtnDF_Click">钻台面</Button>
+                                    <Button Name="btnDF" FontSize="18" Width="80" Height="50" Click="BtnDF_Click">扶杆臂</Button>
                                     <Button Name="btnDFClose" FontSize="18" Width="80" Height="50" Click="BtnDFClose_Click">关闭</Button>
                                     <Button Name="btnSpaceThree" FontSize="18" Width="80" Height="50" Click="BtnSpaceThree_Click">备用3</Button>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <TextBlock FontSize="18" Text="钻台面/备用3:"></TextBlock>
+                                    <TextBlock FontSize="18" Text="扶杆臂/备用3:"></TextBlock>
                                     <TextBlock Name="tbDFSpThree" FontSize="18" Width="60" Text="8888.8"></TextBlock>
                                     <TextBlock FontSize="18" Text="Mpa"></TextBlock>
                                 </StackPanel>
@@ -802,7 +802,7 @@
                             </StackPanel>-->
                         <!--<cl:BasedSwitchButton Name="Iron" ContentLeft="关" ContentDown="铁钻工" ContentRight="开" UserControlClicked="btn_Iron" Grid.Column="0" Grid.Row="1"/>
                             <cl:BasedSwitchButton Name="Tongs" ContentLeft="关" ContentDown="大钳" ContentRight="开" UserControlClicked="btn_Tongs" Grid.Column="1" Grid.Row="1"/>
-                            <cl:BasedSwitchButton Name="DF" ContentLeft="关" ContentDown="钻台面" ContentRight="开" UserControlClicked="btn_DF" Grid.Column="0" Grid.Row="2"/>
+                            <cl:BasedSwitchButton Name="DF" ContentLeft="关" ContentDown="扶杆臂" ContentRight="开" UserControlClicked="btn_DF" Grid.Column="0" Grid.Row="2"/>
                             <cl:BasedSwitchButton Name="BufferArm" ContentLeft="关" ContentDown="缓冲臂" ContentRight="开" UserControlClicked="btn_BufferArm" Grid.Column="1" Grid.Row="2"/>-->
                     </Grid>
                 </Grid>

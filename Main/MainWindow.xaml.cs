@@ -375,7 +375,7 @@ namespace Main
                     // 送杆
                     if (GlobalData.Instance.da["droperationModel"].Value.Byte == 1 && GlobalData.Instance.da["operationModel"].Value.Byte == 1)
                     {
-                        #region 钻台面-送杆
+                        #region 扶杆臂-送杆
                         byte drstep = GlobalData.Instance.da["drAutoStep"].Value.Byte;
                         // 1-7 || 12-17步抓手摄像头
                         if ((drstep > 1 && drstep <= 7) || (drstep > 11 && drstep <= 17))
@@ -399,7 +399,7 @@ namespace Main
                     }// 排杆
                     else if (GlobalData.Instance.da["droperationModel"].Value.Byte == 2 && GlobalData.Instance.da["operationModel"].Value.Byte == 2)
                     {
-                        #region 钻台面-送杆
+                        #region 扶杆臂-送杆
                         byte drstep = GlobalData.Instance.da["drAutoStep"].Value.Byte;
                         // 1-10步抓手摄像头
                         if (drstep > 1 && drstep <= 10)
@@ -566,7 +566,7 @@ namespace Main
                         SFStop.Instance.ShowDialog();
                     }
                 }
-            }// 二层台单机
+            }// 铁架工单机
             else if (GlobalData.Instance.da.GloConfig.IngSystem == 1)
             {
                 this.spBottom.Visibility = Visibility.Collapsed;
@@ -592,11 +592,11 @@ namespace Main
             // 操作员
             if (GlobalData.Instance.systemRole == SystemRole.OperMan)
             {
-                this.miIngSecure.Visibility = Visibility.Collapsed;
+                //this.miIngSecure.Visibility = Visibility.Collapsed;
                 this.miIngParam.Visibility = Visibility.Collapsed;
                 this.miIngPosition.Visibility = Visibility.Collapsed;
 
-                this.miSFSecure.Visibility = Visibility.Collapsed;
+                //this.miSFSecure.Visibility = Visibility.Collapsed;
                 this.miSFParam.Visibility = Visibility.Collapsed;
                 this.miSFPosition.Visibility = Visibility.Collapsed;
 
@@ -780,7 +780,7 @@ namespace Main
                 MouseIng(null, null);
                 return;
             }
-            if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
+            if (GlobalData.Instance.systemType == SystemType.SecondFloor) //铁架工
             {
                 //SFMain.Instance.FullScreenEvent -= Instance_FullScreenEvent;
                 //SFMain.Instance.FullScreenEvent += Instance_FullScreenEvent;
@@ -857,7 +857,7 @@ namespace Main
             //SFMain.Instance.PlayCamera();
         }
         /// <summary>
-        /// 钻台面-摄像头播放全屏
+        /// 扶杆臂-摄像头播放全屏
         /// </summary>
         private void Instance_DRFullScreenEvent(int camId)
         {
@@ -871,7 +871,7 @@ namespace Main
         }
 
         /// <summary>
-        /// 钻台面-摄像头播放取消全屏
+        /// 扶杆臂-摄像头播放取消全屏
         /// </summary>
         private void Instance_DRCanelFullScreenEvent()
         {
@@ -922,17 +922,17 @@ namespace Main
                     this.mainTitle.Content = "SYAPS-集成系统:安全设置";
                     return;
                 }
-                if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
+                if (GlobalData.Instance.systemType == SystemType.SecondFloor) //铁架工
                 {
                     this.spMain.Children.Clear();
                     this.spMain.Children.Add(SFSecureSetting.Instance);
-                    this.mainTitle.Content = "SYAPS-二层台:安全设置";
+                    this.mainTitle.Content = "SYAPS-铁架工:安全设置";
                 }
                 else if (GlobalData.Instance.systemType == SystemType.DrillFloor)
                 {
                     this.spMain.Children.Clear();
                     this.spMain.Children.Add(DRSecureSetting.Instance);
-                    this.mainTitle.Content = "SYAPS-钻台面:安全设置";
+                    this.mainTitle.Content = "SYAPS-扶杆臂:安全设置";
                 }
                 else if (GlobalData.Instance.systemType == SystemType.SIR)
                 {
@@ -988,11 +988,11 @@ namespace Main
         {
             try
             {
-                if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
+                if (GlobalData.Instance.systemType == SystemType.SecondFloor) //铁架工
                 {
                     this.spMain.Children.Clear();
                     this.spMain.Children.Add(SFIOMain.Instance);
-                    this.mainTitle.Content = "SYAPS-二层台:IO查询";
+                    this.mainTitle.Content = "SYAPS-铁架工:IO查询";
                     byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 22, 0 });
                     GlobalData.Instance.da.SendBytes(byteToSend);
                 }
@@ -1055,11 +1055,11 @@ namespace Main
                     SFDrillSetting.Instance.SysTypeSelect(0);
                     RefreshPipeCount();
                 }
-                if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
+                if (GlobalData.Instance.systemType == SystemType.SecondFloor) //铁架工
                 {
                     this.spMain.Children.Clear();
                     this.spMain.Children.Add(SFDrillSetting.Instance);
-                    this.mainTitle.Content = "SYAPS-二层台:钻杆设置";
+                    this.mainTitle.Content = "SYAPS-铁架工:钻杆设置";
                     SFDrillSetting.Instance.SysTypeSelect(1);
                     RefreshPipeCount();
                 }
@@ -1067,7 +1067,7 @@ namespace Main
                 {
                     this.spMain.Children.Clear();
                     this.spMain.Children.Add(SFDrillSetting.Instance);
-                    this.mainTitle.Content = "SYAPS-钻台面:钻杆设置";
+                    this.mainTitle.Content = "SYAPS-扶杆臂:钻杆设置";
                     SFDrillSetting.Instance.SysTypeSelect(2);
                     byte[] byteToSend = GlobalData.Instance.SendToDR(new List<byte> { 7, 1 });
                     GlobalData.Instance.da.SendBytes(byteToSend);
@@ -1105,11 +1105,11 @@ namespace Main
         {
             try
             {
-                if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
+                if (GlobalData.Instance.systemType == SystemType.SecondFloor) //铁架工
                 {
                     this.spMain.Children.Clear();
                     this.spMain.Children.Add(SFDeviceStatus.Instance);
-                    this.mainTitle.Content = "SYAPS-二层台:设备状态";
+                    this.mainTitle.Content = "SYAPS-铁架工:设备状态";
                     SFDeviceStatus.Instance.SwitchDeviceStatusPageEvent += Instance_SwitchDeviceStatusPageEvent;
                     gotoEquipStatusPage();
                     this.checkMaintain();
@@ -1118,7 +1118,7 @@ namespace Main
                 {
                     this.spMain.Children.Clear();
                     this.spMain.Children.Add(DRDeviceStatus.Instance);
-                    this.mainTitle.Content = "SYAPS-钻台面:设备状态";
+                    this.mainTitle.Content = "SYAPS-扶杆臂:设备状态";
                 }
                 else if (GlobalData.Instance.systemType == SystemType.SIR)
                 {
@@ -1178,7 +1178,7 @@ namespace Main
                     this.mainTitle.Content = "SYAPS-集成系统:参数设置";
                     return;
                 }
-                if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
+                if (GlobalData.Instance.systemType == SystemType.SecondFloor) //铁架工
                 {
                     if (!SFToHandleModel()) return;
                     if (GlobalData.Instance.da["operationModel"].Value.Byte != 5)
@@ -1188,7 +1188,7 @@ namespace Main
 
                         this.spMain.Children.Clear();
                         this.spMain.Children.Add(SFParamMain.Instance);
-                        this.mainTitle.Content = "SYAPS-二层台:参数设置";
+                        this.mainTitle.Content = "SYAPS-铁架工:参数设置";
                     }
                     else
                     {
@@ -1204,7 +1204,7 @@ namespace Main
                         {
                             this.spMain.Children.Clear();
                             this.spMain.Children.Add(WR_ParamMain.Instance);
-                            this.mainTitle.Content = "SYAPS-钻台面:参数设置";
+                            this.mainTitle.Content = "SYAPS-扶杆臂:参数设置";
                         }
                         else
                         {
@@ -1218,7 +1218,7 @@ namespace Main
                         {
                             this.spMain.Children.Clear();
                             this.spMain.Children.Add(DRParamSettingMain.Instance);
-                            this.mainTitle.Content = "SYAPS-钻台面:参数设置";
+                            this.mainTitle.Content = "SYAPS-扶杆臂:参数设置";
                         }
                         else
                         {
@@ -1286,7 +1286,7 @@ namespace Main
                     this.mainTitle.Content = "SYAPS-集成系统:位置标定";
                     return;
                 }
-                if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
+                if (GlobalData.Instance.systemType == SystemType.SecondFloor) //铁架工
                 {
                     if (!SFToHandleModel()) return;
                     if (GlobalData.Instance.da["operationModel"].Value.Byte != 5)
@@ -1297,7 +1297,7 @@ namespace Main
                         this.spMain.Children.Clear();
                         //this.spMain.Children.Add(SFPositionSetting.Instance);
                         this.spMain.Children.Add(SFPosSetMain.Instance);
-                        this.mainTitle.Content = "SYAPS-二层台:位置标定";
+                        this.mainTitle.Content = "SYAPS-铁架工:位置标定";
                     }
                     else
                     {
@@ -1314,7 +1314,7 @@ namespace Main
                             this.spMain.Children.Clear();
                             //this.spMain.Children.Add(DRPosSetting.Instance);
                             this.spMain.Children.Add(WR_PosSetMain.Instance);
-                            this.mainTitle.Content = "SYAPS-钻台面:位置标定";
+                            this.mainTitle.Content = "SYAPS-扶杆臂:位置标定";
                         }
                         else
                         {
@@ -1329,7 +1329,7 @@ namespace Main
                             this.spMain.Children.Clear();
                             //this.spMain.Children.Add(DRPosSetting.Instance);
                             this.spMain.Children.Add(DRPosSetMain.Instance);
-                            this.mainTitle.Content = "SYAPS-钻台面:位置标定";
+                            this.mainTitle.Content = "SYAPS-扶杆臂:位置标定";
                         }
                         else
                         {
@@ -1380,7 +1380,7 @@ namespace Main
                     MessageBox.Show("您不具备权限！");
                     return;
                 }
-                if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
+                if (GlobalData.Instance.systemType == SystemType.SecondFloor) //铁架工
                 {
                     if (!SFToHandleModel()) return;
                     if (GlobalData.Instance.da["operationModel"].Value.Byte != 5)
@@ -1395,7 +1395,7 @@ namespace Main
 
                         this.spMain.Children.Clear();
                         this.spMain.Children.Add(SFPositionCompensate.Instance);
-                        this.mainTitle.Content = "SYAPS-二层台:位置补偿";
+                        this.mainTitle.Content = "SYAPS-铁架工:位置补偿";
                     }
                     else
                     {
@@ -1438,11 +1438,11 @@ namespace Main
                     this.mainTitle.Content = "SYAPS-集成系统:记录查询";
                     return;
                 }
-                if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
+                if (GlobalData.Instance.systemType == SystemType.SecondFloor) //铁架工
                 {
                     this.spMain.Children.Clear();
                     this.spMain.Children.Add(SFRecordMain.Instance);
-                    this.mainTitle.Content = "SYAPS-二层台:记录查询";
+                    this.mainTitle.Content = "SYAPS-铁架工:记录查询";
                 }
                 else if (GlobalData.Instance.systemType == SystemType.DrillFloor)
                 {
@@ -1485,11 +1485,11 @@ namespace Main
         {
             try
             {
-                if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
+                if (GlobalData.Instance.systemType == SystemType.SecondFloor) //铁架工
                 {
                     this.spMain.Children.Clear();
                     this.spMain.Children.Add(SFChart.Instance);
-                    this.mainTitle.Content = "SYAPS-二层台:图表";
+                    this.mainTitle.Content = "SYAPS-铁架工:图表";
                 }
                 else if (GlobalData.Instance.systemType == SystemType.DrillFloor)
                 {
@@ -1518,12 +1518,12 @@ namespace Main
         {
             try
             {
-                if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
+                if (GlobalData.Instance.systemType == SystemType.SecondFloor) //铁架工
                 {
                     this.spMain.Children.Clear();
                     SFReport.Instance.ReportTextBlockShow();
                     this.spMain.Children.Add(SFReport.Instance);
-                    this.mainTitle.Content = "SYAPS-二层台:报表";
+                    this.mainTitle.Content = "SYAPS-铁架工:报表";
                 }
                 else if (GlobalData.Instance.systemType == SystemType.DrillFloor)
                 {
@@ -1555,7 +1555,7 @@ namespace Main
         {
             try
             {
-                //    if (GlobalData.Instance.systemType == SystemType.SecondFloor) //二层台
+                //    if (GlobalData.Instance.systemType == SystemType.SecondFloor) //铁架工
                 //    {
                 this.spMain.Children.Clear();
                     this.spMain.Children.Add(SFLowInfo.Instance);
@@ -1772,7 +1772,7 @@ namespace Main
         }
        
         /// <summary>
-        /// 二层台-切换到手动模式
+        /// 铁架工-切换到手动模式
         /// </summary>
         private bool SFToHandleModel()
         {
@@ -1800,7 +1800,7 @@ namespace Main
         }
 
         /// <summary>
-        /// 钻台面-切换到手动模式
+        /// 扶杆臂-切换到手动模式
         /// </summary>
         private bool DRToHandleModel()
         {
@@ -2189,7 +2189,7 @@ namespace Main
                     }
                     else
                     {
-                        MessageBox.Show("未配置钻台面");
+                        MessageBox.Show("未配置扶杆臂");
                         this.projectLoad.Visibility = Visibility.Collapsed;
                     }
                 }
@@ -2223,7 +2223,7 @@ namespace Main
                         }
                         else
                         {
-                            MessageBox.Show("未配置钻台面");
+                            MessageBox.Show("未配置扶杆臂");
                             this.projectLoad.Visibility = Visibility.Collapsed;
                         }
                     }
@@ -2245,9 +2245,9 @@ namespace Main
                 if (this.WindowState == WindowState.Normal) this.WindowState = WindowState.Maximized;
             }
         }
-        #region 二层台单机系统
+        #region 铁架工单机系统
         /// <summary>
-        /// 二层台主页面
+        /// 铁架工主页面
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -2257,7 +2257,7 @@ namespace Main
             this.spMain.Children.Add(projectLoad);
             this.projectLoad.Visibility = System.Windows.Visibility.Visible;
             nowSystemType = SystemType.SecondFloor;
-            this.mainTitle.Content = "SYAPS-二层台:主页";
+            this.mainTitle.Content = "SYAPS-铁架工:主页";
         }
         /// <summary>
         /// 钻杆设置
@@ -2268,7 +2268,7 @@ namespace Main
         {
             this.spMain.Children.Clear();
             this.spMain.Children.Add(SFDrillSetting.Instance);
-            this.mainTitle.Content = "SYAPS-二层台:钻杆设置";
+            this.mainTitle.Content = "SYAPS-铁架工:钻杆设置";
             SFDrillSetting.Instance.SysTypeSelect(1);
             RefreshPipeCount();
             BottomColorSetting(this.bdSFDrillSet, this.tbSFDrillSet, this.gdbottomSF);
@@ -2282,7 +2282,7 @@ namespace Main
         {
             this.spMain.Children.Clear();
             this.spMain.Children.Add(SFDeviceStatus.Instance);
-            this.mainTitle.Content = "SYAPS-二层台:设备状态";
+            this.mainTitle.Content = "SYAPS-铁架工:设备状态";
             SFDeviceStatus.Instance.SwitchDeviceStatusPageEvent += Instance_SwitchDeviceStatusPageEvent;
             gotoEquipStatusPage();
             this.checkMaintain();
@@ -2297,7 +2297,7 @@ namespace Main
         {
             this.spMain.Children.Clear();
             this.spMain.Children.Add(SFIOMain.Instance);
-            this.mainTitle.Content = "SYAPS-二层台:IO查询";
+            this.mainTitle.Content = "SYAPS-铁架工:IO查询";
             byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 22, 0 });
             GlobalData.Instance.da.SendBytes(byteToSend);
             BottomColorSetting(this.bdSFIO, this.tbSFIO, this.gdbottomSF);
@@ -2316,7 +2316,7 @@ namespace Main
             }
             this.spMain.Children.Clear();
             this.spMain.Children.Add(SFSecureSetting.Instance);
-            this.mainTitle.Content = "SYAPS-二层台:安全设置";
+            this.mainTitle.Content = "SYAPS-铁架工:安全设置";
             BottomColorSetting(this.bdSFSafeSet, this.tbSFSafeSet, this.gdbottomSF);
         }
         /// <summary>
@@ -2328,7 +2328,7 @@ namespace Main
         {
             this.spMain.Children.Clear();
             this.spMain.Children.Add(SFRecordMain.Instance);
-            this.mainTitle.Content = "SYAPS-二层台:记录查询";
+            this.mainTitle.Content = "SYAPS-铁架工:记录查询";
             BottomColorSetting(this.bdSFRecord, this.tbSFRecord, this.gdbottomSF);
         }
         /// <summary>
@@ -2340,7 +2340,7 @@ namespace Main
         {
             this.spMain.Children.Clear();
             this.spMain.Children.Add(SFChart.Instance);
-            this.mainTitle.Content = "SYAPS-二层台:图表";
+            this.mainTitle.Content = "SYAPS-铁架工:图表";
             BottomColorSetting(this.bdSFFigure, this.tbSFFigure, this.gdbottomSF);
         }
         /// <summary>
@@ -2353,7 +2353,7 @@ namespace Main
             this.spMain.Children.Clear();
             SFReport.Instance.ReportTextBlockShow();
             this.spMain.Children.Add(SFReport.Instance);
-            this.mainTitle.Content = "SYAPS-二层台:报表";
+            this.mainTitle.Content = "SYAPS-铁架工:报表";
             BottomColorSetting(this.bdSFReport, this.tbSFReport, this.gdbottomSF);
         }
         /// <summary>
@@ -2382,7 +2382,7 @@ namespace Main
 
                 this.spMain.Children.Clear();
                 this.spMain.Children.Add(SFParamMain.Instance);
-                this.mainTitle.Content = "SYAPS-二层台:参数设置";
+                this.mainTitle.Content = "SYAPS-铁架工:参数设置";
             }
             else
             {
@@ -2405,7 +2405,7 @@ namespace Main
                 this.spMain.Children.Clear();
                 //this.spMain.Children.Add(SFPositionSetting.Instance);
                 this.spMain.Children.Add(SFPosSetMain.Instance);
-                this.mainTitle.Content = "SYAPS-二层台:位置标定";
+                this.mainTitle.Content = "SYAPS-铁架工:位置标定";
             }
             else
             {
@@ -2533,10 +2533,10 @@ namespace Main
         }
         #endregion
 
-        #region 二层台
+        #region 铁架工
 
         /// <summary>
-        /// 二层台 主页
+        /// 铁架工 主页
         /// </summary>
         private void MouseDownSF(object sender, RoutedEventArgs e)
         {
@@ -2546,7 +2546,7 @@ namespace Main
                 this.spMain.Children.Add(projectLoad);
                 this.projectLoad.Visibility = System.Windows.Visibility.Visible;
                 nowSystemType = SystemType.SecondFloor;
-                this.mainTitle.Content = "SYAPS-二层台:主页";
+                this.mainTitle.Content = "SYAPS-铁架工:主页";
             }
             else
             {
@@ -2554,7 +2554,7 @@ namespace Main
             }
         }
         /// <summary>
-        /// 二层台-主页
+        /// 铁架工-主页
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -2564,7 +2564,7 @@ namespace Main
             this.spMain.Children.Add(projectLoad);
             this.projectLoad.Visibility = System.Windows.Visibility.Visible;
             nowSystemType = SystemType.SecondFloor;
-            this.mainTitle.Content = "SYAPS-二层台:主页";
+            this.mainTitle.Content = "SYAPS-铁架工:主页";
         }
         /// <summary>
         /// 钻杆设置
@@ -2575,7 +2575,7 @@ namespace Main
         {
             this.spMain.Children.Clear();
             this.spMain.Children.Add(SFDrillSetting.Instance);
-            this.mainTitle.Content = "SYAPS-二层台:钻杆设置";
+            this.mainTitle.Content = "SYAPS-铁架工:钻杆设置";
             SFDrillSetting.Instance.SysTypeSelect(1);
             RefreshPipeCount();
         }
@@ -2588,7 +2588,7 @@ namespace Main
         {
             this.spMain.Children.Clear();
             this.spMain.Children.Add(SFDeviceStatus.Instance);
-            this.mainTitle.Content = "SYAPS-二层台:设备状态";
+            this.mainTitle.Content = "SYAPS-铁架工:设备状态";
             SFDeviceStatus.Instance.SwitchDeviceStatusPageEvent += Instance_SwitchDeviceStatusPageEvent;
             gotoEquipStatusPage();
             this.checkMaintain();
@@ -2603,7 +2603,7 @@ namespace Main
         {
             this.spMain.Children.Clear();
             this.spMain.Children.Add(SFIOMain.Instance);
-            this.mainTitle.Content = "SYAPS-二层台:IO查询";
+            this.mainTitle.Content = "SYAPS-铁架工:IO查询";
             byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 22, 0 });
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
@@ -2616,7 +2616,7 @@ namespace Main
         {
             this.spMain.Children.Clear();
             this.spMain.Children.Add(SFRecordMain.Instance);
-            this.mainTitle.Content = "SYAPS-二层台:记录查询";
+            this.mainTitle.Content = "SYAPS-铁架工:记录查询";
         }
         /// <summary>
         /// 图表
@@ -2627,7 +2627,7 @@ namespace Main
         {
             this.spMain.Children.Clear();
             this.spMain.Children.Add(SFChart.Instance);
-            this.mainTitle.Content = "SYAPS-二层台:图表";
+            this.mainTitle.Content = "SYAPS-铁架工:图表";
         }
         /// <summary>
         /// 报表
@@ -2639,7 +2639,7 @@ namespace Main
             this.spMain.Children.Clear();
             SFReport.Instance.ReportTextBlockShow();
             this.spMain.Children.Add(SFReport.Instance);
-            this.mainTitle.Content = "SYAPS-二层台:报表";
+            this.mainTitle.Content = "SYAPS-铁架工:报表";
         }
         /// <summary>
         /// 安全设置
@@ -2668,7 +2668,7 @@ namespace Main
 
                 this.spMain.Children.Clear();
                 this.spMain.Children.Add(SFParamMain.Instance);
-                this.mainTitle.Content = "SYAPS-二层台:参数设置";
+                this.mainTitle.Content = "SYAPS-铁架工:参数设置";
             }
             else
             {
@@ -2691,7 +2691,7 @@ namespace Main
                 this.spMain.Children.Clear();
                 //this.spMain.Children.Add(SFPositionSetting.Instance);
                 this.spMain.Children.Add(SFPosSetMain.Instance);
-                this.mainTitle.Content = "SYAPS-二层台:位置标定";
+                this.mainTitle.Content = "SYAPS-铁架工:位置标定";
             }
             else
             {
@@ -2699,9 +2699,9 @@ namespace Main
             }
         }
         #endregion
-        #region 钻台面
+        #region 扶杆臂
         /// <summary>
-        /// 钻台面
+        /// 扶杆臂
         /// </summary>
         private void MouseDR(object sender, RoutedEventArgs e)
         {
@@ -2711,7 +2711,7 @@ namespace Main
                 this.spMain.Children.Add(projectLoad);
                 this.projectLoad.Visibility = System.Windows.Visibility.Visible;
                 nowSystemType = SystemType.DrillFloor;
-                this.mainTitle.Content = "SYAPS-钻台面:主页";
+                this.mainTitle.Content = "SYAPS-扶杆臂:主页";
             }
             else
             {
@@ -2729,7 +2729,7 @@ namespace Main
             this.spMain.Children.Add(projectLoad);
             this.projectLoad.Visibility = System.Windows.Visibility.Visible;
             nowSystemType = SystemType.DrillFloor;
-            this.mainTitle.Content = "SYAPS-钻台面:主页";
+            this.mainTitle.Content = "SYAPS-扶杆臂:主页";
         }
         /// <summary>
         /// 钻杆设置
@@ -2740,7 +2740,7 @@ namespace Main
         {
             this.spMain.Children.Clear();
             this.spMain.Children.Add(SFDrillSetting.Instance);
-            this.mainTitle.Content = "SYAPS-钻台面:钻杆设置";
+            this.mainTitle.Content = "SYAPS-扶杆臂:钻杆设置";
             SFDrillSetting.Instance.SysTypeSelect(2);
             byte[] byteToSend = GlobalData.Instance.SendToDR(new List<byte> { 7, 1 });
             GlobalData.Instance.da.SendBytes(byteToSend);
@@ -2754,7 +2754,7 @@ namespace Main
         {
             this.spMain.Children.Clear();
             this.spMain.Children.Add(DRDeviceStatus.Instance);
-            this.mainTitle.Content = "SYAPS-钻台面:设备状态";
+            this.mainTitle.Content = "SYAPS-扶杆臂:设备状态";
         }
         /// <summary>
         /// 安全设置
@@ -2765,7 +2765,7 @@ namespace Main
         {
             this.spMain.Children.Clear();
             this.spMain.Children.Add(DRSecureSetting.Instance);
-            this.mainTitle.Content = "SYAPS-钻台面:安全设置";
+            this.mainTitle.Content = "SYAPS-扶杆臂:安全设置";
         }
         /// <summary>
         /// 参数设置
@@ -2781,7 +2781,7 @@ namespace Main
                 {
                     this.spMain.Children.Clear();
                     this.spMain.Children.Add(WR_ParamMain.Instance);
-                    this.mainTitle.Content = "SYAPS-钻台面:参数设置";
+                    this.mainTitle.Content = "SYAPS-扶杆臂:参数设置";
                 }
                 else
                 {
@@ -2795,7 +2795,7 @@ namespace Main
                 {
                     this.spMain.Children.Clear();
                     this.spMain.Children.Add(DRParamSettingMain.Instance);
-                    this.mainTitle.Content = "SYAPS-钻台面:参数设置";
+                    this.mainTitle.Content = "SYAPS-扶杆臂:参数设置";
                 }
                 else
                 {
@@ -2818,7 +2818,7 @@ namespace Main
                     this.spMain.Children.Clear();
                     //this.spMain.Children.Add(DRPosSetting.Instance);
                     this.spMain.Children.Add(WR_PosSetMain.Instance);
-                    this.mainTitle.Content = "SYAPS-钻台面:位置标定";
+                    this.mainTitle.Content = "SYAPS-扶杆臂:位置标定";
                 }
                 else
                 {
@@ -2833,7 +2833,7 @@ namespace Main
                     this.spMain.Children.Clear();
                     //this.spMain.Children.Add(DRPosSetting.Instance);
                     this.spMain.Children.Add(DRPosSetMain.Instance);
-                    this.mainTitle.Content = "SYAPS-钻台面:位置标定";
+                    this.mainTitle.Content = "SYAPS-扶杆臂:位置标定";
                 }
                 else
                 {

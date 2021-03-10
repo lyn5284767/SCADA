@@ -153,6 +153,9 @@
     <Compile Include="Cat\SL_CatMain.xaml.cs">
       <DependentUpon>SL_CatMain.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Cat\SL_CatStatus.xaml.cs">
+      <DependentUpon>SL_CatStatus.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Cat\ZY_CatMain.xaml.cs">
       <DependentUpon>ZY_CatMain.xaml</DependentUpon>
     </Compile>
@@ -543,6 +546,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Cat\SL_CatMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Cat\SL_CatStatus.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

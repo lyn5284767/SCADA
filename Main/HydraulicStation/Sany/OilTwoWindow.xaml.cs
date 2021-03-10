@@ -118,7 +118,7 @@ namespace Main.HydraulicStation.Sany
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
-        /// 钻台面打开
+        /// 扶杆臂打开
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

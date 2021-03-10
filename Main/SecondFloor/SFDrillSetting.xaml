@@ -91,8 +91,8 @@
                         <TextBlock Text="无操作" VerticalAlignment="Center" Width="150" Name="NumFixTips" Margin="5,12,5,15"/>
                         <ComboBox Name="cbSysTypeSelect" SelectedIndex="0" SelectionChanged="ComboBox_SelectionChanged" FontFamily="微软雅黑">
                             <ComboBoxItem>全部</ComboBoxItem>
-                            <ComboBoxItem>二层台</ComboBoxItem>
-                            <ComboBoxItem>钻台面</ComboBoxItem>
+                            <ComboBoxItem>铁架工</ComboBoxItem>
+                            <ComboBoxItem>扶杆臂</ComboBoxItem>
                         </ComboBox>
                     </StackPanel>
                 </Grid>

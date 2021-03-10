@@ -46,23 +46,23 @@ namespace Main.SIR.JJC
         {
             InitializeComponent();
             this.tbCalibrationStatus.SetBinding(TextBlock.TextProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b3"], Mode = BindingMode.OneWay, Converter = new SIRCalibrationStatusCoverter() });
-            this.tbRealTimeRatate.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDRotate"], Mode = BindingMode.OneWay });
-            this.tbCylinderTrip.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDCylinderTrip"], Mode = BindingMode.OneWay });
-            this.tbCylinderZero.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDCylinderZero"], Mode = BindingMode.OneWay });
-            this.tbZeroAngleOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDRotateZero"], Mode = BindingMode.OneWay });
-            this.tbRotateWaitOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDRotateWait"], Mode = BindingMode.OneWay });
-            this.tbWellLocationOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDWellLocation"], Mode = BindingMode.OneWay });
-            this.tbMouseLocationOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDMouseLocatio"], Mode = BindingMode.OneWay });
+            this.tbRealTimeRatate.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDRotate"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+            this.tbCylinderTrip.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDCylinderTrip"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+            this.tbCylinderZero.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDCylinderZero"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+            this.tbZeroAngleOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDRotateZero"], Mode = BindingMode.OneWay,Converter = new DivideTenConverter() });
+            this.tbRotateWaitOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDRotateWait"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+            this.tbWellLocationOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDWellLocation"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+            this.tbMouseLocationOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDMouseLocatio"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
 
             this.tbInOutStatus.SetBinding(TextBlock.TextProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["803b4"], Mode = BindingMode.OneWay, Converter = new SIRCalibrationStatusCoverter() });
-            this.tbInOutCylinderTrip.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDInOutCylinderTrip"], Mode = BindingMode.OneWay });
-            this.tbFlowRateValve.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDFlowRateValve"], Mode = BindingMode.OneWay });
-            this.tbPressureRateValve.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDPressureRateValve"], Mode = BindingMode.OneWay });
-            this.tbInOutMaxSpeedOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDInOutMaxSpeed"], Mode = BindingMode.OneWay });
-            this.tbInOutCrawlSpeedOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDInOutCrawlSpeed"], Mode = BindingMode.OneWay });
-            this.tbWellRetractLengthOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDWellRetractLength"], Mode = BindingMode.OneWay });
-            this.tbMouseRetractLengthOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDMouseRetractLength"], Mode = BindingMode.OneWay });
-            this.tbInOutCylinderZeroOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDInOutCylinderZero"], Mode = BindingMode.OneWay });
+            this.tbInOutCylinderTrip.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDInOutCylinderTrip"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+            this.tbFlowRateValve.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDFlowRateValve"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+            this.tbPressureRateValve.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDPressureRateValve"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+            this.tbInOutMaxSpeedOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDInOutMaxSpeed"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+            this.tbInOutCrawlSpeedOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDInOutCrawlSpeed"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+            this.tbWellRetractLengthOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDWellRetractLength"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+            this.tbMouseRetractLengthOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDMouseRetractLength"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+            this.tbInOutCylinderZeroOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDInOutCylinderZero"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
             this.smRotate.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b7"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
             this.smInOut.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b6"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
 

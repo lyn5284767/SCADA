@@ -248,7 +248,7 @@
 
                                     <StackPanel Height="60" Orientation="Horizontal" Margin="5">
                                         <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">
-                                            <!--左手柄，控制二层台和钻台面-->
+                                            <!--左手柄，控制铁架工和扶杆臂-->
                                             <StackPanel Height="60" Width="140" Orientation="Horizontal">
                                                 <cl:SymbolMappingV StrContent="左" LampType="3" Width="25" Name="lampType_LeftButton_EquiptStatus"/>
                                                 <cl:SymbolMappingV StrContent="右" LampType="3" Width="25" Name="lampType_RightButton_EquiptStatus"/>
@@ -261,7 +261,7 @@
 
                                     <StackPanel Height="60" Orientation="Horizontal" Margin="5">
                                         <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Padding="3">
-                                            <!--左手柄，控制二层台和钻台面-->
+                                            <!--左手柄，控制铁架工和扶杆臂-->
                                             <StackPanel Height="60" Width="180" Orientation="Horizontal">
                                                 <cl:SymbolMappingV StrContent="背" LampType="3" Width="25" Name="lampType_BackButton_EquiptStatus"/>
                                                 <cl:SymbolMappingV StrContent="上" LampType="3" Width="25" Name="lampType_UpButton_EquiptStatus"/>
@@ -327,6 +327,7 @@
                     <ColumnDefinition Width="160"/>
                     <ColumnDefinition Width="150"/>
                     <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="140"/>
                     <ColumnDefinition Width="170"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
@@ -370,7 +371,9 @@
                     </Menu>
                 </Grid>
                 <cl:CustomCheckBox ContentString="送杆提效" Margin="10" Name="cbDrillDwon" Grid.Column="2" UserControlClicked="cbDrillDwon_Clicked"/>
-                <cl:CustomCheckBox ContentString="视觉辅助系统" Margin="10" Name="cbVisualAid" Grid.Column="3" UserControlClicked="cbVisualAid_Clicked"/>
+                <cl:CustomCheckBox ContentString="排杆提效" Margin="10" Name="cbDrillUp" Grid.Column="3" UserControlClicked="cbDrillUp_Clicked"/>
+
+                <cl:CustomCheckBox ContentString="钻杆识别" Margin="10" Name="cbVisualAid" Grid.Column="4" UserControlClicked="cbVisualAid_Clicked"/>
                 <!--<Button Grid.Column="2" Click="btn_testES" Visibility="Collapsed"/>-->
             </Grid>
         </Grid>

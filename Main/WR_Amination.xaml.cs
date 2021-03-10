@@ -44,12 +44,12 @@ namespace Main
                 return _instance;
             }
         }
-        private List<BorderNum> drSelectFingerList = new List<BorderNum>(); // 钻台面对准指梁
+        private List<BorderNum> drSelectFingerList = new List<BorderNum>(); // 扶杆臂对准指梁
         private string configPath = System.Environment.CurrentDirectory + @"\Config.ini";
         //private bool bLoaded = false;
         const int STRINGMAX = 255;
         System.Threading.Timer timer;
-        #region 二层台参数
+        #region 铁架工参数
         private int rows;
         private int coloms;//列数 
         private int drillCnt;//钻铤的个数
@@ -63,9 +63,9 @@ namespace Main
 
         public event SetDrillNum SetDrillNumEvent;
 
-        // 二层台指梁
+        // 铁架工指梁
         List<StackPanel> spSF = new List<StackPanel>();
-        // 钻台面指梁
+        // 扶杆臂指梁
         List<StackPanel> spDR = new List<StackPanel>();
         /// <summary>
         /// 中间间距
@@ -80,7 +80,7 @@ namespace Main
             get { return rows; }
         }
 
-        #region 钻台面参数
+        #region 扶杆臂参数
         public static readonly DependencyProperty WR_DRCurrentPointFingerBeamNumberProperty = DependencyProperty.Register("WR_DRCurrentPointFingerBeamNumber", typeof(byte), typeof(WR_Amination), new PropertyMetadata((byte)0));//当前所移动到的指梁号反馈
         public static readonly DependencyProperty WR_DROperationModelProperty = DependencyProperty.Register("WR_DROperationModel", typeof(byte), typeof(WR_Amination), new PropertyMetadata((byte)0));//操作模式 
         public static readonly DependencyProperty WR_DRPCFingerBeamNumberFeedBackProperty = DependencyProperty.Register("WR_DRPCFingerBeamNumberFeedBack", typeof(byte), typeof(WR_Amination), new PropertyMetadata((byte)0));//上位机选择的指梁序号反馈
@@ -91,7 +91,7 @@ namespace Main
         public static readonly DependencyProperty WR_DRRobotArmPositionProperty = DependencyProperty.Register("WR_DRRobotArmPosition", typeof(short), typeof(WR_Amination), new PropertyMetadata((short)0)); // 手臂位置
 
         /// <summary>
-        /// 钻台面-当前指梁号
+        /// 扶杆臂-当前指梁号
         /// </summary>
         public byte WR_DRCurrentPointFingerBeamNumber
         {
@@ -99,7 +99,7 @@ namespace Main
             set { SetValue(WR_DRCurrentPointFingerBeamNumberProperty, value); }
         }
         /// <summary>
-        /// 钻台面-操作模式
+        /// 扶杆臂-操作模式
         /// </summary>
         public byte WR_DROperationModel
         {
@@ -107,7 +107,7 @@ namespace Main
             set { SetValue(WR_DROperationModelProperty, value); }
         }
         /// <summary>
-        /// 钻台面-上位机选择的指梁
+        /// 扶杆臂-上位机选择的指梁
         /// </summary>
         public byte WR_DRPCFingerBeamNumberFeedBack
         {
@@ -115,7 +115,7 @@ namespace Main
             set { SetValue(WR_DRPCFingerBeamNumberFeedBackProperty, value); }
         }
         /// <summary>
-        /// 钻台面-小车位置
+        /// 扶杆臂-小车位置
         /// </summary>
         public short WR_DRRobotCarPosition
         {
@@ -123,7 +123,7 @@ namespace Main
             set { SetValue(WR_DRRobotCarPositionProperty, value); }
         }
         /// <summary>
-        /// 钻台面-抓手状态
+        /// 扶杆臂-抓手状态
         /// </summary>
         public byte WR_DRRobotGripStatus
         {
@@ -131,7 +131,7 @@ namespace Main
             set { SetValue(WR_DRRobotGripStatusProperty, value); }
         }
         /// <summary>
-        /// 钻台面-手臂旋转角度
+        /// 扶杆臂-手臂旋转角度
         /// </summary>
         public short WR_DRRobotArmRotateAngle
         {
@@ -139,7 +139,7 @@ namespace Main
             set { SetValue(WR_DRRobotArmRotateAngleProperty, value); }
         }
         /// <summary>
-        /// 钻台面-手臂位置
+        /// 扶杆臂-手臂位置
         /// </summary>
         public short WR_DRRobotArmPosition
         {
@@ -150,7 +150,7 @@ namespace Main
 
         public static readonly DependencyProperty WR_DRRealMoveXProperty = DependencyProperty.Register("WR_DRRealMoveX", typeof(double), typeof(WR_Amination), new PropertyMetadata((double)0.0));
         ///<summary>
-        /// 钻台面-小车在X轴上最大位移
+        /// 扶杆臂-小车在X轴上最大位移
         /// </summary>
         public double WR_DRRealMoveX
         {
@@ -161,7 +161,7 @@ namespace Main
         public static readonly DependencyProperty WR_DRMiddleXProperty = DependencyProperty.Register("WR_DRMiddleX", typeof(double), typeof(WR_Amination), new PropertyMetadata((double)0.0));// 中间高度
 
         ///<summary>
-        /// 钻台面-中间高度--减去用于置于零点
+        /// 扶杆臂-中间高度--减去用于置于零点
         /// </summary>
         public double WR_DRMiddleX
         {
@@ -223,7 +223,7 @@ namespace Main
         #region 设置运动位移
         public static readonly DependencyProperty WR_DRWorkAnimationWidthProperty = DependencyProperty.Register("WR_DRWorkAnimationWidth", typeof(double), typeof(WR_Amination), new PropertyMetadata((double)0.0)); // 手臂最大位移
         /// <summary>
-        /// 钻台面-手臂最大位移
+        /// 扶杆臂-手臂最大位移
         /// </summary>
         public double WR_DRWorkAnimationWidth
         {
@@ -255,7 +255,7 @@ namespace Main
         {
             try
             {
-                #region 钻台面所有指梁
+                #region 扶杆臂所有指梁
                 drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow1, Num = 1 });
                 drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow2, Num = 2 });
                 drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow3, Num = 3 });
@@ -291,7 +291,7 @@ namespace Main
                 drSelectImageList.Add(new ImageNum { SelectImage = this.drBeamArrow32, Num = 32 });
                 #endregion
 
-                #region 钻台面所有指梁
+                #region 扶杆臂所有指梁
                 drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow1, Num = 1 });
                 drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow2, Num = 2 });
                 drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow3, Num = 3 });
@@ -325,7 +325,7 @@ namespace Main
                 drSelectFingerList.Add(new BorderNum { SelectBorder = this.drFingerBeamArrow31, Num = 31 });
 
                 #endregion
-                #region 初始化钻台面钻杆/钻铤数量
+                #region 初始化扶杆臂钻杆/钻铤数量
                 this.drDrillCountList.Clear();
                 this.drDrillCountList.Add(new DrillModel() { Name = "drDrillNum1", Num = 0, LorR = "left" });
                 this.drDrillCountList.Add(new DrillModel() { Name = "drDrillNum2", Num = 0, LorR = "left" });
@@ -361,7 +361,7 @@ namespace Main
                 this.drDrillCountList.Add(new DrillModel() { Name = "drDrillNum32", Num = 0, LorR = "right" });
                 #endregion
 
-                #region 钻台面参数绑定
+                #region 扶杆臂参数绑定
                 this.SetBinding(WR_DROperationModelProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });//操作模式  
                 this.SetBinding(WR_DRRobotCarPositionProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["drCarPos"], Mode = BindingMode.OneWay });//小车实际位置
                 this.SetBinding(WR_DRRobotGripStatusProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drgripStatus"], Mode = BindingMode.OneWay });//抓手的18种状态
@@ -407,7 +407,7 @@ namespace Main
                 leftFPDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drDrillNum14"], Mode = BindingMode.OneWay });
                 leftFPDrillMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drDrillNum15"], Mode = BindingMode.OneWay });
                 leftFPDrillMultiBind.NotifyOnSourceUpdated = true;
-                leftFPDrillMultiBind.ConverterParameter = "钻台面 左:";
+                leftFPDrillMultiBind.ConverterParameter = "扶杆臂 左:";
                 this.tbFPLeft.SetBinding(TextBlock.TextProperty, leftFPDrillMultiBind);
 
                 this.tbrow1RightFP.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drDrillNum17"], Mode = BindingMode.OneWay });
@@ -474,7 +474,7 @@ namespace Main
         /// </summary>
         private void FingerBeamArrowBind()
         {
-            //#region 钻台面
+            //#region 扶杆臂
             //AnimationCurrentFingerBeamVisableCoverter drCurrentFingerBeamCoverter = new AnimationCurrentFingerBeamVisableCoverter();
             //MultiBinding dr15DrillMultiBind = new MultiBinding();
             //dr15DrillMultiBind.Converter = drCurrentFingerBeamCoverter;
@@ -725,7 +725,7 @@ namespace Main
         {
             try
             {
-                // 钻台面指梁绑定
+                // 扶杆臂指梁绑定
                 byte drSelectDrill = GlobalData.Instance.da["drSelectDrill"].Value.Byte;
                 byte droperationModel = GlobalData.Instance.da["droperationModel"].Value.Byte;
                 if (droperationModel == 4 || droperationModel == 9)
@@ -752,7 +752,7 @@ namespace Main
                 Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
             }
 
-            //#region 二层台
+            //#region 铁架工
             //AnimationCurrentFingerBeamVisableCoverter CurrentFingerBeamCoverter = new AnimationCurrentFingerBeamVisableCoverter();
             //MultiBinding sf15DrillMultiBind = new MultiBinding();
             //sf15DrillMultiBind.Converter = CurrentFingerBeamCoverter;
@@ -1014,8 +1014,8 @@ namespace Main
                 Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
             }
         }
-        private List<ImageNum> drSelectImageList = new List<ImageNum>(); // 钻台面对准指梁图片
-        private List<ImageNum> sfSelectImageList = new List<ImageNum>(); // 二层台对准指梁图片
+        private List<ImageNum> drSelectImageList = new List<ImageNum>(); // 扶杆臂对准指梁图片
+        private List<ImageNum> sfSelectImageList = new List<ImageNum>(); // 铁架工对准指梁图片
         private void btn_SendFingerBeamNumber(object sender, MouseButtonEventArgs e)
         {
             string strImageName = ((Image)sender).Name;
@@ -1169,10 +1169,10 @@ namespace Main
                 int rightrow = this.rightRows;
                 if (this.showRightOne) rightrow -= 1; // 左边有钻铤，减去一行
                 #region 隐藏两侧多余行数
-                HiddenTBInSP(this.spOneCol, leftrow); // 隐藏第一列-左边二层台行数
+                HiddenTBInSP(this.spOneCol, leftrow); // 隐藏第一列-左边铁架工行数
                 HiddenTBInSP(this.spThreeCol, leftrow); // 隐藏第三列-左边行数
                 HiddenTBInSP(this.spFourCol, rightrow); // 隐藏第四列-右边行数
-                HiddenTBInSP(this.spSixCol, rightrow); // 隐藏第六列-右边二层台行数
+                HiddenTBInSP(this.spSixCol, rightrow); // 隐藏第六列-右边铁架工行数
                 #endregion
                 #region 隐藏指梁数
                 HiddenDrillInSP(this.spLeftDrill, leftrow);

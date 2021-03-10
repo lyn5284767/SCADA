@@ -291,7 +291,7 @@
                         <RowDefinition Height="7*"/>
                         <RowDefinition Height="93*"/>
                     </Grid.RowDefinitions>
-                    <!--二层台-->
+                    <!--铁架工-->
                     <StackPanel Height="320" Name="spSFMid" Visibility="{Binding Path=SFType,ElementName=uc,Converter={StaticResource SecondFloorVisCVT}}" Margin="0,0,0,-20" Grid.RowSpan="2">
                         <Border Height="8" BorderBrush="#6D6F72" BorderThickness="0,10,0,0"></Border>
                         <!--第15行-->

@@ -13,8 +13,9 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <TextBlock Name="tbNowStep" Grid.Row="0" Text="***设置" FontSize="32" TextAlignment="Center" FontWeight="Bold"></TextBlock>
-        <Grid Grid.Row="1" Name="gdHSSet" Visibility="Collapsed">
+        <Grid Grid.Row="1" Name="gdHSSet" Visibility="Visible">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -22,6 +23,8 @@
             <Button Name="btnPumpOne" Grid.Column="0" FontSize="32" Height="200" Width="150" Click="SelectedPumpOne_Click">1#主泵</Button>
             <Button Name="btnPumpTwo" Grid.Column="1" FontSize="32" Height="200" Width="150" Click="SelectedPumpTwo_Click">2#主泵</Button>
             <Button Name="btnPumpBoth" Grid.Column="2" FontSize="32" Height="200" Width="150" Click="SelectedPumpBoth_Click">双泵</Button>
+            <Button Name="btnVoltagePump" Grid.Column="3" FontSize="32" Height="200" Width="150" Click="btnVoltagePump_Click">双泵</Button>
+
         </Grid>
         <Grid Grid.Row="1" Name="gdWorkModel" Visibility="Collapsed">
             <Grid.ColumnDefinitions>
@@ -112,7 +115,7 @@
                 </TextBlock>
             </StackPanel>
         </Grid>
-        <Grid Grid.Row="1" Name="gdConfirm">
+        <Grid Grid.Row="1" Name="gdConfirm" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>

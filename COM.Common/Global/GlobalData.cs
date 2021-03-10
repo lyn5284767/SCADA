@@ -48,11 +48,11 @@ namespace COM.Common
         public byte[] ConfigParameter = new byte[4];
         public byte[] SetParam = new byte[10];
         /// <summary>
-        /// 二层台移动X轴补偿
+        /// 铁架工移动X轴补偿
         /// </summary>
         public int CompensateX { get; set; }
         /// <summary>
-        /// 二层台移动Y轴补偿
+        /// 铁架工移动Y轴补偿
         /// </summary>
         public int CompensateY { get; set; }
         public int CarSize { get; set; } = 20;
@@ -69,15 +69,15 @@ namespace COM.Common
         /// </summary>
         public int ArmMaxPosistion { get; set; }
         /// <summary>
-        /// 钻台面-小车最大位移
+        /// 扶杆臂-小车最大位移
         /// </summary>
         public int DRCarMaxPosistion { get; set; }
         /// <summary>
-        /// 钻台面-小车最小位移
+        /// 扶杆臂-小车最小位移
         /// </summary>
         public int DRCarMinPosistion { get; set; }
         /// <summary>
-        /// 钻台面-手臂最大位移
+        /// 扶杆臂-手臂最大位移
         /// </summary>
         public int DRArmMaxPosistion { get; set; }
         /// <summary>
@@ -164,7 +164,7 @@ namespace COM.Common
         }
 
         /// <summary>
-        /// 上位机发钻台面
+        /// 上位机发扶杆臂
         /// </summary>
         /// <param name="list">协议字符列表</param>
         /// <returns></returns>
@@ -253,11 +253,11 @@ namespace COM.Common
     public enum SystemType
     {
         /// <summary>
-        /// 二层台
+        /// 铁架工
         /// </summary>
         SecondFloor = 0,
         /// <summary>
-        /// 钻台面
+        /// 扶杆臂
         /// </summary>
         DrillFloor = 1,
         /// <summary>

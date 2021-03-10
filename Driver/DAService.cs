@@ -760,7 +760,7 @@ namespace DemoDriver
                             //sysLog.Id = data.ID;
                             //sysLog.Value = data.Value.Int32;
                             //sysLog.TimeStamp = data.TimeStamp;
-                            if (data.GroupID==0) // 二层台存储数据
+                            if (data.GroupID==0) // 铁架工存储数据
                             {
                                 string sql = string.Format("Insert Into Log (Id,Value,TimeStamp,LogType) Values('{0}','{1}','{2}','1')", data.ID, data.Value.Int32, data.TimeStamp.ToString("yyyy-MM-dd HH:mm:ss"));
                                 sqlList.Add(sql);
@@ -1291,11 +1291,11 @@ namespace DemoDriver
         /// </summary>
         public int HydType { get; set; }
         /// <summary>
-        /// 钻台面类型 0-无 1-自研 2-杰瑞
+        /// 扶杆臂类型 0-无 1-自研 2-杰瑞
         /// </summary>
         public int DRType { get; set; }
         /// <summary>
-        /// 二层台类型 0-无；1有
+        /// 铁架工类型 0-无；1有
         /// </summary>
         public int SFType { get; set; }
         /// <summary>
@@ -1323,7 +1323,7 @@ namespace DemoDriver
         /// </summary>
         public int SysType { get; set; }
         /// <summary>
-        /// 是否为集成系统 0-集成系统；1-二层台单机
+        /// 是否为集成系统 0-集成系统；1-铁架工单机
         /// </summary>
         public int IngSystem { get; set; }
         /// <summary>

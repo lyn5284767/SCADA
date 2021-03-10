@@ -137,7 +137,7 @@ namespace Main.WellRepair.DrillFloor
         int count = 0; // 进入页面发送协议次数
         private void WR_DRMain_Loaded(object sender, RoutedEventArgs e)
         {
-            // 钻台面主界面
+            // 扶杆臂主界面
             //byte[] data = new byte[10] { 80, 33, 0, 0, 0, 0, 0, 0, 0, 30 };
             byte[] data = new byte[10] { 80, 33, 0, 0, 0, 0, 0, 0, 30, 30 };
             GlobalData.Instance.da.SendBytes(data);
@@ -933,7 +933,7 @@ namespace Main.WellRepair.DrillFloor
 
 
         /// <summary>
-        /// 钻台面-一键回零
+        /// 扶杆臂-一键回零
         /// </summary>
         private void btn_drAllMotorRetZero(object sender, MouseButtonEventArgs e)
         {
@@ -941,7 +941,7 @@ namespace Main.WellRepair.DrillFloor
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
-        /// 钻台面-电机使能
+        /// 扶杆臂-电机使能
         /// </summary>
         private void btn_drMotorEnable(object sender, MouseButtonEventArgs e)
         {
@@ -950,7 +950,7 @@ namespace Main.WellRepair.DrillFloor
         }
 
         /// <summary>
-        /// 钻台面-操作模式
+        /// 扶杆臂-操作模式
         /// </summary>
         private void btn_drOpState(object sender, EventArgs e)
         {
@@ -967,7 +967,7 @@ namespace Main.WellRepair.DrillFloor
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
-        /// 钻台面-工作模式
+        /// 扶杆臂-工作模式
         /// </summary>
         private void btn_drWorkModel(object sender, EventArgs e)
         {
@@ -995,9 +995,9 @@ namespace Main.WellRepair.DrillFloor
             if (this.drTelecontrolModel.IsChecked) // 司钻切遥控
             {
 
-                drbyteToSend = new byte[10] { 1, 32, 2, 21, 0, 0, 0, 0, 0, 0 }; // 钻台面-司钻切遥控
+                drbyteToSend = new byte[10] { 1, 32, 2, 21, 0, 0, 0, 0, 0, 0 }; // 扶杆臂-司钻切遥控
                 sirbyteToSend = new byte[10] { 23, 17, 10, 1, 0, 0, 0, 0, 0, 0 }; // 铁钻工-遥控切司钻
-                sfbyteToSend = new byte[10] { 16, 1, 27, 1, 1, 0, 0, 0, 0, 0 };// 二层台-遥控切司钻
+                sfbyteToSend = new byte[10] { 16, 1, 27, 1, 1, 0, 0, 0, 0, 0 };// 铁架工-遥控切司钻
                 GlobalData.Instance.da.SendBytes(drbyteToSend);
                 Thread.Sleep(50);
                 GlobalData.Instance.da.SendBytes(sirbyteToSend);
@@ -1014,7 +1014,7 @@ namespace Main.WellRepair.DrillFloor
         }
 
         /// <summary>
-        /// 钻台面-发送目的地设置
+        /// 扶杆臂-发送目的地设置
         /// </summary>
         private void btn_SelectDes(object sender, RoutedEventArgs e)
         {

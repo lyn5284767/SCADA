@@ -40,11 +40,11 @@ namespace Main.Integration
         }
         #region Field
         /// <summary>
-        /// 二层台工作模式 1：送杆；2排杆
+        /// 铁架工工作模式 1：送杆；2排杆
         /// </summary>
         private int sfWorkModel { get; set; }
         /// <summary>
-        /// 钻台面工作模式 1：送杆；2排杆
+        /// 扶杆臂工作模式 1：送杆；2排杆
         /// </summary>
         private int drWorkModel { get; set; }
         /// <summary>
@@ -52,11 +52,11 @@ namespace Main.Integration
         /// </summary>
         private int sirWorkModel { get; set; }
         /// <summary>
-        /// 二层台操作模式 1：送杆；2排杆
+        /// 铁架工操作模式 1：送杆；2排杆
         /// </summary>
         private int sfOprModel { get; set; }
         /// <summary>
-        /// 钻台面操作模式 1：送杆；2排杆
+        /// 扶杆臂操作模式 1：送杆；2排杆
         /// </summary>
         private int drOprModel { get; set; }
         /// <summary>
@@ -64,23 +64,23 @@ namespace Main.Integration
         /// </summary>
         private int sirOprModel { get; set; }
         /// <summary>
-        /// 二层台钻杆类型
+        /// 铁架工钻杆类型
         /// </summary>
         public int sfTubesType { get; set; }
         /// <summary>
-        /// 钻台面钻杆类型
+        /// 扶杆臂钻杆类型
         /// </summary>
         public int drTubesType { get; set; }
         /// <summary>
-        /// 钻台面目的地
+        /// 扶杆臂目的地
         /// </summary>
         public int drDes { get; set; }
         /// <summary>
-        /// 二层台当前选择指梁
+        /// 铁架工当前选择指梁
         /// </summary>
         public int sfSelectDrill { get; set; }
         /// <summary>
-        /// 钻台面当前选择指梁
+        /// 扶杆臂当前选择指梁
         /// </summary>
         public int drSelectDrill { get; set; }
         BrushConverter bc = new BrushConverter();
@@ -141,25 +141,25 @@ namespace Main.Integration
             //#region 根据配置选择界面
             //try
             //{
-            //    if (GlobalData.Instance.da.GloConfig.SFType == 1) // 二层台选择
+            //    if (GlobalData.Instance.da.GloConfig.SFType == 1) // 铁架工选择
             //    {
             //        this.gdSF.Children.Clear();
             //        this.gdSF.Children.Add(Ing_SF_Self.Instance);
             //    }
             //    else
             //    {
-            //        Ing_Bank ing_Bank = new Ing_Bank("二层台(未配置)");
+            //        Ing_Bank ing_Bank = new Ing_Bank("铁架工(未配置)");
             //        this.gdSF.Children.Clear();
             //        this.gdSF.Children.Add(ing_Bank);
             //    }
-            //    if (GlobalData.Instance.da.GloConfig.DRType == (int)DRType.SANY) // 钻台面选择
+            //    if (GlobalData.Instance.da.GloConfig.DRType == (int)DRType.SANY) // 扶杆臂选择
             //    {
             //        this.gdDR.Children.Clear();
             //        this.gdDR.Children.Add(Ing_DR_Self.Instance);
             //    }
             //    else
             //    {
-            //        Ing_Bank ing_Bank = new Ing_Bank("钻台面(未配置)");
+            //        Ing_Bank ing_Bank = new Ing_Bank("扶杆臂(未配置)");
             //        this.gdDR.Children.Clear();
             //        this.gdDR.Children.Add(ing_Bank);
             //    }
@@ -258,8 +258,8 @@ namespace Main.Integration
             alarmKey.Add("设备工作模式不一致", 0);
             alarmKey.Add("设备操作模式不一致", 0);
             alarmKey.Add("管柱类型不一致", 0);
-            alarmKey.Add("二层台电机未使能或回零", 0);
-            alarmKey.Add("钻台面电机未使能或回零", 0);
+            alarmKey.Add("铁架工电机未使能或回零", 0);
+            alarmKey.Add("扶杆臂电机未使能或回零", 0);
         }
         private int iTimeCnt = 0;//用来为时钟计数的变量
         /// <summary>
@@ -272,7 +272,7 @@ namespace Main.Integration
             {
                 iTimeCnt++;
                 if (iTimeCnt > 1000) iTimeCnt = 0;
-                if (GlobalData.Instance.da.GloConfig.SFType == 1) // 二层台选择
+                if (GlobalData.Instance.da.GloConfig.SFType == 1) // 铁架工选择
                 {
                     if (GlobalData.Instance.da["workModel"] != null)
                         this.sfWorkModel = GlobalData.Instance.da["workModel"].Value.Byte;
@@ -283,14 +283,14 @@ namespace Main.Integration
                     if (GlobalData.Instance.da["pcFingerBeamNumberFeedback"] != null)
                         this.sfSelectDrill = GlobalData.Instance.da["pcFingerBeamNumberFeedback"].Value.Byte;
                 }
-                else // 没有二层台
+                else // 没有铁架工
                 {
                     this.sfWorkModel = -1;
                     this.sfOprModel = -1;
                     this.sfTubesType = -1;
                     this.sfSelectDrill = -1;
                 }
-                if (GlobalData.Instance.da.GloConfig.DRType == (int)DRType.SANY) // 钻台面选择
+                if (GlobalData.Instance.da.GloConfig.DRType == (int)DRType.SANY) // 扶杆臂选择
                 {
                     if (GlobalData.Instance.da["drworkModel"] != null)
                         this.drWorkModel = GlobalData.Instance.da["drworkModel"].Value.Byte;
@@ -303,7 +303,7 @@ namespace Main.Integration
                     if (GlobalData.Instance.da["drSelectDrill"] != null)
                         this.drSelectDrill = GlobalData.Instance.da["drSelectDrill"].Value.Byte;
                 }
-                else // 没有钻台面
+                else // 没有扶杆臂
                 {
                     this.drWorkModel = -1;
                     this.drOprModel = -1;
@@ -494,14 +494,14 @@ namespace Main.Integration
                     if (alarmKey["设备操作模式不一致"] == 0) alarmKey["设备操作模式不一致"] = 1;
                 }
 
-                //二层台，钻台面都钻杆相同，或者有一个设备没配置
+                //铁架工，扶杆臂都钻杆相同，或者有一个设备没配置
                 if (this.sfTubesType == this.drTubesType || this.sfTubesType == -1 || this.drTubesType == -1)
                 {
                     int bType = -1;
                     if (this.sfTubesType == this.drTubesType) bType = this.sfTubesType;
                     else if (this.sfTubesType == -1) bType = this.drTubesType;
                     else if (this.drTubesType == -1) bType = this.sfTubesType;
-                    else this.tbCurTubesType.Text = "二层台/钻台面都未配置";
+                    else this.tbCurTubesType.Text = "铁架工/扶杆臂都未配置";
                     switch (bType)
                     {
                         case 35:
@@ -559,11 +559,11 @@ namespace Main.Integration
                 if (this.drDes == 1) this.tbCurDes.Text = "立根区";
                 else if (drDes == 2) this.tbCurDes.Text = "猫道-井口";
                 else if (drDes == 3) this.tbCurDes.Text = "猫道-鼠道";
-                else if (drDes == -1) this.tbCurDes.Text = "未配置钻台面";
+                else if (drDes == -1) this.tbCurDes.Text = "未配置扶杆臂";
                 else this.tbCurDes.Text = "未知";
                 // 选择指梁
 
-                if (sfSelectDrill == -1)// 二层台未配置
+                if (sfSelectDrill == -1)// 铁架工未配置
                 {
                     if (drSelectDrill <= 16 && drSelectDrill >= 1)
                     {
@@ -603,29 +603,29 @@ namespace Main.Integration
                 //    tmpTechnique = nowTechnique;
                 //}
 
-                // 二层台电机回零使能状态
+                // 铁架工电机回零使能状态
                 if (GlobalData.Instance.da["carMotorRetZeroStatus"].Value.Boolean && GlobalData.Instance.da["armMotorRetZeroStatus"].Value.Boolean
                     && GlobalData.Instance.da["rotateMotorRetZeroStatus"].Value.Boolean && !GlobalData.Instance.da["carMotorWorkStatus"].Value.Boolean
                     && !GlobalData.Instance.da["armMotorWorkStatus"].Value.Boolean && !GlobalData.Instance.da["rotateMotorWorkStatus"].Value.Boolean)
                 {
                     this.sfStatus.LampType = 1;
-                    alarmKey["二层台电机未使能或回零"] = 0;
+                    alarmKey["铁架工电机未使能或回零"] = 0;
                 }
                 else
                 {
                     this.sfStatus.LampType = 3;
-                    if (alarmKey["二层台电机未使能或回零"] == 0) alarmKey["二层台电机未使能或回零"] = 1;
+                    if (alarmKey["铁架工电机未使能或回零"] == 0) alarmKey["铁架工电机未使能或回零"] = 1;
                 }
                 if (GlobalData.Instance.da["324b1"].Value.Boolean && GlobalData.Instance.da["324b5"].Value.Boolean
                     && GlobalData.Instance.da["324b0"].Value.Boolean && GlobalData.Instance.da["324b4"].Value.Boolean)
                 {
                     this.drStatus.LampType = 1;
-                    alarmKey["钻台面电机未使能或回零"] = 0;
+                    alarmKey["扶杆臂电机未使能或回零"] = 0;
                 }
                 else
                 {
                     this.drStatus.LampType = 3;
-                    if (alarmKey["钻台面电机未使能或回零"] == 0) alarmKey["钻台面电机未使能或回零"] = 1;
+                    if (alarmKey["扶杆臂电机未使能或回零"] == 0) alarmKey["扶杆臂电机未使能或回零"] = 1;
                 }
             }
             catch (Exception ex)
@@ -731,8 +731,8 @@ namespace Main.Integration
             //    System.Windows.MessageBox.Show("联动未开启，不允许设置");
             //    return;
             //}
-            //byte[] sfbyteToSend;// 二层台
-            //byte[] drbyteToSend;// 钻台面
+            //byte[] sfbyteToSend;// 铁架工
+            //byte[] drbyteToSend;// 扶杆臂
             //byte[] sirbyteToSend;// 铁钻工
             //if (this.operateMode.IsChecked)
             //{
@@ -746,12 +746,12 @@ namespace Main.Integration
             //    drbyteToSend = new byte[10] { 1, 32, 3, 30, 0, 0, 0, 0, 0, 0 };
             //    sirbyteToSend = new byte[10] { 23, 17, 1, 1, 0, 0, 0, 0, 0, 0 };
             //}
-            //if (GlobalData.Instance.da.GloConfig.SFType == 1) // 二层台选择
+            //if (GlobalData.Instance.da.GloConfig.SFType == 1) // 铁架工选择
             //{
             //    GlobalData.Instance.da.SendBytes(sfbyteToSend);
             //    Thread.Sleep(50);
             //}
-            //if (GlobalData.Instance.da.GloConfig.DRType == (int)DRType.SANY) //钻台面选择
+            //if (GlobalData.Instance.da.GloConfig.DRType == (int)DRType.SANY) //扶杆臂选择
             //{
             //    GlobalData.Instance.da.SendBytes(drbyteToSend);
             //    Thread.Sleep(50);
@@ -771,8 +771,8 @@ namespace Main.Integration
             //    System.Windows.MessageBox.Show("联动未开启，不允许设置");
             //    return;
             //}
-            //byte[] sfbyteToSend;// 二层台
-            //byte[] drbyteToSend;// 钻台面
+            //byte[] sfbyteToSend;// 铁架工
+            //byte[] drbyteToSend;// 扶杆臂
             //byte[] sirbyteToSend;// 铁钻工
             //if (workMode.IsChecked)
             //{
@@ -786,12 +786,12 @@ namespace Main.Integration
             //    drbyteToSend = new byte[10] { 1, 32, 4, 40, 0, 0, 0, 0, 0, 0 };
             //    sirbyteToSend = new byte[10] { 23, 17, 2, 2, 0, 0, 0, 0, 0, 0 };
             //}
-            //if (GlobalData.Instance.da.GloConfig.SFType == 1) // 二层台选择
+            //if (GlobalData.Instance.da.GloConfig.SFType == 1) // 铁架工选择
             //{
             //    GlobalData.Instance.da.SendBytes(sfbyteToSend);
             //    Thread.Sleep(50);
             //}
-            //if (GlobalData.Instance.da.GloConfig.DRType == (int)DRType.SANY) //钻台面选择
+            //if (GlobalData.Instance.da.GloConfig.DRType == (int)DRType.SANY) //扶杆臂选择
             //{
             //    GlobalData.Instance.da.SendBytes(drbyteToSend);
             //    Thread.Sleep(50);
@@ -808,14 +808,14 @@ namespace Main.Integration
         {
             int tag = (sender as MenuItem).TabIndex;
             byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 3, (byte)tag });
-            if (GlobalData.Instance.da.GloConfig.SFType == 1) // 二层台选择
+            if (GlobalData.Instance.da.GloConfig.SFType == 1) // 铁架工选择
             {
                 GlobalData.Instance.da.SendBytes(byteToSend);
                 Thread.Sleep(50);
             }
             byteToSend = GlobalData.Instance.SendToDR(new List<byte>() { 3, (byte)tag });
 
-            if (GlobalData.Instance.da.GloConfig.DRType == (int)DRType.SANY) //钻台面选择
+            if (GlobalData.Instance.da.GloConfig.DRType == (int)DRType.SANY) //扶杆臂选择
             {
                 GlobalData.Instance.da.SendBytes(byteToSend);
             }
@@ -902,6 +902,14 @@ namespace Main.Integration
                 else if (model.HS_PumpType == 2) { this.tbHSSet.Text = "2#泵"; }
                 else if (model.HS_PumpType == 3) { this.tbHSSet.Text = "3泵"; }
                 else { this.tbHSSet.Text = "未设置"; }
+                if (this.tbHSSet.Text == "未设置")
+                {
+                    if (model.HS_VoltagePump == 1) this.tbHSSet.Text = "恒压泵";
+                }
+                else
+                {
+                    if (model.HS_VoltagePump == 1) this.tbHSSet.Text += Environment.NewLine + "恒压泵";
+                }
 
                 if (model.WorkType == 1) { this.tbWorkModelSet.Text = "送杆"; }
                 else if (model.WorkType == 2) { this.tbWorkModelSet.Text = "排杆"; }
@@ -1075,6 +1083,10 @@ namespace Main.Integration
                 StartHSPump();
                 return true;
             }
+            if (this.pbper == 28)
+            {
+                
+            }
             return false;
         }
         /// <summary>
@@ -1166,7 +1178,7 @@ namespace Main.Integration
                         if (!GlobalData.Instance.da["770b3"].Value.Boolean) // 1#泵启动
                         {
                             this.tbOpr.Text = "1#泵启动成功";
-                            this.pbper = 30;
+                            this.pbper = 28;
                             IsSend = false;
                         }
                         else
@@ -1181,7 +1193,7 @@ namespace Main.Integration
                         if (!GlobalData.Instance.da["770b5"].Value.Boolean) // 2#泵启动
                         {
                             this.tbOpr.Text = "2#泵启动成功";
-                            this.pbper = 30;
+                            this.pbper = 28;
                             IsSend = false;
                         }
                         else
@@ -1213,7 +1225,7 @@ namespace Main.Integration
                             if (!GlobalData.Instance.da["770b5"].Value.Boolean) // 2#泵启动
                             {
                                 this.tbOpr.Text = "2#泵启动成功";
-                                this.pbper = 30;
+                                this.pbper = 28;
                                 IsSend = false;
                             }
                             else
@@ -1227,6 +1239,134 @@ namespace Main.Integration
                     else
                     {
                         this.tbOpr.Text = "模式中设置液压站错误，请返回修改";
+                    }
+                    #endregion
+                }
+                else if (GlobalData.Instance.da.GloConfig.HydType == 2)
+                { }
+                else if (GlobalData.Instance.da.GloConfig.HydType == 3)
+                {
+                    #region JJC液压站启动泵
+                    if (model.HS_PumpType == 0)
+                    {
+                        this.tbOpr.Text = "模式中未设置液压站，请返回修改";
+                    }
+                    else if (model.HS_PumpType == 1)
+                    {
+                        if (!GlobalData.Instance.da["733b3"].Value.Boolean) // 1#泵启动
+                        {
+                            this.tbOpr.Text = "1#泵启动成功，准备检查电机状态";
+                            this.pbper = 30;
+                            IsSend = false;
+                        }
+                        else
+                        {
+                            byte[] byteToSend = new byte[10] { 0, 19, 1, 1, 0, 0, 0, 0, 0, 0 }; // 1#泵启动协议
+                            string tips = "1#泵启动超时，重新启动";
+                            CheckOverTime(byteToSend, tips, 5);
+                        }
+                    }
+                    else if (model.HS_PumpType == 2)
+                    {
+                        if (!GlobalData.Instance.da["733b4"].Value.Boolean) // 2#泵启动
+                        {
+                            this.tbOpr.Text = "2#泵启动成功，准备检查电机状态";
+                            this.pbper = 30;
+                            IsSend = false;
+                        }
+                        else
+                        {
+                            byte[] byteToSend = new byte[10] { 0, 19, 2, 1, 0, 0, 0, 0, 0, 0 }; // 2#泵启动协议
+                            string tips = "2#泵启动超时，重新启动";
+                            CheckOverTime(byteToSend, tips, 5);
+                        }
+                    }
+                    else if (model.HS_PumpType == 3)
+                    {
+                        if (this.pbper == 20)
+                        {
+                            if (!GlobalData.Instance.da["733b3"].Value.Boolean) // 1#泵启动
+                            {
+                                this.tbOpr.Text = "1#泵启动成功,准备启动2#泵";
+                                this.pbper = 25;
+                                IsSend = false;
+                            }
+                            else
+                            {
+                                byte[] byteToSend = new byte[10] { 0, 19, 1, 1, 0, 0, 0, 0, 0, 0 }; // 1#泵启动协议
+                                string tips = "1#泵启动超时，重新启动";
+                                CheckOverTime(byteToSend, tips, 5);
+                            }
+                        }
+                        else if (this.pbper == 25)
+                        {
+                            if (!GlobalData.Instance.da["733b4"].Value.Boolean) // 2#泵启动
+                            {
+                                this.tbOpr.Text = "2#泵启动成功，准备检查电机状态";
+                                this.pbper = 30;
+                                IsSend = false;
+                            }
+                            else
+                            {
+                                byte[] byteToSend = new byte[10] { 0, 19, 2, 1, 0, 0, 0, 0, 0, 0 }; // 2#泵启动协议
+                                string tips = "2#泵启动超时，重新启动";
+                                CheckOverTime(byteToSend, tips, 5);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        this.tbOpr.Text = "模式中设置液压站错误，请返回修改";
+                    }
+                    #endregion
+                }
+                else
+                {
+                    System.Windows.Forms.MessageBox.Show("液压站配置错误！请联系售后人员");
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Log4Net.AddLog(ex.ToString());
+            }
+        }
+
+        /// <summary>
+        /// 启动液压站恒压泵
+        /// </summary>
+        private void StartVoltagePump()
+        {
+            try
+            {
+                if (GlobalData.Instance.da.GloConfig.HydType == 0)
+                {
+                    this.tbOpr.Text = "未设置液压站,不允许启动联动";
+                }
+                else if (GlobalData.Instance.da.GloConfig.HydType == 1)
+                {
+                    #region 自研液压站恒压泵
+                    if (model.HS_VoltagePump == 0)
+                    {
+                        this.pbper = 30;
+                    }
+                    else if (model.HS_PumpType == 1)
+                    {
+                        if (!GlobalData.Instance.da["770b7"].Value.Boolean) // 恒压泵启动
+                        {
+                            this.tbOpr.Text = "恒压泵启动成功";
+                            this.pbper = 30;
+                            IsSend = false;
+                        }
+                        else
+                        {
+                            byte[] byteToSend = new byte[10] { 0, 19, 46, 0, 1, 0, 0, 0, 0, 0 }; // 恒压泵启动协议
+                            string tips = "1#泵启动超时，重新启动";
+                            CheckOverTime(byteToSend, tips, 5);
+                        }
+                    }
+                    else
+                    {
+                        this.pbper = 30;
                     }
                     #endregion
                 }
@@ -1381,13 +1521,13 @@ namespace Main.Integration
         /// </summary>
         private bool CheckDeviceStatus()
         {
-            // 1.检查二层台电机是否需要使能
+            // 1.检查铁架工电机是否需要使能
             if (this.pbper == 30)
             {
                 SFMonitorEnable();
                 return true;
             }
-            // 2.检查钻台面电机是否需要使能
+            // 2.检查扶杆臂电机是否需要使能
             if (this.pbper == 35)
             {
                 DRMonitorEnable();
@@ -1407,7 +1547,7 @@ namespace Main.Integration
             //    }
             //    return true;
             //}
-            // 4.检查二层台/钻台面回零情况
+            // 4.检查铁架工/扶杆臂回零情况
             if (this.pbper == 40)
             {
                 SFAndDRTurnToZero();
@@ -1416,7 +1556,7 @@ namespace Main.Integration
             return false;
         }
         /// <summary>
-        /// 二层台电机使能
+        /// 铁架工电机使能
         /// </summary>
         private void SFMonitorEnable()
         {
@@ -1424,31 +1564,31 @@ namespace Main.Integration
             { }
             else if (GlobalData.Instance.da.GloConfig.SFType == 1)
             {
-                #region 自研二层台
+                #region 自研铁架工
                 if (!GlobalData.Instance.da["carMotorWorkStatus"].Value.Boolean
                        && !GlobalData.Instance.da["armMotorWorkStatus"].Value.Boolean
                        && !GlobalData.Instance.da["rotateMotorWorkStatus"].Value.Boolean)
                 {
-                    this.tbOpr.Text = "二层台电机正常，准备检查钻台面电机";
+                    this.tbOpr.Text = "铁架工电机正常，准备检查扶杆臂电机";
                     this.pbper = 35;
                     IsSend = false;
                 }
                 else
                 {
-                    this.tbOpr.Text = "二层台电机使能中";
-                    byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 6, 2 }); // 二层台使能协议
-                    string tips = "二层台使能超时，重新使能";
+                    this.tbOpr.Text = "铁架工电机使能中";
+                    byte[] byteToSend = GlobalData.Instance.SendByte(new List<byte> { 6, 2 }); // 铁架工使能协议
+                    string tips = "铁架工使能超时，重新使能";
                     CheckOverTime(byteToSend, tips, 5);
                 }
                 #endregion
             }
             else
             {
-                System.Windows.Forms.MessageBox.Show("未配置二层台，请联系售后进行配置");
+                System.Windows.Forms.MessageBox.Show("未配置铁架工，请联系售后进行配置");
             }
         }
         /// <summary>
-        /// 钻台面电机使能
+        /// 扶杆臂电机使能
         /// </summary>
         private void DRMonitorEnable()
         {
@@ -1456,19 +1596,19 @@ namespace Main.Integration
             { }
             else if (GlobalData.Instance.da.GloConfig.DRType == 1)
             {
-                #region 自研钻台面
+                #region 自研扶杆臂
                 if (GlobalData.Instance.da["324b1"].Value.Boolean && GlobalData.Instance.da["324b5"].Value.Boolean)
                 {
-                    this.tbOpr.Text = "钻台面电机正常，准备检查回零状态";
+                    this.tbOpr.Text = "扶杆臂电机正常，准备检查回零状态";
                     this.pbper = 40;
                     IsSend = false;
                 }
                 else
                 {
-                    this.tbOpr.Text = "钻台面电机使能中";
+                    this.tbOpr.Text = "扶杆臂电机使能中";
                     byte[] sendOne = new byte[10] { 80, 33, 0, 0, 0, 0, 0, 0, 30, 30 };
-                    byte[] sendTwo = GlobalData.Instance.SendToDR(new List<byte> { 6, 2 }); // 二层台使能协议
-                    string tips = "钻台面使能超时，重新使能";
+                    byte[] sendTwo = GlobalData.Instance.SendToDR(new List<byte> { 6, 2 }); // 铁架工使能协议
+                    string tips = "扶杆臂使能超时，重新使能";
                     CheckOverTime(sendOne, sendTwo, tips, 5);
                 }
                 #endregion
@@ -1478,11 +1618,11 @@ namespace Main.Integration
             }
             else
             {
-                System.Windows.Forms.MessageBox.Show("未配置钻台面，请联系售后进行配置");
+                System.Windows.Forms.MessageBox.Show("未配置扶杆臂，请联系售后进行配置");
             }
         }
         /// <summary>
-        /// 二层台/钻台面电机使能
+        /// 铁架工/扶杆臂电机使能
         /// </summary>
         private void SFAndDRTurnToZero()
         {
@@ -1514,17 +1654,17 @@ namespace Main.Integration
 
             if (sfZero && drZero)
             {
-                this.tbOpr.Text = "二层台/钻台面已经回零，准备设置管柱类型";
+                this.tbOpr.Text = "铁架工/扶杆臂已经回零，准备设置管柱类型";
                 this.pbper = 50;
                 IsSend = false;
             }
             else
             {
-                this.tbOpr.Text = "二层台/钻台面回零中";
+                this.tbOpr.Text = "铁架工/扶杆臂回零中";
                 byte[] sendOne = GlobalData.Instance.SendByte(new List<byte> { 13, 4 });
                 byte[] sendTwo = new byte[10] { 80, 33, 0, 0, 0, 0, 0, 0, 30, 30 };
                 byte[] sendThree = GlobalData.Instance.SendToDR(new List<byte> { 13, 4 });
-                string tips = "二层台/钻台面回零超时，重新回零";
+                string tips = "铁架工/扶杆臂回零超时，重新回零";
                 CheckOverTime(sendOne, sendTwo, sendThree, tips, 20);
             }
         }
@@ -1537,7 +1677,7 @@ namespace Main.Integration
         {
             if (this.btnTurnToZore.Background.ToString() == "#FFF5C244")
             {
-                //MessageBox.Show("二层台和钻台面准备回零，注意安全!", "提示", MessageBoxButton.YesNo);
+                //MessageBox.Show("铁架工和扶杆臂准备回零，注意安全!", "提示", MessageBoxButton.YesNo);
                 CheckDeviceStatus();
             }
         }
@@ -1548,12 +1688,12 @@ namespace Main.Integration
         private bool CheckMonitor()
         {
             bool hsSuccess = true;
-            // 检查二层台
+            // 检查铁架工
             if (GlobalData.Instance.da.GloConfig.SFType == 0)
             { hsSuccess = false; }
             else if (GlobalData.Instance.da.GloConfig.SFType == 1)
             {
-                #region 自研二层台
+                #region 自研铁架工
                 if (!GlobalData.Instance.da["carMotorWorkStatus"].Value.Boolean
                        && !GlobalData.Instance.da["armMotorWorkStatus"].Value.Boolean
                        && !GlobalData.Instance.da["rotateMotorWorkStatus"].Value.Boolean)
@@ -1570,12 +1710,12 @@ namespace Main.Integration
             {
                 hsSuccess = false;
             }
-            // 检查钻台面
+            // 检查扶杆臂
             if (GlobalData.Instance.da.GloConfig.DRType == 0)
             { hsSuccess = false; }
             else if (GlobalData.Instance.da.GloConfig.DRType == 1)
             {
-                #region 自研钻台面
+                #region 自研扶杆臂
                 if (GlobalData.Instance.da["324b1"].Value.Boolean && GlobalData.Instance.da["324b5"].Value.Boolean)
                 {
                     hsSuccess = true;
@@ -1649,8 +1789,8 @@ namespace Main.Integration
                     if (!IsTopAllLock) msg += "顶驱,";
                     if (!IsElevatorAllLock) msg += "吊卡,";
                     if (!IsHookAllLock) msg += "大钩,";
-                    if (!IsSfAllLock) msg += "二层台,";
-                    if (!IsDrAllLock) msg += "钻台面,";
+                    if (!IsSfAllLock) msg += "铁架工,";
+                    if (!IsDrAllLock) msg += "扶杆臂,";
                     if (!IsSirAllLock) msg += "铁钻工,";
                     if (!IsCatAllLock) msg += "猫道,";
                     if (!IsPreventBoxAllLock) msg += "防喷盒,";
@@ -1708,19 +1848,19 @@ namespace Main.Integration
             {
                 pipeType = 2;
             }
-            // 1.设置二层台钻杆
+            // 1.设置铁架工钻杆
             if (this.pbper == 60)
             {
                 SFPipeSet(pipeType);
                 return true;
             }
-            // 2.设置钻台面管柱类型
+            // 2.设置扶杆臂管柱类型
             if (this.pbper == 65)
             {
                 DRPipeSet();
                 return true;
             }
-            // 3.设置钻台面的目的地
+            // 3.设置扶杆臂的目的地
             if (this.pbper == 70)
             {
                 DRDesTypeSet();
@@ -1729,7 +1869,7 @@ namespace Main.Integration
             return false;
         }
         /// <summary>
-        /// 设置二层台管柱类型
+        /// 设置铁架工管柱类型
         /// </summary>
         /// <param name="pipeType"></param>
         private void SFPipeSet(int pipeType)
@@ -1741,7 +1881,7 @@ namespace Main.Integration
                 // 管柱类型和管柱尺寸都正确
                 if (this.model.PipeType == pipeType && this.model.PipeSize == GlobalData.Instance.da["drillPipeType"].Value.Byte)
                 {
-                    this.tbOpr.Text = "二层台管柱类型设置成功，准备设置钻台面管柱类型";
+                    this.tbOpr.Text = "铁架工管柱类型设置成功，准备设置扶杆臂管柱类型";
                     this.pbper = 65;
                     IsSend = false;
                 }
@@ -1756,13 +1896,13 @@ namespace Main.Integration
                     {
                         byteToSend = new byte[] { 80, 1, 3, (byte)this.model.PipeSize, 0, 0, 0, 0, 0, 0 };
                     }
-                    string tips = "二层台管柱设置超时，正在重新设置";
+                    string tips = "铁架工管柱设置超时，正在重新设置";
                     CheckOverTime(byteToSend, tips, 5);
                 }
             }
         }
         /// <summary>
-        /// 设置钻台面管柱类型
+        /// 设置扶杆臂管柱类型
         /// </summary>
         private void DRPipeSet()
         {
@@ -1772,14 +1912,14 @@ namespace Main.Integration
             {
                 if (GlobalData.Instance.da["drdrillPipeType"].Value.Byte == this.model.PipeSize)
                 {
-                    this.tbOpr.Text = "钻台面管柱类型设置成功，准备设置目的地";
+                    this.tbOpr.Text = "扶杆臂管柱类型设置成功，准备设置目的地";
                     this.pbper = 70;
                     IsSend = false;
                 }
                 else
                 {
                     byte[] byteToSend = GlobalData.Instance.SendToDR(new List<byte>() { 3, (byte)this.model.PipeSize });
-                    string tips = "钻台面管柱设置超时，正在重新设置";
+                    string tips = "扶杆臂管柱设置超时，正在重新设置";
                     CheckOverTime(byteToSend, tips, 5);
                 }
             }
@@ -1879,15 +2019,15 @@ namespace Main.Integration
             else
             {
                 this.tbOpr.Text = "切换自动模式中";
-                byte[] sfbyteToSend;// 二层台
-                byte[] drbyteToSend;// 钻台面
+                byte[] sfbyteToSend;// 铁架工
+                byte[] drbyteToSend;// 扶杆臂
                 byte[] sirbyteToSend;// 铁钻工
                 sfbyteToSend = GlobalData.Instance.SendByte(new List<byte> { 1, 5 });
                 drbyteToSend = new byte[10] { 1, 32, 3, 31, 0, 0, 0, 0, 0, 0 };
 
                 string tips = "切换自动模式超时，正在重新切换";
-                if (!sfAuto) tips = "二层台切换自动模式失败，请确认二层台模式";
-                else if (!drAuto) tips = "铁钻工切换自动模式失败，请确认二层台模式";
+                if (!sfAuto) tips = "铁架工切换自动模式失败，请确认铁架工模式";
+                else if (!drAuto) tips = "铁钻工切换自动模式失败，请确认铁架工模式";
                 if (GlobalData.Instance.da.GloConfig.SIRType == 1)
                 {
                     sirbyteToSend = new byte[10] { 23, 17, 1, 2, 0, 0, 0, 0, 0, 0 };
@@ -2005,8 +2145,8 @@ namespace Main.Integration
             else
             {
                 string tips = "工作模式切换超时，重新切换中";
-                byte[] sfbyteToSend;// 二层台
-                byte[] drbyteToSend;// 钻台面
+                byte[] sfbyteToSend;// 铁架工
+                byte[] drbyteToSend;// 扶杆臂
                 byte[] sirbyteToSend;// 铁钻工
                 if (this.model.WorkType == 1)
                 {
@@ -2573,7 +2713,7 @@ namespace Main.Integration
             }
             else
             {
-                //二层台互锁是否有解锁
+                //铁架工互锁是否有解锁
                 if (!GlobalData.Instance.da["579b0"].Value.Boolean && !GlobalData.Instance.da["579b2"].Value.Boolean && !GlobalData.Instance.da["579b4"].Value.Boolean)
                 {
                     this.sfLock.LampType = 1;
@@ -2592,7 +2732,7 @@ namespace Main.Integration
             }
             else
             {
-                //钻台面互锁是否有解锁
+                //扶杆臂互锁是否有解锁
                 if (!GlobalData.Instance.da["579b0"].Value.Boolean && !GlobalData.Instance.da["580b0"].Value.Boolean && !GlobalData.Instance.da["580b2"].Value.Boolean
                     && !GlobalData.Instance.da["580b4"].Value.Boolean && !GlobalData.Instance.da["580b6"].Value.Boolean)
                 {

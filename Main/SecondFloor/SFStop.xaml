@@ -17,7 +17,7 @@
             <TextBlock Text="&#xe603;" TextAlignment="Center" FontFamily="../Font/#iconfont" FontSize="100" Foreground="Red"></TextBlock>
             <TextBlock Text="告警" FontSize="100" Foreground="Red"></TextBlock>
         </StackPanel>
-        <TextBlock x:Name="tbinfo" Grid.Row="1" Text="二层台急停" FontSize="40" Foreground="Red" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+        <TextBlock x:Name="tbinfo" Grid.Row="1" Text="铁架工急停" FontSize="40" Foreground="Red" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
         <StackPanel Orientation="Horizontal" Grid.Row="3">
             <Button Name="tbZeroSet" FontSize="24" Height="70" FontWeight="Bold" Margin="20,0,0,0" Click="ZeroSet_Click" >零位标定</Button>
             <Button FontSize="24" Height="70" FontWeight="Bold" Margin="50,0,0,0" Click="ZeroCancek_Click">零位取消</Button>
