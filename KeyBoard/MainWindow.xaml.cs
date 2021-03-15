@@ -116,7 +116,7 @@ namespace KeyBoard
             }
             else if (keybtn.Name == "cmdminus")//负号
             {
-                addNumkeyINput(0x2D);
+                addNumkeyINput(0xBD);
             }
         }
 
