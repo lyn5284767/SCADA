@@ -77,8 +77,8 @@
                             <cl:TextBlockWithTextBox Name="twtL80" ControlTag="80"  TbkText="小车右调整间距" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
                             <cl:TextBlockWithTextBox Name="twtL81" ControlTag="81"  TbkText="手臂第一根偏移" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
                             <cl:TextBlockWithTextBox Name="twtL82" ControlTag="82"  TbkText="手臂调整间距" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
-                            <cl:TextBlockWithTextBox Name="twtL83" ControlTag="83"  TbkText="排杆小车偏移" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
-                            <cl:TextBlockWithTextBox Name="twtL84" ControlTag="84"  TbkText="送杆小车偏移" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+                            <cl:TextBlockWithTextBox Name="twtL83" ControlTag="83"  TbkText="起钻小车偏移" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+                            <cl:TextBlockWithTextBox Name="twtL84" ControlTag="84"  TbkText="下钻小车偏移" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
                         </StackPanel>
                     </StackPanel>
                 </Border>

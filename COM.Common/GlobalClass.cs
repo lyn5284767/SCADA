@@ -423,7 +423,7 @@ namespace COM.Common
         /// </summary>
         public int HS_VoltagePump { get; set; }
         /// <summary>
-        /// 工作模式 0-未知；1-送杆；2-排杆
+        /// 工作模式 0-未知；1-下钻；2-起钻
         /// </summary>
         public int WorkType { get; set; }
         /// <summary>

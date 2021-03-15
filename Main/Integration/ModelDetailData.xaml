@@ -51,7 +51,7 @@
                         <TextBlock Text="工作模式：" Margin="0,10,0,10"></TextBlock>
                     </Viewbox>
                     <Viewbox>
-                        <TextBlock Name="tbWorkType" Text="送杆模式" Margin="0,10,0,10"></TextBlock>
+                        <TextBlock Name="tbWorkType" Text="下钻模式" Margin="0,10,0,10"></TextBlock>
                     </Viewbox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="10,0,0,0">

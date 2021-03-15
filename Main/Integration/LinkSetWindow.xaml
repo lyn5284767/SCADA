@@ -30,8 +30,8 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Name="btnDrillUp" Grid.Column="0" FontSize="32" Height="200" Width="180" Click="DrillUp_Click">排杆</Button>
-            <Button Name="btnDrillDown" Grid.Column="1" FontSize="32" Height="200" Width="180" Click="DrillDown_Click">送杆</Button>
+            <Button Name="btnDrillUp" Grid.Column="0" FontSize="32" Height="200" Width="180" Click="DrillUp_Click">起钻</Button>
+            <Button Name="btnDrillDown" Grid.Column="1" FontSize="32" Height="200" Width="180" Click="DrillDown_Click">下钻</Button>
         </Grid>
         <Grid Grid.Row="1" Name="gdPipeOrCollar" Visibility="Collapsed">
             <Grid.ColumnDefinitions>
@@ -128,7 +128,7 @@
                 <TextBlock Name="tbConfirmHS" FontSize="32" Text="液压站:双泵" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
             </Border>
             <Border BorderThickness="1" BorderBrush="Gray" Grid.Row="0" Grid.Column="1">
-                <TextBlock Name="tbConfirmWorkModel" FontSize="32" Text="工况:排杆" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                <TextBlock Name="tbConfirmWorkModel" FontSize="32" Text="工况:起钻" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
             </Border>
             <Border BorderThickness="1" BorderBrush="Gray" Grid.Row="1" Grid.Column="0">
                 <TextBlock Name="tbConfirmPipe" FontSize="32" Text="管柱:4.5寸钻杆" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>

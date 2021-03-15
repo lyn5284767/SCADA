@@ -599,7 +599,7 @@ namespace Main.Integration
                     tbSFOpr.Text = "人工确认吊卡关闭！";
                     break;
                 case 60:
-                    tbSFOpr.Text = "自动送杆完成！";
+                    tbSFOpr.Text = "自动下钻完成！";
                     break;
                 case 61:
                     tbSFOpr.Text = "请按确认键启动回收模式！";

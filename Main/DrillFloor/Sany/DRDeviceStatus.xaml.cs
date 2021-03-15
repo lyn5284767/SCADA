@@ -349,7 +349,7 @@ namespace Main.DrillFloor
             }
         }
         /// <summary>
-        /// 排送杆清零
+        /// 起下钻清零
         /// </summary>
         private void btnClearDrillUpCount(object sender, MouseButtonEventArgs e)
         {
@@ -357,7 +357,7 @@ namespace Main.DrillFloor
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
-        /// 排送杆清零
+        /// 起下钻清零
         /// </summary>
         private void btnClearDrillDownCount(object sender, MouseButtonEventArgs e)
         {

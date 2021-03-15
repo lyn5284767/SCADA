@@ -261,13 +261,17 @@ KeyboardNavigation.DirectionalNavigation="Cycle" Width="100"/>
             </hc:SplitButton>
             <hc:SplitButton Name="bdCat" Content="猫道" HorizontalAlignment="Stretch" Foreground="#1F7AFF" Height="55" FontSize="16" FontWeight="Bold" Click="Cat_MouseLeftButtonDown">
                 <hc:SplitButton.DropDownContent>
-                    <StackPanel>
+                    <StackPanel x:Name="spCat">
+                        <MenuItem Header="主页" Click="Cat_MouseLeftButtonDown"/>
+                        <MenuItem Header="设备状态" Click="MouseCatDeviceStatus"/>
                     </StackPanel>
                 </hc:SplitButton.DropDownContent>
             </hc:SplitButton>
             <hc:SplitButton Name="bdScrewThread" Content="丝扣防喷" HorizontalAlignment="Stretch" Foreground="#1F7AFF" Height="55" FontSize="16" FontWeight="Bold" Click="ScrewThread_MouseLeftButtonDown">
                 <hc:SplitButton.DropDownContent>
                     <StackPanel>
+                        <MenuItem Header="主页" Click="ScrewThread_MouseLeftButtonDown"/>
+                        <MenuItem Header="参数设置" Click="ScrewThread_ParamSet"/>
                     </StackPanel>
                 </hc:SplitButton.DropDownContent>
             </hc:SplitButton>

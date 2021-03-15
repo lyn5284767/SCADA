@@ -66,7 +66,7 @@ namespace Main.SecondFloor
                     if (paramNO == 2) this.twt2.SetControlShow = GlobalData.Instance.da["108N23PositionCalibrationValue"].Value.Int32;//最远离井口位置
                     if (paramNO == 3) this.twt3.SetControlShow = GlobalData.Instance.da["108N23PositionCalibrationValue"].Value.Int32;//右1#指梁位置
                     if (paramNO == 4) this.twt4.SetControlShow = GlobalData.Instance.da["108N23PositionCalibrationValue"].Value.Int32;//左1#指梁位置
-                    if (paramNO == 6) this.twt6.SetControlShow = GlobalData.Instance.da["108N23PositionCalibrationValue"].Value.Int32;//小车排杆待机位置
+                    if (paramNO == 6) this.twt6.SetControlShow = GlobalData.Instance.da["108N23PositionCalibrationValue"].Value.Int32;//小车起钻待机位置
                     if (paramNO == 7) this.twt7.SetControlShow = GlobalData.Instance.da["108N23PositionCalibrationValue"].Value.Int32;//小车回收位置
                     if (paramNO == 10) this.twt10.SetControlShow = GlobalData.Instance.da["108N23PositionCalibrationValue"].Value.Int32;//小车运输位置
                     if (paramNO == 21) this.twt21.SetControlShow = GlobalData.Instance.da["108N23PositionCalibrationValue"].Value.Int32;//右16#指梁位置补偿

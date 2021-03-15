@@ -461,6 +461,12 @@
                                     </Viewbox>
                                     <cl:SymbolMapping Name="catLock" StrContent="" LampType="3" Margin="2,20,0,20"/>
                                 </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1">
+                                    <Viewbox>
+                                        <TextBlock Text="缓冲臂:" Margin="5,20,5,20"></TextBlock>
+                                    </Viewbox>
+                                    <cl:SymbolMapping Name="LoadingHandLock" StrContent="" LampType="3" Margin="0,20,0,20"/>
+                                </StackPanel>
                             </Grid>
                         </Grid>
                     </Grid>

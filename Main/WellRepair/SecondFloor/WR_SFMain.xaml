@@ -283,7 +283,7 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <cl:BasedSwitchButton Name="operateMode" ContentLeft="手动" ContentDown="操作模式" ContentRight="自动" UserControlClicked="btn_OpState" Grid.Column="0" Grid.Row="0"/>
-                        <cl:BasedSwitchButton Name="workMode" ContentLeft="排杆" ContentDown="工作模式" ContentRight="送杆" UserControlClicked="btn_WorkModel" Margin="5 0 0 0" Grid.Column="1" Grid.Row="0"/>
+                        <cl:BasedSwitchButton Name="workMode" ContentLeft="起钻" ContentDown="工作模式" ContentRight="下钻" UserControlClicked="btn_WorkModel" Margin="5 0 0 0" Grid.Column="1" Grid.Row="0"/>
                         <cl:BasedSwitchButton Name="controlModel" ContentLeft="司钻" ContentDown="工作模式" ContentRight="遥控" UserControlClicked="btn_ControlModel" Margin="5 0 0 0" Grid.Column="2" Grid.Row="0"/>
 
                         <Border BorderBrush="White" BorderThickness="1" CornerRadius="2" Padding="0" Margin="0,5,0,10" Grid.Column="0" Grid.Row="1">
@@ -461,21 +461,21 @@
                             <main:WR_SFAmination x:Name="wr_SFAmination"/>
                         </Grid>
                         <StackPanel Grid.Row="2" Orientation="Horizontal">
-                            <TextBlock Text="送&#13;杆" Name="tbDrillDown" Visibility="Collapsed" FontSize="16"/>
+                            <TextBlock Text="下&#13;钻" Name="tbDrillDown" Visibility="Collapsed" FontSize="16"/>
                             <hc:StepBar Width="620" FontSize="14" Name="sbDrillDown" Visibility="Collapsed" Margin="8,0,0,0">
-                                <hc:StepBarItem Content="送杆启动" Margin="-5,0,0,0" FontWeight="Bold"/>
+                                <hc:StepBarItem Content="下钻启动" Margin="-5,0,0,0" FontWeight="Bold"/>
                                 <hc:StepBarItem Content="指梁定位" Margin="-5,0,0,0" FontWeight="Bold"/>
                                 <hc:StepBarItem Content="指梁抓杆" Margin="-5,0,0,0" FontWeight="Bold"/>
                                 <hc:StepBarItem Content="指梁锁确认" Margin="-5,0,0,0" FontWeight="Bold"/>
                                 <hc:StepBarItem Content="井口等待" Margin="-5,0,0,0" FontWeight="Bold"/>
-                                <hc:StepBarItem Content="井口送杆" Margin="-5,0,0,0" FontWeight="Bold"/>
+                                <hc:StepBarItem Content="井口下钻" Margin="-5,0,0,0" FontWeight="Bold"/>
                                 <hc:StepBarItem Content="吊卡确认" Margin="-5,0,0,0" FontWeight="Bold"/>
                                 <hc:StepBarItem Content="井口位置" Margin="-5,0,0,0" FontWeight="Bold"/>
-                                <hc:StepBarItem Content="送杆完成" Margin="-12,0,0,0" FontWeight="Bold"/>
+                                <hc:StepBarItem Content="下钻完成" Margin="-12,0,0,0" FontWeight="Bold"/>
                             </hc:StepBar>
                             <TextBlock Text="排&#13;杆" Name="tbDrillUp" FontSize="16" Margin="8,0,0,0"/>
                             <hc:StepBar Width="620" FontSize="14" Name="sbDrillUp">
-                                <hc:StepBarItem Content="排杆启动" Margin="-5,0,0,0" FontWeight="Bold"/>
+                                <hc:StepBarItem Content="起钻启动" Margin="-5,0,0,0" FontWeight="Bold"/>
                                 <hc:StepBarItem Content="井口定位" Margin="-5,0,0,0" FontWeight="Bold"/>
                                 <hc:StepBarItem Content="井口抓杆" Margin="-5,0,0,0" FontWeight="Bold"/>
                                 <hc:StepBarItem Content="吊卡确认" Margin="-5,0,0,0" FontWeight="Bold" />
@@ -483,7 +483,7 @@
                                 <hc:StepBarItem Content="指梁定位" Margin="-5,0,0,0" FontWeight="Bold" />
                                 <hc:StepBarItem Content="指梁锁确认" Margin="-5,0,0,0" FontWeight="Bold" />
                                 <hc:StepBarItem Content="指梁排管" Margin="-5,0,0,0" FontWeight="Bold"/>
-                                <hc:StepBarItem Name="las" Content="排杆完成" Margin="-12,0,0,0" FontWeight="Bold"/>
+                                <hc:StepBarItem Name="las" Content="起钻完成" Margin="-12,0,0,0" FontWeight="Bold"/>
                             </hc:StepBar>
                             <!--<Border  BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="3" Margin="20,5,20,5" Width="80" Background="#DCDEE3">
                                 <TextBlock Text="{Binding ElementName=workMode,Path=IsChecked,Converter={StaticResource workModeFlowCvt}}" Foreground="#E02740" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>

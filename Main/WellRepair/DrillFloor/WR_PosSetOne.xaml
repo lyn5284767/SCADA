@@ -36,10 +36,10 @@
                             <inputcontrol:SetControl Name="twt3" Head="80, 33, 12, 3, 0, 0" TbkText="小车零点位" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
                             <inputcontrol:SetControl Name="twt4" Head="80, 33, 12, 4, 0, 0" TbkText="小车回收位" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
                             <inputcontrol:SetControl Name="twt5" Head="80, 33, 12, 5, 0, 0" TbkText="小车运输位" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt7" Head="80, 33, 12, 7, 0, 0" TbkText="排杆井口位" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt8" Head="80, 33, 12, 8, 0, 0" TbkText="送杆井口位" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt9" Head="80, 33, 12, 9, 0, 0" TbkText="左送杆小车位" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt10" Head="80, 33, 12, 10, 0, 0" TbkText="右送杆小车位" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt7" Head="80, 33, 12, 7, 0, 0" TbkText="起钻井口位" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt8" Head="80, 33, 12, 8, 0, 0" TbkText="下钻井口位" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt9" Head="80, 33, 12, 9, 0, 0" TbkText="左下钻小车位" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt10" Head="80, 33, 12, 10, 0, 0" TbkText="右下钻小车位" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
                             <inputcontrol:SetControl Name="twt12" Head="80, 33, 12, 12, 0, 0" TbkText="猫道小车位" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
                             <inputcontrol:SetControl Name="twt14" Head="80, 33, 12, 14, 0, 0" TbkText="鼠洞小车位" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
                         </StackPanel>
@@ -63,10 +63,10 @@
                             <inputcontrol:SetControl Name="twt35" Head="80, 33, 12, 35, 0, 0" TbkText="零点位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
                             <inputcontrol:SetControl Name="twt36" Head="80, 33, 12, 36, 0, 0" TbkText="回收位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
                             <inputcontrol:SetControl Name="twt37" Head="80, 33, 12, 37, 0, 0" TbkText="运输位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt39" Head="80, 33, 12, 39, 0, 0" TbkText="排杆井口位" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt40" Head="80, 33, 12, 40, 0, 0" TbkText="送杆井口位" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt41" Head="80, 33, 12, 41, 0, 0" TbkText="左送杆手臂位" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                            <inputcontrol:SetControl Name="twt42" Head="80, 33, 12, 42, 0, 0" TbkText="右送杆手臂位" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt39" Head="80, 33, 12, 39, 0, 0" TbkText="起钻井口位" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt40" Head="80, 33, 12, 40, 0, 0" TbkText="下钻井口位" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt41" Head="80, 33, 12, 41, 0, 0" TbkText="左下钻手臂位" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                            <inputcontrol:SetControl Name="twt42" Head="80, 33, 12, 42, 0, 0" TbkText="右下钻手臂位" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
                             <inputcontrol:SetControl Name="twt44" Head="80, 33, 12, 44, 0, 0" TbkText="猫道井口位" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
                             <inputcontrol:SetControl Name="twt45" Head="80, 33, 12, 45, 0, 0" TbkText="猫道猫道位" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
                             <inputcontrol:SetControl Name="twt46" Head="80, 33, 12, 46, 0, 0" TbkText="鼠洞井口位" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>

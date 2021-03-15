@@ -372,10 +372,10 @@ namespace Main
                 // 联动开启控制摄像头
                 if (GlobalData.Instance.da["460b0"].Value.Boolean)
                 {
-                    // 送杆
+                    // 下钻
                     if (GlobalData.Instance.da["droperationModel"].Value.Byte == 1 && GlobalData.Instance.da["operationModel"].Value.Byte == 1)
                     {
-                        #region 扶杆臂-送杆
+                        #region 扶杆臂-下钻
                         byte drstep = GlobalData.Instance.da["drAutoStep"].Value.Byte;
                         // 1-7 || 12-17步抓手摄像头
                         if ((drstep > 1 && drstep <= 7) || (drstep > 11 && drstep <= 17))
@@ -396,10 +396,10 @@ namespace Main
 
                         }
                         #endregion
-                    }// 排杆
+                    }// 起钻
                     else if (GlobalData.Instance.da["droperationModel"].Value.Byte == 2 && GlobalData.Instance.da["operationModel"].Value.Byte == 2)
                     {
-                        #region 扶杆臂-送杆
+                        #region 扶杆臂-下钻
                         byte drstep = GlobalData.Instance.da["drAutoStep"].Value.Byte;
                         // 1-10步抓手摄像头
                         if (drstep > 1 && drstep <= 10)
@@ -494,9 +494,9 @@ namespace Main
                 {
                     SIR_MouseLeftButtonDown(null, null);
                 }
-                else if (GlobalData.Instance.da["462b3"].Value.Boolean && nowSystemType != SystemType.CatRoad)
+                else if ((GlobalData.Instance.da["462b4"].Value.Boolean ||GlobalData.Instance.da["462b5"].Value.Boolean) && nowSystemType != SystemType.ScrewThread)
                 {
-                    Cat_MouseLeftButtonDown(null, null);
+                    ScrewThread_MouseLeftButtonDown(null, null);
                 }
             }
             else// 非联动模式，根据旋转按钮切换
@@ -516,6 +516,10 @@ namespace Main
                 else if (GlobalData.Instance.da["459b3"].Value.Boolean && nowSystemType != SystemType.CatRoad)
                 {
                     Cat_MouseLeftButtonDown(null, null);
+                }
+                else if ((GlobalData.Instance.da["459b4"].Value.Boolean || GlobalData.Instance.da["459b5"].Value.Boolean) && nowSystemType != SystemType.ScrewThread)
+                {
+                    ScrewThread_MouseLeftButtonDown(null, null);
                 }
             }
         }
@@ -537,6 +541,12 @@ namespace Main
                 deviceTimer.Enabled = true;
                 //SetUnUseDevice();
                 InitSystem();
+                if (GlobalData.Instance.da["SIRType"].Value.Byte > 0) GlobalData.Instance.da.GloConfig.SIRType = GlobalData.Instance.da["SIRType"].Value.Byte;
+                if(GlobalData.Instance.da["CatType"].Value.Byte>0) GlobalData.Instance.da.GloConfig.CatType = GlobalData.Instance.da["CatType"].Value.Byte;
+                if(GlobalData.Instance.da["HSType"].Value.Byte>0) GlobalData.Instance.da.GloConfig.HydType = GlobalData.Instance.da["HSType"].Value.Byte;
+                if (GlobalData.Instance.da["DRType"].Value.Byte > 0) GlobalData.Instance.da.GloConfig.DRType = GlobalData.Instance.da["DRType"].Value.Byte;
+                if (GlobalData.Instance.da["SFType"].Value.Byte > 0) GlobalData.Instance.da.GloConfig.SFType = GlobalData.Instance.da["SFType"].Value.Byte;
+                if (GlobalData.Instance.da["PreventBoxType"].Value.Byte > 0) GlobalData.Instance.da.GloConfig.PreventBoxType = GlobalData.Instance.da["PreventBoxType"].Value.Byte;
             }
             catch (Exception ex)
             {
@@ -555,8 +565,8 @@ namespace Main
             {
                 this.spBottom.Visibility = Visibility.Visible;
                 this.gdbottomSF.Visibility = Visibility.Collapsed;
-                SetUseDevice();
                 InitIngRole();
+                SetUseDevice();
                 MouseIng(null, null);
                 if (GlobalData.Instance.da.GloConfig.SysType == 0)
                 {
@@ -703,6 +713,14 @@ namespace Main
             }
             else
             {
+                if (GlobalData.Instance.da.GloConfig.CatType == (int)CatType.SL)
+                {
+                    spCat.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    spCat.Visibility = Visibility.Collapsed;
+                }
                 this.bdCat.Visibility = Visibility.Visible;
                 TotalDeviceNum += 1;
             }
@@ -3002,56 +3020,64 @@ namespace Main
         /// <param name="e"></param>
         private void Cat_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
-            try
+            if (GlobalData.Instance.systemType != SystemType.CatRoad)
             {
-                nowSystemType = SystemType.CatRoad;
-                GlobalData.Instance.Ing = false;
-                if (GlobalData.Instance.da.GloConfig.SysType == 0)
+                try
                 {
-                    if (GlobalData.Instance.da.GloConfig.CatType == 0)
+                    nowSystemType = SystemType.CatRoad;
+                    GlobalData.Instance.Ing = false;
+                    if (GlobalData.Instance.da.GloConfig.SysType == 0)
                     {
-                        MessageBox.Show("未配置猫道");
-                        return;
-                    }
-                    //自研
-                    else if (GlobalData.Instance.da.GloConfig.CatType == (int)CatType.SANY)
-                    {
+                        if (GlobalData.Instance.da.GloConfig.CatType == 0)
+                        {
+                            MessageBox.Show("未配置猫道");
+                            return;
+                        }
+                        //自研
+                        else if (GlobalData.Instance.da.GloConfig.CatType == (int)CatType.SANY)
+                        {
 
+                        }
+                        //宝石
+                        else if (GlobalData.Instance.da.GloConfig.CatType == (int)CatType.BS)
+                        {
+                            this.spMain.Children.Clear();
+                            this.spMain.Children.Add(BSCatMain.Instance);
+                        }
+                        //宏达
+                        else if (GlobalData.Instance.da.GloConfig.CatType == (int)CatType.HD)
+                        {
+
+                        }
+                        //胜利
+                        else if (GlobalData.Instance.da.GloConfig.CatType == (int)CatType.SL)
+                        {
+                            this.spMain.Children.Clear();
+                            this.spMain.Children.Add(SL_CatMain.Instance);
+                        }
                     }
-                    //宝石
-                    else if (GlobalData.Instance.da.GloConfig.CatType == (int)CatType.BS)
+                    else
                     {
                         this.spMain.Children.Clear();
-                        this.spMain.Children.Add(BSCatMain.Instance);
+                        this.spMain.Children.Add(ZY_CatMain.Instance);
                     }
-                    //宏达
-                    else if (GlobalData.Instance.da.GloConfig.CatType == (int)CatType.HD)
-                    {
 
-                    }
-                    //胜利
-                    else if (GlobalData.Instance.da.GloConfig.CatType == (int)CatType.SL)
-                    {
-                        this.spMain.Children.Clear();
-                        this.spMain.Children.Add(SL_CatMain.Instance);
-                    }
+                    GlobalData.Instance.systemType = SystemType.CatRoad;
+                    //this.BottomColorSetting(this.bdCat, this.tbCat, this.gdbottom);
+                    this.BottomColorSetting(this.bdCat, this.spBottom);
+                    SetBorderBackGround();
+                    this.mainTitle.Content = "SYAPS-猫道:主页";
                 }
-                else
+                catch (Exception ex)
                 {
-                    this.spMain.Children.Clear();
-                    this.spMain.Children.Add(ZY_CatMain.Instance);
+                    Log.Log4Net.AddLog(ex.ToString(), Log.InfoLevel.ERROR);
                 }
-
-                GlobalData.Instance.systemType = SystemType.CatRoad;
-                //this.BottomColorSetting(this.bdCat, this.tbCat, this.gdbottom);
-                this.BottomColorSetting(this.bdCat, this.spBottom);
-                SetBorderBackGround();
-                this.mainTitle.Content = "SYAPS-猫道:主页";
             }
-            catch (Exception ex)
+            else
             {
-                Log.Log4Net.AddLog(ex.ToString(), Log.InfoLevel.ERROR);
+                this.bdCat.IsDropDownOpen = true;
             }
+            
         }
         #endregion
 
@@ -3234,36 +3260,75 @@ namespace Main
         /// <param name="e"></param>
         private void ScrewThread_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
-            try
+            if (GlobalData.Instance.systemType != SystemType.ScrewThread)
             {
-                nowSystemType = SystemType.ScrewThread;
-                GlobalData.Instance.Ing = false;
-                if (GlobalData.Instance.da.GloConfig.PreventBoxType == 0)
+                try
                 {
-                    MessageBox.Show("未配置丝扣防喷装置");
-                    return;
-                }
-                else if (GlobalData.Instance.da.GloConfig.PreventBoxType == 1)
-                {
-                    //this.spMain.Children.Clear();
-                    //this.spMain.Children.Add(SL_ScrewThreadMain.Instance);
-                }
-                else if (GlobalData.Instance.da.GloConfig.PreventBoxType == 2)
-                {
-                    this.spMain.Children.Clear();
-                    this.spMain.Children.Add(SL_ScrewThreadMain.Instance);
-                }
+                    try
+                    {
+                        nowSystemType = SystemType.ScrewThread;
+                        GlobalData.Instance.Ing = false;
+                        if (GlobalData.Instance.da.GloConfig.PreventBoxType == 0)
+                        {
+                            MessageBox.Show("未配置丝扣防喷装置");
+                            return;
+                        }
+                        else if (GlobalData.Instance.da.GloConfig.PreventBoxType == 1)
+                        {
+                            //this.spMain.Children.Clear();
+                            //this.spMain.Children.Add(SL_ScrewThreadMain.Instance);
+                        }
+                        else if (GlobalData.Instance.da.GloConfig.PreventBoxType == 2)
+                        {
+                            this.spMain.Children.Clear();
+                            this.spMain.Children.Add(SL_ScrewThreadMain.Instance);
+                        }
 
-                GlobalData.Instance.systemType = SystemType.ScrewThread;
-                this.BottomColorSetting(this.bdScrewThread, this.spBottom);
-                SetBorderBackGround();
-                this.mainTitle.Content = "SYAPS-丝扣防喷:主页";
+                        GlobalData.Instance.systemType = SystemType.ScrewThread;
+                        this.BottomColorSetting(this.bdScrewThread, this.spBottom);
+                        SetBorderBackGround();
+                        this.mainTitle.Content = "SYAPS-丝扣防喷:主页";
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Log4Net.AddLog(ex.ToString(), Log.InfoLevel.ERROR);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Log4Net.AddLog(ex.ToString(), Log.InfoLevel.ERROR);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                Log.Log4Net.AddLog(ex.ToString(), Log.InfoLevel.ERROR);
+                this.bdScrewThread.IsDropDownOpen = true;
             }
         }
-
+        /// <summary>
+        /// 猫道-设备状态
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MouseCatDeviceStatus(object sender, RoutedEventArgs e)
+        {
+            if (GlobalData.Instance.da.GloConfig.CatType == 4)
+            {
+                this.spMain.Children.Clear();
+                this.spMain.Children.Add(SL_CatStatus.Instance);
+            }
+        }
+        /// <summary>
+        /// 丝扣/防喷参数设置
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ScrewThread_ParamSet(object sender, RoutedEventArgs e)
+        {
+            if (GlobalData.Instance.da.GloConfig.PreventBoxType == 2)
+            {
+                this.spMain.Children.Clear();
+                this.spMain.Children.Add(SL_ScrewThreadParamSet.Instance);
+            }
+        }
     }
 }

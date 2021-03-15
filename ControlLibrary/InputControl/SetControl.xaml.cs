@@ -89,7 +89,7 @@ namespace ControlLibrary.InputControl
                 {
                     GlobalData.Instance.SetParam[i] = 0;
                 }
-                if (GlobalData.Instance.systemType == SystemType.SecondFloor && SFSendProtocolEvent != null)
+                if ((GlobalData.Instance.systemType == SystemType.SecondFloor || GlobalData.Instance.systemType == SystemType.ScrewThread) && SFSendProtocolEvent != null)
                 {
                     SFSendProtocolEvent(GlobalData.Instance.SetParam);
                 }

@@ -370,8 +370,8 @@
                         </MenuItem>
                     </Menu>
                 </Grid>
-                <cl:CustomCheckBox ContentString="送杆提效" Margin="10" Name="cbDrillDwon" Grid.Column="2" UserControlClicked="cbDrillDwon_Clicked"/>
-                <cl:CustomCheckBox ContentString="排杆提效" Margin="10" Name="cbDrillUp" Grid.Column="3" UserControlClicked="cbDrillUp_Clicked"/>
+                <cl:CustomCheckBox ContentString="下钻提效" Margin="10" Name="cbDrillDwon" Grid.Column="2" UserControlClicked="cbDrillDwon_Clicked"/>
+                <cl:CustomCheckBox ContentString="起钻提效" Margin="10" Name="cbDrillUp" Grid.Column="3" UserControlClicked="cbDrillUp_Clicked"/>
 
                 <cl:CustomCheckBox ContentString="钻杆识别" Margin="10" Name="cbVisualAid" Grid.Column="4" UserControlClicked="cbVisualAid_Clicked"/>
                 <!--<Button Grid.Column="2" Click="btn_testES" Visibility="Collapsed"/>-->

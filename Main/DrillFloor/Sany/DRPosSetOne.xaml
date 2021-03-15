@@ -38,7 +38,7 @@
                                 <inputcontrol:SetControl Name="twt3" Head="80, 33, 12, 3, 0, 0" TbkText="左侧第一根" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
                                 <inputcontrol:SetControl Name="twt4" Head="80, 33, 12, 4, 0, 0" TbkText="右侧第一根" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
                                 <inputcontrol:SetControl Name="twt5" Head="80, 33, 12, 5, 0, 0" TbkText="右侧补偿" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                                <inputcontrol:SetControl Name="twt6" Head="80, 33, 12, 6, 0, 0" TbkText="排杆待机位" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt6" Head="80, 33, 12, 6, 0, 0" TbkText="起钻待机位" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
                                 <inputcontrol:SetControl Name="twt7" Head="80, 33, 12, 7, 0, 0" TbkText="回收位置" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
                                 <inputcontrol:SetControl Name="twt8" Head="80, 33, 12, 8, 0, 0" TbkText="井口位置" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
                                 <inputcontrol:SetControl Name="twt10" Head="80, 33, 12, 10, 0, 0" TbkText="运输位置" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>

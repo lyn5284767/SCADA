@@ -77,7 +77,7 @@
                                 <inputcontrol:SetControl Name="twt2" Head="80,1,12,2,0,0" TbkText="最远离井口" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
                                 <inputcontrol:SetControl Name="twt3" Head="80,1,12,3,0,0" TbkText="右1#指梁" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
                                 <inputcontrol:SetControl Name="twt4" Head="80,1,12,4,0,0" TbkText="左1#指梁" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
-                                <inputcontrol:SetControl Name="twt6" Head="80,1,12,6,0,0" TbkText="排杆待机" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt6" Head="80,1,12,6,0,0" TbkText="起钻待机" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
                                 <inputcontrol:SetControl Name="twt7" Head="80,1,12,7,0,0" TbkText="回收位置" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
                                 <inputcontrol:SetControl Name="twt10" Head="80,1,12,10,0,0" TbkText="小车运输" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
                                 <inputcontrol:SetControl Name="twt21" Head="80,1,12,21,0,0" TbkText="右16指梁补偿" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>

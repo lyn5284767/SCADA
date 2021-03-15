@@ -203,7 +203,7 @@
                             <MenuItem Header="最远离井口位置" Click="btn_SelectPara_LocationCalibration" TabIndex="2"/>
                             <MenuItem Header="右1#指梁位置" Click="btn_SelectPara_LocationCalibration" TabIndex="3"/>
                             <MenuItem Header="左1#指梁位置" Click="btn_SelectPara_LocationCalibration" TabIndex="4"/>
-                            <MenuItem Header="排杆待机位置" Click="btn_SelectPara_LocationCalibration" TabIndex="6"/>
+                            <MenuItem Header="起钻待机位置" Click="btn_SelectPara_LocationCalibration" TabIndex="6"/>
                             <MenuItem Header="回收位置" Click="btn_SelectPara_LocationCalibration" TabIndex="7"/>
                             <MenuItem Header="小车运输位置" Click="btn_SelectPara_LocationCalibration" TabIndex="10"/>
                             <MenuItem Header="右16#指梁位置补偿" Click="btn_SelectPara_LocationCalibration" TabIndex="21"/>

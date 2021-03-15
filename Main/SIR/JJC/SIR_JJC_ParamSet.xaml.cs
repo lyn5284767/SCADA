@@ -65,7 +65,6 @@ namespace Main.SIR.JJC
             this.tbInOutCylinderZeroOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["IDInOutCylinderZero"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
             this.smRotate.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b7"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
             this.smInOut.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["801b6"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
-
         }
 
         /// <summary>

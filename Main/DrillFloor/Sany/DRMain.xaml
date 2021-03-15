@@ -100,15 +100,15 @@
                                     <Image Source="../../Images/roate.png" Margin="2"></Image>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock FontSize="18">回转</TextBlock>
-                                    <TextBlock Name="rotatePos" FontSize="18" Text="9999" Foreground="#4C80FF"></TextBlock>
+                                    <TextBlock FontSize="18" Margin="5,0,0,0">回转</TextBlock>
+                                    <TextBlock Name="rotatePos" FontSize="18" Text="9999" Foreground="#4C80FF" Margin="5,0,0,0"></TextBlock>
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Column="1">
                                 <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Padding="3" VerticalAlignment="Center" Margin="5,15,2,15">
                                     <Image Source="../../Images/finger.png" Margin="2"></Image>
                                 </Border>
-                                <StackPanel VerticalAlignment="Center">
+                                <StackPanel VerticalAlignment="Center" Margin="9,0,0,0">
                                     <TextBlock FontSize="18">抓手</TextBlock>
                                     <TextBlock Text="未知" Name="gripMotor" FontSize="18" Foreground="#4C80FF"></TextBlock>
                                 </StackPanel>
@@ -138,10 +138,10 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <Viewbox>
-                                    <Label Margin="10,0,0,0" FontSize="18" Grid.Column="0">电机</Label>
+                                    <TextBlock Margin="10,0,0,0" FontSize="18" Grid.Column="0">电机</TextBlock>
                                 </Viewbox>
-                                <cl:SymbolMapping Name="drcarMotorWorkStatus" Grid.Column="1" StrContent="" Margin="5"/>
-                                <cl:SymbolMapping Name="drRotateMotorWorkStatus" Grid.Column="2" StrContent="" Margin="5"/>
+                                <cl:SymbolMapping Name="drcarMotorWorkStatus" Grid.Column="1" StrContent="" Margin="2"/>
+                                <cl:SymbolMapping Name="drRotateMotorWorkStatus" Grid.Column="2" StrContent="" Margin="2"/>
                             </Grid>
                             <Grid Grid.Row="1">
                                 <Grid.ColumnDefinitions>
@@ -150,22 +150,22 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <Viewbox>
-                                    <Label Margin="10,0,0,0" FontSize="18">回零</Label>
+                                    <TextBlock Margin="10,0,0,0" FontSize="18">回零</TextBlock>
                                 </Viewbox>
-                                <cl:SymbolMapping Name="drcarMotorRetZero" Grid.Column="1" StrContent="" Margin="5"/>
-                                    <cl:SymbolMapping Name="drRotateMotorRetZero"  Grid.Column="2" StrContent="" Margin="5"/>
+                                <cl:SymbolMapping Name="drcarMotorRetZero" Grid.Column="1" StrContent="" Margin="2"/>
+                                    <cl:SymbolMapping Name="drRotateMotorRetZero"  Grid.Column="2" StrContent="" Margin="2"/>
                                 </Grid>
                             <Grid Grid.Row="2">
                                 <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left">
                                     <Viewbox>
-                                        <Label Margin="10,0,5,0" FontSize="18">左手柄:</Label>
+                                        <TextBlock Margin="10,4,5,4" FontSize="18">左手柄:</TextBlock>
                                     </Viewbox>
                                     <Viewbox>
                                         <TextBlock Name="tbLeftHand" Margin="0,5,0,5" Text="未知" VerticalAlignment="Center" Foreground="#4C80FF"></TextBlock>
                                     </Viewbox>
                                 </StackPanel>
                             </Grid>
-                            <TextBlock Grid.Row="3" Text="记忆位置" Name="tbMemoryPos" FontSize="16" Margin="10,-4,0,0" VerticalAlignment="Center" />
+                            <TextBlock Grid.Row="3" Text="记忆位置" Name="tbMemoryPos" FontSize="18" Margin="10,0,0,0" VerticalAlignment="Center" />
 
                         </Grid>
                         </Grid>
@@ -196,7 +196,7 @@
                             <cl:BasedSwitchButton Name="droperateMode" ContentLeft="手动" ContentDown="操作模式" ContentRight="自动" UserControlClicked="btn_drOpState" Margin="5"/>
                         </Viewbox>
                         <Viewbox Grid.Column="1">
-                            <cl:BasedSwitchButton Name="drworkMode" ContentLeft="排杆" ContentDown="工作模式" ContentRight="送杆" UserControlClicked="btn_drWorkModel" Margin="5"/>
+                            <cl:BasedSwitchButton Name="drworkMode" ContentLeft="起钻" ContentDown="工作模式" ContentRight="下钻" UserControlClicked="btn_drWorkModel" Margin="5"/>
                         </Viewbox>
                         <Viewbox Grid.Column="2" >
                             <cl:BasedSwitchButton Name="drCarMoveModel" ContentLeft="左移" ContentDown="行车右移" ContentRight="右移" IsChecked="False" UserControlClicked="btn_drCarMoveModel" Margin="5"/>
@@ -336,13 +336,13 @@
                         <TextBlock Grid.Column="0" Text="{Binding ElementName=drworkMode,Path=IsChecked,Converter={StaticResource workModeFlowCvt}}" FontSize="16" Margin="2,0,0,0"></TextBlock>
 
                         <hc:StepBar Grid.Column="1" FontSize="14" Name="sbDrillDown" Grid.Row="1" Visibility="Visible">
-                            <hc:StepBarItem Content="送杆启动"/>
+                            <hc:StepBarItem Content="下钻启动"/>
                             <hc:StepBarItem Content="台面定位"/>
                             <hc:StepBarItem Content="抓手夹紧"/>
                             <hc:StepBarItem Content="井口定位"/>
-                            <hc:StepBarItem Content="井口送杆"/>
+                            <hc:StepBarItem Content="井口下钻"/>
                             <hc:StepBarItem Content="手臂回位"/>
-                            <hc:StepBarItem Content="送杆结束"/>
+                            <hc:StepBarItem Content="下钻结束"/>
                         </hc:StepBar>
                         <hc:StepBar Grid.Column="1" FontSize="14" Name="sbDrillUp" Grid.Row="1" Visibility="Collapsed">
                             <hc:StepBarItem Content="排管启动"/>
@@ -354,22 +354,22 @@
                             <hc:StepBarItem Content="台面完成"/>
                         </hc:StepBar>
                         <hc:StepBar Grid.Column="1" FontSize="14" Name="sbDrillDownWithNumFour" Grid.Row="1" Visibility="Collapsed">
-                            <hc:StepBarItem Content="送杆启动"/>
+                            <hc:StepBarItem Content="下钻启动"/>
                             <hc:StepBarItem Content="台面定位"/>
                             <hc:StepBarItem Content="抓手夹紧"/>
                             <hc:StepBarItem Content="猫道定位"/>
-                            <hc:StepBarItem Content="猫道送杆"/>
-                            <hc:StepBarItem Content="回送杆位"/>
-                            <hc:StepBarItem Content="送杆结束"/>
+                            <hc:StepBarItem Content="猫道下钻"/>
+                            <hc:StepBarItem Content="回下钻位"/>
+                            <hc:StepBarItem Content="下钻结束"/>
                         </hc:StepBar>
                         <hc:StepBar Grid.Column="1" FontSize="14" Name="sbDrillUpWithNumFour" Grid.Row="1" Visibility="Collapsed">
-                            <hc:StepBarItem Content="排杆启动"/>
+                            <hc:StepBarItem Content="起钻启动"/>
                             <hc:StepBarItem Content="猫道定位"/>
                             <hc:StepBarItem Content="猫道抓杆"/>
                             <hc:StepBarItem Content="台面定位"/>
                             <hc:StepBarItem Content="抓手送开"/>
-                            <hc:StepBarItem Content="回排杆位"/>
-                            <hc:StepBarItem Content="排杆结束"/>
+                            <hc:StepBarItem Content="回起钻位"/>
+                            <hc:StepBarItem Content="起钻结束"/>
                         </hc:StepBar>
                     </Grid>
                     <Grid Grid.Row="0" Name="Am" >

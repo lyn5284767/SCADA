@@ -41,8 +41,8 @@ namespace Main.Integration
             //else if (globalModel.HS_PumpType == 2) title = "2#泵";
             //else if(globalModel.HS_PumpType == 3) title = "双泵";
 
-            if (globalModel.WorkType == 1) this.tbWorkType.Text = "送杆模式";
-            else if(globalModel.WorkType ==2) this.tbWorkType.Text = "排杆模式";
+            if (globalModel.WorkType == 1) this.tbWorkType.Text = "下钻模式";
+            else if(globalModel.WorkType ==2) this.tbWorkType.Text = "起钻模式";
 
             string pipeType = string.Empty;
             if (globalModel.PipeType == 1)

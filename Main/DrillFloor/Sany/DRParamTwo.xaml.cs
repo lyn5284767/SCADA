@@ -113,16 +113,16 @@ namespace Main.DrillFloor
                         this.twtR74.ShowText = GlobalData.Instance.da["drLeftSlopeAdjust"].ToString(); // 小车左调整斜率
                         this.twtR75.ShowText = GlobalData.Instance.da["drRightOneDev"].ToString(); // 小车右第一根偏移
                         this.twtR76.ShowText = GlobalData.Instance.da["drRightSlopeAdjust"].ToString(); // 小车右调整斜率
-                        this.twtR77.ShowText = GlobalData.Instance.da["drDrillUpSlope"].ToString(); // 排杆小车偏移
-                        this.twtR78.ShowText = GlobalData.Instance.da["drDrillDownSlope"].ToString(); // 送杆小车偏移
+                        this.twtR77.ShowText = GlobalData.Instance.da["drDrillUpSlope"].ToString(); // 起钻小车偏移
+                        this.twtR78.ShowText = GlobalData.Instance.da["drDrillDownSlope"].ToString(); // 下钻小车偏移
                         this.twtR79.ShowText = GlobalData.Instance.da["dr3FirstFix"].ToString(); // 3寸第一根手臂修正
                         this.twtR80.ShowText = GlobalData.Instance.da["dr4FirstFix"].ToString(); // 4寸第一根手臂修正
                         this.twtR81.ShowText = GlobalData.Instance.da["dr5FirstFix"].ToString(); // 5寸第一根手臂修正
                         //this.twtR82.ShowText = GlobalData.Instance.da["dr5Num"].ToString(); // 预留
                         this.twtR83.ShowText = GlobalData.Instance.da["drArmOneDev"].ToString(); // 手臂第一根偏移
                         this.twtR84.ShowText = GlobalData.Instance.da["drArmSlopeFix"].ToString(); // 手臂调整斜率
-                        this.twtR85.ShowText = GlobalData.Instance.da["drDrillDownSlope2"].ToString(); // 送杆小车偏移2
-                        this.twtR86.ShowText = GlobalData.Instance.da["drDrillDownSlope3"].ToString(); // 送杆小车偏移3
+                        this.twtR85.ShowText = GlobalData.Instance.da["drDrillDownSlope2"].ToString(); // 下钻小车偏移2
+                        this.twtR86.ShowText = GlobalData.Instance.da["drDrillDownSlope3"].ToString(); // 下钻小车偏移3
                     }
                 }));
             }

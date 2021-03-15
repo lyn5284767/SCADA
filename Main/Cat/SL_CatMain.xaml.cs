@@ -85,6 +85,10 @@ namespace Main.Cat
             this.tbPushCarPos.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["Cat_SL_CartPos"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
             this.tbOilTmp.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["Cat_SL_OilTmp"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
             this.tbDrillType.SetBinding(TextBlock.TextProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["701b5"], Mode = BindingMode.OneWay ,Converter = new SLCatDrillTypeConverter()});
+
+            this.tbOnePumpStatus.SetBinding(TextBlock.TextProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["703b4"], Mode = BindingMode.OneWay, Converter = new SLCatStartConverter() });
+            this.tbTwoPumpStatus.SetBinding(TextBlock.TextProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["703b5"], Mode = BindingMode.OneWay, Converter = new SLCatStartConverter() });
+            this.tbFan.SetBinding(TextBlock.TextProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["703b6"], Mode = BindingMode.OneWay, Converter = new SLCatStartConverter() });
         }
 
         List<AlarmInfo> alarmList = new List<AlarmInfo>();
@@ -113,7 +117,7 @@ namespace Main.Cat
                     if (iTimeCnt > 1000) iTimeCnt = 0;
                     this.Warnning();
                     MonitorAlarmStatus();
-                    BindField();
+             
                 }));
             }
             catch (Exception ex)
@@ -179,28 +183,28 @@ namespace Main.Cat
             #endregion
         }
         /// <summary>
-        /// 绑定变量
-        /// </summary>
-        private void BindField()
-        {
-            if (GlobalData.Instance.da["Cat_SL_Tag"] == null) return;
-            if (GlobalData.Instance.da["Cat_SL_Tag"].Value.Byte == 1)
-            {
-                this.tbInseideUpDownCarValue.Text = (GlobalData.Instance.da["Cat_SL_CasingWinchLastValue"].Value.Byte/10.0).ToString();
-                this.tbInseidePushCarValue.Text = (GlobalData.Instance.da["Cat_SL_CasingCartLastValue"].Value.Byte / 10.0).ToString();
-                this.tbOutseideUpDownCarValue.Text = (GlobalData.Instance.da["Cat_SL_PipeWinchLastValue"].Value.Byte / 10.0).ToString();
-                this.tbOutseidePushCarValue.Text = (GlobalData.Instance.da["Cat_SL_PipeCartLastValue"].Value.Byte / 10.0).ToString();
-                this.tbUpDownCarUpMaxValue.Text = (GlobalData.Instance.da["Cat_SL_WinchUpMax"].Value.Byte/10.0).ToString();
-                this.tbCarTurnFlowValue.Text = (GlobalData.Instance.da["Cat_SL_WinchSlowFlow"].Value.Int16 / 10.0).ToString();
-            }
-            else if (GlobalData.Instance.da["Cat_SL_Tag"].Value.Byte == 2)
-            {
-                this.tbUpDownCarBackValue.Text = (GlobalData.Instance.da["Cat_SL_WinchBackLimit"].Value.Byte / 10.0).ToString();
-                this.tbPushCarFrontValue.Text = (GlobalData.Instance.da["Cat_SL_CartFrontLimit"].Value.Byte / 10.0).ToString();
-                this.tbDrillCarBackValue.Text = (GlobalData.Instance.da["Cat_SL_DrillCarBackLimit"].Value.Byte / 10.0).ToString();
-                this.tbPipeCarBackValue.Text = (GlobalData.Instance.da["Cat_SL_PipeCarBackLimit"].Value.Byte / 10.0).ToString();
-            }
-        }
+        ///// 绑定变量
+        ///// </summary>
+        //private void BindField()
+        //{
+        //    if (GlobalData.Instance.da["Cat_SL_Tag"] == null) return;
+        //    if (GlobalData.Instance.da["Cat_SL_Tag"].Value.Byte == 1)
+        //    {
+        //        this.tbInseideUpDownCarValue.Text = (GlobalData.Instance.da["Cat_SL_CasingWinchLastValue"].Value.Byte/10.0).ToString();
+        //        this.tbInseidePushCarValue.Text = (GlobalData.Instance.da["Cat_SL_CasingCartLastValue"].Value.Byte / 10.0).ToString();
+        //        this.tbOutseideUpDownCarValue.Text = (GlobalData.Instance.da["Cat_SL_PipeWinchLastValue"].Value.Byte / 10.0).ToString();
+        //        this.tbOutseidePushCarValue.Text = (GlobalData.Instance.da["Cat_SL_PipeCartLastValue"].Value.Byte / 10.0).ToString();
+        //        this.tbUpDownCarUpMaxValue.Text = (GlobalData.Instance.da["Cat_SL_WinchUpMax"].Value.Byte/10.0).ToString();
+        //        this.tbCarTurnFlowValue.Text = (GlobalData.Instance.da["Cat_SL_WinchSlowFlow"].Value.Int16 / 10.0).ToString();
+        //    }
+        //    else if (GlobalData.Instance.da["Cat_SL_Tag"].Value.Byte == 2)
+        //    {
+        //        this.tbUpDownCarBackValue.Text = (GlobalData.Instance.da["Cat_SL_WinchBackLimit"].Value.Byte / 10.0).ToString();
+        //        this.tbPushCarFrontValue.Text = (GlobalData.Instance.da["Cat_SL_CartFrontLimit"].Value.Byte / 10.0).ToString();
+        //        this.tbDrillCarBackValue.Text = (GlobalData.Instance.da["Cat_SL_DrillCarBackLimit"].Value.Byte / 10.0).ToString();
+        //        this.tbPipeCarBackValue.Text = (GlobalData.Instance.da["Cat_SL_PipeCarBackLimit"].Value.Byte / 10.0).ToString();
+        //    }
+        //}
         /// <summary>
         /// 遥控/司钻
         /// </summary>
@@ -288,24 +292,26 @@ namespace Main.Cat
 
             //GlobalData.Instance.da.SendBytes(byteToSend);
         }
-        int page = 1;
+      
         /// <summary>
-        /// 上一页
+        /// 液压站启动
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Left_MouseDown(object sender, MouseButtonEventArgs e)
+        private void btnHSStart_Click(object sender, RoutedEventArgs e)
         {
-            
+            byte[] byteToSend = new byte[10] { 80, 48, 5, 1, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
-        /// 下一页
+        /// 液压组停止
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Right_MouseDown(object sender, MouseButtonEventArgs e)
+        private void btnHSStop_Click(object sender, RoutedEventArgs e)
         {
-
+            byte[] byteToSend = new byte[10] { 80, 48, 5, 2, 0, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
         }
     }
 }

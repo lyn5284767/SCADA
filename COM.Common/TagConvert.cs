@@ -297,9 +297,9 @@ namespace COM.Common
             switch (bType)
             {
                 case 1:
-                    return "送杆";
+                    return "下钻";
                 case 2:
-                    return "排杆";
+                    return "起钻";
             }
 
             return "工作模式";
@@ -327,9 +327,9 @@ namespace COM.Common
             switch (bType)
             {
                 case 1:
-                    return "送杆";
+                    return "下钻";
                 case 2:
-                    return "排杆";
+                    return "起钻";
             }
 
             return "工作模式";
@@ -625,7 +625,7 @@ namespace COM.Common
                 //case 4:
                 //    return "左1#指梁位置";
                 case 6:
-                    return "小车排杆待机位置";
+                    return "小车起钻待机位置";
                 case 7:
                     return "小车回收位置";
                 case 10:
@@ -1303,10 +1303,10 @@ namespace COM.Common
 
             if ((bool)value)
             {
-                return "排杆";
+                return "起钻";
             }
 
-            return "送杆";
+            return "下钻";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -1316,7 +1316,7 @@ namespace COM.Common
     }
 
     /// <summary>
-    /// 排杆/送杆步骤
+    /// 起钻/下钻步骤
     /// </summary>
     public class AutoModeNowStepCoverter : IMultiValueConverter
     {
@@ -1340,31 +1340,31 @@ namespace COM.Common
         
             if (tb == "one")
             {
-                if (workModel == 1) //送杆
+                if (workModel == 1) //下钻
                 {
                     if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null) || values[0].ToString() != "5") // 非自动模式
                     {
-                        return "送杆启动";
+                        return "下钻启动";
                     }
 
-                    if (byteAutoModeNowStep == 0) return "送杆启动";
+                    if (byteAutoModeNowStep == 0) return "下钻启动";
                     if ((byteAutoModeNowStep >= 1) && (byteAutoModeNowStep <= 10)) return "指梁定位";
                     if ((byteAutoModeNowStep >= 11) && (byteAutoModeNowStep <= 16)) return "指梁抓杆";
                     if ((byteAutoModeNowStep >= 17) && (byteAutoModeNowStep <= 18)) return "指梁锁确认";
                     if ((byteAutoModeNowStep >= 19) && (byteAutoModeNowStep <= 23)) return "井口等待";
                     if ((byteAutoModeNowStep >= 24) && (byteAutoModeNowStep <= 25)) return "井口旋转";
-                    if ((byteAutoModeNowStep == 26)) return "吊卡送杆";
+                    if ((byteAutoModeNowStep == 26)) return "吊卡下钻";
                     if ((byteAutoModeNowStep >= 27) && (byteAutoModeNowStep <= 28)) return "吊卡确认";
                     if ((byteAutoModeNowStep >= 24) && (byteAutoModeNowStep <= 34) || (byteAutoModeNowStep == 35)) return "井口位置";
                     if (byteAutoModeNowStep == 35) last = true;
                 }
-                else if (workModel == 2) // 排杆
+                else if (workModel == 2) // 起钻
                 {
                     if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null) || values[0].ToString() != "5") // 非自动模式
                     {
-                        return "排杆启动";
+                        return "起钻启动";
                     }
-                    if ((byteAutoModeNowStep == 0)) return "排杆启动";
+                    if ((byteAutoModeNowStep == 0)) return "起钻启动";
                     if ((byteAutoModeNowStep >= 1) && (byteAutoModeNowStep <= 9)) return "井口定位";
                     if ((byteAutoModeNowStep >= 10) && (byteAutoModeNowStep <= 11)) return "井口抓杆";
                     if ((byteAutoModeNowStep >= 10) && (byteAutoModeNowStep <= 16)) return "井口位置";
@@ -1378,7 +1378,7 @@ namespace COM.Common
             }
             else if (tb == "two")
             {
-                if (workModel == 1) //送杆
+                if (workModel == 1) //下钻
                 {
                     if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null) || values[0].ToString() != "5") // 非自动模式
                     {
@@ -1389,13 +1389,13 @@ namespace COM.Common
                     if ((byteAutoModeNowStep >= 11) && (byteAutoModeNowStep <= 16)) return "指梁锁确认";
                     if ((byteAutoModeNowStep >= 17) && (byteAutoModeNowStep <= 18)) return "井口等待";
                     if ((byteAutoModeNowStep >= 19) && (byteAutoModeNowStep <= 23)) return "井口旋转";
-                    if ((byteAutoModeNowStep >= 24) && (byteAutoModeNowStep <= 25)) return "吊卡送杆";
+                    if ((byteAutoModeNowStep >= 24) && (byteAutoModeNowStep <= 25)) return "吊卡下钻";
                     if ((byteAutoModeNowStep == 26)) return "吊卡确认";
                     if ((byteAutoModeNowStep >= 27) && (byteAutoModeNowStep <= 28)) return "井口位置";
-                    if ((byteAutoModeNowStep >= 29) && (byteAutoModeNowStep <= 34) || (byteAutoModeNowStep == 35)) return "送杆完成";
+                    if ((byteAutoModeNowStep >= 29) && (byteAutoModeNowStep <= 34) || (byteAutoModeNowStep == 35)) return "下钻完成";
                     if (byteAutoModeNowStep == 35) last = true;
                 }
-                else if (workModel == 2) // 排杆
+                else if (workModel == 2) // 起钻
                 {
                     if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null) || values[0].ToString() != "5") // 非自动模式
                     {
@@ -1410,7 +1410,7 @@ namespace COM.Common
                     if ((byteAutoModeNowStep >= 13) && (byteAutoModeNowStep <= 16)) return "指梁定位";
                     if ((byteAutoModeNowStep >= 17) && (byteAutoModeNowStep <= 18)) return "指梁锁确认";
                     if ((byteAutoModeNowStep == 19)) return "指梁排管";
-                    if ((byteAutoModeNowStep >= 20) && (byteAutoModeNowStep <= 24) || (byteAutoModeNowStep >= 25) && (byteAutoModeNowStep <= 27)) return "排杆完成";
+                    if ((byteAutoModeNowStep >= 20) && (byteAutoModeNowStep <= 24) || (byteAutoModeNowStep >= 25) && (byteAutoModeNowStep <= 27)) return "起钻完成";
                     if ((byteAutoModeNowStep >= 25) && (byteAutoModeNowStep <= 27)) last = true;
                 }
             }
@@ -1461,7 +1461,7 @@ namespace COM.Common
     }
 
     /// <summary>
-    /// 排杆/送杆步骤
+    /// 起钻/下钻步骤
     /// </summary>
     public class AutoModeForeColorCoverter : IMultiValueConverter
     {
@@ -1483,11 +1483,11 @@ namespace COM.Common
             }
             int byteAutoModeNowStep = int.Parse(values[2].ToString());
             bool last = false;
-            if (workModel == 1) //送杆
+            if (workModel == 1) //下钻
             {
                 if (byteAutoModeNowStep == 35) last = true;
             }
-            else if (workModel == 2) // 排杆
+            else if (workModel == 2) // 起钻
             {
                 if ((byteAutoModeNowStep >= 25) && (byteAutoModeNowStep <= 27)) last = true;
             }
@@ -1521,7 +1521,7 @@ namespace COM.Common
     }
 
     /// <summary>
-    /// 排杆/送杆步骤
+    /// 起钻/下钻步骤
     /// </summary>
     public class AutoModeBackColorCoverter : IMultiValueConverter
     {
@@ -1543,11 +1543,11 @@ namespace COM.Common
             }
             int byteAutoModeNowStep = int.Parse(values[2].ToString());
             bool last = false;
-            if (workModel == 1) //送杆
+            if (workModel == 1) //下钻
             {
                 if (byteAutoModeNowStep == 35) last = true;
             }
-            else if (workModel == 2) // 排杆
+            else if (workModel == 2) // 起钻
             {
                 if ((byteAutoModeNowStep >= 25) && (byteAutoModeNowStep <= 27)) last = true;
             }
@@ -1600,12 +1600,12 @@ namespace COM.Common
                 }
             }
             int byteAutoModeNowStep = int.Parse(values[2].ToString());
-            if (workModel == 1) //送杆
+            if (workModel == 1) //下钻
             {
                 if ((byteAutoModeNowStep >= 24) && (byteAutoModeNowStep <= 34))
                     return "井口位置";
             }
-            else if (workModel == 2) // 排杆
+            else if (workModel == 2) // 起钻
             {
                 if ((byteAutoModeNowStep >= 10) && (byteAutoModeNowStep <= 16))
                     return "井口位置";
@@ -2865,7 +2865,7 @@ namespace COM.Common
     }
 
     /// <summary>
-    /// 排杆/送杆步骤
+    /// 起钻/下钻步骤
     /// </summary>
     public class IngNowStepCoverter : IMultiValueConverter
     {
@@ -2887,31 +2887,31 @@ namespace COM.Common
             }
             int byteAutoModeNowStep = int.Parse(values[2].ToString());
      
-            if (workModel == 1) //送杆
+            if (workModel == 1) //下钻
             {
                 if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null) || values[0].ToString() != "5") // 非自动模式
                 {
-                    return "送杆启动";
+                    return "下钻启动";
                 }
 
-                if (byteAutoModeNowStep == 0) return "送杆启动";
+                if (byteAutoModeNowStep == 0) return "下钻启动";
                 if ((byteAutoModeNowStep >= 1) && (byteAutoModeNowStep <= 10)) return "指梁定位";
                 if ((byteAutoModeNowStep >= 11) && (byteAutoModeNowStep <= 16)) return "指梁抓杆";
                 if ((byteAutoModeNowStep >= 17) && (byteAutoModeNowStep <= 18)) return "指梁锁确认";
                 if ((byteAutoModeNowStep >= 19) && (byteAutoModeNowStep <= 23)) return "井口等待";
                 if ((byteAutoModeNowStep >= 24) && (byteAutoModeNowStep <= 25)) return "井口旋转";
-                if ((byteAutoModeNowStep == 26)) return "吊卡送杆";
+                if ((byteAutoModeNowStep == 26)) return "吊卡下钻";
                 if ((byteAutoModeNowStep >= 27) && (byteAutoModeNowStep <= 28)) return "吊卡确认";
                 if ((byteAutoModeNowStep >= 24) && (byteAutoModeNowStep <= 34) || (byteAutoModeNowStep == 35)) return "井口位置";
                 if (byteAutoModeNowStep == 35) last = true;
             }
-            else if (workModel == 2) // 排杆
+            else if (workModel == 2) // 起钻
             {
                 if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null) || values[0].ToString() != "5") // 非自动模式
                 {
-                    return "排杆启动";
+                    return "起钻启动";
                 }
-                if ((byteAutoModeNowStep == 0)) return "排杆启动";
+                if ((byteAutoModeNowStep == 0)) return "起钻启动";
                 if ((byteAutoModeNowStep >= 1) && (byteAutoModeNowStep <= 9)) return "井口定位";
                 if ((byteAutoModeNowStep >= 10) && (byteAutoModeNowStep <= 11)) return "井口抓杆";
                 if ((byteAutoModeNowStep >= 10) && (byteAutoModeNowStep <= 16)) return "井口位置";
@@ -3129,7 +3129,7 @@ namespace COM.Common
 
 
     /// <summary>
-    /// 扶杆臂-排杆/送杆步骤
+    /// 扶杆臂-起钻/下钻步骤
     /// </summary>
     public class DRStepCoverter : IMultiValueConverter
     {
@@ -3148,7 +3148,7 @@ namespace COM.Common
             }
             byte workModer = (byte)values[1];
             byte step = (byte)values[2];
-            if (workModer == 2) // 排杆
+            if (workModer == 2) // 起钻
             {
                 if (step == 0) return 0;
                 if (step >= 1 && step <= 6) return 1;
@@ -3158,7 +3158,7 @@ namespace COM.Common
                 if (step >= 19 && step <= 20) return 5;
                 if (step == 21) return 6;
             }
-            else if (workModer == 1) // 送杆
+            else if (workModer == 1) // 下钻
             {
                 if (step == 0) return 0;
                 if (step >= 1 && step <= 5) return 1;
@@ -3179,7 +3179,7 @@ namespace COM.Common
     }
 
     /// <summary>
-    /// 扶杆臂-排杆/送杆步骤 文字显示
+    /// 扶杆臂-起钻/下钻步骤 文字显示
     /// </summary>
     public class DRStepTxtCoverter : IMultiValueConverter
     {
@@ -3208,15 +3208,15 @@ namespace COM.Common
                 if (step >= 19 && step <= 20) return "手臂回位";
                 if (step == 21) return "台面完成";
             }
-            else if (workModer == 1) // 送杆
+            else if (workModer == 1) // 下钻
             {
-                if (step == 0) return "送杆启动";
+                if (step == 0) return "下钻启动";
                 if (step >= 1 && step <= 5) return "台面定位";
                 if (step >= 6 && step <= 9) return "抓手夹紧";
                 if (step >= 10 && step <= 15) return "井口定位";
-                if (step >= 16 && step <= 17) return "井口送杆";
+                if (step >= 16 && step <= 17) return "井口下钻";
                 if (step >= 18 && step <= 19) return "手臂回位";
-                if (step == 20) return "送杆结束";
+                if (step == 20) return "下钻结束";
             }
 
             return "非自动模式";
@@ -3254,7 +3254,7 @@ namespace COM.Common
     }
 
     /// <summary>
-    /// 排杆/送杆步骤
+    /// 起钻/下钻步骤
     /// </summary>
     public class LinkErrorCoverter : IMultiValueConverter
     {
@@ -3268,7 +3268,7 @@ namespace COM.Common
                 return "联动未开启";
             }
             int error = (byte)values[0];
-            if(error == 23) return "排送杆不一致,无法开启联动";
+            if(error == 23) return "起下钻不一致,无法开启联动";
             else if (error == 24) return "目标指梁不一致，无法开启联动";
             else if (error == 25) return "非立根模式，无法开启联动";
             else if (error == 26) return "非自动模式，无法开启联动";
@@ -3343,7 +3343,7 @@ namespace COM.Common
     }
 
     /// <summary>
-    /// 集成系统-自动排杆/送杆步骤
+    /// 集成系统-自动起钻/下钻步骤
     /// </summary>
     public class IngStepCoverter : IMultiValueConverter
     {
@@ -3370,7 +3370,7 @@ namespace COM.Common
             byte sfWorkModel = (byte)values[4];
             byte sfstep = (byte)values[5];
             bool b460b1 = (bool)values[6];
-            if (drworkModer == 2 && sfWorkModel ==2) // 排杆
+            if (drworkModer == 2 && sfWorkModel ==2) // 起钻
             {
                 if (!b460b1)
                 {
@@ -3393,7 +3393,7 @@ namespace COM.Common
                     else if (sfstep >= 25) return 13;
                 }
             }
-            else if (drworkModer == 1 && sfWorkModel == 1) // 送杆
+            else if (drworkModer == 1 && sfWorkModel == 1) // 下钻
             {
                 if (b460b1)
                 {
@@ -3427,7 +3427,7 @@ namespace COM.Common
     }
 
     /// <summary>
-    /// 集成系统-自动排杆/送杆步骤
+    /// 集成系统-自动起钻/下钻步骤
     /// </summary>
     public class IngAutoModeNowStepCoverter : IMultiValueConverter
     {
@@ -3452,11 +3452,11 @@ namespace COM.Common
             byte drstep = (byte)values[2];
             byte sfWorkModel = (byte)values[4];
             byte sfstep = (byte)values[5];
-            if (drworkModer == 2) // 排杆
+            if (drworkModer == 2) // 起钻
             {
                 if (!b460b1)
                 {
-                    if (drstep == 0) return "排杆启动";
+                    if (drstep == 0) return "起钻启动";
                     else if (drstep >= 1 && drstep <= 6) return "井口定位";
                     else if (drstep >= 7 && drstep <= 9) return "井口抓杆";
                     else if (drstep >= 10 && drstep <= 17) return "台面定位";
@@ -3475,16 +3475,16 @@ namespace COM.Common
                     else if (sfstep >= 25) return "排管结束";
                 }
             }
-            else if (drworkModer == 1 && sfWorkModel == 1) // 送杆
+            else if (drworkModer == 1 && sfWorkModel == 1) // 下钻
             {
                 if (b460b1)
                 {
-                    if (sfstep == 0) return "送杆启动";
+                    if (sfstep == 0) return "下钻启动";
                     else if (sfstep >= 1 && sfstep <= 10) return "指梁定位";
                     else if (sfstep >= 11 && sfstep <= 16) return "指梁抓杆";
                     else if (sfstep >= 17 && sfstep <= 18) return "指梁锁确认";
                     else if (sfstep >= 19 && sfstep <= 25) return "井口等待";
-                    else if (sfstep == 26) return "井口送杆";
+                    else if (sfstep == 26) return "井口下钻";
                     else if (sfstep >= 27 && sfstep <= 34) return "吊卡确认";
                     else if (sfstep == 35) return "铁架工完成";
                 }
@@ -3493,9 +3493,9 @@ namespace COM.Common
                     if (drstep >= 1 && drstep <= 5) return "台面定位";
                     else if (drstep >= 6 && drstep <= 9) return "抓手夹紧";
                     else if (drstep >= 10 && drstep <= 15) return "井口定位";
-                    else if (drstep >= 16 && drstep <= 17) return "井口送杆";
+                    else if (drstep >= 16 && drstep <= 17) return "井口下钻";
                     else if (drstep >= 18 && drstep <= 19) return "手臂回位";
-                    else if (drstep == 20) return "送杆结束";
+                    else if (drstep == 20) return "下钻结束";
                 }
             }
 
@@ -4387,7 +4387,7 @@ namespace COM.Common
 
 
     /// <summary>
-    /// 排杆/送杆步骤
+    /// 起钻/下钻步骤
     /// </summary>
     public class AutoModeStepCoverter : IMultiValueConverter
     {
@@ -4409,7 +4409,7 @@ namespace COM.Common
             int byteAutoModeNowStep = int.Parse(values[2].ToString());
             if (tb == "one")
             {
-                if (workModel == 1) //送杆
+                if (workModel == 1) //下钻
                 {
                     if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null) || values[0].ToString() != "5") // 非自动模式
                     {
@@ -4426,7 +4426,7 @@ namespace COM.Common
                     if ((byteAutoModeNowStep >= 24) && (byteAutoModeNowStep <= 34)) return 7;
                     if (byteAutoModeNowStep == 35) return 8;
                 }
-                else if (workModel == 2) // 排杆
+                else if (workModel == 2) // 起钻
                 {
                     if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null) || values[0].ToString() != "5") // 非自动模式
                     {
@@ -4445,7 +4445,7 @@ namespace COM.Common
             }
             else if (tb == "two")
             {
-                if (workModel == 1) //送杆
+                if (workModel == 1) //下钻
                 {
                     if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null) || values[0].ToString() != "5") // 非自动模式
                     {
@@ -4456,13 +4456,13 @@ namespace COM.Common
                     if ((byteAutoModeNowStep >= 11) && (byteAutoModeNowStep <= 16)) return "指梁锁确认";
                     if ((byteAutoModeNowStep >= 17) && (byteAutoModeNowStep <= 18)) return "井口等待";
                     if ((byteAutoModeNowStep >= 19) && (byteAutoModeNowStep <= 23)) return "井口旋转";
-                    if ((byteAutoModeNowStep >= 24) && (byteAutoModeNowStep <= 25)) return "吊卡送杆";
+                    if ((byteAutoModeNowStep >= 24) && (byteAutoModeNowStep <= 25)) return "吊卡下钻";
                     if ((byteAutoModeNowStep == 26)) return "吊卡确认";
                     if ((byteAutoModeNowStep >= 27) && (byteAutoModeNowStep <= 28)) return "井口位置";
-                    if ((byteAutoModeNowStep >= 29) && (byteAutoModeNowStep <= 34) || (byteAutoModeNowStep == 35)) return "送杆完成";
+                    if ((byteAutoModeNowStep >= 29) && (byteAutoModeNowStep <= 34) || (byteAutoModeNowStep == 35)) return "下钻完成";
                     //if (byteAutoModeNowStep == 35) last = true;
                 }
-                else if (workModel == 2) // 排杆
+                else if (workModel == 2) // 起钻
                 {
                     if ((values[0] == DependencyProperty.UnsetValue) || (values[0] == null) || values[0].ToString() != "5") // 非自动模式
                     {
@@ -4477,7 +4477,7 @@ namespace COM.Common
                     if ((byteAutoModeNowStep >= 13) && (byteAutoModeNowStep <= 16)) return "指梁定位";
                     if ((byteAutoModeNowStep >= 17) && (byteAutoModeNowStep <= 18)) return "指梁锁确认";
                     if ((byteAutoModeNowStep == 19)) return "指梁排管";
-                    if ((byteAutoModeNowStep >= 20) && (byteAutoModeNowStep <= 24) || (byteAutoModeNowStep >= 25) && (byteAutoModeNowStep <= 27)) return "排杆完成";
+                    if ((byteAutoModeNowStep >= 20) && (byteAutoModeNowStep <= 24) || (byteAutoModeNowStep >= 25) && (byteAutoModeNowStep <= 27)) return "起钻完成";
                     //if ((byteAutoModeNowStep >= 25) && (byteAutoModeNowStep <= 27)) last = true;
                 }
             }
@@ -5188,8 +5188,8 @@ namespace COM.Common
             byte sfType = (byte)values[0];
             byte drType = (byte)values[1];
             byte sirType = (byte)values[2];
-            if (sfType == 1 && drType == 1 && sirType == 1) return "送杆";
-            if (sfType == 2 && drType == 2 && sirType == 2) return "排杆";
+            if (sfType == 1 && drType == 1 && sirType == 1) return "下钻";
+            if (sfType == 2 && drType == 2 && sirType == 2) return "起钻";
 
             return "工作模式";
         }
@@ -6252,7 +6252,7 @@ namespace COM.Common
     }
 
     /// <summary>
-    /// 修井扶杆臂-排杆/送杆步骤
+    /// 修井扶杆臂-起钻/下钻步骤
     /// </summary>
     public class WR_DRStepCoverter : IMultiValueConverter
     {
@@ -6271,7 +6271,7 @@ namespace COM.Common
             }
             byte workModer = (byte)values[1];
             byte step = (byte)values[2];
-            if (workModer == 2) // 排杆
+            if (workModer == 2) // 起钻
             {
                 if (step == 0) return 0;
                 if (step >= 10 && step <= 20) return 1;
@@ -6282,7 +6282,7 @@ namespace COM.Common
                 if (step >= 41 && step <= 44) return 6;
                 if (step == 45) return 7;
             }
-            else if (workModer == 1) // 送杆
+            else if (workModer == 1) // 下钻
             {
                 if (step == 0) return 0;
                 if (step >= 10 && step <= 20) return 1;
@@ -6758,12 +6758,31 @@ namespace COM.Common
             throw new NotImplementedException();
         }
     }
+
+    public class SLCatStartConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null || value == DependencyProperty.UnsetValue)
+            {
+                return "未知";
+            }
+            bool val = (bool)value;
+            if (val) return "启动";
+            else return "停止";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     #endregion
 
     #region 泽元猫道
 
     /// <summary>
-    /// 排杆/送杆步骤
+    /// 起钻/下钻步骤
     /// </summary>
     public class Cat_ZY_BackgroudColorCoverter : IValueConverter
     {

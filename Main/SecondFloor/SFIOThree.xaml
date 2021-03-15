@@ -225,7 +225,7 @@
                             <TextBlock Text="自动模式" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontWeight="Bold"/>
                         </Border>
                         <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
-                            <TextBlock Text="排杆模式" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontWeight="Bold"/>
+                            <TextBlock Text="起钻模式" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontWeight="Bold"/>
                         </Border>
                         <Border BorderBrush="Gray" BorderThickness="1"  Padding="3" Height="30">
                             <TextBlock Text="指梁锁关闭" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" FontSize="14" FontWeight="Bold"/>

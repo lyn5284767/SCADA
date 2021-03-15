@@ -196,8 +196,8 @@ namespace Main.SecondFloor
                 #endregion
 
                 this.cbDrillDwon.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["103b4"], Mode = BindingMode.OneWay });
-                this.cbVisualAid.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["252b1"], Mode = BindingMode.OneWay });
-                this.cbDrillUp.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["103b3"], Mode = BindingMode.OneWay });
+                this.cbVisualAid.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["103b3"], Mode = BindingMode.OneWay });
+                this.cbDrillUp.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["252b1"], Mode = BindingMode.OneWay });
 
             }
             catch (Exception ex)
@@ -291,7 +291,7 @@ namespace Main.SecondFloor
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
-        /// 送杆提效模式
+        /// 下钻提效模式
         /// </summary>
         private void cbDrillDwon_Clicked(object sender, EventArgs e)
         {
@@ -305,13 +305,13 @@ namespace Main.SecondFloor
         /// <param name="e"></param>
         private void cbVisualAid_Clicked(object sender, EventArgs e)
         {
-            byte[] byteToSend = SendByte(new List<byte> { 24, 7 });
+            byte[] byteToSend = SendByte(new List<byte> { 24, 6 });
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
 
         private void cbDrillUp_Clicked(object sender, EventArgs e)
         {
-            byte[] byteToSend = SendByte(new List<byte> { 24, 6 });
+            byte[] byteToSend = SendByte(new List<byte> { 24, 5 });
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
     }

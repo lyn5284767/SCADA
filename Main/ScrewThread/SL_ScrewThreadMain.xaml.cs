@@ -413,7 +413,7 @@ namespace Main.ScrewThread
             if (strText.Length == 0) strText = "0";
             short i16Text = (short)(double.Parse(strText) * 1);
             byte[] tempByte = BitConverter.GetBytes(i16Text);
-            byte[] byteToSend = new byte[10] { 80, 64, 7, 1, tempByte[0], tempByte[1], 0, 0, 0, 0 };
+            byte[] byteToSend = new byte[10] { 80, 64, tempByte[0], tempByte[1], 0, 0, 0, 0, 0, 0 };
             GlobalData.Instance.da.SendBytes(byteToSend);
         }
     }

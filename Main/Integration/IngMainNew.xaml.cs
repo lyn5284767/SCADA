@@ -40,11 +40,11 @@ namespace Main.Integration
         }
         #region Field
         /// <summary>
-        /// 铁架工工作模式 1：送杆；2排杆
+        /// 铁架工工作模式 1：下钻；2起钻
         /// </summary>
         private int sfWorkModel { get; set; }
         /// <summary>
-        /// 扶杆臂工作模式 1：送杆；2排杆
+        /// 扶杆臂工作模式 1：下钻；2起钻
         /// </summary>
         private int drWorkModel { get; set; }
         /// <summary>
@@ -52,11 +52,11 @@ namespace Main.Integration
         /// </summary>
         private int sirWorkModel { get; set; }
         /// <summary>
-        /// 铁架工操作模式 1：送杆；2排杆
+        /// 铁架工操作模式 1：下钻；2起钻
         /// </summary>
         private int sfOprModel { get; set; }
         /// <summary>
-        /// 扶杆臂操作模式 1：送杆；2排杆
+        /// 扶杆臂操作模式 1：下钻；2起钻
         /// </summary>
         private int drOprModel { get; set; }
         /// <summary>
@@ -104,6 +104,7 @@ namespace Main.Integration
         private bool IsPreventBoxAllLock = false;
         private bool IsCatAllLock = false;
         private bool TotalLock = false;
+        private bool IsLoadingHandLock = false;
         #endregion
 
         public IngMainNew()
@@ -123,6 +124,8 @@ namespace Main.Integration
 
         private void IngMain_Loaded(object sender, RoutedEventArgs e)
         {
+            byte[] data = new byte[10] { 80, 33, 0, 0, 0, 0, 0, 0, 30, 30 };
+            GlobalData.Instance.da.SendBytes(data);
             InitPanel();
             InitAllModel();
             string configPath = System.Environment.CurrentDirectory + "\\KeyBoard.exe";
@@ -338,11 +341,40 @@ namespace Main.Integration
                 this.ShowLinkStatus();
                 this.ShowLockStatus();
                 this.ShowHand();
+                this.StartLink();
                 if (this.tbAlarm.Text != "无告警信息") this.tbAlarm.Foreground = (Brush)bc.ConvertFrom("#E0496D");
                 else this.tbAlarm.Foreground = (Brush)bc.ConvertFrom("#808080");
-                if (this.tbOpr.Text != "无操作提示") this.tbAlarm.Foreground = (Brush)bc.ConvertFrom("#E0496D");
+                if (this.tbOpr.Text != "无操作提示") this.tbOpr.Foreground = (Brush)bc.ConvertFrom("#E0496D");
                 else this.tbOpr.Foreground = (Brush)bc.ConvertFrom("#808080");
+             
             }));
+        }
+        bool startHS = false;
+        bool turnZero = false;
+        bool confirmParam = false;
+        private void StartLink()
+        {
+            if (startHS)
+            {
+                confirmParam = false;
+                turnZero = false;
+                if (StartHS()) return;
+            }
+            if (turnZero)
+            {
+                startHS = false;
+                confirmParam = false;
+                if (CheckDeviceStatus()) return;
+            }
+            if (confirmParam)
+            {
+                startHS = false;
+                turnZero = false;
+                if (StartPipeTypeAndDes()) return;
+                if (TurnToAuto()) return;
+                if (SelectWorkModel()) return;
+                if (SelectedDrill()) return;
+            }
         }
 
 
@@ -437,24 +469,24 @@ namespace Main.Integration
         {
             try
             {
-                // 存在的设备全为1，设备不存在为-1，则为送杆
+                // 存在的设备全为1，设备不存在为-1，则为下钻
                 if ((this.sfWorkModel == 1 || this.sfWorkModel == -1)
                     && (this.drWorkModel == 1 || this.drWorkModel == -1)
                     && (this.sirWorkModel == 1 || this.sirWorkModel == -1))
                 {
 
-                    this.tbCurWork.Text = "送杆";
-                    //this.workMode.ContentDown = "送杆";
+                    this.tbCurWork.Text = "下钻";
+                    //this.workMode.ContentDown = "下钻";
                     //this.workMode.IsChecked = false;
                     alarmKey["设备工作模式不一致"] = 0;
                     nowTechnique = Technique.DrillDown;
-                }// 存在的设备全为2，设备不存在为-1，则为排杆
+                }// 存在的设备全为2，设备不存在为-1，则为起钻
                 else if ((this.sfWorkModel == 2 || this.sfWorkModel == -1)
                     && (this.drWorkModel == 2 || this.drWorkModel == -1)
                     && (this.sirWorkModel == 2 || this.sirWorkModel == -1))
                 {
-                    this.tbCurWork.Text = "排杆";
-                    //this.workMode.ContentDown = "排杆";
+                    this.tbCurWork.Text = "起钻";
+                    //this.workMode.ContentDown = "起钻";
                     //this.workMode.IsChecked = true;
                     alarmKey["设备工作模式不一致"] = 0;
                     nowTechnique = Technique.DrillUp;
@@ -911,8 +943,8 @@ namespace Main.Integration
                     if (model.HS_VoltagePump == 1) this.tbHSSet.Text += Environment.NewLine + "恒压泵";
                 }
 
-                if (model.WorkType == 1) { this.tbWorkModelSet.Text = "送杆"; }
-                else if (model.WorkType == 2) { this.tbWorkModelSet.Text = "排杆"; }
+                if (model.WorkType == 1) { this.tbWorkModelSet.Text = "下钻"; }
+                else if (model.WorkType == 2) { this.tbWorkModelSet.Text = "起钻"; }
                 else { this.tbWorkModelSet.Text = "未设置"; }
 
                 if (model.PipeType == 1)
@@ -1071,21 +1103,17 @@ namespace Main.Integration
             {
                 this.tbOpr.Text = "检查液压站模式";
                 this.pbper = 15;
-                return true;
+              
             }
             if (this.pbper == 15) //1.检查液压站操作模式 15->20
             {
                 CheckHSWorkModel();
-                return true;
+             
             }
             if (this.pbper == 20 || this.pbper == 25)// 2.启动液压站 20->30
             {
                 StartHSPump();
                 return true;
-            }
-            if (this.pbper == 28)
-            {
-                
             }
             return false;
         }
@@ -1133,7 +1161,7 @@ namespace Main.Integration
                 {
                     if (!GlobalData.Instance.da["734b1"].Value.Boolean)
                     {
-                        this.tbOpr.Text = "泵准备启动";
+                        this.tbOpr.Text = "泵启动成功";
                         this.pbper = 20;
                         IsSend = false;
                     }
@@ -1178,8 +1206,9 @@ namespace Main.Integration
                         if (!GlobalData.Instance.da["770b3"].Value.Boolean) // 1#泵启动
                         {
                             this.tbOpr.Text = "1#泵启动成功";
-                            this.pbper = 28;
+                            this.pbper = 30;
                             IsSend = false;
+                            startHS = false;
                         }
                         else
                         {
@@ -1193,8 +1222,9 @@ namespace Main.Integration
                         if (!GlobalData.Instance.da["770b5"].Value.Boolean) // 2#泵启动
                         {
                             this.tbOpr.Text = "2#泵启动成功";
-                            this.pbper = 28;
+                            this.pbper = 30;
                             IsSend = false;
+                            startHS = false;
                         }
                         else
                         {
@@ -1225,8 +1255,9 @@ namespace Main.Integration
                             if (!GlobalData.Instance.da["770b5"].Value.Boolean) // 2#泵启动
                             {
                                 this.tbOpr.Text = "2#泵启动成功";
-                                this.pbper = 28;
+                                this.pbper = 30;
                                 IsSend = false;
+                                startHS = false;
                             }
                             else
                             {
@@ -1255,9 +1286,11 @@ namespace Main.Integration
                     {
                         if (!GlobalData.Instance.da["733b3"].Value.Boolean) // 1#泵启动
                         {
-                            this.tbOpr.Text = "1#泵启动成功，准备检查电机状态";
+                            this.tbOpr.Text = "1#泵启动成功";
                             this.pbper = 30;
                             IsSend = false;
+                            turnZero = false;
+                            confirmParam = false;
                         }
                         else
                         {
@@ -1270,9 +1303,11 @@ namespace Main.Integration
                     {
                         if (!GlobalData.Instance.da["733b4"].Value.Boolean) // 2#泵启动
                         {
-                            this.tbOpr.Text = "2#泵启动成功，准备检查电机状态";
+                            this.tbOpr.Text = "2#泵启动成功";
                             this.pbper = 30;
                             IsSend = false;
+                            turnZero = false;
+                            confirmParam = false;
                         }
                         else
                         {
@@ -1302,9 +1337,11 @@ namespace Main.Integration
                         {
                             if (!GlobalData.Instance.da["733b4"].Value.Boolean) // 2#泵启动
                             {
-                                this.tbOpr.Text = "2#泵启动成功，准备检查电机状态";
+                                this.tbOpr.Text = "2#泵启动成功";
                                 this.pbper = 30;
                                 IsSend = false;
+                                                turnZero = false;
+                confirmParam = false;
                             }
                             else
                             {
@@ -1383,7 +1420,7 @@ namespace Main.Integration
                     {
                         if (!GlobalData.Instance.da["733b3"].Value.Boolean) // 1#泵启动
                         {
-                            this.tbOpr.Text = "1#泵启动成功，准备检查电机状态";
+                            this.tbOpr.Text = "1#泵启动成功";
                             this.pbper = 30;
                             IsSend = false;
                         }
@@ -1398,7 +1435,7 @@ namespace Main.Integration
                     {
                         if (!GlobalData.Instance.da["733b4"].Value.Boolean) // 2#泵启动
                         {
-                            this.tbOpr.Text = "2#泵启动成功，准备检查电机状态";
+                            this.tbOpr.Text = "2#泵启动成功";
                             this.pbper = 30;
                             IsSend = false;
                         }
@@ -1415,7 +1452,7 @@ namespace Main.Integration
                         {
                             if (!GlobalData.Instance.da["733b3"].Value.Boolean) // 1#泵启动
                             {
-                                this.tbOpr.Text = "1#泵启动成功,准备启动2#泵";
+                                this.tbOpr.Text = "1#泵启动成功";
                                 this.pbper = 25;
                                 IsSend = false;
                             }
@@ -1430,7 +1467,7 @@ namespace Main.Integration
                         {
                             if (!GlobalData.Instance.da["733b4"].Value.Boolean) // 2#泵启动
                             {
-                                this.tbOpr.Text = "2#泵启动成功，准备检查电机状态";
+                                this.tbOpr.Text = "2#泵启动成功";
                                 this.pbper = 30;
                                 IsSend = false;
                             }
@@ -1465,7 +1502,9 @@ namespace Main.Integration
         /// <param name="e"></param>
         private void btnStartHS_Click(object sender, RoutedEventArgs e)
         {
-            StartHS();
+            this.pbper = 10;
+            startHS = true;
+            //StartHS();
         }
         /// <summary>
         /// 检查液压站
@@ -1485,7 +1524,7 @@ namespace Main.Integration
                     }
                     if (!GlobalData.Instance.da["771b5"].Value.Boolean && GlobalData.Instance.da["771b6"].Value.Boolean) // 司钻模式
                     {
-                        hsSuccess = true;
+                        //hsSuccess = true;
                     }
                     else hsSuccess = false;
                     #endregion
@@ -1494,7 +1533,7 @@ namespace Main.Integration
                 {
                     if (!GlobalData.Instance.da["734b1"].Value.Boolean)
                     {
-                        hsSuccess = true;
+                        //hsSuccess = true;
                     }
                     else
                     {
@@ -1510,6 +1549,148 @@ namespace Main.Integration
             {
                 Log.Log4Net.AddLog(ex.ToString());
             }
+
+            try
+            {
+                if (GlobalData.Instance.da.GloConfig.HydType == 0)
+                {
+                    this.tbOpr.Text = "未设置液压站,不允许启动联动";
+                }
+                else if (GlobalData.Instance.da.GloConfig.HydType == 1)
+                {
+                    #region 自研液压站启动泵
+                    if (model.HS_PumpType == 0)
+                    {
+                        hsSuccess = false;
+                        this.tbOpr.Text = "模式中未设置液压站，请返回修改";
+                    }
+                    else if (model.HS_PumpType == 1)
+                    {
+                        if (!GlobalData.Instance.da["770b3"].Value.Boolean) // 1#泵启动
+                        {
+                           
+                        }
+                        else
+                        {
+                            hsSuccess = false;
+                        }
+                    }
+                    else if (model.HS_PumpType == 2)
+                    {
+                        if (!GlobalData.Instance.da["770b5"].Value.Boolean) // 2#泵启动
+                        {
+                            
+                        }
+                        else
+                        {
+                            hsSuccess = false;
+                        }
+                    }
+                    else if (model.HS_PumpType == 3)
+                    {
+                        if (this.pbper == 20)
+                        {
+                            if (!GlobalData.Instance.da["770b3"].Value.Boolean) // 1#泵启动
+                            {
+                                
+                            }
+                            else
+                            {
+                                hsSuccess = false;
+                            }
+                        }
+                        else if (this.pbper == 25)
+                        {
+                            if (!GlobalData.Instance.da["770b5"].Value.Boolean) // 2#泵启动
+                            {
+                               
+                            }
+                            else
+                            {
+                                hsSuccess = false;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        hsSuccess = false;
+                        this.tbOpr.Text = "模式中设置液压站错误，请返回修改";
+                    }
+                    #endregion
+                }
+                else if (GlobalData.Instance.da.GloConfig.HydType == 2)
+                { }
+                else if (GlobalData.Instance.da.GloConfig.HydType == 3)
+                {
+                    #region JJC液压站启动泵
+                    if (model.HS_PumpType == 0)
+                    {
+                        this.tbOpr.Text = "模式中未设置液压站，请返回修改";
+                    }
+                    else if (model.HS_PumpType == 1)
+                    {
+                        if (!GlobalData.Instance.da["733b3"].Value.Boolean) // 1#泵启动
+                        {
+                           
+                        }
+                        else
+                        {
+                            hsSuccess = false;
+                        }
+                    }
+                    else if (model.HS_PumpType == 2)
+                    {
+                        if (!GlobalData.Instance.da["733b4"].Value.Boolean) // 2#泵启动
+                        {
+                     
+                        }
+                        else
+                        {
+                            hsSuccess = false;
+                        }
+                    }
+                    else if (model.HS_PumpType == 3)
+                    {
+                        if (this.pbper == 20)
+                        {
+                            if (!GlobalData.Instance.da["733b3"].Value.Boolean) // 1#泵启动
+                            {
+                           
+                            }
+                            else
+                            {
+                                hsSuccess = false;
+                            }
+                        }
+                        else if (this.pbper == 25)
+                        {
+                            if (!GlobalData.Instance.da["733b4"].Value.Boolean) // 2#泵启动
+                            {
+                               
+                            }
+                            else
+                            {
+                                hsSuccess = false;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        hsSuccess = false;
+                        this.tbOpr.Text = "模式中设置液压站错误，请返回修改";
+                    }
+                    #endregion
+                }
+                else
+                {
+                    System.Windows.Forms.MessageBox.Show("液压站配置错误！请联系售后人员");
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Log4Net.AddLog(ex.ToString());
+            }
+
             return hsSuccess;
             
         }
@@ -1525,13 +1706,13 @@ namespace Main.Integration
             if (this.pbper == 30)
             {
                 SFMonitorEnable();
-                return true;
+              
             }
             // 2.检查扶杆臂电机是否需要使能
             if (this.pbper == 35)
             {
                 DRMonitorEnable();
-                return true;
+             
             }
             //// 3.检查铁钻工系统压力
             //if (this.pbper.Value == 40)
@@ -1657,10 +1838,11 @@ namespace Main.Integration
                 this.tbOpr.Text = "铁架工/扶杆臂已经回零，准备设置管柱类型";
                 this.pbper = 50;
                 IsSend = false;
+                turnZero = false;
             }
             else
             {
-                this.tbOpr.Text = "铁架工/扶杆臂回零中";
+                this.tbOpr.Text = "铁架工/扶杆臂回零中...";
                 byte[] sendOne = GlobalData.Instance.SendByte(new List<byte> { 13, 4 });
                 byte[] sendTwo = new byte[10] { 80, 33, 0, 0, 0, 0, 0, 0, 30, 30 };
                 byte[] sendThree = GlobalData.Instance.SendToDR(new List<byte> { 13, 4 });
@@ -1677,8 +1859,10 @@ namespace Main.Integration
         {
             if (this.btnTurnToZore.Background.ToString() == "#FFF5C244")
             {
+                this.pbper = 30;
+                turnZero = true;
                 //MessageBox.Show("铁架工和扶杆臂准备回零，注意安全!", "提示", MessageBoxButton.YesNo);
-                CheckDeviceStatus();
+                //CheckDeviceStatus();
             }
         }
         /// <summary>
@@ -1783,6 +1967,7 @@ namespace Main.Integration
         {
             if (this.btnTurnToZore.Background.ToString() == "#FF5DBADC")
             {
+                this.pbper = 50;
                 if (this.pbper == 50)
                 {
                     string msg = string.Empty;
@@ -1795,6 +1980,7 @@ namespace Main.Integration
                     if (!IsCatAllLock) msg += "猫道,";
                     if (!IsPreventBoxAllLock) msg += "防喷盒,";
                     if (!IsKavaAllLock) msg += "卡瓦,";
+                    if (!IsLoadingHandLock) msg += "缓冲臂,";
                     if (msg != string.Empty)
                     {
                         msg = "系统中存在" + msg + "互锁已解除，可能存在安全问题，确认继续开启联动?";
@@ -1803,6 +1989,8 @@ namespace Main.Integration
                         {
                             TotalLock = true;
                             this.pbper = 60;
+                            byte[] byteToSend = new byte[] { 16, 1, 21, 31, 0, 0, 0, 0, 0, 0 };
+                            GlobalData.Instance.da.SendBytes(byteToSend);
                         }
                         else TotalLock = false;
                     }
@@ -1852,13 +2040,13 @@ namespace Main.Integration
             if (this.pbper == 60)
             {
                 SFPipeSet(pipeType);
-                return true;
+               
             }
             // 2.设置扶杆臂管柱类型
             if (this.pbper == 65)
             {
                 DRPipeSet();
-                return true;
+            
             }
             // 3.设置扶杆臂的目的地
             if (this.pbper == 70)
@@ -2059,6 +2247,7 @@ namespace Main.Integration
             int sfWorkModel = 0;
             int drWorkModel = 0;
             int sirWorkModel = 0;
+            int preventBoxModel = 0;
             if (GlobalData.Instance.da.GloConfig.SFType == 0)
             { }
             else if (GlobalData.Instance.da.GloConfig.SFType == 1)
@@ -2128,14 +2317,32 @@ namespace Main.Integration
             else if (GlobalData.Instance.da.GloConfig.SIRType == 5)
             { }
 
-            if (this.model.WorkType == 1 && sfWorkModel == 1 && drWorkModel == 1 && sirWorkModel == 1) // 送杆
+            if (GlobalData.Instance.da.GloConfig.PreventBoxType == 0)
+            {
+                preventBoxModel = this.model.WorkType;
+            }
+            else if (GlobalData.Instance.da.GloConfig.PreventBoxType == 1)
+            { }
+            else if (GlobalData.Instance.da.GloConfig.PreventBoxType == 2)
+            {
+                if (GlobalData.Instance.da["972b0"].Value.Boolean) //防喷盒模式/起钻
+                {
+                    preventBoxModel = 2;
+                }
+                if (GlobalData.Instance.da["972b1"].Value.Boolean) // 丝扣涂抹/下钻
+                {
+                    preventBoxModel = 1;
+                }
+            }
+
+            if (this.model.WorkType == 1 && sfWorkModel == 1 && drWorkModel == 1 && sirWorkModel == 1 && preventBoxModel==1) // 下钻
             {
                 this.tbOpr.Text = "工作模式设置完成，准备选择指梁";
                 this.pbper = 85;
                 IsSend = false;
                 return;
             }
-            else if (this.model.WorkType == 2 && sfWorkModel == 2 && drWorkModel == 2 && sirWorkModel == 2) //排杆
+            else if (this.model.WorkType == 2 && sfWorkModel == 2 && drWorkModel == 2 && sirWorkModel == 2 && preventBoxModel==2) //起钻
             {
                 this.tbOpr.Text = "工作模式设置完成，准备选择指梁";
                 this.pbper = 85;
@@ -2148,33 +2355,52 @@ namespace Main.Integration
                 byte[] sfbyteToSend;// 铁架工
                 byte[] drbyteToSend;// 扶杆臂
                 byte[] sirbyteToSend;// 铁钻工
+                byte[] preventBoxbyteToSend;// 丝扣/防喷
+                List<byte[]> sendList = new List<byte[]>();
                 if (this.model.WorkType == 1)
                 {
                     sfbyteToSend = GlobalData.Instance.SendByte(new List<byte> { 2, 1 });
                     drbyteToSend = new byte[10] { 1, 32, 4, 41, 0, 0, 0, 0, 0, 0 };
+                    sendList.Add(sfbyteToSend);
+                    sendList.Add(drbyteToSend);
                     if (GlobalData.Instance.da.GloConfig.SIRType == 1)
                     {
                         sirbyteToSend = new byte[10] { 23, 17, 2, 1, 0, 0, 0, 0, 0, 0 };
-                        CheckOverTime(sfbyteToSend, drbyteToSend, sirbyteToSend, tips, 10);
+                        sendList.Add(sirbyteToSend);
                     }
-                    else
+                    //else
+                    //{
+                    //    CheckOverTime(sfbyteToSend, drbyteToSend, tips, 10);
+                    //}
+                    if (GlobalData.Instance.da.GloConfig.PreventBoxType == 2)
                     {
-                        CheckOverTime(sfbyteToSend, drbyteToSend, tips, 10);
+                        preventBoxbyteToSend= new byte[10] { 80, 64, 4, 2, 0, 0, 0, 0, 0, 0 };
+                        sendList.Add(preventBoxbyteToSend);
                     }
+                    CheckOverTime(sendList, tips, 10);
                 }
                 else if (this.model.WorkType == 2)
                 {
                     sfbyteToSend = GlobalData.Instance.SendByte(new List<byte> { 2, 2 });
                     drbyteToSend = new byte[10] { 1, 32, 4, 40, 0, 0, 0, 0, 0, 0 };
+                    sendList.Add(sfbyteToSend);
+                    sendList.Add(drbyteToSend);
                     if (GlobalData.Instance.da.GloConfig.SIRType == 1)
                     {
                         sirbyteToSend = new byte[10] { 23, 17, 2, 2, 0, 0, 0, 0, 0, 0 };
-                        CheckOverTime(sfbyteToSend, drbyteToSend, sirbyteToSend, tips, 10);
+                        sendList.Add(sirbyteToSend);
+                        //CheckOverTime(sfbyteToSend, drbyteToSend, sirbyteToSend, tips, 10);
                     }
-                    else
+                    //else
+                    //{
+                    //    CheckOverTime(sfbyteToSend, drbyteToSend, tips, 10);
+                    //}
+                    if (GlobalData.Instance.da.GloConfig.PreventBoxType == 2)
                     {
-                        CheckOverTime(sfbyteToSend, drbyteToSend, tips, 10);
+                        preventBoxbyteToSend = new byte[10] { 80, 64, 4, 1, 0, 0, 0, 0, 0, 0 };
+                        sendList.Add(preventBoxbyteToSend);
                     }
+                    CheckOverTime(sendList, tips, 10);
                 }
                 else
                 {
@@ -2223,12 +2449,13 @@ namespace Main.Integration
             {
                 if (this.model.SelectDrill == sfSelectDrillNum && this.model.SelectDrill == drSelectDrillNum)
                 {
-                    if (sfSelectDrillNum < 16) this.tbOpr.Text = "自动选择左" + sfSelectDrillNum + "指梁";
-                    else if (sfSelectDrillNum == 16) this.tbOpr.Text = "自动选择左钻铤";
-                    else if (sfSelectDrillNum > 16 && sfSelectDrillNum < 32) this.tbOpr.Text = "自动选择右" + (sfSelectDrillNum - 16) + "指梁";
-                    else this.tbOpr.Text = "自动选择右钻铤";
+                    if (sfSelectDrillNum < 16) this.tbOpr.Text = "选择左" + sfSelectDrillNum + "指梁";
+                    else if (sfSelectDrillNum == 16) this.tbOpr.Text = "选择左钻铤";
+                    else if (sfSelectDrillNum > 16 && sfSelectDrillNum < 32) this.tbOpr.Text = "选择右" + (sfSelectDrillNum - 16) + "指梁";
+                    else this.tbOpr.Text = "选择右钻铤";
                     this.pbper = 90;
                     IsSend = false;
+                    confirmParam = false;
                 }
                 else
                 {
@@ -2280,10 +2507,12 @@ namespace Main.Integration
         /// <param name="e"></param>
         private void btnParamConfirm_Click(object sender, RoutedEventArgs e)
         {
-            StartPipeTypeAndDes();
-            AutoSet();
-            SelectWorkModel();
-            SelectedDrill();
+            this.pbper = 60;
+            confirmParam = true;
+            //StartPipeTypeAndDes();
+            //AutoSet();
+            //SelectWorkModel();
+            //SelectedDrill();
         }
 
         private bool CheckParam()
@@ -2477,11 +2706,11 @@ namespace Main.Integration
             else if (GlobalData.Instance.da.GloConfig.SIRType == 5)
             { }
 
-            if (this.model.WorkType == 1 && sfWorkModel == 1 && drWorkModel == 1 && sirWorkModel == 1) // 送杆
+            if (this.model.WorkType == 1 && sfWorkModel == 1 && drWorkModel == 1 && sirWorkModel == 1) // 下钻
             {
                 lockSuccess = true;
             }
-            else if (this.model.WorkType == 2 && sfWorkModel == 2 && drWorkModel == 2 && sirWorkModel == 2) //排杆
+            else if (this.model.WorkType == 2 && sfWorkModel == 2 && drWorkModel == 2 && sirWorkModel == 2) //起钻
             {
                 lockSuccess = true;
             }
@@ -2535,33 +2764,63 @@ namespace Main.Integration
             if (CheckHS())
             {
                 this.btnStartHS.Background = (Brush)bc.ConvertFrom("#5DBADC");
-                this.pbper = 30;
             }
             else this.btnStartHS.Background = (Brush)bc.ConvertFrom("#F5C244");
             // 电机回零/使能情况
             if (CheckMonitor())
             {
                 this.btnTurnToZore.Background = (Brush)bc.ConvertFrom("#5DBADC");
-                this.pbper = 50;
             }
             else this.btnTurnToZore.Background = (Brush)bc.ConvertFrom("#F5C244");
             // 互锁情况
             if (CheckLock())
             {
                 this.btnLockConfirm.Background = (Brush)bc.ConvertFrom("#5DBADC");
-                this.pbper = 60;
             }
             else this.btnLockConfirm.Background = (Brush)bc.ConvertFrom("#F5C244");
             // 参数情况
             if (CheckParam())
             {
                 this.btnParamConfirm.Background = (Brush)bc.ConvertFrom("#5DBADC");
-                this.pbper = 85;
             }
             else this.btnParamConfirm.Background = (Brush)bc.ConvertFrom("#F5C244");
             // 联动情况
-            if (GlobalData.Instance.da["460b0"].Value.Boolean) this.btnLinkOpen.Background = (Brush)bc.ConvertFrom("#5DBADC");
-            else this.btnLinkOpen.Background = (Brush)bc.ConvertFrom("#F5C244");
+            if (GlobalData.Instance.da["460b0"].Value.Boolean)
+            {
+                btnLinkOpen.Content = "关闭联动";
+                this.btnLinkOpen.Background = (Brush)bc.ConvertFrom("#5DBADC");
+            }
+            else
+            {
+                btnLinkOpen.Content = "开启联动";
+                this.btnLinkOpen.Background = (Brush)bc.ConvertFrom("#F5C244");
+            }
+
+            //// 液压站情况
+            //if (CheckHS())
+            //{
+            //    this.pbper = 30;
+            //}
+            //else return;
+            //// 电机回零/使能情况
+            //if (CheckMonitor())
+            //{
+            //    this.pbper = 50;
+            //}
+            //else return;
+            //// 互锁情况
+            //if (CheckLock())
+            //{
+            //    this.pbper = 60;
+            //}
+            //else return;
+            //// 参数情况
+            //if (CheckParam())
+            //{
+            //    this.pbper = 85;
+            //}
+            //else return;
+
         }
 
         /// <summary>
@@ -2642,6 +2901,34 @@ namespace Main.Integration
                 }
             }
         }
+
+        /// <summary>
+        /// 检查协议是否超时
+        /// </summary>
+        /// <param name="byteToSend">发送协议</param>
+        /// <param name="tips">超时提示</param>
+        private void CheckOverTime(List<byte[]> byteToSends, string tips, int tick)
+        {
+            if (!IsSend) // 未发送协议，发送协议，记录发送时间
+            {
+                protocolSendTime = DateTime.Now;
+                IsSend = true;
+                overtime = tick;
+                foreach (byte[] send in byteToSends)
+                {
+                    GlobalData.Instance.da.SendBytes(send);
+                    Thread.Sleep(50);
+                }
+            }
+            else // 已经发送协议，但是状态没有切换过来，检查协议发送时间，超时则重新发送
+            {
+                if ((DateTime.Now.Ticks - protocolSendTime.Ticks) / 10000000 >= overtime)
+                {
+                    IsSend = false;
+                    this.tbOpr.Text = tips;
+                }
+            }
+        }
         /// <summary>
         /// 查看互锁状态
         /// </summary>
@@ -2695,7 +2982,8 @@ namespace Main.Integration
             { 
                 //大钩互锁是否有解除
                 if (!GlobalData.Instance.da["577b4"].Value.Boolean && !GlobalData.Instance.da["577b6"].Value.Boolean && !GlobalData.Instance.da["578b0"].Value.Boolean
-                    && !GlobalData.Instance.da["577b2"].Value.Boolean && !GlobalData.Instance.da["577b4"].Value.Boolean && !GlobalData.Instance.da["578b6"].Value.Boolean)
+                    && !GlobalData.Instance.da["577b2"].Value.Boolean && !GlobalData.Instance.da["577b4"].Value.Boolean && !GlobalData.Instance.da["578b6"].Value.Boolean
+                    && !GlobalData.Instance.da["584b1"].Value.Boolean)
                 {
                     this.BigHookLock.LampType = 1;
                     IsHookAllLock = true;
@@ -2823,12 +3111,35 @@ namespace Main.Integration
                     IsCatAllLock = false;
                 }
             }
+
+            //缓冲臂是否有解锁
+            if (!GlobalData.Instance.da["584b3"].Value.Boolean)
+            {
+                this.catLock.LampType = 1;
+                IsLoadingHandLock = true;
+            }
+            else
+            {
+                this.catLock.LampType = 3;
+                IsLoadingHandLock = false;
+            }
         }
         /// <summary>
         /// 手性图表显示
         /// </summary>
         private void ShowHand()
         {
+            this.tbHSSetHand.Visibility = Visibility.Collapsed;
+            this.tbWorkModelSetHand.Visibility = Visibility.Collapsed;
+            this.tbPipeSetHand.Visibility = Visibility.Collapsed;
+            this.tbPipeSetHand.Visibility = Visibility.Collapsed;
+            this.tbDesSetHand.Visibility = Visibility.Collapsed;
+            this.tbDrillSetHand.Visibility = Visibility.Collapsed;
+            this.tbStartHSHand.Visibility = Visibility.Collapsed;
+            this.tbStartHSHand.Visibility = Visibility.Collapsed;
+            this.tbLockConfirmHand.Visibility = Visibility.Collapsed;
+            this.tbParamConfirmHand.Visibility = Visibility.Collapsed;
+            this.tbStartLinkHand.Visibility = Visibility.Collapsed;
             if (this.tbHSSet.Text == "未设置")
             {
                 if (this.tbHSSetHand.Visibility == Visibility.Visible && iTimeCnt / 10 % 2 == 0)
@@ -2966,16 +3277,42 @@ namespace Main.Integration
         /// <param name="e"></param>
         private void btnLinkOpen_Click(object sender, RoutedEventArgs e)
         {
-            string msg = "确认开启联动?";
-            MessageBoxResult result = MessageBox.Show(msg, "提示", MessageBoxButton.YesNo);
-            if (result == MessageBoxResult.Yes)
+            if (this.btnLinkOpen.Content.ToString() == "开启联动")
             {
-                byte[] byteToSend = new byte[10] { 1, 32, 10, 1, 0, 0, 0, 0, 0, 0 };
-                GlobalData.Instance.da.SendBytes(byteToSend);
-                UdpModel model = new UdpModel();
-                model.UdpType = UdpType.StartLink;
-                byte[] bytes = Encoding.UTF8.GetBytes(model.ToJson());
-                GlobalData.Instance.da.SendDataToIPAndPort(bytes, GlobalData.Instance.da.GloConfig.UdpSendIP, GlobalData.Instance.da.GloConfig.UdpSendPort);
+                string msg = "确认开启联动?";
+                MessageBoxResult result = MessageBox.Show(msg, "提示", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
+                {
+                    byte[] byteToSend = new byte[10] { 1, 32, 10, 1, 0, 0, 0, 0, 0, 0 };
+                    GlobalData.Instance.da.SendBytes(byteToSend);
+                    //UdpModel model = new UdpModel();
+                    //model.UdpType = UdpType.StartLink;
+                    //byte[] bytes = Encoding.UTF8.GetBytes(model.ToJson());
+                    //GlobalData.Instance.da.SendDataToIPAndPort(bytes, GlobalData.Instance.da.GloConfig.UdpSendIP, GlobalData.Instance.da.GloConfig.UdpSendPort);
+                    Thread.Sleep(200);
+                    if (GlobalData.Instance.da["460b0"].Value.Boolean)
+                    {
+                        this.tbOpr.Text = "联动开启成功";
+                    }
+                    else
+                    {
+                        this.tbOpr.Text = "联动开启失败";
+                    }
+                }
+            }
+            else
+            {
+                    byte[] byteToSend = new byte[10] { 1, 32, 10, 0, 0, 0, 0, 0, 0, 0 };
+                    GlobalData.Instance.da.SendBytes(byteToSend);
+                Thread.Sleep(200);
+                if (GlobalData.Instance.da["460b0"].Value.Boolean)
+                {
+                    this.tbOpr.Text = "联动开启成功";
+                }
+                else
+                {
+                    this.tbOpr.Text = "联动开启失败";
+                }
             }
         }
     }

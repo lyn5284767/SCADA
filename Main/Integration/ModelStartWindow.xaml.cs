@@ -825,14 +825,14 @@ namespace Main.Integration
             else if (GlobalData.Instance.da.GloConfig.SIRType == 5)
             { }
 
-            if (this.tmpModel.WorkType == 1 && sfWorkModel == 1 && drWorkModel == 1 && sirWorkModel == 1) // 送杆
+            if (this.tmpModel.WorkType == 1 && sfWorkModel == 1 && drWorkModel == 1 && sirWorkModel == 1) // 下钻
             {
                 this.tbCurTip.Text = "工作模式设置完成，准备选择指梁";
                 this.pbper.Value = 80;
                 IsSend = false;
                 return;
             }
-            else if (this.tmpModel.WorkType == 2 && sfWorkModel == 2 && drWorkModel == 2 && sirWorkModel == 2) //排杆
+            else if (this.tmpModel.WorkType == 2 && sfWorkModel == 2 && drWorkModel == 2 && sirWorkModel == 2) //起钻
             {
                 this.tbCurTip.Text = "工作模式设置完成，准备选择指梁";
                 this.pbper.Value = 80;

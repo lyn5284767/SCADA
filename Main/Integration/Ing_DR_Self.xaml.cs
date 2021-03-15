@@ -370,7 +370,7 @@ namespace Main.Integration
             }
             else if (warnOne == 56)
             {
-                this.tbDROpr.Text = "自动送杆抓杆失败，请确认抓手有钻杆";
+                this.tbDROpr.Text = "自动下钻抓杆失败，请确认抓手有钻杆";
             }
             else if (warnOne == 57)
             {
@@ -386,7 +386,7 @@ namespace Main.Integration
             }
             else if (warnOne == 60)
             {
-                this.tbDROpr.Text = "自动送杆动作完成";
+                this.tbDROpr.Text = "自动下钻动作完成";
             }
             else if (warnOne == 61)
             {

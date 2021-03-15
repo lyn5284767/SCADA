@@ -34,8 +34,6 @@
                         <ColumnDefinition />
                         <ColumnDefinition />
                         <ColumnDefinition />
-                        <ColumnDefinition />
-                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <Viewbox Grid.Column="0" >
                         <cl:BasedSwitchButton Name="controlModel" ContentLeft="本地" ContentDown="控制模式" ContentRight="司钻" UserControlClicked="btn_controlModel" Margin="5"/>
@@ -55,12 +53,12 @@
                     <Viewbox Grid.Column="5" >
                         <cl:BasedSwitchButton Name="hot" ContentLeft="停止" ContentDown="加热器" ContentRight="启动" UserControlClicked="btn_hot" Margin="5" />
                     </Viewbox>
-                    <Viewbox Grid.Column="6" >
+                    <!--<Viewbox Grid.Column="6" >
                         <cl:BasedSwitchButton Name="Arm" ContentLeft="停止" ContentDown="缓冲机械手" ContentRight="启动" UserControlClicked="Arm_Click" Margin="5" />
                     </Viewbox>
                     <Viewbox Grid.Column="7" >
                         <cl:BasedSwitchButton Name="SlurryBox" ContentLeft="停止" ContentDown="泥浆盒" ContentRight="启动" UserControlClicked="SlurryBox_hot" Margin="5" />
-                    </Viewbox>
+                    </Viewbox>-->
                 </Grid>
             </Grid>
         </Grid>
@@ -83,52 +81,52 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <GroupBox Grid.Column="0" Grid.Row="0" Header="主泵压力" FontSize="18">
+                    <GroupBox Grid.Column="0" Grid.Row="0" Header="主泵压力(Mpa)" FontSize="18">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <TextBlock Name="cpbMainPump" Text="00.2" FontSize="48" Foreground="Red"></TextBlock>
                         </StackPanel>
                     </GroupBox>
-                    <GroupBox Grid.Column="1" Grid.Row="0" Header="铁钻工压力" FontSize="18">
+                    <GroupBox Grid.Column="1" Grid.Row="0" Header="铁钻工压力(Mpa)" FontSize="18">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <TextBlock Name="cpbIronPump" Text="00.2" FontSize="48" Foreground="Red"></TextBlock>
                         </StackPanel>
                     </GroupBox>
-                    <GroupBox Grid.Column="0" Grid.Row="1" Header="扶杆臂压力" FontSize="18">
+                    <GroupBox Grid.Column="0" Grid.Row="1" Header="扶杆臂压力(Mpa)" FontSize="18">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <TextBlock Name="cpbFPPump" Text="00.2" FontSize="48" Foreground="Red"></TextBlock>
                         </StackPanel>
                     </GroupBox>
-                    <GroupBox Grid.Column="1" Grid.Row="1" Header="大钳压力" FontSize="18">
+                    <GroupBox Grid.Column="1" Grid.Row="1" Header="大钳压力(Mpa)" FontSize="18">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <TextBlock Name="cpbTongPump" Text="00.2" FontSize="48" Foreground="Red"></TextBlock>
                         </StackPanel>
                     </GroupBox>
-                    <GroupBox Grid.Column="0" Grid.Row="2" Header="卡瓦压力" FontSize="18">
+                    <GroupBox Grid.Column="0" Grid.Row="2" Header="卡瓦压力(Mpa)" FontSize="18">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <TextBlock Name="cpbKavaPump" Text="00.2" FontSize="48" Foreground="Red"></TextBlock>
                         </StackPanel>
                     </GroupBox>
-                    <GroupBox Grid.Column="1" Grid.Row="2" Header="猫头压力" FontSize="18">
+                    <GroupBox Grid.Column="1" Grid.Row="2" Header="猫头压力(Mpa)" FontSize="18">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <TextBlock Name="cpbCatHeadPump" Text="00.2" FontSize="48" Foreground="Red"></TextBlock>
                         </StackPanel>
                     </GroupBox>
-                    <GroupBox Grid.Column="0" Grid.Row="3" Header="散热泵压力" FontSize="18">
+                    <GroupBox Grid.Column="0" Grid.Row="3" Header="散热泵压力(Mpa)" FontSize="18">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <TextBlock Name="cpbMovePump" Text="00.2" FontSize="48" Foreground="Red"></TextBlock>
                         </StackPanel>
                     </GroupBox>
-                    <GroupBox Grid.Column="1" Grid.Row="3" Header="散热泵压力" FontSize="18">
+                    <GroupBox Grid.Column="1" Grid.Row="3" Header="散热泵压力(Mpa)" FontSize="18">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <TextBlock Name="cpbLSPump" Text="00.2" FontSize="48" Foreground="Red"></TextBlock>
                         </StackPanel>
                     </GroupBox>
-                    <GroupBox Grid.Column="0" Grid.Row="4" Header="油温" FontSize="18">
+                    <GroupBox Grid.Column="0" Grid.Row="4" Header="油温(°C)" FontSize="18">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <TextBlock Name="wpbOil" Text="00.2" FontSize="48" Foreground="Red"></TextBlock>
                         </StackPanel>
                     </GroupBox>
-                    <GroupBox Grid.Column="1" Grid.Row="4" Header="液位" FontSize="18">
+                    <GroupBox Grid.Column="1" Grid.Row="4" Header="液位(L)" FontSize="18">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <TextBlock Name="wpbHeight" Text="00.2" FontSize="48" Foreground="Red"></TextBlock>
                         </StackPanel>
@@ -264,8 +262,16 @@
                 <Grid Margin="5" x:Name="oilMain">
                     <Border Background="#F6F9FF"></Border>
                     <Grid>
-                        <StackPanel Grid.Row="0" Orientation="Horizontal" MouseLeftButtonDown="Oil_Click">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" Orientation="Horizontal" MouseLeftButtonDown="Oil_Click">
                             <TextBlock Text="油路开关" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,0,0,0" VerticalAlignment="Center"/>
+                            <Image Margin="0,2,0,0" Width="30" Source="..\..\Images\downTrangle.png" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" MouseLeftButtonDown="CatOpr_Click">
+                            <TextBlock Text="猫头操作" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,0,0,0" VerticalAlignment="Center"/>
                             <Image Margin="0,2,0,0" Width="30" Source="..\..\Images\downTrangle.png" />
                         </StackPanel>
                         <!--<Grid.RowDefinitions>
@@ -593,6 +599,206 @@
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
+                        <Border Grid.Row="0" Grid.Column="0" Background="#DDE0E5">
+                            <StackPanel VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal" >
+                                    <TextBlock FontSize="18" Text="吊卡:" FontWeight="Bold" Foreground="Black"></TextBlock>
+                                    <!--<TextBlock Name="tbMainPumpUnload" FontSize="18" Width="60" Text="8888.8"></TextBlock>
+                                            <TextBlock FontSize="18" Text="Mpa"></TextBlock>-->
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button Name="btnElevatorOpen" FontSize="18" Width="120" Height="40" Click="btnElevatorOpen_Click" FontWeight="Bold">打开</Button>
+                                    <Button Name="btnElevatorClose" FontSize="18" Width="120" Height="40" Click="btnElevatorClose_Click" FontWeight="Bold">关闭</Button>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border Grid.Row="0" Grid.Column="1" Background="#DDE0E5">
+                            <StackPanel VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal" >
+                                    <TextBlock FontSize="18" Text="吊机:" FontWeight="Bold" Foreground="Black"></TextBlock>
+                                    <!--<TextBlock Name="tbKavaUnload" FontSize="18" Width="60" Text="8888.8"></TextBlock>
+                                            <TextBlock FontSize="18" Text="Mpa"></TextBlock>-->
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button Name="btnCraneOpen" FontSize="18" Width="120" Height="40" Click="btnCraneOpen_Click" FontWeight="Bold">打开</Button>
+                                    <Button Name="btnCraneClose" FontSize="18" Width="120" Height="40" Click="btnCraneClose_Click" FontWeight="Bold">关闭</Button>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border Grid.Row="1" Grid.Column="0">
+                            <StackPanel VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal" >
+                                    <TextBlock FontSize="18" Text="井架平移:" FontWeight="Bold" Foreground="Black"></TextBlock>
+                                    <TextBlock Name="tbWellMove" FontSize="18" Width="60" Text="8888.8"></TextBlock>
+                                    <TextBlock FontSize="18" Text="Mpa"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button Name="btnWellMoveOpen" FontSize="18" Width="120" Height="40" Click="btnWellMoveOpen_Click" FontWeight="Bold">打开</Button>
+                                    <Button Name="btnWellMoveClose" FontSize="18" Width="120" Height="40" Click="btnWellMoveClose_Click" FontWeight="Bold">关闭</Button>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border Grid.Row="1" Grid.Column="1">
+                            <StackPanel VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal" >
+                                    <TextBlock FontSize="18" Text="备用油源1:" FontWeight="Bold" Foreground="Black"></TextBlock>
+                                    <!--<TextBlock Name="tbWellMove" FontSize="18" Width="60" Text="8888.8"></TextBlock>
+                                        <TextBlock FontSize="18" Text="Mpa"></TextBlock>-->
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button Name="btnSpareOneOpen" FontSize="18" Width="120" Height="40" Click="btnSpareOneOpen_Click" FontWeight="Bold">打开</Button>
+                                    <Button Name="btnSpareOneClose" FontSize="18" Width="120" Height="40" Click="btnSpareOneClose_Click" FontWeight="Bold">关闭</Button>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border Grid.Row="2" Grid.Column="0" Background="#DDE0E5">
+                            <StackPanel VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal" >
+                                    <TextBlock FontSize="18" Text="左绞车:" FontWeight="Bold" Foreground="Black"></TextBlock>
+                                    <!--<TextBlock Name="tbDR" FontSize="18" Width="60" Text="8888.8"></TextBlock>
+                                        <TextBlock FontSize="18" Text="Mpa"></TextBlock>-->
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button Name="btnLeftCarOpen" FontSize="18" Width="120" Height="40" Click="btnLeftCarOpen_Click" FontWeight="Bold">打开</Button>
+                                    <Button Name="btnLeftCarClose" FontSize="18" Width="120" Height="40" Click="btnLeftCarClose_Click" FontWeight="Bold">关闭</Button>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border Grid.Row="2" Grid.Column="1" Background="#DDE0E5">
+                            <StackPanel VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal" >
+                                    <TextBlock FontSize="18" Text="右绞车:" FontWeight="Bold" Foreground="Black"></TextBlock>
+                                    <!--<TextBlock Name="tbArm" FontSize="18" Width="60" Text="8888.8"></TextBlock>
+                                        <TextBlock FontSize="18" Text="Mpa"></TextBlock>-->
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button Name="btnRightCarOpen" FontSize="18" Width="120" Height="40" Click="btnRightCarOpen_Click" FontWeight="Bold">打开</Button>
+                                    <Button Name="btnRightCarClose" FontSize="18" Width="120" Height="40" Click="btnRightCarClose_Click" FontWeight="Bold">关闭</Button>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border Grid.Row="3" Grid.Column="0">
+                            <StackPanel VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal" >
+                                    <TextBlock FontSize="18" Text="铁钻工:" FontWeight="Bold" Foreground="Black"></TextBlock>
+                                    <TextBlock Name="tbIron" FontSize="18" Width="60" Text="8888.8"></TextBlock>
+                                    <TextBlock FontSize="18" Text="Mpa"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button Name="btnIronOpen" FontSize="18" Width="120" Height="40" Click="btnIronOpen_Click" FontWeight="Bold">打开</Button>
+                                    <Button Name="btnIronClose" FontSize="18" Width="120" Height="40" Click="BtnIronClose_Click" FontWeight="Bold">关闭</Button>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border Grid.Row="3" Grid.Column="1">
+                            <StackPanel VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal" >
+                                    <TextBlock FontSize="18" Text="大钳:" FontWeight="Bold" Foreground="Black"></TextBlock>
+                                    <TextBlock Name="tbTongs" FontSize="18" Width="60" Text="8888.8"></TextBlock>
+                                    <TextBlock FontSize="18" Text="Mpa"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button Name="btnTongsOpen" FontSize="18" Width="120" Height="40" Click="btnTongsOpen_Click" FontWeight="Bold">打开</Button>
+                                    <Button Name="btnTongsClose" FontSize="18" Width="120" Height="40" Click="btnTongsClose_Click" FontWeight="Bold">关闭</Button>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border Grid.Row="4" Grid.Column="0" Background="#DDE0E5">
+                            <StackPanel VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal" >
+                                    <TextBlock FontSize="18" Text="扶杆臂:" FontWeight="Bold" Foreground="Black"></TextBlock>
+                                    <TextBlock Name="tbDR" FontSize="18" Width="60" Text="8888.8"></TextBlock>
+                                    <TextBlock FontSize="18" Text="Mpa"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button Name="btnDROpen" FontSize="18" Width="120" Height="40" Click="btnDROpen_Click" FontWeight="Bold">打开</Button>
+                                    <Button Name="btnDRClose" FontSize="18" Width="120" Height="40" Click="btnDRClose_Click" FontWeight="Bold">关闭</Button>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border Grid.Row="4" Grid.Column="1" Background="#DDE0E5">
+                            <StackPanel VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal" >
+                                    <TextBlock FontSize="18" Text="缓冲臂:" FontWeight="Bold" Foreground="Black"></TextBlock>
+                                    <!--<TextBlock Name="tbArm" FontSize="18" Width="60" Text="8888.8"></TextBlock>
+                                        <TextBlock FontSize="18" Text="Mpa"></TextBlock>-->
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button Name="btnArmOpen" FontSize="18" Width="120" Height="40" Click="btnArmOpen_Click" FontWeight="Bold">打开</Button>
+                                    <Button Name="btnArmClose" FontSize="18" Width="120" Height="40" Click="btnArmClose_Click" FontWeight="Bold">关闭</Button>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                       <Border Grid.Row="5" Grid.Column="0" Background="#DDE0E5">
+                        <StackPanel VerticalAlignment="Center">
+                            <StackPanel Orientation="Horizontal" >
+                                    <TextBlock FontSize="18" Text="缓冲机械手:" FontWeight="Bold" Foreground="Black"></TextBlock>
+                                </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button Name="btnLoadingHandOpen" FontSize="18" Width="120" Height="40" Click="btnLoadingHandOpen_Click" FontWeight="Bold">打开</Button>
+                                    <Button Name="btnLoadingHandClose" FontSize="18" Width="120" Height="40" Click="btnLoadingHandClose_Click" FontWeight="Bold">关闭</Button>
+                            </StackPanel>
+                        </StackPanel>
+                        </Border>
+                        <Border Grid.Row="5" Grid.Column="1" Background="#DDE0E5">
+                            <StackPanel VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal" >
+                                    <TextBlock FontSize="18" Text="泥浆盒:" FontWeight="Bold" Foreground="Black"></TextBlock>
+                                    <!--<TextBlock Name="tbArm" FontSize="18" Width="60" Text="8888.8"></TextBlock>
+                                        <TextBlock FontSize="18" Text="Mpa"></TextBlock>-->
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button Name="btnPreventBoxOpen" FontSize="18" Width="120" Height="40" Click="btnPreventBoxOpen_Click" FontWeight="Bold">打开</Button>
+                                    <Button Name="btnPreventBoxClose" FontSize="18" Width="120" Height="40" Click="btnPreventBoxClose_Click" FontWeight="Bold">关闭</Button>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border Grid.Row="6" Grid.Column="1">
+                            <Button FontSize="18" FontWeight="Bold" Height="50" Width="100" Click="btnClose_Click">返回</Button>
+                        </Border>
+                       </Grid>
+                </Grid>
+                <Grid x:Name="MaintainSet" Grid.RowSpan="3" Visibility="Collapsed">
+                    <Border Background="#F6F9FF"></Border>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Button Grid.Column="0" Grid.Row="0" Width="240" Height="60" FontSize="18" Click="BtnTurnMainOne_Click" Name="btnTurnMainOne">主泵1已切换</Button>
+                        <Button Grid.Column="1" Grid.Row="0" Width="240" Height="60" FontSize="18" Click="BtnTurnMainTwo_Click" Name="btnTurnMainTwo">主泵2已切换</Button>
+                        <Button Grid.Column="0" Grid.Row="1" Width="240" Height="60" FontSize="18" Click="BtnMonitorOneGetOil_Click" Name="btnMonitorOneGetOil">主电机1已加注黄油</Button>
+                        <Button Grid.Column="1" Grid.Row="1" Width="240" Height="60" FontSize="18" Click="BtnMonitorTwoGetOil_Click" Name="btnMonitorTwoGetOil">主电机2已加注黄油</Button>
+                        <Button Grid.Column="0" Grid.Row="2" Width="240" Height="60" FontSize="18" Click="BtnFilterReplace_Click" Name="btnFilterReplace">滤芯已更换</Button>
+                        <Button Grid.Column="1" Grid.Row="2" Width="240" Height="60" FontSize="18" Click="BtnOilReplace_Click" Name="btnOilReplace">液压油已更换</Button>
+                        <Button Grid.Column="0" Grid.Row="3" Width="240" Height="60" FontSize="18" Click="BtnOilLeakage_Click" Name="btnOilLeakage">液位已确认正常</Button>
+                        <Button Grid.Column="1" Grid.Row="3" Width="240" Height="60" FontSize="18">备用</Button>
+                        <Button Grid.Column="1" Grid.Row="4" Width="240" Height="60" FontSize="18" Click="btn_close">关闭窗口</Button>
+                    </Grid>
+                </Grid>
+                <Grid Grid.RowSpan="3" Name="CatOprSet" Visibility="Collapsed">
+                    <Border Background="#F6F9FF"></Border>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
                         <Border Grid.Row="0" Grid.Column="0">
                             <StackPanel VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal" >
@@ -621,149 +827,7 @@
                                 </StackPanel>
                             </StackPanel>
                         </Border>
-                        <!--<StackPanel Grid.Column="0" Grid.Row="1" VerticalAlignment="Center">
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Button Name="btnIron" FontSize="18" Width="80" Height="50" Click="BtnIron_Click">铁钻工</Button>
-                                    <Button Name="btnIronClose" FontSize="18" Width="80" Height="50" Click="BtnIronClose_Click">关闭</Button>
-                                    <Button Name="btnTong" FontSize="18" Width="80" Height="50" Click="BtnTong_Click">大钳</Button>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <TextBlock FontSize="18" Text="铁钻工/大钳:"></TextBlock>
-                                    <TextBlock Name="tbIronTongs" FontSize="18" Width="60" Text="8888.8"></TextBlock>
-                                    <TextBlock FontSize="18" Text="Mpa"></TextBlock>
-                                </StackPanel>
-                            </StackPanel>-->
-                        <Border Grid.Row="1" Grid.Column="0" Background="#DDE0E5">
-                            <StackPanel VerticalAlignment="Center">
-                                <StackPanel Orientation="Horizontal" >
-                                    <TextBlock FontSize="18" Text="吊卡:" FontWeight="Bold" Foreground="Black"></TextBlock>
-                                    <!--<TextBlock Name="tbMainPumpUnload" FontSize="18" Width="60" Text="8888.8"></TextBlock>
-                                            <TextBlock FontSize="18" Text="Mpa"></TextBlock>-->
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Button Name="btnElevatorOpen" FontSize="18" Width="120" Height="40" Click="btnElevatorOpen_Click" FontWeight="Bold">打开</Button>
-                                    <Button Name="btnElevatorClose" FontSize="18" Width="120" Height="40" Click="btnElevatorClose_Click" FontWeight="Bold">关闭</Button>
-                                </StackPanel>
-                            </StackPanel>
-                        </Border>
-                        <Border Grid.Row="1" Grid.Column="1" Background="#DDE0E5">
-                            <StackPanel VerticalAlignment="Center">
-                                <StackPanel Orientation="Horizontal" >
-                                    <TextBlock FontSize="18" Text="吊机:" FontWeight="Bold" Foreground="Black"></TextBlock>
-                                    <!--<TextBlock Name="tbKavaUnload" FontSize="18" Width="60" Text="8888.8"></TextBlock>
-                                            <TextBlock FontSize="18" Text="Mpa"></TextBlock>-->
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Button Name="btnCraneOpen" FontSize="18" Width="120" Height="40" Click="btnCraneOpen_Click" FontWeight="Bold">打开</Button>
-                                    <Button Name="btnCraneClose" FontSize="18" Width="120" Height="40" Click="btnCraneClose_Click" FontWeight="Bold">关闭</Button>
-                                </StackPanel>
-                            </StackPanel>
-                        </Border>
-                        <Border Grid.Row="2" Grid.Column="0">
-                            <StackPanel VerticalAlignment="Center">
-                                <StackPanel Orientation="Horizontal" >
-                                    <TextBlock FontSize="18" Text="井架平移:" FontWeight="Bold" Foreground="Black"></TextBlock>
-                                    <TextBlock Name="tbWellMove" FontSize="18" Width="60" Text="8888.8"></TextBlock>
-                                    <TextBlock FontSize="18" Text="Mpa"></TextBlock>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Button Name="btnWellMoveOpen" FontSize="18" Width="120" Height="40" Click="btnWellMoveOpen_Click" FontWeight="Bold">打开</Button>
-                                    <Button Name="btnWellMoveClose" FontSize="18" Width="120" Height="40" Click="btnWellMoveClose_Click" FontWeight="Bold">关闭</Button>
-                                </StackPanel>
-                            </StackPanel>
-                        </Border>
-                        <Border Grid.Row="2" Grid.Column="1">
-                            <StackPanel VerticalAlignment="Center">
-                                <StackPanel Orientation="Horizontal" >
-                                    <TextBlock FontSize="18" Text="备用油源1:" FontWeight="Bold" Foreground="Black"></TextBlock>
-                                    <!--<TextBlock Name="tbWellMove" FontSize="18" Width="60" Text="8888.8"></TextBlock>
-                                        <TextBlock FontSize="18" Text="Mpa"></TextBlock>-->
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Button Name="btnSpareOneOpen" FontSize="18" Width="120" Height="40" Click="btnSpareOneOpen_Click" FontWeight="Bold">打开</Button>
-                                    <Button Name="btnSpareOneClose" FontSize="18" Width="120" Height="40" Click="btnSpareOneClose_Click" FontWeight="Bold">关闭</Button>
-                                </StackPanel>
-                            </StackPanel>
-                        </Border>
-                        <Border Grid.Row="3" Grid.Column="0" Background="#DDE0E5">
-                            <StackPanel VerticalAlignment="Center">
-                                <StackPanel Orientation="Horizontal" >
-                                    <TextBlock FontSize="18" Text="左绞车:" FontWeight="Bold" Foreground="Black"></TextBlock>
-                                    <!--<TextBlock Name="tbDR" FontSize="18" Width="60" Text="8888.8"></TextBlock>
-                                        <TextBlock FontSize="18" Text="Mpa"></TextBlock>-->
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Button Name="btnLeftCarOpen" FontSize="18" Width="120" Height="40" Click="btnLeftCarOpen_Click" FontWeight="Bold">打开</Button>
-                                    <Button Name="btnLeftCarClose" FontSize="18" Width="120" Height="40" Click="btnLeftCarClose_Click" FontWeight="Bold">关闭</Button>
-                                </StackPanel>
-                            </StackPanel>
-                        </Border>
-                        <Border Grid.Row="3" Grid.Column="1" Background="#DDE0E5">
-                            <StackPanel VerticalAlignment="Center">
-                                <StackPanel Orientation="Horizontal" >
-                                    <TextBlock FontSize="18" Text="右绞车:" FontWeight="Bold" Foreground="Black"></TextBlock>
-                                    <!--<TextBlock Name="tbArm" FontSize="18" Width="60" Text="8888.8"></TextBlock>
-                                        <TextBlock FontSize="18" Text="Mpa"></TextBlock>-->
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Button Name="btnRightCarOpen" FontSize="18" Width="120" Height="40" Click="btnRightCarOpen_Click" FontWeight="Bold">打开</Button>
-                                    <Button Name="btnRightCarClose" FontSize="18" Width="120" Height="40" Click="btnRightCarClose_Click" FontWeight="Bold">关闭</Button>
-                                </StackPanel>
-                            </StackPanel>
-                        </Border>
-                        <Border Grid.Row="4" Grid.Column="0">
-                            <StackPanel VerticalAlignment="Center">
-                                <StackPanel Orientation="Horizontal" >
-                                    <TextBlock FontSize="18" Text="铁钻工:" FontWeight="Bold" Foreground="Black"></TextBlock>
-                                    <TextBlock Name="tbIron" FontSize="18" Width="60" Text="8888.8"></TextBlock>
-                                    <TextBlock FontSize="18" Text="Mpa"></TextBlock>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Button Name="btnIronOpen" FontSize="18" Width="120" Height="40" Click="btnIronOpen_Click" FontWeight="Bold">打开</Button>
-                                    <Button Name="btnIronClose" FontSize="18" Width="120" Height="40" Click="BtnIronClose_Click" FontWeight="Bold">关闭</Button>
-                                </StackPanel>
-                            </StackPanel>
-                        </Border>
-                        <Border Grid.Row="4" Grid.Column="1">
-                            <StackPanel VerticalAlignment="Center">
-                                <StackPanel Orientation="Horizontal" >
-                                    <TextBlock FontSize="18" Text="大钳:" FontWeight="Bold" Foreground="Black"></TextBlock>
-                                    <TextBlock Name="tbTongs" FontSize="18" Width="60" Text="8888.8"></TextBlock>
-                                    <TextBlock FontSize="18" Text="Mpa"></TextBlock>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Button Name="btnTongsOpen" FontSize="18" Width="120" Height="40" Click="btnTongsOpen_Click" FontWeight="Bold">打开</Button>
-                                    <Button Name="btnTongsClose" FontSize="18" Width="120" Height="40" Click="btnTongsClose_Click" FontWeight="Bold">关闭</Button>
-                                </StackPanel>
-                            </StackPanel>
-                        </Border>
-                        <Border Grid.Row="5" Grid.Column="0" Background="#DDE0E5">
-                            <StackPanel VerticalAlignment="Center">
-                                <StackPanel Orientation="Horizontal" >
-                                    <TextBlock FontSize="18" Text="扶杆臂:" FontWeight="Bold" Foreground="Black"></TextBlock>
-                                    <TextBlock Name="tbDR" FontSize="18" Width="60" Text="8888.8"></TextBlock>
-                                    <TextBlock FontSize="18" Text="Mpa"></TextBlock>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Button Name="btnDROpen" FontSize="18" Width="120" Height="40" Click="btnDROpen_Click" FontWeight="Bold">打开</Button>
-                                    <Button Name="btnDRClose" FontSize="18" Width="120" Height="40" Click="btnDRClose_Click" FontWeight="Bold">关闭</Button>
-                                </StackPanel>
-                            </StackPanel>
-                        </Border>
-                        <Border Grid.Row="5" Grid.Column="1" Background="#DDE0E5">
-                            <StackPanel VerticalAlignment="Center">
-                                <StackPanel Orientation="Horizontal" >
-                                    <TextBlock FontSize="18" Text="缓冲臂:" FontWeight="Bold" Foreground="Black"></TextBlock>
-                                    <!--<TextBlock Name="tbArm" FontSize="18" Width="60" Text="8888.8"></TextBlock>
-                                        <TextBlock FontSize="18" Text="Mpa"></TextBlock>-->
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Button Name="btnArmOpen" FontSize="18" Width="120" Height="40" Click="btnArmOpen_Click" FontWeight="Bold">打开</Button>
-                                    <Button Name="btnArmClose" FontSize="18" Width="120" Height="40" Click="btnArmClose_Click" FontWeight="Bold">关闭</Button>
-                                </StackPanel>
-                            </StackPanel>
-                        </Border>
-                        <Border Grid.Row="6" Grid.Column="0">
+                        <Border Grid.Row="1" Grid.Column="0">
                             <StackPanel VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal" >
                                     <TextBlock FontSize="18" Text="旋转猫头:" FontWeight="Bold" Foreground="Black"></TextBlock>
@@ -777,58 +841,9 @@
                                 </StackPanel>
                             </StackPanel>
                         </Border>
-                        <Border Grid.Row="6" Grid.Column="1">
-                            <Button FontSize="18" FontWeight="Bold" Height="50" Width="100" Click="btnClose_Click">返回</Button>
+                        <Border Grid.Row="1" Grid.Column="1">
+                            <Button FontSize="18" FontWeight="Bold" Height="50" Width="100" Click="CatOprClose_Click">返回</Button>
                         </Border>
-                        <!--<StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Button Name="btnDF" FontSize="18" Width="80" Height="50" Click="BtnDF_Click">扶杆臂</Button>
-                                    <Button Name="btnDFClose" FontSize="18" Width="80" Height="50" Click="BtnDFClose_Click">关闭</Button>
-                                    <Button Name="btnSpaceThree" FontSize="18" Width="80" Height="50" Click="BtnSpaceThree_Click">备用3</Button>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <TextBlock FontSize="18" Text="扶杆臂/备用3:"></TextBlock>
-                                    <TextBlock Name="tbDFSpThree" FontSize="18" Width="60" Text="8888.8"></TextBlock>
-                                    <TextBlock FontSize="18" Text="Mpa"></TextBlock>
-                                </StackPanel>
-                            </StackPanel>
-                            <StackPanel Grid.Column="0" Grid.Row="2" VerticalAlignment="Center">
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Button Name="btnWellBuffer" FontSize="18" Width="100" Height="50" Click="BtnWellBuffer_Click">井架缓冲</Button>
-                                    <Button Name="btnWellBufferClose" FontSize="18" Width="60" Height="50" Click="BtnWellBufferCloseClick">关闭</Button>
-                                    <Button Name="btnSpaceFour" FontSize="18" Width="80" Height="50" Click="BtnSpaceFour_Click">备用4</Button>
-                                </StackPanel>
-                                <TextBlock FontSize="18" Text="井架缓冲/备用4" HorizontalAlignment="Center"></TextBlock>
-                            </StackPanel>-->
-                        <!--<cl:BasedSwitchButton Name="Iron" ContentLeft="关" ContentDown="铁钻工" ContentRight="开" UserControlClicked="btn_Iron" Grid.Column="0" Grid.Row="1"/>
-                            <cl:BasedSwitchButton Name="Tongs" ContentLeft="关" ContentDown="大钳" ContentRight="开" UserControlClicked="btn_Tongs" Grid.Column="1" Grid.Row="1"/>
-                            <cl:BasedSwitchButton Name="DF" ContentLeft="关" ContentDown="扶杆臂" ContentRight="开" UserControlClicked="btn_DF" Grid.Column="0" Grid.Row="2"/>
-                            <cl:BasedSwitchButton Name="BufferArm" ContentLeft="关" ContentDown="缓冲臂" ContentRight="开" UserControlClicked="btn_BufferArm" Grid.Column="1" Grid.Row="2"/>-->
-                    </Grid>
-                </Grid>
-                <Grid x:Name="MaintainSet" Grid.RowSpan="3" Visibility="Collapsed">
-                    <Border Background="#F6F9FF"></Border>
-                    <Grid Grid.Row="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <Button Grid.Column="0" Grid.Row="0" Width="240" Height="60" FontSize="18" Click="BtnTurnMainOne_Click" Name="btnTurnMainOne">主泵1已切换</Button>
-                        <Button Grid.Column="1" Grid.Row="0" Width="240" Height="60" FontSize="18" Click="BtnTurnMainTwo_Click" Name="btnTurnMainTwo">主泵2已切换</Button>
-                        <Button Grid.Column="0" Grid.Row="1" Width="240" Height="60" FontSize="18" Click="BtnMonitorOneGetOil_Click" Name="btnMonitorOneGetOil">主电机1已加注黄油</Button>
-                        <Button Grid.Column="1" Grid.Row="1" Width="240" Height="60" FontSize="18" Click="BtnMonitorTwoGetOil_Click" Name="btnMonitorTwoGetOil">主电机2已加注黄油</Button>
-                        <Button Grid.Column="0" Grid.Row="2" Width="240" Height="60" FontSize="18" Click="BtnFilterReplace_Click" Name="btnFilterReplace">滤芯已更换</Button>
-                        <Button Grid.Column="1" Grid.Row="2" Width="240" Height="60" FontSize="18" Click="BtnOilReplace_Click" Name="btnOilReplace">液压油已更换</Button>
-                        <Button Grid.Column="0" Grid.Row="3" Width="240" Height="60" FontSize="18" Click="BtnOilLeakage_Click" Name="btnOilLeakage">液位已确认正常</Button>
-                        <Button Grid.Column="1" Grid.Row="3" Width="240" Height="60" FontSize="18">备用</Button>
-                        <Button Grid.Column="1" Grid.Row="4" Width="240" Height="60" FontSize="18" Click="btn_close">关闭窗口</Button>
                     </Grid>
                 </Grid>
             </Grid>

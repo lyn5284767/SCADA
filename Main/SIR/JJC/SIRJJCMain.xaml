@@ -92,8 +92,8 @@
                                 <TextBlock Text="&#xe639;" FontFamily="../../Font/#iconfont" FontSize="36" Foreground="#008AFF" VerticalAlignment="Center" Margin="5,10,0,10" Width="45" Height="45"></TextBlock>
                             </Viewbox>
                             <StackPanel Margin="0,0,10,0" VerticalAlignment="Center">
-                                <TextBlock FontSize="18">右手柄选择</TextBlock>
-                                <TextBlock Name="tbRightHandleSelect" Text="80" FontSize="18" Foreground="#4C80FF"></TextBlock>
+                                <TextBlock FontSize="18" Width="100">右手柄选择</TextBlock>
+                                <TextBlock Name="tbRightHandleSelect" Text="80" FontSize="18" Foreground="#4C80FF" Width="100" TextAlignment="Center"></TextBlock>
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal">
@@ -101,8 +101,8 @@
                                 <TextBlock Text="&#xe6b0;" FontFamily="../../Font/#iconfont" FontSize="36" Foreground="#008AFF" VerticalAlignment="Center" Margin="5,10,0,10" Width="45" Height="45"></TextBlock>
                             </Viewbox>
                             <StackPanel Margin="0,0,10,0" VerticalAlignment="Center">
-                                <TextBlock FontSize="18">工作状态</TextBlock>
-                                <TextBlock FontSize="18" Text="1111.1" Name="tbWorkStatus" Foreground="#4C80FF"></TextBlock>
+                                <TextBlock FontSize="18" Width="100" TextAlignment="Center">工作状态</TextBlock>
+                                <TextBlock FontSize="18" Text="1111.1" Name="tbWorkStatus" Foreground="#4C80FF" Width="100" TextAlignment="Center"></TextBlock>
                             </StackPanel>
                         </StackPanel>
                         <Grid Grid.Row="1" Grid.Column="1" Background="Black"></Grid>
@@ -112,8 +112,8 @@
                                 <TextBlock Text="&#xe602;" FontFamily="../../Font/#iconfont" FontSize="36" Foreground="#008AFF" VerticalAlignment="Center" Margin="5,10,0,10" Width="45" Height="45"></TextBlock>
                             </Viewbox>
                             <StackPanel Margin="-5,0,10,0" VerticalAlignment="Center">
-                                <TextBlock FontSize="18">操作模式</TextBlock>
-                                <TextBlock FontSize="18" Name="tbOprModel" Text="   0 "  Foreground="#4C80FF"></TextBlock>
+                                <TextBlock FontSize="18" Width="100" TextAlignment="Center">操作模式</TextBlock>
+                                <TextBlock FontSize="18" Name="tbOprModel" Text="0"  Foreground="#4C80FF" Width="100" TextAlignment="Center"></TextBlock>
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal">
@@ -121,8 +121,8 @@
                                 <TextBlock Text="&#xe614;" FontFamily="../../Font/#iconfont" FontSize="36" Foreground="#008AFF" VerticalAlignment="Center" Margin="5,10,0,10" Width="45" Height="45"></TextBlock>
                             </Viewbox>
                             <StackPanel Margin="-5,0,10,0" VerticalAlignment="Center">
-                                <TextBlock FontSize="18">工作位置</TextBlock>
-                                <TextBlock FontSize="18" Name="tbWorkLocation" Text="   0 "  Foreground="#4C80FF"></TextBlock>
+                                <TextBlock FontSize="18" Width="100" TextAlignment="Center">工作位置</TextBlock>
+                                <TextBlock FontSize="18" Name="tbWorkLocation" Text="0"  Foreground="#4C80FF" Width="100" TextAlignment="Center"></TextBlock>
                             </StackPanel>
                         </StackPanel>
                     </Grid>
@@ -150,7 +150,7 @@
                                 <TextBlock Text="扶杆臂触发防碰" FontSize="16" VerticalAlignment="Center" Margin="10,5,0,5"></TextBlock>
                                 <cl:SymbolMapping Name="smDFAntiCollision"  StrContent="" LampType="3" Width="30" Height="30" Margin="5,0,0,0"/>
                             </StackPanel>
-                            <cl:CustomCheckBox Margin="3,0,0,0" Grid.Row="3" ContentString="安全限制解除" Name="cbSafeLimit" UserControlClicked="cbSafeLimit_Clicked"/>
+                            <cl:CustomCheckBox Margin="3,0,0,0" Grid.Row="3" ContentString="安全限制解除" Name="cbSafeLimit" UserControlClicked="cbSafeLimit_Clicked" Visibility="Collapsed"/>
                         </Grid>
                     </Viewbox>
                 </Grid>
@@ -202,7 +202,7 @@
                                     </MenuItem>
                                 </Menu>
                                 <Viewbox>
-                                    <TextBlock Text="未选择管柱类型" Grid.Row="2" Name="tubeType" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,5,0,5"/>
+                                    <TextBlock Text="未选择管柱类型" Grid.Row="2" Name="tubeType" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,5,0,5" Foreground="#4C80FF"/>
                                 </Viewbox>
                                 <Viewbox>
                                     <Button Margin="10,0,0,0" FontWeight="Bold" Click="btn_Reset">系统复位</Button>
@@ -247,7 +247,7 @@
                                 <cl:SymbolMapping Name="smUpButtonPressure" StrContent="" LampType="3" Height="35" HorizontalAlignment="Center" Margin="10,0,10,0"/>
                             </Viewbox>
                             <Viewbox Grid.Column="2">
-                                <TextBlock Name="tbRealTimePressure" Width="100" FontSize="24" Text="0" TextAlignment="Right"/>
+                                <TextBlock Name="tbRealTimePressure" Width="100" FontSize="24" Text="0" TextAlignment="Right" Foreground="#4C80FF"/>
                             </Viewbox>
                             <Viewbox Grid.Column="3">
                                 <TextBlock Name="tbUnitOne" Text="KN.M" FontSize="16"/>
@@ -271,7 +271,7 @@
                                 <cl:ShadowButton TBText ="-" x:Name="PressureDown" TBFontSize="24" BDWidth="50" BDHeight="45" Margin="25,0,20,0" MouseLeftButtonDown="PressureDown_MouseLeftButtonDown"/>
                             </Viewbox>
                             <Viewbox Grid.Column="2">
-                                <TextBlock Name="tbPressureSet" Width="100" FontSize="24" Text="0" TextAlignment="Right"/>
+                                <TextBlock Name="tbPressureSet" Width="100" FontSize="24" Text="0" TextAlignment="Right" Foreground="#4C80FF"/>
                             </Viewbox>
                             <Viewbox Grid.Column="3">
                                 <TextBlock Name="tbUnitTwo" Text="KN.M" FontSize="24"/>
@@ -393,9 +393,9 @@
                                     <hc:StepBarItem Content="钳口对正"/>
                                     <hc:StepBarItem Content="抓手夹紧"/>
                                     <hc:StepBarItem Content="井口定位"/>
-                                    <hc:StepBarItem Content="井口送杆"/>
+                                    <hc:StepBarItem Content="井口下钻"/>
                                     <hc:StepBarItem Content="手臂回位"/>
-                                    <hc:StepBarItem Content="送杆结束"/>
+                                    <hc:StepBarItem Content="下钻结束"/>
                                 </hc:StepBar>
 
                             </StackPanel>

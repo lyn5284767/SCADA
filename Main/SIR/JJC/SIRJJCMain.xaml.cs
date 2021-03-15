@@ -320,7 +320,7 @@ namespace Main.SIR
         {
             if (this.tbUnitOne.Text == "KN.M") this.tbUnitOne.Text = "kft.lbs";
             else this.tbUnitOne.Text = "KN.M";
-            if (this.tbUnitOne.Text == "KN.M") this.tbUnitTwo.Text = "kft.lbs";
+            if (this.tbUnitOne.Text == "KN.M") this.tbUnitTwo.Text = "KN.M";
             else this.tbUnitTwo.Text = "kft.lbs";
         }
         /// <summary>

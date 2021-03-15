@@ -99,10 +99,10 @@
                                 <cl:TextBlockWithTextBox Name="twtR74" ControlTag="74"  TbkText="小车左调整斜率(%)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
                                 <cl:TextBlockWithTextBox Name="twtR75" ControlTag="75"  TbkText="小车右第1根斜率偏移(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
                                 <cl:TextBlockWithTextBox Name="twtR76" ControlTag="76"  TbkText="小车右调整斜率(%)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
-                                <cl:TextBlockWithTextBox Name="twtR77" ControlTag="77"  TbkText="排杆小车偏移(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
-                                <cl:TextBlockWithTextBox Name="twtR78" ControlTag="78"  TbkText="送杆小车偏移(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
-                                <cl:TextBlockWithTextBox Name="twtR85" ControlTag="85"  TbkText="送杆小车偏移2(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
-                                <cl:TextBlockWithTextBox Name="twtR86" ControlTag="86"  TbkText="送杆小车偏移3(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+                                <cl:TextBlockWithTextBox Name="twtR77" ControlTag="77"  TbkText="起钻小车偏移(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+                                <cl:TextBlockWithTextBox Name="twtR78" ControlTag="78"  TbkText="下钻小车偏移(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+                                <cl:TextBlockWithTextBox Name="twtR85" ControlTag="85"  TbkText="下钻小车偏移2(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
+                                <cl:TextBlockWithTextBox Name="twtR86" ControlTag="86"  TbkText="下钻小车偏移3(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
                                 <cl:TextBlockWithTextBox Name="twtR83" ControlTag="83"  TbkText="手臂第1根偏移(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
                                 <cl:TextBlockWithTextBox Name="twtR84" ControlTag="84"  TbkText="手臂调整斜率(%)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>
                                 <cl:TextBlockWithTextBox Name="twtR79" ControlTag="79"  TbkText="3''第1根手臂修正(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent"/>

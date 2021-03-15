@@ -266,9 +266,9 @@ namespace Main.SecondFloor
                 switch (value)
                 {
                     case 1:
-                        return "送杆";
+                        return "下钻";
                     case 2:
-                        return "排杆";
+                        return "起钻";
                     default:
                         return value.ToString();
                 }

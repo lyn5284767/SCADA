@@ -66,7 +66,7 @@
                 <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Grid.Column="2">
                     <StackPanel Height="30" Orientation="Horizontal">
                         <TextBlock Text="工作模式："/>
-                        <TextBlock Text="排杆" Margin="2,0,5,0" Name="workModel_EquiptStatusPage"/>
+                        <TextBlock Text="起钻" Margin="2,0,5,0" Name="workModel_EquiptStatusPage"/>
                     </StackPanel>
                 </Border>
                 <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Grid.Column="3">
@@ -77,13 +77,13 @@
                 </Border>
                 <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Grid.Column="4">
                     <StackPanel Height="30" Orientation="Horizontal">
-                        <TextBlock Text="排杆次数："/>
+                        <TextBlock Text="起钻次数："/>
                         <TextBlock Text="" Margin="2,0,5,0" Name="drillUpCount_EquiptStatus"/>
                     </StackPanel>
                 </Border>
                 <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Grid.Column="5">
                     <StackPanel Height="30" Orientation="Horizontal">
-                        <TextBlock Text="送杆次数："/>
+                        <TextBlock Text="下钻次数："/>
                         <TextBlock Text="" Margin="2,0,5,0" Name="drillDownCount_EquiptStatus"/>
                     </StackPanel>
                 </Border>
@@ -336,7 +336,7 @@
                                         <TextBlock Name="tbMontorEnable" FontSize="20" Text="电机使能"></TextBlock>
                                     </Border>
                                     <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,5" Width="150" Height="45" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btnClearDrillUpCount">
-                                        <TextBlock Name="tbClearDrillUpCount" FontSize="20" Text="排杆清零"></TextBlock>
+                                        <TextBlock Name="tbClearDrillUpCount" FontSize="20" Text="起钻清零"></TextBlock>
                                     </Border>
                                 </StackPanel>
                                 <StackPanel Grid.Column="1">
@@ -350,7 +350,7 @@
                                         <TextBlock Name="tbTransprot" FontSize="20" Text="一键运输"></TextBlock>
                                     </Border>
                                     <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,5" Width="150" Height="45" Style="{StaticResource ShadowBorder}" MouseLeftButtonDown="btnClearDrillDownCount">
-                                        <TextBlock Name="tbClearDrillDownCount" FontSize="20" Text="送杆清零"></TextBlock>
+                                        <TextBlock Name="tbClearDrillDownCount" FontSize="20" Text="下钻清零"></TextBlock>
                                     </Border>
                                 </StackPanel>
                             </Grid>

@@ -101,8 +101,8 @@ namespace Main.WellRepair.DrillFloor
                         this.twtL80.ShowText = GlobalData.Instance.da["WR_CarRightFirstSpace"].ToString(); // 小车右第一根间距
                         this.twtL81.ShowText = GlobalData.Instance.da["WR_ArmFirstDeviation"].ToString(); // 手臂第一根偏移
                         this.twtL82.ShowText = GlobalData.Instance.da["WR_ArmFirstSpace"].ToString(); // 手臂第一根间距
-                        //this.twtL83.ShowText = GlobalData.Instance.da["drHandWithDrillTwoMaxSpeed"].ToString(); // 排杆小车偏移
-                        //this.twtL84.ShowText = GlobalData.Instance.da["drRotateMoveReduce"].ToString(); // 送杆小车偏移
+                        //this.twtL83.ShowText = GlobalData.Instance.da["drHandWithDrillTwoMaxSpeed"].ToString(); // 起钻小车偏移
+                        //this.twtL84.ShowText = GlobalData.Instance.da["drRotateMoveReduce"].ToString(); // 下钻小车偏移
 
 
 

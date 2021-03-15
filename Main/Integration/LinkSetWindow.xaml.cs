@@ -89,13 +89,13 @@ namespace Main.Integration
                 {
                     this.btnDrillUp.Foreground = (Brush)bc.ConvertFrom("#000000");
                     this.btnDrillDown.Foreground = (Brush)bc.ConvertFrom("#2B71CA");
-                    this.tbConfirmWorkModel.Text = "工况:送杆";
+                    this.tbConfirmWorkModel.Text = "工况:下钻";
                 }
                 else if (globalModel.WorkType == 2)
                 {
                     this.btnDrillUp.Foreground = (Brush)bc.ConvertFrom("#2B71CA");
                     this.btnDrillDown.Foreground = (Brush)bc.ConvertFrom("#000000");
-                    this.tbConfirmWorkModel.Text = "工况:排杆";
+                    this.tbConfirmWorkModel.Text = "工况:起钻";
                 }
             }
             else if (step == 2)
@@ -208,8 +208,8 @@ namespace Main.Integration
                 //else if (globalModel.HS_PumpType == 3) this.tbConfirmHS.Text = "液压站:双泵";
                 //else this.tbConfirmHS.Text = "液压站:未选择";
 
-                //if (globalModel.WorkType == 1) this.tbConfirmWorkModel.Text = "工况:送杆";
-                //else if (globalModel.WorkType == 2) this.tbConfirmWorkModel.Text = "工况:排杆";
+                //if (globalModel.WorkType == 1) this.tbConfirmWorkModel.Text = "工况:下钻";
+                //else if (globalModel.WorkType == 2) this.tbConfirmWorkModel.Text = "工况:起钻";
                 //else this.tbConfirmWorkModel.Text = "工况:未选择";
 
                 //if (globalModel.PipeType == 1)
@@ -339,7 +339,7 @@ namespace Main.Integration
             //ShowStep(1);
         }
         /// <summary>
-        /// 设置排杆
+        /// 设置起钻
         /// </summary>
         private void DrillUp_Click(object sender, RoutedEventArgs e)
         {
@@ -349,7 +349,7 @@ namespace Main.Integration
             //ShowStep(2);
         }
         /// <summary>
-        /// 设置送杆
+        /// 设置下钻
         /// </summary>
         private void DrillDown_Click(object sender, RoutedEventArgs e)
         {

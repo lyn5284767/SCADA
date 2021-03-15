@@ -1072,7 +1072,7 @@ namespace Main.WellRepair.SecondFloor
                     warnTwo.Text = "人工确认吊卡关闭！";
                     break;
                 case 60:
-                    warnTwo.Text = "自动送杆完成！";
+                    warnTwo.Text = "自动下钻完成！";
                     break;
                 case 61:
                     warnTwo.Text = "请按确认键启动回收模式！";
@@ -1236,7 +1236,7 @@ namespace Main.WellRepair.SecondFloor
 
             this.bigHookCalibrationStatus.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["506b4"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
             //this.tubeType.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drillPipeType"], Mode = BindingMode.OneWay, Converter = new DrillPipeTypeConverter() });
-            // 送杆
+            // 下钻
             MultiBinding sbDrillDownMultiBind = new MultiBinding();
             sbDrillDownMultiBind.Converter = new AutoModeStepCoverter();
             sbDrillDownMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });
@@ -1245,7 +1245,7 @@ namespace Main.WellRepair.SecondFloor
             sbDrillDownMultiBind.ConverterParameter = "one";
             sbDrillDownMultiBind.NotifyOnSourceUpdated = true;
             this.sbDrillDown.SetBinding(StepBar.StepIndexProperty, sbDrillDownMultiBind);
-            // 排杆
+            // 起钻
             MultiBinding sbDrillUpMultiBind = new MultiBinding();
             sbDrillUpMultiBind.Converter = new AutoModeStepCoverter();
             sbDrillUpMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["operationModel"], Mode = BindingMode.OneWay });

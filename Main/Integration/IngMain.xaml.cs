@@ -56,11 +56,11 @@ namespace Main.Integration
         private int controlHeartTimes = 0; // 控制台心跳次数
         private bool bCheckTwo = false;
         /// <summary>
-        /// 铁架工工作模式 1：送杆；2排杆
+        /// 铁架工工作模式 1：下钻；2起钻
         /// </summary>
         private int sfWorkModel { get; set; }
         /// <summary>
-        /// 扶杆臂工作模式 1：送杆；2排杆
+        /// 扶杆臂工作模式 1：下钻；2起钻
         /// </summary>
         private int drWorkModel { get; set; }
         /// <summary>
@@ -68,11 +68,11 @@ namespace Main.Integration
         /// </summary>
         private int sirWorkModel { get; set; }
         /// <summary>
-        /// 铁架工操作模式 1：送杆；2排杆
+        /// 铁架工操作模式 1：下钻；2起钻
         /// </summary>
         private int sfOprModel { get; set; }
         /// <summary>
-        /// 扶杆臂操作模式 1：送杆；2排杆
+        /// 扶杆臂操作模式 1：下钻；2起钻
         /// </summary>
         private int drOprModel { get; set; }
         /// <summary>
@@ -360,24 +360,24 @@ namespace Main.Integration
         {
             try
             {
-                // 存在的设备全为1，设备不存在为-1，则为送杆
+                // 存在的设备全为1，设备不存在为-1，则为下钻
                 if ((this.sfWorkModel == 1 || this.sfWorkModel == -1)
                     && (this.drWorkModel == 1 || this.drWorkModel == -1)
                     && (this.sirWorkModel == 1 || this.sirWorkModel == -1))
                 {
 
-                    this.tbCurWork.Text = "送杆";
-                    //this.workMode.ContentDown = "送杆";
+                    this.tbCurWork.Text = "下钻";
+                    //this.workMode.ContentDown = "下钻";
                     //this.workMode.IsChecked = false;
                     alarmKey["设备工作模式不一致"] = 0;
                     nowTechnique = Technique.DrillDown;
-                }// 存在的设备全为2，设备不存在为-1，则为排杆
+                }// 存在的设备全为2，设备不存在为-1，则为起钻
                 else if ((this.sfWorkModel == 2 || this.sfWorkModel == -1)
                     && (this.drWorkModel == 2 || this.drWorkModel == -1)
                     && (this.sirWorkModel == 2 || this.sirWorkModel == -1))
                 {
-                    this.tbCurWork.Text = "排杆";
-                    //this.workMode.ContentDown = "排杆";
+                    this.tbCurWork.Text = "起钻";
+                    //this.workMode.ContentDown = "起钻";
                     //this.workMode.IsChecked = true;
                     alarmKey["设备工作模式不一致"] = 0;
                     nowTechnique = Technique.DrillUp;

@@ -103,8 +103,8 @@ namespace Main.HydraulicStation
                 this.constantVoltagePump.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["770b7"], Mode = BindingMode.OneWay });
                 this.dissipateHeat.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["771b1"], Mode = BindingMode.OneWay });
                 this.hot.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["771b3"], Mode = BindingMode.OneWay });
-                this.Arm.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["794b1"], Mode = BindingMode.OneWay });
-                this.SlurryBox.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["794b3"], Mode = BindingMode.OneWay });
+                //this.Arm.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["794b1"], Mode = BindingMode.OneWay });
+                //this.SlurryBox.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["794b3"], Mode = BindingMode.OneWay });
 
                 this.cbHotHand.SetBinding(CheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["772b0"], Mode = BindingMode.OneWay });
                 this.cbHotAuto.SetBinding(CheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["772b1"], Mode = BindingMode.OneWay });
@@ -283,6 +283,11 @@ namespace Main.HydraulicStation
                 this.tbDR.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["FPPressAI"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
                 this.btnArmOpen.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["769b6"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
                 this.btnArmClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["769b7"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+
+                this.btnLoadingHandOpen.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["794b0"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnLoadingHandClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["794b1"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnPreventBoxOpen.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["794b2"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
+                this.btnPreventBoxClose.SetBinding(Button.BackgroundProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["794b3"], Mode = BindingMode.OneWay, Converter = new BtnColorCoverter() });
 
             }
             catch (Exception ex)
@@ -1223,16 +1228,16 @@ namespace Main.HydraulicStation
         /// <param name="e"></param>
         private void SlurryBox_hot(object sender, EventArgs e)
         {
-            byte[] byteToSend;
-            if (this.SlurryBox.IsChecked) //当前停止状态
-            {
-                byteToSend = new byte[10] { 0, 19, 56, 0, 1, 0, 0, 0, 0, 0 };
-            }
-            else//当前启动状态
-            {
-                byteToSend = new byte[10] { 0, 19, 57, 0, 1, 0, 0, 0, 0, 0 };
-            }
-            GlobalData.Instance.da.SendBytes(byteToSend);
+            //byte[] byteToSend;
+            //if (this.SlurryBox.IsChecked) //当前停止状态
+            //{
+            //    byteToSend = new byte[10] { 0, 19, 56, 0, 1, 0, 0, 0, 0, 0 };
+            //}
+            //else//当前启动状态
+            //{
+            //    byteToSend = new byte[10] { 0, 19, 57, 0, 1, 0, 0, 0, 0, 0 };
+            //}
+            //GlobalData.Instance.da.SendBytes(byteToSend);
         }
         /// <summary>
         /// 旋转猫头停止
@@ -1281,16 +1286,16 @@ namespace Main.HydraulicStation
         /// <param name="e"></param>
         private void Arm_Click(object sender, EventArgs e)
         {
-            byte[] byteToSend;
-            if (this.Arm.IsChecked) //当前停止状态
-            {
-                byteToSend = new byte[10] { 0, 19, 54, 0, 1, 0, 0, 0, 0, 0 };
-            }
-            else//当前启动状态
-            {
-                byteToSend = new byte[10] { 0, 19, 55, 0, 1, 0, 0, 0, 0, 0 };
-            }
-            GlobalData.Instance.da.SendBytes(byteToSend);
+            //byte[] byteToSend;
+            //if (this.Arm.IsChecked) //当前停止状态
+            //{
+            //    byteToSend = new byte[10] { 0, 19, 54, 0, 1, 0, 0, 0, 0, 0 };
+            //}
+            //else//当前启动状态
+            //{
+            //    byteToSend = new byte[10] { 0, 19, 55, 0, 1, 0, 0, 0, 0, 0 };
+            //}
+            //GlobalData.Instance.da.SendBytes(byteToSend);
         }
 
         private void btnOilOne_Click(object sender, RoutedEventArgs e)
@@ -1345,6 +1350,58 @@ namespace Main.HydraulicStation
             this.maintainMain.Visibility = Visibility.Visible;
             this.setMain.Visibility = Visibility.Visible;
             this.MaintainSet.Visibility = Visibility.Collapsed;
+        }
+
+        private void CatOprClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.oilMain.Visibility = Visibility.Visible;
+            this.maintainMain.Visibility = Visibility.Visible;
+            this.setMain.Visibility = Visibility.Visible;
+            this.CatOprSet.Visibility = Visibility.Collapsed;
+        }
+
+        private void CatOpr_Click(object sender, MouseButtonEventArgs e)
+        {
+            this.oilMain.Visibility = Visibility.Collapsed;
+            this.maintainMain.Visibility = Visibility.Collapsed;
+            this.setMain.Visibility = Visibility.Collapsed;
+            this.CatOprSet.Visibility = Visibility.Visible;
+        }
+        /// <summary>
+        /// 缓冲臂打开
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnLoadingHandOpen_Click(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 0, 19, 54, 0, 1, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 缓冲臂关闭
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnLoadingHandClose_Click(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 0, 19, 55, 0, 1, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+        /// <summary>
+        /// 泥浆盒打开
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnPreventBoxOpen_Click(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 0, 19, 56, 0, 1, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
+        }
+
+        private void btnPreventBoxClose_Click(object sender, RoutedEventArgs e)
+        {
+            byte[] byteToSend = new byte[10] { 0, 19, 57, 0, 1, 0, 0, 0, 0, 0 };
+            GlobalData.Instance.da.SendBytes(byteToSend);
         }
     }
 }

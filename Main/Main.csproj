@@ -321,6 +321,9 @@
     <Compile Include="ScrewThread\SL_ScrewThreadMain.xaml.cs">
       <DependentUpon>SL_ScrewThreadMain.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ScrewThread\SL_ScrewThreadParamSet.xaml.cs">
+      <DependentUpon>SL_ScrewThreadParamSet.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SecondFloor\SFCameraFullScreen.xaml.cs">
       <DependentUpon>SFCameraFullScreen.xaml</DependentUpon>
     </Compile>
@@ -766,6 +769,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ScrewThread\SL_ScrewThreadMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ScrewThread\SL_ScrewThreadParamSet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

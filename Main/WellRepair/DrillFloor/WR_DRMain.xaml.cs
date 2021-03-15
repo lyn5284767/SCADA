@@ -105,7 +105,7 @@ namespace Main.WellRepair.DrillFloor
                
                 this.drTelecontrolModel.SetBinding(BasedSwitchButton.ContentDownProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["325b1"], Mode = BindingMode.OneWay, Converter = new TelecontrolModelConverter() });
                 this.drTelecontrolModel.SetBinding(BasedSwitchButton.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["325b1"], Mode = BindingMode.OneWay, Converter = new TelecontrolModelIsCheckConverter() });
-                //送杆
+                //下钻
                 MultiBinding sbDrillUpMultiBind = new MultiBinding();
                 sbDrillUpMultiBind.Converter = new WR_DRStepCoverter();
                 sbDrillUpMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
@@ -113,7 +113,7 @@ namespace Main.WellRepair.DrillFloor
                 sbDrillUpMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["drAutoStep"], Mode = BindingMode.OneWay });
                 sbDrillUpMultiBind.NotifyOnSourceUpdated = true;
                 this.sbDrillUp.SetBinding(StepBar.StepIndexProperty, sbDrillUpMultiBind);
-                // 排杆
+                // 起钻
                 MultiBinding sbDrillDownMultiBind = new MultiBinding();
                 sbDrillDownMultiBind.Converter = new WR_DRStepCoverter();
                 sbDrillDownMultiBind.Bindings.Add(new Binding("ByteTag") { Source = GlobalData.Instance.da["droperationModel"], Mode = BindingMode.OneWay });
@@ -377,7 +377,7 @@ namespace Main.WellRepair.DrillFloor
             //}
             //else if (warnOne == 56)
             //{
-            //    this.tbOpr.Text = "自动送杆抓杆失败，请确认抓手有钻杆";
+            //    this.tbOpr.Text = "自动下钻抓杆失败，请确认抓手有钻杆";
             //}
             //else if (warnOne == 57)
             //{
@@ -393,7 +393,7 @@ namespace Main.WellRepair.DrillFloor
             //}
             //else if (warnOne == 60)
             //{
-            //    this.tbOpr.Text = "自动送杆动作完成";
+            //    this.tbOpr.Text = "自动下钻动作完成";
             //}
             //else if (warnOne == 61)
             //{
@@ -601,7 +601,7 @@ namespace Main.WellRepair.DrillFloor
             }
             else if (warnOne == 56)
             {
-                this.tbOpr.Text = "自动送杆抓杆失败，请确认抓手有钻杆";
+                this.tbOpr.Text = "自动下钻抓杆失败，请确认抓手有钻杆";
             }
             else if (warnOne == 57)
             {
@@ -617,7 +617,7 @@ namespace Main.WellRepair.DrillFloor
             }
             else if (warnOne == 60)
             {
-                this.tbOpr.Text = "自动送杆动作完成";
+                this.tbOpr.Text = "自动下钻动作完成";
             }
             else if (warnOne == 61)
             {
@@ -972,11 +972,11 @@ namespace Main.WellRepair.DrillFloor
         private void btn_drWorkModel(object sender, EventArgs e)
         {
             byte[] byteToSend;
-            if (this.drworkMode.IsChecked)// 送杆
+            if (this.drworkMode.IsChecked)// 下钻
             {
                 byteToSend = new byte[10] { 1, 32, 4, 41, 0, 0, 0, 0, 0, 0 };
             }
-            else// 排杆
+            else// 起钻
             {
                 byteToSend = new byte[10] { 1, 32, 4, 40, 0, 0, 0, 0, 0, 0 };
             }
