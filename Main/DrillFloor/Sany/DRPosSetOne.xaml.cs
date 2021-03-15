@@ -103,9 +103,12 @@ namespace Main.DrillFloor.Sany
                     else if (feedback == 11) this.twt11.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
                     else if (feedback == 12) this.twt12.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
                     else if (feedback == 13) this.twt13.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
+                    else if (feedback == 14) this.twt14.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
 
                     else if (feedback == 33) this.twt33.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
                     else if (feedback == 34) this.twt34.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
+                    else if (feedback == 35) this.twt35.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
+                    else if (feedback == 36) this.twt36.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
                     else if (feedback == 39) this.twt39.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
                     else if (feedback == 40) this.twt40.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
                     else if (feedback == 42) this.twt42.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();

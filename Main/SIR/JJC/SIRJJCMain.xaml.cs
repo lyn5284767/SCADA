@@ -74,11 +74,24 @@ namespace Main.SIR
                         this.smHeart.LampType = 1;
                     }
                     this.heart = GlobalData.Instance.da["508b6"].Value.Boolean;
-                 
+
                     //if (GlobalData.Instance.da["843b0"].Value.Boolean) this.tbTips.Text = "当前自动任务完成";
                     //else if(GlobalData.Instance.da["843b1"].Value.Boolean) this.tbTips.Text = "自动上扣完成";
                     //else if (GlobalData.Instance.da["843b2"].Value.Boolean) this.tbTips.Text = "自动卸扣完成";
                     //else if (GlobalData.Instance.da["843b3"].Value.Boolean) this.tbTips.Text = "请求集成供油";
+
+                    if (GlobalData.Instance.da["842b4"].Value.Boolean)
+                    {
+                        this.tbWorkModel.Text = "上扣";
+                        this.sbDrillDown.Visibility = Visibility.Visible;
+                        this.sbDrillUp.Visibility = Visibility.Collapsed;
+                    }
+                    else if (GlobalData.Instance.da["842b5"].Value.Boolean)
+                    {
+                        this.tbWorkModel.Text = "卸扣";
+                        this.sbDrillDown.Visibility = Visibility.Collapsed;
+                        this.sbDrillUp.Visibility = Visibility.Visible;
+                    }
                 }));
             }
             catch (Exception ex)

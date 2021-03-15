@@ -209,6 +209,38 @@ namespace COM.Common
         }
     }
 
+    /// <summary>
+    /// 扶杆臂-目的地设置
+    /// </summary>
+    public class DR_MemoryPos : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return "记忆位置";
+            }
+
+            byte bType = (byte)value;
+            switch (bType)
+            {
+                case 1:
+                    return "井口记忆";
+                case 2:
+                    return "记忆清除";
+                case 3:
+                    return "记忆恢复";
+            }
+
+            return "记忆位置";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     public class TopWarningInfoConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

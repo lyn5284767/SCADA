@@ -28,7 +28,7 @@
                             <StackPanel>
                                 <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="0" Padding="3">
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="小车参数"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"/>
+                                        <TextBlock Text="小车电机"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"/>
                                         <TextBlock FontSize="18" Name="carPos" Text="****" Foreground="#4C80FF"></TextBlock>
                                     </StackPanel>
                                 </Border>
@@ -52,7 +52,16 @@
 
                 </StackPanel>
                 <StackPanel Grid.Column="1">
-                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="550">
+                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="50">
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel>
+
+                                <inputcontrol:SetControl Name="twt14" Head="80, 33, 12, 14, 0, 0" TbkText="限制位" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="650">
                         <StackPanel Orientation="Horizontal">
                             <StackPanel>
                                 <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5,0,5,5" Padding="3">
@@ -64,7 +73,9 @@
                                 <inputcontrol:SetControl Name="twt33" Head="80, 33, 12, 33, 0, 0" TbkText="最小收缩位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
                                 <inputcontrol:SetControl Name="twt34" Head="80, 33, 12, 34, 0, 0" TbkText="最大伸展位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
                                 <inputcontrol:SetControl Name="twt39" Head="80, 33, 12, 39, 0, 0" TbkText="回收位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                                <inputcontrol:SetControl Name="twt40" Head="80, 33, 12, 40, 0, 0" TbkText="井口位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt40" Head="80, 33, 12, 40, 0, 0" TbkText="井口位置1" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt35" Head="80, 33, 12, 35, 0, 0" TbkText="井口位置2" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt36" Head="80, 33, 12, 36, 0, 0" TbkText="井口位置3" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
                                 <inputcontrol:SetControl Name="twt42" Head="80, 33, 12, 42, 0, 0" TbkText="运输位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
                                 <inputcontrol:SetControl Name="twt43" Head="80, 33, 12, 43, 0, 0" TbkText="钻铤最大位置" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
                                 <inputcontrol:SetControl Name="twt44" Head="80, 33, 12, 44, 0, 0" TbkText="猫道位" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>

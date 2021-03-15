@@ -102,6 +102,7 @@ namespace Main.DrillFloor
                         this.twtL61.ShowText = GlobalData.Instance.da["drRetractSpeedCircle"].ToString(); // 缩回加减速周期
                         this.twtL62.ShowText = GlobalData.Instance.da["drRetractReducePoint"].ToString(); // 缩回缓冲距离
                         this.twtL63.ShowText = GlobalData.Instance.da["drSideMoveTime"].ToString(); // 侧移工作时间
+                        this.twtL64.ShowText = GlobalData.Instance.da["DR_GripCloseElec"].ToString(); // 侧移工作时间
                         this.twtL65.ShowText = GlobalData.Instance.da["drReachLoadElectric"].ToString(); // 伸出缓冲电流
                         this.twtL66.ShowText = GlobalData.Instance.da["drRetractLoadElectric"].ToString(); // 缩回缓冲电流
                     }

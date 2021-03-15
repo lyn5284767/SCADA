@@ -208,6 +208,8 @@
                                     <RowDefinition/>
                                     <RowDefinition/>
                                     <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
@@ -216,10 +218,15 @@
                                 <cl:SymbolMapping Grid.Column="0" Grid.Row="0" Name="pliersForbidOpen" StrContent="钳头禁止打开" LampType="3" Height="25" Margin="12,2,2,2"/>
                                 <cl:SymbolMapping Grid.Column="1" Grid.Row="0" Name="ForbidMoveToWell" StrContent="禁止向井口移动" LampType="3" Height="25" Margin="12,2,2,2"/>
                                 <cl:SymbolMapping Grid.Column="0" Grid.Row="1" Name="ForbidHandRetract" StrContent="禁止机械手缩回" LampType="3" Height="25" Margin="12,2,2,2"/>
-                                <cl:SymbolMapping Grid.Column="1" Grid.Row="1" Name="WellLocation" StrContent="井口位置" LampType="3" Height="25" Margin="12,2,2,2"/>
+                                <cl:SymbolMapping Grid.Column="1" Grid.Row="1" Name="WellLocation" StrContent="井口互锁位置" LampType="3" Height="25" Margin="12,2,2,2"/>
                                 <cl:SymbolMapping Grid.Column="0" Grid.Row="2" Name="ForbidToCat" StrContent="禁止向猫道移动" LampType="3" Height="25" Margin="12,2,2,2"/>
-                                <cl:SymbolMapping Grid.Column="1" Grid.Row="2" Name="CatLocked" StrContent="猫道互锁" LampType="3" Height="25" Margin="12,2,2,2"/>
+                                <cl:SymbolMapping Grid.Column="1" Grid.Row="2" Name="CatLocked" StrContent="猫道互锁位置" LampType="3" Height="25" Margin="12,2,2,2"/>
                                 <cl:SymbolMapping Grid.Column="0" Grid.Row="3" Name="smLink" StrContent="联动井口位" LampType="3" Height="25" Margin="12,2,2,2"/>
+                                <cl:SymbolMapping Grid.Column="1" Grid.Row="3" Name="smComfirm" StrContent="确认指示灯" LampType="3" Height="25" Margin="12,2,2,2"/>
+                                <cl:SymbolMapping Grid.Column="0" Grid.Row="4" Name="smHandLockHook" StrContent="机械手锁大钩" LampType="3" Height="25" Margin="12,2,2,2"/>
+                                <cl:SymbolMapping Grid.Column="1" Grid.Row="4" Name="smHandLockTop" StrContent="机械手锁顶驱" LampType="3" Height="25" Margin="12,2,2,2"/>
+                                <cl:SymbolMapping Grid.Column="0" Grid.Row="5" Name="smIronLock" StrContent="铁钻工互锁位置" LampType="3" Height="25" Margin="12,2,2,2"/>
+                                <cl:SymbolMapping Grid.Column="1" Grid.Row="5" Name="smMouseLock" StrContent="鼠洞互锁位置" LampType="3" Height="25" Margin="12,2,2,2"/>
 
                             </Grid>
                         </StackPanel>
@@ -309,6 +316,10 @@
                                 <Label>手臂缩回电流</Label>
                                 <TextBox Width="70" Name="armRetractElectIn" Margin="5,2,2,2" IsReadOnly="True"/>
                                 <TextBox Width="70" Name="armRetractElectOut" Margin="12,2,2,2" IsReadOnly="True"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="12,2,2,2">
+                                <Label>抓手开合电流电流</Label>
+                                <TextBox Width="70" Name="tbGripElec" Margin="5,2,2,2" IsReadOnly="True"/>
                             </StackPanel>
                             <cl:CustomCheckBox ContentString="提效开启/关闭" Margin="15,2,2,2"  Name="raiseOpenOrClose" UserControlClicked="CBraiseOpenOrClose_Clicked"/>
                         </StackPanel>

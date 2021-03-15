@@ -147,6 +147,11 @@ namespace Main.DrillFloor
                 this.ForbidToCat.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["333b3"], Mode = BindingMode.OneWay, Converter = new BoolTagConverter() });
                 this.CatLocked.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["334b4"], Mode = BindingMode.OneWay, Converter = new OppositeBoolTagConverter() });
                 this.smLink.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["334b7"], Mode = BindingMode.OneWay, Converter = new OppositeBoolTagConverter() });
+                this.smComfirm.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["334b0"], Mode = BindingMode.OneWay, Converter = new OppositeBoolTagConverter() });
+                this.smHandLockHook.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["334b2"], Mode = BindingMode.OneWay, Converter = new OppositeBoolTagConverter() });
+                this.smHandLockTop.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["334b3"], Mode = BindingMode.OneWay, Converter = new OppositeBoolTagConverter() });
+                this.smIronLock.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["334b5"], Mode = BindingMode.OneWay, Converter = new OppositeBoolTagConverter() });
+                this.smMouseLock.SetBinding(SymbolMapping.LampTypeProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["334b6"], Mode = BindingMode.OneWay, Converter = new OppositeBoolTagConverter() });
 
                 #endregion
                 this.handleX.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drX"], Mode = BindingMode.OneWay });
@@ -183,6 +188,7 @@ namespace Main.DrillFloor
                 this.armReachElectOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["drHandReachFeedback"], Mode = BindingMode.OneWay });//疑问
                 this.armRetractElectIn.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["handRetract"], Mode = BindingMode.OneWay });
                 this.armRetractElectOut.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["drHandRetractFeedback"], Mode = BindingMode.OneWay });// 疑问
+                this.tbGripElec.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["DR_GripElec"], Mode = BindingMode.OneWay });// 疑问
 
                 this.raiseOpenOrClose.SetBinding(CustomCheckBox.IsCheckedProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["333b7"], Mode = BindingMode.OneWay, Converter = new InterLockingOppConverter() });
 

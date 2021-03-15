@@ -50,20 +50,28 @@
 
                 </StackPanel>
                 <StackPanel Grid.Column="1">
-                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="250">
+                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="450">
                         <StackPanel Orientation="Horizontal">
                             <StackPanel>
                                 <Border BorderBrush="Gray" BorderThickness="0,0,0,1" CornerRadius="0,0,1,0" Margin="5,0,5,5" Padding="3">
-                                    <TextBlock Text="抓手"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="抓手"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"/>
+                                        <TextBlock Text="标定值" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" Foreground="Black" FontFamily="微软雅黑" FontWeight="Bold"></TextBlock>
+                                        <TextBox x:Name="tbGripInput" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,3,3,3" FontSize="24" FontFamily="微软雅黑" FontWeight="Bold" Width="140" TextAlignment="Center" PreviewMouseDown="tb_ParameterConfig_Focus" LostFocus="tbGripSet_LostFocus"/>
+
+                                    </StackPanel>
                                 </Border>
                                 <StackPanel Orientation="Horizontal" >
                                     <TextBlock Name="tbk" Foreground="Black" Text="当前值" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="24" FontFamily="微软雅黑" FontWeight="Bold"  Width="150" TextAlignment="Center">
                                     </TextBlock>
                                     <TextBox x:Name="tbGripCurrent" IsReadOnly="True" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,3,3,3" FontSize="24" FontFamily="微软雅黑" FontWeight="Bold" Width="140" TextAlignment="Center"/>
-
                                 </StackPanel>
                                 <inputcontrol:SetControl Name="twt97" Head="80, 33, 12, 97, 0, 0" TbkText="关闭设定值" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                                <inputcontrol:SetControl Name="twt98" Head="80, 33, 12, 98, 0, 0" TbkText="中间设定值" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt98" Head="80, 33, 12, 98, 0, 0" TbkText="中间设定值1" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt100" Head="80, 33, 12, 98, 0, 0" TbkText="中间设定值2" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt101" Head="80, 33, 12, 98, 0, 0" TbkText="中间设定值3" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt102" Head="80, 33, 12, 98, 0, 0" TbkText="中间设定值4" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt103" Head="80, 33, 12, 98, 0, 0" TbkText="中间设定值5" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
                                 <inputcontrol:SetControl Name="twt99" Head="80, 33, 12, 99, 0, 0" TbkText="打开设定值" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
 
                             </StackPanel>

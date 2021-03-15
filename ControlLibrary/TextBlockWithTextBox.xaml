@@ -13,7 +13,7 @@
             </Border.Effect>
         </Border>
         <StackPanel Orientation="Horizontal" Name="stackPanel">
-            <TextBlock Name="tbk" Text="参数配置" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="14" FontFamily="微软雅黑" FontWeight="Bold"  Width="150" TextAlignment="Center" Foreground="Black">
+            <TextBlock Name="tbk" Text="参数配置" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="14" FontFamily="微软雅黑" FontWeight="Bold"  Width="160" TextAlignment="Center" Foreground="Black">
             </TextBlock>
             <TextBox x:Name="textBoxShow" IsReadOnly="True" Text="{Binding Path=ShowText, ElementName=uc}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="16" FontFamily="微软雅黑" FontWeight="Bold" Width="95" Height="20" TextAlignment="Center"/>
             <TextBox x:Name="textBoxSet" PreviewMouseDown="tb_ParameterConfig_Focus" LostFocus="textBox_ParameterConfig_LostFocus" TabIndex="3" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1" FontSize="10" FontFamily="微软雅黑" FontWeight="Bold" Background="#F49466" Width="95"  TextAlignment="Center"/>

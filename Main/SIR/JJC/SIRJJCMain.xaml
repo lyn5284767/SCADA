@@ -386,18 +386,26 @@
                         </Viewbox>
                         <Viewbox Grid.Row="1">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Grid.Column="0" Text="上扣" FontSize="16" Margin="2,0,0,0"></TextBlock>
+                                <TextBlock Grid.Column="0" Name="tbWorkModel" Text="上扣" FontSize="16" Margin="2,0,0,0"></TextBlock>
 
                                 <hc:StepBar Grid.Column="1" FontSize="14" Name="sbDrillDown" Grid.Row="1" Visibility="Visible">
                                     <hc:StepBarItem Content="上扣启动"/>
                                     <hc:StepBarItem Content="钳口对正"/>
-                                    <hc:StepBarItem Content="抓手夹紧"/>
+                                    <hc:StepBarItem Content="臂架伸出"/>
                                     <hc:StepBarItem Content="井口定位"/>
-                                    <hc:StepBarItem Content="井口下钻"/>
-                                    <hc:StepBarItem Content="手臂回位"/>
-                                    <hc:StepBarItem Content="下钻结束"/>
+                                    <hc:StepBarItem Content="井口旋进"/>
+                                    <hc:StepBarItem Content="井口冲扣"/>
+                                    <hc:StepBarItem Content="上扣结束"/>
                                 </hc:StepBar>
-
+                                <hc:StepBar Grid.Column="1" FontSize="14" Name="sbDrillUp" Grid.Row="1" Visibility="Collapsed">
+                                    <hc:StepBarItem Content="卸扣启动"/>
+                                    <hc:StepBarItem Content="钳口对正"/>
+                                    <hc:StepBarItem Content="臂架伸出"/>
+                                    <hc:StepBarItem Content="井口定位"/>
+                                    <hc:StepBarItem Content="井口旋出"/>
+                                    <hc:StepBarItem Content="井口卸扣"/>
+                                    <hc:StepBarItem Content="卸扣结束"/>
+                                </hc:StepBar>
                             </StackPanel>
                         </Viewbox>
                     </Grid>

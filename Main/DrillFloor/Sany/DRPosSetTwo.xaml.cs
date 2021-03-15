@@ -51,7 +51,31 @@ namespace Main.DrillFloor.Sany
             timer = new System.Threading.Timer(new TimerCallback(Timer_Elapsed), this, 2000, 100);
             this.tbGripCurrent.SetBinding(TextBox.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["gridSample"], Mode = BindingMode.OneWay });
             this.rotatePos.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["drRotePos"], Mode = BindingMode.OneWay });//小车位置                                                                                                                                                             //this.armPos.SetBinding(TextBlock.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["drArmPos"], Mode = BindingMode.OneWay, Converter = new ArmPosCoverter() });//手臂实际位置
-
+            this.twt98.SFSendProtocolEvent += Twt_SFSendProtocolEvent;
+            this.twt100.SFSendProtocolEvent += Twt_SFSendProtocolEvent;
+            this.twt101.SFSendProtocolEvent += Twt_SFSendProtocolEvent;
+            this.twt102.SFSendProtocolEvent += Twt_SFSendProtocolEvent;
+            this.twt103.SFSendProtocolEvent += Twt_SFSendProtocolEvent;
+        }
+        byte[] gripSetValue;
+        private void Twt_SFSendProtocolEvent(byte[] SetParam)
+        {
+            string strText = this.tbGripInput.Text;
+            if (strText.Length == 0) strText = "0";
+            short i16Text = Convert.ToInt16(strText);
+            gripSetValue = BitConverter.GetBytes(i16Text);
+            if (gripSetValue != null && gripSetValue.Length == 2)
+            {
+                SetParam[4] = gripSetValue[0];
+                SetParam[5] = gripSetValue[1];
+                GlobalData.Instance.da.SendBytes(SetParam);
+                this.tbGripInput.Text = "0";
+            }
+            else
+            {
+                GlobalData.Instance.da.SendBytes(SetParam);
+                this.tbGripInput.Text = "0";
+            }
         }
 
         private void DRPosSetTwo_Loaded(object sender, RoutedEventArgs e)
@@ -103,11 +127,39 @@ namespace Main.DrillFloor.Sany
                     else if (feedback == 97) this.twt97.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
                     else if (feedback == 98) this.twt98.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
                     else if (feedback == 99) this.twt99.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
+                    else if (feedback == 100) this.twt100.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
+                    else if (feedback == 101) this.twt101.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
+                    else if (feedback == 102) this.twt102.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
+                    else if (feedback == 103) this.twt103.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
                 }));
             }
             catch (Exception ex)
             {
                 Log.Log4Net.AddLog(ex.StackTrace, Log.InfoLevel.ERROR);
+            }
+        }
+
+        private void tb_ParameterConfig_Focus(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                GlobalData.Instance.GetKeyBoard();
+            }
+        }
+
+        private void tbGripSet_LostFocus(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string strText = this.tbGripInput.Text;
+                if (strText.Length == 0) strText = "0";
+                short i16Text = Convert.ToInt16(strText);
+                gripSetValue = BitConverter.GetBytes(i16Text);
+            }
+            catch (Exception ex)
+            {
+                this.tbGripInput.Text = "0";
+                MessageBox.Show("超出设置范围");
             }
         }
     }

@@ -51,8 +51,7 @@
     <Viewbox>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="590"/>
-                <RowDefinition Height="60"/>
+                <RowDefinition Height="620"/>
             </Grid.RowDefinitions>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -60,21 +59,32 @@
                     <ColumnDefinition Width="400"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0">
-                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="240">
+                    <Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="2" Height="620">
                         <StackPanel Orientation="Horizontal">
                             <Border BorderBrush="Gray" BorderThickness="0,0,1,0" CornerRadius="0,0,1,0" Margin="5" Padding="3">
-                                <TextBlock Text="电&#x0a;流&#x0a;设&#x0a;置&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
+                                <TextBlock Text="补&#x0a;偿&#x0a;设&#x0a;置&#x0a;"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" FontSize="16" FontWeight="Bold"/>
                             </Border>
                             <StackPanel>
-                                <cl:TextBlockWithTextBox Name="twtL91" ControlTag="91"  TbkText="3寸钻杆宽度修正" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
-                                <cl:TextBlockWithTextBox Name="twtL92" ControlTag="92"  TbkText="3.5寸钻杆宽度修正" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
-                                <cl:TextBlockWithTextBox Name="twtL93" ControlTag="93"  TbkText="4寸钻杆宽度修正" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
-                                <cl:TextBlockWithTextBox Name="twtL94" ControlTag="94"  TbkText="4.5寸钻杆宽度修正" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
-                                <cl:TextBlockWithTextBox Name="twtL95" ControlTag="95"  TbkText="5寸钻杆宽度修正" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
-                                <cl:TextBlockWithTextBox Name="twtL96" ControlTag="96"  TbkText="5.5寸钻杆宽度修正" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
-                                <!--<Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,10" Width="150" Height="40" Style="{StaticResource ShadowBorder}">
-                                <TextBlock Name="tbLink" FontSize="20" Foreground="#008AFF" MouseDown="ParamTwoSet" HorizontalAlignment="Center" VerticalAlignment="Center" Text="    确定配置    "></TextBlock>
-                            </Border>-->
+                                <cl:TextBlockWithTextBox Name="twtL91" ControlTag="91"  TbkText="3 1/2寸间距修正(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
+                                <cl:TextBlockWithTextBox Name="twtL92" ControlTag="92"  TbkText="4寸间距修正(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
+                                <cl:TextBlockWithTextBox Name="twtL93" ControlTag="93"  TbkText="4 1/2寸间距修正(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
+                                <cl:TextBlockWithTextBox Name="twtL94" ControlTag="94"  TbkText="5寸间距修正(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
+                                <cl:TextBlockWithTextBox Name="twtL95" ControlTag="95"  TbkText="5 1/2寸间距修正(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
+                                <cl:TextBlockWithTextBox Name="twtL96" ControlTag="96"  TbkText="5 7/8寸间距修正(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
+
+                                <cl:TextBlockWithTextBox Name="twtL97" ControlTag="97"  TbkText="3 1/2寸小车修正(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
+                                <cl:TextBlockWithTextBox Name="twtL98" ControlTag="98"  TbkText="4寸小车修正(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
+                                <cl:TextBlockWithTextBox Name="twtL99" ControlTag="99"  TbkText="4 1/2寸小车修正(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
+                                <cl:TextBlockWithTextBox Name="twtL100" ControlTag="100"  TbkText="5寸小车修正(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
+                                <cl:TextBlockWithTextBox Name="twtL101" ControlTag="101"  TbkText="5 1/2寸小车修正(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
+                                <cl:TextBlockWithTextBox Name="twtL102" ControlTag="102"  TbkText="5 7/8寸小车修正(mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
+
+                                <cl:TextBlockWithTextBox Name="twtL103" ControlTag="103"  TbkText="3 1/2寸手臂修正(5mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
+                                <cl:TextBlockWithTextBox Name="twtL104" ControlTag="104"  TbkText="4寸手臂修正(5mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
+                                <cl:TextBlockWithTextBox Name="twtL105" ControlTag="105"  TbkText="4 1/2寸手臂修正(5mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
+                                <cl:TextBlockWithTextBox Name="twtL106" ControlTag="106"  TbkText="5寸手臂修正(5mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
+                                <cl:TextBlockWithTextBox Name="twtL107" ControlTag="107"  TbkText="5 1/2寸手臂修正(5mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
+                                <cl:TextBlockWithTextBox Name="twtL108" ControlTag="108"  TbkText="5 7/8寸手臂修正(5mm)" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                     <Button Content="确 定 配 置"  Click="ParamThreeSet"  Style="{StaticResource btnGreen}" FontWeight="Bold" FontSize="16" Width="100" Height="30" IsDefault="False"/>
                                 </StackPanel>
@@ -95,7 +105,7 @@
                                 <cl:TextBlockWithTextBox Name="twtL4" ControlTag="4"  TbkText="系统延时" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
                                 <cl:TextBlockWithTextBox Name="twtL5" ControlTag="5"  TbkText="时间修正" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
                                 <cl:TextBlockWithTextBox Name="twtL6" ControlTag="6"  TbkText="遥控器配置" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
-                                <cl:TextBlockWithTextBox Name="twtL7" ControlTag="7"  TbkText="猫道配置" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
+                                <cl:TextBlockWithTextBox Name="twtL7" ControlTag="7"  TbkText="猫道/行车配置" CtrGetFocusEvent ="Twt_CtrGetFocusEvent" />
 
                                 <!--<Border Background="White" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="0,10,5,10" Width="150" Height="40" Style="{StaticResource ShadowBorder}">
                                 <TextBlock FontSize="20" Foreground="#008AFF" MouseDown="ParamTwoSet2" HorizontalAlignment="Center" VerticalAlignment="Center" Text="    确定配置    "></TextBlock>

@@ -233,7 +233,7 @@ namespace Main.DrillFloor
                 leftHand.NotifyOnSourceUpdated = true;
                 this.tbLeftHand.SetBinding(TextBlock.TextProperty, leftHand);
 
-                this.tbMemoryPos.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["WR_DR_MemoryPos"], Mode = BindingMode.OneWay, Converter = new WR_MemoryPos() });// 目的地选择
+                this.tbMemoryPos.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["WR_DR_MemoryPos"], Mode = BindingMode.OneWay, Converter = new WR_MemoryPos() });// 井口记忆
 
                 InitCameraInfo();
 
