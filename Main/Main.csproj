@@ -246,6 +246,9 @@
     <Compile Include="Integration\IngMainNew.xaml.cs">
       <DependentUpon>IngMainNew.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Integration\IngMainTwo.xaml.cs">
+      <DependentUpon>IngMainTwo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Integration\IngParamSet.xaml.cs">
       <DependentUpon>IngParamSet.xaml</DependentUpon>
     </Compile>
@@ -665,6 +668,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Integration\IngMainNew.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Integration\IngMainTwo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1315,6 +1322,31 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\bgd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\LinkClose.png" />
+    <Resource Include="Images\LinkOpen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\DrillDown.png" />
+    <Resource Include="Images\DrillUp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Des.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\PipeType.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\SelectLeftDrill.png" />
+    <Resource Include="Images\SelectRightDrill.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\KavaClose.png" />
+    <Resource Include="Images\KavaOpen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\hs.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

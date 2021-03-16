@@ -80,6 +80,20 @@ namespace Main.DrillFloor
                 this.twtL95.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["dr5WidthFix"], Mode = BindingMode.OneWay }); // 5寸宽度修正
                 this.twtL96.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["dr5AndHalfWidthFix"], Mode = BindingMode.OneWay }); // 5.5寸宽度修正
 
+                this.twtL97.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["DR_3And1/2CarFix"], Mode = BindingMode.OneWay }); // 3寸宽度修正
+                this.twtL98.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["DR_4CarFix"], Mode = BindingMode.OneWay }); // 3.5寸宽度修正
+                this.twtL99.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["DR_4And1/2CarFix"], Mode = BindingMode.OneWay }); // 4寸宽度修正
+                this.twtL100.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["DR_5CarFix"], Mode = BindingMode.OneWay }); // 4.5寸宽度修正
+                this.twtL101.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["DR_5And1/2CarFix"], Mode = BindingMode.OneWay }); // 5寸宽度修正
+                this.twtL102.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["DR_5And7/8CarFix"], Mode = BindingMode.OneWay }); // 5.5寸宽度修正
+
+                this.twtL103.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["DR_3And1/2ArmFix"], Mode = BindingMode.OneWay }); // 3寸宽度修正
+                this.twtL104.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["DR_4ArmFix"], Mode = BindingMode.OneWay }); // 3.5寸宽度修正
+                this.twtL105.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["DR_4And1/2ArmFix"], Mode = BindingMode.OneWay }); // 4寸宽度修正
+                this.twtL106.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["DR_5ArmFix"], Mode = BindingMode.OneWay }); // 4.5寸宽度修正
+                this.twtL107.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["DR_5And1/2ArmFix"], Mode = BindingMode.OneWay }); // 5寸宽度修正
+                this.twtL108.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["DR_5And7/8ArmFix"], Mode = BindingMode.OneWay }); // 5.5寸宽度修正
+
                 this.twtL1.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drRaiseEffectModel"], Mode = BindingMode.OneWay }); // 提效模式
                 this.twtL2.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drGripOpenCloseModel"], Mode = BindingMode.OneWay }); // 抓手开合模式
                 this.twtL3.SetBinding(TextBlockWithTextBox.ShowTextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drOperActionAlarm"], Mode = BindingMode.OneWay }); // 运行动作报警

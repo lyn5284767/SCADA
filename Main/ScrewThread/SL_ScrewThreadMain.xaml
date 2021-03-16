@@ -174,10 +174,10 @@
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="60*"/>
                 <ColumnDefinition Width="40*"/>
+                <ColumnDefinition Width="60*"/>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0" Margin="5">
+            <Grid Grid.Column="1" Margin="5">
                 <Border Background="#F6F9FF">
                     <!--<Border.Effect>
                         <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
@@ -233,7 +233,7 @@
                     </Viewbox>
                 </Grid>
             </Grid>
-            <Grid Grid.Column="1" Margin="5">
+            <Grid Grid.Column="0" Margin="5">
                 <Border Background="#F6F9FF">
                     <!--<Border.Effect>
                         <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
@@ -242,9 +242,30 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
-                    <Viewbox>
-                        <Grid Grid.Row="0">
+                    <Grid Grid.Column="1">
+                        <Image Source="../Images/hand.png" Height="140" Width="160"/>
+                        <cl:SymbolMapping Name="smSixLUp" Margin="-55,-69,0,0" StrContent="" LampType="3" Width="30" Height="30"/>
+                        <cl:SymbolMapping Name="smSixLDown" Margin="-55,0,0,0" StrContent="" LampType="3" Width="30" Height="30"/>
+                        <cl:SymbolMapping Name="smSixMidUp" Margin="0,-40,0,0" StrContent="" LampType="3" Width="30" Height="30"/>
+                        <cl:SymbolMapping Name="smSixMidDown" Margin="0,25,0,0" StrContent="" LampType="3" Width="30" Height="30"/>
+                        <cl:SymbolMapping Name="smSixRUp" Margin="55,-69,0,0" StrContent="" LampType="3" Width="30" Height="30"/>
+                        <cl:SymbolMapping Name="smSixRDown" Margin="55,0,0,0" StrContent="" LampType="3" Width="30" Height="30"/>
+                        <TextBlock Text="注脂头上升" Margin="-215,-70,0,0" FontSize="16"></TextBlock>
+                        <TextBlock Text="注脂头下降" Margin="-215,0,0,0" FontSize="16"></TextBlock>
+
+                        <TextBlock Text="防喷盒关闭" Margin="-5,-160,0,0" FontSize="16"></TextBlock>
+                        <TextBlock Text="防喷盒打开" Margin="-5,110,0,0" FontSize="16"></TextBlock>
+                        <TextBlock Text="预留" Margin="185,-70,0,0" FontSize="16"></TextBlock>
+                        <TextBlock Text="预留" Margin="185,0,0,0" FontSize="16"></TextBlock>
+                        <cl:SymbolMapping Name="smSixEnable" Margin="-105,150,0,0" StrContent="" LampType="3" Width="30" Height="30"/>
+                        <cl:SymbolMapping Name="smSixBack" Margin="105,150,0,0" StrContent="" LampType="3" Width="30" Height="30"/>
+                        <TextBlock Text="底部确认" Margin="-105,200,0,0" FontSize="16"></TextBlock>
+                        <TextBlock Text="背部使能" Margin="105,200,0,0" FontSize="16"></TextBlock>
+                    </Grid>
+                    <Viewbox Grid.Row="1">
+                        <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>

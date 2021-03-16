@@ -211,82 +211,154 @@
                 <ColumnDefinition Width="6*"/>
                 <ColumnDefinition Width="4*"/>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0" Margin="5">
-                <Border Background="#F6F9FF"></Border>
-                <Viewbox>
-                    <Grid>
-                        <Border BorderThickness="1" BorderBrush="Black" Width="100" Height="200" Margin="-300,100,0,100">
-                            <Grid Background="Yellow" Height="100" VerticalAlignment="Bottom"></Grid>
+            <Grid Grid.Column="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Name="gdSixHand" Visibility="Visible" Margin="5">
+                        <Border Background="#F6F9FF">
+                            <!--<Border.Effect>
+                            <DropShadowEffect BlurRadius="20" Color="DarkGray" Opacity="0.4" Direction="280" ShadowDepth="0" />
+                        </Border.Effect>-->
                         </Border>
-                        <TextBlock Text="油箱" Margin="-300,-250,0,0"></TextBlock>
-                        <StackPanel Orientation="Horizontal" Margin="20,100,300,200">
-                            <TextBlock Text="未知" Foreground="#4C80FF" Name="tbOilTmp"></TextBlock>
-                            <TextBlock Text="°C"></TextBlock>
-                        </StackPanel>
-                        <Line X1="90" Y1="20" X2="140" Y2="20" Stroke="Gray" StrokeThickness="3" Margin="0,120,0,0"></Line>
-                        <Line X1="90" Y1="20" X2="140" Y2="20" Stroke="Gray" StrokeThickness="3" Margin="0,220,0,0"></Line>
-                        <Line X1="210" Y1="20" X2="240" Y2="20" Stroke="Gray" StrokeThickness="3" Margin="0,120,0,0"></Line>
-                        <Line X1="210" Y1="20" X2="240" Y2="20" Stroke="Gray" StrokeThickness="3" Margin="0,220,0,0"></Line>
+                        <Grid Margin="5,10,5,5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30"/>
+                                    <RowDefinition Height="30"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                    <TextBlock Text=">右手柄信号" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,0,0,0" VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <TextBlock Text="左 右" Margin="5,0,0,0"></TextBlock>
+                                    <TextBox Name="tbSixLeftOrRight" Width="60" Margin="5,0,0,0"  Text="0" TextAlignment="Center"/>
+                                    <TextBlock Text="前 后" Margin="5,0,0,0"></TextBlock>
+                                    <TextBox Name="tbSixFrontOrBehind" Width="60" Margin="5,0,0,0" Text="0" TextAlignment="Center"/>
 
-                        <Button Style="{StaticResource ButtonBaseStyle}" Height="90" Margin="240,-120,0,0">
-                                <Button.Background>
-                                    <ImageBrush ImageSource="../Images/ButtonBlue.png"/>
-                                </Button.Background>
-                                <Button.Content>
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition/>
-                                            <RowDefinition/>
-                                            <RowDefinition/>
-                                        </Grid.RowDefinitions>
-                                        <StackPanel Orientation="Horizontal" Grid.Row="0">
-                                            <TextBlock Text="比例压力:"></TextBlock>
-                                            <TextBlock Name="tbOnePumpPerPress" Text="XX" Foreground="#008AFF" Margin="5"></TextBlock>
-                                        <TextBlock Text="%"></TextBlock>
-                                    </StackPanel>
-                                        <StackPanel Orientation="Horizontal" Grid.Row="1">
-                                            <TextBlock Text="流量:"></TextBlock>
-                                            <TextBlock Name="tbOnePumpFlow" Text="XX" Foreground="#008AFF" Margin="5"></TextBlock>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal" Grid.Row="2">
-                                            <TextBlock Text="压力:"></TextBlock>
-                                            <TextBlock Name="tbOnePumpPress" Text="XX" Foreground="#008AFF" Margin="5"></TextBlock>
-                                        </StackPanel>
-                                    </Grid>
-                                </Button.Content>
-                            </Button>
-                        <TextBlock Text="&#xe615;" FontFamily="../Font/#iconfont" FontSize="48" Foreground="#008AFF" VerticalAlignment="Center" Margin="-40,-130,0,0"></TextBlock>
-                        <TextBlock Text="1#泵" FontSize="16" Margin="-30,-60,0,0"></TextBlock>
-                        <Button Style="{StaticResource ButtonBaseStyle}" Height="90" Margin="240,80,0,0">
-                            <Button.Background>
-                                <ImageBrush ImageSource="../Images/ButtonBlue.png"/>
-                            </Button.Background>
-                            <Button.Content>
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition/>
-                                        <RowDefinition/>
-                                        <RowDefinition/>
-                                    </Grid.RowDefinitions>
-                                    <StackPanel Orientation="Horizontal" Grid.Row="0">
-                                        <TextBlock Text="比例压力:"></TextBlock>
-                                        <TextBlock Name="tbTwoPumpPerPress" Text="XX" Foreground="#008AFF" Margin="5"></TextBlock>
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal" Grid.Row="1">
-                                        <TextBlock Text="流量:"></TextBlock>
-                                        <TextBlock Name="tbTwoPumpFlow" Text="XX" Foreground="#008AFF" Margin="5"></TextBlock>
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal" Grid.Row="2">
-                                        <TextBlock Text="压力:"></TextBlock>
-                                        <TextBlock Name="tbTwoPumpPress" Text="XX" Foreground="#008AFF" Margin="5"></TextBlock>
-                                    </StackPanel>
+                                </StackPanel>
+                                <Grid Grid.Row="2">
+                                    <TextBlock Text="绞车进" Margin="-165,0,0,0" FontSize="16"></TextBlock>
+                                    <TextBlock Text="小车进" Margin="0,-140,0,0" FontSize="16"></TextBlock>
+                                    <TextBlock Text="绞车退" Margin="165,0,0,0" FontSize="16"></TextBlock>
+                                    <TextBlock Text="小车退" Margin="0,130,0,0" FontSize="16"></TextBlock>
+                                    <Image Source="/Images/arrow.png" Name="SixArrow_EquiptStatus"  Width="120" Height="120"/>
+
                                 </Grid>
-                            </Button.Content>
-                        </Button>
-                        <TextBlock Text="&#xe615;" FontFamily="../Font/#iconfont" FontSize="48" Foreground="#008AFF" VerticalAlignment="Center" Margin="-40,70,0,0"></TextBlock>
-                        <TextBlock Text="2#泵" FontSize="16" Margin="-30,140,0,0"></TextBlock>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Image Source="../Images/hand.png" Height="140" Width="160"/>
+                                <cl:SymbolMapping Name="smSixLUp" Margin="-55,-69,0,0" StrContent="" LampType="3" Width="30" Height="30"/>
+                                <cl:SymbolMapping Name="smSixLDown" Margin="-55,0,0,0" StrContent="" LampType="3" Width="30" Height="30"/>
+                                <cl:SymbolMapping Name="smSixMidUp" Margin="0,-40,0,0" StrContent="" LampType="3" Width="30" Height="30"/>
+                                <cl:SymbolMapping Name="smSixMidDown" Margin="0,25,0,0" StrContent="" LampType="3" Width="30" Height="30"/>
+                                <cl:SymbolMapping Name="smSixRUp" Margin="55,-69,0,0" StrContent="" LampType="3" Width="30" Height="30"/>
+                                <cl:SymbolMapping Name="smSixRDown" Margin="55,0,0,0" StrContent="" LampType="3" Width="30" Height="30"/>
+                                <TextBlock Text="抓手内翻" Margin="-215,-70,0,0" FontSize="16"></TextBlock>
+                                <TextBlock Text="抓手外翻" Margin="-215,0,0,0" FontSize="16"></TextBlock>
+ 
+                                <TextBlock Text="推板推出" Margin="-5,-160,0,0" FontSize="16"></TextBlock>
+                                <TextBlock Text="推板缩回" Margin="-5,110,0,0" FontSize="16"></TextBlock>
+                                <TextBlock Text="上钻暂停" Margin="215,-70,0,0" FontSize="16"></TextBlock>
+                                <TextBlock Text="下钻暂停" Margin="215,0,0,0" FontSize="16"></TextBlock>
+                                <cl:SymbolMapping Name="smSixEnable" Margin="-105,150,0,0" StrContent="" LampType="3" Width="30" Height="30"/>
+                                <cl:SymbolMapping Name="smSixBack" Margin="105,150,0,0" StrContent="" LampType="3" Width="30" Height="30"/>
+                                <TextBlock Text="底部确认" Margin="-105,200,0,0" FontSize="16"></TextBlock>
+                                <TextBlock Text="背部使能" Margin="105,200,0,0" FontSize="16"></TextBlock>
+                            </Grid>
+
+                        </Grid>
                     </Grid>
-                </Viewbox>
+                    <Grid Grid.Row="1" Margin="5">
+                        <Border Background="#F6F9FF"></Border>
+                        <Viewbox>
+                            <Grid>
+                                <Border BorderThickness="1" BorderBrush="Black" Width="150" Height="300" Margin="-500,30,0,0">
+                                    <Grid Background="Yellow" Height="100" VerticalAlignment="Bottom"></Grid>
+                                </Border>
+                                <TextBlock Text="油箱" Margin="-500,-300,0,0" FontSize="28"></TextBlock>
+                                <StackPanel Orientation="Horizontal" Margin="-80,100,100,200">
+                                    <TextBlock Text="未知" Foreground="#4C80FF" Name="tbOilTmp" FontSize="28"></TextBlock>
+                                    <TextBlock Text="°C"></TextBlock>
+                                </StackPanel>
+                                <Line X1="25" Y1="0" X2="110" Y2="0" Stroke="Gray" StrokeThickness="3" Margin="0,120,0,0"></Line>
+                                <Line X1="25" Y1="20" X2="110" Y2="20" Stroke="Gray" StrokeThickness="3" Margin="0,220,0,0"></Line>
+                                <Line X1="210" Y1="0" X2="280" Y2="0" Stroke="Gray" StrokeThickness="3" Margin="0,120,0,0"></Line>
+                                <Line X1="210" Y1="20" X2="280" Y2="20" Stroke="Gray" StrokeThickness="3" Margin="0,220,0,0"></Line>
+
+                                <Button Style="{StaticResource ButtonBaseStyle}" Height="100" Margin="260,-100,0,0">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="../Images/ButtonBlue.png"/>
+                                    </Button.Background>
+                                    <Button.Content>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                            </Grid.RowDefinitions>
+                                            <StackPanel Orientation="Horizontal" Grid.Row="0">
+                                                <TextBlock Text="比例压力:"></TextBlock>
+                                                <TextBlock Name="tbOnePumpPerPress" Text="XX" Foreground="#008AFF" Margin="5"></TextBlock>
+                                                <TextBlock Text="%"></TextBlock>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Grid.Row="1">
+                                                <TextBlock Text="流量:"></TextBlock>
+                                                <TextBlock Name="tbOnePumpFlow" Text="XX" Foreground="#008AFF" Margin="5"></TextBlock>
+                                                <TextBlock Text="%"></TextBlock>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Grid.Row="2">
+                                                <TextBlock Text="压力:"></TextBlock>
+                                                <TextBlock Name="tbOnePumpPress" Text="XX" Foreground="#008AFF" Margin="5"></TextBlock>
+                                                <TextBlock Text="%"></TextBlock>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Button.Content>
+                                </Button>
+                                <TextBlock Text="&#xe615;" FontFamily="../Font/#iconfont" FontSize="68" Foreground="#008AFF" VerticalAlignment="Center" Margin="-80,-110,0,0"></TextBlock>
+                                <TextBlock Text="1#泵" FontSize="28" Margin="-60,0,0,0"></TextBlock>
+                                <Button Style="{StaticResource ButtonBaseStyle}" Height="100" Margin="260,140,0,0">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="../Images/ButtonBlue.png"/>
+                                    </Button.Background>
+                                    <Button.Content>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                            </Grid.RowDefinitions>
+                                            <StackPanel Orientation="Horizontal" Grid.Row="0">
+                                                <TextBlock Text="比例压力:"></TextBlock>
+                                                <TextBlock Name="tbTwoPumpPerPress" Text="XX" Foreground="#008AFF" Margin="5"></TextBlock>
+                                                <TextBlock Text="%"></TextBlock>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Grid.Row="1">
+                                                <TextBlock Text="流量:"></TextBlock>
+                                                <TextBlock Name="tbTwoPumpFlow" Text="XX" Foreground="#008AFF" Margin="5"></TextBlock>
+                                                <TextBlock Text="%"></TextBlock>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Grid.Row="2">
+                                                <TextBlock Text="压力:"></TextBlock>
+                                                <TextBlock Name="tbTwoPumpPress" Text="XX" Foreground="#008AFF" Margin="5"></TextBlock>
+                                                <TextBlock Text="%"></TextBlock>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Button.Content>
+                                </Button>
+                                <TextBlock Text="&#xe615;" FontFamily="../Font/#iconfont" FontSize="68" Foreground="#008AFF" VerticalAlignment="Center" Margin="-80,130,0,0"></TextBlock>
+                                <TextBlock Text="2#泵" FontSize="28" Margin="-60,240,0,0"></TextBlock>
+                            </Grid>
+                        </Viewbox>
+                    </Grid>
+                </Grid>
             </Grid>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
@@ -385,11 +457,15 @@
                             <!--<Viewbox></Viewbox>
                             <TextBlock Text=">IO反馈" FontSize="28" FontFamily="微软雅黑" FontWeight="Bold" Foreground="Black" Margin="20,0,0,0" VerticalAlignment="Center"/>-->
                         <Grid Grid.Row="2">
-                            <Grid Width="100" Height="20" Background="Gray" Margin="0,-230,0,0"></Grid>
-                            <Grid Width="100" Height="20" Background="Gray"></Grid>
-                            <Grid Width="100" Height="20" Background="Gray" Margin="0,230,0,0"></Grid>
-                            <Grid Width="50" Height="280" Background="Blue"></Grid>
-                            <Grid Width="20" Height="30" Background="Red" Margin="0,200,0,0"></Grid>
+                            <Viewbox>
+                                <Grid Margin="0,50,0,50">
+                                    <Grid Width="100" Height="20" Background="Gray" Margin="0,-230,0,0"></Grid>
+                                    <Grid Width="100" Height="20" Background="Gray"></Grid>
+                                    <Grid Width="100" Height="20" Background="Gray" Margin="0,230,0,0"></Grid>
+                                    <Grid Width="50" Height="280" Background="Blue"></Grid>
+                                    <Grid Width="20" Height="30" Background="Red" Margin="0,200,0,0"></Grid>
+                                </Grid>
+                            </Viewbox>
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="10*"/>
@@ -410,7 +486,7 @@
                                 <Viewbox Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2">
                                     <TextBlock Text="右侧" Margin="10"></TextBlock>
                                 </Viewbox>
-                            <Border Grid.Row="1" Grid.Column="0" BorderBrush="Gray" BorderThickness="0,1,0,0">
+                            <Border Grid.Row="1" Grid.Column="0">
                                 <Viewbox>
                                     <TextBlock Text="左抓手内翻" Margin="5"></TextBlock>
                                 </Viewbox>
@@ -420,58 +496,56 @@
                                     <TextBlock Text="左推板推出" Margin="5"></TextBlock>
                                 </Viewbox>
                             </Border>
-                            <Border Grid.Row="3" Grid.Column="0">
-                                <Viewbox>
-                                    <TextBlock Text="右抓手内翻" Margin="5"></TextBlock>
-                                </Viewbox>
-                            </Border>
-                            <Border Grid.Row="4" Grid.Column="0">
-                                <Viewbox>
-                                    <TextBlock Text="右推板推出" Margin="5"></TextBlock>
-                                </Viewbox>
-                            </Border>
-
-                            <Border Grid.Row="1" Grid.Column="1" BorderBrush="Gray" BorderThickness="0,1,0,0">
+                                <Border Grid.Row="3" Grid.Column="0">
+                                    <Viewbox>
+                                        <TextBlock Text="左抓手外翻" Margin="5"></TextBlock>
+                                    </Viewbox>
+                                </Border>
+                                <Border Grid.Row="4" Grid.Column="0">
+                                    <Viewbox>
+                                        <TextBlock Text="左推板缩回" Margin="5"></TextBlock>
+                                    </Viewbox>
+                                </Border>
+                                <Border Grid.Row="1" Grid.Column="1">
                                 <cl:SymbolMapping Name="smLeftGripInside" StrContent="" LampType="3" Margin="0,20,0,20"/>
                             </Border>
-                            <Border Grid.Row="2" Grid.Column="1">
+                                <Border Grid.Row="2" Grid.Column="1">
                                     <cl:SymbolMapping Name="smLeftBoardPush" StrContent="" LampType="3" Margin="0,20,0,20"/>
-                            </Border>
-                            <Border Grid.Row="3" Grid.Column="1">
-                                    <cl:SymbolMapping Name="smRightGripInside" StrContent="" LampType="3" Margin="0,20,0,20"/>
-                            </Border>
-                            <Border Grid.Row="4" Grid.Column="1">
-                                    <cl:SymbolMapping Name="smRightBoardPush" StrContent="" LampType="3" Margin="0,20,0,20"/>
-                            </Border>
+                                </Border>
+                                <Border Grid.Row="3" Grid.Column="1">
+                                    <cl:SymbolMapping Name="smLeftGripOutside" StrContent="" LampType="3" Margin="0,20,0,20"/>
+                                </Border>
+                                <Border Grid.Row="4" Grid.Column="1" BorderBrush="White">
+                                    <cl:SymbolMapping Name="smLeftBoardRetract" StrContent="" LampType="3" Margin="0,20,0,20"/>
+                                </Border>
 
-                            <Border Grid.Row="1" Grid.Column="3" BorderBrush="Gray" BorderThickness="0,1,0,0">
-                                <Viewbox>
-                                    <TextBlock Text="左抓手外翻" Margin="5"></TextBlock>
-                                </Viewbox>
-                            </Border>
-                            <Border Grid.Row="2" Grid.Column="3">
-                                <Viewbox>
-                                    <TextBlock Text="左推板缩回" Margin="5"></TextBlock>
-                                </Viewbox>
-                            </Border>
-                            <Border Grid.Row="3" Grid.Column="3">
+                                <Border Grid.Row="1" Grid.Column="3">
+                                    <Viewbox>
+                                        <TextBlock Text="右抓手内翻" Margin="5"></TextBlock>
+                                    </Viewbox>
+                                </Border>
+                                <Border Grid.Row="2" Grid.Column="3">
+                                    <Viewbox>
+                                        <TextBlock Text="右推板推出" Margin="5"></TextBlock>
+                                    </Viewbox>
+                                </Border>
+                                <Border Grid.Row="3" Grid.Column="3">
                                 <Viewbox>
                                     <TextBlock Text="右抓手外翻" Margin="5"></TextBlock>
                                 </Viewbox>
                             </Border>
-                            <Border Grid.Row="4" Grid.Column="3">
-                                <Viewbox>
-                                    <TextBlock Text="右推板缩回" Margin="5"></TextBlock>
-                                </Viewbox>
-                            </Border>
-
-                            <Border Grid.Row="1" Grid.Column="2" BorderBrush="Gray" BorderThickness="0,1,0,0">
-                                    <cl:SymbolMapping Name="smLeftGripOutside" StrContent="" LampType="3" Margin="50,20,0,20"/>
-                            </Border>
-                            <Border Grid.Row="2" Grid.Column="2" BorderBrush="White">
-                                    <cl:SymbolMapping Name="smLeftBoardRetract" StrContent="" LampType="3" Margin="50,20,0,20"/>
-                            </Border>
-                            <Border Grid.Row="3" Grid.Column="2">
+                                <Border Grid.Row="4" Grid.Column="3">
+                                    <Viewbox>
+                                        <TextBlock Text="右推板缩回" Margin="5"></TextBlock>
+                                    </Viewbox>
+                                </Border>
+                                <Border Grid.Row="1" Grid.Column="2">
+                                    <cl:SymbolMapping Name="smRightGripInside" StrContent="" LampType="3" Margin="50,20,0,20"/>
+                                </Border>
+                                <Border Grid.Row="2" Grid.Column="2">
+                                    <cl:SymbolMapping Name="smRightBoardPush" StrContent="" LampType="3" Margin="50,20,0,20"/>
+                                </Border>
+                                <Border Grid.Row="3" Grid.Column="2">
                                     <cl:SymbolMapping Name="smRightGripOutside" StrContent="" LampType="3" Margin="50,20,0,20"/>
                             </Border>
                             <Border Grid.Row="4" Grid.Column="2">

@@ -144,13 +144,15 @@ namespace Main.DrillFloor
                     (GlobalData.Instance.da["DR_DeviceType"].Value.Int32 == 5100 || GlobalData.Instance.da["DR_DeviceType"].Value.Int32 == 7100
                      || GlobalData.Instance.da["DR_DeviceType"].Value.Int32 == 8100 || GlobalData.Instance.da["DR_DeviceType"].Value.Int32 == 9100))
                 {
-                    MultiBinding dr_GripMultiBind = new MultiBinding();
-                    dr_GripMultiBind.Converter = new DR_GripCoverter();
-                    dr_GripMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["320b0"], Mode = BindingMode.OneWay });
-                    dr_GripMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["320b1"], Mode = BindingMode.OneWay });
-                    dr_GripMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["320b2"], Mode = BindingMode.OneWay });
-                    dr_GripMultiBind.NotifyOnSourceUpdated = true;
-                    this.gripMotor.SetBinding(TextBlock.TextProperty, dr_GripMultiBind);
+                    //MultiBinding dr_GripMultiBind = new MultiBinding();
+                    //dr_GripMultiBind.Converter = new DR_GripCoverter();
+                    //dr_GripMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["320b0"], Mode = BindingMode.OneWay });
+                    //dr_GripMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["320b1"], Mode = BindingMode.OneWay });
+                    //dr_GripMultiBind.Bindings.Add(new Binding("BoolTag") { Source = GlobalData.Instance.da["320b2"], Mode = BindingMode.OneWay });
+                    //dr_GripMultiBind.NotifyOnSourceUpdated = true;
+                    //this.gripMotor.SetBinding(TextBlock.TextProperty, dr_GripMultiBind);
+                    this.gripMotor.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["drgripStatus"], Mode = BindingMode.OneWay, Converter = new GripNewConverter() });//抓手状态
+
 
                 }
                 else
@@ -233,7 +235,7 @@ namespace Main.DrillFloor
                 leftHand.NotifyOnSourceUpdated = true;
                 this.tbLeftHand.SetBinding(TextBlock.TextProperty, leftHand);
 
-                this.tbMemoryPos.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["WR_DR_MemoryPos"], Mode = BindingMode.OneWay, Converter = new WR_MemoryPos() });// 井口记忆
+                this.tbMemoryPos.SetBinding(TextBlock.TextProperty, new Binding("ByteTag") { Source = GlobalData.Instance.da["WR_DR_MemoryPos"], Mode = BindingMode.OneWay, Converter = new DR_MemoryPos() });// 井口记忆
 
                 InitCameraInfo();
 

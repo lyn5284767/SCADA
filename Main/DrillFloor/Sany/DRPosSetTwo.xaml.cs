@@ -115,6 +115,8 @@ namespace Main.DrillFloor.Sany
                     int feedback = GlobalData.Instance.da["drCalibrationNumFeedback"].Value.Byte;
                     if (feedback == 65) this.twt65.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
                     else if (feedback == 66) this.twt66.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
+                    else if (feedback == 67) this.twt67.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
+                    else if (feedback == 68) this.twt68.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
                     else if (feedback == 70) this.twt70.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
                     else if (feedback == 71) this.twt71.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();
                     else if (feedback == 72) this.twt72.SetControlShow = GlobalData.Instance.da["drCarlibrationFeedback"].ToString();

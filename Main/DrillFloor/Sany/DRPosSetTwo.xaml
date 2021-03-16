@@ -38,6 +38,8 @@
                                 <inputcontrol:SetControl Name="twt70" Head="80, 33, 12, 70, 0, 0" TbkText="起钻待机位" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
                                 <inputcontrol:SetControl Name="twt71" Head="80, 33, 12, 71, 0, 0" TbkText="回收位置" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
                                 <inputcontrol:SetControl Name="twt72" Head="80, 33, 12, 72, 0, 0" TbkText="井口位置" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt67" Head="80, 33, 12, 67, 0, 0" TbkText="井口位置2" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt68" Head="80, 33, 12, 68, 0, 0" TbkText="井口位置3" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
                                 <inputcontrol:SetControl Name="twt74" Head="80, 33, 12, 74, 0, 0" TbkText="运输位置" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
                                 <inputcontrol:SetControl Name="twt76" Head="80, 33, 12, 76, 0, 0" TbkText="猫道位" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
                                 <inputcontrol:SetControl Name="twt77" Head="80, 33, 12, 77, 0, 0" TbkText="鼠道位" Margin="0,3,0,0" BtnOne="标定" BtnTwo="读取"/>
@@ -68,10 +70,10 @@
                                 </StackPanel>
                                 <inputcontrol:SetControl Name="twt97" Head="80, 33, 12, 97, 0, 0" TbkText="关闭设定值" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
                                 <inputcontrol:SetControl Name="twt98" Head="80, 33, 12, 98, 0, 0" TbkText="中间设定值1" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                                <inputcontrol:SetControl Name="twt100" Head="80, 33, 12, 98, 0, 0" TbkText="中间设定值2" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                                <inputcontrol:SetControl Name="twt101" Head="80, 33, 12, 98, 0, 0" TbkText="中间设定值3" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                                <inputcontrol:SetControl Name="twt102" Head="80, 33, 12, 98, 0, 0" TbkText="中间设定值4" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
-                                <inputcontrol:SetControl Name="twt103" Head="80, 33, 12, 98, 0, 0" TbkText="中间设定值5" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt100" Head="80, 33, 12, 100, 0, 0" TbkText="中间设定值2" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt101" Head="80, 33, 12, 101, 0, 0" TbkText="中间设定值3" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt102" Head="80, 33, 12, 102, 0, 0" TbkText="中间设定值4" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
+                                <inputcontrol:SetControl Name="twt103" Head="80, 33, 12, 103, 0, 0" TbkText="中间设定值5" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
                                 <inputcontrol:SetControl Name="twt99" Head="80, 33, 12, 99, 0, 0" TbkText="打开设定值" Margin="0,0,0,0" BtnOne="标定" BtnTwo="读取"/>
 
                             </StackPanel>
