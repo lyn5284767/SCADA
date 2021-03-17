@@ -125,8 +125,8 @@ namespace Main.HydraulicStation
                 this.tbConstantVoltage.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["CRunTime"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
                 this.tbDissipateHeat.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["DRunTime"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
                 // 1#主泵斜盘
-                this.cpbMainOnePumpSwash.SetBinding(CircleProgressBar.ValueProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["M1ValuePWMR"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
-                this.cpbMainOnePumpSwash.SetBinding(CircleProgressBar.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["M1ValuePWMR"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                this.cpbMainOnePumpSwash.SetBinding(CircleProgressBar.ValueProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["M1ValuePWMR"], Mode = BindingMode.OneWay });
+                this.cpbMainOnePumpSwash.SetBinding(CircleProgressBar.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["M1ValuePWMR"], Mode = BindingMode.OneWay });
                 MultiBinding cpbMainOnePumpSwashMultiBind = new MultiBinding();
                 cpbMainOnePumpSwashMultiBind.Converter = new ColorCoverter();
                 cpbMainOnePumpSwashMultiBind.Bindings.Add(new Binding("ShortTag") { Source = GlobalData.Instance.da["M1ValuePWMR"], Mode = BindingMode.OneWay });
@@ -135,8 +135,8 @@ namespace Main.HydraulicStation
                 cpbMainOnePumpSwashMultiBind.NotifyOnSourceUpdated = true;
                 this.cpbMainOnePumpSwash.SetBinding(CircleProgressBar.ForegroundProperty, cpbMainOnePumpSwashMultiBind);
                 // 2#主泵斜盘
-                this.cpbMainTwoPumpSwash.SetBinding(CircleProgressBar.ValueProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["M2ValuePWMR"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
-                this.cpbMainTwoPumpSwash.SetBinding(CircleProgressBar.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["M2ValuePWMR"], Mode = BindingMode.OneWay, Converter = new DivideTenConverter() });
+                this.cpbMainTwoPumpSwash.SetBinding(CircleProgressBar.ValueProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["M2ValuePWMR"], Mode = BindingMode.OneWay });
+                this.cpbMainTwoPumpSwash.SetBinding(CircleProgressBar.TextProperty, new Binding("ShortTag") { Source = GlobalData.Instance.da["M2ValuePWMR"], Mode = BindingMode.OneWay });
                 MultiBinding cpbMainTwoPumpSwashMultiBind = new MultiBinding();
                 cpbMainTwoPumpSwashMultiBind.Converter = new ColorCoverter();
                 cpbMainTwoPumpSwashMultiBind.Bindings.Add(new Binding("ShortTag") { Source = GlobalData.Instance.da["M2ValuePWMR"], Mode = BindingMode.OneWay });

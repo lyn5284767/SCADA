@@ -2046,4 +2046,87 @@ namespace ProtocolConfig
 
         #endregion
     }
+
+    /// <summary>
+    /// 摄像头信息
+    /// </summary>
+    public class CameraInfo
+    {
+        /// <summary>
+        /// 主键ID
+        /// </summary>
+        public int Id { get; set; }
+        /// <summary>
+        /// 渠道ID
+        /// </summary>
+        public int ChlId { get; set; }
+        /// <summary>
+        /// 设备型号
+        /// </summary>
+        public int NDeviceType { get; set; }
+        /// <summary>
+        /// 远端渠道
+        /// </summary>
+        public int REMOTECHANNLE { get; set; }
+        /// <summary>
+        /// 远端IP
+        /// </summary>
+        public string REMOTEIP { get; set; }
+        /// <summary>
+        /// 远端端口
+        /// </summary>
+        public int REMOTEPORT { get; set; }
+        /// <summary>
+        /// 远端用户
+        /// </summary>
+        public string REMOTEUSER { get; set; }
+        /// <summary>
+        /// 远端密码
+        /// </summary>
+        public string REMOTEPWD { get; set; }
+        /// <summary>
+        /// 远端端口
+        /// </summary>
+        public int NPLAYPORT { get; set; }
+        /// <summary>
+        /// 远端端口
+        /// </summary>
+        public int PTZPORT { get; set; }
+        /// <summary>
+        /// 摄像头类型0:宏英 1：一通
+        /// </summary>
+        public int CameraType { get; set; }
+    }
+
+    public class DateBaseReport
+    {
+        /// <summary>
+        /// 主键ID
+        /// </summary>
+        public int ID { get; set; }
+        /// <summary>
+        /// 名称
+        /// </summary>
+        public string Name { get; set; }
+        /// <summary>
+        /// 记录值
+        /// </summary>
+        public string Value { get; set; }
+        /// <summary>
+        /// 创建日期
+        /// </summary>
+        public DateTime CreateTime { get; set; }
+        /// <summary>
+        /// 数据类型
+        /// </summary>
+        public int Type { get; set; }
+        /// <summary>
+        /// 存储周期
+        /// </summary>
+        public int Cycle { get; set; }
+        /// <summary>
+        /// 标准值
+        /// </summary>
+        public string StandardValue { get; set; }
+    }
 }

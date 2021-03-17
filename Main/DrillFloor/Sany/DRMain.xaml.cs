@@ -98,7 +98,7 @@ namespace Main.DrillFloor
             // 其他厂家集成我们设备发送
             if (GlobalData.Instance.da["IngSetting"]!=null && GlobalData.Instance.da["IngSetting"].Value.Byte != 0)
             {
-                data = new byte[10] { 1, 32, 1, 10, 0, 0, 0, 0, 0, 0 };
+                data = new byte[10] { 16, 1, 1, 10, 0, 0, 0, 0, 0, 0 };
                 GlobalData.Instance.da.SendBytes(data);
             }
         }

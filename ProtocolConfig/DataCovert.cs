@@ -23,6 +23,21 @@ namespace ProtocolConfig
         }
     }
 
+    public class CameraTypeSource
+    {
+        byte _type;
+        public byte CameraType { get { return _type; } set { _type = value; } }
+
+        string _name;
+        public string Name { get { return _name; } set { _name = value; } }
+
+        public CameraTypeSource(byte type, string name)
+        {
+            _type = type;
+            _name = name;
+        }
+    }
+
     public static class DataConvert //:MarshalByRefObject
     {
         public static DataTable ConvertTextToTable(string str)

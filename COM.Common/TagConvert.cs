@@ -2993,6 +2993,33 @@ namespace COM.Common
     }
 
     /// <summary>
+    /// 抓手状态
+    /// </summary>
+    public class GripNewConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return "未知";
+            }
+
+            byte status = (byte)value;
+            if (status == 3) return "全关";
+            if (status == 2) return "关1级";
+            if (status == 4) return "全开";
+
+            return "未知";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
     /// 扶杆臂-行车
     /// </summary>
     public class CarMoveModelCoverter : IMultiValueConverter

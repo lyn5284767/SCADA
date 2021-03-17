@@ -36,6 +36,11 @@ namespace ProtocolConfig
            new DataTypeSource(0,"")
         };
 
+        public static readonly List<CameraTypeSource> CamDict = new List<CameraTypeSource>
+        {
+           new CameraTypeSource (0,"宏英"),new CameraTypeSource (1,"一通"), new CameraTypeSource (3,"不配置")
+        };
+
         public MainForm()
         {
             InitializeComponent();
@@ -44,6 +49,11 @@ namespace ProtocolConfig
             col.DataSource = DataDict;
             col.DisplayMember = "Name";
             col.ValueMember = "DataType";
+
+            //DataGridViewComboBoxColumn camcol = this.dgvCameraInfo.Columns["dataGridViewCheckBoxColumn4"] as DataGridViewComboBoxColumn;
+            //camcol.DataSource = CamDict;
+            //camcol.DisplayMember = "Name";
+            //camcol.ValueMember = "CameraType";
         }
 
         private void BtnAdd_Click(object sender, EventArgs e)
@@ -89,48 +99,49 @@ namespace ProtocolConfig
             majorTop.Nodes.Clear();
 
             string sql = "SELECT DriverID,DriverType,DriverName FROM DRIVER;";
-            using (var reader = DataHelper.Instance.ExecuteReader(sql))
-            {
-                while (reader.Read())
-                {
-                    Driver device = new Driver(reader.GetInt16(0), reader.GetInt32(1), reader.GetString(2));
-                    devices.Add(device);
-                    majorTop.Nodes.Add(device.ID.ToString(), device.Name, 1, 1);
-                }
-            }
+            List<Driver> driverlist = DataHelper.Instance.ExecuteList<Driver>(sql);
+            //using (var reader = DataHelper.Instance.ExecuteList<Driver>(sql))
+            //{
+            //    while (reader.Read())
+            //    {
+            //        Driver device = new Driver(reader.GetInt16(0), reader.GetInt32(1), reader.GetString(2));
+            //        devices.Add(device);
+            //        majorTop.Nodes.Add(device.ID.ToString(), device.Name, 1, 1);
+            //    }
+            //}
 
 
-            foreach (TreeNode node in majorTop.Nodes)
-            {
-                sql = string.Format("SELECT GroupID,DriverID,GroupName,UpdateRate,DeadBand,IsActive FROM ProtocolGroup WHERE DriverID={0};", node.Name);
-                using (var reader = DataHelper.Instance.ExecuteReader(sql))
-                {
-                    while (reader.Read())
-                    {
-                        Group group = new Group(reader.GetInt16(0), reader.GetInt16(1), reader.GetString(2), reader.GetInt32(3), reader.GetFloat(4), reader.GetBoolean(5));
-                        groups.Add(group);
-                        node.Nodes.Add(group.ID.ToString(), group.Name, 2, 2);
-                    }
-                }
-            }
+            //foreach (TreeNode node in majorTop.Nodes)
+            //{
+            //    sql = string.Format("SELECT GroupID,DriverID,GroupName,UpdateRate,DeadBand,IsActive FROM ProtocolGroup WHERE DriverID={0};", node.Name);
+            //    using (var reader = DataHelper.Instance.ExecuteReader(sql))
+            //    {
+            //        while (reader.Read())
+            //        {
+            //            Group group = new Group(reader.GetInt16(0), reader.GetInt16(1), reader.GetString(2), reader.GetInt32(3), reader.GetFloat(4), reader.GetBoolean(5));
+            //            groups.Add(group);
+            //            node.Nodes.Add(group.ID.ToString(), group.Name, 2, 2);
+            //        }
+            //    }
+            //}
 
-            sql = "SELECT TagId,GroupID,TagName,Address,DataType,DataSize,IsActive,Archive,DefaultValue,Description,Maximum,Minimum,Cycle from Protocol where DataType<12";
-            using (var reader = DataHelper.Instance.ExecuteReader(sql))
-            {                
-                while (reader.Read())
-                {
-                    TagData tag = new TagData(reader.GetInt16(0), reader.GetInt16(1), reader.GetString(2), reader.GetString(3), reader.GetByte(4),
-                     (ushort)reader.GetInt16(5), reader.GetBoolean(6), false, false, reader.GetBoolean(7),
-                     reader.GetValue(8), reader.GetNullableString(9), reader.GetFloat(10), reader.GetFloat(11), reader.GetInt32(12));
-                    list.Add(tag);
-                    data.Add(tag);
-                }
-            }
+            //sql = "SELECT TagId,GroupID,TagName,Address,DataType,DataSize,IsActive,Archive,DefaultValue,Description,Maximum,Minimum,Cycle from Protocol where DataType<12";
+            //using (var reader = DataHelper.Instance.ExecuteReader(sql))
+            //{                
+            //    while (reader.Read())
+            //    {
+            //        TagData tag = new TagData(reader.GetInt16(0), reader.GetInt16(1), reader.GetString(2), reader.GetString(3), reader.GetByte(4),
+            //         (ushort)reader.GetInt16(5), reader.GetBoolean(6), false, false, reader.GetBoolean(7),
+            //         reader.GetValue(8), reader.GetNullableString(9), reader.GetFloat(10), reader.GetFloat(11), reader.GetInt32(12));
+            //        list.Add(tag);
+            //        data.Add(tag);
+            //    }
+            //}
 
-            list.Sort();
-            bindSourceProtocol.DataSource = new SortableBindingList<TagData>(data);
-            tagCount.Text += list.Count.ToString();
-            start = true;
+            //list.Sort();
+            //bindSourceProtocol.DataSource = new SortableBindingList<TagData>(data);
+            //tagCount.Text += list.Count.ToString();
+            //start = true;
         }
 
         private void BtnSave_Click(object sender, EventArgs e)
@@ -458,6 +469,12 @@ namespace ProtocolConfig
 
         private void tvProtrcol_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            if (e.Node.Text == "摄像头配置")
+            {
+                string sql = "SELECT * FROM CameraInfo";
+                List<CameraInfo> cameraInfolist = DataHelper.Instance.ExecuteList<CameraInfo>(sql);
+                this.dgvCameraInfo.DataSource = cameraInfolist;
+            }
             if (!start) return;
             switch (e.Node.Level)
             {

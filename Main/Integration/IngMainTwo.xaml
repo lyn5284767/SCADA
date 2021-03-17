@@ -253,74 +253,95 @@
                             </Grid.ColumnDefinitions>
                             <Border Grid.Column="0" BorderThickness="1" BorderBrush="#7DDCF4" CornerRadius="5" Margin="20,20,5,20">
                                 <Border BorderThickness="1" BorderBrush="#7DDCF4" CornerRadius="5" Margin="2">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Viewbox>
-                                            <Image Source="../Images/hs.png" Margin="10,50,5,50"></Image>
-                                        </Viewbox>
-                                        <StackPanel>
+                                    <Grid>
+                                        <StackPanel Orientation="Horizontal">
                                             <Viewbox>
-                                                <TextBlock Text="液压站" Margin="0,20,0,0"></TextBlock>
+                                                <Image Source="../Images/hs.png" Margin="10,50,5,50"></Image>
                                             </Viewbox>
-                                            <Viewbox>
-                                                <TextBlock Name="tbHSSet" FontSize="18" Text="未设置" VerticalAlignment="Center" Foreground="#1A26D4" FontWeight="Bold"></TextBlock>
-                                            </Viewbox>
+                                            <StackPanel>
+                                                <Viewbox>
+                                                    <TextBlock Text="液压站" Margin="0,20,0,0"></TextBlock>
+                                                </Viewbox>
+                                                <Viewbox>
+                                                    <TextBlock Name="tbHSSet" FontSize="18" Text="未设置" VerticalAlignment="Center" Foreground="#1A26D4" FontWeight="Bold"></TextBlock>
+                                                </Viewbox>
 
+                                            </StackPanel>
                                         </StackPanel>
-                                    </StackPanel>
+                                        <Viewbox>
+                                            <TextBlock Name="tbHSSetHand" Text="&#xe507;" FontFamily="../Font/#iconfont" Margin="5" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Visible"></TextBlock>
+                                        </Viewbox>
+                                    </Grid>
                                 </Border>
                             </Border>
                             <Border Grid.Column="1" BorderThickness="1" BorderBrush="#7DDCF4" CornerRadius="5" Margin="5,20,5,20">
                                 <Border BorderThickness="1" BorderBrush="#7DDCF4" CornerRadius="5" Margin="2">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Viewbox>
-                                            <Image Source="../Images/DrillUp.png" Margin="30,50,25,50"></Image>
-                                        </Viewbox>
-                                        <StackPanel>
+                                    <Grid>
+                                        <StackPanel Orientation="Horizontal">
                                             <Viewbox>
-                                                <TextBlock Text="工作模式" Margin="0,20,0,0"></TextBlock>
+                                                <Image Source="../Images/DrillUp.png" Margin="30,50,25,50"></Image>
                                             </Viewbox>
-                                            <Viewbox>
-                                                <TextBlock Name="tbWorkModelSet" FontSize="18" Text="未设置" VerticalAlignment="Center" Foreground="#1A26D4" FontWeight="Bold"></TextBlock>
-                                            </Viewbox>
+                                            <StackPanel>
+                                                <Viewbox>
+                                                    <TextBlock Text="工作模式" Margin="0,20,0,0"></TextBlock>
+                                                </Viewbox>
+                                                <Viewbox>
+                                                    <TextBlock Name="tbWorkModelSet" FontSize="18" Text="未设置" VerticalAlignment="Center" Foreground="#1A26D4" FontWeight="Bold"></TextBlock>
+                                                </Viewbox>
 
+                                            </StackPanel>
                                         </StackPanel>
-                                    </StackPanel>
+                                        <Viewbox>
+                                            <TextBlock Name="tbWorkModelSetHand" Margin="5" Text="&#xe507;" FontFamily="../Font/#iconfont" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Visible"></TextBlock>
+                                        </Viewbox>
+                                    </Grid>
+
                                 </Border>
                             </Border>
                             <Border Grid.Column="2" BorderThickness="1" BorderBrush="#7DDCF4" CornerRadius="5" Margin="5,20,5,20">
                                 <Border BorderThickness="1" BorderBrush="#7DDCF4" CornerRadius="5" Margin="2">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Viewbox>
-                                            <Image Source="../Images/PipeType.png" Margin="50,50,45,50"></Image>
-                                        </Viewbox>
-                                        <StackPanel>
+                                    <Grid>
+                                        <StackPanel Orientation="Horizontal">
                                             <Viewbox>
-                                                <TextBlock Text="管柱类型" Margin="0,20,0,0"></TextBlock>
+                                                <Image Source="../Images/PipeType.png" Margin="50,50,45,50"></Image>
                                             </Viewbox>
-                                            <Viewbox>
-                                                <TextBlock Name="tbPipeType" FontSize="18" Text="未设置" VerticalAlignment="Center" Foreground="#1A26D4" FontWeight="Bold"></TextBlock>
-                                            </Viewbox>
+                                            <StackPanel>
+                                                <Viewbox>
+                                                    <TextBlock Text="管柱类型" Margin="0,20,0,0"></TextBlock>
+                                                </Viewbox>
+                                                <Viewbox>
+                                                    <TextBlock Name="tbPipeType" FontSize="18" Text="2 7/8&#x0a;钻杆" VerticalAlignment="Center" Foreground="#1A26D4" FontWeight="Bold"></TextBlock>
+                                                </Viewbox>
 
+                                            </StackPanel>
                                         </StackPanel>
-                                    </StackPanel>
+                                        <Viewbox>
+                                            <TextBlock Name="tbPipeSetHand" Text="&#xe507;" FontFamily="../Font/#iconfont" Margin="5" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Visible"></TextBlock>
+                                        </Viewbox>
+                                    </Grid>
                                 </Border>
                             </Border>
                             <Border Grid.Column="3" BorderThickness="1" BorderBrush="#7DDCF4" CornerRadius="5" Margin="5,20,20,20">
                                 <Border BorderThickness="1" BorderBrush="#7DDCF4" CornerRadius="5" Margin="2">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Viewbox>
-                                            <Image Source="../Images/SelectLeftDrill.png" Margin="5,55,5,55"></Image>
-                                        </Viewbox>
-                                        <StackPanel>
+                                    <Grid>
+                                        <StackPanel Orientation="Horizontal">
                                             <Viewbox>
-                                                <TextBlock Text="选择指梁" Margin="0,20,0,0"></TextBlock>
+                                                <Image Source="../Images/SelectLeftDrill.png" Margin="5,55,5,55"></Image>
                                             </Viewbox>
-                                            <Viewbox>
-                                                <TextBlock Name="tbDrillSelectSet" FontSize="18" Text="未设置" VerticalAlignment="Center" Foreground="#1A26D4" FontWeight="Bold"></TextBlock>
-                                            </Viewbox>
+                                            <StackPanel>
+                                                <Viewbox>
+                                                    <TextBlock Text="选择指梁" Margin="0,20,0,0"></TextBlock>
+                                                </Viewbox>
+                                                <Viewbox>
+                                                    <TextBlock Name="tbDrillSelectSet" FontSize="18" Text="未设置" VerticalAlignment="Center" Foreground="#1A26D4" FontWeight="Bold"></TextBlock>
+                                                </Viewbox>
 
+                                            </StackPanel>
                                         </StackPanel>
-                                    </StackPanel>
+                                        <Viewbox>
+                                            <TextBlock Name="tbDrillSetHand" Text="&#xe507;" FontFamily="../Font/#iconfont" Margin="5" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Visible"></TextBlock>
+                                        </Viewbox>
+                                    </Grid>
                                 </Border>
                             </Border>
                         </Grid>
@@ -335,6 +356,87 @@
                             <Viewbox Grid.Column="1">
                                 <TextBlock Text="无操作提示" Name="tbOpr" Margin="0,10,0,5" Foreground="Gray" FontWeight="Bold"></TextBlock>
                             </Viewbox>
+                        </Grid>
+                        <Grid Grid.Row="3">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2.5*"/>
+                                <ColumnDefinition Width="2.5*"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="2.5*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border CornerRadius="5" Background="#CACACA" Margin="20" Name="bdStartHS" MouseLeftButtonDown="btnStartHS_Click">
+                                <Grid>
+                                    <Viewbox  HorizontalAlignment="Left">
+                                        <TextBlock Text="①" FontWeight="Bold" Margin="3,-2,0,25"></TextBlock>
+                                    </Viewbox>
+                                    <Viewbox>
+                                        <TextBlock Text="启动泵" FontWeight="Bold" TextAlignment="Center" Margin="10,8,5,8" Width="60"></TextBlock>
+                                    </Viewbox>
+                                    <Viewbox>
+                                        <TextBlock Name="tbStartHSHand" Margin="3" Text="&#xe507;" FontFamily="../Font/#iconfont" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Visible"></TextBlock>
+                                    </Viewbox>
+                                </Grid>
+                            </Border>
+
+                            <Border Grid.Column="1" CornerRadius="5" Background="#CACACA" Margin="20" Name="bdTurnZero" MouseLeftButtonDown="bdTurnZero_MouseLeftButtonDown">
+                                <Grid>
+                                    <Viewbox  HorizontalAlignment="Left">
+                                        <TextBlock Text="②" FontWeight="Bold" Margin="3,-2,0,25"></TextBlock>
+                                    </Viewbox>
+                                    <Viewbox>
+                                        <TextBlock Text="回零" FontWeight="Bold" TextAlignment="Center" Margin="10,8,5,8" Width="60"></TextBlock>
+                                    </Viewbox>
+                                    <Viewbox>
+                                        <TextBlock Name="tbSTurnZeroHand" Margin="3" Text="&#xe507;" FontFamily="../Font/#iconfont" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Visible"></TextBlock>
+                                    </Viewbox>
+                                </Grid>
+                            </Border>
+
+                            <Border Grid.Column="0" Grid.Row="1" CornerRadius="5" Background="#CACACA" Margin="20" Name="bdParamSet" MouseLeftButtonDown="bdParamSet_MouseLeftButtonDown">
+                                <Grid>
+                                    <Viewbox  HorizontalAlignment="Left">
+                                        <TextBlock Text="③" FontWeight="Bold" Margin="3,-2,0,25"></TextBlock>
+                                    </Viewbox>
+                                    <Viewbox>
+                                        <TextBlock Text="参数设置" FontWeight="Bold" TextAlignment="Center" Margin="10,8,5,8" Width="60"></TextBlock>
+                                    </Viewbox>
+                                    <Viewbox>
+                                        <TextBlock Name="tbParamConfirmHand" Margin="3" Text="&#xe507;" FontFamily="../Font/#iconfont" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Visible"></TextBlock>
+                                    </Viewbox>
+                                </Grid>
+                            </Border>
+                            <Border Grid.Column="1" Grid.Row="1" CornerRadius="5" Background="#CACACA" Margin="20" Name="bdLockComfirm" MouseLeftButtonDown="bdLockComfirm_MouseLeftButtonDown">
+                                <Grid>
+                                    <Viewbox  HorizontalAlignment="Left">
+                                        <TextBlock Text="④" FontWeight="Bold" Margin="3,-2,0,25"></TextBlock>
+                                    </Viewbox>
+                                    <Viewbox>
+                                        <TextBlock Text="互锁确认" FontWeight="Bold" TextAlignment="Center" Margin="10,8,5,8" Width="60"></TextBlock>
+                                    </Viewbox>
+                                    <Viewbox>
+                                        <TextBlock Name="tbLockConfirmHand" Margin="3" Text="&#xe507;" FontFamily="../Font/#iconfont" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Visible"></TextBlock>
+                                    </Viewbox>
+                                </Grid>
+                            </Border>
+                            <Image Grid.Column="2" Grid.RowSpan="2" Source="../Images/leftTrangle.png" Margin="25"/>
+                            <Border Grid.Column="3" Grid.RowSpan="2" CornerRadius="5" Background="#CACACA" Margin="20" Name="bdLink" MouseLeftButtonDown="bdLink_MouseLeftButtonDown">
+                                <Grid>
+                                    <Viewbox  HorizontalAlignment="Left">
+                                        <TextBlock Text="④" FontWeight="Bold" Margin="3,-2,0,85"></TextBlock>
+                                    </Viewbox>
+                                    <Image Source="../Images/LinkClose.png"  Margin="30,20,30,30"/>
+                                    <Viewbox>
+                                        <TextBlock Name="tbIsOpenLink" Text="开启联动" FontWeight="Bold" TextAlignment="Center" Margin="10,68,5,8" Width="60"></TextBlock>
+                                    </Viewbox>
+                                    <Viewbox>
+                                        <TextBlock Name="tbStartLinkHand" Margin="15" Text="&#xe507;" FontFamily="../Font/#iconfont" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Visible"></TextBlock>
+                                    </Viewbox>
+                                </Grid>
+                            </Border>
                         </Grid>
                     </Grid>
                 </Border>
