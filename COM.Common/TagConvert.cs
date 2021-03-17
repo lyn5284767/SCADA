@@ -3400,6 +3400,57 @@ namespace COM.Common
             throw new NotImplementedException();
         }
     }
+    /// <summary>
+    /// 联动打开/关闭图形切换
+    /// </summary>
+    public class LinkOpenOrCloseImgConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            string path = string.Empty;
+            if (value == DependencyProperty.UnsetValue || value == null)
+            {
+                path = "../Images/LinkClose.png";
+            }
+
+            bool val = (bool)value;
+            if (val) path = "/Images/LinkOpen.png";
+            else path = "../Images/LinkClose.png";
+            var uriSource = new Uri(path, UriKind.Relative);
+            return new BitmapImage(uriSource);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 卡瓦打开/关闭图形切换
+    /// </summary>
+    public class KavaImgConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            string path = string.Empty;
+            if (value == DependencyProperty.UnsetValue || value == null)
+            {
+                path = "../Images/KavaOpen.png";
+            }
+
+            bool val = (bool)value;
+            if (val) path = "/Images/KavaClose.png";
+            else path = "../Images/KavaOpen.png";
+            var uriSource = new Uri(path, UriKind.Relative);
+            return new BitmapImage(uriSource);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 
     /// <summary>
     /// 集成系统-自动起钻/下钻步骤

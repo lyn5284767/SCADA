@@ -28,7 +28,7 @@
                         <StackPanel>
                             <Border Background="#DCDCDC" Height="50" Width="50" Margin="5,10,5,2" CornerRadius="5">
                                 <StackPanel>
-                                    <Image Source="../Images/LinkClose.png" Height="30" Width="30" Margin="5,5,5,2"/>
+                                    <Image Name="imgLinkStatus" Source="../Images/LinkClose.png" Height="30" Width="30" Margin="5,5,5,2"/>
                                     <TextBlock Text="联动状态" Foreground="Black" FontSize="8" TextAlignment="Center" FontWeight="Bold"></TextBlock>
                                 </StackPanel>
                             </Border>
@@ -39,7 +39,7 @@
                         <StackPanel>
                             <Border Background="#DCDCDC" Height="50" Width="50" Margin="5,10,5,2" CornerRadius="5">
                                 <StackPanel>
-                                    <Image Source="../Images/DrillUp.png" Height="30" Width="30" Margin="5,5,5,2"/>
+                                    <Image Name="imgWorkModel" Source="../Images/DrillUp.png" Height="30" Width="30" Margin="5,5,5,2"/>
                                     <TextBlock Text="作业模式" Foreground="Black" FontSize="8" TextAlignment="Center" FontWeight="Bold"></TextBlock>
                                 </StackPanel>
                             </Border>
@@ -83,7 +83,7 @@
                         <StackPanel>
                             <Border Background="#DCDCDC" Height="50" Width="50" Margin="5,10,5,2" CornerRadius="5">
                                 <StackPanel>
-                                    <Image Source="../Images/SelectLeftDrill.png" Height="30" Width="30" Margin="5,5,5,2"/>
+                                    <Image Name="imgSelectDrill" Source="../Images/SelectLeftDrill.png" Height="30" Width="30" Margin="5,5,5,2"/>
                                     <TextBlock Text="选择指梁" Foreground="Black" FontSize="8" TextAlignment="Center" FontWeight="Bold"></TextBlock>
                                 </StackPanel>
                             </Border>
@@ -105,7 +105,7 @@
                         <StackPanel>
                             <Border Background="#DCDCDC" Height="50" Width="50" Margin="5,10,5,2" CornerRadius="5">
                                 <StackPanel>
-                                    <Image Source="../Images/KavaOpen.png" Height="30" Width="30" Margin="5,5,5,2"/>
+                                    <Image Name="imgKavaStatus" Source="../Images/KavaOpen.png" Height="30" Width="30" Margin="5,5,5,2"/>
                                     <TextBlock Text="卡瓦状态" Foreground="Black" FontSize="8" TextAlignment="Center" FontWeight="Bold"></TextBlock>
                                 </StackPanel>
                             </Border>
@@ -251,7 +251,7 @@
                                 <ColumnDefinition Width="142*"/>
                                 <ColumnDefinition Width="158*"/>
                             </Grid.ColumnDefinitions>
-                            <Border Grid.Column="0" BorderThickness="1" BorderBrush="#7DDCF4" CornerRadius="5" Margin="20,20,5,20">
+                            <Border Grid.Column="0" BorderThickness="1" BorderBrush="#7DDCF4" CornerRadius="5" Margin="20,20,5,20" MouseLeftButtonDown="HSSet_MouseDown">
                                 <Border BorderThickness="1" BorderBrush="#7DDCF4" CornerRadius="5" Margin="2">
                                     <Grid>
                                         <StackPanel Orientation="Horizontal">
@@ -274,12 +274,12 @@
                                     </Grid>
                                 </Border>
                             </Border>
-                            <Border Grid.Column="1" BorderThickness="1" BorderBrush="#7DDCF4" CornerRadius="5" Margin="5,20,5,20">
+                            <Border Grid.Column="1" BorderThickness="1" BorderBrush="#7DDCF4" CornerRadius="5" Margin="5,20,5,20" MouseLeftButtonDown="WorkModel_MouseDown">
                                 <Border BorderThickness="1" BorderBrush="#7DDCF4" CornerRadius="5" Margin="2">
                                     <Grid>
                                         <StackPanel Orientation="Horizontal">
                                             <Viewbox>
-                                                <Image Source="../Images/DrillUp.png" Margin="30,50,25,50"></Image>
+                                                <Image Name="imgWorkSet" Source="../Images/DrillUp.png" Margin="30,50,25,50"></Image>
                                             </Viewbox>
                                             <StackPanel>
                                                 <Viewbox>
@@ -298,7 +298,7 @@
 
                                 </Border>
                             </Border>
-                            <Border Grid.Column="2" BorderThickness="1" BorderBrush="#7DDCF4" CornerRadius="5" Margin="5,20,5,20">
+                            <Border Grid.Column="2" BorderThickness="1" BorderBrush="#7DDCF4" CornerRadius="5" Margin="5,20,5,20" MouseLeftButtonDown="PipeType_MouseDown">
                                 <Border BorderThickness="1" BorderBrush="#7DDCF4" CornerRadius="5" Margin="2">
                                     <Grid>
                                         <StackPanel Orientation="Horizontal">
@@ -321,12 +321,12 @@
                                     </Grid>
                                 </Border>
                             </Border>
-                            <Border Grid.Column="3" BorderThickness="1" BorderBrush="#7DDCF4" CornerRadius="5" Margin="5,20,20,20">
+                            <Border Grid.Column="3" BorderThickness="1" BorderBrush="#7DDCF4" CornerRadius="5" Margin="5,20,20,20" MouseLeftButtonDown="DrillSelect_MouseDown">
                                 <Border BorderThickness="1" BorderBrush="#7DDCF4" CornerRadius="5" Margin="2">
                                     <Grid>
                                         <StackPanel Orientation="Horizontal">
                                             <Viewbox>
-                                                <Image Source="../Images/SelectLeftDrill.png" Margin="5,55,5,55"></Image>
+                                                <Image Name="imgSelectDrillSet" Source="../Images/SelectLeftDrill.png" Margin="5,55,5,55"></Image>
                                             </Viewbox>
                                             <StackPanel>
                                                 <Viewbox>
@@ -428,7 +428,7 @@
                                     <Viewbox  HorizontalAlignment="Left">
                                         <TextBlock Text="④" FontWeight="Bold" Margin="3,-2,0,85"></TextBlock>
                                     </Viewbox>
-                                    <Image Source="../Images/LinkClose.png"  Margin="30,20,30,30"/>
+                                    <Image Name="imgIsLinKOpen" Source="../Images/LinkClose.png"  Margin="30,20,30,30"/>
                                     <Viewbox>
                                         <TextBlock Name="tbIsOpenLink" Text="开启联动" FontWeight="Bold" TextAlignment="Center" Margin="10,68,5,8" Width="60"></TextBlock>
                                     </Viewbox>

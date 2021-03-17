@@ -169,6 +169,10 @@ namespace Main.Integration
                 this.bigHookRealTimeValue.SetBinding(TextBlock.TextProperty, new Binding("IntTag") { Source = GlobalData.Instance.da["156To159BigHookEncoderRealTimeValue"], Mode = BindingMode.OneWay, Converter = new DivideHundredConverter() });
                 this.tbKava.SetBinding(TextBlock.TextProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["575b6"], Mode = BindingMode.OneWay, Converter = new KavaConverter() });
 
+                this.imgLinkStatus.SetBinding(Image.SourceProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["460b0"], Mode = BindingMode.OneWay, Converter = new LinkOpenOrCloseImgConverter() });
+                this.imgKavaStatus.SetBinding(Image.SourceProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["575b6"], Mode = BindingMode.OneWay, Converter = new KavaImgConverter() });
+                this.imgIsLinKOpen.SetBinding(Image.SourceProperty, new Binding("BoolTag") { Source = GlobalData.Instance.da["460b0"], Mode = BindingMode.OneWay, Converter = new LinkOpenOrCloseImgConverter() });
+
             }
             catch (Exception ex)
             {
@@ -400,6 +404,8 @@ namespace Main.Integration
                     //this.workMode.IsChecked = false;
                     alarmKey["设备工作模式不一致"] = 0;
                     nowTechnique = Technique.DrillDown;
+                    this.imgWorkModel.Source = new BitmapImage(new Uri("../Images/DrillDown.png", UriKind.Relative));
+                    this.imgWorkSet.Source = new BitmapImage(new Uri("../Images/DrillDown.png", UriKind.Relative));
                 }// 存在的设备全为2，设备不存在为-1，则为起钻
                 else if ((this.sfWorkModel == 2 || this.sfWorkModel == -1)
                     && (this.drWorkModel == 2 || this.drWorkModel == -1)
@@ -410,6 +416,8 @@ namespace Main.Integration
                     //this.workMode.IsChecked = true;
                     alarmKey["设备工作模式不一致"] = 0;
                     nowTechnique = Technique.DrillUp;
+                    this.imgWorkModel.Source = new BitmapImage(new Uri("../Images/DrillUp.png", UriKind.Relative));
+                    this.imgWorkSet.Source = new BitmapImage(new Uri("../Images/DrillUp.png", UriKind.Relative));
                 }
                 else
                 {
@@ -535,10 +543,14 @@ namespace Main.Integration
                     if (sfSelectDrill <= 16 && sfSelectDrill >= 1)
                     {
                         this.tbCurSelectDrill.Text = "左" + sfSelectDrill;
+                        this.imgSelectDrill.Source = new BitmapImage(new Uri("../Images/SelectLeftDrill.png", UriKind.Relative));
+                        this.imgSelectDrillSet.Source = new BitmapImage(new Uri("../Images/SelectLeftDrill.png", UriKind.Relative));
                     }
                     else if (sfSelectDrill <= 32 && sfSelectDrill > 16)
                     {
                         this.tbCurSelectDrill.Text = "右" + (sfSelectDrill - 16);
+                        this.imgSelectDrill.Source = new BitmapImage(new Uri("../Images/SelectRightDrill.png", UriKind.Relative));
+                        this.imgSelectDrillSet.Source = new BitmapImage(new Uri("../Images/SelectRightDrill.png", UriKind.Relative));
                     }
                     else
                     {
